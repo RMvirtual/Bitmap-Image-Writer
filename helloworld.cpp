@@ -19,11 +19,20 @@ class PrintableMessage
         return this->message3;
     }
 
+    public: void setMessage3(string message)
+    {
+        this->message3 = message;
+    }
 };
 
 int main()
 {
     PrintableMessage message = PrintableMessage("Aight");
     cout << message.getMessage3();
+    
+    cout << "\nChanging message 3.";
+    message.setMessage3("Too many chars?");
+    cout << "\n" + message.getMessage3();
+
     return 0;
 }
