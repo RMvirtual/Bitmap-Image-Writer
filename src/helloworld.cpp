@@ -1,10 +1,8 @@
 #include <iostream>
-#include <boost/lambda/lambda.hpp>
-#include <iterator>
-#include <algorithm>
+#include <boost/test/unit_test.hpp>
 
+using namespace boost::unit_test;
 using namespace std;
-using namespace boost::lambda;
 
 class PrintableMessage
 {
@@ -29,6 +27,11 @@ class PrintableMessage
         this->message3 = message;
     }
 };
+
+BOOST_AUTO_TEST_CASE(myTest)
+{
+    BOOST_CHECK(2 + 2 == 4);
+}
 
 int main()
 {
