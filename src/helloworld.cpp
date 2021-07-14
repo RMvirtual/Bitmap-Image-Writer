@@ -1,5 +1,6 @@
 #include <iostream>
-#include <boost/test/unit_test.hpp>
+#define BOOST_TEST_MODULE First_TestSuite
+#include <boost/test/included/unit_test.hpp>
 
 using namespace boost::unit_test;
 using namespace std;
@@ -31,8 +32,10 @@ class PrintableMessage
 BOOST_AUTO_TEST_CASE(myTest)
 {
     BOOST_CHECK(2 + 2 == 4);
+    BOOST_CHECK(3 + 1 == 3);
 }
 
+/*
 int main()
 {
     PrintableMessage message = PrintableMessage("Aight");
@@ -44,3 +47,4 @@ int main()
 
     return 0;
 }
+*/
