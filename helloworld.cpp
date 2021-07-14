@@ -1,5 +1,10 @@
 #include <iostream>
+#include <boost/lambda/lambda.hpp>
+#include <iterator>
+#include <algorithm>
+
 using namespace std;
+using namespace boost::lambda;
 
 class PrintableMessage
 {
