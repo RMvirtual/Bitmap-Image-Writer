@@ -1,10 +1,12 @@
-#define BOOST_TEST_MODULE First_TestSuite
+// #define BOOST_TEST_MODULE First_TestSuite
+// #include <boost/test/included/unit_test.hpp>
+
+#define BOOST_TEST_MODULE example
 #include <boost/test/included/unit_test.hpp>
+#include <iostream>
 
-using namespace boost::unit_test;
-
-BOOST_AUTO_TEST_CASE(myTest)
+BOOST_AUTO_TEST_CASE(wut)
 {
-    BOOST_CHECK(2 + 2 == 4);
-    BOOST_CHECK(3 + 1 == 4);
+    std::cout << "Testing...";
+    BOOST_TEST(true);
 }
