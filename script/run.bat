@@ -4,9 +4,4 @@ cd ../build
 
 helloworld.exe
 
-cd test
-
-test.exe
-
-cd ../../script
-
+cd ../script
