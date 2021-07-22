@@ -1,9 +1,4 @@
-: Test script.
-
-@echo off
-cd ../build/test
-
-test.exe
-
-cd ../../script
-@echo on
+cls
+cd ../test/src/maths-tests
+bazel test --test_output=errors --test_summary=terse //src/maths-tests:hello_test
+cd ../../../script
