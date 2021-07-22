@@ -1,1 +1,2 @@
-bazel build //src/maths:hello-world
+bazel build //src/maths:maths
+bazel build //src/maths:run_me

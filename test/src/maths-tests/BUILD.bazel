@@ -1,8 +1,10 @@
 load("@rules_cc//cc:defs.bzl", "cc_test")
 
 cc_test(
-  name = "hello_test",
+  name = "test_me",
   size = "small",
-  srcs = ["test.cpp"],
-  deps = ["@com_google_googletest//:gtest_main"],
+  srcs = ["test.cpp", "maths_test.cpp"],
+  deps = [
+    "@com_google_googletest//:gtest_main",
+    "//src/maths:maths"],
 )

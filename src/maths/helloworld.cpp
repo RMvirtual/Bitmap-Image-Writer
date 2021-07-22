@@ -1,39 +1,16 @@
 #include <iostream>
+#include "printablemessage.h"
 
 using namespace std;
-
-class PrintableMessage
-{
-    public:
-        string message1 = "Hello World!";
-        string message2 = "Bonjour";
-    private:
-        string message3;
-
-    public: PrintableMessage(string privateMessage)
-    {
-        message3 = privateMessage;
-    }
-
-    public: string getMessage3()
-    {
-        return this->message3;
-    }
-
-    public: void setMessage3(string message)
-    {
-        this->message3 = message;
-    }
-};
+using namespace Printable;
 
 int main()
 {
     PrintableMessage message = PrintableMessage("Aight");
-    cout << message.getMessage3();
-    
-    cout << "\nChanging message 3.";
-    message.setMessage3("Too many chars?");
-    cout << "\n" + message.getMessage3();
+    cout << message.getMessage();    
+    cout << "\nChanging message.";
+    message.setMessage("I am a new message.");
+    cout << "\n" + message.getMessage();
 
     return 0;
 }
