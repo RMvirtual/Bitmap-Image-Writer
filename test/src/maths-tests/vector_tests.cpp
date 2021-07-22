@@ -1,6 +1,9 @@
 #include <gtest/gtest.h>
 #include <iostream>
 #include "src/maths/printablemessage.h"
+#include "src/maths/vector/vector.h"
+
+using namespace Vectorable;
 
 // Demonstrate some basic assertions.
 TEST(MathsTest, BasicAssertions) {
@@ -12,4 +15,12 @@ TEST(MathsTest, BasicAssertions) {
 
     // Expect equality.
     EXPECT_EQ(7 * 6, 42);
+}
+
+TEST(MathsTest, LengthShouldBeFive)
+{
+    Vector vector = Vector();
+    int length = vector.length();
+
+    EXPECT_EQ(5, length);
 }
