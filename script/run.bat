@@ -1,9 +1,3 @@
 : Windows run script.
 
-@echo off
-cd ../build
-
-helloworld.exe
-
-cd ../script
-@echo on
+..\bazel-bin\src\maths\hello-world
