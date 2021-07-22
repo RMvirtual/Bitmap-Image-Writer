@@ -11,5 +11,5 @@ TEST(MathsTest, BasicAssertions) {
     std::cout << "Printing in maths_test.cpp\n";
 
     // Expect equality.
-    EXPECT_NE(7 * 6, 42);
+    EXPECT_EQ(7 * 6, 42);
 }
