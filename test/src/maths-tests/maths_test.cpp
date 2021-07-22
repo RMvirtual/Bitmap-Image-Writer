@@ -1,6 +1,6 @@
 #include <gtest/gtest.h>
 #include <iostream>
-#include "src/maths/helloworld.h"
+#include "src/maths/printablemessage.h"
 
 // Demonstrate some basic assertions.
 TEST(MathsTest, BasicAssertions) {
@@ -11,5 +11,5 @@ TEST(MathsTest, BasicAssertions) {
     std::cout << "Printing in maths_test.cpp\n";
 
     // Expect equality.
-    EXPECT_EQ(7 * 6, 42);
+    EXPECT_NE(7 * 6, 42);
 }
