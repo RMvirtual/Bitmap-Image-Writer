@@ -67,10 +67,35 @@ TEST(VectorTests, ShouldCalculateMagnitudeWithTwoElements)
     EXPECT_DOUBLE_EQ(sqrt(5), magnitude);
 }
 
-TEST(VectorTests, ShouldIndexSecondElementDirectlyWithOperator)
+TEST(VectorTests, ShouldIndexDirectlyWithOperator)
 {
     Vector vector = Vector(5, 6);
 
     EXPECT_DOUBLE_EQ(5, vector[0]);
     EXPECT_DOUBLE_EQ(6, vector[1]);
+}
+
+TEST(VectorTests, ShouldAddTwoVectorsWithPositiveValues)
+{
+    Vector lhsVector = Vector(1, 2, 3, 4);
+    Vector rhsVector = Vector(5, 6, 7, 8);
+
+    Vector newVector = lhsVector + rhsVector;
+
+    double correctValues[] = {6, 8, 10, 12};
+
+    for (int elementNo = 0; elementNo < newVector.length(); elementNo++)
+        EXPECT_DOUBLE_EQ(correctValues[elementNo], newVector[elementNo]);
+}
+
+TEST(VectorTests, ShouldAddTwoVectorsWithMixedValues)
+{
+    Vector lhsVector = Vector(-1, -5, 15, 6);
+    Vector rhsVector = Vector(5, 6, -7, 8);
+    Vector newVector = lhsVector + rhsVector;
+
+    double correctValues[] = {4, 1, 8, 14};
+
+    for (int elementNo = 0; elementNo < newVector.length(); elementNo++)
+        EXPECT_DOUBLE_EQ(correctValues[elementNo], newVector[elementNo]);
 }

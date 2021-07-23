@@ -8,11 +8,15 @@ namespace Vectorable
             Vector(double a, double b, double c);
             Vector(double a, double b, double c, double d);
 
-            double operator[](int i);
+            double *vectorArray;
+
+            double operator[](int index);
+            Vector operator+(Vector righthandsideVector);
+
             int length();
             double magnitude();
             double get(int index);
-            double *vectorArray;
+
 
         private:
             int lengthOfVector;
