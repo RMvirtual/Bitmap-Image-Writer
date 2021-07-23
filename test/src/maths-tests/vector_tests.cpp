@@ -19,8 +19,6 @@ TEST(VectorTests, ShouldCreateVectorWithArray)
     EXPECT_EQ(1, vector.get(0));
     EXPECT_EQ(2, vector.get(1));
     EXPECT_EQ(3, vector.get(2));
-
-    EXPECT_EQ(3, vector.length());
 }
 
 TEST(VectorTests, LengthShouldBeTwo)
@@ -29,6 +27,13 @@ TEST(VectorTests, LengthShouldBeTwo)
     int length = vector.length();
 
     EXPECT_EQ(2, length);
+}
+
+TEST(VectorTests, LengthShouldBeFive)
+{
+    double array[] {1, 2, 3, 4, 5};
+    Vector vector = Vector(array, 5);
+    EXPECT_EQ(5, vector.length());
 }
 
 TEST(VectorTests, ShouldCalculateMagnitude)
