@@ -136,6 +136,17 @@ TEST(VectorTests, ShouldMultiplyVectorWithAScalar)
         EXPECT_DOUBLE_EQ(correctValues[elementNo], newVector[elementNo]);
 }
 
+TEST(VectorTests, ShouldDivideVectorWithAScalar)
+{
+    Vector vector = Vector(8, 16, 32, -50);
+    Vector newVector = vector / 2;
+
+    double correctValues[] = {4, 8, 16, -25};
+
+    for (int elementNo = 0; elementNo < newVector.length(); elementNo++)
+        EXPECT_DOUBLE_EQ(correctValues[elementNo], newVector[elementNo]);
+}
+
 TEST(VectorTests, DotProductOfVectorsWithPositiveValues)
 {
     Vector lhsVector = Vector(1, 2, 3, 4);

@@ -146,16 +146,14 @@ Vector Vector::operator*(double scalar)
     return newVector;
 }
 
-Vector Vector::operator/(Vector rhsVector)
+Vector Vector::operator/(double scalar)
 {
     int numOfElements = this->length();
     double* newElements = new double[numOfElements];
 
     for (int elementNo = 0; elementNo < numOfElements; elementNo++) {
-        double lhsElement = this->vectorArray[elementNo];
-        double rhsElement = rhsVector[elementNo];
-
-        double newElement = lhsElement / rhsElement;
+        double element = this->vectorArray[elementNo];
+        double newElement = element / scalar;
         newElements[elementNo] = newElement;
     }
 
