@@ -13,6 +13,8 @@ namespace Vectorable
             double operator[](int index);
             Vector operator+(Vector righthandsideVector);
             Vector operator-(Vector righthandsideVector);
+            Vector operator*(Vector righthandsideVector);
+            Vector operator/(Vector righthandsideVector);
 
             int length();
             double magnitude();

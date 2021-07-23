@@ -108,3 +108,21 @@ Vector Vector::operator-(Vector rhsVector)
 
     return newVector;
 }
+
+Vector Vector::operator*(Vector rhsVector)
+{
+    int numOfElements = this->length();
+    double* newElements = new double[numOfElements];
+
+    for (int elementNo = 0; elementNo < numOfElements; elementNo++) {
+        double lhsElement = this->vectorArray[elementNo];
+        double rhsElement = rhsVector[elementNo];
+
+        double newElement = lhsElement * rhsElement;
+        newElements[elementNo] = newElement;
+    }
+
+    Vector newVector = Vector(newElements, numOfElements);
+
+    return newVector;
+}
