@@ -7,9 +7,12 @@ namespace Vectorable
         public:
             Vector();
             Vector(double a[]);
-            Vector(double a, double b);
+            Vector(double x, double y);
             int& operator [](int i);
             int length();
             double magnitude();
+        private:
+            double x;
+            double y;
     };
 }
