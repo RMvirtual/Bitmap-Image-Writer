@@ -12,11 +12,12 @@ Vector::Vector(double x, double y)
     array[1] = y;
 
     this->vectorArray = array;
+    this->lengthOfVector = 2;
 }
 
 int Vector::length()
 {
-    return 5;
+    return this->lengthOfVector;
 }
 
 double Vector::get(int index)

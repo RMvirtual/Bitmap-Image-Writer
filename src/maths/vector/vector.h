@@ -13,5 +13,8 @@ namespace Vectorable
             double magnitude();
             double get(int index);
             double *vectorArray;
+
+        private:
+            int lengthOfVector;
     };
 }
