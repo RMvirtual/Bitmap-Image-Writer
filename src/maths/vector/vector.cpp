@@ -7,7 +7,7 @@ using namespace Vectorable;
 
 Vector::Vector(double a, double b)
 {
-    double *array = new double[2];
+    double* array = new double[2];
     array[0] = a;
     array[1] = b;
 
@@ -17,18 +17,19 @@ Vector::Vector(double a, double b)
 
 Vector::Vector(double a, double b, double c)
 {
-    double *array = new double[3];
+    double* array = new double[3];
     array[0] = a;
     array[1] = b;
     array[2] = c;
 
+    // double array[] = {a, b, c};
     this->vectorArray = array;
     this->lengthOfVector = 3;
 }
 
 Vector::Vector(double a, double b, double c, double d)
 {
-    double *array = new double[4];
+    double* array = new double[4];
     array[0] = a;
     array[1] = b;
     array[2] = c;
@@ -37,7 +38,6 @@ Vector::Vector(double a, double b, double c, double d)
     this->vectorArray = array;
     this->lengthOfVector = 4;
 }
-
 
 Vector::Vector(double array[], int noOfArrayElements)
 {
@@ -57,8 +57,15 @@ double Vector::get(int index)
 
 double Vector::magnitude()
 {
-    double xSquared = pow(this->vectorArray[0], 2);
-    double ySquared = pow(this->vectorArray[1], 2);
+    double sum = 0;
 
-    return sqrt(xSquared + ySquared);
+    for (int elementNo = 0; elementNo < this->lengthOfVector; elementNo++) {
+        double currentElement = this->vectorArray[elementNo];
+        double elementSquared = pow(currentElement, 2);
+        sum += elementSquared;
+
+        std::cout << "Current element: " + std::to_string(currentElement) + "\n";
+    }
+
+    return sqrt(sum);
 }
