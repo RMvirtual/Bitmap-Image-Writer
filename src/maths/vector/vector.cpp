@@ -60,12 +60,15 @@ double Vector::magnitude()
     double sum = 0;
 
     for (int elementNo = 0; elementNo < this->lengthOfVector; elementNo++) {
-        double currentElement = this->vectorArray[elementNo];
-        double elementSquared = pow(currentElement, 2);
+        double element = this->vectorArray[elementNo];
+        double elementSquared = pow(element, 2);
         sum += elementSquared;
-
-        std::cout << "Current element: " + std::to_string(currentElement) + "\n";
     }
 
     return sqrt(sum);
+}
+
+double Vector::operator[](int index)
+{
+    return this->vectorArray[index];
 }

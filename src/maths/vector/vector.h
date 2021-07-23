@@ -8,7 +8,7 @@ namespace Vectorable
             Vector(double a, double b, double c);
             Vector(double a, double b, double c, double d);
 
-            int& operator [](int i);
+            double operator[](int i);
             int length();
             double magnitude();
             double get(int index);

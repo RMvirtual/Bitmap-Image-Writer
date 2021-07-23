@@ -54,7 +54,7 @@ TEST(VectorTests, LengthShouldBeFive)
     EXPECT_EQ(5, vector.length());
 }
 
-TEST(VectorTests, ShouldCalculateMagnitude)
+TEST(VectorTests, ShouldCalculateMagnitudeWithTwoElements)
 {
     Vector vectorWithMagnitudeOf13 = Vector(12, -5);
     double magnitude = vectorWithMagnitudeOf13.magnitude();
@@ -65,4 +65,12 @@ TEST(VectorTests, ShouldCalculateMagnitude)
     magnitude = vectorWithMagnitudeOfSqrt5.magnitude();
 
     EXPECT_DOUBLE_EQ(sqrt(5), magnitude);
+}
+
+TEST(VectorTests, ShouldIndexSecondElementDirectlyWithOperator)
+{
+    Vector vector = Vector(5, 6);
+
+    EXPECT_DOUBLE_EQ(5, vector[0]);
+    EXPECT_DOUBLE_EQ(6, vector[1]);
 }
