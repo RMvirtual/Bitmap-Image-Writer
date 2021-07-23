@@ -5,15 +5,39 @@
 
 using namespace Vectorable;
 
-Vector::Vector(double x, double y)
+Vector::Vector(double a, double b)
 {
     double *array = new double[2];
-    array[0] = x;
-    array[1] = y;
+    array[0] = a;
+    array[1] = b;
 
     this->vectorArray = array;
     this->lengthOfVector = 2;
 }
+
+Vector::Vector(double a, double b, double c)
+{
+    double *array = new double[3];
+    array[0] = a;
+    array[1] = b;
+    array[2] = c;
+
+    this->vectorArray = array;
+    this->lengthOfVector = 3;
+}
+
+Vector::Vector(double a, double b, double c, double d)
+{
+    double *array = new double[4];
+    array[0] = a;
+    array[1] = b;
+    array[2] = c;
+    array[3] = d;
+
+    this->vectorArray = array;
+    this->lengthOfVector = 4;
+}
+
 
 Vector::Vector(double array[], int noOfArrayElements)
 {

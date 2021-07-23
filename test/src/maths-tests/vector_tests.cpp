@@ -4,11 +4,29 @@
 
 using namespace Vectorable;
 
-TEST(VectorTests, ShouldCreateVectorWith1And2)
+TEST(VectorTests, ShouldCreateVectorWithOneAndTwo)
 {
     Vector vector = Vector(1, 2);
     EXPECT_EQ(1, vector.get(0));
     EXPECT_EQ(2, vector.get(1));
+}
+
+TEST(VectorTests, ShouldCreateVectorWithOneTwoAndThree)
+{
+    Vector vector = Vector(1, 2, 3);
+    EXPECT_EQ(1, vector.get(0));
+    EXPECT_EQ(2, vector.get(1));
+    EXPECT_EQ(3, vector.get(2));
+}
+
+TEST(VectorTests, ShouldCreateVectorWithOneTwoThreeAndFour)
+{
+    Vector vector = Vector(1, 2, 3, 4);
+    EXPECT_EQ(1, vector.get(0));
+    EXPECT_EQ(2, vector.get(1));
+    EXPECT_EQ(3, vector.get(2));
+    EXPECT_EQ(4, vector.get(3));
+
 }
 
 TEST(VectorTests, ShouldCreateVectorWithArray)
@@ -24,9 +42,7 @@ TEST(VectorTests, ShouldCreateVectorWithArray)
 TEST(VectorTests, LengthShouldBeTwo)
 {
     Vector vector = Vector(1, 2);
-    int length = vector.length();
-
-    EXPECT_EQ(2, length);
+    EXPECT_EQ(2, vector.length());
 }
 
 TEST(VectorTests, LengthShouldBeFive)
