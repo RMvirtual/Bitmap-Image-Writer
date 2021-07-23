@@ -6,7 +6,6 @@ cc_test(
     srcs = ["vector_tests.cpp"],
     deps = [
         "@com_google_googletest//:gtest_main",
-        "//src/maths:maths",
         "//src/maths:vectors"
     ],
 )

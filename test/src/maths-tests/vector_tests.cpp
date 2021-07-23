@@ -1,6 +1,5 @@
 #include <gtest/gtest.h>
 #include <iostream>
-#include "src/maths/printablemessage.h"
 #include "src/maths/vector/vector.h"
 
 using namespace Vectorable;

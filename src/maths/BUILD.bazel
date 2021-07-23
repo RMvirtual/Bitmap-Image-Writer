@@ -1,21 +1,8 @@
 # https://docs.bazel.build/versions/master/be/c-cpp.html#cc_binary
 
 cc_library(
-    name = "maths",
-    srcs = ["printablemessage.cpp"],
-    hdrs = ["printablemessage.h"],
-    visibility = ["//visibility:public"],
-)
-
-cc_library(
     name = "vectors",
     srcs = ["vector/vector.cpp"],
     hdrs = ["vector/vector.h"],
     visibility = ["//visibility:public"],
-)
-
-cc_binary(
-    name = "run_me",
-    srcs = ["helloworld.cpp"],
-    deps = [":maths"],
 )
