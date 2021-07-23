@@ -99,3 +99,28 @@ TEST(VectorTests, ShouldAddTwoVectorsWithMixedValues)
     for (int elementNo = 0; elementNo < newVector.length(); elementNo++)
         EXPECT_DOUBLE_EQ(correctValues[elementNo], newVector[elementNo]);
 }
+
+TEST(VectorTests, ShouldSubtractTwoVectorsWithPositiveValues)
+{
+    Vector lhsVector = Vector(5, 6, 7, 8);
+    Vector rhsVector = Vector(1, 3, 5, 7);
+
+    Vector newVector = lhsVector - rhsVector;
+
+    double correctValues[] = {4, 3, 2, 1};
+
+    for (int elementNo = 0; elementNo < newVector.length(); elementNo++)
+        EXPECT_DOUBLE_EQ(correctValues[elementNo], newVector[elementNo]);
+}
+
+TEST(VectorTests, ShouldSubtractTwoVectorsWithMixedValues)
+{
+    Vector lhsVector = Vector(-1, -5, 15, 6);
+    Vector rhsVector = Vector(5, 6, -7, 8);
+    Vector newVector = lhsVector - rhsVector;
+
+    double correctValues[] = {-6, -11, 22, -2};
+
+    for (int elementNo = 0; elementNo < newVector.length(); elementNo++)
+        EXPECT_DOUBLE_EQ(correctValues[elementNo], newVector[elementNo]);
+}
