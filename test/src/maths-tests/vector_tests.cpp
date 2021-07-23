@@ -4,11 +4,23 @@
 
 using namespace Vectorable;
 
-TEST(VectorTests, ShouldAssign1And2)
+TEST(VectorTests, ShouldCreateVectorWith1And2)
 {
     Vector vector = Vector(1, 2);
     EXPECT_EQ(1, vector.get(0));
     EXPECT_EQ(2, vector.get(1));
+}
+
+TEST(VectorTests, ShouldCreateVectorWithArray)
+{
+    double array[] = {1, 2, 3};
+    Vector vector = Vector(array, 3);
+
+    EXPECT_EQ(1, vector.get(0));
+    EXPECT_EQ(2, vector.get(1));
+    EXPECT_EQ(3, vector.get(2));
+
+    EXPECT_EQ(3, vector.length());
 }
 
 TEST(VectorTests, LengthShouldBeTwo)

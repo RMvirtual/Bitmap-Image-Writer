@@ -15,6 +15,12 @@ Vector::Vector(double x, double y)
     this->lengthOfVector = 2;
 }
 
+Vector::Vector(double array[], int noOfArrayElements)
+{
+    this->vectorArray = array;
+    this->lengthOfVector = noOfArrayElements;
+}
+
 int Vector::length()
 {
     return this->lengthOfVector;

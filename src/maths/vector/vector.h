@@ -3,7 +3,7 @@ namespace Vectorable
     class Vector
     {
         public:
-            Vector(double a[]);
+            Vector(double array[], int noOfArrayElements);
             Vector(double a, double b);
             Vector(double a, double b, double c);
             Vector(double a, double b, double c, double d);
