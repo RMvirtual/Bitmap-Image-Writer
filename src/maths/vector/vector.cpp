@@ -109,7 +109,7 @@ Vector Vector::operator-(Vector rhsVector)
     return newVector;
 }
 
-Vector Vector::operator*(Vector rhsVector)
+double Vector::operator*(Vector rhsVector)
 {
     int numOfElements = this->length();
     double* newElements = new double[numOfElements];
@@ -119,6 +119,43 @@ Vector Vector::operator*(Vector rhsVector)
         double rhsElement = rhsVector[elementNo];
 
         double newElement = lhsElement * rhsElement;
+        newElements[elementNo] = newElement;
+    }
+
+    double dotProduct = 0;
+
+    for (int elementNo = 0; elementNo < numOfElements; elementNo++)
+        dotProduct += newElements[elementNo];
+    
+    return dotProduct;
+}
+
+Vector Vector::operator*(double scalar)
+{
+    int numOfElements = this->length();
+    double* newElements = new double[numOfElements];
+
+    for (int elementNo = 0; elementNo < numOfElements; elementNo++) {
+        double element = this->vectorArray[elementNo];
+        double newElement = scalar * element;
+        newElements[elementNo] = newElement;
+    }
+
+    Vector newVector = Vector(newElements, numOfElements);
+
+    return newVector;
+}
+
+Vector Vector::operator/(Vector rhsVector)
+{
+    int numOfElements = this->length();
+    double* newElements = new double[numOfElements];
+
+    for (int elementNo = 0; elementNo < numOfElements; elementNo++) {
+        double lhsElement = this->vectorArray[elementNo];
+        double rhsElement = rhsVector[elementNo];
+
+        double newElement = lhsElement / rhsElement;
         newElements[elementNo] = newElement;
     }
 

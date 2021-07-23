@@ -125,27 +125,34 @@ TEST(VectorTests, ShouldSubtractTwoVectorsWithMixedValues)
         EXPECT_DOUBLE_EQ(correctValues[elementNo], newVector[elementNo]);
 }
 
-TEST(VectorTests, ShouldMultiplyTwoVectorsWithPositiveValues)
+TEST(VectorTests, ShouldMultiplyVectorWithAScalar)
+{
+    Vector vector = Vector(5, 6, 7, -8);
+    Vector newVector = vector * 2;
+
+    double correctValues[] = {10, 12, 14, -16};
+
+    for (int elementNo = 0; elementNo < newVector.length(); elementNo++)
+        EXPECT_DOUBLE_EQ(correctValues[elementNo], newVector[elementNo]);
+}
+
+TEST(VectorTests, DotProductOfVectorsWithPositiveValues)
 {
     Vector lhsVector = Vector(1, 2, 3, 4);
     Vector rhsVector = Vector(5, 6, 7, 8);
 
-    Vector newVector = lhsVector * rhsVector;
-
-    double correctValues[] = {5, 12, 21, 32};
-
-    for (int elementNo = 0; elementNo < newVector.length(); elementNo++)
-        EXPECT_DOUBLE_EQ(correctValues[elementNo], newVector[elementNo]);
+    double dotProduct = lhsVector * rhsVector;
+    double correctDotProduct = 70;
+    EXPECT_DOUBLE_EQ(correctDotProduct, dotProduct);
 }
 
-TEST(VectorTests, ShouldMultiplyTwoVectorsWithMixedValues)
+TEST(VectorTests, DotProductOfVectorsWithMixedValues)
 {
     Vector lhsVector = Vector(-1, -5, 15, 6);
     Vector rhsVector = Vector(5, -6, -7, 8);
-    Vector newVector = lhsVector * rhsVector;
 
-    double correctValues[] = {-5, 30, -105, 48};
-
-    for (int elementNo = 0; elementNo < newVector.length(); elementNo++)
-        EXPECT_DOUBLE_EQ(correctValues[elementNo], newVector[elementNo]);
+    double dotProduct = lhsVector * rhsVector;
+    double correctDotProduct = -32;
+    EXPECT_DOUBLE_EQ(correctDotProduct, dotProduct);
 }
+
