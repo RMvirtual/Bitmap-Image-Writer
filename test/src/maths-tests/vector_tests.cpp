@@ -4,19 +4,14 @@
 
 using namespace Vectorable;
 
-// Demonstrate some basic assertions.
-TEST(MathsTest, BasicAssertions) {
-    // Expect two strings not to be equal.
-    // EXPECT_STRNE("hello", "world");
-    // EXPECT_STREQ("PIMP", "PIMP1");
-    
-    std::cout << "Printing in maths_test.cpp\n";
-
-    // Expect equality.
-    EXPECT_EQ(7 * 6, 42);
+TEST(VectorTests, ShouldAssign1And2)
+{
+    Vector vector = Vector(1, 2);
+    EXPECT_EQ(1, vector.get(0));
+    EXPECT_EQ(2, vector.get(1));
 }
 
-TEST(MathsTest, LengthShouldBeFive)
+TEST(VectorTests, LengthShouldBeFive)
 {
     Vector vector = Vector(1, 2);
     int length = vector.length();
@@ -24,7 +19,7 @@ TEST(MathsTest, LengthShouldBeFive)
     EXPECT_EQ(5, length);
 }
 
-TEST(VectorTest, ShouldCalculateMagnitude)
+TEST(VectorTests, ShouldCalculateMagnitude)
 {
     Vector vectorWithMagnitudeOf13 = Vector(12, -5);
     double magnitude = vectorWithMagnitudeOf13.magnitude();

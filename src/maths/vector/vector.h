@@ -1,5 +1,3 @@
-#include <iostream>
-
 namespace Vectorable
 {
     class Vector
@@ -11,8 +9,7 @@ namespace Vectorable
             int& operator [](int i);
             int length();
             double magnitude();
-        private:
-            double x;
-            double y;
+            double get(int index);
+            double *vectorArray;
     };
 }
