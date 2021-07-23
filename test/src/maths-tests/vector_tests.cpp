@@ -11,12 +11,12 @@ TEST(VectorTests, ShouldAssign1And2)
     EXPECT_EQ(2, vector.get(1));
 }
 
-TEST(VectorTests, LengthShouldBeFive)
+TEST(VectorTests, LengthShouldBeTwo)
 {
     Vector vector = Vector(1, 2);
     int length = vector.length();
 
-    EXPECT_EQ(5, length);
+    EXPECT_EQ(2, length);
 }
 
 TEST(VectorTests, ShouldCalculateMagnitude)

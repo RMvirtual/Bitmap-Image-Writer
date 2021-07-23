@@ -3,9 +3,11 @@ namespace Vectorable
     class Vector
     {
         public:
-            Vector();
             Vector(double a[]);
-            Vector(double x, double y);
+            Vector(double a, double b);
+            Vector(double a, double b, double c);
+            Vector(double a, double b, double c, double d);
+
             int& operator [](int i);
             int length();
             double magnitude();
