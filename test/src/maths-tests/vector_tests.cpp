@@ -26,7 +26,6 @@ TEST(VectorTests, ShouldCreateVectorWithOneTwoThreeAndFour)
     EXPECT_EQ(2, vector.get(1));
     EXPECT_EQ(3, vector.get(2));
     EXPECT_EQ(4, vector.get(3));
-
 }
 
 TEST(VectorTests, ShouldCreateVectorWithArray)
