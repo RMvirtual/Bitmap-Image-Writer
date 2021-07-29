@@ -164,7 +164,7 @@ Vector Vector::operator*(double scalarRHS)
 
 Vector operator*(double scalarLHS, Vector vectorRHS)
 {
-    Vector newVector = (Vector) vectorRHS * scalarLHS;
+    Vector newVector = vectorRHS * scalarLHS;
 
     return newVector;
 }
