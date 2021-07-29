@@ -146,24 +146,6 @@ Vector Vector::operator/(double scalar)
     return newVector;
 }
 
-Vector operator*(const double scalarLHS, const Vector vectorRHS)
-{
-    Vector vector = vectorRHS;
-
-    int numOfElements = vector.length();
-    double* newElements = new double[numOfElements];
-
-    for (int elementNo = 0; elementNo < numOfElements; elementNo++) {
-        double element = vector[elementNo];
-        double newElement = scalarLHS * element;
-        newElements[elementNo] = newElement;
-    }
-
-    Vector newVector = Vector(newElements, numOfElements);
-
-    return newVector;
-}
-
 Vector Vector::operator*(double scalarRHS)
 {
     int numOfElements = this->length();
@@ -178,4 +160,19 @@ Vector Vector::operator*(double scalarRHS)
     Vector newVector = Vector(newElements, numOfElements);
 
     return newVector;
+}
+
+Vector operator*(const double scalarLHS, const Vector& vectorRHS)
+{
+    Vector newVector = (Vector) vectorRHS * scalarLHS;
+
+    return newVector;
+}
+
+char operator+(double lhs, Vector rhs)
+{
+    if (lhs == 1)
+        std::cout << "found a global operator.";
+
+    return 'a';
 }

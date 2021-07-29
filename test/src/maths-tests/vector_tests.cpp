@@ -126,7 +126,7 @@ TEST(VectorTests, ShouldSubtractTwoVectorsWithMixedValues)
 }
 
 
-TEST(VectorTests, ShouldMultiplyLHSVectorWithScalarOnRHS)
+TEST(VectorTests, ShouldMultiplyVectorWithScalarOnRHS)
 {
     Vector vector = Vector(5, 6, 7, -8);
     double scalar = 2;
@@ -139,18 +139,20 @@ TEST(VectorTests, ShouldMultiplyLHSVectorWithScalarOnRHS)
         EXPECT_DOUBLE_EQ(correctValues[elementNo], newVector[elementNo]);
 }
 
-/*
-TEST(VectorTests, ShouldMultiplyVectorWithAScalarOnLHS)
+TEST(VectorTests, ShouldMultiplyVectorWithScalarOnLHS)
 {
     Vector vector = Vector(5, 6, 7, -8);
-    Vector newVector = 2 * vector;
+    double scalar = 2;
+
+    char letter = 1 + vector;
+    Vector newVector = scalar * vector;
 
     double correctValues[] = {10, 12, 14, -16};
 
     for (int elementNo = 0; elementNo < newVector.length(); elementNo++)
         EXPECT_DOUBLE_EQ(correctValues[elementNo], newVector[elementNo]);
 }
-*/
+
 
 TEST(VectorTests, ShouldDivideVectorWithAScalar)
 {

@@ -14,7 +14,7 @@ namespace Vectorable
             Vector operator+(Vector righthandsideVector);
             Vector operator-(Vector righthandsideVector);
             double operator*(Vector righthandsideVector);
-            Vector operator*(double right);
+            Vector operator*(double righthandsideScalar);
             // friend Vector operator*(double left, Vector right);
             Vector operator/(double scalar);
 
@@ -27,3 +27,9 @@ namespace Vectorable
             int lengthOfVector;
     };
 }
+
+char operator+(double lhs, Vectorable::Vector rhs);
+
+Vectorable::Vector operator*(
+    const double scalarLHS, const Vectorable::Vector& vectorRHS);
+
