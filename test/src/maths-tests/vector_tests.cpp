@@ -142,10 +142,7 @@ TEST(VectorTests, ShouldMultiplyVectorWithScalarOnRHS)
 TEST(VectorTests, ShouldMultiplyVectorWithScalarOnLHS)
 {
     Vector vector = Vector(5, 6, 7, -8);
-    double scalar = 2;
-
-    char letter = 1 + vector;
-    Vector newVector = scalar * vector;
+    Vector newVector = 2 * vector;
 
     double correctValues[] = {10, 12, 14, -16};
 

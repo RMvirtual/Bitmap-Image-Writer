@@ -162,17 +162,9 @@ Vector Vector::operator*(double scalarRHS)
     return newVector;
 }
 
-Vector operator*(const double scalarLHS, const Vector& vectorRHS)
+Vector operator*(double scalarLHS, Vector vectorRHS)
 {
     Vector newVector = (Vector) vectorRHS * scalarLHS;
 
     return newVector;
-}
-
-char operator+(double lhs, Vector rhs)
-{
-    if (lhs == 1)
-        std::cout << "found a global operator.";
-
-    return 'a';
 }

@@ -28,8 +28,4 @@ namespace Vectorable
     };
 }
 
-char operator+(double lhs, Vectorable::Vector rhs);
-
-Vectorable::Vector operator*(
-    const double scalarLHS, const Vectorable::Vector& vectorRHS);
-
+Vectorable::Vector operator*(double scalarLHS, Vectorable::Vector vectorRHS);
