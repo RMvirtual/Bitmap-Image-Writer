@@ -162,9 +162,19 @@ Vector Vector::operator*(double scalarRHS)
     return newVector;
 }
 
+std::string Vector::toString()
+{
+    return "Hello";
+}
+
 Vector operator*(double scalarLHS, Vector vectorRHS)
 {
     Vector newVector = vectorRHS * scalarLHS;
 
     return newVector;
+}
+
+std::ostream& operator<<(std::ostream &strm, const Vector &vector)
+{
+    return strm << "Hello";
 }

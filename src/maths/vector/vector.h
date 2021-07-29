@@ -1,3 +1,5 @@
+#include <iostream>>
+
 namespace Vectorable
 {
     class Vector
@@ -10,22 +12,24 @@ namespace Vectorable
 
             double *vectorArray;
 
-            double operator[](int index);
-            Vector operator+(Vector righthandsideVector);
-            Vector operator-(Vector righthandsideVector);
-            double operator*(Vector righthandsideVector);
-            Vector operator*(double righthandsideScalar);
-            // friend Vector operator*(double left, Vector right);
-            Vector operator/(double scalar);
+            double operator [] (int index);
+            Vector operator + (Vector righthandsideVector);
+            Vector operator - (Vector righthandsideVector);
+            double operator * (Vector righthandsideVector);
+            Vector operator * (double righthandsideScalar);
+            Vector operator / (double scalar);
+            std::string toString();
 
             int length();
             double magnitude();
             double get(int index);
-
 
         private:
             int lengthOfVector;
     };
 }
 
-Vectorable::Vector operator*(double scalarLHS, Vectorable::Vector vectorRHS);
+Vectorable::Vector operator * (double scalarLHS, 
+    Vectorable::Vector vectorRHS);
+
+std::ostream& operator << (std::ostream &_stream, Vectorable::Vector &v);

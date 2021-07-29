@@ -150,7 +150,6 @@ TEST(VectorTests, ShouldMultiplyVectorWithScalarOnLHS)
         EXPECT_DOUBLE_EQ(correctValues[elementNo], newVector[elementNo]);
 }
 
-
 TEST(VectorTests, ShouldDivideVectorWithAScalar)
 {
     Vector vector = Vector(8, 16, 32, -50);
@@ -182,3 +181,8 @@ TEST(VectorTests, DotProductOfVectorsWithMixedValues)
     EXPECT_DOUBLE_EQ(correctDotProduct, dotProduct);
 }
 
+TEST(VectorTests, ShouldPrintVectorToString)
+{
+    Vector vector = Vector(1, 2, 3, 4);
+    std::cout << vector.toString() << std::endl;
+}
