@@ -68,12 +68,12 @@ double Vector::magnitude()
     return sqrt(sum);
 }
 
-double Vector::operator[](int index)
+double Vector::operator [] (int index)
 {
     return this->vectorArray[index];
 }
 
-Vector Vector::operator+(Vector rhsVector)
+Vector Vector::operator + (Vector rhsVector)
 {
     int numOfElements = this->length();
     double* newElements = new double[numOfElements];
@@ -91,7 +91,7 @@ Vector Vector::operator+(Vector rhsVector)
     return newVector;
 }
 
-Vector Vector::operator-(Vector rhsVector)
+Vector Vector::operator - (Vector rhsVector)
 {
     int numOfElements = this->length();
     double* newElements = new double[numOfElements];
@@ -109,7 +109,7 @@ Vector Vector::operator-(Vector rhsVector)
     return newVector;
 }
 
-double Vector::operator*(Vector rhsVector)
+double Vector::operator * (Vector rhsVector)
 {
     int numOfElements = this->length();
     double* newElements = new double[numOfElements];
@@ -130,7 +130,7 @@ double Vector::operator*(Vector rhsVector)
     return dotProduct;
 }
 
-Vector Vector::operator/(double scalar)
+Vector Vector::operator / (double scalar)
 {
     int numOfElements = this->length();
     double* newElements = new double[numOfElements];
@@ -146,7 +146,7 @@ Vector Vector::operator/(double scalar)
     return newVector;
 }
 
-Vector Vector::operator*(double scalarRHS)
+Vector Vector::operator * (double scalarRHS)
 {
     int numOfElements = this->length();
     double* newElements = new double[numOfElements];
@@ -167,14 +167,17 @@ std::string Vector::toString()
     return "Hello";
 }
 
-Vector operator*(double scalarLHS, Vector vectorRHS)
+Vector operator * (double scalarLHS, Vector vectorRHS)
 {
     Vector newVector = vectorRHS * scalarLHS;
 
     return newVector;
 }
 
-std::ostream& operator<<(std::ostream &strm, const Vector &vector)
+std::ostream& operator << (std::ostream &strm, Vector vector)
 {
-    return strm << "Hello";
+    Vector v = (Vector) vector;
+    std::string string = v.toString();
+
+    return strm << string;
 }

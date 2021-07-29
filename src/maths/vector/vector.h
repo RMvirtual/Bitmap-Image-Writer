@@ -32,4 +32,4 @@ namespace Vectorable
 Vectorable::Vector operator * (double scalarLHS, 
     Vectorable::Vector vectorRHS);
 
-std::ostream& operator << (std::ostream &_stream, Vectorable::Vector &v);
+std::ostream& operator << (std::ostream &_stream, Vectorable::Vector v);

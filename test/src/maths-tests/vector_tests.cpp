@@ -186,3 +186,9 @@ TEST(VectorTests, ShouldPrintVectorToString)
     Vector vector = Vector(1, 2, 3, 4);
     std::cout << vector.toString() << std::endl;
 }
+
+TEST(VectorTests, ShouldPrintVectorAsStringDirectlyInCout)
+{
+    Vector vector = Vector(1, 2, 3, 4);
+    std::cout << vector << std::endl;
+}
