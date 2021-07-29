@@ -9,7 +9,9 @@
 			"xstring": "cpp",
 			"iostream": "cpp",
 			"string": "cpp",
-			"cmath": "cpp"
+			"cmath": "cpp",
+			"regex": "cpp",
+			"xlocale": "cpp"
 		}
 	}
 }

@@ -130,22 +130,6 @@ double Vector::operator*(Vector rhsVector)
     return dotProduct;
 }
 
-Vector Vector::operator*(double scalar)
-{
-    int numOfElements = this->length();
-    double* newElements = new double[numOfElements];
-
-    for (int elementNo = 0; elementNo < numOfElements; elementNo++) {
-        double element = this->vectorArray[elementNo];
-        double newElement = scalar * element;
-        newElements[elementNo] = newElement;
-    }
-
-    Vector newVector = Vector(newElements, numOfElements);
-
-    return newVector;
-}
-
 Vector Vector::operator/(double scalar)
 {
     int numOfElements = this->length();
@@ -154,6 +138,40 @@ Vector Vector::operator/(double scalar)
     for (int elementNo = 0; elementNo < numOfElements; elementNo++) {
         double element = this->vectorArray[elementNo];
         double newElement = element / scalar;
+        newElements[elementNo] = newElement;
+    }
+
+    Vector newVector = Vector(newElements, numOfElements);
+
+    return newVector;
+}
+
+Vector operator*(const double scalarLHS, const Vector vectorRHS)
+{
+    Vector vector = vectorRHS;
+
+    int numOfElements = vector.length();
+    double* newElements = new double[numOfElements];
+
+    for (int elementNo = 0; elementNo < numOfElements; elementNo++) {
+        double element = vector[elementNo];
+        double newElement = scalarLHS * element;
+        newElements[elementNo] = newElement;
+    }
+
+    Vector newVector = Vector(newElements, numOfElements);
+
+    return newVector;
+}
+
+Vector Vector::operator*(double scalarRHS)
+{
+    int numOfElements = this->length();
+    double* newElements = new double[numOfElements];
+
+    for (int elementNo = 0; elementNo < numOfElements; elementNo++) {
+        double element = this->vectorArray[elementNo];
+        double newElement = scalarRHS * element;
         newElements[elementNo] = newElement;
     }
 

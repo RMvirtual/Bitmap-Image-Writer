@@ -14,7 +14,8 @@ namespace Vectorable
             Vector operator+(Vector righthandsideVector);
             Vector operator-(Vector righthandsideVector);
             double operator*(Vector righthandsideVector);
-            Vector operator*(double scalar);
+            Vector operator*(double right);
+            // friend Vector operator*(double left, Vector right);
             Vector operator/(double scalar);
 
             int length();
