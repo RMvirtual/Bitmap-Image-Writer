@@ -4,6 +4,7 @@
 #include <string>
 
 using namespace Vectorable;
+using namespace std;
 
 Vector::Vector(double a, double b)
 {
@@ -162,9 +163,29 @@ Vector Vector::operator * (double scalarRHS)
     return newVector;
 }
 
-std::string Vector::toString()
+string Vector::toString()
 {
-    return "Hello";
+    Vector vector = *this;
+    string vectorRepresentation = "[";
+    int noOfPoints = this->length();
+
+    for (int pointNo = 0; pointNo < noOfPoints; pointNo++) {
+        string pointToAdd = (
+            to_string(pointNo) + ": "
+            + to_string(vector[pointNo])
+        );
+
+        bool isNotLastPoint = !(pointNo + 1 == noOfPoints);
+
+        if (isNotLastPoint)
+            pointToAdd += ", ";
+
+        vectorRepresentation += pointToAdd;
+    }
+
+    vectorRepresentation += "]";
+
+    return vectorRepresentation;
 }
 
 Vector operator * (double scalarLHS, Vector vectorRHS)
@@ -174,10 +195,9 @@ Vector operator * (double scalarLHS, Vector vectorRHS)
     return newVector;
 }
 
-std::ostream& operator << (std::ostream &strm, Vector vector)
+ostream& operator << (ostream &strm, Vector vector)
 {
-    Vector v = (Vector) vector;
-    std::string string = v.toString();
+    string string = vector.toString();
 
     return strm << string;
 }
