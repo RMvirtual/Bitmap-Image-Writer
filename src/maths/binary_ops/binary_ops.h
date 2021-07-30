@@ -1,5 +1,3 @@
-
-
 namespace BinaryOps
 {
     class BinaryOperation
@@ -21,6 +19,13 @@ namespace BinaryOps
     {
         public:
             Add(double a, double b);
+            double perform();
+    };
+
+    class Subtract:BinaryOperation
+    {
+        public:
+            Subtract(double a, double b);
             double perform();
     };
 }

@@ -31,3 +31,17 @@ double Add::perform()
 
     return left + right;
 }
+
+Subtract::Subtract(double left, double right)
+: BinaryOperation(left, right)
+{
+    // Nothing else to do.
+}
+
+double Subtract::perform()
+{
+    double left = this->getLeft();
+    double right = this->getRight();
+
+    return left - right;
+}
