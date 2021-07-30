@@ -171,13 +171,11 @@ string Vector::toString()
 
     for (int pointNo = 0; pointNo < noOfPoints; pointNo++) {
         string pointToAdd = (
-            to_string(pointNo) + ": "
-            + to_string(vector[pointNo])
-        );
+            to_string(pointNo) + ": " + to_string(vector[pointNo]));
 
-        bool isNotLastPoint = !(pointNo + 1 == noOfPoints);
+        bool morePointsToAdd = (pointNo < noOfPoints);
 
-        if (isNotLastPoint)
+        if (morePointsToAdd)
             pointToAdd += ", ";
 
         vectorRepresentation += pointToAdd;

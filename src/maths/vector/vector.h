@@ -1,5 +1,7 @@
 #include <iostream>>
 
+using namespace std;
+
 namespace Vectorable
 {
     class Vector
@@ -18,7 +20,7 @@ namespace Vectorable
             double operator * (Vector righthandsideVector);
             Vector operator * (double righthandsideScalar);
             Vector operator / (double scalar);
-            std::string toString();
+            string toString();
 
             int length();
             double magnitude();
@@ -29,7 +31,7 @@ namespace Vectorable
     };
 }
 
-Vectorable::Vector operator * (double scalarLHS, 
-    Vectorable::Vector vectorRHS);
+using namespace Vectorable;
 
-std::ostream& operator << (std::ostream &_stream, Vectorable::Vector v);
+Vector operator * (double scalarLHS, Vector vectorRHS);
+ostream& operator << (ostream &_stream, Vector v);
