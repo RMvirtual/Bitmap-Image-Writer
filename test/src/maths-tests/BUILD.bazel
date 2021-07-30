@@ -9,3 +9,13 @@ cc_test(
         "//src/maths:vectors"
     ],
 )
+
+cc_test(
+    name = "binary_ops_tests",
+    size = "small",
+    srcs = ["binary_ops_tests.cpp"],
+    deps = [
+        "@com_google_googletest//:gtest_main",
+        "//src/maths:binary_ops"
+    ],
+)

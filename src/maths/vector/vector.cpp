@@ -69,6 +69,24 @@ double Vector::magnitude()
     return sqrt(sum);
 }
 
+double Vector::add(double left, double right)
+{
+    return left + right;
+}
+
+double Vector::subtract(double left, double right)
+{
+    return left - right;
+}
+
+double Vector::binary_operation(
+    double left, double right, double (*operation)(double, double))
+{
+    double result = (*operation)(left, right);
+
+    return result;
+}
+
 double Vector::operator [] (int index)
 {
     return this->vectorArray[index];
@@ -83,7 +101,11 @@ Vector Vector::operator + (Vector rhsVector)
         double lhsElement = this->vectorArray[elementNo];
         double rhsElement = rhsVector[elementNo];
 
-        double newElement = lhsElement + rhsElement;
+        double *operation = add;
+
+        double newElement = binary_operation(
+            lhsElement, rhsElement, operation);
+        
         newElements[elementNo] = newElement;
     }
 

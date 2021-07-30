@@ -27,6 +27,13 @@ namespace Vectorable
             double get(int index);
 
         private:
+            double add(double left, double right);
+            double subtract(double left, double right);
+            double binary_operation(
+                double left, double right,
+                double (*operationFunction)(double, double)
+            );
+
             int lengthOfVector;
     };
 }
