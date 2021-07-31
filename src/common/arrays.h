@@ -1,4 +1,7 @@
 #include <iostream>
+#include <string>
+
+using namespace std;
 
 namespace Arrays
 {
@@ -14,10 +17,14 @@ namespace Arrays
             void add(T elementToAdd)
             {
                 if (this->numberOfElements == 0) {
-                    // Pass
+                    this->array = new T[1] {elementToAdd};
+                    this->numberOfElements++; 
                 }
 
-                this->numberOfElements++;
+                else {
+                    this->incrementArraySize();
+                    this->array[this->numberOfElements - 1] = elementToAdd;
+                }
             }
 
             T get(int index)
@@ -30,11 +37,26 @@ namespace Arrays
              */
             int size()
             {
-                return 1;
+                return this->numberOfElements;
             }
 
         private:
-            double *array;
+            T *array;
             int numberOfElements;
+
+            void incrementArraySize()
+            {
+                int newSize = this->numberOfElements + 1;
+                T *newArray = new T[newSize];
+
+                for (int i = 0; i < this->numberOfElements; i++) {
+                    T elementToCopy = this->get(i);
+                    newArray[i] = elementToCopy;
+                }
+
+                delete this->array;
+                this->array = newArray;
+                this->numberOfElements++;
+            }
     };
 }
