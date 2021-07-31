@@ -102,7 +102,7 @@ Vector Vector::performBinaryOperationWithScalar(
     for (int elementNo = 0; elementNo < numOfElements; elementNo++) {
         double element = this->vectorArray[elementNo];
         
-        double newElement = operation->perform(scalar, element);
+        double newElement = operation->perform(element, scalar);
         newElements[elementNo] = newElement;
     }
 
