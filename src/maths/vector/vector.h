@@ -1,6 +1,8 @@
-#include <iostream>>
+#include <iostream>
+#include "../binary_ops/binary_ops.h"
 
 using namespace std;
+using namespace BinaryOps;
 
 namespace Vectorable
 {
@@ -26,14 +28,10 @@ namespace Vectorable
             double magnitude();
             double get(int index);
 
-        private:
-            double add(double left, double right);
-            double subtract(double left, double right);
-            double binary_operation(
-                double left, double right,
-                double (*operationFunction)(double, double)
-            );
-
+        private:            
+            Vector performBinaryOperationOnAllElements(
+                Vector rhsVector, BinaryOperation *operation);
+            
             int lengthOfVector;
     };
 }

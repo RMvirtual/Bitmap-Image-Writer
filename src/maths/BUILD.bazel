@@ -5,11 +5,14 @@ cc_library(
     srcs = ["vector/vector.cpp"],
     hdrs = ["vector/vector.h"],
     visibility = ["//visibility:public"],
+    deps = [
+        "//src/maths:binary_ops"
+    ]
 )
 
 cc_library(
     name = "binary_ops",
     srcs = ["binary_ops/binary_ops.cpp"],
     hdrs = ["binary_ops/binary_ops.h"],
-    visibility = ["//visibility:public"],
+    visibility = ["//visibility:public"]
 )

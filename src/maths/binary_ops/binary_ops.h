@@ -3,29 +3,21 @@ namespace BinaryOps
     class BinaryOperation
     {
         public:
-            BinaryOperation(double left, double right);
-            virtual double perform() = 0;
-            void setLeft(double value);
-            void setRight(double value);
-            double getLeft();
-            double getRight();
-
-        private:
-            double left;
-            double right;
+            BinaryOperation();
+            virtual double perform(double left, double right) = 0;
     };
 
-    class Add:BinaryOperation
+    class Add : public BinaryOperation
     {
         public:
-            Add(double a, double b);
-            double perform();
+            Add();
+            double perform(double a, double b);
     };
 
-    class Subtract:BinaryOperation
+    class Subtract : public BinaryOperation
     {
         public:
-            Subtract(double a, double b);
-            double perform();
+            Subtract();
+            double perform(double a, double b);
     };
 }

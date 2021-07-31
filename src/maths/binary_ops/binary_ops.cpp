@@ -2,46 +2,29 @@
 
 using namespace BinaryOps;
 
-BinaryOperation::BinaryOperation(double left, double right)
+BinaryOperation::BinaryOperation()
 {
-    this->left = left;
-    this->right = right;
+    // Nothing else to do here.
 }
 
-double BinaryOperation::getLeft()
-{
-    return this->left;
-}
-
-double BinaryOperation::getRight()
-{
-    return this->right;
-}
-
-Add::Add(double left, double right)
-: BinaryOperation(left, right)
+Add::Add()
+: BinaryOperation()
 {
     // Nothing else to do.
 }
 
-double Add::perform()
+double Add::perform(double left, double right)
 {
-    double left = this->getLeft();
-    double right = this->getRight();
-
     return left + right;
 }
 
-Subtract::Subtract(double left, double right)
-: BinaryOperation(left, right)
+Subtract::Subtract()
+: BinaryOperation()
 {
     // Nothing else to do.
 }
 
-double Subtract::perform()
+double Subtract::perform(double left, double right)
 {
-    double left = this->getLeft();
-    double right = this->getRight();
-
     return left - right;
 }

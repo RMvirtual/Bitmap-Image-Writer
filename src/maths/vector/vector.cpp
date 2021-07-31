@@ -69,30 +69,13 @@ double Vector::magnitude()
     return sqrt(sum);
 }
 
-double Vector::add(double left, double right)
-{
-    return left + right;
-}
-
-double Vector::subtract(double left, double right)
-{
-    return left - right;
-}
-
-double Vector::binary_operation(
-    double left, double right, double (*operation)(double, double))
-{
-    double result = (*operation)(left, right);
-
-    return result;
-}
-
 double Vector::operator [] (int index)
 {
     return this->vectorArray[index];
 }
 
-Vector Vector::operator + (Vector rhsVector)
+Vector Vector::performBinaryOperationOnAllElements(
+        Vector rhsVector, BinaryOperation *operation)
 {
     int numOfElements = this->length();
     double* newElements = new double[numOfElements];
@@ -101,10 +84,32 @@ Vector Vector::operator + (Vector rhsVector)
         double lhsElement = this->vectorArray[elementNo];
         double rhsElement = rhsVector[elementNo];
 
-        double *operation = add;
+        double newElement = operation->perform(lhsElement, rhsElement);
+        newElements[elementNo] = newElement;
+    }
 
-        double newElement = binary_operation(
-            lhsElement, rhsElement, operation);
+    Vector newVector = Vector(newElements, numOfElements);
+
+    return newVector;
+}
+
+Vector Vector::operator + (Vector rhsVector)
+{
+    Add *additionOp = new Add();
+    Vector newVector = this->performBinaryOperationOnAllElements(
+        rhsVector, additionOp);
+
+    return newVector;
+
+    /*
+    int numOfElements = this->length();
+    double* newElements = new double[numOfElements];
+
+    for (int elementNo = 0; elementNo < numOfElements; elementNo++) {
+        double lhsElement = this->vectorArray[elementNo];
+        double rhsElement = rhsVector[elementNo];
+
+        double newElement = lhsElement + rhsElement;
         
         newElements[elementNo] = newElement;
     }
@@ -112,6 +117,7 @@ Vector Vector::operator + (Vector rhsVector)
     Vector newVector = Vector(newElements, numOfElements);
 
     return newVector;
+    */
 }
 
 Vector Vector::operator - (Vector rhsVector)
