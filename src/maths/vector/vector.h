@@ -35,6 +35,7 @@ namespace Vectorable
             Vector performBinaryOperationWithScalar(
                 double scalar, BinaryOperation *operation);
 
+            double dotProduct(Vector rhsVector);
             int lengthOfVector;
     };
 }

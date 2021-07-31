@@ -117,6 +117,8 @@ Vector Vector::operator + (Vector rhsVector)
     Vector newVector = this->performBinaryOperationWithVector(
         rhsVector, additionOp);
 
+    delete additionOp;
+
     return newVector;
 }
 
@@ -126,17 +128,24 @@ Vector Vector::operator - (Vector rhsVector)
     Vector newVector = this->performBinaryOperationWithVector(
         rhsVector, subtractionOp);
 
+    delete subtractionOp;
+
     return newVector;
 }
 
 double Vector::operator * (Vector rhsVector)
+{
+    return this->dotProduct(rhsVector);
+}
+
+double Vector::dotProduct(Vector vector)
 {
     int numOfElements = this->length();
     double* newElements = new double[numOfElements];
 
     for (int elementNo = 0; elementNo < numOfElements; elementNo++) {
         double lhsElement = this->vectorArray[elementNo];
-        double rhsElement = rhsVector[elementNo];
+        double rhsElement = vector[elementNo];
 
         double newElement = lhsElement * rhsElement;
         newElements[elementNo] = newElement;
@@ -156,6 +165,8 @@ Vector Vector::operator * (double scalar)
     Vector newVector = this->performBinaryOperationWithScalar(
         scalar, multiplicationOp);
 
+    delete multiplicationOp;
+
     return newVector;
 }
 
@@ -164,6 +175,8 @@ Vector Vector::operator / (double scalar)
     Division *divisionOp = new Division();
     Vector newVector = this->performBinaryOperationWithScalar(
         scalar, divisionOp);
+
+    delete divisionOp;
 
     return newVector;
 }
