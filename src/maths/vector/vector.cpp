@@ -141,6 +141,21 @@ double Vector::operator * (Vector rhsVector)
 double Vector::dotProduct(Vector vector)
 {
     int numOfElements = this->length();
+    ArrayWithSize newElements = this->multiplyElements(vector);
+
+    double dotProduct = 0;
+
+    for (int elementNo = 0; elementNo < newElements.size; elementNo++)
+        dotProduct += newElements.array[elementNo];
+
+    delete newElements.array;
+
+    return dotProduct;
+}
+
+ArrayWithSize Vector::multiplyElements(Vector vector)
+{
+    int numOfElements = this->length();
     double* newElements = new double[numOfElements];
 
     for (int elementNo = 0; elementNo < numOfElements; elementNo++) {
@@ -151,12 +166,11 @@ double Vector::dotProduct(Vector vector)
         newElements[elementNo] = newElement;
     }
 
-    double dotProduct = 0;
+    ArrayWithSize arrayWithSize = ArrayWithSize();
+    arrayWithSize.array = newElements;
+    arrayWithSize.size = numOfElements;
 
-    for (int elementNo = 0; elementNo < numOfElements; elementNo++)
-        dotProduct += newElements[elementNo];
-    
-    return dotProduct;
+    return arrayWithSize;
 }
 
 Vector Vector::operator * (double scalar)

@@ -4,6 +4,11 @@
 using namespace std;
 using namespace BinaryOps;
 
+struct ArrayWithSize {
+    double *array;
+    int size;
+};
+
 namespace Vectorable
 {
     class Vector
@@ -35,7 +40,8 @@ namespace Vectorable
             Vector performBinaryOperationWithScalar(
                 double scalar, BinaryOperation *operation);
 
-            double dotProduct(Vector rhsVector);
+            double dotProduct(Vector vector);
+            ArrayWithSize multiplyElements(Vector vector);
             int lengthOfVector;
     };
 }
