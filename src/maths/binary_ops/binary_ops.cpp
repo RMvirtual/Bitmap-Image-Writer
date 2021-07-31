@@ -7,24 +7,46 @@ BinaryOperation::BinaryOperation()
     // Nothing else to do here.
 }
 
-Add::Add()
+Addition::Addition()
 : BinaryOperation()
 {
     // Nothing else to do.
 }
 
-double Add::perform(double left, double right)
+double Addition::perform(double left, double right)
 {
     return left + right;
 }
 
-Subtract::Subtract()
+Subtraction::Subtraction()
 : BinaryOperation()
 {
     // Nothing else to do.
 }
 
-double Subtract::perform(double left, double right)
+double Subtraction::perform(double left, double right)
 {
     return left - right;
+}
+
+Multiplication::Multiplication()
+: BinaryOperation()
+{
+    // Nothing else to do.
+}
+
+double Multiplication::perform(double left, double right)
+{
+    return left * right;
+}
+
+Division::Division()
+: BinaryOperation()
+{
+    // Nothing else to do.
+}
+
+double Division::perform(double left, double right)
+{
+    return left / right;
 }

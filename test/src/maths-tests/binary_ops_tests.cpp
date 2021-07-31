@@ -6,16 +6,36 @@ using namespace BinaryOps;
 
 TEST(BinaryOpsTests, ShouldAddTwoDoubles)
 {
-    Add additionOp = Add();
+    Addition additionOp = Addition();
     double number = additionOp.perform(1, 1);
+    double correctNumber = 2;
 
-    EXPECT_DOUBLE_EQ(number, 2);
+    EXPECT_DOUBLE_EQ(number, correctNumber);
 }
 
 TEST(BinaryOpsTests, ShouldSubtractTwoDoubles)
 {
-    Subtract subtractionOp = Subtract();
-    double number = subtractionOp.perform(5, 3);
+    Subtraction subtractionOp = Subtraction();
+    double number = subtractionOp.perform(30, 7);
+    double correctNumber = 23;
 
-    EXPECT_DOUBLE_EQ(number, 2);
+    EXPECT_DOUBLE_EQ(number, correctNumber);
+}
+
+TEST(BinaryOpsTests, ShouldMultiplyTwoDoubles)
+{
+    Multiplication multiplicationOp = Multiplication();
+    double number = multiplicationOp.perform(6, 3);
+    double correctNumber = 18;
+
+    EXPECT_DOUBLE_EQ(number, correctNumber);
+}
+
+TEST(BinaryOpsTests, ShouldDivideTwoDoubles)
+{
+    Division divisionOp = Division();
+    double number = divisionOp.perform(100, 5);
+    double correctNumber = 20;
+
+    EXPECT_DOUBLE_EQ(number, correctNumber);
 }

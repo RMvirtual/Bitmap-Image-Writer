@@ -11,7 +11,8 @@
 			"string": "cpp",
 			"cmath": "cpp",
 			"regex": "cpp",
-			"xlocale": "cpp"
+			"xlocale": "cpp",
+			"*.rh": "cpp"
 		}
 	}
 }

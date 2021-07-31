@@ -7,17 +7,31 @@ namespace BinaryOps
             virtual double perform(double left, double right) = 0;
     };
 
-    class Add : public BinaryOperation
+    class Addition : public BinaryOperation
     {
         public:
-            Add();
+            Addition();
             double perform(double a, double b);
     };
 
-    class Subtract : public BinaryOperation
+    class Subtraction : public BinaryOperation
     {
         public:
-            Subtract();
+            Subtraction();
+            double perform(double a, double b);
+    };
+
+    class Multiplication : public BinaryOperation
+    {
+        public:
+            Multiplication();
+            double perform(double a, double b);
+    };
+
+    class Division : public BinaryOperation
+    {
+        public:
+            Division();
             double perform(double a, double b);
     };
 }

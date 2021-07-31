@@ -74,7 +74,7 @@ double Vector::operator [] (int index)
     return this->vectorArray[index];
 }
 
-Vector Vector::performBinaryOperationOnAllElements(
+Vector Vector::performBinaryOperationOnVector(
         Vector rhsVector, BinaryOperation *operation)
 {
     int numOfElements = this->length();
@@ -95,45 +95,18 @@ Vector Vector::performBinaryOperationOnAllElements(
 
 Vector Vector::operator + (Vector rhsVector)
 {
-    Add *additionOp = new Add();
-    Vector newVector = this->performBinaryOperationOnAllElements(
+    Addition *additionOp = new Addition();
+    Vector newVector = this->performBinaryOperationOnVector(
         rhsVector, additionOp);
 
     return newVector;
-
-    /*
-    int numOfElements = this->length();
-    double* newElements = new double[numOfElements];
-
-    for (int elementNo = 0; elementNo < numOfElements; elementNo++) {
-        double lhsElement = this->vectorArray[elementNo];
-        double rhsElement = rhsVector[elementNo];
-
-        double newElement = lhsElement + rhsElement;
-        
-        newElements[elementNo] = newElement;
-    }
-
-    Vector newVector = Vector(newElements, numOfElements);
-
-    return newVector;
-    */
 }
 
 Vector Vector::operator - (Vector rhsVector)
 {
-    int numOfElements = this->length();
-    double* newElements = new double[numOfElements];
-
-    for (int elementNo = 0; elementNo < numOfElements; elementNo++) {
-        double lhsElement = this->vectorArray[elementNo];
-        double rhsElement = rhsVector[elementNo];
-
-        double newElement = lhsElement - rhsElement;
-        newElements[elementNo] = newElement;
-    }
-
-    Vector newVector = Vector(newElements, numOfElements);
+    Subtraction *subtractionOp = new Subtraction();
+    Vector newVector = this->performBinaryOperationOnVector(
+        rhsVector, subtractionOp);
 
     return newVector;
 }
