@@ -74,7 +74,7 @@ double Vector::operator [] (int index)
     return this->vectorArray[index];
 }
 
-Vector Vector::performBinaryOperationOnVector(
+Vector Vector::performBinaryOperationWithVector(
         Vector rhsVector, BinaryOperation *operation)
 {
     int numOfElements = this->length();
@@ -93,10 +93,28 @@ Vector Vector::performBinaryOperationOnVector(
     return newVector;
 }
 
+Vector Vector::performBinaryOperationWithScalar(
+        double scalar, BinaryOperation *operation)
+{
+    int numOfElements = this->length();
+    double* newElements = new double[numOfElements];
+
+    for (int elementNo = 0; elementNo < numOfElements; elementNo++) {
+        double element = this->vectorArray[elementNo];
+        
+        double newElement = operation->perform(scalar, element);
+        newElements[elementNo] = newElement;
+    }
+
+    Vector newVector = Vector(newElements, numOfElements);
+
+    return newVector;
+}
+
 Vector Vector::operator + (Vector rhsVector)
 {
     Addition *additionOp = new Addition();
-    Vector newVector = this->performBinaryOperationOnVector(
+    Vector newVector = this->performBinaryOperationWithVector(
         rhsVector, additionOp);
 
     return newVector;
@@ -105,7 +123,7 @@ Vector Vector::operator + (Vector rhsVector)
 Vector Vector::operator - (Vector rhsVector)
 {
     Subtraction *subtractionOp = new Subtraction();
-    Vector newVector = this->performBinaryOperationOnVector(
+    Vector newVector = this->performBinaryOperationWithVector(
         rhsVector, subtractionOp);
 
     return newVector;
@@ -132,34 +150,20 @@ double Vector::operator * (Vector rhsVector)
     return dotProduct;
 }
 
-Vector Vector::operator / (double scalar)
+Vector Vector::operator * (double scalar)
 {
-    int numOfElements = this->length();
-    double* newElements = new double[numOfElements];
-
-    for (int elementNo = 0; elementNo < numOfElements; elementNo++) {
-        double element = this->vectorArray[elementNo];
-        double newElement = element / scalar;
-        newElements[elementNo] = newElement;
-    }
-
-    Vector newVector = Vector(newElements, numOfElements);
+    Multiplication *multiplicationOp = new Multiplication();
+    Vector newVector = this->performBinaryOperationWithScalar(
+        scalar, multiplicationOp);
 
     return newVector;
 }
 
-Vector Vector::operator * (double scalarRHS)
+Vector Vector::operator / (double scalar)
 {
-    int numOfElements = this->length();
-    double* newElements = new double[numOfElements];
-
-    for (int elementNo = 0; elementNo < numOfElements; elementNo++) {
-        double element = this->vectorArray[elementNo];
-        double newElement = scalarRHS * element;
-        newElements[elementNo] = newElement;
-    }
-
-    Vector newVector = Vector(newElements, numOfElements);
+    Division *divisionOp = new Division();
+    Vector newVector = this->performBinaryOperationWithScalar(
+        scalar, divisionOp);
 
     return newVector;
 }

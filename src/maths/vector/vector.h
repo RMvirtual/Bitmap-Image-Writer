@@ -29,9 +29,12 @@ namespace Vectorable
             double get(int index);
 
         private:            
-            Vector performBinaryOperationOnVector(
+            Vector performBinaryOperationWithVector(
                 Vector rhsVector, BinaryOperation *operation);
             
+            Vector performBinaryOperationWithScalar(
+                double scalar, BinaryOperation *operation);
+
             int lengthOfVector;
     };
 }
