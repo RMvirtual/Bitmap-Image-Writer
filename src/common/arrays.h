@@ -68,6 +68,11 @@ class ArrayList
             this->numberOfElements -= itemsRemoved;
         }
 
+        void insert(int index, T element)
+        {
+            // pass
+        }
+
         /**
          * Returns the size of the arraylist.
          */
