@@ -62,3 +62,19 @@ TEST(ArrayTests, ShouldGet3rdElement)
         
     EXPECT_EQ(number, correctNumber);
 }
+
+TEST(ArrayTests, ShouldRemove3rdElement)
+{
+    ArrayList<int> arrayList;
+
+    for (int i = 0; i < 5; i++) {
+        int numberToAdd = i + 5;
+        arrayList.add(numberToAdd);
+    }
+    
+    arrayList.remove(2);
+    int thirdElement = arrayList.get(2);
+    int correctNumber = 8;
+        
+    EXPECT_EQ(thirdElement, correctNumber);
+}

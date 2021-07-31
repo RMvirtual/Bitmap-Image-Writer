@@ -45,6 +45,32 @@ namespace Arrays
             }
             
             /**
+             * Removes an element from the arraylist at a specified
+             * index.
+             */
+            void remove(int index)
+            {
+                int newSize = this->numberOfElements - 1;
+                T *newArray = new T[newSize];
+                int newArrayIndex = 0;
+
+                int itemsRemoved = 0;
+
+                for (int i = 0; i < this->numberOfElements; i++) {
+                    if (i == index) {
+                        itemsRemoved ++;
+                        continue;
+                    }
+                    newArray[newArrayIndex] = this->get(i);
+                    newArrayIndex++;
+                }
+
+                delete this->array;
+                this->array = newArray;
+                this->numberOfElements -= itemsRemoved;
+            }
+
+            /**
              * Returns the size of the arraylist.
              */
             int size()
