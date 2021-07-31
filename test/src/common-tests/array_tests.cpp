@@ -2,8 +2,6 @@
 #include <iostream>
 #include "src/common/arrays.h"
 
-using namespace Arrays;
-
 TEST(ArrayTests, ShouldAddSingleElement)
 {
     ArrayList<int> arrayList;

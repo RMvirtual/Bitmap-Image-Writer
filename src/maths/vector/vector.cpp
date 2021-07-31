@@ -6,7 +6,6 @@
 
 using namespace Vectorable;
 using namespace std;
-using namespace Arrays;
 
 Vector::Vector(double a, double b)
 {

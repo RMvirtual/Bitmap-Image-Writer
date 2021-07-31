@@ -4,7 +4,6 @@
 
 using namespace std;
 using namespace BinaryOps;
-using namespace Arrays;
 
 namespace Vectorable
 {
