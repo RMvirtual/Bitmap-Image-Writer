@@ -1,3 +1,6 @@
+#ifndef ARRAYS_H
+#define ARRAYS_H
+
 #include <iostream>
 #include <string>
 
@@ -9,11 +12,17 @@ namespace Arrays
     class ArrayList
     {
         public:
+            /**
+             * Creates a new arraylist.
+             */
             ArrayList()
             {
                 this->numberOfElements = 0;
             }
 
+            /**
+             * Adds an element to the arraylist.
+             */
             void add(T elementToAdd)
             {
                 if (this->numberOfElements == 0) {
@@ -27,6 +36,9 @@ namespace Arrays
                 }
             }
 
+            /**
+             * Gets an element from the arraylist at a specified index.
+             */
             T get(int index)
             {
                 return this->array[index];  
@@ -44,6 +56,10 @@ namespace Arrays
             T *array;
             int numberOfElements;
 
+            /**
+             * Copies the current underlying array into a new one with
+             * space for one extra element.
+             */
             void incrementArraySize()
             {
                 int newSize = this->numberOfElements + 1;
@@ -60,3 +76,5 @@ namespace Arrays
             }
     };
 }
+
+#endif

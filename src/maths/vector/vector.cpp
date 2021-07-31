@@ -2,9 +2,11 @@
 #include <iostream>
 #include <cmath>
 #include <string>
+#include "../../common/arrays.h"
 
 using namespace Vectorable;
 using namespace std;
+using namespace Arrays;
 
 Vector::Vector(double a, double b)
 {
@@ -140,31 +142,29 @@ double Vector::operator * (Vector rhsVector)
 double Vector::dotProduct(Vector vector)
 {
     int numOfElements = this->length();
-    list<double> newElements = this->multiplyElements(vector);
+    ArrayList<double> newElements = this->multiplyElements(vector);
 
     double dotProduct = 0;
-    list<double>::iterator elements = newElements.begin();
 
     for (int elementNo = 0; elementNo < newElements.size(); elementNo++)
-        dotProduct += newElements.array[elementNo];
+        dotProduct += newElements.get(elementNo);
 
     return dotProduct;
 }
 
-list<double> Vector::multiplyElements(Vector vector)
+ArrayList<double> Vector::multiplyElements(Vector vector)
 {
     int numOfElements = this->length();
 
-    list<double> newElements;
+    ArrayList<double> newElements;
 
     for (int elementNo = 0; elementNo < numOfElements; elementNo++) {
         double lhsElement = this->vectorArray[elementNo];
         double rhsElement = vector[elementNo];
 
         double newElement = lhsElement * rhsElement;
-        newElements.push_back(newElement);
+        newElements.add(newElement);
     }
-
 
     return newElements;
 }
