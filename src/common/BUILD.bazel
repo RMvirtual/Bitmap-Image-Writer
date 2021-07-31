@@ -1,0 +1,8 @@
+# https://docs.bazel.build/versions/master/be/c-cpp.html#cc_binary
+
+cc_library(
+    name = "arrays",
+    hdrs = ["arrays.h"],
+    visibility = ["//visibility:public"],
+    deps = [],
+)

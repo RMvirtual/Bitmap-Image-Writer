@@ -1,7 +1,7 @@
 load("@rules_cc//cc:defs.bzl", "cc_test")
 
 cc_test(
-    name = "test_me",
+    name = "vector_tests",
     size = "small",
     srcs = ["vector_tests.cpp"],
     deps = [

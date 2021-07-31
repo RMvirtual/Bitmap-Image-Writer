@@ -23,7 +23,6 @@ Vector::Vector(double a, double b, double c)
     array[1] = b;
     array[2] = c;
 
-    // double array[] = {a, b, c};
     this->vectorArray = array;
     this->lengthOfVector = 3;
 }
@@ -141,41 +140,39 @@ double Vector::operator * (Vector rhsVector)
 double Vector::dotProduct(Vector vector)
 {
     int numOfElements = this->length();
-    ArrayWithSize newElements = this->multiplyElements(vector);
+    list<double> newElements = this->multiplyElements(vector);
 
     double dotProduct = 0;
+    list<double>::iterator elements = newElements.begin();
 
-    for (int elementNo = 0; elementNo < newElements.size; elementNo++)
+    for (int elementNo = 0; elementNo < newElements.size(); elementNo++)
         dotProduct += newElements.array[elementNo];
-
-    delete newElements.array;
 
     return dotProduct;
 }
 
-ArrayWithSize Vector::multiplyElements(Vector vector)
+list<double> Vector::multiplyElements(Vector vector)
 {
     int numOfElements = this->length();
-    double* newElements = new double[numOfElements];
+
+    list<double> newElements;
 
     for (int elementNo = 0; elementNo < numOfElements; elementNo++) {
         double lhsElement = this->vectorArray[elementNo];
         double rhsElement = vector[elementNo];
 
         double newElement = lhsElement * rhsElement;
-        newElements[elementNo] = newElement;
+        newElements.push_back(newElement);
     }
 
-    ArrayWithSize arrayWithSize = ArrayWithSize();
-    arrayWithSize.array = newElements;
-    arrayWithSize.size = numOfElements;
 
-    return arrayWithSize;
+    return newElements;
 }
 
 Vector Vector::operator * (double scalar)
 {
     Multiplication *multiplicationOp = new Multiplication();
+
     Vector newVector = this->performBinaryOperationWithScalar(
         scalar, multiplicationOp);
 
@@ -187,6 +184,7 @@ Vector Vector::operator * (double scalar)
 Vector Vector::operator / (double scalar)
 {
     Division *divisionOp = new Division();
+
     Vector newVector = this->performBinaryOperationWithScalar(
         scalar, divisionOp);
 

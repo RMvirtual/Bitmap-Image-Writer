@@ -1,13 +1,9 @@
 #include <iostream>
+#include <list>
 #include "../binary_ops/binary_ops.h"
 
 using namespace std;
 using namespace BinaryOps;
-
-struct ArrayWithSize {
-    double *array;
-    int size;
-};
 
 namespace Vectorable
 {
@@ -41,7 +37,7 @@ namespace Vectorable
                 double scalar, BinaryOperation *operation);
 
             double dotProduct(Vector vector);
-            ArrayWithSize multiplyElements(Vector vector);
+            list<double> multiplyElements(Vector vector);
             int lengthOfVector;
     };
 }
