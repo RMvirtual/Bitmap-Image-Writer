@@ -2,7 +2,7 @@
 #include <iostream>
 #include <cmath>
 #include <string>
-#include "../../common/arrays.h"
+#include "src/common/arrays.h"
 
 using namespace Vectorable;
 using namespace std;

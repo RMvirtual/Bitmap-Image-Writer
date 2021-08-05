@@ -1,6 +1,6 @@
 #include <iostream>
-#include "../../common/arrays.h"
-#include "../binary_ops/binary_ops.h"
+#include "src/common/arrays.h"
+#include "src/maths/binary_ops/binary_ops.h"
 
 using namespace std;
 using namespace BinaryOps;
