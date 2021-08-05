@@ -68,10 +68,14 @@ Vector Vector::vectorProduct(Vector vector)
 
 double Vector::angle(Vector vector)
 {
-  double dotProductOf1stVector = this->dotProduct(vector);
+  double dotProduct = this->dotProduct(vector);
+  double magnitudeOf1stVector = this->magnitude();
+  double magnitudeOf2ndVector = vector.magnitude();
 
-  return -1;
+  double angle = acos(
+    dotProduct / (magnitudeOf1stVector * magnitudeOf2ndVector));
 
+  return angle;
 }
 
 int Vector::length()

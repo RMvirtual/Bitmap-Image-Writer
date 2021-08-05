@@ -72,12 +72,11 @@ TEST(VectorTests, ShouldCalculateMagnitudeOfThreeElementVectors)
   Vector vector1 = Vector(1, 1, 2);
   Vector vector2 = Vector(-4, -8, 6);
 
-
   double vector1Magnitude = vector1.magnitude();
-  double vector1CorrectMagnitude = 6.782;
+  double vector1CorrectMagnitude = 2.4494897427831779;
 
   double vector2Magnitude = vector2.magnitude(); 
-  double vector2CorrectMagnitude = 11.045;
+  double vector2CorrectMagnitude = 10.770329614269007;
 
   EXPECT_DOUBLE_EQ(vector1Magnitude, vector1CorrectMagnitude);
   EXPECT_DOUBLE_EQ(vector2Magnitude, vector2CorrectMagnitude);
