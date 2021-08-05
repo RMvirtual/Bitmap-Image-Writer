@@ -27,6 +27,7 @@ namespace Vectorable
 
             int length();
             double magnitude();
+            Vector vectorProduct(Vector vector);
             double get(int index);
 
         private:            

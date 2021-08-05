@@ -56,9 +56,10 @@ class ArrayList
 
             for (int i = 0; i < this->numberOfElements; i++) {
                 if (i == index) {
-                    itemsRemoved ++;
+                    itemsRemoved++;
                     continue;
                 }
+
                 newArray[newArrayIndex] = this->get(i);
                 newArrayIndex++;
             }
@@ -104,6 +105,5 @@ class ArrayList
             this->numberOfElements++;
         }
 };
-
 
 #endif

@@ -199,3 +199,13 @@ TEST(VectorTests, ShouldPrintVectorAsStringDirectlyInCout)
     Vector vector = Vector(1, 2, 3, 4);
     std::cout << vector << std::endl;
 }
+
+TEST(VectorTests, ShouldCalculateVectorProduct)
+{
+    Vector vector1 = Vector(1, 2, 3);
+    Vector vector2 = Vector(4, 5, 6);
+
+    Vector vector3 = vector1.vectorProduct(vector2);
+
+    
+}

@@ -46,6 +46,13 @@ Vector::Vector(double array[], int noOfArrayElements)
     this->lengthOfVector = noOfArrayElements;
 }
 
+Vector Vector::vectorProduct(Vector vector)
+{
+    Vector vectorToReturn = Vector(1,2,3);
+    
+    return vectorToReturn;
+}
+
 int Vector::length()
 {
     return this->lengthOfVector;
