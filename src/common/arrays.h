@@ -37,6 +37,7 @@ class ArrayList
       return this->array[index];  
     }
     
+    // Sets the element at a specific index in the array.
     void set(int index, T element)
     {
       int size = this->size();

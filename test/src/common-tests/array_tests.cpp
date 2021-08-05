@@ -115,3 +115,81 @@ TEST(ArrayTests, ShouldSetElementAt4thIndex)
 
   EXPECT_EQ(number, correctNumber);
 }
+
+TEST(ArrayTests, ShouldCalculateSizeAfterRemove)
+{
+  ArrayList<int> arrayList;
+
+  int startingSize = 5;
+
+  for (int i = 0; i < startingSize; i++)
+  {
+    int numberToAdd = i + 5;
+    arrayList.add(numberToAdd);
+  }
+
+  arrayList.remove(2);
+
+  int sizeAfterRemove = arrayList.size();
+  int correctSizeAfterRemove = startingSize - 1;
+
+  EXPECT_EQ(sizeAfterRemove, correctSizeAfterRemove);
+}
+
+TEST(ArrayTests, ShouldCalculateSizeAfterAddition)
+{
+  ArrayList<int> arrayList;
+
+  int startingSize = 5;
+
+  for (int i = 0; i < startingSize; i++)
+  {
+    int numberToAdd = i + 5;
+    arrayList.add(numberToAdd);
+  }
+
+  arrayList.add(361);
+
+  int sizeAfterAddition = arrayList.size();
+  int correctSizeAfterAddition = startingSize + 1;
+
+  EXPECT_EQ(sizeAfterAddition, correctSizeAfterAddition);
+}
+
+TEST(ArrayTests, ShouldCalculateSizeAfterInsert)
+{
+  ArrayList<int> arrayList;
+
+  int startingSize = 5;
+
+  for (int i = 0; i < startingSize; i++)
+  {
+    int numberToAdd = i + 5;
+    arrayList.add(numberToAdd);
+  }
+
+  arrayList.insert(2, 361);
+
+  int sizeAfterInsert = arrayList.size();
+  int correctSizeAfterInsert = startingSize + 1;
+
+  EXPECT_EQ(sizeAfterInsert, correctSizeAfterInsert);
+}
+
+TEST(ArrayTests, ShouldCalculateSizeAfterSet)
+{
+  ArrayList<int> arrayList;
+
+  int startingSize = 5;
+
+  for (int i = 0; i < startingSize; i++)
+  {
+    int numberToAdd = i + 5;
+    arrayList.add(numberToAdd);
+  }
+
+  arrayList.set(2, 361);
+  int sizeAfterInsert = arrayList.size();
+
+  EXPECT_EQ(sizeAfterInsert, startingSize);
+}
