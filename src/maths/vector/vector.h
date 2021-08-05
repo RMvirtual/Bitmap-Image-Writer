@@ -10,7 +10,7 @@ namespace Vectorable
     class Vector
     {
         public:
-            
+        
             /**
              * Creates a new vector with an array of doubles as the
              * vector elements. Requires the length of the array to
@@ -47,14 +47,20 @@ namespace Vectorable
             // Returns the vector.
             Vector vectorProduct(Vector vector);
 
-            // Gets the vector element by index position.
-            double get(int index);
+            /**
+             * Calculates the angle between this vector and another
+             * vector.
+             */
+            double angle(Vector vector);
 
             // Returns the length of the vector.
             int length();
 
             // Returns the magnitude of the vector.
             double magnitude();
+
+            // Gets the vector element by index position.
+            double get(int index);
 
             // Indexes the elements contained within the vector.
             double operator [] (int index);

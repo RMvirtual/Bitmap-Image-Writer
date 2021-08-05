@@ -67,6 +67,22 @@ TEST(VectorTests, ShouldCalculateMagnitudeWithTwoElements)
     EXPECT_DOUBLE_EQ(sqrt(5), magnitude);
 }
 
+TEST(VectorTests, ShouldCalculateMagnitudeOfThreeElementVectors)
+{
+    Vector vector1 = Vector(1, 1, 2);
+    Vector vector2 = Vector(-4, -8, 6);
+
+
+    double vector1Magnitude = vector1.magnitude();
+    double vector1CorrectMagnitude = 6.782;
+
+    double vector2Magnitude = vector2.magnitude(); 
+    double vector2CorrectMagnitude = 11.045;
+
+    EXPECT_DOUBLE_EQ(vector1Magnitude, vector1CorrectMagnitude);
+    EXPECT_DOUBLE_EQ(vector2Magnitude, vector2CorrectMagnitude);
+}
+
 TEST(VectorTests, ShouldIndexDirectlyWithOperator)
 {
     Vector vector = Vector(5, 6);
@@ -206,6 +222,15 @@ TEST(VectorTests, ShouldCalculateVectorProduct)
     Vector vector2 = Vector(4, 5, 6);
 
     Vector vector3 = vector1.vectorProduct(vector2);
+}
 
-    
+TEST(VectorTests, ShouldCalculateAngleBetweenTwoVectors)
+{
+    Vector vector1 = Vector(1, 2, 3);
+    Vector vector2 = Vector(4, 5, 6);
+
+    double angle = vector1.angle(vector2);
+    double correctAngle = 12.933;
+
+    EXPECT_DOUBLE_EQ(angle, correctAngle);
 }
