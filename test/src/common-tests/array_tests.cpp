@@ -98,3 +98,20 @@ TEST(ArrayTests, ShouldInsertElementAt3rdIndex)
 
   EXPECT_EQ(number, correctNumber);
 }
+
+TEST(ArrayTests, ShouldSetElementAt4thIndex)
+{
+  ArrayList<int> arrayList;
+  int correctNumber = 200;
+
+  for (int i = 0; i < 5; i++)
+  {
+    int numberToAdd = i + 10;
+    arrayList.add(numberToAdd);
+  }
+
+  arrayList.set(3, correctNumber);
+  int number = arrayList.get(3);
+
+  EXPECT_EQ(number, correctNumber);
+}

@@ -37,6 +37,19 @@ class ArrayList
       return this->array[index];  
     }
     
+    void set(int index, T element)
+    {
+      int size = this->size();
+      bool indexWithinRange = (index >= 0 && index < size);
+      
+      if (indexWithinRange)
+        this->array[index] = element;
+
+      else
+        throw std::invalid_argument(
+          "Index not within range of the arraylist's current size");
+    }
+
     // Removes an element from the arraylist at a specified index.
     void remove(int index)
     {
