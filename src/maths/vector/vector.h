@@ -28,10 +28,17 @@ namespace Vectorable
       // Creates a new vector using the parameters as vector points.
       Vector(double a, double b, double c, double d);
 
-      // Returns the dot product of a vector with another vector.
+      /**
+       * Returns the scalar/dot product from this vector with another
+       * vector.
+       */
       double dotProduct(Vector vector);
 
-      // Returns the vector.
+      /**
+       * Returns a vector formed from the vector/cross product of this
+       * vector with another vector. Only works with 3D vectors at the
+       * moment.
+       */
       Vector vectorProduct(Vector vector);
 
       // Calculates the angle between this vector and another vector.

@@ -140,7 +140,6 @@ TEST(VectorTests, ShouldSubtractTwoVectorsWithMixedValues)
     EXPECT_DOUBLE_EQ(correctValues[elementNo], newVector[elementNo]);
 }
 
-
 TEST(VectorTests, ShouldMultiplyVectorWithScalarOnRHS)
 {
   Vector vector = Vector(5, 6, 7, -8);
@@ -217,10 +216,19 @@ TEST(VectorTests, ShouldPrintVectorAsStringDirectlyInCout)
 
 TEST(VectorTests, ShouldCalculateVectorProduct)
 {
-  Vector vector1 = Vector(1, 2, 3);
-  Vector vector2 = Vector(4, 5, 6);
+  Vector vector1 = Vector(2, 3, 4);
+  Vector vector2 = Vector(5, 6, 7);
 
   Vector vector3 = vector1.vectorProduct(vector2);
+  double correctPoints[] = {-3, 6, -3};
+
+  for (int i = 0; i < 3; i++) {
+    double vectorPoint = vector3[i];
+    double correctPoint = correctPoints[i];
+
+    cout << "Vector point: " + to_string(vectorPoint) << endl;
+    EXPECT_DOUBLE_EQ(vectorPoint, correctPoint);
+  }
 }
 
 TEST(VectorTests, ShouldCalculateAngleBetweenTwoVectors)
