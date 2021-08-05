@@ -72,9 +72,7 @@ class ArrayList
       }
 
       if (arrayModified) {
-        delete this->array;
-        this->array = newArray;
-        this->numberOfElements = newSize;
+        this->replaceArray(newArray, newSize);
       }
 
       else
@@ -102,11 +100,8 @@ class ArrayList
         }
       }
 
-      if (arrayModified) {
-        delete this->array;
-        this->array = newArray;
-        this->numberOfElements = newSize;
-      }
+      if (arrayModified)
+        this->replaceArray(newArray, newSize);
 
       else
         delete newArray;
@@ -136,7 +131,18 @@ class ArrayList
         newArray[i] = elementToCopy;
       }
 
+      this->replaceArray(newArray, newSize);
+    }
+
+    /**
+     * Deletes the old array associated with this object and replaces
+     * it with a new one. Requires the size of the array to be manually
+     * passed in due to C++ primitive array limitations.
+     */
+    void replaceArray(T* newArray, int newSize)
+    {
       delete this->array;
+
       this->array = newArray;
       this->numberOfElements++;
     }
