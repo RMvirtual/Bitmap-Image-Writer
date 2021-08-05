@@ -64,14 +64,14 @@ class ArrayList
       bool arrayModified = false;
 
       for (; oldArrayIndex < this->numberOfElements; oldArrayIndex++) {
-        RemovalArrayDetails removalDetails = RemovalArrayDetails();
-        removalDetails.newArray = newArray;
+        ArrayOperation removalDetails = ArrayOperation();
+        removalDetails.array = newArray;
         removalDetails.currentIndex = index;
         removalDetails.oldArrayIndex = &oldArrayIndex;
         removalDetails.newArrayIndex = &newArrayIndex;
         removalDetails.arrayModified = &arrayModified;
         
-        this->removeFromList(removalDetails);
+        this->processRemoval(removalDetails);
       }
 
       if (arrayModified)
@@ -91,14 +91,15 @@ class ArrayList
       bool arrayModified = false;
 
       for (; newArrayIndex < this->numberOfElements; newArrayIndex++) {
-        RemovalArrayDetails additionDetails = RemovalArrayDetails();
-        additionDetails.newArray = newArray;
+        InsertionOperation additionDetails = InsertionOperation();
+        additionDetails.elementToInsert = &element;
+        additionDetails.array = newArray;
         additionDetails.currentIndex = index;
         additionDetails.oldArrayIndex = &oldArrayIndex;
         additionDetails.newArrayIndex = &newArrayIndex;
         additionDetails.arrayModified = &arrayModified;
 
-        this->insertIntoArray(additionDetails, &element);
+        this->processInsertion(additionDetails);
       }
 
       if (arrayModified)
@@ -149,18 +150,24 @@ class ArrayList
       this->numberOfElements = newSize;
     }
 
-    struct RemovalArrayDetails
+    struct ArrayOperation
     {
-      T* newArray;
+      T* array;
       int currentIndex;
       int *oldArrayIndex;
       int *newArrayIndex;
       bool *arrayModified;
     };
 
-    void removeFromList(RemovalArrayDetails details)
+    struct InsertionOperation
+      : ArrayOperation
     {
-      T* array = details.newArray;
+      T* elementToInsert;
+    };
+
+    void processRemoval(ArrayOperation details)
+    {
+      T* array = details.array;
       int currentIndex = details.currentIndex;
       int* oldArrayIndex = details.oldArrayIndex;
       int* newArrayIndex = details.newArrayIndex;
@@ -177,16 +184,17 @@ class ArrayList
       }
     }
 
-    void insertIntoArray(RemovalArrayDetails details, T* elementToAdd)
+    void processInsertion(InsertionOperation details)
     {
-      T* array = details.newArray;
+      T* array = details.array;
+      T* elementToInsert = details.elementToInsert;
       int currentIndex = details.currentIndex;
       int* oldArrayIndex = details.oldArrayIndex;
       int* newArrayIndex = details.newArrayIndex;
       bool* arrayModified = details.arrayModified;
 
       if (*newArrayIndex == currentIndex) {
-        array[*newArrayIndex] = *elementToAdd;
+        array[*newArrayIndex] = *elementToInsert;
         *arrayModified = true;
       }
 
