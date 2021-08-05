@@ -15,8 +15,6 @@ namespace Vectorable
             Vector(double a, double b, double c);
             Vector(double a, double b, double c, double d);
 
-            double *vectorArray;
-
             double operator [] (int index);
             Vector operator + (Vector righthandsideVector);
             Vector operator - (Vector righthandsideVector);
@@ -27,19 +25,21 @@ namespace Vectorable
 
             int length();
             double magnitude();
+            double dotProduct(Vector vector);
             Vector vectorProduct(Vector vector);
             double get(int index);
 
         private:            
+            int lengthOfVector;
+            double *vectorArray;
+            
             Vector performBinaryOperationWithVector(
                 Vector rhsVector, BinaryOperation *operation);
             
             Vector performBinaryOperationWithScalar(
                 double scalar, BinaryOperation *operation);
 
-            double dotProduct(Vector vector);
             ArrayList<double> multiplyElements(Vector vector);
-            int lengthOfVector;
     };
 }
 
