@@ -56,22 +56,29 @@ class ArrayList
       int newSize = this->numberOfElements - 1;
       T *newArray = new T[newSize];
       
-      int newArrayIndex = 0;
-      int itemsRemoved = 0;
+      int newArrayIndex = 0, oldArrayIndex = 0;
+      bool arrayModified = false;
 
-      for (int i = 0; i < this->numberOfElements; i++) {
-        if (i == index) {
-          itemsRemoved++;
-          continue;
+      for (; oldArrayIndex < this->numberOfElements; oldArrayIndex++) {
+        bool shouldIgnoreElement = (oldArrayIndex == index);
+
+        if (shouldIgnoreElement)
+          arrayModified = true;
+
+        else {
+          newArray[newArrayIndex] = this->get(oldArrayIndex);
+          newArrayIndex++;
         }
-
-        newArray[newArrayIndex] = this->get(i);
-        newArrayIndex++;
       }
 
-      delete this->array;
-      this->array = newArray;
-      this->numberOfElements -= itemsRemoved;
+      if (arrayModified) {
+        delete this->array;
+        this->array = newArray;
+        this->numberOfElements = newSize;
+      }
+
+      else
+        delete newArray;
     }
 
     // Inserts an element into the arraylist at the specified index.
@@ -98,7 +105,7 @@ class ArrayList
       if (arrayModified) {
         delete this->array;
         this->array = newArray;
-        this->numberOfElements += arrayModified;
+        this->numberOfElements = newSize;
       }
 
       else
