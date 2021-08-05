@@ -64,20 +64,18 @@ class ArrayList
       bool arrayModified = false;
 
       for (; oldArrayIndex < this->numberOfElements; oldArrayIndex++) {
-        bool shouldIgnoreElement = (oldArrayIndex == index);
-
-        if (shouldIgnoreElement)
-          arrayModified = true;
-
-        else {
-          newArray[newArrayIndex] = this->get(oldArrayIndex);
-          newArrayIndex++;
-        }
+        RemovalArrayDetails removalDetails = RemovalArrayDetails();
+        removalDetails.newArray = newArray;
+        removalDetails.currentIndex = index;
+        removalDetails.oldArrayIndex = &oldArrayIndex;
+        removalDetails.newArrayIndex = &newArrayIndex;
+        removalDetails.arrayModified = &arrayModified;
+        
+        this->removeFromList(removalDetails);
       }
 
-      if (arrayModified) {
+      if (arrayModified)
         this->replaceArray(newArray, newSize);
-      }
 
       else
         delete newArray;
@@ -155,10 +153,30 @@ class ArrayList
     struct RemovalArrayDetails
     {
       T* newArray;
+      int currentIndex;
       int *oldArrayIndex;
       int *newArrayIndex;
       bool *arrayModified;
     };
+
+    void removeFromList(RemovalArrayDetails details)
+    {
+      T* array = details.newArray;
+      int currentIndex = details.currentIndex;
+      int* oldArrayIndex = details.oldArrayIndex;
+      int* newArrayIndex = details.newArrayIndex;
+      bool* arrayModified = details.arrayModified;
+
+      bool shouldIgnoreElement = (*oldArrayIndex == currentIndex);
+
+      if (shouldIgnoreElement)
+        *arrayModified = true;
+
+      else {
+        array[*newArrayIndex] = this->get(*oldArrayIndex);
+        (*newArrayIndex)++;
+      }
+    }
 };
 
 #endif
