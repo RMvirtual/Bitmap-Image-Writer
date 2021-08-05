@@ -228,8 +228,8 @@ TEST(VectorTests, ShouldCalculateAngleBetweenTwoVectors)
   Vector vector1 = Vector(1, 2, 3);
   Vector vector2 = Vector(4, 5, 6);
 
-  double angle = vector1.angle(vector2);
-  double correctAngle = 12.933;
+  double angleInRadians = vector1.angle(vector2);
+  double correctAngle = 0.22572612855273419;
 
-  EXPECT_DOUBLE_EQ(angle, correctAngle);
+  EXPECT_DOUBLE_EQ(angleInRadians, correctAngle);
 }
