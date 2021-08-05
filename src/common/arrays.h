@@ -10,17 +10,14 @@ template <class T>
 class ArrayList
 {
   public:
-    /**
-     * Creates a new arraylist.
-     */
+    
+    // Creates a new arraylist.
     ArrayList()
     {
       this->numberOfElements = 0;
     }
 
-    /**
-     * Adds an element to the arraylist.
-     */
+    // Adds an element to the arraylist.
     void add(T elementToAdd)
     {
       if (this->numberOfElements == 0) {
@@ -34,24 +31,19 @@ class ArrayList
       }
     }
 
-    /**
-     * Gets an element from the arraylist at a specified index.
-     */
+    // Gets an element from the arraylist at a specified index.
     T get(int index)
     {
       return this->array[index];  
     }
     
-    /**
-     * Removes an element from the arraylist at a specified
-     * index.
-     */
+    // Removes an element from the arraylist at a specified index.
     void remove(int index)
     {
       int newSize = this->numberOfElements - 1;
       T *newArray = new T[newSize];
+      
       int newArrayIndex = 0;
-
       int itemsRemoved = 0;
 
       for (int i = 0; i < this->numberOfElements; i++) {
@@ -69,14 +61,38 @@ class ArrayList
       this->numberOfElements -= itemsRemoved;
     }
 
+    // Inserts an element into the arraylist at the specified index.
     void insert(int index, T element)
     {
-      // pass
+      int newSize = this->numberOfElements + 1;
+      T *newArray = new T[newSize];
+
+      int oldArrayIndex = 0, newArrayIndex = 0;
+      bool arrayModified = false;
+
+      for (; newArrayIndex < this->numberOfElements; newArrayIndex++) {
+        if (newArrayIndex == index) {
+          newArray[newArrayIndex] = element;
+          arrayModified = true;
+        }
+
+        else {
+          newArray[newArrayIndex] = this->get(oldArrayIndex);
+          oldArrayIndex++;
+        }
+      }
+
+      if (arrayModified) {
+        delete this->array;
+        this->array = newArray;
+        this->numberOfElements += arrayModified;
+      }
+
+      else
+        delete newArray;
     }
 
-    /**
-     * Returns the size of the arraylist.
-     */
+    // Returns the size of the arraylist.
     int size()
     {
       return this->numberOfElements;
@@ -87,8 +103,8 @@ class ArrayList
     int numberOfElements;
 
     /**
-     * Copies the current underlying array into a new one with
-     * space for one extra element.
+     * Copies the current underlying array into a new one with space
+     * for one extra element.
      */
     void incrementArraySize()
     {
