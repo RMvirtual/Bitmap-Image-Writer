@@ -222,7 +222,9 @@ TEST(VectorTests, ShouldCalculateVectorProduct)
   Vector vector3 = vector1.vectorProduct(vector2);
   double correctPoints[] = {-3, 6, -3};
 
-  for (int i = 0; i < 3; i++) {
+  int noOfPoints = vector3.length();
+
+  for (int i = 0; i < noOfPoints; i++) {
     double vectorPoint = vector3[i];
     double correctPoint = correctPoints[i];
 

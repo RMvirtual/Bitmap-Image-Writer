@@ -69,11 +69,12 @@ Vector Vector::vectorProduct(Vector vector)
   double unitVector = 1;
 
   // Simpler way to calculate cross product.
+  int x = 0, y = 1, z = 2;
   Vector self = *this;
   
-  double crossX = (self[1] * vector[2]) - (self[2] * vector[1]);
-  double crossY = (self[2] * vector[0]) - (self[0] * vector[2]);
-  double crossZ = (self[0] * vector[1]) - (self[1] * vector[0]);
+  double crossX = (self[y] * vector[z]) - (self[z] * vector[y]);
+  double crossY = (self[z] * vector[x]) - (self[x] * vector[z]);
+  double crossZ = (self[x] * vector[y]) - (self[y] * vector[x]);
 
   Vector crossProductVector = Vector(crossX, crossY, crossZ);
 
