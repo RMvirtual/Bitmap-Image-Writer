@@ -144,7 +144,7 @@ class ArrayList
       delete this->array;
 
       this->array = newArray;
-      this->numberOfElements++;
+      this->numberOfElements = newSize;
     }
 };
 
