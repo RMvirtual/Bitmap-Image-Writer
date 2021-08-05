@@ -54,6 +54,9 @@ class ArrayList
     // Removes an element from the arraylist at a specified index.
     void remove(int index)
     {
+      if (this->numberOfElements == 0)
+        throw std::invalid_argument("Cannot remove when list is empty.");
+
       int newSize = this->numberOfElements - 1;
       T *newArray = new T[newSize];
       
@@ -124,10 +127,11 @@ class ArrayList
      */
     void incrementArraySize()
     {
-      int newSize = this->numberOfElements + 1;
+      int oldSize = this->numberOfElements;
+      int newSize = oldSize + 1;
       T *newArray = new T[newSize];
 
-      for (int i = 0; i < this->numberOfElements; i++) {
+      for (int i = 0; i < oldSize; i++) {
         T elementToCopy = this->get(i);
         newArray[i] = elementToCopy;
       }
@@ -147,6 +151,14 @@ class ArrayList
       this->array = newArray;
       this->numberOfElements = newSize;
     }
+
+    struct RemovalArrayDetails
+    {
+      T* newArray;
+      int *oldArrayIndex;
+      int *newArrayIndex;
+      bool *arrayModified;
+    };
 };
 
 #endif
