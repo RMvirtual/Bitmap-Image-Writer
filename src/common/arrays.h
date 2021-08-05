@@ -91,15 +91,14 @@ class ArrayList
       bool arrayModified = false;
 
       for (; newArrayIndex < this->numberOfElements; newArrayIndex++) {
-        if (newArrayIndex == index) {
-          newArray[newArrayIndex] = element;
-          arrayModified = true;
-        }
+        RemovalArrayDetails additionDetails = RemovalArrayDetails();
+        additionDetails.newArray = newArray;
+        additionDetails.currentIndex = index;
+        additionDetails.oldArrayIndex = &oldArrayIndex;
+        additionDetails.newArrayIndex = &newArrayIndex;
+        additionDetails.arrayModified = &arrayModified;
 
-        else {
-          newArray[newArrayIndex] = this->get(oldArrayIndex);
-          oldArrayIndex++;
-        }
+        this->insertIntoArray(additionDetails, &element);
       }
 
       if (arrayModified)
@@ -175,6 +174,25 @@ class ArrayList
       else {
         array[*newArrayIndex] = this->get(*oldArrayIndex);
         (*newArrayIndex)++;
+      }
+    }
+
+    void insertIntoArray(RemovalArrayDetails details, T* elementToAdd)
+    {
+      T* array = details.newArray;
+      int currentIndex = details.currentIndex;
+      int* oldArrayIndex = details.oldArrayIndex;
+      int* newArrayIndex = details.newArrayIndex;
+      bool* arrayModified = details.arrayModified;
+
+      if (*newArrayIndex == currentIndex) {
+        array[*newArrayIndex] = *elementToAdd;
+        *arrayModified = true;
+      }
+
+      else {
+        array[*newArrayIndex] = this->get(*oldArrayIndex);
+        (*oldArrayIndex)++;
       }
     }
 };
