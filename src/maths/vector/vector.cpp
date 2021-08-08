@@ -61,14 +61,6 @@ double Vector::dotProduct(Vector vector)
 
 Vector Vector::vectorProduct(Vector vector)
 {
-  // Prep for the clever way to calculate the cross product.
-  double angleBetweenVectors = this->angle(vector);
-  double magnitudeOf1stVector = this->magnitude();
-  double magnitudeOf2ndVector = vector.magnitude();
-  double thing = sin(angleBetweenVectors);
-  double unitVector = 1;
-
-  // Simpler way to calculate cross product.
   int x = 0, y = 1, z = 2;
   Vector self = *this;
   
