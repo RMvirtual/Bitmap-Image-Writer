@@ -85,7 +85,7 @@ namespace Vectorable
       double *vectorArray;
       
       Vector performBinaryOperationWithVector(
-        Vector rhsVector, BinaryOperation *operation);
+        Vector vector, BinaryOperation *operation);
       
       Vector performBinaryOperationWithScalar(
         double scalar, BinaryOperation *operation);

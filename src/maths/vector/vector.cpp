@@ -9,32 +9,41 @@ using namespace std;
 
 Vector::Vector(double a, double b)
 {
-  double* array = new double[2];
-  array[0] = a;
-  array[1] = b;
+  int numberOfElements = 2;
+  double valuesToAdd[] = {a, b};
+
+  double* array = new double[numberOfElements];
+
+  for (int i = 0; i < numberOfElements; i++)
+    array[i] = valuesToAdd[i];
 
   this->assignArrayAndVectorLength(array, 2);
 }
 
 Vector::Vector(double a, double b, double c)
 {
-  double* array = new double[3];
-  array[0] = a;
-  array[1] = b;
-  array[2] = c;
+  int numberOfElements = 3;
+  double valuesToAdd[] = {a, b, c};
+
+  double* array = new double[numberOfElements];
+
+  for (int i = 0; i < numberOfElements; i++)
+    array[i] = valuesToAdd[i];
 
   this->assignArrayAndVectorLength(array, 3);
 }
 
 Vector::Vector(double a, double b, double c, double d)
 {
-  double* array = new double[4];
-  array[0] = a;
-  array[1] = b;
-  array[2] = c;
-  array[3] = d;
+  int numberOfElements = 4;
+  double valuesToAdd[] = {a, b, c, d};
 
-  this->assignArrayAndVectorLength(array, 4);
+  double* array = new double[numberOfElements];
+
+  for (int i = 0; i < numberOfElements; i++)
+    array[i] = valuesToAdd[i];
+
+  this->assignArrayAndVectorLength(array, numberOfElements);
 }
 
 Vector::Vector(double array[], int noOfArrayElements)
@@ -137,6 +146,7 @@ double Vector::operator [] (int index)
 Vector Vector::operator + (Vector rhsVector)
 {
   Addition *additionOp = new Addition();
+
   Vector newVector = this->performBinaryOperationWithVector(
     rhsVector, additionOp);
 
@@ -148,6 +158,7 @@ Vector Vector::operator + (Vector rhsVector)
 Vector Vector::operator - (Vector rhsVector)
 {
   Subtraction *subtractionOp = new Subtraction();
+
   Vector newVector = this->performBinaryOperationWithVector(
     rhsVector, subtractionOp);
 
