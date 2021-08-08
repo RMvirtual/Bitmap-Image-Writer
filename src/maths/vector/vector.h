@@ -94,6 +94,7 @@ namespace Vectorable
       void assignArrayAndVectorLength(double *array, int length);
       double* calculateCrossProductCoordinates(Vector vector);
       double squareNumberAndAddToSum(double number, double sum);
+      string getPointAsString(int pointNo);
   };
 }
 

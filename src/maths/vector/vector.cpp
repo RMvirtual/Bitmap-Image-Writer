@@ -68,7 +68,7 @@ Vector Vector::vectorProduct(Vector vector)
   
   Vector crossProductVector = Vector(coordinates, 3);
   delete coordinates;
-  
+
   return crossProductVector;
 }
 
@@ -218,25 +218,32 @@ ostream& operator << (ostream &strm, Vector vector)
 
 string Vector::toString()
 {
-  Vector vector = *this;
   string vectorRepresentation = "[";
   int noOfPoints = this->length();
 
   for (int pointNo = 0; pointNo < noOfPoints; pointNo++) {
-    string pointToAdd = (
-      to_string(pointNo) + ": " + to_string(vector[pointNo]));
+    string point = this->getPointAsString(pointNo);
+    vectorRepresentation += point;
 
-    bool morePointsToAdd = (pointNo < noOfPoints);
+    bool morePointsToAdd = (pointNo < noOfPoints - 1);
 
     if (morePointsToAdd)
-      pointToAdd += ", ";
-
-    vectorRepresentation += pointToAdd;
+      vectorRepresentation += ", ";
   }
 
   vectorRepresentation += "]";
 
   return vectorRepresentation;
+}
+
+string Vector::getPointAsString(int pointIndex)
+{ 
+  string pointIndexAsString = to_string(pointIndex);
+  string pointValue = to_string(this->get(pointIndex));
+  
+  string pointRepresentation = pointIndexAsString + ": " + pointValue;
+  
+  return pointRepresentation;
 }
 
 Vector Vector::performBinaryOperationWithVector(
