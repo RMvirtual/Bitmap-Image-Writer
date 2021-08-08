@@ -69,6 +69,7 @@ Vector Vector::vectorProduct(Vector vector)
   double x = coordinates[0], y = coordinates[1], z = coordinates[2];
   Vector crossProductVector = Vector(x, y, z);
 
+  delete coordinates;
   return crossProductVector;
 }
 
