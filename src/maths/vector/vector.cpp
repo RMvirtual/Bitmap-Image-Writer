@@ -42,6 +42,12 @@ Vector::Vector(double array[], int noOfArrayElements)
   this->assignArrayAndVectorLength(array, noOfArrayElements);
 }
 
+void Vector::assignArrayAndVectorLength(double *array, int length)
+{
+  this->vectorArray = array;
+  this->lengthOfVector = length;
+}
+
 double Vector::dotProduct(Vector vector)
 {
   int numOfElements = this->length();
@@ -57,6 +63,17 @@ double Vector::dotProduct(Vector vector)
 
 Vector Vector::vectorProduct(Vector vector)
 {
+  double *coordinates =
+    this->calculateCrossProductCoordinates(vector);
+  
+  double x = coordinates[0], y = coordinates[1], z = coordinates[2];
+  Vector crossProductVector = Vector(x, y, z);
+
+  return crossProductVector;
+}
+
+double* Vector::calculateCrossProductCoordinates(Vector vector)
+{
   Vector self = *this;
   int x = 0, y = 1, z = 2;
   
@@ -64,9 +81,10 @@ Vector Vector::vectorProduct(Vector vector)
   double crossY = (self[z] * vector[x]) - (self[x] * vector[z]);
   double crossZ = (self[x] * vector[y]) - (self[y] * vector[x]);
 
-  Vector crossProductVector = Vector(crossX, crossY, crossZ);
+  double *coordinates = new double[3];
+  coordinates[0] = crossX; coordinates[1] = crossY; coordinates[2] = crossZ;
 
-  return crossProductVector;
+  return coordinates;
 }
 
 double Vector::angle(Vector vector)
@@ -90,13 +108,20 @@ double Vector::magnitude()
 {
   double sum = 0;
 
-  for (int elementNo = 0; elementNo < this->lengthOfVector; elementNo++) {
-    double element = this->vectorArray[elementNo];
-    double elementSquared = pow(element, 2);
-    sum += elementSquared;
+  for (int i = 0; i < this->lengthOfVector; i++) {
+    double vectorElement = this->vectorArray[i];
+    sum = this->squareNumberAndAddToSum(vectorElement, sum);
   }
 
   return sqrt(sum);
+}
+
+double Vector::squareNumberAndAddToSum(double number, double sum)
+{
+    double numberSquared = pow(number, 2);
+    sum += numberSquared;
+
+    return sum;
 }
 
 double Vector::get(int index)
@@ -106,7 +131,7 @@ double Vector::get(int index)
 
 double Vector::operator [] (int index)
 {
-  return this->vectorArray[index];
+  return this->get(index);
 }
 
 Vector Vector::operator + (Vector rhsVector)
@@ -249,10 +274,4 @@ Vector Vector::performBinaryOperationWithScalar(
   Vector newVector = Vector(newElements, numOfElements);
 
   return newVector;
-}
-
-void Vector::assignArrayAndVectorLength(double *array, int length)
-{
-  this->vectorArray = array;
-  this->lengthOfVector = length;
 }

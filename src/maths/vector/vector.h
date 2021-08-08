@@ -91,8 +91,9 @@ namespace Vectorable
         double scalar, BinaryOperation *operation);
 
       ArrayList<double> multiplyElements(Vector vector);
-
       void assignArrayAndVectorLength(double *array, int length);
+      double* calculateCrossProductCoordinates(Vector vector);
+      double squareNumberAndAddToSum(double number, double sum);
   };
 }
 
