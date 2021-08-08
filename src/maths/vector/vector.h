@@ -84,18 +84,48 @@ namespace Vectorable
       int lengthOfVector;
       double *vectorArray;
       
+      /**
+       * Takes a binary operation and performs it with this vector
+       * against another vector.
+       */
       Vector performBinaryOperationWithVector(
         Vector vector, BinaryOperation *operation);
       
+      /**
+       * Takes a binary operation and performs it with this vector
+       * against a scalar quantity.
+       */
       Vector performBinaryOperationWithScalar(
         double scalar, BinaryOperation *operation);
 
+      /**
+       * Multiplies the elements of two vectors together and returns
+       * an arraylist type so the length value of the array can be
+       * ascertained if required.
+       */
       ArrayList<double> multiplyElements(Vector vector);
+      
+      /**
+       * Assigns an array pointer and its corresponding length against
+       * this vector.
+       */
       void assignArrayAndVectorLength(double *array, int length);
+      
+      // Creates a copy of an array.
       double* copyArray(double *array, int length);
+      
+      /**
+       * Returns an array containing the values found when performing
+       * the cross product of this vector with another vector. Only works
+       * for vectors of length 3.
+       */
       double* calculateCrossProductCoordinates(Vector vector);
+      
+      // Squares a number and adds it to a sum value.
       double squareNumberAndAddToSum(double number, double sum);
-      string getPointAsString(int pointNo);
+      
+      // Returns a string representation of a point.
+      string getPointAsString(int pointIndex);
   };
 }
 
