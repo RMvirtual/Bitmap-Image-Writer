@@ -91,6 +91,8 @@ namespace Vectorable
         double scalar, BinaryOperation *operation);
 
       ArrayList<double> multiplyElements(Vector vector);
+
+      void assignArrayAndVectorLength(double *array, int length);
   };
 }
 

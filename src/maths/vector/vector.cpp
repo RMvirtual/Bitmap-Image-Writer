@@ -13,8 +13,7 @@ Vector::Vector(double a, double b)
   array[0] = a;
   array[1] = b;
 
-  this->vectorArray = array;
-  this->lengthOfVector = 2;
+  this->assignArrayAndVectorLength(array, 2);
 }
 
 Vector::Vector(double a, double b, double c)
@@ -24,8 +23,7 @@ Vector::Vector(double a, double b, double c)
   array[1] = b;
   array[2] = c;
 
-  this->vectorArray = array;
-  this->lengthOfVector = 3;
+  this->assignArrayAndVectorLength(array, 3);
 }
 
 Vector::Vector(double a, double b, double c, double d)
@@ -36,14 +34,12 @@ Vector::Vector(double a, double b, double c, double d)
   array[2] = c;
   array[3] = d;
 
-  this->vectorArray = array;
-  this->lengthOfVector = 4;
+  this->assignArrayAndVectorLength(array, 4);
 }
 
 Vector::Vector(double array[], int noOfArrayElements)
 {
-  this->vectorArray = array;
-  this->lengthOfVector = noOfArrayElements;
+  this->assignArrayAndVectorLength(array, noOfArrayElements);
 }
 
 double Vector::dotProduct(Vector vector)
@@ -61,8 +57,8 @@ double Vector::dotProduct(Vector vector)
 
 Vector Vector::vectorProduct(Vector vector)
 {
-  int x = 0, y = 1, z = 2;
   Vector self = *this;
+  int x = 0, y = 1, z = 2;
   
   double crossX = (self[y] * vector[z]) - (self[z] * vector[y]);
   double crossY = (self[z] * vector[x]) - (self[x] * vector[z]);
@@ -253,4 +249,10 @@ Vector Vector::performBinaryOperationWithScalar(
   Vector newVector = Vector(newElements, numOfElements);
 
   return newVector;
+}
+
+void Vector::assignArrayAndVectorLength(double *array, int length)
+{
+  this->vectorArray = array;
+  this->lengthOfVector = length;
 }
