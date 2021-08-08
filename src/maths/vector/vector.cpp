@@ -10,40 +10,25 @@ using namespace std;
 Vector::Vector(double a, double b)
 {
   int numberOfElements = 2;
-  double valuesToAdd[] = {a, b};
+  double values[] = {a, b};
 
-  double* array = new double[numberOfElements];
-
-  for (int i = 0; i < numberOfElements; i++)
-    array[i] = valuesToAdd[i];
-
-  this->assignArrayAndVectorLength(array, 2);
+  this->assignArrayAndVectorLength(values, numberOfElements);
 }
 
 Vector::Vector(double a, double b, double c)
 {
   int numberOfElements = 3;
-  double valuesToAdd[] = {a, b, c};
+  double values[] = {a, b, c};
 
-  double* array = new double[numberOfElements];
-
-  for (int i = 0; i < numberOfElements; i++)
-    array[i] = valuesToAdd[i];
-
-  this->assignArrayAndVectorLength(array, 3);
+  this->assignArrayAndVectorLength(values, numberOfElements);
 }
 
 Vector::Vector(double a, double b, double c, double d)
 {
   int numberOfElements = 4;
-  double valuesToAdd[] = {a, b, c, d};
+  double values[] = {a, b, c, d};
 
-  double* array = new double[numberOfElements];
-
-  for (int i = 0; i < numberOfElements; i++)
-    array[i] = valuesToAdd[i];
-
-  this->assignArrayAndVectorLength(array, numberOfElements);
+  this->assignArrayAndVectorLength(values, numberOfElements);
 }
 
 Vector::Vector(double array[], int noOfArrayElements)
@@ -53,8 +38,20 @@ Vector::Vector(double array[], int noOfArrayElements)
 
 void Vector::assignArrayAndVectorLength(double *array, int length)
 {
-  this->vectorArray = array;
+  double* permanentArray = this->copyArray(array, length);
+
+  this->vectorArray = permanentArray;
   this->lengthOfVector = length;
+}
+
+double* Vector::copyArray(double *array, int length)
+{
+  double* newArray = new double[length];
+
+  for (int i = 0; i < length; i++)
+    newArray[i] = array[i];
+
+  return newArray;
 }
 
 double Vector::dotProduct(Vector vector)
