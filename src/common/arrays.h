@@ -115,6 +115,11 @@ class ArrayList
       return this->numberOfElements;
     }
 
+    T* toArray()
+    {
+      return this->array;
+    }
+
   private:
     T *array;
     int numberOfElements;

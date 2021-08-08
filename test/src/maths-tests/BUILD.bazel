@@ -19,3 +19,13 @@ cc_test(
         "//src/maths:binary_ops"
     ],
 )
+
+cc_test(
+    name = "matrix_tests",
+    size = "small",
+    srcs = ["matrix_tests.cpp"],
+    deps = [
+        "@com_google_googletest//:gtest_main",
+        "//src/maths:matrices"
+    ],
+)

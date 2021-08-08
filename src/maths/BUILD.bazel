@@ -12,6 +12,14 @@ cc_library(
 )
 
 cc_library(
+    name = "matrices",
+    srcs = ["matrix/matrix.cpp"],
+    hdrs = ["matrix/matrix.h"],
+    visibility = ["//visibility:public"],
+    deps = ["//src/common:arrays"]
+)
+
+cc_library(
     name = "binary_ops",
     srcs = ["binary_ops/binary_ops.cpp"],
     hdrs = ["binary_ops/binary_ops.h"],
