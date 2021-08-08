@@ -66,10 +66,9 @@ Vector Vector::vectorProduct(Vector vector)
   double *coordinates =
     this->calculateCrossProductCoordinates(vector);
   
-  double x = coordinates[0], y = coordinates[1], z = coordinates[2];
-  Vector crossProductVector = Vector(x, y, z);
-
+  Vector crossProductVector = Vector(coordinates, 3);
   delete coordinates;
+  
   return crossProductVector;
 }
 
