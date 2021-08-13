@@ -1,6 +1,5 @@
 #include <iostream>
 #include <vector>
-#include "src/common/arrays.h"
 #include "src/maths/binary_ops/binary_ops.h"
 
 using namespace std;
@@ -106,7 +105,7 @@ namespace Vectorable
        * an arraylist type so the length value of the array can be
        * ascertained if required.
        */
-      ArrayList<double> multiplyElements(Vector vector);
+      vector<double> multiplyElements(Vector vector);
       
       /**
        * Assigns an array pointer and its corresponding length against

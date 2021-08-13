@@ -2,12 +2,12 @@
 #include <iostream>
 #include <cmath>
 #include <string>
-#include "src/common/arrays.h"
+#include <vector>
 
 using namespace Maths;
 using namespace std;
 
-Matrix::Matrix(ArrayList<ArrayList<double>> arraylist)
+Matrix::Matrix(vector<vector<double>>)
 {
   this->matrixWidth = arraylist.size();
   this->matrixHeight = arraylist.get(0).size();
@@ -15,7 +15,7 @@ Matrix::Matrix(ArrayList<ArrayList<double>> arraylist)
   this->columns = new Column[this->matrixWidth];
 
   for (int i = 0; i < this->matrixWidth; i++) {
-    ArrayList<double> columnArray = arraylist.get(i);
+    vector<double> columnArray = arraylist.get(i);
     double* array = columnArray.toArray();
     Column column = Column(array, this->matrixHeight);
 

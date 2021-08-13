@@ -1,13 +1,15 @@
 #include <gtest/gtest.h>
+#include <vector>
 #include <iostream>
 #include "src/maths/matrix/matrix.h"
 
 using namespace Maths;
+using namespace std;
 
 TEST(MatrixTests, ShouldCreateMatrix)
 {
-  ArrayList<ArrayList<double>> arraylist2d
-    = ArrayList<ArrayList<double>>();
+  vector<vector<double>> arraylist2d
+    = vector<vector<double>>();
 
   ArrayList<double> firstColumn = ArrayList<double>();
   firstColumn.add(0);

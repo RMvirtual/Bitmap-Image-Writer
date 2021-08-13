@@ -5,10 +5,7 @@ cc_library(
     srcs = ["vector/vector.cpp"],
     hdrs = ["vector/vector.h"],
     visibility = ["//visibility:public"],
-    deps = [
-        "//src/maths:binary_ops",
-        "//src/common:arrays"
-    ]
+    deps = ["//src/maths:binary_ops"]
 )
 
 cc_library(
@@ -16,7 +13,7 @@ cc_library(
     srcs = ["matrix/matrix.cpp"],
     hdrs = ["matrix/matrix.h"],
     visibility = ["//visibility:public"],
-    deps = ["//src/common:arrays"]
+    deps = []
 )
 
 cc_library(

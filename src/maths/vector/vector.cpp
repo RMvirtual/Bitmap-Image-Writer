@@ -3,7 +3,6 @@
 #include <iostream>
 #include <cmath>
 #include <string>
-#include "src/common/arrays.h"
 
 using namespace Vectorable;
 using namespace std;
@@ -52,12 +51,12 @@ vector<double> Vector::createVectorFromArray(double *array, int length)
 double Vector::dotProduct(Vector vector)
 {
   int numOfElements = this->length();
-  ArrayList<double> newElements = this->multiplyElements(vector);
+  std::vector<double> newElements = this->multiplyElements(vector);
 
   double dotProduct = 0;
 
   for (int elementNo = 0; elementNo < newElements.size(); elementNo++)
-    dotProduct += newElements.get(elementNo);
+    dotProduct += newElements[elementNo];
 
   return dotProduct;
 }
@@ -165,18 +164,18 @@ double Vector::operator * (Vector rhsVector)
   return this->dotProduct(rhsVector);
 }
 
-ArrayList<double> Vector::multiplyElements(Vector vector)
+std::vector<double> Vector::multiplyElements(Vector vector)
 {
   int numOfElements = this->length();
 
-  ArrayList<double> newElements;
+  std::vector<double> newElements;
 
   for (int elementNo = 0; elementNo < numOfElements; elementNo++) {
       double lhsElement = this->vectorArray[elementNo];
       double rhsElement = vector[elementNo];
 
       double newElement = lhsElement * rhsElement;
-      newElements.add(newElement);
+      newElements.push_back(newElement);
   }
 
   return newElements;

@@ -1,5 +1,3 @@
-#include "src/common/arrays.h"
-
 namespace Maths
 {
   class Column
@@ -18,7 +16,7 @@ namespace Maths
   class Matrix
   {
     public:
-      Matrix(ArrayList<ArrayList<double>> arraylist);
+      Matrix();
       
       int width();
       int height();
