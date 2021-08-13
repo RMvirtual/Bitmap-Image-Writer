@@ -111,7 +111,7 @@ namespace Vectorable
        * Assigns an array pointer and its corresponding length against
        * this vector.
        */
-      void createStlVectorFromArray(double *array, int length);
+      void createVectorFromArray(double *array, int length);
       
       vector<double> createStlVectorFromArray(double *array, int length);
       

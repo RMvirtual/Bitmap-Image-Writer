@@ -34,11 +34,13 @@ Vector::Vector(double array[], int noOfArrayElements)
 
 void Vector::createVectorFromArray(double *array, int length)
 {
-  vector<double> vectorFromArray = this->createStlVectorFromArray(array, length);
+  std::vector<double> vectorFromArray =
+    this->createStlVectorFromArray(array, length);
+  
   this->vectorArray = vectorFromArray;
 }
 
-vector<double> Vector::createStlVectorFromArray(double *array, int length)
+std::vector<double> Vector::createStlVectorFromArray(double *array, int length)
 {
   vector<double> newVector = {};
 
