@@ -29,16 +29,16 @@ Vector::Vector(vector<double> myVector)
 
 Vector::Vector(double array[], int noOfArrayElements)
 {
-  this->assignArray(array, noOfArrayElements);
+  this->createVectorFromArray(array, noOfArrayElements);
 }
 
-void Vector::assignArray(double *array, int length)
+void Vector::createVectorFromArray(double *array, int length)
 {
-  vector<double> vectorFromArray = this->createVectorFromArray(array, length);
+  vector<double> vectorFromArray = this->createStlVectorFromArray(array, length);
   this->vectorArray = vectorFromArray;
 }
 
-vector<double> Vector::createVectorFromArray(double *array, int length)
+vector<double> Vector::createStlVectorFromArray(double *array, int length)
 {
   vector<double> newVector = {};
 

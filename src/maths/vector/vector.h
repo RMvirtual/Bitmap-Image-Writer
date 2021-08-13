@@ -105,15 +105,15 @@ namespace Vectorable
        * an arraylist type so the length value of the array can be
        * ascertained if required.
        */
-      vector<double> multiplyElements(Vector vector);
+      std::vector<double> multiplyElements(Vector vector);
       
       /**
        * Assigns an array pointer and its corresponding length against
        * this vector.
        */
-      void assignArray(double *array, int length);
+      void createStlVectorFromArray(double *array, int length);
       
-      vector<double> createVectorFromArray(double *array, int length);
+      vector<double> createStlVectorFromArray(double *array, int length);
       
       /**
        * Returns an array containing the values found when performing
