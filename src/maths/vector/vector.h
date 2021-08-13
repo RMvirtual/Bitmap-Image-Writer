@@ -1,4 +1,5 @@
 #include <iostream>
+#include <vector>
 #include "src/common/arrays.h"
 #include "src/maths/binary_ops/binary_ops.h"
 
@@ -27,6 +28,9 @@ namespace Vectorable
       
       // Creates a new vector using the parameters as vector points.
       Vector(double a, double b, double c, double d);
+
+      // Creates a new vector using the (unrelated) stl vector as a parameter.
+      Vector(vector<double> myVector);
 
       /**
        * Returns the scalar/dot product from this vector with another
@@ -81,8 +85,7 @@ namespace Vectorable
       string toString();
 
     private:
-      int lengthOfVector;
-      double *vectorArray;
+      vector<double> vectorArray;
       
       /**
        * Takes a binary operation and performs it with this vector
@@ -109,10 +112,9 @@ namespace Vectorable
        * Assigns an array pointer and its corresponding length against
        * this vector.
        */
-      void assignArrayAndVectorLength(double *array, int length);
+      void assignArray(double *array, int length);
       
-      // Creates a copy of an array.
-      double* copyArray(double *array, int length);
+      vector<double> createVectorFromArray(double *array, int length);
       
       /**
        * Returns an array containing the values found when performing

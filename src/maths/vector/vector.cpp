@@ -1,4 +1,5 @@
 #include "vector.h"
+#include <vector>
 #include <iostream>
 #include <cmath>
 #include <string>
@@ -9,49 +10,43 @@ using namespace std;
 
 Vector::Vector(double a, double b)
 {
-  int numberOfElements = 2;
-  double values[] = {a, b};
-
-  this->assignArrayAndVectorLength(values, numberOfElements);
+  this->vectorArray = {a, b};
 }
 
 Vector::Vector(double a, double b, double c)
 {
-  int numberOfElements = 3;
-  double values[] = {a, b, c};
-
-  this->assignArrayAndVectorLength(values, numberOfElements);
+  this->vectorArray = {a, b, c};
 }
 
 Vector::Vector(double a, double b, double c, double d)
 {
-  int numberOfElements = 4;
-  double values[] = {a, b, c, d};
+  this->vectorArray = {a, b, c, d};
+}
 
-  this->assignArrayAndVectorLength(values, numberOfElements);
+Vector::Vector(vector<double> myVector)
+{
+  this->vectorArray = myVector;
 }
 
 Vector::Vector(double array[], int noOfArrayElements)
 {
-  this->assignArrayAndVectorLength(array, noOfArrayElements);
+  this->assignArray(array, noOfArrayElements);
 }
 
-void Vector::assignArrayAndVectorLength(double *array, int length)
+void Vector::assignArray(double *array, int length)
 {
-  double* permanentArray = this->copyArray(array, length);
-
-  this->vectorArray = permanentArray;
-  this->lengthOfVector = length;
+  vector<double> vectorFromArray = this->createVectorFromArray(array, length);
+  this->vectorArray = vectorFromArray;
 }
 
-double* Vector::copyArray(double *array, int length)
+vector<double> Vector::createVectorFromArray(double *array, int length)
 {
-  double* newArray = new double[length];
+  vector<double> newVector = {};
 
   for (int i = 0; i < length; i++)
-    newArray[i] = array[i];
+    newVector.push_back(array[i]);
 
-  return newArray;
+  return newVector;
 }
 
 double Vector::dotProduct(Vector vector)
@@ -107,14 +102,15 @@ double Vector::angle(Vector vector)
 
 int Vector::length()
 {
-  return this->lengthOfVector;
+  return this->vectorArray.size();
 }
 
 double Vector::magnitude()
 {
   double sum = 0;
+  int vectorLength = this->length();
 
-  for (int i = 0; i < this->lengthOfVector; i++) {
+  for (int i = 0; i < vectorLength; i++) {
     double vectorElement = this->vectorArray[i];
     sum = this->squareNumberAndAddToSum(vectorElement, sum);
   }

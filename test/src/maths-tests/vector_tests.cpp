@@ -41,6 +41,16 @@ TEST(VectorTests, ShouldCreateVectorWithArray)
   EXPECT_EQ(3, vector.get(2));
 }
 
+TEST(VectorTests, ShouldCreateVectorWithStlVector)
+{
+  vector<double> stlVector = {1, 2, 3}; 
+  Vector vector = Vector(stlVector);
+
+  EXPECT_EQ(1, vector.get(0));
+  EXPECT_EQ(2, vector.get(1));
+  EXPECT_EQ(3, vector.get(2));
+}
+
 TEST(VectorTests, LengthShouldBeTwo)
 {
   Vector vector = Vector(1, 2);

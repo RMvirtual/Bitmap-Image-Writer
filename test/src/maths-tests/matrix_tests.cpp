@@ -20,8 +20,8 @@ TEST(MatrixTests, ShouldCreateMatrix)
   arraylist2d.add(firstColumn);
   arraylist2d.add(secondColumn);
 
-  Matrix matrix = Matrix(arraylist2d);
+  Matrix* matrix = new Matrix(arraylist2d);
+  double doubleToTest = matrix[1][1];
 
-  EXPECT_DOUBLE_EQ(3, arraylist2d.get(1).get(1));
-
+  EXPECT_DOUBLE_EQ(3, doubleToTest);
 }

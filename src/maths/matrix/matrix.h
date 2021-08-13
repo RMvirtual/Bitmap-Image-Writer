@@ -2,6 +2,19 @@
 
 namespace Maths
 {
+  class Column
+  {
+    public:
+      Column(double* columnArray, int length);
+      Column();
+      
+      double operator [] (int index);
+
+    private:
+      double* values;
+      int length;
+  };
+
   class Matrix
   {
     public:
@@ -12,22 +25,9 @@ namespace Maths
 
       double operator [] (int index);
 
-      class Column
-      {
-        public:
-          Column(double* columnArray, int length);
-          Column();
-          
-          double operator [] (int index);
-
-        private:
-          double* values;
-          int length;
-      };
-
     private:
       int matrixWidth;
       int matrixHeight;
-      Column* columns;
+      Column *columns;
   };
 }

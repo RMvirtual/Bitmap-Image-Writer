@@ -22,7 +22,7 @@ class ArrayList
     {
       if (this->numberOfElements == 0) {
         this->array = new T[1] {elementToAdd};
-        this->numberOfElements++; 
+        this->numberOfElements++;
       }
 
       else {
