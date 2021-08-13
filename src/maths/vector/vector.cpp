@@ -254,17 +254,17 @@ Vector Vector::performBinaryOperationWithVector(
     Vector rhsVector, BinaryOperation *operation)
 {
   int numOfElements = this->length();
-  double* newElements = new double[numOfElements];
+  std::vector<double> newElements = {};
 
   for (int elementNo = 0; elementNo < numOfElements; elementNo++) {
     double lhsElement = this->vectorArray[elementNo];
     double rhsElement = rhsVector[elementNo];
 
     double newElement = operation->perform(lhsElement, rhsElement);
-    newElements[elementNo] = newElement;
+    newElements.push_back(newElement);
   }
 
-  Vector newVector = Vector(newElements, numOfElements);
+  Vector newVector = Vector(newElements);
 
   return newVector;
 }
@@ -273,16 +273,16 @@ Vector Vector::performBinaryOperationWithScalar(
     double scalar, BinaryOperation *operation)
 {
   int numOfElements = this->length();
-  double* newElements = new double[numOfElements];
+  std::vector<double> newElements = {};
 
   for (int elementNo = 0; elementNo < numOfElements; elementNo++) {
     double element = this->vectorArray[elementNo];
-
+    
     double newElement = operation->perform(element, scalar);
-    newElements[elementNo] = newElement;
+    newElements.push_back(newElement);
   }
 
-  Vector newVector = Vector(newElements, numOfElements);
+  Vector newVector = Vector(newElements);
 
   return newVector;
 }
