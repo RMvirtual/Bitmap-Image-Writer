@@ -58,8 +58,8 @@ double Vector::dotProduct(Vector vector)
 
   double dotProduct = 0;
 
-  for (int elementNo = 0; elementNo < newElements.size(); elementNo++)
-    dotProduct += newElements[elementNo];
+  for (auto element : newElements)
+    dotProduct += element;
 
   return dotProduct;
 }
@@ -273,9 +273,7 @@ Vector Vector::performBinaryOperationWithScalar(
   int numOfElements = this->length();
   std::vector<double> newElements = {};
 
-  for (int elementNo = 0; elementNo < numOfElements; elementNo++) {
-    double element = this->vectorArray[elementNo];
-    
+  for (auto element : this->vectorArray) {
     double newElement = operation->perform(element, scalar);
     newElements.push_back(newElement);
   }
