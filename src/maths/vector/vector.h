@@ -5,7 +5,7 @@
 using namespace std;
 using namespace BinaryOps;
 
-namespace Math
+namespace Maths
 {
   class Vector
   {
@@ -130,7 +130,7 @@ namespace Math
   };
 }
 
-using namespace Vectorable;
+using namespace Maths;
 
 /**
  * Overloaded * operator that allows multiplication between a scalar

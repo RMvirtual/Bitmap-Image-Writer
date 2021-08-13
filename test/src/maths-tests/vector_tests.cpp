@@ -2,7 +2,7 @@
 #include <iostream>
 #include "src/maths/vector/vector.h"
 
-using namespace Vectorable;
+using namespace Maths;
 
 TEST(VectorTests, ShouldCreateVectorWithOneAndTwo)
 {

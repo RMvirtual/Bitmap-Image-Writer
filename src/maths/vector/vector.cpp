@@ -4,7 +4,7 @@
 #include <cmath>
 #include <string>
 
-using namespace Math;
+using namespace Maths;
 using namespace std;
 
 Vector::Vector(double a, double b)
