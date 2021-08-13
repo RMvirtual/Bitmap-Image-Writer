@@ -4,7 +4,7 @@
 #include <cmath>
 #include <string>
 
-using namespace Vectorable;
+using namespace Math;
 using namespace std;
 
 Vector::Vector(double a, double b)
@@ -40,7 +40,8 @@ void Vector::createVectorFromArray(double *array, int length)
   this->vectorArray = vectorFromArray;
 }
 
-std::vector<double> Vector::createStlVectorFromArray(double *array, int length)
+std::vector<double> Vector::createStlVectorFromArray(
+  double *array, int length)
 {
   vector<double> newVector = {};
 

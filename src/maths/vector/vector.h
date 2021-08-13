@@ -5,7 +5,7 @@
 using namespace std;
 using namespace BinaryOps;
 
-namespace Vectorable
+namespace Math
 {
   class Vector
   {
