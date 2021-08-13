@@ -91,14 +91,14 @@ namespace Maths
        * against another vector.
        */
       Vector performBinaryOperationWithVector(
-        Vector vector, BinaryOperation *operation);
+        Vector vector, BinaryOperation* operation);
       
       /**
        * Takes a binary operation and performs it with this vector
        * against a scalar quantity.
        */
       Vector performBinaryOperationWithScalar(
-        double scalar, BinaryOperation *operation);
+        double scalar, BinaryOperation* operation);
 
       /**
        * Multiplies the elements of two vectors together and returns
@@ -111,16 +111,16 @@ namespace Maths
        * Assigns an array pointer and its corresponding length against
        * this vector.
        */
-      void createVectorFromArray(double *array, int length);
+      void createVectorFromArray(double* array, int length);
       
-      vector<double> createStlVectorFromArray(double *array, int length);
+      vector<double> createStlVectorFromArray(double* array, int length);
       
       /**
-       * Returns an array containing the values found when performing
-       * the cross product of this vector with another vector. Only works
-       * for vectors of length 3.
+       * Returns an stl vector containing the values found when
+       * performing the cross product of this vector with another
+       * vector. Only works for vectors of length 3.
        */
-      double* calculateCrossProductCoordinates(Vector vector);
+      std::vector<double> calculateCrossProductCoordinates(Vector vector);
       
       // Squares a number and adds it to a sum value.
       double squareNumberAndAddToSum(double number, double sum);

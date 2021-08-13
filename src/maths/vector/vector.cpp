@@ -32,7 +32,7 @@ Vector::Vector(double array[], int noOfArrayElements)
   this->createVectorFromArray(array, noOfArrayElements);
 }
 
-void Vector::createVectorFromArray(double *array, int length)
+void Vector::createVectorFromArray(double* array, int length)
 {
   std::vector<double> vectorFromArray =
     this->createStlVectorFromArray(array, length);
@@ -41,7 +41,7 @@ void Vector::createVectorFromArray(double *array, int length)
 }
 
 std::vector<double> Vector::createStlVectorFromArray(
-  double *array, int length)
+  double* array, int length)
 {
   vector<double> newVector = {};
 
@@ -66,16 +66,15 @@ double Vector::dotProduct(Vector vector)
 
 Vector Vector::vectorProduct(Vector vector)
 {
-  double *coordinates =
+  std::vector<double> coordinates =
     this->calculateCrossProductCoordinates(vector);
   
-  Vector crossProductVector = Vector(coordinates, 3);
-  delete coordinates;
+  Vector crossProductVector = Vector(coordinates);
 
   return crossProductVector;
 }
 
-double* Vector::calculateCrossProductCoordinates(Vector vector)
+std::vector<double> Vector::calculateCrossProductCoordinates(Vector vector)
 {
   Vector self = *this;
   int x = 0, y = 1, z = 2;
@@ -84,8 +83,7 @@ double* Vector::calculateCrossProductCoordinates(Vector vector)
   double crossY = (self[z] * vector[x]) - (self[x] * vector[z]);
   double crossZ = (self[x] * vector[y]) - (self[y] * vector[x]);
 
-  double *coordinates = new double[3];
-  coordinates[0] = crossX; coordinates[1] = crossY; coordinates[2] = crossZ;
+  std::vector<double> coordinates = {crossX, crossY, crossZ};
 
   return coordinates;
 }
@@ -140,7 +138,7 @@ double Vector::operator [] (int index)
 
 Vector Vector::operator + (Vector rhsVector)
 {
-  Addition *additionOp = new Addition();
+  Addition* additionOp = new Addition();
 
   Vector newVector = this->performBinaryOperationWithVector(
     rhsVector, additionOp);
@@ -152,7 +150,7 @@ Vector Vector::operator + (Vector rhsVector)
 
 Vector Vector::operator - (Vector rhsVector)
 {
-  Subtraction *subtractionOp = new Subtraction();
+  Subtraction* subtractionOp = new Subtraction();
 
   Vector newVector = this->performBinaryOperationWithVector(
     rhsVector, subtractionOp);
@@ -186,7 +184,7 @@ std::vector<double> Vector::multiplyElements(Vector vector)
 
 Vector Vector::operator * (double scalar)
 {
-  Multiplication *multiplicationOp = new Multiplication();
+  Multiplication* multiplicationOp = new Multiplication();
 
   Vector newVector = this->performBinaryOperationWithScalar(
       scalar, multiplicationOp);
@@ -198,7 +196,7 @@ Vector Vector::operator * (double scalar)
 
 Vector Vector::operator / (double scalar)
 {
-  Division *divisionOp = new Division();
+  Division* divisionOp = new Division();
 
   Vector newVector = this->performBinaryOperationWithScalar(
     scalar, divisionOp);
