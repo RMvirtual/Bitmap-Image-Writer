@@ -87,7 +87,7 @@ TEST(MatrixTests, ShouldMultiplyMatrixByAVector)
   Maths::Vector vector = Vector(5, 6);
 
   Maths::Vector multipledResult = matrix * vector;
-  Maths::Vector correctVector(23, 26);
+  Maths::Vector correctVector(23, 34);
 
   for (int i = 0; i < 2; i++)
     EXPECT_DOUBLE_EQ(multipledResult[i], correctVector[i]);
