@@ -18,8 +18,12 @@ Matrix::Matrix(std::vector<std::vector<double>> matrixColumns)
 
 Column Matrix::operator [] (int index)
 {
-  cout << "Column Index: " + to_string(index) << endl;
+  int indexRange = this->width() - 1;
+  bool outOfRange = (index < indexRange || index > indexRange);
   
+  if (outOfRange)
+    throw out_of_range("Column index is out of range");
+
   return this->columns[index];
 }
 
