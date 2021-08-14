@@ -127,3 +127,8 @@ Column Matrix::operator [] (int index)
 
   return this->columns[index];
 }
+
+Maths::Vector operator * (Maths::Vector vectorLhs, Matrix matrixRhs)
+{
+  return matrixRhs * vectorLhs;
+}
