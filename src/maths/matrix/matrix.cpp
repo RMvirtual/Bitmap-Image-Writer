@@ -110,18 +110,10 @@ Maths::Vector Matrix::operator * (Maths::Vector vectorRhs)
       double matrixValue = column[rowNo];
       double vectorValue = vectorRhs[columnNo];
 
-      cout << "Matrix value: " + to_string(matrixValue) << endl;
-      cout << "Vector value: " + to_string(vectorValue) << endl;
-
       double product = matrixValue * vectorValue;
-
-      cout << "Product: " + to_string(product) << endl;
-      
       newValue += product;
     }
     
-    cout << "Adding new value: " + to_string(newValue) << endl;
-
     newVectorValues.push_back(newValue);
   }
 
