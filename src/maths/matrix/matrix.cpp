@@ -3,6 +3,7 @@
 #include <iterator>
 #include <string>
 #include <vector>
+
 #include "src/maths/matrix/column.h"
 #include "src/maths/matrix/matrix.h"
 #include "src/maths/vector/vector.h"
@@ -21,17 +22,10 @@ Matrix::Matrix(std::vector<std::vector<double>> matrixColumns)
 
   if (isValidSize)
     this->convertStlVectorToColumns(matrixColumns);
-}
 
-Column Matrix::operator [] (int index)
-{
-  int indexRange = this->width() - 1;
-  bool outOfRange = (index < 0 || index > indexRange);
-  
-  if (outOfRange)
-    throw out_of_range("Column index is out of range.");
-
-  return this->columns[index];
+  else
+    throw runtime_error(
+      "Arithmetic error: vectors are not a congruent size.");
 }
 
 int Matrix::width()
@@ -66,8 +60,7 @@ bool Matrix::checkStlVectorIsValidMatrixSize(
     sizeMatches = (vectorSize == sizeToCheck);
 
     if (!sizeMatches)
-      throw runtime_error(
-        "Arithmetic error: vectors are not a congruent size.");
+      break;
   }
 
   return sizeMatches;
@@ -86,3 +79,40 @@ void Matrix::convertStlVectorToColumns(std::vector<std::vector<double>> vector2D
   }
 }
 
+bool Matrix::isVectorCongruentSize(Maths::Vector vector)
+{
+  int vectorHeight = vector.length();
+  int matrixWidth = this->width();
+
+  bool isVectorCongruentSize = (vectorHeight == matrixWidth);
+
+  return isVectorCongruentSize;
+}
+
+Maths::Vector Matrix::operator * (Maths::Vector vectorRhs)
+{
+  bool vectorIsIncongruentSize = !this->isVectorCongruentSize(vectorRhs);
+
+  if (vectorIsIncongruentSize)
+    throw length_error(
+      "Arithmetic error: Vector is incongruent size to the " \
+      "to the Matrix it is being multiplied against."
+    );
+  
+  for (int rowNo = 0; rowNo < this->height(); rowNo++) {
+    for (int columnNo = 0; columnNo < this->width(); columnNo++) {
+
+    }
+  } 
+}
+
+Column Matrix::operator [] (int index)
+{
+  int indexRange = this->width() - 1;
+  bool outOfRange = (index < 0 || index > indexRange);
+  
+  if (outOfRange)
+    throw out_of_range("Column index is out of range.");
+
+  return this->columns[index];
+}

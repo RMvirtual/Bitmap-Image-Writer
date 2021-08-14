@@ -39,7 +39,11 @@ namespace Maths
       // Returns the height (number of rows) of the matrix.
       int height();
 
+      // Indexes a row value from the column.
       Column operator [] (int index);
+
+      Maths::Vector operator * (Maths::Vector vectorRhs);
+      Matrix operator * (Matrix matrixRhs);
 
     private:
       std::vector<Column> columns;
@@ -48,7 +52,12 @@ namespace Maths
         std::vector<std::vector<double>> vector);
 
       void convertStlVectorToColumns(std::vector<std::vector<double>> vector);
+      bool isVectorCongruentSize(Maths::Vector vector);
   };
 }
+
+using namespace Maths;
+
+Maths::Vector operator * (Maths::Vector vectorLhs, Matrix matrixRhs);
 
 #endif
