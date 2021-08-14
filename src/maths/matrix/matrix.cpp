@@ -27,6 +27,11 @@ Column Matrix::operator [] (int index)
   return this->columns[index];
 }
 
+int Matrix::width()
+{
+  return this->columns.size();
+}
+
 bool Matrix::checkStlVectorIsValidMatrixSize(
     std::vector<std::vector<double>> vector2D)
 {

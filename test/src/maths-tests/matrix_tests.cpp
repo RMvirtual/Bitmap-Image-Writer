@@ -23,3 +23,19 @@ TEST(MatrixTests, ShouldCreateMatrixFrom2DVector)
   EXPECT_DOUBLE_EQ(6, doubleToTest);
 }
 
+TEST(MatrixTests, ShouldReturnWidthAsTwo)
+{
+  vector<vector<double>> vector2D
+    = vector<vector<double>>();
+
+  vector<double> firstColumn = {1, 2, 3, 4};
+  vector<double> secondColumn = {5, 6, 7, 8};
+
+  vector2D.push_back(firstColumn);
+  vector2D.push_back(secondColumn);
+
+  Matrix matrix = Matrix(vector2D);
+  int width = matrix.width();
+
+  EXPECT_EQ(width, 2);
+}
