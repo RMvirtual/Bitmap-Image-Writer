@@ -219,22 +219,28 @@ ostream& operator << (ostream &strm, Vector vector)
 
 string Vector::toString()
 {
-  string vectorRepresentation = "[";
+  string allPoints = this->getAllPointsAsString();
+  string vectorRepresentation = "[" + allPoints + "]";
+
+  return vectorRepresentation;
+}
+
+string Vector::getAllPointsAsString()
+{
+  string pointsRepresentation = "";
   int noOfPoints = this->length();
 
   for (int pointNo = 0; pointNo < noOfPoints; pointNo++) {
     string point = this->getPointAsString(pointNo);
-    vectorRepresentation += point;
+    pointsRepresentation += point;
 
     bool morePointsToAdd = (pointNo < noOfPoints - 1);
 
     if (morePointsToAdd)
-      vectorRepresentation += ", ";
+      pointsRepresentation += ", ";
   }
 
-  vectorRepresentation += "]";
-
-  return vectorRepresentation;
+  return pointsRepresentation;
 }
 
 string Vector::getPointAsString(int pointIndex)

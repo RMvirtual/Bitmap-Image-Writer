@@ -131,6 +131,13 @@ namespace Maths
       
       // Returns a string representation of a point.
       string getPointAsString(int pointIndex);
+
+      /**
+       * Returns each string representation of every point,
+       * concatenated together by a comma and a space (excluding the
+       * last point).
+       */
+      string getAllPointsAsString();
   };
 }
 
