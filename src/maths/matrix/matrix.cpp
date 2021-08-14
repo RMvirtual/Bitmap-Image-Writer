@@ -8,29 +8,6 @@
 using namespace Maths;
 using namespace std;
 
-Column::Column()
-{
-  // Empty constructor to allow an array of this class to be created.
-}
-
-Column::Column(std::vector<double> columnValues)
-{
-  this->rows = columnValues;  
-}
-
-Column::Column(double* values, int length)
-{
-
-}
-
-double Column::operator [] (int index)
-{
-  cout << "Row Index: " + to_string(index) << endl;
-
-  return this->rows[index];
-}
-
-
 Matrix::Matrix(std::vector<std::vector<double>> matrixColumns)
 {
   bool isValidSize = this->checkStlVectorIsValidMatrixSize(matrixColumns);
@@ -80,3 +57,4 @@ void Matrix::convertStlVectorToColumns(std::vector<std::vector<double>> vector2D
     this->columns.push_back(column);
   }
 }
+
