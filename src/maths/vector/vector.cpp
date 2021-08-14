@@ -172,8 +172,8 @@ std::vector<double> Vector::multiplyElements(Vector vector)
       double lhsElement = this->vectorArray[elementNo];
       double rhsElement = vector[elementNo];
 
-      double newElement = lhsElement * rhsElement;
-      newElements.push_back(newElement);
+      double multipliedResult = lhsElement * rhsElement;
+      newElements.push_back(multipliedResult);
   }
 
   return newElements;

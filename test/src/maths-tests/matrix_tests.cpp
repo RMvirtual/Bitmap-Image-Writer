@@ -6,24 +6,20 @@
 using namespace Maths;
 using namespace std;
 
-TEST(MatrixTests, ShouldCreateMatrix)
+TEST(MatrixTests, ShouldCreateMatrixFrom2DVector)
 {
-  vector<vector<double>> arraylist2d
+  vector<vector<double>> vector2D
     = vector<vector<double>>();
 
-  ArrayList<double> firstColumn = ArrayList<double>();
-  firstColumn.add(0);
-  firstColumn.add(1);
+  vector<double> firstColumn = {1, 2, 3, 4};
+  vector<double> secondColumn = {5, 6, 7, 8};
 
-  ArrayList<double> secondColumn = ArrayList<double>();
-  secondColumn.add(2);
-  secondColumn.add(3);
+  vector2D.push_back(firstColumn);
+  vector2D.push_back(secondColumn);
 
-  arraylist2d.add(firstColumn);
-  arraylist2d.add(secondColumn);
-
-  Matrix* matrix = new Matrix(arraylist2d);
+  Matrix matrix = Matrix(vector2D);
   double doubleToTest = matrix[1][1];
 
-  EXPECT_DOUBLE_EQ(3, doubleToTest);
+  EXPECT_DOUBLE_EQ(6, doubleToTest);
 }
+

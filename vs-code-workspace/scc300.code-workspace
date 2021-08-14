@@ -26,7 +26,12 @@
 			"xlocnum": "cpp",
 			"xloctime": "cpp",
 			"xutility": "cpp",
-			"vector": "cpp"
+			"vector": "cpp",
+			"deque": "cpp",
+			"initializer_list": "cpp",
+			"xhash": "cpp",
+			"xtree": "cpp",
+			"ostream": "cpp"
 		}
 	}
 }
