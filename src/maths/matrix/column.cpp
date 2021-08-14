@@ -3,7 +3,6 @@
 #include <vector>
 #include "column.h"
 
-
 using namespace Maths;
 using namespace std;
 
@@ -12,9 +11,9 @@ Column::Column()
   // Empty constructor to allow an array of this class to be created.
 }
 
-Column::Column(std::vector<double> columnValues)
+Column::Column(std::vector<double> rowValues)
 {
-  this->rows = columnValues;
+  this->rows = rowValues;
 }
 
 Column::Column(double *values, int length)

@@ -1,3 +1,6 @@
+#ifndef BINARY_OPS_H
+#define BINARY_OPS_H
+
 namespace BinaryOps
 {
   class BinaryOperation
@@ -35,3 +38,5 @@ namespace BinaryOps
       double perform(double left, double right);
   };
 }
+
+#endif

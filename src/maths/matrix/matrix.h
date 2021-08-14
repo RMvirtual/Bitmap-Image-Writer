@@ -1,5 +1,9 @@
+#ifndef MATRIX_H
+#define MATRIX_H
+
 #include <vector>
-#include "column.h"
+#include "src/maths/matrix/column.h"
+#include "src/maths/vector/vector.h"
 
 namespace Maths
 {
@@ -46,3 +50,5 @@ namespace Maths
       void convertStlVectorToColumns(std::vector<std::vector<double>> vector);
   };
 }
+
+#endif

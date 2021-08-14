@@ -1,3 +1,6 @@
+#ifndef COLUMN_H
+#define COLUMN_H
+
 #include <vector>
 
 namespace Maths
@@ -17,3 +20,5 @@ namespace Maths
       std::vector<double> rows;
   };
 }
+
+#endif

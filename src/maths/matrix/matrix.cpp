@@ -3,7 +3,9 @@
 #include <iterator>
 #include <string>
 #include <vector>
-#include "matrix.h"
+#include "src/maths/matrix/column.h"
+#include "src/maths/matrix/matrix.h"
+#include "src/maths/vector/vector.h"
 
 using namespace Maths;
 using namespace std;

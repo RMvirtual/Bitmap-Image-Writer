@@ -13,7 +13,9 @@ cc_library(
     srcs = ["matrix/matrix.cpp", "matrix/column.cpp"],
     hdrs = ["matrix/matrix.h", "matrix/column.h"],
     visibility = ["//visibility:public"],
-    deps = []
+    deps = [
+        "//src/maths:vectors"
+    ]
 )
 
 cc_library(

@@ -1,3 +1,6 @@
+#ifndef VECTOR_H
+#define VECTOR_H
+
 #include <iostream>
 #include <vector>
 #include "src/maths/binary_ops/binary_ops.h"
@@ -154,3 +157,5 @@ Vector operator * (double scalarLhs, Vector vectorRhs);
  * toString() needing to be called.
  */
 ostream& operator << (ostream &_stream, Vector v);
+
+#endif
