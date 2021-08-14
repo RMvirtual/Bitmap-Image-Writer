@@ -6,16 +6,23 @@
 using namespace Maths;
 using namespace std;
 
-TEST(MatrixTests, ShouldCreateMatrixFrom2DVector)
+std::vector<std::vector<double>> setup2DVector()
 {
   std::vector<std::vector<double>> vector2D
-    = std::vector<std::vector<double>>();
+  = std::vector<std::vector<double>>();
 
   std::vector<double> firstColumn = {1, 2, 3, 4};
   std::vector<double> secondColumn = {5, 6, 7, 8};
 
   vector2D.push_back(firstColumn);
   vector2D.push_back(secondColumn);
+
+  return vector2D;
+}
+
+TEST(MatrixTests, ShouldCreateMatrixFrom2DVector)
+{
+  std::vector<std::vector<double>> vector2D = setup2DVector();
 
   Matrix matrix = Matrix(vector2D);
   double doubleToTest = matrix[1][1];
@@ -25,15 +32,8 @@ TEST(MatrixTests, ShouldCreateMatrixFrom2DVector)
 
 TEST(MatrixTests, ShouldReturnWidthAsTwo)
 {
-  std::vector<std::vector<double>> vector2D
-    = std::vector<std::vector<double>>();
-
-  std::vector<double> firstColumn = {1, 2, 3, 4};
-  std::vector<double> secondColumn = {5, 6, 7, 8};
-
-  vector2D.push_back(firstColumn);
-  vector2D.push_back(secondColumn);
-
+  std::vector<std::vector<double>> vector2D = setup2DVector();
+  
   Matrix matrix = Matrix(vector2D);
   int width = matrix.width();
 
@@ -53,14 +53,7 @@ TEST(MatrixTests, ShouldReturnWidthAsZero)
 
 TEST(MatrixTests, ShouldReturnHeightAsFour)
 {
-  std::vector<std::vector<double>> vector2D
-    = std::vector<std::vector<double>>();
-
-  std::vector<double> firstColumn = {1, 2, 3, 4};
-  std::vector<double> secondColumn = {5, 6, 7, 8};
-
-  vector2D.push_back(firstColumn);
-  vector2D.push_back(secondColumn);
+  std::vector<std::vector<double>> vector2D = setup2DVector();
 
   Matrix matrix = Matrix(vector2D);
   int height = matrix.height();
@@ -99,4 +92,3 @@ TEST(MatrixTests, ShouldMultiplyMatrixByAVector)
   for (int i = 0; i < 2; i++)
     EXPECT_DOUBLE_EQ(multipledResult[i], correctVector[i]);
 }
-
