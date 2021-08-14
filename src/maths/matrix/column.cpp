@@ -22,3 +22,8 @@ double Column::operator [] (int index)
 {
   return this->rows[index];
 }
+
+int Column::length()
+{
+    return this->rows.size();
+}

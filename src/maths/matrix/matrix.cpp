@@ -8,6 +8,11 @@
 using namespace Maths;
 using namespace std;
 
+Matrix::Matrix()
+{
+  this->columns = {};
+}
+
 Matrix::Matrix(std::vector<std::vector<double>> matrixColumns)
 {
   bool isValidSize = this->checkStlVectorIsValidMatrixSize(matrixColumns);
@@ -30,6 +35,17 @@ Column Matrix::operator [] (int index)
 int Matrix::width()
 {
   return this->columns.size();
+}
+
+int Matrix::height()
+{
+  int height = 0;
+  bool hasColumns = !this->columns.empty();
+
+  if (hasColumns)
+    height = this->columns[0].length();
+
+  return height;
 }
 
 bool Matrix::checkStlVectorIsValidMatrixSize(
