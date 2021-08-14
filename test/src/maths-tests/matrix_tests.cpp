@@ -33,7 +33,7 @@ TEST(MatrixTests, ShouldCreateMatrixFrom2DVector)
 TEST(MatrixTests, ShouldReturnWidthAsTwo)
 {
   std::vector<std::vector<double>> vector2D = setup2DVector();
-  
+
   Matrix matrix = Matrix(vector2D);
   int width = matrix.width();
 

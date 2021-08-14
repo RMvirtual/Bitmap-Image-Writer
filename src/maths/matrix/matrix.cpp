@@ -99,11 +99,27 @@ Maths::Vector Matrix::operator * (Maths::Vector vectorRhs)
       "to the Matrix it is being multiplied against."
     );
   
-  for (int rowNo = 0; rowNo < this->height(); rowNo++) {
-    for (int columnNo = 0; columnNo < this->width(); columnNo++) {
+  std::vector<double> newVectorValues = {};
 
+  for (int rowNo = 0; rowNo < this->height(); rowNo++) {
+    double newValue = 0;
+    
+    for (int columnNo = 0; columnNo < this->width(); columnNo++) {
+      Column column = this->columns[columnNo];
+      
+      double matrixValue = column[rowNo];
+      double vectorValue = vectorRhs[columnNo];
+
+      double product = matrixValue * vectorValue;
+      newValue += product;
     }
-  } 
+    
+    newVectorValues.push_back(newValue);
+  }
+
+  Maths::Vector newVector = Vector(newVectorValues);
+
+  return newVector;
 }
 
 Column Matrix::operator [] (int index)
