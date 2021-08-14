@@ -84,6 +84,16 @@ bool Matrix::isVectorCongruentSize(Maths::Vector vector)
   return isVectorCongruentSize;
 }
 
+bool Matrix::isMatrixCongruentSize(Matrix matrixRhs)
+{
+  int matrixLhsWidth = this->width();
+  int matrixRhsHeight = this->height();
+
+  bool isMatrixCongruentSize = (matrixLhsWidth == matrixRhsHeight);
+
+  return isMatrixCongruentSize;
+}
+
 Maths::Vector Matrix::operator * (Maths::Vector vectorRhs)
 {
   bool vectorIsIncongruentSize = !this->isVectorCongruentSize(vectorRhs);
@@ -115,6 +125,44 @@ Maths::Vector Matrix::operator * (Maths::Vector vectorRhs)
   Maths::Vector newVector = Vector(newVectorValues);
 
   return newVector;
+}
+
+Matrix Matrix::operator * (Matrix matrixRhs)
+{
+  bool matrixIsIncongruentSize = !this->isMatrixCongruentSize(matrixRhs);
+
+  if (matrixIsIncongruentSize)
+    throw length_error(
+      "Arithmetic error: Matrix has incongruent dimensions to the " \
+      "to the Matrix it is being multiplied against."
+    );
+  
+  std::vector<double> newMatrixValues = {};
+
+  for (int rowNo = 0; rowNo < this->height(); rowNo++) {
+    double newValue = 0;
+    
+    for (int columnNo = 0; columnNo < this->width(); columnNo++) {
+      Column column = this->columns[columnNo];
+      
+      double matrixValue = column[rowNo];
+      double vectorValue = vectorRhs[columnNo];
+
+      double product = matrixValue * vectorValue;
+      newValue += product;
+    }
+    
+    newMatrixValues.push_back(newValue);
+  }
+
+  Matrix newMatrix = Matrix(newMatrixValues);
+
+  return newMatrix;
+}
+
+Matrix Matrix::operator * (Matrix matrixRhs)
+{
+
 }
 
 Column Matrix::operator [] (int index)

@@ -53,6 +53,7 @@ namespace Maths
 
       void convertStlVectorToColumns(std::vector<std::vector<double>> vector);
       bool isVectorCongruentSize(Maths::Vector vector);
+      bool isMatrixCongruentSize(Matrix matrix);
   };
 }
 
