@@ -72,7 +72,7 @@ TEST(MatrixTests, ShouldReturnHeightAsZero)
   EXPECT_EQ(height, 0);
 }
 
-TEST(MatrixTests, ShouldMultiplyMatrixByAVector)
+TEST(MatrixTests, ShouldMultiplyMatrixByA2DVector)
 {
   std::vector<std::vector<double>> vector2D
     = std::vector<std::vector<double>>();
@@ -89,6 +89,26 @@ TEST(MatrixTests, ShouldMultiplyMatrixByAVector)
   Maths::Vector multipledResult = matrix * vector;
   Maths::Vector correctVector(23, 34);
 
-  for (int i = 0; i < 2; i++)
+  for (int i = 0; i < correctVector.length(); i++)
+    EXPECT_DOUBLE_EQ(multipledResult[i], correctVector[i]);
+}
+
+TEST(MatrixTests, ShouldMultiplyMatrixByA3DVector)
+{
+  std::vector<std::vector<double>> vector2D;
+
+  std::vector<double> firstColumn = {1, 2, 3};
+  std::vector<double> secondColumn = {4, 5, 6};
+  std::vector<double> thirdColumn = {7, 8, 9};
+
+  vector2D = {firstColumn, secondColumn, thirdColumn};
+
+  Matrix matrix = Matrix(vector2D);
+  Maths::Vector vector = Vector(10, 11, 12);
+
+  Maths::Vector multipledResult = matrix * vector;
+  Maths::Vector correctVector(138, 171, 204);
+
+  for (int i = 0; i < correctVector.length(); i++)
     EXPECT_DOUBLE_EQ(multipledResult[i], correctVector[i]);
 }

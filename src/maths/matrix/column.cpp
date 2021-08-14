@@ -11,9 +11,9 @@ Column::Column()
   // Empty constructor to allow an array of this class to be created.
 }
 
-Column::Column(std::vector<double> rowValues)
+Column::Column(std::vector<double> rows)
 {
-  this->rows = rowValues;
+  this->rows = rows;
 }
 
 Column::Column(double *values, int length)

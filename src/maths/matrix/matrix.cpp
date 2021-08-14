@@ -67,14 +67,9 @@ bool Matrix::checkStlVectorIsValidMatrixSize(
 }
 
 void Matrix::convertStlVectorToColumns(std::vector<std::vector<double>> vector2D)
-{
-  auto vectorIterator = vector2D.begin();
-  auto lastVector = vector2D.end();
-  
-  for (; vectorIterator != lastVector; vectorIterator++) {
-    std::vector<double> vector = *vectorIterator;
+{ 
+  for (auto vector : vector2D) {
     Column column = Column(vector);
-
     this->columns.push_back(column);
   }
 }
