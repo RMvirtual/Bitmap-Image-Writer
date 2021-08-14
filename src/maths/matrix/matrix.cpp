@@ -1,9 +1,9 @@
-#include "matrix.h"
-#include <iostream>
 #include <cmath>
+#include <iostream>
+#include <iterator>
 #include <string>
 #include <vector>
-#include <iterator>
+#include "matrix.h"
 
 using namespace Maths;
 using namespace std;
@@ -24,10 +24,10 @@ Matrix::Matrix(std::vector<std::vector<double>> matrixColumns)
 Column Matrix::operator [] (int index)
 {
   int indexRange = this->width() - 1;
-  bool outOfRange = (index < indexRange || index > indexRange);
+  bool outOfRange = (index < 0 || index > indexRange);
   
   if (outOfRange)
-    throw out_of_range("Column index is out of range");
+    throw out_of_range("Column index is out of range.");
 
   return this->columns[index];
 }

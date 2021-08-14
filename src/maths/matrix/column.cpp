@@ -1,7 +1,11 @@
-#include "column.h"
+#include <iostream>
+#include <string>
 #include <vector>
+#include "column.h"
+
 
 using namespace Maths;
+using namespace std;
 
 Column::Column()
 {
@@ -10,20 +14,26 @@ Column::Column()
 
 Column::Column(std::vector<double> columnValues)
 {
-  this->rows = columnValues;  
+  this->rows = columnValues;
 }
 
-Column::Column(double* values, int length)
+Column::Column(double *values, int length)
 {
 
 }
 
 double Column::operator [] (int index)
 {
+  int indexRange = this->length() - 1;
+  bool outOfRange = (index < 0 || index > indexRange);
+
+  if (outOfRange)
+    throw out_of_range("Row index is out of range.");
+
   return this->rows[index];
 }
 
 int Column::length()
 {
-    return this->rows.size();
+  return this->rows.size();
 }
