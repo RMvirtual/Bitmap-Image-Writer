@@ -108,7 +108,6 @@ int Vector::length()
 double Vector::magnitude()
 {
   double sum = 0;
-  int vectorLength = this->length();
 
   for (auto vectorElement : this->vectorArray)
     sum = this->squareNumberAndAddToSum(vectorElement, sum);

@@ -113,6 +113,10 @@ namespace Maths
        */
       void createVectorFromArray(double* array, int length);
       
+      /**
+       * Converts the contents of an array into a standard library
+       * vector.
+       */
       vector<double> createStlVectorFromArray(double* array, int length);
       
       /**
