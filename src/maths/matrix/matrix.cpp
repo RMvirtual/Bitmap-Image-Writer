@@ -39,7 +39,8 @@ bool Matrix::checkStlVectorIsValidMatrixSize(
     sizeMatches = (vectorSize == sizeToCheck);
 
     if (!sizeMatches)
-      break;
+      throw runtime_error(
+        "Arithmetic error: vectors are not a congruent size.");
   }
 
   return sizeMatches;
