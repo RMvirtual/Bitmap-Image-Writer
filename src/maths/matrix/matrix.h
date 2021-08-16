@@ -2,6 +2,8 @@
 #define MATRIX_H
 
 #include <vector>
+
+#include "src/maths/matrix/column.h"
 #include "src/maths/vector/vector.h"
 
 using namespace std;
@@ -53,11 +55,11 @@ namespace Maths
       vector<vector<double>> getRows();
 
       /**
-       * Indexes an stl vector representing a column of values (can be
-       * indexed again using the subscript operator to get the actual
-       * row value.
+       * Returns a Column Proxy object that extends an stl vector
+       * representing a column of values (can be indexed again using
+       * the subscript operator to get the actual row value.
        */
-      vector<double> operator [] (int index);
+      Column operator [] (int columnIndex);
 
       // Multiplies the matrix by a vector.
       Maths::Vector operator * (Maths::Vector vectorRhs);
@@ -76,7 +78,7 @@ namespace Maths
       string toString();
 
     private:
-      vector<vector<double>> columns;
+      vector<Column> columns;
 
       // Multiplies a vector against this matrix.
       Maths::Vector multiplyVector(Maths::Vector vector);

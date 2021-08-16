@@ -17,7 +17,7 @@ Matrix::Matrix()
 
 Matrix::Matrix(vector<double> column)
 {
-  this->columns = {column};
+  this->columns = {Column(column)};
 }
 
 Matrix::Matrix(vector<vector<double>> matrixColumns)
@@ -37,7 +37,7 @@ Matrix::Matrix(vector<vector<double>> matrixColumns)
 void Matrix::setVectorAsColumnsAndRows(vector<vector<double>> vector2D)
 {
   for (auto vector : vector2D)
-    this->columns.push_back(vector);
+    this->columns.push_back(Column(vector));
 }
 
 int Matrix::width()
@@ -99,9 +99,9 @@ bool Matrix::isMatrixMultipliable(Matrix otherMatrix)
 vector<double> Matrix::getColumn(int index)
 {
   vector<double> columnValues = {};
-  vector<double> column = (*this)[index];
+  Column column = (*this)[index];
 
-  for (auto value : column)
+  for (auto value : column.toVector())
     columnValues.push_back(value);
 
   return columnValues;
@@ -306,15 +306,17 @@ double Matrix::getProductBetweenTwoVectorsAtSameIndex(
     vector2, vector1, commonIndex);
 }
 
-vector<double> Matrix::operator [] (int index)
+Column Matrix::operator [] (int columnIndex)
 {
   int indexRange = this->width() - 1;
-  bool outOfRange = (index < 0 || index > indexRange);
+  bool outOfRange = (columnIndex < 0 || columnIndex > indexRange);
   
   if (outOfRange)
     throw out_of_range("Column index is out of range.");
 
-  return this->columns[index];
+  Column column = this->columns[columnIndex]; 
+  
+  return column;
 }
 
 Maths::Vector operator * (Maths::Vector vectorLhs, Matrix matrixRhs)
