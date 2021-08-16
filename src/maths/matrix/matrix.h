@@ -56,6 +56,7 @@ namespace Maths
       bool checkStlVectorIsValidMatrixSize(
         std::vector<std::vector<double>> vector);
 
+      Matrix multiplyMatrix(Matrix matrix);
       void convertStlVectorToColumns(std::vector<std::vector<double>> vector);
       bool isVectorMultipliable(Maths::Vector vector);
       bool isMatrixMultipliable(Matrix matrix);

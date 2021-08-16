@@ -160,16 +160,24 @@ Matrix Matrix::operator * (Matrix matrixRhs)
       "to the Matrix it is being multiplied against."
     );
   
+  Matrix newMatrix = multiplyMatrix(matrixRhs);
+
+  return newMatrix;
+}
+
+Matrix Matrix::multiplyMatrix(Matrix matrix)
+{
   std::vector<std::vector<double>> newMatrixValues = {};
   Matrix matrixLhs = *this;
+  Matrix matrixRhs = matrix;
 
   // Schoolbook algorithm for matrix multiplication.
   for (int rhsColumnNo = 0; rhsColumnNo < matrixRhs.width(); rhsColumnNo++) {
     std::vector<double> newColumn = {};
-    
+    std::vector<double> rhsColumn = matrixRhs.getColumn(rhsColumnNo);
+
     for (int lhsColumnNo = 0; lhsColumnNo < matrixLhs.width(); lhsColumnNo++) {
       std::vector<double> lhsRow = matrixLhs.getRow(lhsColumnNo);
-      std::vector<double> rhsColumn = matrixRhs.getColumn(rhsColumnNo);
 
       double newColumnValueToAdd = 0;
       
