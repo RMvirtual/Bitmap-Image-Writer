@@ -219,15 +219,9 @@ std::vector<double> Matrix::getNewColumnWithMatrixProduct(
   std::vector<std::vector<double>> matrixLhsRows = matrixLhs.getRows();
 
   for (auto lhsRow : matrixLhsRows) {
-    double newColumnValueToAdd = 0;
-    
-    for (int commonIndex = 0; commonIndex < rhsColumn.size(); commonIndex++) {
-      double product = this->getProductBetweenTwoVectorsAtSameIndex(
-        lhsRow, rhsColumn, commonIndex);
+    double newColumnValueToAdd = this->getProductBetweenTwoMatrixVectors(
+      lhsRow, rhsColumn);
       
-      newColumnValueToAdd += product;
-    }
-
     newColumn.push_back(newColumnValueToAdd);
   }
 
