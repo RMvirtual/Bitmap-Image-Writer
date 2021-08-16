@@ -170,10 +170,10 @@ Matrix Matrix::operator * (Matrix matrixRhs)
   Matrix matrixLhs = *this;
 
   // Schoolbook algorithm for matrix multiplication.
-  for (int lhsColumnNo = 0; lhsColumnNo < matrixLhs.width(); lhsColumnNo++) {
+  for (int rhsColumnNo = 0; rhsColumnNo < matrixRhs.width(); rhsColumnNo++) {
     std::vector<double> newColumn = {};
     
-    for (int rhsColumnNo = 0; rhsColumnNo < matrixRhs.width(); rhsColumnNo++) {
+    for (int lhsColumnNo = 0; lhsColumnNo < matrixLhs.width(); lhsColumnNo++) {
       std::vector<double> lhsRow = matrixLhs.getRow(lhsColumnNo);
       std::vector<double> rhsColumn = matrixRhs.getColumn(rhsColumnNo);
 
@@ -181,9 +181,9 @@ Matrix Matrix::operator * (Matrix matrixRhs)
 
       double newColumnValueToAdd = 0;
       
-      for (int sharedColumnNo = 0; sharedColumnNo < rhsColumn.size(); sharedColumnNo++) {
-        double lhsMatrixValue = lhsRow[sharedColumnNo];
-        double rhsMatrixValue = rhsColumn[sharedColumnNo];
+      for (int rowAndColumnNo = 0; rowAndColumnNo < rhsColumn.size(); rowAndColumnNo++) {
+        double lhsMatrixValue = lhsRow[rowAndColumnNo];
+        double rhsMatrixValue = rhsColumn[rowAndColumnNo];
 
         double product = lhsMatrixValue * rhsMatrixValue;
 
@@ -228,9 +228,9 @@ Maths::Vector operator * (Maths::Vector vectorLhs, Matrix matrixRhs)
 
 string Matrix::toString()
 {
-  string allPoints = this->getAllValuesAsString();
+  string allValues = this->getAllValuesAsString();
 
-  return allPoints;
+  return allValues;
 }
 
 string Matrix::getAllValuesAsString()
