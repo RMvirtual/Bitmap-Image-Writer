@@ -71,6 +71,7 @@ namespace Maths
     private:
       vector<vector<double>> columns;
 
+      Maths::Vector multiplyVector(Maths::Vector vector);
       Matrix multiplyMatrix(Matrix matrix);
       
       vector<vector<double>> getValuesFromMatrixMultiplication(
