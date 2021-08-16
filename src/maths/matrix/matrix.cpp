@@ -4,6 +4,9 @@
 #include <string>
 #include <vector>
 
+#include <sstream>
+#include <iomanip>
+
 #include "src/maths/matrix/matrix.h"
 #include "src/maths/vector/vector.h"
 
@@ -357,9 +360,12 @@ string Matrix::formatStlVectorAsMatrixRow(vector<double> vector)
 {
   string rowOfValues = "| ";
 
-  for (auto value : vector)
-    rowOfValues += to_string(value) + " ";
+  for (auto value : vector) {
+    std::ostringstream stringFormatter;
+    stringFormatter << std::setprecision(8) << std::noshowpoint << value;
 
+    rowOfValues += stringFormatter.str() + " ";
+  }
   rowOfValues += "|";
 
   return rowOfValues;

@@ -219,9 +219,9 @@ TEST(MatrixTests, ShouldPrintMatrixAsString)
   string actualString = matrix.toString();
 
   string correctString = (
-    "| 1.000000 4.000000 |\n" \
-    "| 2.000000 5.000000 |\n" \
-    "| 3.000000 6.000000 |" \
+    "| 1 4 |\n" \
+    "| 2 5 |\n" \
+    "| 3 6 |" \
   );
 
   EXPECT_EQ(correctString, actualString);
