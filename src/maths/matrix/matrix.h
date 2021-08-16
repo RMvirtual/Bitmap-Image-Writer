@@ -33,7 +33,11 @@ namespace Maths
       std::vector<std::vector<double>> getColumns();
       std::vector<std::vector<double>> getRows();
 
-      // Indexes a row value from the column.
+      /**
+       * Indexes an stl vector representing a column of values (can be
+       * indexed again using the subscript operator to get the actual
+       * row value.
+       */
       std::vector<double> operator [] (int index);
 
       Maths::Vector operator * (Maths::Vector vectorRhs);
@@ -60,7 +64,8 @@ namespace Maths
         int commonIndex
       );
       
-      void convert2DStlVectorToColumns(std::vector<std::vector<double>> vector);
+      void convert2DStlVectorToColumns(
+        std::vector<std::vector<double>> vector);
 
       bool check2DStlVectorIsValidMatrixSize(
         std::vector<std::vector<double>> vector);

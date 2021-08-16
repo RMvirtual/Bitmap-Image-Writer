@@ -15,6 +15,11 @@ Matrix::Matrix()
   this->columns = {};
 }
 
+Matrix::Matrix(std::vector<double> column)
+{
+  this->columns = {column};
+}
+
 Matrix::Matrix(std::vector<std::vector<double>> matrixColumns)
 {
   bool isValidSize = this->check2DStlVectorIsValidMatrixSize(matrixColumns);
