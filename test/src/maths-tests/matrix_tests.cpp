@@ -23,11 +23,21 @@ std::vector<std::vector<double>> setup2DVector()
 TEST(MatrixTests, ShouldCreateMatrixFrom2DVector)
 {
   std::vector<std::vector<double>> vector2D = setup2DVector();
-
   Matrix matrix = Matrix(vector2D);
-  double doubleToTest = matrix[1][1];
 
-  EXPECT_DOUBLE_EQ(6, doubleToTest);
+  std::vector<std::vector<double>> correctElements = {
+    {1, 2, 3, 4},
+    {5, 6, 7, 8}
+  };
+
+  for (int i = 0; i < correctElements.size(); i++) {
+    for (int j = 0; j < correctElements[i].size(); j++) {
+      double correctValue = correctElements[i][j];
+      double doubleToTest = matrix[i][j];
+
+      EXPECT_DOUBLE_EQ(correctValue, doubleToTest);
+    }
+  }
 }
 
 TEST(MatrixTests, ShouldReturnWidthAsTwo)
