@@ -116,7 +116,7 @@ std::vector<double> Matrix::getRow(int index)
   return rowValues;
 }
 
-std::vector<std::vector<double>> Matrix::getColumnTuples()
+std::vector<std::vector<double>> Matrix::getColumns()
 {
   std::vector<std::vector<double>> columns = {};
 
@@ -128,7 +128,7 @@ std::vector<std::vector<double>> Matrix::getColumnTuples()
   return columns;
 }
 
-std::vector<std::vector<double>> Matrix::getRowTuples()
+std::vector<std::vector<double>> Matrix::getRows()
 {
   std::vector<std::vector<double>> rows = {};
 
@@ -204,7 +204,7 @@ std::vector<std::vector<double>> Matrix::getValuesFromMatrixMultiplication(
   std::vector<std::vector<double>> newMatrixValues = {};
   
   std::vector<std::vector<double>> otherMatrixColumns =
-    matrixToMultiply.getColumnTuples();
+    matrixToMultiply.getColumns();
 
   for (auto otherMatrixColumn : otherMatrixColumns) {
     std::vector<double> newColumn =
@@ -220,7 +220,7 @@ std::vector<double> Matrix::getProductAgainstAllRowsWithColumn(
   std::vector<double> column)
 {
   std::vector<double> newColumn = {};
-  std::vector<std::vector<double>> matrixRows = this->getRowTuples();
+  std::vector<std::vector<double>> matrixRows = this->getRows();
 
   for (auto row : matrixRows) {
     double newColumnValue = this->getProductBetweenTwoStlVectors(
@@ -285,7 +285,7 @@ string Matrix::getAllValuesAsString()
 {
   string allValues = "";
 
-  std::vector<std::vector<double>> rows = this->getRowTuples();
+  std::vector<std::vector<double>> rows = this->getRows();
   int noOfRows = rows.size();
 
   for (int rowNo = 0; rowNo < noOfRows; rowNo++) {
@@ -313,11 +313,4 @@ string Matrix::formatStlVectorAsMatrixRow(std::vector<double> vector)
   rowOfValues += "|";
 
   return rowOfValues;
-}
-
-string Matrix::getValueAsString(int columnNo, int rowNo)
-{
-  string point = to_string((*this)[columnNo][rowNo]);
-  
-  return point;
 }

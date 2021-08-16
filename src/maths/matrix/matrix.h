@@ -41,8 +41,8 @@ namespace Maths
 
       std::vector<double> getRow(int index);
       std::vector<double> getColumn(int index);
-      std::vector<std::vector<double>> getColumnTuples();
-      std::vector<std::vector<double>> getRowTuples();
+      std::vector<std::vector<double>> getColumns();
+      std::vector<std::vector<double>> getRows();
 
       // Indexes a row value from the column.
       MatrixVector operator [] (int index);
@@ -80,7 +80,6 @@ namespace Maths
       bool isMatrixMultipliable(Matrix matrix);
       string getAllValuesAsString();
       string formatStlVectorAsMatrixRow(std::vector<double> vector);
-      string getValueAsString(int columnNo, int rowNo);
   };
 }
 
