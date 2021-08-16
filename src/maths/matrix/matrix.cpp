@@ -32,6 +32,12 @@ void Matrix::convertStlVectorToColumns(std::vector<std::vector<double>> vector2D
 { 
   for (auto vector : vector2D) {
     MatrixVector column = MatrixVector(vector);
+
+    for (auto value : vector) {
+      cout << "Adding value in column " + to_string(value) << endl;
+    }
+
+    cout << endl;
     this->columns.push_back(column);
   }
 }
@@ -171,7 +177,9 @@ Matrix Matrix::operator * (Matrix matrixRhs)
       std::vector<double> lhsRow = matrixLhs.getRow(lhsColumnNo);
       std::vector<double> rhsColumn = matrixRhs.getColumn(rhsColumnNo);
 
-      double newValue = 0;
+      cout << "Getting new rhs row." << endl;
+
+      double newColumnValueToAdd = 0;
       
       for (int sharedColumnNo = 0; sharedColumnNo < rhsColumn.size(); sharedColumnNo++) {
         double lhsMatrixValue = lhsRow[sharedColumnNo];
@@ -183,13 +191,13 @@ Matrix Matrix::operator * (Matrix matrixRhs)
         cout << "rhsMatrixValue: " + to_string(rhsMatrixValue) << endl;
         cout << "product: " + to_string(product) << endl;
         
-        newValue += product;
+        newColumnValueToAdd += product;
 
-        cout << "New value now: " + to_string(newValue) << endl;
+        cout << "New value now: " + to_string(newColumnValueToAdd) << endl;
       }
 
-      newColumn.push_back(newValue);
-      cout << "Done with value " + to_string(newValue) + " now." << endl;
+      newColumn.push_back(newColumnValueToAdd);
+      cout << "Done with value " + to_string(newColumnValueToAdd) + " now." << endl << endl;
     }
 
     newMatrixValues.push_back(newColumn);
@@ -220,12 +228,12 @@ Maths::Vector operator * (Maths::Vector vectorLhs, Matrix matrixRhs)
 
 string Matrix::toString()
 {
-  string allPoints = this->getAllPointsAsString();
+  string allPoints = this->getAllValuesAsString();
 
   return allPoints;
 }
 
-string Matrix::getAllPointsAsString()
+string Matrix::getAllValuesAsString()
 {
   string pointsRepresentation = "";
   int noOfRows = this->height();
@@ -235,7 +243,7 @@ string Matrix::getAllPointsAsString()
     string rowOfValues = "| ";
 
     for (int columnNo = 0; columnNo < noOfColumns; columnNo++) {
-      string point = this->getPointAsString(rowNo, columnNo);
+      string point = this->getValueAsString(columnNo, rowNo);
       rowOfValues += point;
 
       rowOfValues += " ";
@@ -254,7 +262,7 @@ string Matrix::getAllPointsAsString()
   return pointsRepresentation;
 }
 
-string Matrix::getPointAsString(int columnNo, int rowNo)
+string Matrix::getValueAsString(int columnNo, int rowNo)
 {
   string point = to_string((*this)[columnNo][rowNo]);
   

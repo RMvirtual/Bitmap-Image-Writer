@@ -59,8 +59,8 @@ namespace Maths
       void convertStlVectorToColumns(std::vector<std::vector<double>> vector);
       bool isVectorMultipliable(Maths::Vector vector);
       bool isMatrixMultipliable(Matrix matrix);
-      string getAllPointsAsString();
-      string getPointAsString(int columnNo, int rowNo);
+      string getAllValuesAsString();
+      string getValueAsString(int columnNo, int rowNo);
   };
 }
 

@@ -182,6 +182,8 @@ TEST(MatrixTests, ShouldMultiplyMatrixByAnotherMatrix)
 
   Matrix resultMatrix = lhsMatrix * rhsMatrix;
 
+  cout << "Setting up correct matrix." << endl;
+
   std::vector<std::vector<double>> correctVectors = {
     {138, 171, 204},
     {174, 216, 258},
@@ -197,6 +199,28 @@ TEST(MatrixTests, ShouldMultiplyMatrixByAnotherMatrix)
         resultMatrix[columnNo][rowNo]
       );
 
-  cout << resultMatrix.toString() << endl << endl;
+  cout << "Correct Matrix" << endl;
   cout << correctMatrix.toString() << endl << endl;
+
+  cout << "Actual Matrix" << endl;
+  cout << resultMatrix.toString() << endl << endl;
+}
+
+TEST(MatrixTests, ShouldPrintMatrixAsString)
+{
+  std::vector<std::vector<double>> values = {
+    {1, 2, 3},
+    {4, 5, 6}
+  };
+
+  Matrix matrix = Matrix(values);
+  string actualString = matrix.toString();
+
+  string correctString = (
+    "| 1.000000 4.000000 |\n" \
+    "| 2.000000 5.000000 |\n" \
+    "| 3.000000 6.000000 |" \
+  );
+
+  EXPECT_EQ(correctString, actualString);
 }
