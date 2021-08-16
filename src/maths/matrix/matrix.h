@@ -41,8 +41,8 @@ namespace Maths
 
       std::vector<double> getRow(int index);
       std::vector<double> getColumn(int index);
-      std::vector<std::vector<double>> getColumns();
-      std::vector<std::vector<double>> getRows();
+      std::vector<std::vector<double>> getColumnTuples();
+      std::vector<std::vector<double>> getRowTuples();
 
       // Indexes a row value from the column.
       MatrixVector operator [] (int index);
