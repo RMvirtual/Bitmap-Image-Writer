@@ -153,6 +153,16 @@ Maths::Vector Matrix::operator * (Maths::Vector vector)
 
 Maths::Vector Matrix::multiplyVector(Maths::Vector vector)
 {
+  std::vector<double> newVectorValues
+    = this->getMultipliedVectorValues(vector);
+  
+  Maths::Vector newVector = Maths::Vector(newVectorValues);
+
+  return newVector;
+}
+
+std::vector<double> Matrix::getMultipliedVectorValues(Maths::Vector vector)
+{
   std::vector<double> newVectorValues = {};
 
   for (int rowNo = 0; rowNo < this->height(); rowNo++) {
@@ -171,9 +181,7 @@ Maths::Vector Matrix::multiplyVector(Maths::Vector vector)
     newVectorValues.push_back(newValue);
   }
 
-  Maths::Vector newVector = Maths::Vector(newVectorValues);
-
-  return newVector;
+  return newVectorValues;
 }
 
 Matrix Matrix::operator * (Matrix matrixRhs)

@@ -72,6 +72,7 @@ namespace Maths
       vector<vector<double>> columns;
 
       Maths::Vector multiplyVector(Maths::Vector vector);
+      std::vector<double> getMultipliedVectorValues(Maths::Vector vector);
       Matrix multiplyMatrix(Matrix matrix);
       
       vector<vector<double>> getValuesFromMatrixMultiplication(
