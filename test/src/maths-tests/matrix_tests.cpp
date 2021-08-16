@@ -113,7 +113,7 @@ TEST(MatrixTests, ShouldMultiplyMatrixByA2DVector)
   Matrix matrix = Matrix(vector2D);
   Maths::Vector vector = Vector(5, 6);
 
-  Maths::Vector multipledResult = matrix * vector;
+  Maths::Vector multipledResult = vector * matrix;
   Maths::Vector correctVector(23, 34);
 
   for (int i = 0; i < correctVector.length(); i++)

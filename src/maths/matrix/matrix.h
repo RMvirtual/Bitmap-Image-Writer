@@ -98,8 +98,6 @@ namespace Maths
   };
 }
 
-using namespace Maths;
-
 // Multiplies the matrix by a vector.
 Maths::Vector operator * (Maths::Vector vectorLhs, Matrix matrixRhs);
 
