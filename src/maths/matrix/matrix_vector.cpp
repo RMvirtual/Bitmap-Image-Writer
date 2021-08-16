@@ -1,27 +1,27 @@
 #include <iostream>
 #include <string>
 #include <vector>
-#include "column.h"
+#include "matrix_vector.h"
 
 using namespace Maths;
 using namespace std;
 
-Column::Column()
+MatrixVector::MatrixVector()
 {
   // Empty constructor to allow an array of this class to be created.
 }
 
-Column::Column(std::vector<double> rows)
+MatrixVector::MatrixVector(std::vector<double> values)
 {
-  this->rows = rows;
+  this->values = values;
 }
 
-Column::Column(double *values, int length)
+MatrixVector::MatrixVector(double *values, int length)
 {
 
 }
 
-double Column::operator [] (int index)
+double MatrixVector::operator [] (int index)
 {
   int indexRange = this->length() - 1;
   bool outOfRange = (index < 0 || index > indexRange);
@@ -29,10 +29,10 @@ double Column::operator [] (int index)
   if (outOfRange)
     throw out_of_range("Row index is out of range.");
 
-  return this->rows[index];
+  return this->values[index];
 }
 
-int Column::length()
+int MatrixVector::length()
 {
-  return this->rows.size();
+  return this->values.size();
 }

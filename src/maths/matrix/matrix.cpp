@@ -4,7 +4,7 @@
 #include <string>
 #include <vector>
 
-#include "src/maths/matrix/column.h"
+#include "src/maths/matrix/matrix_vector.h"
 #include "src/maths/matrix/matrix.h"
 #include "src/maths/vector/vector.h"
 
@@ -26,6 +26,14 @@ Matrix::Matrix(std::vector<std::vector<double>> matrixColumns)
   else
     throw runtime_error(
       "Arithmetic error: vectors are not a congruent size.");
+}
+
+void Matrix::convertStlVectorToColumns(std::vector<std::vector<double>> vector2D)
+{ 
+  for (auto vector : vector2D) {
+    MatrixVector column = MatrixVector(vector);
+    this->columns.push_back(column);
+  }
 }
 
 int Matrix::width()
@@ -66,15 +74,7 @@ bool Matrix::checkStlVectorIsValidMatrixSize(
   return sizeMatches;
 }
 
-void Matrix::convertStlVectorToColumns(std::vector<std::vector<double>> vector2D)
-{ 
-  for (auto vector : vector2D) {
-    Column column = Column(vector);
-    this->columns.push_back(column);
-  }
-}
-
-bool Matrix::isVectorCongruentSize(Maths::Vector vector)
+bool Matrix::isVectorMultipliable(Maths::Vector vector)
 {
   int vectorHeight = vector.length();
   int matrixWidth = this->width();
@@ -84,7 +84,7 @@ bool Matrix::isVectorCongruentSize(Maths::Vector vector)
   return isVectorCongruentSize;
 }
 
-bool Matrix::isMatrixCongruentSize(Matrix matrixRhs)
+bool Matrix::isMatrixMultipliable(Matrix matrixRhs)
 {
   int matrixLhsWidth = this->width();
   int matrixRhsHeight = this->height();
@@ -94,9 +94,33 @@ bool Matrix::isMatrixCongruentSize(Matrix matrixRhs)
   return isMatrixCongruentSize;
 }
 
+std::vector<double> Matrix::getColumn(int index)
+{
+  std::vector<double> columnValues = {};
+
+  MatrixVector column = (*this)[index];
+
+  for (int i = 0; i < column.length(); i++) {
+    cout << "next value is: " + to_string(column[index]) << endl; 
+    columnValues.push_back(column[index]);
+  }
+  return columnValues;
+}
+
+std::vector<double> Matrix::getRow(int index)
+{
+  std::vector<double> rowValues = {};
+
+  for (auto column : this->columns)
+    rowValues.push_back(column[index]);
+
+  return rowValues;
+}
+
+
 Maths::Vector Matrix::operator * (Maths::Vector vectorRhs)
 {
-  bool vectorIsIncongruentSize = !this->isVectorCongruentSize(vectorRhs);
+  bool vectorIsIncongruentSize = !this->isVectorMultipliable(vectorRhs);
 
   if (vectorIsIncongruentSize)
     throw length_error(
@@ -110,7 +134,7 @@ Maths::Vector Matrix::operator * (Maths::Vector vectorRhs)
     double newValue = 0;
     
     for (int columnNo = 0; columnNo < this->width(); columnNo++) {
-      Column column = this->columns[columnNo];
+      MatrixVector column = this->columns[columnNo];
       
       double matrixValue = column[rowNo];
       double vectorValue = vectorRhs[columnNo];
@@ -129,7 +153,7 @@ Maths::Vector Matrix::operator * (Maths::Vector vectorRhs)
 
 Matrix Matrix::operator * (Matrix matrixRhs)
 {
-  bool matrixIsIncongruentSize = !this->isMatrixCongruentSize(matrixRhs);
+  bool matrixIsIncongruentSize = !this->isMatrixMultipliable(matrixRhs);
 
   if (matrixIsIncongruentSize)
     throw length_error(
@@ -137,35 +161,43 @@ Matrix Matrix::operator * (Matrix matrixRhs)
       "to the Matrix it is being multiplied against."
     );
   
-  std::vector<double> newMatrixValues = {};
+  std::vector<std::vector<double>> newMatrixValues = {};
+  Matrix matrixLhs = *this;
 
-  for (int rowNo = 0; rowNo < this->height(); rowNo++) {
-    double newValue = 0;
-    
-    for (int columnNo = 0; columnNo < this->width(); columnNo++) {
-      Column column = this->columns[columnNo];
+  /* Schoolbook algorithm for matrix multiplication.
+  for (int lhsColumnNo = 0; lhsColumnNo < matrixLhs.width(); lhsColumnNo++) {
+    for (int rhsColumnNo = 0; rhsColumnNo < matrixRhs.width(); rhsColumnNo++) {
       
-      double matrixValue = column[rowNo];
-      double vectorValue = vectorRhs[columnNo];
+      
+      double newValue = 0;
+      
+      for (int rhsMatrixColumnNo = 0; rhsMatrixColumnNo < matrixRhs.width(); rhsMatrixColumnNo++) {
+        double lhsMatrixValue = matrixLhs[lhsColumnNo][rhsMatrixColumnNo];
+        double rhsMatrixValue = matrixRhs[rhsMatrixColumnNo][lhsColumnNo];
+        double product = lhsMatrixValue * rhsMatrixValue;
 
-      double product = matrixValue * vectorValue;
-      newValue += product;
+        cout << "lhsMatrixValue: " + to_string(lhsMatrixValue) << endl;
+        cout << "rhsMatrixValue: " + to_string(rhsMatrixValue) << endl;
+        cout << "product: " + to_string(product) << endl;
+        
+        newValue += product;
+
+        cout << "New value now: " + to_string(newValue) << endl;
+      }
+
+      newRowValues.push_back(newValue);
     }
-    
-    newMatrixValues.push_back(newValue);
-  }
 
-  Matrix newMatrix = Matrix(newMatrixValues);
+    newMatrixValues.push_back(newRowValues);
+  }
+  */
+
+  Matrix newMatrix = Matrix();
 
   return newMatrix;
 }
 
-Matrix Matrix::operator * (Matrix matrixRhs)
-{
-
-}
-
-Column Matrix::operator [] (int index)
+MatrixVector Matrix::operator [] (int index)
 {
   int indexRange = this->width() - 1;
   bool outOfRange = (index < 0 || index > indexRange);

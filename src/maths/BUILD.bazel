@@ -10,8 +10,8 @@ cc_library(
 
 cc_library(
     name = "matrices",
-    srcs = ["matrix/matrix.cpp", "matrix/column.cpp"],
-    hdrs = ["matrix/matrix.h", "matrix/column.h"],
+    srcs = ["matrix/matrix.cpp", "matrix/matrix_vector.cpp"],
+    hdrs = ["matrix/matrix.h", "matrix/matrix_vector.h"],
     visibility = ["//visibility:public"],
     deps = ["//src/maths:vectors"]
 )

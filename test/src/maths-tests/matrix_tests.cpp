@@ -72,6 +72,43 @@ TEST(MatrixTests, ShouldReturnHeightAsZero)
   EXPECT_EQ(height, 0);
 }
 
+TEST(MatrixTests, ShouldCreateMatrixVector)
+{
+  std::vector<double> correctVector = {1, 2, 3, 4};
+  MatrixVector matrixVector = MatrixVector(correctVector);
+
+  for (int i = 0; i < correctVector.size(); i++) {
+    EXPECT_DOUBLE_EQ(correctVector[i], matrixVector[i]);
+  }
+}
+
+TEST(MatrixTests, ShouldGetColumn)
+{
+  std::vector<std::vector<double>> vector2D = setup2DVector();
+
+  Matrix matrix = Matrix(vector2D);
+
+  std::vector<double> column = matrix.getColumn(0);
+  std::vector<double> correctValues = {1, 2, 3, 4};
+
+  for (int i = 0; i < column.size(); i++)
+    EXPECT_EQ(column[i], correctValues[i]);
+}
+
+
+TEST(MatrixTests, ShouldGetRow)
+{
+  std::vector<std::vector<double>> vector2D = setup2DVector();
+
+  Matrix matrix = Matrix(vector2D);
+
+  std::vector<double> row = matrix.getRow(0);
+  std::vector<double> correctValues = {1, 5};
+
+  for (int i = 0; i < row.size(); i++)
+    EXPECT_EQ(row[i], correctValues[i]);
+}
+
 TEST(MatrixTests, ShouldMultiplyMatrixByA2DVector)
 {
   std::vector<std::vector<double>> vector2D
@@ -123,7 +160,7 @@ TEST(MatrixTests, ShouldMultiplyMatrixByAnotherMatrix)
 
   vector1 = {firstColumn, secondColumn, thirdColumn};
 
-  Matrix matrix1 = Matrix(vector1);
+  Matrix lhsMatrix = Matrix(vector1);
 
   std::vector<std::vector<double>> vector2;
 
@@ -133,9 +170,9 @@ TEST(MatrixTests, ShouldMultiplyMatrixByAnotherMatrix)
 
   vector2 = {m2firstColumn, m2SecondColumn, m2ThirdColumn};
 
-  Matrix matrix2 = Matrix(vector2);
+  Matrix rhsMatrix = Matrix(vector2);
 
-  Matrix resultMatrix = matrix1 * matrix2;
+  Matrix resultMatrix = lhsMatrix * rhsMatrix;
 
   std::vector<double> m3firstColumn = {138, 171, 204};
   std::vector<double> m3SecondColumn = {174, 216, 258};

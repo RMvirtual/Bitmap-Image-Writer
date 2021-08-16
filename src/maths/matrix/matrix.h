@@ -2,7 +2,7 @@
 #define MATRIX_H
 
 #include <vector>
-#include "src/maths/matrix/column.h"
+#include "src/maths/matrix/matrix_vector.h"
 #include "src/maths/vector/vector.h"
 
 namespace Maths
@@ -24,14 +24,14 @@ namespace Maths
       Matrix(std::vector<std::vector<double>> columns);
 
       // Returns a matrix populated with one column of values.
-      Matrix(Column column);
+      Matrix(MatrixVector column);
 
       /**
        * Returns a matrix populated with multiple columns of values.
        * All rows in the vector must be the same size or an arithmetic
        * error with throw.
        */
-      Matrix(std::vector<Column> columns);
+      Matrix(std::vector<MatrixVector> columns);
 
       // Returns the width (number of columns) of the matrix.
       int width();
@@ -39,21 +39,25 @@ namespace Maths
       // Returns the height (number of rows) of the matrix.
       int height();
 
+      std::vector<double> getRow(int index);
+      std::vector<double> getColumn(int index);
+
       // Indexes a row value from the column.
-      Column operator [] (int index);
+      MatrixVector operator [] (int index);
 
       Maths::Vector operator * (Maths::Vector vectorRhs);
       Matrix operator * (Matrix matrixRhs);
 
     private:
-      std::vector<Column> columns;
+      std::vector<MatrixVector> columns;
 
       bool checkStlVectorIsValidMatrixSize(
         std::vector<std::vector<double>> vector);
 
       void convertStlVectorToColumns(std::vector<std::vector<double>> vector);
-      bool isVectorCongruentSize(Maths::Vector vector);
-      bool isMatrixCongruentSize(Matrix matrix);
+      bool isVectorMultipliable(Maths::Vector vector);
+      bool isMatrixMultipliable(Matrix matrix);
+
   };
 }
 
