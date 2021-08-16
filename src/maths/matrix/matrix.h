@@ -66,8 +66,11 @@ namespace Maths
         int commonIndex
       );
       
-      std::vector<double> calculateNewColumnWithMatrixProduct(
+      std::vector<double> getNewColumnWithMatrixProduct(
         std::vector<double> rhsColumn);
+
+      double getProductBetweenTwoMatrixVectors(
+        std::vector<double> lhsRow, std::vector<double> rhsColumn);
 
       void convertStlVectorToColumns(std::vector<std::vector<double>> vector);
       bool isVectorMultipliable(Maths::Vector vector);

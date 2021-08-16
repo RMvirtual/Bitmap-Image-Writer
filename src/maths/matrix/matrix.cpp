@@ -200,7 +200,7 @@ Matrix Matrix::multiplyMatrix(Matrix matrix)
 
   for (auto rhsColumn : matrixRhsColumns) {
     std::vector<double> newColumn = 
-      this->calculateNewColumnWithMatrixProduct(rhsColumn);
+      this->getNewColumnWithMatrixProduct(rhsColumn);
 
     newMatrixValues.push_back(newColumn);
   }
@@ -210,7 +210,7 @@ Matrix Matrix::multiplyMatrix(Matrix matrix)
   return newMatrix;
 }
 
-std::vector<double> Matrix::calculateNewColumnWithMatrixProduct(
+std::vector<double> Matrix::getNewColumnWithMatrixProduct(
   std::vector<double> rhsColumn)
 {
   Matrix matrixLhs = *this;
@@ -232,6 +232,21 @@ std::vector<double> Matrix::calculateNewColumnWithMatrixProduct(
   }
 
   return newColumn; 
+}
+
+double Matrix::getProductBetweenTwoMatrixVectors(
+    std::vector<double> lhsRow, std::vector<double> rhsColumn)
+{
+  double newColumnValueToAdd = 0;
+
+  for (int commonIndex = 0; commonIndex < rhsColumn.size(); commonIndex++) {
+    double product = this->getProductBetweenTwoVectorsAtSameIndex(
+      lhsRow, rhsColumn, commonIndex);
+    
+    newColumnValueToAdd += product;
+  }
+
+  return newColumnValueToAdd;
 }
 
 double Matrix::getProductBetweenTwoVectorsAtSameIndex(
