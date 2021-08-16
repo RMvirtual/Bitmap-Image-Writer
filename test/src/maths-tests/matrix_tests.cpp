@@ -209,8 +209,13 @@ TEST(MatrixTests, ShouldMultiplyMatrixByAMatrixWithDifferentHeight)
 
   Matrix lhsMatrix = Matrix(vector1);
   Matrix rhsMatrix = Matrix(vector2);
-  
+
+  cout << "lhs Matrix" << endl << lhsMatrix.toString() << endl;
+  cout << "rhs Matrix" << endl << rhsMatrix.toString() << endl;
+
   Matrix resultMatrix = lhsMatrix * rhsMatrix;
+
+  cout << "result Matrix" << endl << resultMatrix.toString() << endl;
 
   std::vector<std::vector<double>> correctVectors = {
     {138, 171, 204},
@@ -219,6 +224,8 @@ TEST(MatrixTests, ShouldMultiplyMatrixByAMatrixWithDifferentHeight)
   };
 
   Matrix correctMatrix(correctVectors);
+
+  cout << "correct Matrix" << endl << correctMatrix.toString() << endl;
 
   for (int columnNo = 0; columnNo < correctMatrix.height(); columnNo++)
     for (int rowNo = 0; rowNo < correctMatrix.width(); rowNo++)

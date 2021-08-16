@@ -84,10 +84,10 @@ bool Matrix::isVectorMultipliable(Maths::Vector vector)
   return isVectorCongruentSize;
 }
 
-bool Matrix::isMatrixMultipliable(Matrix matrixRhs)
+bool Matrix::isMatrixMultipliable(Matrix otherMatrix)
 {
   int matrixLhsWidth = this->width();
-  int matrixRhsHeight = this->height();
+  int matrixRhsHeight = otherMatrix.height();
 
   bool isMatrixCongruentSize = (matrixLhsWidth == matrixRhsHeight);
 
