@@ -216,11 +216,9 @@ std::vector<double> Matrix::calculateNewColumnWithMatrixProduct(
   Matrix matrixLhs = *this;
   std::vector<double> newColumn = {};
 
-  std::vector<std::vector<double>> matrixLhsColumns = this->getColumns();
+  std::vector<std::vector<double>> matrixLhsRows = matrixLhs.getRows();
 
-  for (int lhsColumnNo = 0; lhsColumnNo < matrixLhs.width(); lhsColumnNo++) {
-    std::vector<double> lhsRow = matrixLhs.getRow(lhsColumnNo);
-
+  for (auto lhsRow : matrixLhsRows) {
     double newColumnValueToAdd = 0;
     
     for (int commonIndex = 0; commonIndex < rhsColumn.size(); commonIndex++) {
