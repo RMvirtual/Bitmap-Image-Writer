@@ -284,10 +284,13 @@ string Matrix::toString()
 string Matrix::getAllValuesAsString()
 {
   string allValues = "";
-  int noOfRows = this->height();
+
+  std::vector<std::vector<double>> rows = this->getRowTuples();
+  int noOfRows = rows.size();
 
   for (int rowNo = 0; rowNo < noOfRows; rowNo++) {
-    string rowOfValues = this->getRowOfValuesAsString(rowNo);
+    std::vector<double> row = rows[rowNo];
+    string rowOfValues = this->formatStlVectorAsMatrixRow(row);
 
     bool moreRows = (rowNo < noOfRows - 1);
     
@@ -300,21 +303,16 @@ string Matrix::getAllValuesAsString()
   return allValues;
 }
 
-string Matrix::getRowOfValuesAsString(int rowNo)
+string Matrix::formatStlVectorAsMatrixRow(std::vector<double> vector)
 {
-    int noOfColumns = this->width();
-    string rowOfValues = "| ";
+  string rowOfValues = "| ";
 
-    for (int columnNo = 0; columnNo < noOfColumns; columnNo++) {
-      string point = this->getValueAsString(columnNo, rowNo);
-      rowOfValues += point;
+  for (auto value : vector)
+    rowOfValues += to_string(value) + " ";
 
-      rowOfValues += " ";
-    }
+  rowOfValues += "|";
 
-    rowOfValues += "|";
-
-    return rowOfValues;
+  return rowOfValues;
 }
 
 string Matrix::getValueAsString(int columnNo, int rowNo)
