@@ -191,16 +191,11 @@ Matrix Matrix::operator * (Matrix matrixRhs)
 Matrix Matrix::multiplyMatrix(Matrix matrix)
 {
   std::vector<std::vector<double>> newMatrixValues = {};
-  Matrix matrixLhs = *this;
-  Matrix matrixRhs = matrix;
+  std::vector<std::vector<double>> matrixColumns = matrix.getColumns();
 
-  // Schoolbook algorithm for matrix multiplication.
-
-  std::vector<std::vector<double>> matrixRhsColumns = matrixRhs.getColumns();
-
-  for (auto rhsColumn : matrixRhsColumns) {
-    std::vector<double> newColumn = 
-      this->getNewColumnWithMatrixProduct(rhsColumn);
+  for (auto column : matrixColumns) {
+    std::vector<double> newColumn =
+      this->getNewColumnWithMatrixProduct(column);
 
     newMatrixValues.push_back(newColumn);
   }
@@ -211,7 +206,7 @@ Matrix Matrix::multiplyMatrix(Matrix matrix)
 }
 
 std::vector<double> Matrix::getNewColumnWithMatrixProduct(
-  std::vector<double> rhsColumn)
+  std::vector<double> column)
 {
   Matrix matrixLhs = *this;
   std::vector<double> newColumn = {};
@@ -220,8 +215,8 @@ std::vector<double> Matrix::getNewColumnWithMatrixProduct(
 
   for (auto lhsRow : matrixLhsRows) {
     double newColumnValueToAdd = this->getProductBetweenTwoMatrixVectors(
-      lhsRow, rhsColumn);
-      
+      lhsRow, column);
+
     newColumn.push_back(newColumnValueToAdd);
   }
 
