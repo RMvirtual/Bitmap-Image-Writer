@@ -173,9 +173,9 @@ Matrix Matrix::operator * (Matrix matrixRhs)
 
       double newColumnValueToAdd = 0;
       
-      for (int rowAndColumnNo = 0; rowAndColumnNo < rhsColumn.size(); rowAndColumnNo++) {
-        double lhsMatrixValue = lhsRow[rowAndColumnNo];
-        double rhsMatrixValue = rhsColumn[rowAndColumnNo];
+      for (int commonIndex = 0; commonIndex < rhsColumn.size(); commonIndex++) {
+        double lhsMatrixValue = lhsRow[commonIndex];
+        double rhsMatrixValue = rhsColumn[commonIndex];
 
         double product = lhsMatrixValue * rhsMatrixValue;
         
