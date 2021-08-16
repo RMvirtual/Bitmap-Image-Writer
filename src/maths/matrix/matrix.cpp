@@ -22,17 +22,19 @@ Matrix::Matrix(vector<double> column)
 
 Matrix::Matrix(vector<vector<double>> matrixColumns)
 {
-  bool isValidSize = this->check2DStlVectorIsValidMatrixSize(matrixColumns);
+  bool isValidSize = this->checkVectorIsValidMatrixSize(matrixColumns);
 
   if (isValidSize)
-    this->convert2DStlVectorToColumns(matrixColumns);
+    this->setVectorAsColumnsAndRows(matrixColumns);
 
   else
     throw runtime_error(
-      "Arithmetic error: vectors are not a congruent size.");
+      "Arithmetic error: Vector is not a congruent size to be used to " \
+      "populate a matrix."
+    );
 }
 
-void Matrix::convert2DStlVectorToColumns(vector<vector<double>> vector2D)
+void Matrix::setVectorAsColumnsAndRows(vector<vector<double>> vector2D)
 {
   for (auto vector : vector2D)
     this->columns.push_back(vector);
@@ -46,22 +48,26 @@ int Matrix::width()
 int Matrix::height()
 {
   int height = 0;
-  bool hasColumns = !this->columns.empty();
+  bool matrixIsNotEmpty = (!this->columns.empty());
 
-  if (hasColumns)
+  if (matrixIsNotEmpty)
     height = this->columns.front().size();
 
   return height;
 }
 
-bool Matrix::check2DStlVectorIsValidMatrixSize(
-  vector<vector<double>> vector2D)
+bool Matrix::checkVectorIsValidMatrixSize(vector<vector<double>> vector)
 {
-  int sizeToCheck = vector2D.front().size();
+  bool contentsEmpty = vector.empty();
+
+  if (contentsEmpty)
+    return false;
+  
+  int sizeToCheck = vector.front().size();
   bool sizeMatches = true;
 
-  for (auto vector : vector2D) {
-    sizeMatches = (vector.size() == sizeToCheck);
+  for (auto subVector : vector) {
+    sizeMatches = (subVector.size() == sizeToCheck);
 
     if (!sizeMatches)
       break;
@@ -82,10 +88,10 @@ bool Matrix::isVectorMultipliable(Maths::Vector vector)
 
 bool Matrix::isMatrixMultipliable(Matrix otherMatrix)
 {
-  int matrixLhsWidth = this->width();
-  int matrixRhsHeight = otherMatrix.height();
+  int lhsMatrixWidth = this->width();
+  int rhsMatrixHeight = otherMatrix.height();
 
-  bool isMatrixCongruentSize = (matrixLhsWidth == matrixRhsHeight);
+  bool isMatrixCongruentSize = (lhsMatrixWidth == rhsMatrixHeight);
 
   return isMatrixCongruentSize;
 }

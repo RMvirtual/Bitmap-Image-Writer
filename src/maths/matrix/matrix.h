@@ -65,55 +65,130 @@ namespace Maths
       // Multiplies the matrix by another matrix.
       Matrix operator * (Matrix matrixRhs);
 
-      // Returns a formatted string representation of the matrix.
+      /**
+       * Returns all the values of this matrix formatted as a string.
+       * Follows the format:
+       * 
+       * | 1 4 7 |
+       * | 2 5 8 |
+       * | 3 6 9 |
+       */
       string toString();
 
     private:
       vector<vector<double>> columns;
 
+      // Multiplies a vector against this matrix.
       Maths::Vector multiplyVector(Maths::Vector vector);
+      
+      /**
+       * Returns an stl vector of the values required to instantiate a
+       * Maths::Vector class object.
+       */
       std::vector<double> getMultipliedVectorValues(Maths::Vector vector);
+      
+      // Multiplies another matrix against this matrix.
       Matrix multiplyMatrix(Matrix matrix);
       
+      /**
+       * Returns a 2D stl vector of the values required to populate
+       * the columns and rows of a new matrix object resulting from
+       * the multiplication of two other matrices.
+       */
       vector<vector<double>> getValuesFromMatrixMultiplication(
         Matrix matrix);
 
+      /**
+       * Calculates the product of all row values against the values
+       * found in an stl vector representing a column of values.
+       */
       vector<double> getProductAgainstAllRowsWithColumn(
         vector<double> column);
 
+      // Calculates the product between two vectors.
       double getProductBetweenTwoVectors(
         std::vector<double> vector1, std::vector<double> vector2);
 
+      // Calculates the product between two vectors.
       double getProductBetweenTwoVectors(
         std::vector<double> vector1, Maths::Vector vector2);
       
+      // Calculates the product between two vectors.
       double getProductBetweenTwoVectors(
         Maths::Vector vector1, std::vector<double> vector2);
 
+      /**
+       * Calculates the product between two items found at the same
+       * index in two different vectors.
+       */
       double getProductBetweenTwoVectorsAtSameIndex(
         vector<double> vector1, vector<double> vector2,
         int commonIndex
       );
 
+      /**
+       * Calculates the product between two items found at the same
+       * index in two different vectors.
+       */
       double getProductBetweenTwoVectorsAtSameIndex(
         std::vector<double> vector1, Maths::Vector vector2,
         int commonIndex
       );
 
+      /**
+       * Calculates the product between two items found at the same
+       * index in two different vectors.
+       */
       double getProductBetweenTwoVectorsAtSameIndex(
         Maths::Vector vector1, vector<double> vector2,
         int commonIndex
       );
 
-      void convert2DStlVectorToColumns(
-        vector<vector<double>> vector);
-
-      bool check2DStlVectorIsValidMatrixSize(
-        vector<vector<double>> vector);
+      /**
+       * Takes a 2D stl vector and converts it into the matrix's
+       * values, assuming the outer vector as a container for the
+       * columns, and the inner vectors to represent columns containing
+       * the actual row values.
+       */
+      void setVectorAsColumnsAndRows(vector<vector<double>> vector);
+      
+      /**
+       * Checks that a 2D stl vector follows the valid width and
+       * height dimensions required to be processed into the matrix's
+       * contents.
+       */
+      bool checkVectorIsValidMatrixSize(vector<vector<double>> vector);
         
+      /**
+       * Checks whether a Maths::Vector object has the correct
+       * dimensions to be used in a multiplication operation against
+       * this matrix.
+       */
       bool isVectorMultipliable(Maths::Vector vector);
+      
+      /**
+       * Checks whether another Matrix object has the correct
+       * dimensions to be used in a multiplication operation against
+       * this matrix.
+       */
       bool isMatrixMultipliable(Matrix matrix);
+      
+      /**
+       * Returns all the values of this matrix formatted as a string.
+       * Follows the format:
+       * 
+       * | 1 4 7 |
+       * | 2 5 8 |
+       * | 3 6 9 |
+       */
       string getAllValuesAsString();
+
+      /**
+       * Returns a vector of values formatted as a string representing
+       * a matrix row in the format:
+       * 
+       * | 1 4 7 |
+       */
       string formatStlVectorAsMatrixRow(vector<double> vector);
   };
 }
