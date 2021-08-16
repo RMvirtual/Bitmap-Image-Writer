@@ -57,6 +57,13 @@ namespace Maths
         std::vector<std::vector<double>> vector);
 
       Matrix multiplyMatrix(Matrix matrix);
+      
+      double calculateProductBetweenTwoVectorValuesAtSameIndex(
+        std::vector<double> vector1,
+        std::vector<double> vector2,
+        int commonIndex
+      );
+      
       void convertStlVectorToColumns(std::vector<std::vector<double>> vector);
       bool isVectorMultipliable(Maths::Vector vector);
       bool isMatrixMultipliable(Matrix matrix);

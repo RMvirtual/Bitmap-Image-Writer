@@ -182,10 +182,8 @@ Matrix Matrix::multiplyMatrix(Matrix matrix)
       double newColumnValueToAdd = 0;
       
       for (int commonIndex = 0; commonIndex < rhsColumn.size(); commonIndex++) {
-        double lhsMatrixValue = lhsRow[commonIndex];
-        double rhsMatrixValue = rhsColumn[commonIndex];
-
-        double product = lhsMatrixValue * rhsMatrixValue;
+        double product = this->calculateProductBetweenTwoVectorValuesAtSameIndex(
+          lhsRow, rhsColumn, commonIndex);
         
         newColumnValueToAdd += product;
       }
@@ -199,6 +197,17 @@ Matrix Matrix::multiplyMatrix(Matrix matrix)
   Matrix newMatrix = Matrix(newMatrixValues);
 
   return newMatrix;
+}
+
+double Matrix::calculateProductBetweenTwoVectorValuesAtSameIndex(
+    std::vector<double> vector1, std::vector<double> vector2, int commonIndex)
+{
+  double value1 = vector1[commonIndex];
+  double value2 = vector2[commonIndex];
+
+  double product = value1 * value2;
+
+  return product;
 }
 
 MatrixVector Matrix::operator [] (int index)
