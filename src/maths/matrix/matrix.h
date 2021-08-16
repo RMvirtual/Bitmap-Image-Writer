@@ -28,9 +28,26 @@ namespace Maths
       // Returns the height (number of rows) of the matrix.
       int height();
 
+      // Returns an stl vector containing the values of a specific row.
       std::vector<double> getRow(int index);
+
+      // Returns an stl vector containing the values of a specific column.
       std::vector<double> getColumn(int index);
+
+      /**
+       * Returns a 2D stl vector containing single vectors all the
+       * values of the entire matrix sorted into vertical order (i.e.
+       * each vector contains the values found in all the rows of a
+       * single column).
+       */
       std::vector<std::vector<double>> getColumns();
+      
+      /**
+       * Returns a 2D stl vector containing single vectors of all the
+       * values of the entire matrix sorted into horizontal order
+       * (i.e. each vector contains the values found in all the columns
+       * of single row).
+       */
       std::vector<std::vector<double>> getRows();
 
       /**
@@ -40,9 +57,13 @@ namespace Maths
        */
       std::vector<double> operator [] (int index);
 
+      // Multiplies the matrix by a vector.
       Maths::Vector operator * (Maths::Vector vectorRhs);
+
+      // Multiplies the matrix by another matrix.
       Matrix operator * (Matrix matrixRhs);
 
+      // Returns a formatted string representation of the matrix.
       string toString();
 
     private:
@@ -79,6 +100,7 @@ namespace Maths
 
 using namespace Maths;
 
+// Multiplies the matrix by a vector.
 Maths::Vector operator * (Maths::Vector vectorLhs, Matrix matrixRhs);
 
 #endif
