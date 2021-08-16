@@ -238,10 +238,7 @@ string Matrix::getAllPointsAsString()
       string point = this->getPointAsString(rowNo, columnNo);
       rowOfValues += point;
 
-      bool moreRowValuesToAdd = (rowNo < noOfColumns - 1);
-
-      if (moreRowValuesToAdd)
-        rowOfValues += " ";
+      rowOfValues += " ";
     }
 
     rowOfValues += "|";
