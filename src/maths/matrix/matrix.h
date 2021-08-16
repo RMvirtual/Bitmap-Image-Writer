@@ -55,23 +55,27 @@ namespace Maths
     private:
       std::vector<MatrixVector> columns;
 
-      bool checkStlVectorIsValidMatrixSize(
-        std::vector<std::vector<double>> vector);
-
       Matrix multiplyMatrix(Matrix matrix);
-            
-      std::vector<double> getMatrixProductAgainstRowsWithColumn(
+      
+      std::vector<std::vector<double>> getValuesFromMatrixMultiplication(
+        Matrix matrix);
+
+      std::vector<double> getProductAgainstAllRowsWithColumn(
         std::vector<double> column);
 
-      double getProductBetweenTwoMatrixVectors(
+      double getProductBetweenTwoStlVectors(
         std::vector<double> vector1, std::vector<double> vector2);
 
-      double getProductBetweenTwoVectorsAtSameIndex(
+      double getProductBetweenTwoStlVectorsAtSameIndex(
         std::vector<double> vector1, std::vector<double> vector2,
         int commonIndex
       );
       
       void convertStlVectorToColumns(std::vector<std::vector<double>> vector);
+
+      bool checkStlVectorIsValidMatrixSize(
+        std::vector<std::vector<double>> vector);
+        
       bool isVectorMultipliable(Maths::Vector vector);
       bool isMatrixMultipliable(Matrix matrix);
       string getAllValuesAsString();

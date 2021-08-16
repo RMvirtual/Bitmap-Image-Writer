@@ -190,31 +190,40 @@ Matrix Matrix::operator * (Matrix matrixRhs)
 
 Matrix Matrix::multiplyMatrix(Matrix matrixToMultiply)
 {
-  std::vector<std::vector<double>> newMatrixValues = {};
+  std::vector<std::vector<double>> newMatrixValues = 
+    this->getValuesFromMatrixMultiplication(matrixToMultiply);
   
-  std::vector<std::vector<double>> otherMatrixColumns =
-    matrixToMultiply.getColumnTuples();
-
-  for (auto column : otherMatrixColumns) {
-    std::vector<double> newColumn =
-      this->getMatrixProductAgainstRowsWithColumn(column);
-
-    newMatrixValues.push_back(newColumn);
-  }
-
   Matrix newMatrix = Matrix(newMatrixValues);
 
   return newMatrix;
 }
 
-std::vector<double> Matrix::getMatrixProductAgainstRowsWithColumn(
+std::vector<std::vector<double>> Matrix::getValuesFromMatrixMultiplication(
+    Matrix matrixToMultiply)
+{
+  std::vector<std::vector<double>> newMatrixValues = {};
+  
+  std::vector<std::vector<double>> otherMatrixColumns =
+    matrixToMultiply.getColumnTuples();
+
+  for (auto otherMatrixColumn : otherMatrixColumns) {
+    std::vector<double> newColumn =
+      this->getProductAgainstAllRowsWithColumn(otherMatrixColumn);
+
+    newMatrixValues.push_back(newColumn);
+  }
+
+  return newMatrixValues;
+}
+
+std::vector<double> Matrix::getProductAgainstAllRowsWithColumn(
   std::vector<double> column)
 {
   std::vector<double> newColumn = {};
   std::vector<std::vector<double>> matrixRows = this->getRowTuples();
 
   for (auto row : matrixRows) {
-    double newColumnValue = this->getProductBetweenTwoMatrixVectors(
+    double newColumnValue = this->getProductBetweenTwoStlVectors(
       row, column);
 
     newColumn.push_back(newColumnValue);
@@ -223,13 +232,13 @@ std::vector<double> Matrix::getMatrixProductAgainstRowsWithColumn(
   return newColumn; 
 }
 
-double Matrix::getProductBetweenTwoMatrixVectors(
+double Matrix::getProductBetweenTwoStlVectors(
     std::vector<double> vector1, std::vector<double> vector2)
 {
   double totalProduct = 0;
 
   for (int commonIndex = 0; commonIndex < vector2.size(); commonIndex++) {
-    double product = this->getProductBetweenTwoVectorsAtSameIndex(
+    double product = this->getProductBetweenTwoStlVectorsAtSameIndex(
       vector1, vector2, commonIndex);
     
     totalProduct += product;
@@ -238,7 +247,7 @@ double Matrix::getProductBetweenTwoMatrixVectors(
   return totalProduct;
 }
 
-double Matrix::getProductBetweenTwoVectorsAtSameIndex(
+double Matrix::getProductBetweenTwoStlVectorsAtSameIndex(
     std::vector<double> vector1, std::vector<double> vector2, int commonIndex)
 {
   double value1 = vector1[commonIndex];
