@@ -32,12 +32,6 @@ void Matrix::convertStlVectorToColumns(std::vector<std::vector<double>> vector2D
 { 
   for (auto vector : vector2D) {
     MatrixVector column = MatrixVector(vector);
-
-    for (auto value : vector) {
-      cout << "Adding value in column " + to_string(value) << endl;
-    }
-
-    cout << endl;
     this->columns.push_back(column);
   }
 }
@@ -177,8 +171,6 @@ Matrix Matrix::operator * (Matrix matrixRhs)
       std::vector<double> lhsRow = matrixLhs.getRow(lhsColumnNo);
       std::vector<double> rhsColumn = matrixRhs.getColumn(rhsColumnNo);
 
-      cout << "Getting new rhs row." << endl;
-
       double newColumnValueToAdd = 0;
       
       for (int rowAndColumnNo = 0; rowAndColumnNo < rhsColumn.size(); rowAndColumnNo++) {
@@ -186,26 +178,17 @@ Matrix Matrix::operator * (Matrix matrixRhs)
         double rhsMatrixValue = rhsColumn[rowAndColumnNo];
 
         double product = lhsMatrixValue * rhsMatrixValue;
-
-        cout << "lhsMatrixValue: " + to_string(lhsMatrixValue) << endl;
-        cout << "rhsMatrixValue: " + to_string(rhsMatrixValue) << endl;
-        cout << "product: " + to_string(product) << endl;
         
         newColumnValueToAdd += product;
-
-        cout << "New value now: " + to_string(newColumnValueToAdd) << endl;
       }
 
       newColumn.push_back(newColumnValueToAdd);
-      cout << "Done with value " + to_string(newColumnValueToAdd) + " now." << endl << endl;
     }
 
     newMatrixValues.push_back(newColumn);
   }
 
   Matrix newMatrix = Matrix(newMatrixValues);
-
-  cout << newMatrix.toString() << endl;
 
   return newMatrix;
 }

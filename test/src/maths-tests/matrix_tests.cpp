@@ -182,8 +182,6 @@ TEST(MatrixTests, ShouldMultiplyMatrixByAnotherMatrix)
 
   Matrix resultMatrix = lhsMatrix * rhsMatrix;
 
-  cout << "Setting up correct matrix." << endl;
-
   std::vector<std::vector<double>> correctVectors = {
     {138, 171, 204},
     {174, 216, 258},
@@ -198,12 +196,6 @@ TEST(MatrixTests, ShouldMultiplyMatrixByAnotherMatrix)
         correctMatrix[columnNo][rowNo],
         resultMatrix[columnNo][rowNo]
       );
-
-  cout << "Correct Matrix" << endl;
-  cout << correctMatrix.toString() << endl << endl;
-
-  cout << "Actual Matrix" << endl;
-  cout << resultMatrix.toString() << endl << endl;
 }
 
 TEST(MatrixTests, ShouldPrintMatrixAsString)
