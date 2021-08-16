@@ -2,7 +2,6 @@
 #define MATRIX_H
 
 #include <vector>
-#include "src/maths/matrix/matrix_vector.h"
 #include "src/maths/vector/vector.h"
 
 namespace Maths
@@ -23,16 +22,6 @@ namespace Maths
        */
       Matrix(std::vector<std::vector<double>> columns);
 
-      // Returns a matrix populated with one column of values.
-      Matrix(MatrixVector column);
-
-      /**
-       * Returns a matrix populated with multiple columns of values.
-       * All rows in the vector must be the same size or an arithmetic
-       * error with throw.
-       */
-      Matrix(std::vector<MatrixVector> columns);
-
       // Returns the width (number of columns) of the matrix.
       int width();
 
@@ -45,7 +34,7 @@ namespace Maths
       std::vector<std::vector<double>> getRows();
 
       // Indexes a row value from the column.
-      MatrixVector operator [] (int index);
+      std::vector<double> operator [] (int index);
 
       Maths::Vector operator * (Maths::Vector vectorRhs);
       Matrix operator * (Matrix matrixRhs);
@@ -53,7 +42,7 @@ namespace Maths
       string toString();
 
     private:
-      std::vector<MatrixVector> columns;
+      std::vector<std::vector<double>> columns;
 
       Matrix multiplyMatrix(Matrix matrix);
       

@@ -81,16 +81,6 @@ TEST(MatrixTests, ShouldReturnHeightAsZero)
   EXPECT_EQ(height, 0);
 }
 
-TEST(MatrixTests, ShouldCreateMatrixVector)
-{
-  std::vector<double> correctVector = {1, 2, 3, 4};
-  MatrixVector matrixVector = MatrixVector(correctVector);
-
-  for (int i = 0; i < correctVector.size(); i++) {
-    EXPECT_DOUBLE_EQ(correctVector[i], matrixVector[i]);
-  }
-}
-
 TEST(MatrixTests, ShouldGetColumn)
 {
   std::vector<std::vector<double>> vector2D = setup2DVector();

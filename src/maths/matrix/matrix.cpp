@@ -4,7 +4,6 @@
 #include <string>
 #include <vector>
 
-#include "src/maths/matrix/matrix_vector.h"
 #include "src/maths/matrix/matrix.h"
 #include "src/maths/vector/vector.h"
 
@@ -30,9 +29,8 @@ Matrix::Matrix(std::vector<std::vector<double>> matrixColumns)
 
 void Matrix::convertStlVectorToColumns(std::vector<std::vector<double>> vector2D)
 { 
-  for (auto vector : vector2D) {
-    MatrixVector column = MatrixVector(vector);
-    this->columns.push_back(column);
+  for (auto vector : vector2D) {;
+    this->columns.push_back(vector);
   }
 }
 
@@ -47,7 +45,7 @@ int Matrix::height()
   bool hasColumns = !this->columns.empty();
 
   if (hasColumns)
-    height = this->columns[0].length();
+    height = this->columns[0].size();
 
   return height;
 }
@@ -97,10 +95,10 @@ bool Matrix::isMatrixMultipliable(Matrix otherMatrix)
 std::vector<double> Matrix::getColumn(int index)
 {
   std::vector<double> columnValues = {};
-  MatrixVector column = (*this)[index];
+  std::vector<double> column = (*this)[index];
 
-  for (int i = 0; i < column.length(); i++)
-    columnValues.push_back(column[i]);
+  for (auto value : column)
+    columnValues.push_back(value);
 
   return columnValues;
 }
@@ -155,7 +153,7 @@ Maths::Vector Matrix::operator * (Maths::Vector vectorRhs)
     double newValue = 0;
     
     for (int columnNo = 0; columnNo < this->width(); columnNo++) {
-      MatrixVector column = this->columns[columnNo];
+      std::vector<double> column = this->columns[columnNo];
       
       double matrixValue = column[rowNo];
       double vectorValue = vectorRhs[columnNo];
@@ -257,7 +255,7 @@ double Matrix::getProductBetweenTwoStlVectorsAtSameIndex(
   return product;
 }
 
-MatrixVector Matrix::operator [] (int index)
+std::vector<double> Matrix::operator [] (int index)
 {
   int indexRange = this->width() - 1;
   bool outOfRange = (index < 0 || index > indexRange);
