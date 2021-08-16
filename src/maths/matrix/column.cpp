@@ -2,6 +2,8 @@
 #include <vector>
 #include "src/maths/matrix/column.h"
 
+using namespace Maths;
+
 Column::Column(std::vector<double> vector)
 {
   this->vector = vector;
