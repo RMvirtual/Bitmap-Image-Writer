@@ -283,11 +283,26 @@ string Matrix::toString()
 
 string Matrix::getAllValuesAsString()
 {
-  string pointsRepresentation = "";
+  string allValues = "";
   int noOfRows = this->height();
-  int noOfColumns = this->width();
 
   for (int rowNo = 0; rowNo < noOfRows; rowNo++) {
+    string rowOfValues = this->getRowOfValuesAsString(rowNo);
+
+    bool moreRows = (rowNo < noOfRows - 1);
+    
+    if (moreRows)
+      rowOfValues += "\n";
+
+    allValues += rowOfValues;
+  }
+
+  return allValues;
+}
+
+string Matrix::getRowOfValuesAsString(int rowNo)
+{
+    int noOfColumns = this->width();
     string rowOfValues = "| ";
 
     for (int columnNo = 0; columnNo < noOfColumns; columnNo++) {
@@ -299,15 +314,7 @@ string Matrix::getAllValuesAsString()
 
     rowOfValues += "|";
 
-    bool moreRows = (rowNo < noOfRows - 1);
-    
-    if (moreRows)
-      rowOfValues += "\n";
-
-    pointsRepresentation += rowOfValues;
-  }
-
-  return pointsRepresentation;
+    return rowOfValues;
 }
 
 string Matrix::getValueAsString(int columnNo, int rowNo)

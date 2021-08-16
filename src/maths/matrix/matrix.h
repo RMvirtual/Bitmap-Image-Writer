@@ -79,6 +79,7 @@ namespace Maths
       bool isVectorMultipliable(Maths::Vector vector);
       bool isMatrixMultipliable(Matrix matrix);
       string getAllValuesAsString();
+      string getRowOfValuesAsString(int rowNo);
       string getValueAsString(int columnNo, int rowNo);
   };
 }
