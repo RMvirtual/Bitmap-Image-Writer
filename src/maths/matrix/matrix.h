@@ -81,14 +81,30 @@ namespace Maths
       vector<double> getProductAgainstAllRowsWithColumn(
         vector<double> column);
 
-      double getProductBetweenTwoStlVectors(
-        vector<double> vector1, vector<double> vector2);
+      double getProductBetweenTwoVectors(
+        std::vector<double> vector1, std::vector<double> vector2);
 
-      double getProductBetweenTwoStlVectorsAtSameIndex(
+      double getProductBetweenTwoVectors(
+        std::vector<double> vector1, Maths::Vector vector2);
+      
+      double getProductBetweenTwoVectors(
+        Maths::Vector vector1, std::vector<double> vector2);
+
+      double getProductBetweenTwoVectorsAtSameIndex(
         vector<double> vector1, vector<double> vector2,
         int commonIndex
       );
-      
+
+      double getProductBetweenTwoVectorsAtSameIndex(
+        std::vector<double> vector1, Maths::Vector vector2,
+        int commonIndex
+      );
+
+      double getProductBetweenTwoVectorsAtSameIndex(
+        Maths::Vector vector1, vector<double> vector2,
+        int commonIndex
+      );
+
       void convert2DStlVectorToColumns(
         vector<vector<double>> vector);
 

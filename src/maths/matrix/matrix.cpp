@@ -164,20 +164,10 @@ Maths::Vector Matrix::multiplyVector(Maths::Vector vector)
 std::vector<double> Matrix::getMultipliedVectorValues(Maths::Vector vector)
 {
   std::vector<double> newVectorValues = {};
+  std::vector<std::vector<double>> rows = this->getRows();
 
-  for (int rowNo = 0; rowNo < this->height(); rowNo++) {
-    double newValue = 0;
-    
-    for (int columnNo = 0; columnNo < this->width(); columnNo++) {
-      std::vector<double> column = this->columns[columnNo];
-      
-      double matrixValue = column[rowNo];
-      double vectorValue = vector[columnNo];
-
-      double product = matrixValue * vectorValue;
-      newValue += product;
-    }
-    
+  for (auto row : rows) {
+    double newValue = this->getProductBetweenTwoVectors(row, vector);
     newVectorValues.push_back(newValue);
   }
 
@@ -234,7 +224,7 @@ vector<double> Matrix::getProductAgainstAllRowsWithColumn(
   vector<vector<double>> matrixRows = this->getRows();
 
   for (auto row : matrixRows) {
-    double newColumnValue = this->getProductBetweenTwoStlVectors(
+    double newColumnValue = this->getProductBetweenTwoVectors(
       row, column);
 
     newColumn.push_back(newColumnValue);
@@ -243,14 +233,14 @@ vector<double> Matrix::getProductAgainstAllRowsWithColumn(
   return newColumn; 
 }
 
-double Matrix::getProductBetweenTwoStlVectors(
+double Matrix::getProductBetweenTwoVectors(
     vector<double> vector1, vector<double> vector2)
 {
   double totalProduct = 0;
   int noOfValues = vector1.size();
 
   for (int commonIndex = 0; commonIndex < noOfValues; commonIndex++) {
-    double product = this->getProductBetweenTwoStlVectorsAtSameIndex(
+    double product = this->getProductBetweenTwoVectorsAtSameIndex(
       vector1, vector2, commonIndex);
     
     totalProduct += product;
@@ -259,8 +249,30 @@ double Matrix::getProductBetweenTwoStlVectors(
   return totalProduct;
 }
 
-double Matrix::getProductBetweenTwoStlVectorsAtSameIndex(
-    vector<double> vector1, vector<double> vector2, int commonIndex)
+double Matrix::getProductBetweenTwoVectors(
+    vector<double> vector1, Maths::Vector vector2)
+{
+  double totalProduct = 0;
+  int noOfValues = vector1.size();
+
+  for (int commonIndex = 0; commonIndex < noOfValues; commonIndex++) {
+    double product = this->getProductBetweenTwoVectorsAtSameIndex(
+      vector1, vector2, commonIndex);
+    
+    totalProduct += product;
+  }
+
+  return totalProduct;
+}
+
+double Matrix::getProductBetweenTwoVectors(
+    Maths::Vector vector1, std::vector<double> vector2)
+{
+  return this->getProductBetweenTwoVectors(vector2, vector1);
+}
+
+double Matrix::getProductBetweenTwoVectorsAtSameIndex(
+    std::vector<double> vector1, std::vector<double> vector2, int commonIndex)
 {
   double value1 = vector1[commonIndex];
   double value2 = vector2[commonIndex];
@@ -268,6 +280,24 @@ double Matrix::getProductBetweenTwoStlVectorsAtSameIndex(
   double product = value1 * value2;
 
   return product;
+}
+
+double Matrix::getProductBetweenTwoVectorsAtSameIndex(
+    std::vector<double> vector1, Maths::Vector vector2, int commonIndex)
+{
+  double value1 = vector1[commonIndex];
+  double value2 = vector2[commonIndex];
+
+  double product = value1 * value2;
+
+  return product;
+}
+
+double Matrix::getProductBetweenTwoVectorsAtSameIndex(
+    Maths::Vector vector1, vector<double> vector2, int commonIndex)
+{
+  return this->getProductBetweenTwoVectorsAtSameIndex(
+    vector2, vector1, commonIndex);
 }
 
 vector<double> Matrix::operator [] (int index)
