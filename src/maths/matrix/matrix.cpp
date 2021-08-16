@@ -163,16 +163,20 @@ Matrix Matrix::operator * (Matrix matrixRhs)
   std::vector<std::vector<double>> newMatrixValues = {};
   Matrix matrixLhs = *this;
 
-  /* Schoolbook algorithm for matrix multiplication.
+  // Schoolbook algorithm for matrix multiplication.
   for (int lhsColumnNo = 0; lhsColumnNo < matrixLhs.width(); lhsColumnNo++) {
+    std::vector<double> newColumn = {};
+    
     for (int rhsColumnNo = 0; rhsColumnNo < matrixRhs.width(); rhsColumnNo++) {
-      
-      
+      std::vector<double> lhsRow = matrixLhs.getRow(lhsColumnNo);
+      std::vector<double> rhsColumn = matrixRhs.getColumn(rhsColumnNo);
+
       double newValue = 0;
       
-      for (int rhsMatrixColumnNo = 0; rhsMatrixColumnNo < matrixRhs.width(); rhsMatrixColumnNo++) {
-        double lhsMatrixValue = matrixLhs[lhsColumnNo][rhsMatrixColumnNo];
-        double rhsMatrixValue = matrixRhs[rhsMatrixColumnNo][lhsColumnNo];
+      for (int sharedColumnNo = 0; sharedColumnNo < rhsColumn.size(); sharedColumnNo++) {
+        double lhsMatrixValue = lhsRow[sharedColumnNo];
+        double rhsMatrixValue = rhsColumn[sharedColumnNo];
+
         double product = lhsMatrixValue * rhsMatrixValue;
 
         cout << "lhsMatrixValue: " + to_string(lhsMatrixValue) << endl;
@@ -184,14 +188,16 @@ Matrix Matrix::operator * (Matrix matrixRhs)
         cout << "New value now: " + to_string(newValue) << endl;
       }
 
-      newRowValues.push_back(newValue);
+      newColumn.push_back(newValue);
+      cout << "Done with value " + to_string(newValue) + " now." << endl;
     }
 
-    newMatrixValues.push_back(newRowValues);
+    newMatrixValues.push_back(newColumn);
   }
-  */
 
-  Matrix newMatrix = Matrix();
+  Matrix newMatrix = Matrix(newMatrixValues);
+
+  cout << newMatrix.toString() << endl;
 
   return newMatrix;
 }
@@ -210,4 +216,50 @@ MatrixVector Matrix::operator [] (int index)
 Maths::Vector operator * (Maths::Vector vectorLhs, Matrix matrixRhs)
 {
   return matrixRhs * vectorLhs;
+}
+
+string Matrix::toString()
+{
+  string allPoints = this->getAllPointsAsString();
+
+  return allPoints;
+}
+
+string Matrix::getAllPointsAsString()
+{
+  string pointsRepresentation = "";
+  int noOfRows = this->height();
+  int noOfColumns = this->width();
+
+  for (int rowNo = 0; rowNo < noOfRows; rowNo++) {
+    string rowOfValues = "| ";
+
+    for (int columnNo = 0; columnNo < noOfColumns; columnNo++) {
+      string point = this->getPointAsString(rowNo, columnNo);
+      rowOfValues += point;
+
+      bool moreRowValuesToAdd = (rowNo < noOfColumns - 1);
+
+      if (moreRowValuesToAdd)
+        rowOfValues += " ";
+    }
+
+    rowOfValues += "|";
+
+    bool moreRows = (rowNo < noOfRows - 1);
+    
+    if (moreRows)
+      rowOfValues += "\n";
+
+    pointsRepresentation += rowOfValues;
+  }
+
+  return pointsRepresentation;
+}
+
+string Matrix::getPointAsString(int columnNo, int rowNo)
+{
+  string point = to_string((*this)[columnNo][rowNo]);
+  
+  return point;
 }

@@ -104,7 +104,6 @@ TEST(MatrixTests, ShouldGetColumn)
     EXPECT_EQ(column[i], correctValues[i]);
 }
 
-
 TEST(MatrixTests, ShouldGetRow)
 {
   std::vector<std::vector<double>> vector2D = setup2DVector();
@@ -183,19 +182,18 @@ TEST(MatrixTests, ShouldMultiplyMatrixByAnotherMatrix)
 
   Matrix resultMatrix = lhsMatrix * rhsMatrix;
 
-  std::vector<double> m3firstColumn = {138, 171, 204};
-  std::vector<double> m3SecondColumn = {174, 216, 258};
-  std::vector<double> m3ThirdColumn = {210, 261, 312};
+  std::vector<std::vector<double>> correctVectors = {
+    {138, 171, 204},
+    {174, 216, 258},
+    {210, 261, 312}
+  };
 
-  std::vector<std::vector<double>> vector3 = {
-    m3firstColumn, m3SecondColumn, m3ThirdColumn};
-
-  Matrix correctMatrix(vector3);
+  Matrix correctMatrix(correctVectors);
 
   for (int columnNo = 0; columnNo < correctMatrix.height(); columnNo++)
     for (int rowNo = 0; rowNo < correctMatrix.width(); rowNo++)
       EXPECT_DOUBLE_EQ(
-        resultMatrix[columnNo][rowNo],
-        correctMatrix[columnNo][rowNo]
+        correctMatrix[columnNo][rowNo],
+        resultMatrix[columnNo][rowNo]
       );
 }
