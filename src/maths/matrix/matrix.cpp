@@ -116,6 +116,29 @@ std::vector<double> Matrix::getRow(int index)
   return rowValues;
 }
 
+std::vector<std::vector<double>> Matrix::getColumns()
+{
+  std::vector<std::vector<double>> columns = {};
+
+  for (int i = 0; i < this->width(); i++) {
+    std::vector<double> column = this->getColumn(i);
+    columns.push_back(column);
+  }
+
+  return columns;
+}
+
+std::vector<std::vector<double>> Matrix::getRows()
+{
+  std::vector<std::vector<double>> rows = {};
+
+  for (int i = 0; i < this->height(); i++) {
+    std::vector<double> row = this->getRow(i);
+    rows.push_back(row);
+  }
+
+  return rows;
+}
 
 Maths::Vector Matrix::operator * (Maths::Vector vectorRhs)
 {
@@ -172,10 +195,13 @@ Matrix Matrix::multiplyMatrix(Matrix matrix)
   Matrix matrixRhs = matrix;
 
   // Schoolbook algorithm for matrix multiplication.
-  for (int rhsColumnNo = 0; rhsColumnNo < matrixRhs.width(); rhsColumnNo++) {
-    std::vector<double> newColumn = this->calculateNewColumnWithMatrixProduct(
-      matrix, rhsColumnNo);
 
+  std::vector<std::vector<double>> matrixRhsColumns = matrixRhs.getColumns();
+
+  for (auto rhsColumn : matrixRhsColumns) {
+    std::vector<double> newColumn = 
+      this->calculateNewColumnWithMatrixProduct(rhsColumn);
+      
     newMatrixValues.push_back(newColumn);
   }
 
@@ -185,11 +211,10 @@ Matrix Matrix::multiplyMatrix(Matrix matrix)
 }
 
 std::vector<double> Matrix::calculateNewColumnWithMatrixProduct(
-  Matrix matrixRhs, int rhsColumnNo)
+  std::vector<double> rhsColumn)
 {
   Matrix matrixLhs = *this;
   std::vector<double> newColumn = {};
-  std::vector<double> rhsColumn = matrixRhs.getColumn(rhsColumnNo);
 
   for (int lhsColumnNo = 0; lhsColumnNo < matrixLhs.width(); lhsColumnNo++) {
     std::vector<double> lhsRow = matrixLhs.getRow(lhsColumnNo);

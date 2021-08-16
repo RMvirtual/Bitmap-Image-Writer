@@ -41,6 +41,8 @@ namespace Maths
 
       std::vector<double> getRow(int index);
       std::vector<double> getColumn(int index);
+      std::vector<std::vector<double>> getColumns();
+      std::vector<std::vector<double>> getRows();
 
       // Indexes a row value from the column.
       MatrixVector operator [] (int index);
@@ -65,8 +67,7 @@ namespace Maths
       );
       
       std::vector<double> calculateNewColumnWithMatrixProduct(
-        Matrix matrix, int matrixColumnIndex
-      );
+        std::vector<double> rhsColumn);
 
       void convertStlVectorToColumns(std::vector<std::vector<double>> vector);
       bool isVectorMultipliable(Maths::Vector vector);
