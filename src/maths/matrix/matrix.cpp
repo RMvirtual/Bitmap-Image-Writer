@@ -201,7 +201,7 @@ Matrix Matrix::multiplyMatrix(Matrix matrix)
   for (auto rhsColumn : matrixRhsColumns) {
     std::vector<double> newColumn = 
       this->calculateNewColumnWithMatrixProduct(rhsColumn);
-      
+
     newMatrixValues.push_back(newColumn);
   }
 
@@ -215,6 +215,8 @@ std::vector<double> Matrix::calculateNewColumnWithMatrixProduct(
 {
   Matrix matrixLhs = *this;
   std::vector<double> newColumn = {};
+
+  std::vector<std::vector<double>> matrixLhsColumns = this->getColumns();
 
   for (int lhsColumnNo = 0; lhsColumnNo < matrixLhs.width(); lhsColumnNo++) {
     std::vector<double> lhsRow = matrixLhs.getRow(lhsColumnNo);
