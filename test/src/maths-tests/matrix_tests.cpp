@@ -160,26 +160,56 @@ TEST(MatrixTests, ShouldMultiplyMatrixByA3DVector)
 
 TEST(MatrixTests, ShouldMultiplyMatrixByAnotherMatrix)
 {
-  std::vector<std::vector<double>> vector1;
+  std::vector<std::vector<double>> vector1 = {
+    {1, 2, 3},
+    {4, 5, 6},
+    {7, 8, 9}
+  };
 
-  std::vector<double> firstColumn = {1, 2, 3};
-  std::vector<double> secondColumn = {4, 5, 6};
-  std::vector<double> thirdColumn = {7, 8, 9};
-
-  vector1 = {firstColumn, secondColumn, thirdColumn};
+  std::vector<std::vector<double>> vector2 = {
+    {10, 11, 12},
+    {13, 14, 15},
+    {16, 17, 18}
+  };
 
   Matrix lhsMatrix = Matrix(vector1);
-
-  std::vector<std::vector<double>> vector2;
-
-  std::vector<double> m2firstColumn = {10, 11, 12};
-  std::vector<double> m2SecondColumn = {13, 14, 15};
-  std::vector<double> m2ThirdColumn = {16, 17, 18};
-
-  vector2 = {m2firstColumn, m2SecondColumn, m2ThirdColumn};
-
   Matrix rhsMatrix = Matrix(vector2);
 
+  Matrix resultMatrix = lhsMatrix * rhsMatrix;
+
+  std::vector<std::vector<double>> correctVectors = {
+    {138, 171, 204},
+    {174, 216, 258},
+    {210, 261, 312}
+  };
+
+  Matrix correctMatrix(correctVectors);
+
+  for (int columnNo = 0; columnNo < correctMatrix.height(); columnNo++)
+    for (int rowNo = 0; rowNo < correctMatrix.width(); rowNo++)
+      EXPECT_DOUBLE_EQ(
+        correctMatrix[columnNo][rowNo],
+        resultMatrix[columnNo][rowNo]
+      );
+}
+
+TEST(MatrixTests, ShouldMultiplyMatrixByAMatrixWithDifferentHeight)
+{
+  std::vector<std::vector<double>> vector1 = {
+    {1, 2, 3, 4},
+    {5, 6, 7, 8},
+    {9, 10, 11, 12}
+  };
+
+  std::vector<std::vector<double>> vector2 = {
+    {10, 11, 12},
+    {13, 14, 15},
+    {16, 17, 18}
+  };
+
+  Matrix lhsMatrix = Matrix(vector1);
+  Matrix rhsMatrix = Matrix(vector2);
+  
   Matrix resultMatrix = lhsMatrix * rhsMatrix;
 
   std::vector<std::vector<double>> correctVectors = {
