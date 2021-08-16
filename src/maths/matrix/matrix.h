@@ -59,19 +59,18 @@ namespace Maths
         std::vector<std::vector<double>> vector);
 
       Matrix multiplyMatrix(Matrix matrix);
-      
+            
+      std::vector<double> getMatrixProductAgainstRowsWithColumn(
+        std::vector<double> column);
+
+      double getProductBetweenTwoMatrixVectors(
+        std::vector<double> vector1, std::vector<double> vector2);
+
       double getProductBetweenTwoVectorsAtSameIndex(
-        std::vector<double> vector1,
-        std::vector<double> vector2,
+        std::vector<double> vector1, std::vector<double> vector2,
         int commonIndex
       );
       
-      std::vector<double> getNewColumnWithMatrixProduct(
-        std::vector<double> rhsColumn);
-
-      double getProductBetweenTwoMatrixVectors(
-        std::vector<double> lhsRow, std::vector<double> rhsColumn);
-
       void convertStlVectorToColumns(std::vector<std::vector<double>> vector);
       bool isVectorMultipliable(Maths::Vector vector);
       bool isMatrixMultipliable(Matrix matrix);
