@@ -173,23 +173,8 @@ Matrix Matrix::multiplyMatrix(Matrix matrix)
 
   // Schoolbook algorithm for matrix multiplication.
   for (int rhsColumnNo = 0; rhsColumnNo < matrixRhs.width(); rhsColumnNo++) {
-    std::vector<double> newColumn = {};
-    std::vector<double> rhsColumn = matrixRhs.getColumn(rhsColumnNo);
-
-    for (int lhsColumnNo = 0; lhsColumnNo < matrixLhs.width(); lhsColumnNo++) {
-      std::vector<double> lhsRow = matrixLhs.getRow(lhsColumnNo);
-
-      double newColumnValueToAdd = 0;
-      
-      for (int commonIndex = 0; commonIndex < rhsColumn.size(); commonIndex++) {
-        double product = this->calculateProductBetweenTwoVectorValuesAtSameIndex(
-          lhsRow, rhsColumn, commonIndex);
-        
-        newColumnValueToAdd += product;
-      }
-
-      newColumn.push_back(newColumnValueToAdd);
-    }
+    std::vector<double> newColumn = this->calculateNewColumnWithMatrixProduct(
+      matrix, rhsColumnNo);
 
     newMatrixValues.push_back(newColumn);
   }
@@ -199,7 +184,32 @@ Matrix Matrix::multiplyMatrix(Matrix matrix)
   return newMatrix;
 }
 
-double Matrix::calculateProductBetweenTwoVectorValuesAtSameIndex(
+std::vector<double> Matrix::calculateNewColumnWithMatrixProduct(
+  Matrix matrixRhs, int rhsColumnNo)
+{
+  Matrix matrixLhs = *this;
+  std::vector<double> newColumn = {};
+  std::vector<double> rhsColumn = matrixRhs.getColumn(rhsColumnNo);
+
+  for (int lhsColumnNo = 0; lhsColumnNo < matrixLhs.width(); lhsColumnNo++) {
+    std::vector<double> lhsRow = matrixLhs.getRow(lhsColumnNo);
+
+    double newColumnValueToAdd = 0;
+    
+    for (int commonIndex = 0; commonIndex < rhsColumn.size(); commonIndex++) {
+      double product = this->getProductBetweenTwoVectorsAtSameIndex(
+        lhsRow, rhsColumn, commonIndex);
+      
+      newColumnValueToAdd += product;
+    }
+
+    newColumn.push_back(newColumnValueToAdd);
+  }
+
+  return newColumn; 
+}
+
+double Matrix::getProductBetweenTwoVectorsAtSameIndex(
     std::vector<double> vector1, std::vector<double> vector2, int commonIndex)
 {
   double value1 = vector1[commonIndex];
