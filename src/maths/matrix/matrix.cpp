@@ -100,10 +100,9 @@ std::vector<double> Matrix::getColumn(int index)
 
   MatrixVector column = (*this)[index];
 
-  for (int i = 0; i < column.length(); i++) {
-    cout << "next value is: " + to_string(column[index]) << endl; 
-    columnValues.push_back(column[index]);
-  }
+  for (int i = 0; i < column.length(); i++)
+    columnValues.push_back(column[i]);
+
   return columnValues;
 }
 

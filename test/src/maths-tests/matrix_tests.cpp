@@ -30,14 +30,13 @@ TEST(MatrixTests, ShouldCreateMatrixFrom2DVector)
     {5, 6, 7, 8}
   };
 
-  for (int i = 0; i < correctElements.size(); i++) {
+  for (int i = 0; i < correctElements.size(); i++)
     for (int j = 0; j < correctElements[i].size(); j++) {
       double correctValue = correctElements[i][j];
       double doubleToTest = matrix[i][j];
 
       EXPECT_DOUBLE_EQ(correctValue, doubleToTest);
     }
-  }
 }
 
 TEST(MatrixTests, ShouldReturnWidthAsTwo)
