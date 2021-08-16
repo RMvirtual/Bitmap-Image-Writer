@@ -60,9 +60,9 @@ namespace Maths
         int commonIndex
       );
       
-      void convertStlVectorToColumns(std::vector<std::vector<double>> vector);
+      void convert2DStlVectorToColumns(std::vector<std::vector<double>> vector);
 
-      bool checkStlVectorIsValidMatrixSize(
+      bool check2DStlVectorIsValidMatrixSize(
         std::vector<std::vector<double>> vector);
         
       bool isVectorMultipliable(Maths::Vector vector);

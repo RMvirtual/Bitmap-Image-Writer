@@ -17,21 +17,20 @@ Matrix::Matrix()
 
 Matrix::Matrix(std::vector<std::vector<double>> matrixColumns)
 {
-  bool isValidSize = this->checkStlVectorIsValidMatrixSize(matrixColumns);
+  bool isValidSize = this->check2DStlVectorIsValidMatrixSize(matrixColumns);
 
   if (isValidSize)
-    this->convertStlVectorToColumns(matrixColumns);
+    this->convert2DStlVectorToColumns(matrixColumns);
 
   else
     throw runtime_error(
       "Arithmetic error: vectors are not a congruent size.");
 }
 
-void Matrix::convertStlVectorToColumns(std::vector<std::vector<double>> vector2D)
-{ 
-  for (auto vector : vector2D) {;
+void Matrix::convert2DStlVectorToColumns(std::vector<std::vector<double>> vector2D)
+{
+  for (auto vector : vector2D)
     this->columns.push_back(vector);
-  }
 }
 
 int Matrix::width()
@@ -45,25 +44,19 @@ int Matrix::height()
   bool hasColumns = !this->columns.empty();
 
   if (hasColumns)
-    height = this->columns[0].size();
+    height = this->columns.front().size();
 
   return height;
 }
 
-bool Matrix::checkStlVectorIsValidMatrixSize(
+bool Matrix::check2DStlVectorIsValidMatrixSize(
     std::vector<std::vector<double>> vector2D)
 {
-  auto vectorIterator = vector2D.begin();
-  auto lastVector = vector2D.end();
-  
-  int sizeToCheck = (*vectorIterator).size();
+  int sizeToCheck = vector2D.front().size();
   bool sizeMatches = true;
 
-  for (; vectorIterator != lastVector; ++vectorIterator) {
-    std::vector<double> vector = *vectorIterator;
-
-    int vectorSize = vector.size();
-    sizeMatches = (vectorSize == sizeToCheck);
+  for (auto vector : vector2D) {
+    sizeMatches = (vector.size() == sizeToCheck);
 
     if (!sizeMatches)
       break;
