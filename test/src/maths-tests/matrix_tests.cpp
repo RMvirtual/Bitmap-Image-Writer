@@ -196,4 +196,7 @@ TEST(MatrixTests, ShouldMultiplyMatrixByAnotherMatrix)
         correctMatrix[columnNo][rowNo],
         resultMatrix[columnNo][rowNo]
       );
+
+  cout << resultMatrix.toString() << endl;
+  cout << correctMatrix.toString() << endl;
 }
