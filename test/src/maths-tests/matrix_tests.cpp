@@ -30,10 +30,10 @@ TEST(MatrixTests, ShouldCreateMatrixFrom2DVector)
     {5, 6, 7, 8}
   };
 
-  for (int i = 0; i < correctElements.size(); i++)
-    for (int j = 0; j < correctElements[i].size(); j++) {
-      double correctValue = correctElements[i][j];
-      double doubleToTest = matrix[i][j];
+  for (int columnNo = 0; columnNo < correctElements.size(); columnNo++)
+    for (int rowNo = 0; rowNo < correctElements[columnNo].size(); rowNo++) {
+      double correctValue = correctElements[columnNo][rowNo];
+      double doubleToTest = matrix[columnNo][rowNo];
 
       EXPECT_DOUBLE_EQ(correctValue, doubleToTest);
     }
@@ -185,8 +185,8 @@ TEST(MatrixTests, ShouldMultiplyMatrixByAnotherMatrix)
 
   Matrix correctMatrix(correctVectors);
 
-  for (int columnNo = 0; columnNo < correctMatrix.height(); columnNo++)
-    for (int rowNo = 0; rowNo < correctMatrix.width(); rowNo++)
+  for (int columnNo = 0; columnNo < correctMatrix.width(); columnNo++)
+    for (int rowNo = 0; rowNo < correctMatrix.height(); rowNo++)
       EXPECT_DOUBLE_EQ(
         correctMatrix[columnNo][rowNo],
         resultMatrix[columnNo][rowNo]
@@ -196,39 +196,32 @@ TEST(MatrixTests, ShouldMultiplyMatrixByAnotherMatrix)
 TEST(MatrixTests, ShouldMultiplyMatrixByAMatrixWithDifferentHeight)
 {
   std::vector<std::vector<double>> vector1 = {
-    {1, 2, 3, 4},
-    {5, 6, 7, 8},
-    {9, 10, 11, 12}
+    {1, 2},
+    {3, 4},
+    {5, 6}
   };
 
   std::vector<std::vector<double>> vector2 = {
+    {7, 8, 9},
     {10, 11, 12},
-    {13, 14, 15},
-    {16, 17, 18}
+    {13, 14, 15}
   };
 
   Matrix lhsMatrix = Matrix(vector1);
   Matrix rhsMatrix = Matrix(vector2);
 
-  cout << "lhs Matrix" << endl << lhsMatrix.toString() << endl;
-  cout << "rhs Matrix" << endl << rhsMatrix.toString() << endl;
-
   Matrix resultMatrix = lhsMatrix * rhsMatrix;
 
-  cout << "result Matrix" << endl << resultMatrix.toString() << endl;
-
   std::vector<std::vector<double>> correctVectors = {
-    {138, 171, 204},
-    {174, 216, 258},
-    {210, 261, 312}
+    {76, 100},
+    {103, 136},
+    {130, 172}
   };
 
   Matrix correctMatrix(correctVectors);
 
-  cout << "correct Matrix" << endl << correctMatrix.toString() << endl;
-
-  for (int columnNo = 0; columnNo < correctMatrix.height(); columnNo++)
-    for (int rowNo = 0; rowNo < correctMatrix.width(); rowNo++)
+  for (int columnNo = 0; columnNo < correctMatrix.width(); columnNo++)
+    for (int rowNo = 0; rowNo < correctMatrix.height(); rowNo++)
       EXPECT_DOUBLE_EQ(
         correctMatrix[columnNo][rowNo],
         resultMatrix[columnNo][rowNo]

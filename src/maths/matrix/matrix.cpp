@@ -97,7 +97,6 @@ bool Matrix::isMatrixMultipliable(Matrix otherMatrix)
 std::vector<double> Matrix::getColumn(int index)
 {
   std::vector<double> columnValues = {};
-
   MatrixVector column = (*this)[index];
 
   for (int i = 0; i < column.length(); i++)
