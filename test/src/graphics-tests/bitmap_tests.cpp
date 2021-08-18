@@ -9,8 +9,6 @@ TEST(GraphicsTests, ShouldCreateBitmap)
   BitmapInfoHeader bmpInfoHeader;
   Pixel pixel;
 
-  std::cout << bmpHeader.bitmapSignatureBytes[0] << endl;
-
   char* outputPath = "C:\\Users\\rmvir\\Desktop\\scc300-Win3D\\build\\test_bitmap.bmp";
   ofstream fout(outputPath, ios::binary);
 
