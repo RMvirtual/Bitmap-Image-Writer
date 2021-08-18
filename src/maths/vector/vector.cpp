@@ -9,22 +9,22 @@ using namespace std;
 
 Vector::Vector(double a, double b)
 {
-  this->vectorArray = {a, b};
+  this->values = {a, b};
 }
 
 Vector::Vector(double a, double b, double c)
 {
-  this->vectorArray = {a, b, c};
+  this->values = {a, b, c};
 }
 
 Vector::Vector(double a, double b, double c, double d)
 {
-  this->vectorArray = {a, b, c, d};
+  this->values = {a, b, c, d};
 }
 
 Vector::Vector(std::vector<double> myVector)
 {
-  this->vectorArray = myVector;
+  this->values = myVector;
 }
 
 Vector::Vector(double array[], int noOfArrayElements)
@@ -37,7 +37,7 @@ void Vector::createVectorFromArray(double* array, int length)
   std::vector<double> vectorFromArray =
     this->createStlVectorFromArray(array, length);
   
-  this->vectorArray = vectorFromArray;
+  this->values = vectorFromArray;
 }
 
 std::vector<double> Vector::createStlVectorFromArray(
@@ -102,14 +102,14 @@ double Vector::angle(Vector vector)
 
 int Vector::length()
 {
-  return this->vectorArray.size();
+  return this->values.size();
 }
 
 double Vector::magnitude()
 {
   double sum = 0;
 
-  for (auto vectorElement : this->vectorArray)
+  for (auto vectorElement : this->values)
     sum = this->squareNumberAndAddToSum(vectorElement, sum);
 
   return sqrt(sum);
@@ -125,7 +125,7 @@ double Vector::squareNumberAndAddToSum(double number, double sum)
 
 double Vector::get(int index)
 {
-  return this->vectorArray[index];
+  return this->values[index];
 }
 
 double Vector::operator [] (int index)
@@ -169,7 +169,7 @@ std::vector<double> Vector::multiplyElements(Vector vector)
   std::vector<double> newElements;
 
   for (int elementNo = 0; elementNo < numOfElements; elementNo++) {
-      double lhsElement = this->vectorArray[elementNo];
+      double lhsElement = this->values[elementNo];
       double rhsElement = vector[elementNo];
 
       double multipliedResult = lhsElement * rhsElement;
@@ -225,6 +225,26 @@ string Vector::toString()
   return vectorRepresentation;
 }
 
+std::vector<double>::iterator Vector::begin()
+{
+  return this->values.begin();
+}
+
+std::vector<double>::iterator Vector::end()
+{
+  return this->values.end();
+}
+
+std::vector<double>::const_iterator Vector::begin() const
+{
+  return this->values.begin();
+}
+
+std::vector<double>::const_iterator Vector::end() const
+{
+  return this->values.end();
+}
+
 string Vector::getAllPointsAsString()
 {
   string pointsRepresentation = "";
@@ -260,7 +280,7 @@ Vector Vector::performBinaryOperationWithVector(
   std::vector<double> newElements = {};
 
   for (int elementNo = 0; elementNo < numOfElements; elementNo++) {
-    double lhsElement = this->vectorArray[elementNo];
+    double lhsElement = this->values[elementNo];
     double rhsElement = rhsVector[elementNo];
 
     double newElement = operation->perform(lhsElement, rhsElement);
@@ -278,7 +298,7 @@ Vector Vector::performBinaryOperationWithScalar(
   int numOfElements = this->length();
   std::vector<double> newElements = {};
 
-  for (auto element : this->vectorArray) {
+  for (auto element : this->values) {
     double newElement = operation->perform(element, scalar);
     newElements.push_back(newElement);
   }

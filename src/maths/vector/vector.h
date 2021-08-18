@@ -85,20 +85,20 @@ namespace Maths
     // Returns a string representation of the vector.
     string toString();
 
-    // Returns an iterator at the start of the column's values.
+    // Returns an iterator at the start of the vector's values.
     std::vector<double>::iterator begin();
 
-    // Returns an iterator at the end of the column's values.
+    // Returns an iterator at the end of the vector's values.
     std::vector<double>::iterator end();
 
-    // Returns a constant iterator at the start of the column's values.
+    // Returns a constant iterator at the start of the vector's values.
     std::vector<double>::const_iterator begin() const;
 
-    // Returns a constant iterator at the end of the column's values.
+    // Returns a constant iterator at the end of the vector's values.
     std::vector<double>::const_iterator end() const;
 
   private:
-    vector<double> vectorArray;
+    vector<double> values;
 
     /**
      * Takes a binary operation and performs it with this vector
