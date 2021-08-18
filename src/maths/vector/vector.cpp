@@ -25,7 +25,7 @@ Vector::Vector(double a, double b, double c, double d)
 
 Vector::Vector(double numberOfValues...)
 {
-  f(1, 2, 3, 4, 5, 6);
+  getNumberOfParameters(1, 2, 3, 4, 5, 6);
   std::va_list args;
   va_start(args, numberOfValues);
 

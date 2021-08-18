@@ -39,7 +39,7 @@ namespace Maths
     template<typename... T>
     void getNumberOfParameters(const T&... t)
     {
-      int size = sizeof... (double);
+      int size = sizeof... (T);
       cout << size << endl;
     }
 
