@@ -35,19 +35,17 @@ namespace Maths
     // Creates a new vector using the STL vector as a parameter.
     Vector(vector<double> stlVector);
 
-    // Creates a new vector using the parameters as vector points.
-    Vector(double values...);
+    template<typename... Arguments>
+    Vector(Arguments... values)
+    {
+      int size = sizeof... (values);
 
-    template<typename... double_t>
-    void assignValues(double_t... args)
-    {     
-      int size = sizeof... (args);
-      cout << size << endl;
+      this->values = {(double) values...};
 
-      this->values = {args...};
-
+      /*
       for (double value : this->values)
         cout << to_string(value) << endl;
+      */
     }
 
     /**
