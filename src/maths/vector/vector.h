@@ -134,11 +134,11 @@ namespace Maths
     vector<double> createStlVectorFromArray(double *array, int length);
 
     /**
-     * Returns an stl vector containing the values found when
+     * Returns an STL vector containing the values found when
      * performing the cross product of this vector with another
      * vector. Only works for vectors of length 3.
      */
-    std::vector<double> calculateCrossProductCoordinates(Vector vector);
+    std::vector<double> calculateCrossProductValues(Vector vector);
 
     // Squares a number and adds it to a sum value.
     double squareNumberAndAddToSum(double number, double sum);

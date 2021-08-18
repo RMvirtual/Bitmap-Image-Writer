@@ -14,18 +14,18 @@ TEST(VectorTests, ShouldCreateVectorWithTwoElements)
 TEST(VectorTests, ShouldCreateVectorWithThreeElements)
 {
   Vector vector = Vector(4, 5, 6);
-  EXPECT_EQ(4, vector.get(0));
-  EXPECT_EQ(5, vector.get(1));
-  EXPECT_EQ(6, vector.get(2));
+  EXPECT_EQ(4, vector[0]);
+  EXPECT_EQ(5, vector[1]);
+  EXPECT_EQ(6, vector[2]);
 }
 
 TEST(VectorTests, ShouldCreateVectorWithFourElements)
 {
   Vector vector = Vector(1, 2, 3, 4);
-  EXPECT_EQ(1, vector.get(0));
-  EXPECT_EQ(2, vector.get(1));
-  EXPECT_EQ(3, vector.get(2));
-  EXPECT_EQ(4, vector.get(3));
+  EXPECT_EQ(1, vector[0]);
+  EXPECT_EQ(2, vector[1]);
+  EXPECT_EQ(3, vector[2]);
+  EXPECT_EQ(4, vector[3]);
 }
 
 TEST(VectorTests, ShouldCreateVectorWithArray)
@@ -33,9 +33,9 @@ TEST(VectorTests, ShouldCreateVectorWithArray)
   double array[] = {1, 2, 3};
   Vector vector = Vector(array, 3);
 
-  EXPECT_EQ(1, vector.get(0));
-  EXPECT_EQ(2, vector.get(1));
-  EXPECT_EQ(3, vector.get(2));
+  EXPECT_EQ(1, vector[0]);
+  EXPECT_EQ(2, vector[1]);
+  EXPECT_EQ(3, vector[2]);
 }
 
 TEST(VectorTests, ShouldCreateVectorWithStlVector)
@@ -43,9 +43,9 @@ TEST(VectorTests, ShouldCreateVectorWithStlVector)
   vector<double> stlVector = {1, 2, 3}; 
   Vector vector = Vector(stlVector);
 
-  EXPECT_EQ(1, vector.get(0));
-  EXPECT_EQ(2, vector.get(1));
-  EXPECT_EQ(3, vector.get(2));
+  EXPECT_EQ(1, vector[0]);
+  EXPECT_EQ(2, vector[1]);
+  EXPECT_EQ(3, vector[2]);
 }
 
 TEST(VectorTests, LengthShouldBeTwo)

@@ -67,14 +67,14 @@ double Vector::dotProduct(Vector vector)
 Vector Vector::vectorProduct(Vector vector)
 {
   std::vector<double> coordinates =
-      this->calculateCrossProductCoordinates(vector);
+      this->calculateCrossProductValues(vector);
 
   Vector crossProductVector = Vector(coordinates);
 
   return crossProductVector;
 }
 
-std::vector<double> Vector::calculateCrossProductCoordinates(Vector vector)
+std::vector<double> Vector::calculateCrossProductValues(Vector vector)
 {
   Vector self = *this;
   int x = 0, y = 1, z = 2;
