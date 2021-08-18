@@ -2,7 +2,9 @@
 #define VECTOR_H
 
 #include <iostream>
+#include <string>
 #include <vector>
+#include <cstdarg>
 #include "src/maths/binary_ops/binary_ops.h"
 
 using namespace std;
@@ -36,11 +38,16 @@ namespace Maths
     // Creates a new vector using the parameters as vector points.
     Vector(double values...);
 
-    template<typename... T>
-    void getNumberOfParameters(const T&... t)
-    {
-      int size = sizeof... (T);
+    template<typename... Ts>
+    void getNumberOfParameters(Ts... args)
+    {     
+      int size = sizeof... (Ts);
       cout << size << endl;
+
+      std::vector<double> vector = {args...};
+
+      for (double value : vector)
+        cout << to_string(value) << endl;
     }
 
     /**
