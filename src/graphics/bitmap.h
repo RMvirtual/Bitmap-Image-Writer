@@ -33,8 +33,7 @@ struct BitmapInfoHeader
 // 3 bytes total?
 struct Pixel
 {
-  uint8_t blue = 100;
-  uint8_t green = 100;
+  uint8_t blue = 255;
+  uint8_t green = 255;
   uint8_t red = 100;
-  uint8_t padMe = 0;
 };
