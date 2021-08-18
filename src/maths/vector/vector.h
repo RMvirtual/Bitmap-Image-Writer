@@ -38,10 +38,10 @@ namespace Maths
     // Creates a new vector using the parameters as vector points.
     Vector(double values...);
 
-    template<typename... Ts>
-    void assignValues(Ts... args)
+    template<typename... double_t>
+    void assignValues(double_t... args)
     {     
-      int size = sizeof... (Ts);
+      int size = sizeof... (args);
       cout << size << endl;
 
       this->values = {args...};
