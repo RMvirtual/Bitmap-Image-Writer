@@ -22,7 +22,7 @@ Vector::Vector(double a, double b, double c, double d)
   this->vectorArray = {a, b, c, d};
 }
 
-Vector::Vector(vector<double> myVector)
+Vector::Vector(std::vector<double> myVector)
 {
   this->vectorArray = myVector;
 }
@@ -43,7 +43,7 @@ void Vector::createVectorFromArray(double* array, int length)
 std::vector<double> Vector::createStlVectorFromArray(
   double* array, int length)
 {
-  vector<double> newVector = {};
+  std::vector<double> newVector = {};
 
   for (int i = 0; i < length; i++)
     newVector.push_back(array[i]);

@@ -226,3 +226,16 @@ TEST(MatrixTests, ShouldPrintMatrixAsString)
 
   EXPECT_EQ(correctString, actualString);
 }
+
+TEST(MatrixTests, ColumnShouldBeIterable)
+{
+  std::vector<double> correctValues = {1, 2, 3, 4};
+  Column column = Column(correctValues);
+
+  std::vector<double> valuesFromIteration = {};
+  
+  for (auto value : column)
+    valuesFromIteration.push_back(value);
+
+  
+}
