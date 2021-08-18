@@ -253,3 +253,19 @@ TEST(VectorTests, ShouldCalculateAngleBetweenTwoVectors)
 
   EXPECT_DOUBLE_EQ(angleInRadians, correctAngle);
 }
+
+TEST(VectorTests, ShouldIterateThroughVector)
+{
+  std::vector<double> correctValues = {1, 2, 3};
+  Vector vector = Vector(correctValues);
+
+  std::vector<double> valuesFromIteration = {};
+
+  for (auto value : vector)
+    valuesFromIteration.push_back(value);
+
+  int numberOfValues = correctValues.size();
+
+  for (int i = 0; i < numberOfValues; i++)
+    EXPECT_DOUBLE_EQ(correctValues[i], valuesFromIteration[i]);
+}
