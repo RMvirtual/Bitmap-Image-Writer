@@ -9,7 +9,7 @@ TEST(GraphicsTests, ShouldCreateBitmap)
   BitmapInfoHeader bmpInfoHeader;
   Pixel pixel;
 
-  char* outputPath = "C:\\Users\\rmvir\\Desktop\\scc300-Win3D\\test\\output\\test_bitmap.bmp";
+  char* outputPath = "C:\\Users\\rmvir\\Desktop\\scc300-Win3D\\test\\output\\myImage.bmp";
   ofstream fout(outputPath, ios::binary);
 
   fout.write((char *) &bmpHeader, 14);
