@@ -104,7 +104,7 @@ vector<double> Matrix::getColumn(int index)
   vector<double> columnValues = {};
   Column column = (*this)[index];
 
-  for (auto value : column.toVector())
+  for (auto value : column)
     columnValues.push_back(value);
 
   return columnValues;

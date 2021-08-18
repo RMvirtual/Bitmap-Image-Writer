@@ -15,7 +15,6 @@ namespace Maths
     Column(std::vector<double> vector);
     double operator[](int index);
     int size();
-    vector<double> toVector();
 
     std::vector<double>::iterator begin();
     std::vector<double>::iterator end();
