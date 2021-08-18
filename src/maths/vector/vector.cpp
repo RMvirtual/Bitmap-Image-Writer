@@ -26,17 +26,6 @@ Vector::Vector(double a, double b, double c, double d)
 Vector::Vector(double numberOfValues...)
 {
   getNumberOfParameters(1.1, 1.2, 1.3, 1.4, 1.5, 1.6);
-  std::va_list args;
-  va_start(args, numberOfValues);
-
-  for (int i = 0; i < numberOfValues; ++i) {
-    double value = va_arg(args, double);
-    cout << "Got arg" + to_string(i) + ": " + to_string(value) << endl;
-  }
-
-  va_end(args);
-
-  this->values = {numberOfValues};
 }
 
 Vector::Vector(std::vector<double> myVector)

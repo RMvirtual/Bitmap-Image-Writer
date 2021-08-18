@@ -44,9 +44,9 @@ namespace Maths
       int size = sizeof... (Ts);
       cout << size << endl;
 
-      std::vector<double> vector = {args...};
+      this->values = {args...};
 
-      for (double value : vector)
+      for (double value : this->values)
         cout << to_string(value) << endl;
     }
 
