@@ -366,6 +366,7 @@ string Matrix::formatStlVectorAsMatrixRow(vector<double> vector)
 
     rowOfValues += stringFormatter.str() + " ";
   }
+  
   rowOfValues += "|";
 
   return rowOfValues;
