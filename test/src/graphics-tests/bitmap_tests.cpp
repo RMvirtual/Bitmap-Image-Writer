@@ -10,6 +10,8 @@ TEST(GraphicsTests, ShouldCreateBitmap)
   Pixel pixel;
 
   std::cout << bmpHeader.bitmapSignatureBytes[0] << endl;
+
+  char* outputPath = 
   ofstream fout("test_bitmap.bmp", ios::binary);
 
   fout.write((char *) &bmpHeader, 14);
