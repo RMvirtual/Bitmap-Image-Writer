@@ -17,51 +17,11 @@ namespace Maths
     int size();
     vector<double> toVector();
 
-    class iterator : public std::iterator<
-      std::input_iterator_tag,
-      double,
-      double,
-      const double *,
-      double
-    >
-    {
-      long num = FROM;
+    std::vector<double>::iterator begin() {return values.begin();}
+    std::vector<double>::iterator end() {return values.end();}
 
-      public:
-        explicit iterator(long _num = 0) : num(_num)
-        {
-
-        };
-
-        iterator& operator++() {
-          num = TO >= FROM ? num + 1 : num -1; return *this;
-        }
-
-        iterator operator ++ (int) {
-          iterator retval = *this; ++(*this); return retval;
-        }
-
-        bool operator == (iterator other) const {
-          return num == other.num;
-        }
-
-        bool operator != (iterator other) const {
-          return !(*this == other);
-        }
-
-        reference operator * () const {
-          return num;
-        }
-    };
-
-    iterator begin() {
-      return iterator(FROM);
-    }
-    
-    iterator end() {
-      return iterator(
-        TO >= FROM ? TO + 1 : TO - 1;)
-    }
+    std::vector<double>::const_iterator begin() const {return values.begin();}
+    std::vector<double>::const_iterator end() const {return values.end();}
 
   private:
     vector<double> values;

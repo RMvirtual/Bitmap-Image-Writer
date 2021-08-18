@@ -6,7 +6,7 @@ using namespace Maths;
 
 Column::Column(std::vector<double> vector)
 {
-  this->vector = vector;
+  this->values = vector;
 }
 
 double Column::operator [] (int rowIndex)
@@ -17,17 +17,17 @@ double Column::operator [] (int rowIndex)
   if (outOfRange)
     throw out_of_range("Row index is out of range.");
 
-  double value = (*this).vector[rowIndex];
+  double value = (*this).values[rowIndex];
 
   return value;
 }
 
 int Column::size()
 {
-  return this->vector.size();
+  return this->values.size();
 }
 
 std::vector<double> Column::toVector()
 {
-    return this->vector;
+    return this->values;
 }

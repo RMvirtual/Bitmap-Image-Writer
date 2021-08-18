@@ -237,5 +237,6 @@ TEST(MatrixTests, ColumnShouldBeIterable)
   for (auto value : column)
     valuesFromIteration.push_back(value);
 
-  
+  for (int i = 0; i < correctValues.size(); i++)
+    EXPECT_DOUBLE_EQ(correctValues[i], valuesFromIteration[i]);
 }
