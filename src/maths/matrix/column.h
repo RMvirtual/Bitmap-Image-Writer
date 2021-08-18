@@ -17,11 +17,10 @@ namespace Maths
     int size();
     vector<double> toVector();
 
-    std::vector<double>::iterator begin() {return values.begin();}
-    std::vector<double>::iterator end() {return values.end();}
-
-    std::vector<double>::const_iterator begin() const {return values.begin();}
-    std::vector<double>::const_iterator end() const {return values.end();}
+    std::vector<double>::iterator begin();
+    std::vector<double>::iterator end();
+    std::vector<double>::const_iterator begin() const;
+    std::vector<double>::const_iterator end() const;
 
   private:
     vector<double> values;

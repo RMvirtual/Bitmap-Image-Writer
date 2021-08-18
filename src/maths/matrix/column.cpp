@@ -31,3 +31,19 @@ std::vector<double> Column::toVector()
 {
     return this->values;
 }
+
+std::vector<double>::iterator Column::begin() {
+  return this->values.begin();
+}
+
+std::vector<double>::iterator Column::end() {
+  return this->values.end();
+}
+
+std::vector<double>::const_iterator Column::begin() const {
+  return this->values.begin();
+}
+
+std::vector<double>::const_iterator Column::end() const {
+  return this->values.end();
+}
