@@ -1,0 +1,41 @@
+load("@rules_cc//cc:defs.bzl", "cc_test")
+
+cc_test(
+    name = "vector_tests",
+    size = "small",
+    srcs = ["vector_tests.cpp"],
+    deps = [
+        "@com_google_googletest//:gtest_main",
+        "//src/maths:vectors"
+    ],
+)
+
+cc_test(
+    name = "binary_ops_tests",
+    size = "small",
+    srcs = ["binary_ops_tests.cpp"],
+    deps = [
+        "@com_google_googletest//:gtest_main",
+        "//src/maths:binary_ops"
+    ],
+)
+
+cc_test(
+    name = "matrix_tests",
+    size = "small",
+    srcs = ["matrix_tests.cpp"],
+    deps = [
+        "@com_google_googletest//:gtest_main",
+        "//src/maths:matrices"
+    ],
+)
+
+cc_test(
+    name = "bitmap_tests",
+    size = "small",
+    srcs = ["bitmap_tests.cpp"],
+    deps = [
+        "@com_google_googletest//:gtest_main",
+        "//src/graphics:graphics"
+    ],
+)
