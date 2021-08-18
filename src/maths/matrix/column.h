@@ -9,7 +9,6 @@ using namespace std;
 
 namespace Maths
 {
-  template <long FROM, long TO>
   class Column
   {
   public:
@@ -29,7 +28,11 @@ namespace Maths
       long num = FROM;
 
       public:
-        explicit iterator(long _num = 0) : num(_num) {};
+        explicit iterator(long _num = 0) : num(_num)
+        {
+
+        };
+
         iterator& operator++() {
           num = TO >= FROM ? num + 1 : num -1; return *this;
         }
@@ -51,11 +54,17 @@ namespace Maths
         }
     };
 
-    iterator begin() {return iterator(FROM);}
-    iterator end() {return iterator(TO >= FROM? TO + 1 : TO-1;)}    
+    iterator begin() {
+      return iterator(FROM);
+    }
+    
+    iterator end() {
+      return iterator(
+        TO >= FROM ? TO + 1 : TO - 1;)
+    }
 
   private:
-    vector<double> vector;
+    vector<double> values;
   };
 }
 
