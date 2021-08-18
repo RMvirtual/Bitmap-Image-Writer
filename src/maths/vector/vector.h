@@ -36,6 +36,12 @@ namespace Maths
     // Creates a new vector using the parameters as vector points.
     Vector(double values...);
 
+    template<typename... T>
+    void f(const T&... t)
+    {
+      constexpr auto size = sizeof... (T);
+      cout<<size << endl;
+    }
     /**
      * Returns the scalar/dot product from this vector with another
      * vector.

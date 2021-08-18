@@ -3,6 +3,7 @@
 #include <iostream>
 #include <cmath>
 #include <string>
+#include <cstdarg>
 
 using namespace Maths;
 using namespace std;
@@ -22,9 +23,20 @@ Vector::Vector(double a, double b, double c, double d)
   this->values = {a, b, c, d};
 }
 
-Vector::Vector(double values...)
+Vector::Vector(double numberOfValues...)
 {
-  this->values = {values};
+  f(1, 2, 3, 4, 5, 6);
+  std::va_list args;
+  va_start(args, numberOfValues);
+
+  for (int i = 0; i < numberOfValues; ++i) {
+    double value = va_arg(args, double);
+    cout << "Got arg" + to_string(i) + ": " + to_string(value) << endl;
+  }
+
+  va_end(args);
+
+  this->values = {numberOfValues};
 }
 
 Vector::Vector(std::vector<double> myVector)

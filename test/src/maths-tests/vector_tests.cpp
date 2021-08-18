@@ -62,14 +62,13 @@ TEST(VectorTests, ShouldCreateVectorWithVariadicArgument)
 
 TEST(VectorTests, LengthShouldBeTwo)
 {
-  Vector vector = Vector(1, 2);
+  Vector vector = {1, 2};
   EXPECT_EQ(2, vector.length());
 }
 
 TEST(VectorTests, LengthShouldBeFive)
 {
-  double array[] {1, 2, 3, 4, 5};
-  Vector vector = Vector(array, 5);
+  Vector vector(1, 2, 3, 4, 5);
   EXPECT_EQ(5, vector.length());
 }
 
