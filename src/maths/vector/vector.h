@@ -39,7 +39,7 @@ namespace Maths
     Vector(double values...);
 
     template<typename... Ts>
-    void getNumberOfParameters(Ts... args)
+    void assignValues(Ts... args)
     {     
       int size = sizeof... (Ts);
       cout << size << endl;

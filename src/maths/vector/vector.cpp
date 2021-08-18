@@ -25,7 +25,7 @@ Vector::Vector(double a, double b, double c, double d)
 
 Vector::Vector(double numberOfValues...)
 {
-  getNumberOfParameters(1.1, 1.2, 1.3, 1.4, 1.5, 1.6);
+  assignValues(1.1, 1.2, 1.3, 1.4, 1.5, 1.6);
 }
 
 Vector::Vector(std::vector<double> myVector)
