@@ -4,25 +4,22 @@
 
 using namespace Maths;
 
-TEST(VectorTests, ShouldCreateVectorWithOneAndTwo)
+TEST(VectorTests, ShouldCreateVectorWithTwoElements)
 {
   Vector vector = Vector(1, 2);
-  EXPECT_EQ(1, vector.get(0));
-  EXPECT_EQ(2, vector.get(1));
+  EXPECT_EQ(1, vector[0]);
+  EXPECT_EQ(2, vector[1]);
 }
 
-TEST(VectorTests, ShouldCreateVectorWithFourFiveAndSix)
+TEST(VectorTests, ShouldCreateVectorWithThreeElements)
 {
   Vector vector = Vector(4, 5, 6);
   EXPECT_EQ(4, vector.get(0));
   EXPECT_EQ(5, vector.get(1));
   EXPECT_EQ(6, vector.get(2));
-
-  // std::cout << "\n6: " + std::to_string(6);
-  // std::cout << "\nV: " + std::to_string(vector.get(2));
 }
 
-TEST(VectorTests, ShouldCreateVectorWithOneTwoThreeAndFour)
+TEST(VectorTests, ShouldCreateVectorWithFourElements)
 {
   Vector vector = Vector(1, 2, 3, 4);
   EXPECT_EQ(1, vector.get(0));
@@ -113,7 +110,7 @@ TEST(VectorTests, ShouldAddTwoVectorsWithPositiveValues)
     EXPECT_DOUBLE_EQ(correctValues[elementNo], newVector[elementNo]);
 }
 
-TEST(VectorTests, ShouldAddTwoVectorsWithMixedValues)
+TEST(VectorTests, ShouldAddTwoVectorsWithMixedSignValues)
 {
   Vector lhsVector = Vector(-1, -5, 15, 6);
   Vector rhsVector = Vector(5, 6, -7, 8);
@@ -138,7 +135,7 @@ TEST(VectorTests, ShouldSubtractTwoVectorsWithPositiveValues)
     EXPECT_DOUBLE_EQ(correctValues[elementNo], newVector[elementNo]);
 }
 
-TEST(VectorTests, ShouldSubtractTwoVectorsWithMixedValues)
+TEST(VectorTests, ShouldSubtractTwoVectorsWithMixedSignValues)
 {
   Vector lhsVector = Vector(-1, -5, 15, 6);
   Vector rhsVector = Vector(5, 6, -7, 8);
@@ -192,6 +189,7 @@ TEST(VectorTests, DotProductOfVectorsWithPositiveValues)
 
   double dotProduct = lhsVector * rhsVector;
   double correctDotProduct = 70;
+
   EXPECT_DOUBLE_EQ(correctDotProduct, dotProduct);
 }
 
@@ -202,6 +200,7 @@ TEST(VectorTests, DotProductOfVectorsWithMixedValues)
 
   double dotProduct = lhsVector * rhsVector;
   double correctDotProduct = -32;
+  
   EXPECT_DOUBLE_EQ(correctDotProduct, dotProduct);
 }
 
@@ -229,17 +228,16 @@ TEST(VectorTests, ShouldCalculateVectorProduct)
   Vector vector1 = Vector(2, 3, 4);
   Vector vector2 = Vector(5, 6, 7);
 
-  Vector vector3 = vector1.vectorProduct(vector2);
-  double correctPoints[] = {-3, 6, -3};
+  Vector vectorProduct = vector1.vectorProduct(vector2);
+  double correctValues[] = {-3, 6, -3};
 
-  int noOfPoints = vector3.length();
+  int noOfValues = vectorProduct.length();
 
-  for (int i = 0; i < noOfPoints; i++) {
-    double vectorPoint = vector3[i];
-    double correctPoint = correctPoints[i];
+  for (int i = 0; i < noOfValues; i++) {
+    double actualValue = vectorProduct[i];
+    double correctValue = correctValues[i];
 
-    cout << "Vector point: " + to_string(vectorPoint) << endl;
-    EXPECT_DOUBLE_EQ(vectorPoint, correctPoint);
+    EXPECT_DOUBLE_EQ(actualValue, correctValue);
   }
 }
 

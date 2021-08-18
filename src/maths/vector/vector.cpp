@@ -32,16 +32,16 @@ Vector::Vector(double array[], int noOfArrayElements)
   this->createVectorFromArray(array, noOfArrayElements);
 }
 
-void Vector::createVectorFromArray(double* array, int length)
+void Vector::createVectorFromArray(double *array, int length)
 {
-  std::vector<double> vectorFromArray =
-    this->createStlVectorFromArray(array, length);
-  
+  std::vector<double> vectorFromArray = this->createStlVectorFromArray(
+      array, length);
+
   this->values = vectorFromArray;
 }
 
 std::vector<double> Vector::createStlVectorFromArray(
-  double* array, int length)
+    double *array, int length)
 {
   std::vector<double> newVector = {};
 
@@ -67,8 +67,8 @@ double Vector::dotProduct(Vector vector)
 Vector Vector::vectorProduct(Vector vector)
 {
   std::vector<double> coordinates =
-    this->calculateCrossProductCoordinates(vector);
-  
+      this->calculateCrossProductCoordinates(vector);
+
   Vector crossProductVector = Vector(coordinates);
 
   return crossProductVector;
@@ -78,7 +78,7 @@ std::vector<double> Vector::calculateCrossProductCoordinates(Vector vector)
 {
   Vector self = *this;
   int x = 0, y = 1, z = 2;
-  
+
   double crossX = (self[y] * vector[z]) - (self[z] * vector[y]);
   double crossY = (self[z] * vector[x]) - (self[x] * vector[z]);
   double crossZ = (self[x] * vector[y]) - (self[y] * vector[x]);
@@ -95,7 +95,7 @@ double Vector::angle(Vector vector)
   double magnitudeOf2ndVector = vector.magnitude();
 
   double angle = acos(
-    dotProduct / (magnitudeOf1stVector * magnitudeOf2ndVector));
+      dotProduct / (magnitudeOf1stVector * magnitudeOf2ndVector));
 
   return angle;
 }
@@ -117,10 +117,10 @@ double Vector::magnitude()
 
 double Vector::squareNumberAndAddToSum(double number, double sum)
 {
-    double numberSquared = pow(number, 2);
-    sum += numberSquared;
+  double numberSquared = pow(number, 2);
+  sum += numberSquared;
 
-    return sum;
+  return sum;
 }
 
 double Vector::get(int index)
@@ -128,36 +128,36 @@ double Vector::get(int index)
   return this->values[index];
 }
 
-double Vector::operator [] (int index)
+double Vector::operator[](int index)
 {
   return this->get(index);
 }
 
-Vector Vector::operator + (Vector rhsVector)
+Vector Vector::operator+(Vector rhsVector)
 {
-  Addition* additionOp = new Addition();
+  Addition *additionOp = new Addition();
 
   Vector newVector = this->performBinaryOperationWithVector(
-    rhsVector, additionOp);
+      rhsVector, additionOp);
 
   delete additionOp;
 
   return newVector;
 }
 
-Vector Vector::operator - (Vector rhsVector)
+Vector Vector::operator-(Vector rhsVector)
 {
-  Subtraction* subtractionOp = new Subtraction();
+  Subtraction *subtractionOp = new Subtraction();
 
   Vector newVector = this->performBinaryOperationWithVector(
-    rhsVector, subtractionOp);
+      rhsVector, subtractionOp);
 
   delete subtractionOp;
 
   return newVector;
 }
 
-double Vector::operator * (Vector rhsVector)
+double Vector::operator*(Vector rhsVector)
 {
   return this->dotProduct(rhsVector);
 }
@@ -169,19 +169,19 @@ std::vector<double> Vector::multiplyElements(Vector vector)
   std::vector<double> newElements;
 
   for (int elementNo = 0; elementNo < numOfElements; elementNo++) {
-      double lhsElement = this->values[elementNo];
-      double rhsElement = vector[elementNo];
+    double lhsElement = this->values[elementNo];
+    double rhsElement = vector[elementNo];
 
-      double multipliedResult = lhsElement * rhsElement;
-      newElements.push_back(multipliedResult);
+    double multipliedResult = lhsElement * rhsElement;
+    newElements.push_back(multipliedResult);
   }
 
   return newElements;
 }
 
-Vector Vector::operator * (double scalar)
+Vector Vector::operator*(double scalar)
 {
-  Multiplication* multiplicationOp = new Multiplication();
+  Multiplication *multiplicationOp = new Multiplication();
 
   Vector newVector = this->performBinaryOperationWithScalar(
       scalar, multiplicationOp);
@@ -191,26 +191,26 @@ Vector Vector::operator * (double scalar)
   return newVector;
 }
 
-Vector Vector::operator / (double scalar)
+Vector Vector::operator/(double scalar)
 {
-  Division* divisionOp = new Division();
+  Division *divisionOp = new Division();
 
   Vector newVector = this->performBinaryOperationWithScalar(
-    scalar, divisionOp);
+      scalar, divisionOp);
 
   delete divisionOp;
 
   return newVector;
 }
 
-Vector operator * (double scalarLHS, Vector vectorRHS)
+Vector operator*(double scalarLHS, Vector vectorRHS)
 {
   Vector newVector = vectorRHS * scalarLHS;
 
   return newVector;
 }
 
-ostream& operator << (ostream &strm, Vector vector)
+ostream &operator<<(ostream &strm, Vector vector)
 {
   string string = vector.toString();
 
@@ -264,12 +264,12 @@ string Vector::getAllPointsAsString()
 }
 
 string Vector::getPointAsString(int pointIndex)
-{ 
+{
   string pointIndexAsString = to_string(pointIndex);
   string pointValue = to_string(this->get(pointIndex));
-  
+
   string pointRepresentation = pointIndexAsString + ": " + pointValue;
-  
+
   return pointRepresentation;
 }
 
