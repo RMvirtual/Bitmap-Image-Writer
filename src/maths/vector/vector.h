@@ -39,8 +39,8 @@ namespace Maths
     template<typename... T>
     void f(const T&... t)
     {
-      constexpr auto size = sizeof... (T);
-      cout<<size << endl;
+      int size = sizeof... (T);
+      cout << size << endl;
     }
     /**
      * Returns the scalar/dot product from this vector with another
