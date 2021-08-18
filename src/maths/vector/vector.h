@@ -37,11 +37,12 @@ namespace Maths
     Vector(double values...);
 
     template<typename... T>
-    void f(const T&... t)
+    void getNumberOfParameters(const T&... t)
     {
-      int size = sizeof... (T);
+      int size = sizeof... (double);
       cout << size << endl;
     }
+
     /**
      * Returns the scalar/dot product from this vector with another
      * vector.
