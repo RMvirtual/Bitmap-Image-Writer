@@ -35,19 +35,6 @@ namespace Maths
     // Creates a new vector using the STL vector as a parameter.
     Vector(vector<double> stlVector);
 
-    template<typename... Arguments>
-    Vector(Arguments... values)
-    {
-      int size = sizeof... (values);
-
-      this->values = {(double) values...};
-
-      /*
-      for (double value : this->values)
-        cout << to_string(value) << endl;
-      */
-    }
-
     /**
      * Returns the scalar/dot product from this vector with another
      * vector.

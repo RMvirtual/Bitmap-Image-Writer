@@ -48,18 +48,6 @@ TEST(VectorTests, ShouldCreateVectorWithStlVector)
   EXPECT_EQ(3, vector[2]);
 }
 
-TEST(VectorTests, ShouldCreateVectorWithVariadicArgument)
-{ 
-  Vector vector = {1, 2, 3, 4, 5, 6, 7};
-
-  int vectorSize = vector.length();
-  
-  for (int i = 0; i < vectorSize; i++) {
-    double correctValue = i + 1;
-    EXPECT_EQ(correctValue, vector[i]);
-  }
-}
-
 TEST(VectorTests, LengthShouldBeTwo)
 {
   Vector vector = {1, 2};
@@ -68,7 +56,7 @@ TEST(VectorTests, LengthShouldBeTwo)
 
 TEST(VectorTests, LengthShouldBeFive)
 {
-  Vector vector(1, 2, 3, 4, 5);
+  Vector vector({1, 2, 3, 4, 5});
   EXPECT_EQ(5, vector.length());
 }
 
