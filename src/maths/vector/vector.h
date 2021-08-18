@@ -33,6 +33,9 @@ namespace Maths
     // Creates a new vector using the STL vector as a parameter.
     Vector(vector<double> stlVector);
 
+    // Creates a new vector using the parameters as vector points.
+    Vector(double values...);
+
     /**
      * Returns the scalar/dot product from this vector with another
      * vector.

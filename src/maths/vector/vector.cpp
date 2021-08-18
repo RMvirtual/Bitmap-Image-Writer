@@ -22,6 +22,11 @@ Vector::Vector(double a, double b, double c, double d)
   this->values = {a, b, c, d};
 }
 
+Vector::Vector(double values...)
+{
+  this->values = {values};
+}
+
 Vector::Vector(std::vector<double> myVector)
 {
   this->values = myVector;
