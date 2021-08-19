@@ -20,8 +20,7 @@ TEST(GraphicsTests, ShouldCreateBitmap)
   char* bytes = bmpHeader.toBytes();
   cout << "Printing bytes: " << *bytes << endl;
 
-  fout.write(bmpHeader.toBytes(), 1);
-  fout.write((char *) &bmpHeaderStruct.bitmapSignatureBytes[1], 1);
+  fout.write(bmpHeader.toBytes(), 2);
   fout.write((char *) &bmpHeaderStruct.sizeOfBitmapFile, 4);
   fout.write((char *) &bmpHeaderStruct.reservedBytes, 4);
   fout.write((char *) &bmpHeaderStruct.pixelDataOffset, 4);

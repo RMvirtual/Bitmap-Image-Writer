@@ -5,11 +5,13 @@
 
 char* BitmapHeader::toBytes()
 {
-    char* headerPacket = (char*) malloc(1);
+    int sizeInBytes = 2;
+    char* headerPacket = (char*) malloc(sizeInBytes);
     
     strcpy(headerPacket, &this->bitmapSignatureBytes[0]);
+    strcat(headerPacket, &this->bitmapSignatureBytes[1]);
 
-    std::cout << "Printing " << *headerPacket << endl;
+    std::cout << "Printing in to bytes " << headerPacket[1] << endl;
 
     return headerPacket;
 }
