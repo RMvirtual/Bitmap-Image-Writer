@@ -18,13 +18,13 @@ TEST(GraphicsTests, ShouldCreateBitmap)
   ofstream fout(outputPath, ios::binary);
 
   char* bytes = bmpHeader.toBytes();
+  cout << "Printing bytes: " << *bytes << endl;
 
-  fout.write((char *) &bmpHeaderStruct.bitmapSignatureBytes[0], 1);
+  fout.write((char *) bmpHeader.toBytes(), 1);
   fout.write((char *) &bmpHeaderStruct.bitmapSignatureBytes[1], 1);
   fout.write((char *) &bmpHeaderStruct.sizeOfBitmapFile, 4);
   fout.write((char *) &bmpHeaderStruct.reservedBytes, 4);
   fout.write((char *) &bmpHeaderStruct.pixelDataOffset, 4);
-
   fout.write((char *) &bmpInfoHeader, 40);
 
   size_t numberOfPixels = bmpInfoHeader.widthInPixels * bmpInfoHeader.heightInPixels;
@@ -33,4 +33,6 @@ TEST(GraphicsTests, ShouldCreateBitmap)
     fout.write((char *) &pixel, 3);
   
   fout.close();
+
+
 }
