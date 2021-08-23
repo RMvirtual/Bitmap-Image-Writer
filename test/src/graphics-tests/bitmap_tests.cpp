@@ -21,12 +21,12 @@ TEST(GraphicsTests, ShouldCreateBitmap)
   cout << bmpInfoHeader.toBytes() << endl;
 
   fout.write(bmpFileHeader.toBytes(), 14);
-  fout.write(bmpInfoHeader.toBytes(), 4);
+  fout.write(bmpInfoHeader.toBytes(), 12);
 
   // fout.write((char *) &bmpInfoHeaderStruct, 40);
   // fout.write((char *) &bmpInfoHeaderStruct.sizeOfThisHeader, 4);
-  fout.write((char *) &bmpInfoHeaderStruct.widthInPixels, 4);
-  fout.write((char *) &bmpInfoHeaderStruct.heightInPixels, 4);
+  // fout.write((char *) &bmpInfoHeaderStruct.widthInPixels, 4);
+  // fout.write((char *) &bmpInfoHeaderStruct.heightInPixels, 4);
   fout.write((char *) &bmpInfoHeaderStruct.numberOfColorPlanes, 2);
   fout.write((char *) &bmpInfoHeaderStruct.colorDepth, 2);
   fout.write((char *) &bmpInfoHeaderStruct.compressionMethod, 4);
