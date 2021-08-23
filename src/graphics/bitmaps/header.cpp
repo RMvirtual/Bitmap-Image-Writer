@@ -11,7 +11,7 @@ int BitmapHeader::getSizeOfHeaderInBytes()
   return this->sizeOfHeaderInBytes;
 }
 
-void BitmapHeader::insertFourByteValuesToCharArray(
+void BitmapHeader::insertFourByteValueToCharArray(
   char* array, int from, int to, uint32_t value)
 {
   array[from] = value;
