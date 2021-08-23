@@ -1,11 +1,8 @@
 #include <iostream>
 #include <string>
+#include <sstream>
+#include <vector>
 #include "bitmap.h"
-#include <string.h>
-#include <string>
- 
-#include <cstdint>
-#include <fstream>
 
 using namespace std;
 
@@ -32,17 +29,21 @@ char* BitmapFileHeader::toBytes()
 
 char* BitmapFileHeader::toBytesFromString()
 {
-  string packet = "";
+  vector<unsigned char> intToBytes = {};
+  
+  intToBytes.push_back(bitmapSignatureBytes[0]);
+  intToBytes.push_back(bitmapSignatureBytes[1]);
+  intToBytes.push_back(sizeOfBitmapFile);
+  intToBytes.push_back(this->reservedBytes);
+  intToBytes.push_back(this->pixelDataOffset);
 
-  packet += this->bitmapSignatureBytes[0];
-  packet += this->bitmapSignatureBytes[1];
-  packet += this->sizeOfBitmapFile;
-  packet += this->reservedBytes;
-  packet += this->pixelDataOffset;
+  char * myChars = new char[14];
 
-  cout << "Packet is now: " << packet << endl;
+  myChars[0] = this->bitmapSignatureBytes[0];
+  myChars[1] = this->bitmapSignatureBytes[1];
+  myChars[2] = this->sizeOfBitmapFile;
 
-  return strdup(packet.c_str());
+  return myChars;
 }
 
 int BitmapFileHeader::getSizeOfHeaderInBytes()
