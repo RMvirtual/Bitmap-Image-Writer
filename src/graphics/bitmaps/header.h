@@ -14,6 +14,9 @@ protected:
   void insertFourByteValueToCharArray(
     char* array, int startingIndex, uint32_t value);
 
+  void insertTwoByteValueToCharArray(
+    char* array, int startingIndex, uint16_t value);
+  
 private:
   int sizeOfHeaderInBytes;
 };

@@ -19,3 +19,10 @@ void BitmapHeader::insertFourByteValueToCharArray(
   array[startingIndex + 2] = value >> 16;
   array[startingIndex + 3] = value >> 24;
 }
+
+void BitmapHeader::insertTwoByteValueToCharArray(
+  char* array, int startingIndex, uint16_t value)
+{
+  array[startingIndex] = value;
+  array[startingIndex + 1] = value >> 8;
+}

@@ -30,12 +30,9 @@ char* BitmapInfoHeader::toBytes()
   this->insertFourByteValueToCharArray(myChars, 0, this->sizeOfThisHeader);
   this->insertFourByteValueToCharArray(myChars, 4, this->widthInPixels);
   this->insertFourByteValueToCharArray(myChars, 8, this->heightInPixels);
-  
-  myChars[12] = this->numberOfColorPlanes;
-  myChars[13] = this->numberOfColorPlanes >> 8;
 
-  myChars[14] = this->colorDepth;
-  myChars[15] = this->colorDepth >> 8;
+  this->insertTwoByteValueToCharArray(myChars, 12, this->numberOfColorPlanes);
+  this->insertTwoByteValueToCharArray(myChars, 14, this->colorDepth);
 
   this->insertFourByteValueToCharArray(myChars, 16, this->compressionMethod);
   this->insertFourByteValueToCharArray(myChars, 20, this->rawBitmapDataSize);
