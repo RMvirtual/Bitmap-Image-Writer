@@ -1,4 +1,8 @@
 #include "src/graphics/bitmaps/info_header.h"
+#include <unordered_map>
+
+#include <iostream>
+#include <cstdint>
 
 BitmapInfoHeader::BitmapInfoHeader(int sizeOfPixelArray, int widthInPixels, int heightInPixels)
 : BitmapHeader {sizeOfPixelArray}
@@ -27,19 +31,28 @@ char* BitmapInfoHeader::toBytes()
     myChars[i] = 0;
   }
 
-  this->insertFourByteValueToCharArray(myChars, 0, this->sizeOfThisHeader);
-  this->insertFourByteValueToCharArray(myChars, 4, this->widthInPixels);
-  this->insertFourByteValueToCharArray(myChars, 8, this->heightInPixels);
+  std::unordered_map<int, int32_t> fourByteValues = {
+    {0, this->sizeOfThisHeader},
+    {4, this->widthInPixels},
+    {8, this->heightInPixels},
+    {16, this->compressionMethod},
+    {20, this->rawBitmapDataSize},
+    {24, this->horizontalResolutionPixelPerMeter},
+    {28, this->verticalResolutionPixelsPerMeter},
+    {32, this->colorTableEntries},
+    {36, this->importantColors}
+  };
 
-  this->insertTwoByteValueToCharArray(myChars, 12, this->numberOfColorPlanes);
-  this->insertTwoByteValueToCharArray(myChars, 14, this->colorDepth);
+  for (std::pair<int, uint32_t> keyAndValue : fourByteValues)
+    this->insertFourByteValueToCharArray(myChars, keyAndValue.first, keyAndValue.second);
+  
+  std::unordered_map<int, int16_t> twoByteValues = {
+    {12, this->numberOfColorPlanes},
+    {14, this->colorDepth}
+  };
 
-  this->insertFourByteValueToCharArray(myChars, 16, this->compressionMethod);
-  this->insertFourByteValueToCharArray(myChars, 20, this->rawBitmapDataSize);
-  this->insertFourByteValueToCharArray(myChars, 24, this->horizontalResolutionPixelPerMeter);
-  this->insertFourByteValueToCharArray(myChars, 28, this->verticalResolutionPixelsPerMeter);
-  this->insertFourByteValueToCharArray(myChars, 32, this->colorTableEntries);
-  this->insertFourByteValueToCharArray(myChars, 36, this->importantColors);
+  for (std::pair<int, uint32_t> keyAndValue : twoByteValues)
+    this->insertTwoByteValueToCharArray(myChars, keyAndValue.first, keyAndValue.second);
 
   return myChars;
 }
