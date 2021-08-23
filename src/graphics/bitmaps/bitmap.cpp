@@ -2,9 +2,29 @@
 #include <string>
 #include <sstream>
 #include <array>
-#include "bitmap.h"
+#include "src/graphics/bitmaps/bitmap.h"
 
 using namespace std;
+
+BitmapHeader::BitmapHeader(int sizeOfHeaderInBytes)
+{
+  this->sizeOfHeaderInBytes = sizeOfHeaderInBytes;
+}
+
+int BitmapHeader::getSizeOfHeaderInBytes()
+{
+  return this->sizeOfHeaderInBytes;
+}
+
+BitmapFileHeader::BitmapFileHeader(int sizeOfPixelArray)
+: BitmapHeader {sizeOfPixelArray}
+{
+  this->bitmapSignatureBytes[0] = 'B';
+  this->bitmapSignatureBytes[1] = 'M';
+  this->sizeOfBitmapFile = 54 + 786432;
+  this->reservedBytes = 0;
+  this->pixelDataOffset = 54;
+}
 
 char* BitmapFileHeader::toBytes()
 {
@@ -28,11 +48,6 @@ char* BitmapFileHeader::toBytes()
   myChars[10] = this->pixelDataOffset;
 
   return myChars;
-}
-
-int BitmapFileHeader::getSizeOfHeaderInBytes()
-{
-  return 14;
 }
 
 char* BitmapInfoHeader::toBytes()

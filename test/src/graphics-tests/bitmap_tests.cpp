@@ -1,17 +1,19 @@
 #include <gtest/gtest.h>
 #include <iostream>
 #include <string>
-#include "src/graphics/bitmap.h"
+#include "src/graphics/bitmaps/bitmap.h"
 
 TEST(GraphicsTests, ShouldCreateBitmap)
 {
-  BitmapFileHeader bmpFileHeader;
+  BitmapFileHeader bmpFileHeader {14};
   BitmapHeaderStruct bmpHeaderStruct;
   BitmapInfoHeader bmpInfoHeader;
   BitmapInfoHeaderStruct bmpInfoHeaderStruct;
   Pixel pixel;
 
-  char* outputPath = "C:\\Users\\rmvir\\Desktop\\scc300-Win3D\\test\\output\\myImage.bmp";
+  char* outputPath = 
+    "C:\\Users\\rmvir\\Desktop\\scc300-Win3D\\test\\output\\myImage.bmp";
+
   ofstream fout(outputPath, ios::binary);
 
   fout.write(bmpFileHeader.toBytes(), bmpFileHeader.getSizeOfHeaderInBytes());
@@ -23,4 +25,11 @@ TEST(GraphicsTests, ShouldCreateBitmap)
     fout.write((char *) &pixel, 3);
   
   fout.close();
+
+  short int word = 0x0001;
+  char *byte = (char *) &word;
+  
+  string string1 = byte[0] ? "Little" : "big";
+  cout << string1 << endl;
+
 }

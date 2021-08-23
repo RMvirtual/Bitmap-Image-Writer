@@ -3,17 +3,30 @@
 
 using namespace std;
 
-// 14 bytes total.
-class BitmapFileHeader
+class BitmapHeader
 {
 public:
-  char bitmapSignatureBytes[2] = {'B', 'M'};
-  uint32_t sizeOfBitmapFile = 54 + 786432;
-  uint32_t reservedBytes = 0;
-  uint32_t pixelDataOffset = 54;
-
-  char* toBytes();
+  BitmapHeader(int sizeOfHeaderInBytes);
+  virtual char* toBytes() = 0;
   int getSizeOfHeaderInBytes();
+
+private:
+  int sizeOfHeaderInBytes;
+};
+
+// 14 bytes total.
+class BitmapFileHeader
+: public BitmapHeader
+{
+public:
+  BitmapFileHeader(int sizeOfPixelArray);
+  char* toBytes();
+
+private:
+  char bitmapSignatureBytes[2];
+  uint32_t sizeOfBitmapFile;
+  uint32_t reservedBytes;
+  uint32_t pixelDataOffset;
 };
 
 class BitmapInfoHeader
