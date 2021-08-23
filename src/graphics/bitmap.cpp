@@ -8,11 +8,12 @@ using namespace std;
 
 char* BitmapFileHeader::toBytes()
 {
-  char * myChars = new char[14];
+  int headerSize = this->getSizeOfHeaderInBytes();
+  char * myChars = new char[headerSize];
 
   /* Initialise empty values in array instead of random uninitialised
   values. */
-  for (int i = 0; i < 14; i++)
+  for (int i = 0; i < headerSize; i++)
     myChars[i] = 0;
 
   myChars[0] = this->bitmapSignatureBytes[0];
@@ -25,8 +26,6 @@ char* BitmapFileHeader::toBytes()
   
   myChars[6] = this->reservedBytes;
   myChars[10] = this->pixelDataOffset;
-
-  cout << myChars << endl;
 
   return myChars;
 }
@@ -98,7 +97,6 @@ char* BitmapInfoHeader::toBytes()
   myChars[38] = this->colorTableEntries >> 16;
   myChars[39] = this->colorTableEntries >> 24;
 
-  cout << (void *) myChars[4] << endl;
   return myChars;
 }
 

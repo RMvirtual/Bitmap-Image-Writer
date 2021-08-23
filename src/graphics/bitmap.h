@@ -20,7 +20,7 @@ class BitmapInfoHeader
 {
 public:
   uint32_t sizeOfThisHeader = 40;
-  int32_t widthInPixels = 512; 
+  int32_t widthInPixels = 500; 
   int32_t heightInPixels = 512; 
   uint16_t numberOfColorPlanes = 1; 
   uint16_t colorDepth = 24; 
