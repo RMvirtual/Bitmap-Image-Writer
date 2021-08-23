@@ -31,37 +31,18 @@ int BitmapFileHeader::getSizeOfHeaderInBytes()
 
 char* BitmapInfoHeader::toBytes()
 {
-  std::array<unsigned char, sizeof(uint32_t) * 10 + sizeof(uint16_t)> bytes;
-
-  const char * begin = reinterpret_cast<const char *> (std::addressof(this->sizeOfThisHeader));
-
-  int sizeOfPacket = this->getSizeOfHeaderInBytes();
-  char * myChars = new char[sizeOfPacket];
+  int size = 4;
+  char * myChars = new char[size];
 
   /* Initialise empty values in array instead of random uninitialised
   values. */
-  for (int i = 0; i < sizeOfPacket; i++) {
+  for (int i = 0; i < size; i++) {
     myChars[i] = 0;
   }
 
   cout << myChars << endl;
-
   myChars[0] = this->sizeOfThisHeader;
   cout << myChars << endl;
-
-  myChars[4] = this->widthInPixels;
-  cout << myChars << endl;
-
-  myChars[8] = this->heightInPixels;
-  myChars[12] = this->numberOfColorPlanes;
-  myChars[14] = this->colorDepth;
-  myChars[16] = this->compressionMethod;
-  myChars[20] = this->rawBitmapDataSize;
-  myChars[24] = this->horizontalResolutionPixelPerMeter;
-  myChars[28] = this->verticalResolutionPixelsPerMeter;
-  myChars[32] = this->colorTableEntries;
-  myChars[36] = this->importantColors;
-
 
   return myChars;
 }
