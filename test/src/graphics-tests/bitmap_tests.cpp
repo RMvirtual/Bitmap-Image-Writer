@@ -1,7 +1,11 @@
+#include <fstream>
 #include <gtest/gtest.h>
 #include <iostream>
 #include <string>
+
 #include "src/graphics/bitmaps/bitmap.h"
+#include "src/graphics/bitmaps/file_header.h"
+#include "src/graphics/bitmaps/info_header.h"
 
 TEST(GraphicsTests, ShouldCreateBitmap)
 {
@@ -14,7 +18,7 @@ TEST(GraphicsTests, ShouldCreateBitmap)
   char* outputPath = 
     "C:\\Users\\rmvir\\Desktop\\scc300-Win3D\\test\\output\\myImage.bmp";
 
-  ofstream fout(outputPath, ios::binary);
+  std::ofstream fout(outputPath, std::ios::binary);
 
   fout.write(bmpFileHeader.toBytes(), bmpFileHeader.getSizeOfHeaderInBytes());
   fout.write(bmpInfoHeader.toBytes(), bmpInfoHeader.getSizeOfHeaderInBytes());
@@ -29,7 +33,6 @@ TEST(GraphicsTests, ShouldCreateBitmap)
   short int word = 0x0001;
   char *byte = (char *) &word;
   
-  string string1 = byte[0] ? "Little" : "big";
-  cout << string1 << endl;
-
+  std::string string1 = byte[0] ? "Little" : "big";
+  std::cout << string1 << std::endl;
 }

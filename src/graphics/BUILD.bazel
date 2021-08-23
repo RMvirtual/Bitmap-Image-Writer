@@ -2,7 +2,17 @@
 
 cc_library(
     name = "graphics",
-    srcs = ["bitmaps/bitmap.cpp"],
-    hdrs = ["bitmaps/bitmap.h"],
+    srcs = [
+        "bitmaps/bitmap.cpp",
+        "bitmaps/header.cpp",
+        "bitmaps/file_header.cpp",
+        "bitmaps/info_header.cpp"
+    ],
+    hdrs = [
+        "bitmaps/bitmap.h",
+        "bitmaps/header.h",
+        "bitmaps/file_header.h",
+        "bitmaps/info_header.h"
+    ],
     visibility = ["//visibility:public"]
 )
