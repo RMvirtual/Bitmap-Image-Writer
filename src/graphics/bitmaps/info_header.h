@@ -2,6 +2,7 @@
 #define BITMAP_INFO_HEADER_H
 
 #include <cstdint>
+#include <unordered_map>
 #include "src/graphics/bitmaps/header.h"
 
 class BitmapInfoHeader : public BitmapHeader
@@ -25,6 +26,9 @@ private:
   int32_t verticalResolutionPixelsPerMeter; 
   uint32_t colorTableEntries;
   uint32_t importantColors;
+
+  std::unordered_map<int, uint16_t> getListOfTwoByteHeaderValues();
+  std::unordered_map<int, uint32_t> getListOfFourByteHeaderValues();
 };
 
 #endif

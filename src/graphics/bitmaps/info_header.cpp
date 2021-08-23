@@ -33,7 +33,36 @@ char* BitmapInfoHeader::toBytes()
     myChars[i] = 0;
   }
 
-  unordered_map<int, int32_t> fourByteValues = {
+  unordered_map<int, uint32_t> fourByteValues = this->getListOfFourByteHeaderValues();
+  unordered_map<int, uint16_t> twoByteValues = this->getListOfTwoByteHeaderValues();
+
+  for (pair<int, uint32_t> keyAndValue : fourByteValues)
+    this->insertFourByteValueToCharArray(myChars, keyAndValue.first, keyAndValue.second);
+  
+  for (pair<int, uint32_t> keyAndValue : twoByteValues)
+    this->insertTwoByteValueToCharArray(myChars, keyAndValue.first, keyAndValue.second);
+
+  return myChars;
+}
+
+int BitmapInfoHeader::getSizeOfHeaderInBytes()
+{
+  return 40;
+}
+
+unordered_map<int, uint16_t> BitmapInfoHeader::getListOfTwoByteHeaderValues()
+{
+  unordered_map<int, uint16_t> twoByteValues = {
+    {12, this->numberOfColorPlanes},
+    {14, this->colorDepth}
+  };
+
+  return twoByteValues;
+}
+
+unordered_map<int, uint32_t> BitmapInfoHeader::getListOfFourByteHeaderValues()
+{
+  unordered_map<int, uint32_t> fourByteValues = {
     {0, this->sizeOfThisHeader},
     {4, this->widthInPixels},
     {8, this->heightInPixels},
@@ -45,21 +74,5 @@ char* BitmapInfoHeader::toBytes()
     {36, this->importantColors}
   };
 
-  for (pair<int, uint32_t> keyAndValue : fourByteValues)
-    this->insertFourByteValueToCharArray(myChars, keyAndValue.first, keyAndValue.second);
-  
-  unordered_map<int, int16_t> twoByteValues = {
-    {12, this->numberOfColorPlanes},
-    {14, this->colorDepth}
-  };
-
-  for (pair<int, uint32_t> keyAndValue : twoByteValues)
-    this->insertTwoByteValueToCharArray(myChars, keyAndValue.first, keyAndValue.second);
-
-  return myChars;
-}
-
-int BitmapInfoHeader::getSizeOfHeaderInBytes()
-{
-  return 40;
+  return fourByteValues;
 }
