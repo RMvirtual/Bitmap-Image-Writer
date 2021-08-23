@@ -9,9 +9,11 @@
 
 TEST(GraphicsTests, ShouldCreateBitmap)
 {
+  int widthInPixels = 512, heightInPixels = 512;
+
   BitmapFileHeader bmpFileHeader {14};
   BitmapHeaderStruct bmpHeaderStruct;
-  BitmapInfoHeader bmpInfoHeader {40};
+  BitmapInfoHeader bmpInfoHeader {40, widthInPixels, heightInPixels};
   BitmapInfoHeaderStruct bmpInfoHeaderStruct;
   Pixel pixel;
 
@@ -23,7 +25,7 @@ TEST(GraphicsTests, ShouldCreateBitmap)
   fout.write(bmpFileHeader.toBytes(), bmpFileHeader.getSizeOfHeaderInBytes());
   fout.write(bmpInfoHeader.toBytes(), bmpInfoHeader.getSizeOfHeaderInBytes());
 
-  size_t numberOfPixels = bmpInfoHeader.widthInPixels * bmpInfoHeader.heightInPixels;
+  size_t numberOfPixels = widthInPixels * heightInPixels;
   
   for (int i = 0; i < numberOfPixels; i++)
     fout.write((char *) &pixel, 3);

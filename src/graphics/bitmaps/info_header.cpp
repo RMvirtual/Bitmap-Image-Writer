@@ -1,11 +1,11 @@
 #include "src/graphics/bitmaps/info_header.h"
 
-BitmapInfoHeader::BitmapInfoHeader(int sizeOfPixelArray)
+BitmapInfoHeader::BitmapInfoHeader(int sizeOfPixelArray, int widthInPixels, int heightInPixels)
 : BitmapHeader {sizeOfPixelArray}
 {
   this->sizeOfThisHeader = 40;
-  this->widthInPixels = 500;
-  this->heightInPixels = 512;
+  this->widthInPixels = widthInPixels;
+  this->heightInPixels = heightInPixels;
   this->numberOfColorPlanes = 1; 
   this->colorDepth = 24; 
   this->compressionMethod = 0;  

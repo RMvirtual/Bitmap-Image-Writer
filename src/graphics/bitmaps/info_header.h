@@ -7,16 +7,16 @@
 class BitmapInfoHeader : public BitmapHeader
 {
 public:
-  BitmapInfoHeader(int sizeOfPixelArray);
+  BitmapInfoHeader(
+    int sizeOfPixelArray, int widthInPixels, int heightInPixels);
+  
   char* toBytes();
   int getSizeOfHeaderInBytes();
 
-  int32_t widthInPixels; 
-  int32_t heightInPixels; 
-
 private:
   uint32_t sizeOfThisHeader;
-
+  int32_t widthInPixels;
+  int32_t heightInPixels;
   uint16_t numberOfColorPlanes; 
   uint16_t colorDepth; 
   uint32_t compressionMethod;  
