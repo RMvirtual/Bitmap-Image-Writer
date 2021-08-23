@@ -13,7 +13,7 @@ BitmapFileHeader::BitmapFileHeader(int sizeOfPixelArray)
 char* BitmapFileHeader::toBytes()
 {
   int headerSize = this->getSizeOfHeaderInBytes();
-  char * myChars = new char[headerSize];
+  char* myChars = new char[headerSize];
 
   /* Initialise empty values in array instead of random uninitialised
   values. */
