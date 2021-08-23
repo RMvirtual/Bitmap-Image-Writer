@@ -17,12 +17,12 @@ TEST(GraphicsTests, ShouldCreateBitmap)
   char* outputPath = "C:\\Users\\rmvir\\Desktop\\scc300-Win3D\\test\\output\\myImage.bmp";
   ofstream fout(outputPath, ios::binary);
 
-  fout.write(bmpFileHeader.toBytesFromString(), 6);
+  fout.write(bmpFileHeader.toBytes(), 14);
   // fout.write((char *) &bmpHeaderStruct.bitmapSignatureBytes[0], 1);
   // fout.write((char *) &bmpHeaderStruct.bitmapSignatureBytes[1], 1);  
   // fout.write((char *) &bmpHeaderStruct.sizeOfBitmapFile, 4);
-  fout.write((char *) &bmpHeaderStruct.reservedBytes, 4);
-  fout.write((char *) &bmpHeaderStruct.pixelDataOffset, 4);
+  // fout.write((char *) &bmpHeaderStruct.reservedBytes, 4);
+  // fout.write((char *) &bmpHeaderStruct.pixelDataOffset, 4);
 
   fout.write((char *) &bmpInfoHeader, 40);
 

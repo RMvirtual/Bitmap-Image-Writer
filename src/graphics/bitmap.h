@@ -13,9 +13,7 @@ public:
   uint32_t pixelDataOffset = 54;
 
   char* toBytes();
-  char* toBytesFromString();
   int getSizeOfHeaderInBytes();
-
 };
 
 // 14 bytes total.
