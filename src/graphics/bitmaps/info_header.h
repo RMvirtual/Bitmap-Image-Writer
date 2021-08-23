@@ -12,7 +12,6 @@ public:
     int sizeOfPixelArray, int widthInPixels, int heightInPixels);
   
   char* toBytes();
-  int getSizeOfHeaderInBytes();
 
 private:
   uint32_t sizeOfThisHeader;
