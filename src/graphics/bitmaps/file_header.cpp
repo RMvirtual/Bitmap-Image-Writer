@@ -12,13 +12,7 @@ BitmapFileHeader::BitmapFileHeader(int sizeOfPixelArray)
 
 char* BitmapFileHeader::toBytes()
 {
-  int headerSize = this->getSizeOfHeaderInBytes();
-  char* myChars = new char[headerSize];
-
-  /* Initialise empty values in array instead of random uninitialised
-  values. */
-  for (int i = 0; i < headerSize; i++)
-    myChars[i] = 0;
+  char* myChars = this->getEmptyByteArray();
 
   myChars[0] = this->bitmapSignatureBytes[0];
   myChars[1] = this->bitmapSignatureBytes[1];
