@@ -23,7 +23,7 @@ char* BitmapFileHeader::toBytes()
   myChars[0] = this->bitmapSignatureBytes[0];
   myChars[1] = this->bitmapSignatureBytes[1];
 
-  this->insertFourByteValueToCharArray(myChars, 2, 5, this->sizeOfBitmapFile);
+  this->insertFourByteValueToCharArray(myChars, 2, this->sizeOfBitmapFile);
 
   myChars[6] = this->reservedBytes;
   myChars[10] = this->pixelDataOffset;

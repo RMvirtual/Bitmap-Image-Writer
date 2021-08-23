@@ -12,7 +12,7 @@ public:
 
 protected:
   void insertFourByteValueToCharArray(
-    char* array, int from, int to, uint32_t value);
+    char* array, int startingIndex, uint32_t value);
 
 private:
   int sizeOfHeaderInBytes;

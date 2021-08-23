@@ -12,10 +12,10 @@ int BitmapHeader::getSizeOfHeaderInBytes()
 }
 
 void BitmapHeader::insertFourByteValueToCharArray(
-  char* array, int from, int to, uint32_t value)
+  char* array, int startingIndex, uint32_t value)
 {
-  array[from] = value;
-  array[from + 1] = value >> 8;
-  array[from + 2] = value >> 16;
-  array[from + 3] = value >> 24;
+  array[startingIndex] = value;
+  array[startingIndex + 1] = value >> 8;
+  array[startingIndex + 2] = value >> 16;
+  array[startingIndex + 3] = value >> 24;
 }
