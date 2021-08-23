@@ -2,18 +2,47 @@
 #include <string>
 #include "bitmap.h"
 #include <string.h>
+#include <string>
+ 
+#include <cstdint>
+#include <fstream>
 
-char* BitmapHeader::toBytes()
+using namespace std;
+
+char* BitmapFileHeader::toBytes()
 {
-    int sizeInBytes = 10;
-    char* headerPacket = (char*) malloc(sizeInBytes);
-    
-    strcpy(headerPacket, &this->bitmapSignatureBytes[0]);
-    strcat(headerPacket, &this->bitmapSignatureBytes[1]);
-    strcat(headerPacket, (char *) &this->sizeOfBitmapFile);
-    strcat(headerPacket, (char *) &this->reservedBytes);
+  int sizeInBytes = this->getSizeOfHeaderInBytes();
+  char fileHeader[] = {
+    0,0, // signature
+    0,0,0,0, // image file size in bytes
+    0,0,0,0, // reserved
+    0,0,0,0 // start of pixel array
+  };
 
-    std::cout << "Printing in to bytes " << sizeof(headerPacket) << endl;
+  cout << sizeof(fileHeader) << endl;
 
-    return headerPacket;
+  fileHeader[0] = (char) this->bitmapSignatureBytes[0];
+  fileHeader[1] = (char) this->bitmapSignatureBytes[1];
+  fileHeader[2] = (char) this->sizeOfBitmapFile;
+  fileHeader[3] = (char) this->reservedBytes;
+  fileHeader[4] = (char) this->pixelDataOffset;
+
+  return fileHeader;
+}
+
+char* BitmapFileHeader::toBytesFromString()
+{
+  char* bytes = (char*) malloc(1);
+  string packet = "lol";
+
+  packet += this->bitmapSignatureBytes[0];
+
+  cout << packet << endl;
+
+  return strdup(packet.c_str());
+}
+
+int BitmapFileHeader::getSizeOfHeaderInBytes()
+{
+  return 14;
 }

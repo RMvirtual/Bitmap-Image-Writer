@@ -4,7 +4,7 @@
 using namespace std;
 
 // 14 bytes total.
-class BitmapHeader
+class BitmapFileHeader
 {
 public:
   char bitmapSignatureBytes[2] = {'B', 'M'};
@@ -13,6 +13,9 @@ public:
   uint32_t pixelDataOffset = 54;
 
   char* toBytes();
+  char* toBytesFromString();
+  int getSizeOfHeaderInBytes();
+
 };
 
 // 14 bytes total.

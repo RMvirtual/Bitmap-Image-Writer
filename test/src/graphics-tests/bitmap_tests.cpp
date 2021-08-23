@@ -5,23 +5,25 @@
 
 TEST(GraphicsTests, ShouldCreateBitmap)
 {
-  BitmapHeader bmpHeader;
-  BitmapHeaderStruct bmpHeaderStruct;
+  BitmapHeaderStruct bmpHeader;
   BitmapInfoHeader bmpInfoHeader;
   Pixel pixel;
 
-  cout << "Size of bmpHeader: " + to_string(sizeof(bmpHeaderStruct)) << endl;
+  cout << "Size of bmpHeader: " + to_string(sizeof(bmpHeader)) << endl;
   cout << "Size of bmpInfoHeader: " + to_string(sizeof(bmpInfoHeader)) << endl;
   cout << "Size of pixel: " + to_string(sizeof(pixel)) << endl;
 
   char* outputPath = "C:\\Users\\rmvir\\Desktop\\scc300-Win3D\\test\\output\\myImage.bmp";
   ofstream fout(outputPath, ios::binary);
 
-  char* bytes = bmpHeader.toBytes();
-  cout << "Printing bytes: " << *bytes << endl;
+  cout << &bmpHeader << endl;
 
-  fout.write(bytes, 10);
-  fout.write((char *) &bmpHeaderStruct.pixelDataOffset, 4);
+  fout.write((char *) &bmpHeader.bitmapSignatureBytes[0], 1);
+  fout.write((char *) &bmpHeader.bitmapSignatureBytes[1], 1);
+  fout.write((char *) &bmpHeader.sizeOfBitmapFile, 4);
+  fout.write((char *) &bmpHeader.reservedBytes, 4);
+  fout.write((char *) &bmpHeader.pixelDataOffset, 4);
+
   fout.write((char *) &bmpInfoHeader, 40);
 
   size_t numberOfPixels = bmpInfoHeader.widthInPixels * bmpInfoHeader.heightInPixels;
@@ -30,6 +32,4 @@ TEST(GraphicsTests, ShouldCreateBitmap)
     fout.write((char *) &pixel, 3);
   
   fout.close();
-
-
 }
