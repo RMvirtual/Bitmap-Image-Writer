@@ -1,5 +1,21 @@
 #include "src/graphics/bitmaps/info_header.h"
 
+BitmapInfoHeader::BitmapInfoHeader(int sizeOfPixelArray)
+: BitmapHeader {sizeOfPixelArray}
+{
+  this->sizeOfThisHeader = 40;
+  this->widthInPixels = 500;
+  this->heightInPixels = 512;
+  this->numberOfColorPlanes = 1; 
+  this->colorDepth = 24; 
+  this->compressionMethod = 0;  
+  this->rawBitmapDataSize = 0; 
+  this->horizontalResolutionPixelPerMeter = 3780; 
+  this->verticalResolutionPixelsPerMeter = 3780; 
+  this->colorTableEntries = 0; 
+  this->importantColors = 0; 
+}
+
 char* BitmapInfoHeader::toBytes()
 {
   int size = this->getSizeOfHeaderInBytes();

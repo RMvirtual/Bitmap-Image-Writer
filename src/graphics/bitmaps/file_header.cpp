@@ -25,12 +25,6 @@ char* BitmapFileHeader::toBytes()
 
   this->insertFourByteValueToCharArray(myChars, 2, 5, this->sizeOfBitmapFile);
 
-  /*
-  myChars[2] = this->sizeOfBitmapFile;
-  myChars[3] = this->sizeOfBitmapFile >> 8;
-  myChars[4] = this->sizeOfBitmapFile >> 16;
-  myChars[5] = this->sizeOfBitmapFile >> 24;
-  */
   myChars[6] = this->reservedBytes;
   myChars[10] = this->pixelDataOffset;
 

@@ -11,7 +11,8 @@ public:
   int getSizeOfHeaderInBytes();
 
 protected:
-  void insertFourByteValueToCharArray(char* array, int from, int to, uint32_t value);
+  void insertFourByteValueToCharArray(
+    char* array, int from, int to, uint32_t value);
 
 private:
   int sizeOfHeaderInBytes;

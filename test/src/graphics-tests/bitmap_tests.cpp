@@ -11,7 +11,7 @@ TEST(GraphicsTests, ShouldCreateBitmap)
 {
   BitmapFileHeader bmpFileHeader {14};
   BitmapHeaderStruct bmpHeaderStruct;
-  BitmapInfoHeader bmpInfoHeader;
+  BitmapInfoHeader bmpInfoHeader {40};
   BitmapInfoHeaderStruct bmpInfoHeaderStruct;
   Pixel pixel;
 

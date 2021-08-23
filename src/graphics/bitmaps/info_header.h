@@ -2,24 +2,29 @@
 #define BITMAP_INFO_HEADER_H
 
 #include <cstdint>
+#include "src/graphics/bitmaps/header.h"
 
-class BitmapInfoHeader
+class BitmapInfoHeader : public BitmapHeader
 {
 public:
-  uint32_t sizeOfThisHeader = 40;
-  int32_t widthInPixels = 500; 
-  int32_t heightInPixels = 512; 
-  uint16_t numberOfColorPlanes = 1; 
-  uint16_t colorDepth = 24; 
-  uint32_t compressionMethod = 0;  
-  uint32_t rawBitmapDataSize = 0; 
-  int32_t horizontalResolutionPixelPerMeter = 3780; 
-  int32_t verticalResolutionPixelsPerMeter = 3780; 
-  uint32_t colorTableEntries = 0; 
-  uint32_t importantColors = 0; 
-
+  BitmapInfoHeader(int sizeOfPixelArray);
   char* toBytes();
   int getSizeOfHeaderInBytes();
+
+  int32_t widthInPixels; 
+  int32_t heightInPixels; 
+
+private:
+  uint32_t sizeOfThisHeader;
+
+  uint16_t numberOfColorPlanes; 
+  uint16_t colorDepth; 
+  uint32_t compressionMethod;  
+  uint32_t rawBitmapDataSize; 
+  int32_t horizontalResolutionPixelPerMeter; 
+  int32_t verticalResolutionPixelsPerMeter; 
+  uint32_t colorTableEntries;
+  uint32_t importantColors;
 };
 
 #endif
