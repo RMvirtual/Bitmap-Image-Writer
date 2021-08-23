@@ -32,12 +32,12 @@ char* BitmapFileHeader::toBytes()
 
 char* BitmapFileHeader::toBytesFromString()
 {
-  char* bytes = (char*) malloc(1);
-  string packet = "lol";
+  string packet = "";
 
   packet += this->bitmapSignatureBytes[0];
+  packet += this->bitmapSignatureBytes[1];
 
-  cout << packet << endl;
+  cout << "Packet is now: " << packet << endl;
 
   return strdup(packet.c_str());
 }
