@@ -43,11 +43,6 @@ char* BitmapInfoHeader::toBytes()
   return byteArray;
 }
 
-int BitmapInfoHeader::getSizeOfHeaderInBytes()
-{
-  return 40;
-}
-
 unordered_map<int, uint16_t> BitmapInfoHeader::getListOfTwoByteHeaderValues()
 {
   unordered_map<int, uint16_t> twoByteValues = {
