@@ -4,6 +4,8 @@
 #include <iostream>
 #include <cstdint>
 
+using namespace std;
+
 BitmapInfoHeader::BitmapInfoHeader(int sizeOfPixelArray, int widthInPixels, int heightInPixels)
 : BitmapHeader {sizeOfPixelArray}
 {
@@ -31,7 +33,7 @@ char* BitmapInfoHeader::toBytes()
     myChars[i] = 0;
   }
 
-  std::unordered_map<int, int32_t> fourByteValues = {
+  unordered_map<int, int32_t> fourByteValues = {
     {0, this->sizeOfThisHeader},
     {4, this->widthInPixels},
     {8, this->heightInPixels},
@@ -43,15 +45,15 @@ char* BitmapInfoHeader::toBytes()
     {36, this->importantColors}
   };
 
-  for (std::pair<int, uint32_t> keyAndValue : fourByteValues)
+  for (pair<int, uint32_t> keyAndValue : fourByteValues)
     this->insertFourByteValueToCharArray(myChars, keyAndValue.first, keyAndValue.second);
   
-  std::unordered_map<int, int16_t> twoByteValues = {
+  unordered_map<int, int16_t> twoByteValues = {
     {12, this->numberOfColorPlanes},
     {14, this->colorDepth}
   };
 
-  for (std::pair<int, uint32_t> keyAndValue : twoByteValues)
+  for (pair<int, uint32_t> keyAndValue : twoByteValues)
     this->insertTwoByteValueToCharArray(myChars, keyAndValue.first, keyAndValue.second);
 
   return myChars;
