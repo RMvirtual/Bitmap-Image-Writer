@@ -19,9 +19,9 @@ TEST(GraphicsTests, ShouldCreateBitmap)
 
   cout << &bmpHeaderStruct << endl;
 
-  fout.write(bmpFileHeader.toBytesFromString(), 2);
-  fout.write((char *) &bmpHeaderStruct.sizeOfBitmapFile, 4);
-  fout.write((char *) &bmpHeaderStruct.reservedBytes, 4);
+  fout.write(bmpFileHeader.toBytesFromString(), 10);
+  // fout.write((char *) &bmpHeaderStruct.sizeOfBitmapFile, 4);
+  // fout.write((char *) &bmpHeaderStruct.reservedBytes, 4);
   fout.write((char *) &bmpHeaderStruct.pixelDataOffset, 4);
 
   fout.write((char *) &bmpInfoHeader, 40);

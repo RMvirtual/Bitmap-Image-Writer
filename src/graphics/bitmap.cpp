@@ -36,6 +36,9 @@ char* BitmapFileHeader::toBytesFromString()
 
   packet += this->bitmapSignatureBytes[0];
   packet += this->bitmapSignatureBytes[1];
+  packet += this->sizeOfBitmapFile;
+  packet += this->reservedBytes;
+  packet += this->pixelDataOffset;
 
   cout << "Packet is now: " << packet << endl;
 
