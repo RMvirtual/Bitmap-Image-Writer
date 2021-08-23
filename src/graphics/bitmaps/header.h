@@ -17,6 +17,8 @@ protected:
   void insertTwoByteValueToCharArray(
     char* array, int startingIndex, uint16_t value);
   
+  char* getEmptyByteArray();
+
 private:
   int sizeOfHeaderInBytes;
 };

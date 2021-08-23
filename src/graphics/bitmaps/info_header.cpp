@@ -24,25 +24,23 @@ BitmapInfoHeader::BitmapInfoHeader(int sizeOfPixelArray, int widthInPixels, int 
 
 char* BitmapInfoHeader::toBytes()
 {
-  int size = this->getSizeOfHeaderInBytes();
-  char* myChars = new char[size];
+  char* byteArray = this->getEmptyByteArray();
 
-  /* Initialise empty values in array instead of random uninitialised
-  values. */
-  for (int i = 0; i < size; i++) {
-    myChars[i] = 0;
-  }
-
-  unordered_map<int, uint32_t> fourByteValues = this->getListOfFourByteHeaderValues();
-  unordered_map<int, uint16_t> twoByteValues = this->getListOfTwoByteHeaderValues();
+  unordered_map<int, uint32_t> fourByteValues = 
+    this->getListOfFourByteHeaderValues();
+  
+  unordered_map<int, uint16_t> twoByteValues = 
+    this->getListOfTwoByteHeaderValues();
 
   for (pair<int, uint32_t> keyAndValue : fourByteValues)
-    this->insertFourByteValueToCharArray(myChars, keyAndValue.first, keyAndValue.second);
+    this->insertFourByteValueToCharArray(
+      byteArray, keyAndValue.first, keyAndValue.second);
   
   for (pair<int, uint32_t> keyAndValue : twoByteValues)
-    this->insertTwoByteValueToCharArray(myChars, keyAndValue.first, keyAndValue.second);
+    this->insertTwoByteValueToCharArray(
+      byteArray, keyAndValue.first, keyAndValue.second);
 
-  return myChars;
+  return byteArray;
 }
 
 int BitmapInfoHeader::getSizeOfHeaderInBytes()

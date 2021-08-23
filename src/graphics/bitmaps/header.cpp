@@ -26,3 +26,17 @@ void BitmapHeader::insertTwoByteValueToCharArray(
   array[startingIndex] = value;
   array[startingIndex + 1] = value >> 8;
 }
+
+char* BitmapHeader::getEmptyByteArray()
+{
+  int size = this->getSizeOfHeaderInBytes();
+  char* byteArray = new char[size];
+
+  /* Initialise empty values in array instead of random uninitialised
+  values. */
+  for (int i = 0; i < size; i++)
+    byteArray[i] = 0;
+
+  return byteArray;
+
+}
