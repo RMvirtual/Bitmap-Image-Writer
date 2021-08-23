@@ -8,6 +8,7 @@ TEST(GraphicsTests, ShouldCreateBitmap)
   BitmapFileHeader bmpFileHeader;
   BitmapHeaderStruct bmpHeaderStruct;
   BitmapInfoHeader bmpInfoHeader;
+  BitmapInfoHeaderStruct bmpInfoHeaderStruct;
   Pixel pixel;
 
   cout << "Size of bmpHeader: " + to_string(sizeof(bmpHeaderStruct)) << endl;
@@ -17,14 +18,24 @@ TEST(GraphicsTests, ShouldCreateBitmap)
   char* outputPath = "C:\\Users\\rmvir\\Desktop\\scc300-Win3D\\test\\output\\myImage.bmp";
   ofstream fout(outputPath, ios::binary);
 
-  fout.write(bmpFileHeader.toBytes(), 14);
-  // fout.write((char *) &bmpHeaderStruct.bitmapSignatureBytes[0], 1);
-  // fout.write((char *) &bmpHeaderStruct.bitmapSignatureBytes[1], 1);  
-  // fout.write((char *) &bmpHeaderStruct.sizeOfBitmapFile, 4);
-  // fout.write((char *) &bmpHeaderStruct.reservedBytes, 4);
-  // fout.write((char *) &bmpHeaderStruct.pixelDataOffset, 4);
+  cout << bmpInfoHeader.toBytes() << endl;
 
-  fout.write((char *) &bmpInfoHeader, 40);
+  fout.write(bmpFileHeader.toBytes(), 14);
+  // fout.write(bmpInfoHeader.toBytes(), 40);
+
+  // fout.write((char *) &bmpInfoHeaderStruct, 40);
+  fout.write((char *) &bmpInfoHeaderStruct.sizeOfThisHeader, 4);
+  fout.write((char *) &bmpInfoHeaderStruct.widthInPixels, 4);
+  fout.write((char *) &bmpInfoHeaderStruct.heightInPixels, 4);
+  fout.write((char *) &bmpInfoHeaderStruct.numberOfColorPlanes, 2);
+  fout.write((char *) &bmpInfoHeaderStruct.colorDepth, 2);
+  fout.write((char *) &bmpInfoHeaderStruct.compressionMethod, 4);
+  fout.write((char *) &bmpInfoHeaderStruct.rawBitmapDataSize, 4);
+  fout.write((char *) &bmpInfoHeaderStruct.horizontalResolutionPixelPerMeter, 4);
+  fout.write((char *) &bmpInfoHeaderStruct.verticalResolutionPixelsPerMeter, 4);
+  fout.write((char *) &bmpInfoHeaderStruct.colorTableEntries, 4);
+  fout.write((char *) &bmpInfoHeaderStruct.importantColors, 4);
+  
 
   size_t numberOfPixels = bmpInfoHeader.widthInPixels * bmpInfoHeader.heightInPixels;
   
