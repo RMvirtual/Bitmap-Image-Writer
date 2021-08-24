@@ -38,5 +38,4 @@ char* BitmapHeader::getEmptyByteArray()
     byteArray[i] = 0;
 
   return byteArray;
-
 }

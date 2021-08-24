@@ -7,6 +7,7 @@ class ByteArrayBuilder
 {
 public:
   ByteArrayBuilder();
+  ~ByteArrayBuilder();
   void addTwoByteValueToCharArray(uint16_t value);
   void addFourByteValueToCharArray(uint32_t value);
   void overwriteTwoByteValueInCharArray(int startingIndex, uint16_t value);
