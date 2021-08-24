@@ -20,15 +20,14 @@ void ByteArrayBuilder::addValue(uint8_t value)
 
   if (this->numberOfBytes == 0) {
     this->insertValue(0, value);
-    this->numberOfBytes += sizeInBytesToAdd;
   }
 
   else {
     this->expandArray(sizeInBytesToAdd);
     this->insertValue(this->numberOfBytes, value);
-
-    this->numberOfBytes += sizeInBytesToAdd;
   }
+
+  this->numberOfBytes += sizeInBytesToAdd;
 }
 
 void ByteArrayBuilder::addValue(uint16_t value)
@@ -39,16 +38,14 @@ void ByteArrayBuilder::addValue(uint16_t value)
     delete[] this->byteArray;
     this->byteArray = this->getEmptyArray(sizeInBytesToAdd);
     this->insertValue(this->numberOfBytes, value);
-    
-    this->numberOfBytes += sizeInBytesToAdd;
   }
 
   else {
     this->expandArray(sizeInBytesToAdd);
     this->insertValue(this->numberOfBytes, value);
-
-    this->numberOfBytes += sizeInBytesToAdd;
   }
+
+  this->numberOfBytes += sizeInBytesToAdd;
 }
 
 void ByteArrayBuilder::addValue(uint32_t value)
@@ -59,16 +56,14 @@ void ByteArrayBuilder::addValue(uint32_t value)
     delete[] this->byteArray;
     this->byteArray = this->getEmptyArray(sizeInBytesToAdd);
     this->insertValue(this->numberOfBytes, value);
-
-    this->numberOfBytes += sizeInBytesToAdd;
   }
 
   else {
     this->expandArray(sizeInBytesToAdd);
     this->insertValue(this->numberOfBytes, value);
-    
-    this->numberOfBytes += sizeInBytesToAdd;
   }
+
+  this->numberOfBytes += sizeInBytesToAdd;
 }
 
 void ByteArrayBuilder::insertValue(int byteIndex, uint8_t value)
