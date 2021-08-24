@@ -1,5 +1,6 @@
 #include <gtest/gtest.h>
 #include <iostream>
+#include <vector>
 
 #include "src/common/byte_array.h"
 
@@ -29,37 +30,33 @@ TEST(ByteArrayTests, ShouldAddUint32ToArray)
   correctByteArray[2] = correctValue >> 16;
   correctByteArray[3] = correctValue >> 32;
 
-  for (int i = 0; i < 4; i++) {
+  for (int i = 0; i < 4; i++)
     ASSERT_EQ(correctByteArray[i], byteArray[i]);
-  }
+
 }
 
 TEST(ByteArrayTests, ShouldAddMultipleUint32ToArray)
 {
   ByteArrayBuilder byteArrayBuilder;
-  uint32_t correctValue1 = 20;
-  uint32_t correctValue2 = 40;
-  uint32_t correctValue3 = 45318294;
+  
+  vector<uint32_t> correctValues = {20, 40, 45318294};
 
-  byteArrayBuilder.addFourByteValueToCharArray(correctValue1);
-  byteArrayBuilder.addFourByteValueToCharArray(correctValue2);
-  byteArrayBuilder.addFourByteValueToCharArray(correctValue3);
+  for (auto value : correctValues)
+    byteArrayBuilder.addFourByteValueToCharArray(value);
 
   char* byteArray = byteArrayBuilder.toArray();
 
   char* correctByteArray = new char[12];
-  correctByteArray[0] = correctValue1,
-  correctByteArray[1] = correctValue1 >> 8;
-  correctByteArray[2] = correctValue1 >> 16;
-  correctByteArray[3] = correctValue1 >> 32;
-  correctByteArray[4] = correctValue2,
-  correctByteArray[5] = correctValue2 >> 8;
-  correctByteArray[6] = correctValue2 >> 16;
-  correctByteArray[7] = correctValue2 >> 32;
-  correctByteArray[8] = correctValue3,
-  correctByteArray[9] = correctValue3 >> 8;
-  correctByteArray[10] = correctValue3 >> 16;
-  correctByteArray[11] = correctValue3 >> 32;
+  int correctByteIndex = 0;
+
+  for (auto value : correctValues) {
+    correctByteArray[correctByteIndex] = value,
+    correctByteArray[correctByteIndex + 1] = value >> 8;
+    correctByteArray[correctByteIndex + 2] = value >> 16;
+    correctByteArray[correctByteIndex + 3] = value >> 32;
+
+    correctByteIndex += 4;
+  }
 
   for (int i = 0; i < 12; i++)
     ASSERT_EQ(correctByteArray[i], byteArray[i]);
