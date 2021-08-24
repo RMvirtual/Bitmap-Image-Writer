@@ -12,9 +12,7 @@ TEST(GraphicsTests, ShouldCreateBitmap)
   int widthInPixels = 512, heightInPixels = 512;
 
   BitmapFileHeader bmpFileHeader {14};
-  BitmapHeaderStruct bmpHeaderStruct;
   BitmapInfoHeader bmpInfoHeader {40, widthInPixels, heightInPixels};
-  BitmapInfoHeaderStruct bmpInfoHeaderStruct;
   Pixel pixel;
 
   char* outputPath = 
