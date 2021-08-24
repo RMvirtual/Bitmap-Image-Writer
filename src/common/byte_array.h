@@ -43,6 +43,7 @@ private:
   char* getEmptyArray(int size);
   void copyArrayContents(char* destinationArray);
   void replaceArray(char* newArray);
+  void expandArray(int numberOfExtraBytes);
   void insertValue(int byteIndex, uint8_t value);
   void insertValue(int byteIndex, uint16_t value);
   void insertValue(int byteIndex, uint32_t value);

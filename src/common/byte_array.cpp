@@ -24,9 +24,7 @@ void ByteArrayBuilder::addValue(uint8_t value)
   }
 
   else {
-    char* newArray = this->copyArray(this->numberOfBytes + sizeInBytesToAdd);
-
-    this->replaceArray(newArray);
+    this->expandArray(sizeInBytesToAdd);
     this->insertValue(this->numberOfBytes, value);
 
     this->numberOfBytes += sizeInBytesToAdd;
@@ -46,8 +44,7 @@ void ByteArrayBuilder::addValue(uint16_t value)
   }
 
   else {
-    char* newArray = this->copyArray(this->numberOfBytes + sizeInBytesToAdd);
-    this->replaceArray(newArray);
+    this->expandArray(sizeInBytesToAdd);
     this->insertValue(this->numberOfBytes, value);
 
     this->numberOfBytes += sizeInBytesToAdd;
@@ -67,9 +64,7 @@ void ByteArrayBuilder::addValue(uint32_t value)
   }
 
   else {
-    char* newArray = this->copyArray(this->numberOfBytes + sizeInBytesToAdd);
-
-    this->replaceArray(newArray);
+    this->expandArray(sizeInBytesToAdd);
     this->insertValue(this->numberOfBytes, value);
     
     this->numberOfBytes += sizeInBytesToAdd;
@@ -99,6 +94,11 @@ void ByteArrayBuilder::insertValue(int byteIndex, uint32_t value)
   this->byteArray[byteIndex + 3] = value >> 24;
 }
 
+void ByteArrayBuilder::expandArray(int numberOfExtraBytes)
+{
+  char* newArray = this->copyArray(this->numberOfBytes + numberOfExtraBytes);
+  this->replaceArray(newArray);
+}
 
 int ByteArrayBuilder::getNumberOfBytes()
 {
@@ -137,12 +137,12 @@ void ByteArrayBuilder::copyArrayContents(char* destinationArray)
 
 char* ByteArrayBuilder::getEmptyArray(int size)
 {
-  char* newArray = new char[size];
+  char* emptyArray = new char[size];
 
   for (int byteNo = 0; byteNo < size; byteNo++)
-    newArray[byteNo] = 0;
+    emptyArray[byteNo] = 0;
 
-  return newArray;
+  return emptyArray;
 }
 
 void ByteArrayBuilder::replaceArray(char* newArray)
