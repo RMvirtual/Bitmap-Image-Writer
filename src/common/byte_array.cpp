@@ -35,8 +35,7 @@ void ByteArrayBuilder::addValue(uint16_t value)
   int sizeInBytesToAdd = sizeof(uint16_t);
 
   if (this->numberOfBytes == 0) {
-    delete[] this->byteArray;
-    this->byteArray = this->getEmptyArray(sizeInBytesToAdd);
+    this->initialiseArray(sizeInBytesToAdd);
     this->insertValue(this->numberOfBytes, value);
   }
 
@@ -53,8 +52,7 @@ void ByteArrayBuilder::addValue(uint32_t value)
   int sizeInBytesToAdd = sizeof(uint32_t);
 
   if (this->numberOfBytes == 0) {
-    delete[] this->byteArray;
-    this->byteArray = this->getEmptyArray(sizeInBytesToAdd);
+    this->initialiseArray(sizeInBytesToAdd);
     this->insertValue(this->numberOfBytes, value);
   }
 
@@ -94,6 +92,13 @@ void ByteArrayBuilder::expandArray(int numberOfExtraBytes)
   char* newArray = this->copyArray(this->numberOfBytes + numberOfExtraBytes);
   this->replaceArray(newArray);
 }
+
+void ByteArrayBuilder::initialiseArray(int initialSizeInBytes)
+{
+  delete[] this->byteArray;
+  this->byteArray = this->getEmptyArray(initialSizeInBytes);
+}
+
 
 int ByteArrayBuilder::getNumberOfBytes()
 {

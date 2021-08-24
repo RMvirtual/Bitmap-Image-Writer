@@ -40,13 +40,14 @@ private:
    */
   char* copyArray();
   char* copyArray(int sizeToExpandTo);
-  char* getEmptyArray(int size);
+  char* getEmptyArray(int sizeInBytes);
   void copyArrayContents(char* destinationArray);
   void replaceArray(char* newArray);
   void expandArray(int numberOfExtraBytes);
   void insertValue(int byteIndex, uint8_t value);
   void insertValue(int byteIndex, uint16_t value);
   void insertValue(int byteIndex, uint32_t value);
+  void initialiseArray(int initialSizeInBytes);
 
 };
 
