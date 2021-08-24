@@ -18,14 +18,8 @@ void ByteArrayBuilder::addValue(uint8_t value)
 {
   int sizeInBytesToAdd = sizeof(uint8_t);
 
-  if (this->numberOfBytes == 0) {
-    this->insertValue(0, value);
-  }
-
-  else {
-    this->expandArray(sizeInBytesToAdd);
-    this->insertValue(this->numberOfBytes, value);
-  }
+  this->validateArraySizeForAddition(value);
+  this->insertValue(this->numberOfBytes, value);
 
   this->numberOfBytes += sizeInBytesToAdd;
 }
