@@ -12,3 +12,5 @@ int ByteArrayBuilder::getNumberOfBytes()
     return this->numberOfBytes;
 }
 
+
+
