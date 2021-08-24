@@ -40,7 +40,7 @@ char* BitmapInfoHeader::toBytes()
   byteArrayBuilder.addValue(this->colorTableEntries);
   byteArrayBuilder.addValue(this->importantColors);
 
-  char* byteArray = byteArrayBuilder.toArray();
+  char* byteArray = byteArrayBuilder.toBytes();
 
   return byteArray;
 }

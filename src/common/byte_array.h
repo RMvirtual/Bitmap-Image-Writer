@@ -31,7 +31,7 @@ public:
    * Returns a character array pointer towards a copy of the bytes
    * constructed from adding to the ByteArrayBuilder class.
    */ 
-  char* toArray();
+  char* toBytes();
   
   /**
    * Returns the current number of bytes that the length of the

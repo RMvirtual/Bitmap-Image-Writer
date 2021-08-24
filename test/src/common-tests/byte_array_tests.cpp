@@ -23,7 +23,7 @@ TEST(ByteArrayTests, ShouldAddUint8ToArray)
 
   byteArrayBuilder.addValue(correctValue);
 
-  char* byteArray = byteArrayBuilder.toArray();
+  char* byteArray = byteArrayBuilder.toBytes();
   char* correctByteArray = new char[1];
   correctByteArray[0] = correctValue;
 
@@ -41,7 +41,7 @@ TEST(ByteArrayTests, ShouldAddUint16ToArray)
   for (auto value : values)
     byteArrayBuilder.addValue(value);
 
-  char* byteArray = byteArrayBuilder.toArray();
+  char* byteArray = byteArrayBuilder.toBytes();
   int numberOfBytes = byteArrayBuilder.getNumberOfBytes();
 
   char* correctByteArray = new char[2];
@@ -62,7 +62,7 @@ TEST(ByteArrayTests, ShouldAddUint32ToArray)
 
   byteArrayBuilder.addValue(correctValue);
 
-  char* byteArray = byteArrayBuilder.toArray();
+  char* byteArray = byteArrayBuilder.toBytes();
 
   char* correctByteArray = new char[4];
   correctByteArray[0] = correctValue;
@@ -86,7 +86,7 @@ TEST(ByteArrayTests, ShouldAddMultiple32bitUnsignedIntsToArray)
   for (auto value : correctValues)
     byteArrayBuilder.addValue(value);
 
-  char* byteArray = byteArrayBuilder.toArray();
+  char* byteArray = byteArrayBuilder.toBytes();
 
   int numberOfBytes = correctValues.size() * 4;
   char* correctByteArray = new char[numberOfBytes];
@@ -120,7 +120,7 @@ TEST(ByteArrayTests, ShouldAddMultipleSizeUnsignedIntsToArray)
   byteArrayBuilder.addValue(correctValue8bit);
   byteArrayBuilder.addValue(correctValue32bit);
 
-  char* byteArray = byteArrayBuilder.toArray();
+  char* byteArray = byteArrayBuilder.toBytes();
 
   int numberOfBytes = 7;
   char* correctByteArray = new char[numberOfBytes];

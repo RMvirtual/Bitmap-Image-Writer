@@ -16,7 +16,7 @@ char* Pixel::toBytes()
   byteArrayBuilder.addValue(this->green);
   byteArrayBuilder.addValue(this->red);
 
-  char* byteArray = byteArrayBuilder.toArray();
+  char* byteArray = byteArrayBuilder.toBytes();
 
   return byteArray;
 }

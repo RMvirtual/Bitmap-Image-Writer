@@ -33,10 +33,10 @@ TEST(GraphicsTests, ShouldCreateBitmap)
   size_t numberOfPixels = widthInPixels * heightInPixels;
   
   for (int i = 0; i < numberOfPixels; i++) {
-    Pixel* currentPixel = &pixel;
+    Pixel* currentPixel = &blackPixel;
     
-    if (i % 2)
-      currentPixel = &blackPixel;
+    if (i % 100)
+      currentPixel = &pixel;
 
     char* pixelBytes = (*currentPixel).toBytes();
     fout.write(pixelBytes, 3);

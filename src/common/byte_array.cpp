@@ -145,7 +145,7 @@ int ByteArrayBuilder::getNumberOfBytes()
   return this->numberOfBytes;
 }
 
-char* ByteArrayBuilder::toArray()
+char* ByteArrayBuilder::toBytes()
 {
   char* arrayCopy = this->copyArray();
 

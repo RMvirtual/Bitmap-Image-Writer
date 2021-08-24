@@ -27,7 +27,7 @@ char* BitmapFileHeader::toBytes()
   byteArrayBuilder.addValue(this->reservedBytes);
   byteArrayBuilder.addValue(this->pixelDataOffset);
 
-  char* byteArray = byteArrayBuilder.toArray();
+  char* byteArray = byteArrayBuilder.toBytes();
 
   return byteArray;
 }
