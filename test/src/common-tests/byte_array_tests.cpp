@@ -5,5 +5,10 @@
 
 TEST(ByteArrayTests, ShouldCreateByteArray)
 {
-    ASSERT_DOUBLE_EQ(1, 1);
+    ByteArrayBuilder byteArrayBuilder;
+
+    int correctNumberOfBytes = 0;
+    int actualBytes = byteArrayBuilder.getNumberOfBytes();
+
+    ASSERT_EQ(correctNumberOfBytes, actualBytes);
 }
