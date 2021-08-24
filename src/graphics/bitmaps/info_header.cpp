@@ -8,18 +8,18 @@
 using namespace std;
 
 BitmapInfoHeader::BitmapInfoHeader(
-  int sizeOfPixelArray, int widthInPixels, int heightInPixels)
-: BitmapHeader {sizeOfPixelArray}
+  int sizeOfHeaderInBytes, int widthInPixels, int heightInPixels)
+: BitmapHeader {sizeOfHeaderInBytes}
 {
-  this->sizeOfThisHeader = 40;
+  this->sizeOfThisHeader = sizeOfHeaderInBytes;
   this->widthInPixels = widthInPixels;
   this->heightInPixels = heightInPixels;
   this->numberOfColorPlanes = 1; 
   this->colorDepth = 24; 
   this->compressionMethod = 0;  
   this->rawBitmapDataSize = 0; 
-  this->horizontalResolutionPixelPerMeter = 3780; 
-  this->verticalResolutionPixelsPerMeter = 3780; 
+  this->horizontalResolutionPixelPerMeter = 0;
+  this->verticalResolutionPixelsPerMeter = 0; 
   this->colorTableEntries = 0; 
   this->importantColors = 0; 
 }

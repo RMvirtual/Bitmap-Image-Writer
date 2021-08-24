@@ -2,14 +2,18 @@
 #include "src/common/byte_array.h"
 #include <cstdint>
 
-BitmapFileHeader::BitmapFileHeader(int sizeOfPixelArray)
-: BitmapHeader {sizeOfPixelArray}
+BitmapFileHeader::BitmapFileHeader(int sizeOfHeaderInBytes, int widthInPixels, int heightInPixels)
+: BitmapHeader {sizeOfHeaderInBytes}
 {
   this->bitmapSignatureBytes[0] = 'B';
   this->bitmapSignatureBytes[1] = 'M';
-  this->sizeOfBitmapFile = 54 + 786432;
+
+  int metadataSize = 54;
+  int sizeOfPixels = 3 * widthInPixels * heightInPixels;
+  this->sizeOfBitmapFile = metadataSize + sizeOfPixels;
+  
   this->reservedBytes = 0;
-  this->pixelDataOffset = 54;
+  this->pixelDataOffset = metadataSize;
 }
 
 char* BitmapFileHeader::toBytes()

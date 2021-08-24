@@ -9,7 +9,7 @@ class BitmapInfoHeader : public BitmapHeader
 {
 public:
   BitmapInfoHeader(
-    int sizeOfPixelArray, int widthInPixels, int heightInPixels);
+    int sizeOfHeaderInBytes, int widthInPixels, int heightInPixels);
   
   char* toBytes();
 
@@ -28,7 +28,6 @@ private:
 
   std::unordered_map<int, uint16_t> getListOfTwoByteHeaderValues();
   std::unordered_map<int, uint32_t> getListOfFourByteHeaderValues();
-
 };
 
 #endif
