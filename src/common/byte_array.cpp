@@ -34,34 +34,28 @@ void ByteArrayBuilder::addValue(uint16_t value)
 {
   int sizeInBytesToAdd = sizeof(uint16_t);
 
-  if (this->numberOfBytes == 0) {
-    this->initialiseArray(sizeInBytesToAdd);
-    this->insertValue(this->numberOfBytes, value);
-  }
-
-  else {
-    this->expandArray(sizeInBytesToAdd);
-    this->insertValue(this->numberOfBytes, value);
-  }
-
+  this->validateArraySizeForAddition(sizeInBytesToAdd);
+  this->insertValue(this->numberOfBytes, value);
+  
   this->numberOfBytes += sizeInBytesToAdd;
 }
 
 void ByteArrayBuilder::addValue(uint32_t value)
 {
   int sizeInBytesToAdd = sizeof(uint32_t);
-
-  if (this->numberOfBytes == 0) {
-    this->initialiseArray(sizeInBytesToAdd);
-    this->insertValue(this->numberOfBytes, value);
-  }
-
-  else {
-    this->expandArray(sizeInBytesToAdd);
-    this->insertValue(this->numberOfBytes, value);
-  }
+  this->validateArraySizeForAddition(sizeInBytesToAdd);
+  this->insertValue(this->numberOfBytes, value);
 
   this->numberOfBytes += sizeInBytesToAdd;
+}
+
+void ByteArrayBuilder::validateArraySizeForAddition(int sizeInBytesToAdd)
+{
+  if (this->numberOfBytes == 0)
+    this->initialiseArray(sizeInBytesToAdd);
+
+  else
+    this->expandArray(sizeInBytesToAdd);
 }
 
 void ByteArrayBuilder::insertValue(int byteIndex, uint8_t value)

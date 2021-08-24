@@ -48,6 +48,7 @@ private:
   void insertValue(int byteIndex, uint16_t value);
   void insertValue(int byteIndex, uint32_t value);
   void initialiseArray(int initialSizeInBytes);
+  void validateArraySizeForAddition(int sizeInBytesToAdd);
 
 };
 
