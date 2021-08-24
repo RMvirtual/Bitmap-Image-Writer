@@ -29,8 +29,8 @@ TEST(ByteArrayTests, ShouldAddUint8ToArray)
 
   ASSERT_EQ(correctByteArray[0], byteArray[0]);
 
-  delete byteArray;
-  delete correctByteArray;
+  delete[] byteArray;
+  delete[] correctByteArray;
 }
 
 TEST(ByteArrayTests, ShouldAddUint16ToArray)
@@ -51,8 +51,8 @@ TEST(ByteArrayTests, ShouldAddUint16ToArray)
   for (int byteNo = 0; byteNo < 2; byteNo++)
     ASSERT_EQ(correctByteArray[byteNo], byteArray[byteNo]);
 
-  delete byteArray;
-  delete correctByteArray;
+  delete[] byteArray;
+  delete[] correctByteArray;
 }
 
 TEST(ByteArrayTests, ShouldAddUint32ToArray)
@@ -73,8 +73,8 @@ TEST(ByteArrayTests, ShouldAddUint32ToArray)
   for (int byteNo = 0; byteNo < 4; byteNo++)
     ASSERT_EQ(correctByteArray[byteNo], byteArray[byteNo]);
 
-  delete byteArray;
-  delete correctByteArray;
+  delete[] byteArray;
+  delete[] correctByteArray;
 }
 
 TEST(ByteArrayTests, ShouldAddMultipleUint32ToArray)
@@ -104,6 +104,6 @@ TEST(ByteArrayTests, ShouldAddMultipleUint32ToArray)
   for (int byteNo = 0; byteNo < numberOfBytes; byteNo++)
     ASSERT_EQ(correctByteArray[byteNo], byteArray[byteNo]);
 
-  delete byteArray;
-  delete correctByteArray;
+  delete[] byteArray;
+  delete[] correctByteArray;
 }
