@@ -13,7 +13,7 @@ TEST(ByteArrayTests, ShouldCreateByteArray)
   ASSERT_EQ(correctNumberOfBytes, actualBytes);
 }
 
-TEST(ByteArrayTests, ShouldAddByteToArray)
+TEST(ByteArrayTests, ShouldAddUint32ToArray)
 {
   ByteArrayBuilder byteArrayBuilder;
   uint32_t correctValue = 20;
