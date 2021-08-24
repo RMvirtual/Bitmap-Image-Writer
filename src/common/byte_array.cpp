@@ -29,9 +29,11 @@ char* ByteArrayBuilder::toArray()
 char* ByteArrayBuilder::copyArray()
 {
   char* arrayCopy = new char[this->numberOfBytes];
+  
+  char* startOfArray = this->byteArray;
+  char* endOfArray = this->byteArray + this->numberOfBytes;
 
-  for (int byteNo = 0; byteNo < this->numberOfBytes; byteNo++)
-    arrayCopy[byteNo] = this->byteArray[byteNo];
+  std::copy(startOfArray, endOfArray, arrayCopy);
 
   return arrayCopy;
 }
