@@ -14,30 +14,6 @@ ByteArrayBuilder::~ByteArrayBuilder()
   delete[] this->byteArray;
 }
 
-int ByteArrayBuilder::getNumberOfBytes()
-{
-  return this->numberOfBytes;
-}
-
-char* ByteArrayBuilder::toArray()
-{
-  char* arrayCopy = this->copyArray();
-
-  return arrayCopy;
-}
-
-char* ByteArrayBuilder::copyArray()
-{
-  char* arrayCopy = new char[this->numberOfBytes];
-
-  char* startOfArray = this->byteArray;
-  char* endOfArray = this->byteArray + this->numberOfBytes;
-
-  std::copy(startOfArray, endOfArray, arrayCopy);
-
-  return arrayCopy;
-}
-
 void ByteArrayBuilder::addValue(uint8_t value)
 {
   if (this->numberOfBytes == 0) {
@@ -46,10 +22,7 @@ void ByteArrayBuilder::addValue(uint8_t value)
   }
 
   else {
-    char* newArray = new char[this->numberOfBytes + 1];
-
-    std::copy(
-      this->byteArray, this->byteArray + this->numberOfBytes, newArray);
+    char* newArray = this->copyArray(this->numberOfBytes + 1);
 
     delete[] this->byteArray;
     this->byteArray = newArray;
@@ -63,7 +36,7 @@ void ByteArrayBuilder::addValue(uint16_t value)
 {
   if (this->numberOfBytes == 0) {
     delete[] this->byteArray;
-    this->byteArray = new char[2];
+    this->byteArray = this->getEmptyArray(2);
 
     this->byteArray[this->numberOfBytes] = value;
     this->byteArray[this->numberOfBytes + 1] = value >> 8;
@@ -72,10 +45,7 @@ void ByteArrayBuilder::addValue(uint16_t value)
   }
 
   else {
-    char* newArray = new char[this->numberOfBytes + 2];
-
-    std::copy(
-      this->byteArray, this->byteArray + this->numberOfBytes, newArray);
+    char* newArray = this->copyArray(this->numberOfBytes + 2);
 
     delete[] this->byteArray;
     this->byteArray = newArray;
@@ -92,7 +62,7 @@ void ByteArrayBuilder::addValue(uint32_t value)
 {
   if (this->numberOfBytes == 0) {
     delete[] this->byteArray;
-    this->byteArray = new char[4];
+    this->byteArray = this->getEmptyArray(4);
 
     this->byteArray[this->numberOfBytes] = value;
     this->byteArray[this->numberOfBytes + 1] = value >> 8;
@@ -103,10 +73,7 @@ void ByteArrayBuilder::addValue(uint32_t value)
   }
 
   else {
-    char* newArray = new char[this->numberOfBytes + 4];
-
-    std::copy(
-      this->byteArray, this->byteArray + this->numberOfBytes, newArray);
+    char* newArray = this->copyArray(this->numberOfBytes + 4);
 
     delete[] this->byteArray;
     this->byteArray = newArray;
@@ -119,3 +86,49 @@ void ByteArrayBuilder::addValue(uint32_t value)
     this->numberOfBytes += 4;
   }
 }
+
+int ByteArrayBuilder::getNumberOfBytes()
+{
+  return this->numberOfBytes;
+}
+
+char* ByteArrayBuilder::toArray()
+{
+  char* arrayCopy = this->copyArray();
+
+  return arrayCopy;
+}
+
+char* ByteArrayBuilder::copyArray()
+{
+  char* arrayCopy = this->copyArray(this->numberOfBytes);
+
+  return arrayCopy;
+}
+
+char* ByteArrayBuilder::copyArray(int newSizeInBytes)
+{
+  char* arrayCopy = this->getEmptyArray(newSizeInBytes);
+  this->copyArrayContents(arrayCopy);
+
+  return arrayCopy;
+}
+
+void ByteArrayBuilder::copyArrayContents(char* destinationArray)
+{
+  char* startOfArray = this->byteArray;
+  char* endOfArray = this->byteArray + this->numberOfBytes;
+
+  std::copy(startOfArray, endOfArray, destinationArray); 
+}
+
+char* ByteArrayBuilder::getEmptyArray(int size)
+{
+  char* newArray = new char[size];
+
+  for (int byteNo = 0; byteNo < size; byteNo++)
+    newArray[byteNo] = 0;
+
+  return newArray;
+}
+

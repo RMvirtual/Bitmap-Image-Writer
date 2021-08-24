@@ -39,6 +39,10 @@ private:
    * and returns a pointer to it.
    */
   char* copyArray();
+  char* copyArray(int sizeToExpandTo);
+  char* getEmptyArray(int size);
+  void copyArrayContents(char* destinationArray);
+
 };
 
 #endif
