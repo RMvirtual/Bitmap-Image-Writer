@@ -77,7 +77,7 @@ TEST(ByteArrayTests, ShouldAddUint32ToArray)
   delete[] correctByteArray;
 }
 
-TEST(ByteArrayTests, ShouldAddMultipleUint32ToArray)
+TEST(ByteArrayTests, ShouldAddMultiple32bitUnsignedIntsToArray)
 {
   ByteArrayBuilder byteArrayBuilder;
   
@@ -93,7 +93,7 @@ TEST(ByteArrayTests, ShouldAddMultipleUint32ToArray)
   int byteNo = 0;
 
   for (auto value : correctValues) {
-    correctByteArray[byteNo] = value,
+    correctByteArray[byteNo] = value;
     correctByteArray[byteNo + 1] = value >> 8;
     correctByteArray[byteNo + 2] = value >> 16;
     correctByteArray[byteNo + 3] = value >> 24;
@@ -108,3 +108,37 @@ TEST(ByteArrayTests, ShouldAddMultipleUint32ToArray)
   delete[] correctByteArray;
 }
 
+TEST(ByteArrayTests, ShouldAddMultipleSizeUnsignedIntsToArray)
+{
+  ByteArrayBuilder byteArrayBuilder;
+  
+  uint8_t correctValue8bit = 20;
+  uint16_t correctValue16bit = 21596;
+  uint32_t correctValue32bit = 8589429;
+
+  byteArrayBuilder.addValue(correctValue16bit);
+  byteArrayBuilder.addValue(correctValue8bit);
+  byteArrayBuilder.addValue(correctValue32bit);
+
+  char* byteArray = byteArrayBuilder.toArray();
+
+  int numberOfBytes = 7;
+  char* correctByteArray = new char[numberOfBytes];
+  int byteNo = 0;
+
+  correctByteArray[0] = correctValue16bit;
+  correctByteArray[1] = correctValue16bit >> 8;
+
+  correctByteArray[2] = correctValue8bit;
+
+  correctByteArray[3] = correctValue32bit;
+  correctByteArray[4] = correctValue32bit >> 8;
+  correctByteArray[5] = correctValue32bit >> 16;
+  correctByteArray[6] = correctValue32bit >> 24;
+
+  for (int byteNo = 0; byteNo < numberOfBytes; byteNo++)
+    ASSERT_EQ(correctByteArray[byteNo], byteArray[byteNo]);
+
+  delete[] byteArray;
+  delete[] correctByteArray;
+}
