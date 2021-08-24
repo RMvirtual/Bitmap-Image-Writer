@@ -3,9 +3,9 @@
 #include <iostream>
 #include <string>
 
-#include "src/graphics/bitmaps/bitmap.h"
 #include "src/graphics/bitmaps/file_header.h"
 #include "src/graphics/bitmaps/info_header.h"
+#include "src/graphics/bitmaps/pixel.h"
 
 TEST(GraphicsTests, ShouldCreateBitmap)
 {
@@ -13,7 +13,8 @@ TEST(GraphicsTests, ShouldCreateBitmap)
 
   BitmapFileHeader bmpFileHeader {14, widthInPixels, heightInPixels};
   BitmapInfoHeader bmpInfoHeader {40, widthInPixels, heightInPixels};
-  Pixel pixel;
+  Pixel pixel {100, 255, 255};
+  Pixel blackPixel {0, 0, 0};
 
   char* outputPath = 
     "C:\\Users\\rmvir\\Desktop\\scc300-Win3D\\test\\output\\myImage.bmp";
@@ -25,9 +26,18 @@ TEST(GraphicsTests, ShouldCreateBitmap)
 
   size_t numberOfPixels = widthInPixels * heightInPixels;
   
-  for (int i = 0; i < numberOfPixels; i++)
-    fout.write((char *) &pixel, 3);
-  
+  for (int i = 0; i < numberOfPixels; i++) {
+    Pixel* currentPixel = &pixel;
+    
+    if (i % 2)
+      currentPixel = &blackPixel;
+
+    char* pixelBytes = (*currentPixel).toBytes();
+    fout.write(pixelBytes, 3);
+
+    delete[] pixelBytes;
+  }
+
   fout.close();
 
   short int word = 0x0001;

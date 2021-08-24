@@ -42,5 +42,5 @@ char* BitmapInfoHeader::toBytes()
 
   char* byteArray = byteArrayBuilder.toArray();
 
-  return byteArrayBuilder.toArray();
+  return byteArray;
 }

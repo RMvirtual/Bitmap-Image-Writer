@@ -2,7 +2,6 @@
 #define BITMAP_INFO_HEADER_H
 
 #include <cstdint>
-#include <unordered_map>
 #include "src/graphics/bitmaps/header.h"
 
 class BitmapInfoHeader : public BitmapHeader

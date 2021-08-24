@@ -4,7 +4,6 @@
 #include <cstdint>
 #include "src/graphics/bitmaps/header.h"
 
-// 14 bytes total.
 class BitmapFileHeader
 : public BitmapHeader
 {

@@ -1,6 +1,7 @@
+#include <cstdint>
+
 #include "src/graphics/bitmaps/file_header.h"
 #include "src/common/byte_array.h"
-#include <cstdint>
 
 BitmapFileHeader::BitmapFileHeader(int sizeOfHeaderInBytes, int widthInPixels, int heightInPixels)
 : BitmapHeader {sizeOfHeaderInBytes}

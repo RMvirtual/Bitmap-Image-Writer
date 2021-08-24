@@ -1,8 +1,6 @@
 #ifndef BITMAP_HEADER_H
 #define BITMAP_HEADER_H
 
-#include <cstdint>
-
 class BitmapHeader
 {
 public:

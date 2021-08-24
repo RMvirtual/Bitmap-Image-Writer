@@ -1,5 +1,4 @@
 #include "src/graphics/bitmaps/header.h"
-#include <cstdint>
 
 BitmapHeader::BitmapHeader(int sizeOfHeaderInBytes)
 {
