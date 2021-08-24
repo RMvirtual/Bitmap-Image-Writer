@@ -107,3 +107,4 @@ TEST(ByteArrayTests, ShouldAddMultipleUint32ToArray)
   delete[] byteArray;
   delete[] correctByteArray;
 }
+
