@@ -21,8 +21,14 @@ TEST(GraphicsTests, ShouldCreateBitmap)
 
   std::ofstream fout(outputPath, std::ios::binary);
 
-  fout.write(bmpFileHeader.toBytes(), bmpFileHeader.getSizeOfHeaderInBytes());
-  fout.write(bmpInfoHeader.toBytes(), bmpInfoHeader.getSizeOfHeaderInBytes());
+  char* bmpFileHeaderBytes = bmpFileHeader.toBytes();
+  char* bmpInfoHeaderBytes = bmpInfoHeader.toBytes();
+  
+  fout.write(bmpFileHeaderBytes, bmpFileHeader.getSizeOfHeaderInBytes());
+  fout.write(bmpInfoHeaderBytes, bmpInfoHeader.getSizeOfHeaderInBytes());
+
+  delete[] bmpFileHeaderBytes;
+  delete[] bmpInfoHeaderBytes;
 
   size_t numberOfPixels = widthInPixels * heightInPixels;
   
