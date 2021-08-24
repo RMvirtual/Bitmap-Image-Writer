@@ -8,17 +8,36 @@ class ByteArrayBuilder
 public:
   ByteArrayBuilder();
   ~ByteArrayBuilder();
-  void addTwoByteValueToCharArray(uint16_t value);
-  void addFourByteValueToCharArray(uint32_t value);
-  void overwriteTwoByteValueInCharArray(int startingIndex, uint16_t value);
-  void overwriteFourByteValueInCharArray(int startingIndex, uint32_t value);
+
+  // Adds a value of 1 byte.
+  void addValue(uint8_t value);
+
+  // Adds a value of 2 bytes.
+  void addValue(uint16_t value);
+
+  // Adds a value of 4 bytes.
+  void addValue(uint32_t value);
+
+  /**
+   * Returns a character array pointer towards a copy of the bytes
+   * constructed from adding to the ByteArrayBuilder class.
+   */ 
   char* toArray();
+  
+  /**
+   * Returns the current number of bytes that the length of the
+   * Byte Array currently stands at.
+   */
   int getNumberOfBytes();
 
 private:
   char* byteArray;
   int numberOfBytes;
 
+  /**
+   * Copies the underlying byte array into a new area of dynamic memory
+   * and returns a pointer to it.
+   */
   char* copyArray();
 };
 
