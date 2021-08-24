@@ -14,5 +14,6 @@ cc_library(
         "bitmaps/file_header.h",
         "bitmaps/info_header.h"
     ],
+    deps = ["//src/common:byte_array"],
     visibility = ["//visibility:public"]
 )

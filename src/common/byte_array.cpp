@@ -24,6 +24,16 @@ void ByteArrayBuilder::addValue(uint8_t value)
   this->numberOfBytes += sizeInBytesToAdd;
 }
 
+void ByteArrayBuilder::addValue(int8_t value)
+{
+  int sizeInBytesToAdd = sizeof(int8_t);
+
+  this->validateArraySizeForAddition(value);
+  this->insertValue(this->numberOfBytes, value);
+
+  this->numberOfBytes += sizeInBytesToAdd;
+}
+
 void ByteArrayBuilder::addValue(uint16_t value)
 {
   int sizeInBytesToAdd = sizeof(uint16_t);
@@ -34,9 +44,28 @@ void ByteArrayBuilder::addValue(uint16_t value)
   this->numberOfBytes += sizeInBytesToAdd;
 }
 
+void ByteArrayBuilder::addValue(int16_t value)
+{
+  int sizeInBytesToAdd = sizeof(int16_t);
+
+  this->validateArraySizeForAddition(sizeInBytesToAdd);
+  this->insertValue(this->numberOfBytes, value);
+  
+  this->numberOfBytes += sizeInBytesToAdd;
+}
+
 void ByteArrayBuilder::addValue(uint32_t value)
 {
   int sizeInBytesToAdd = sizeof(uint32_t);
+  this->validateArraySizeForAddition(sizeInBytesToAdd);
+  this->insertValue(this->numberOfBytes, value);
+
+  this->numberOfBytes += sizeInBytesToAdd;
+}
+
+void ByteArrayBuilder::addValue(int32_t value)
+{
+  int sizeInBytesToAdd = sizeof(int32_t);
   this->validateArraySizeForAddition(sizeInBytesToAdd);
   this->insertValue(this->numberOfBytes, value);
 
@@ -57,6 +86,11 @@ void ByteArrayBuilder::insertValue(int byteIndex, uint8_t value)
   this->byteArray[byteIndex] = value;
 }
 
+void ByteArrayBuilder::insertValue(int byteIndex, int8_t value)
+{
+  this->byteArray[byteIndex] = value;
+}
+
 void ByteArrayBuilder::insertValue(int byteIndex, uint16_t value)
 {
   int bytesToOverwrite = sizeof(uint16_t);
@@ -65,9 +99,27 @@ void ByteArrayBuilder::insertValue(int byteIndex, uint16_t value)
   this->byteArray[byteIndex + 1] = value >> 8;
 }
 
+void ByteArrayBuilder::insertValue(int byteIndex, int16_t value)
+{
+  int bytesToOverwrite = sizeof(int16_t);
+
+  this->byteArray[byteIndex] = value;
+  this->byteArray[byteIndex + 1] = value >> 8;
+}
+
 void ByteArrayBuilder::insertValue(int byteIndex, uint32_t value)
 {
   int bytesToOverwrite = sizeof(uint32_t);
+
+  this->byteArray[byteIndex] = value;
+  this->byteArray[byteIndex + 1] = value >> 8;
+  this->byteArray[byteIndex + 2] = value >> 16;
+  this->byteArray[byteIndex + 3] = value >> 24;
+}
+
+void ByteArrayBuilder::insertValue(int byteIndex, int32_t value)
+{
+  int bytesToOverwrite = sizeof(int32_t);
 
   this->byteArray[byteIndex] = value;
   this->byteArray[byteIndex + 1] = value >> 8;

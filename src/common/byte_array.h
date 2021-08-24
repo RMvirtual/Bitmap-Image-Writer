@@ -12,11 +12,20 @@ public:
   // Adds a value of 1 byte.
   void addValue(uint8_t value);
 
+  // Adds a value of 1 byte.
+  void addValue(int8_t value);
+
   // Adds a value of 2 bytes.
   void addValue(uint16_t value);
 
+  // Adds a value of 2 bytes.
+  void addValue(int16_t value);
+
   // Adds a value of 4 bytes.
   void addValue(uint32_t value);
+
+  // Adds a value of 4 bytes.
+  void addValue(int32_t value);
 
   /**
    * Returns a character array pointer towards a copy of the bytes
@@ -45,8 +54,11 @@ private:
   void replaceArray(char* newArray);
   void expandArray(int numberOfExtraBytes);
   void insertValue(int byteIndex, uint8_t value);
+  void insertValue(int byteIndex, int8_t value);
   void insertValue(int byteIndex, uint16_t value);
+  void insertValue(int byteIndex, int16_t value);
   void insertValue(int byteIndex, uint32_t value);
+  void insertValue(int byteIndex, int32_t value);
   void initialiseArray(int initialSizeInBytes);
   void validateArraySizeForAddition(int sizeInBytesToAdd);
 

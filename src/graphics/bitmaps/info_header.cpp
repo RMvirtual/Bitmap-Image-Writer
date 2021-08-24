@@ -1,12 +1,14 @@
-#include "src/graphics/bitmaps/info_header.h"
+#include <cstdint>
+#include <iostream>
 #include <unordered_map>
 
-#include <iostream>
-#include <cstdint>
+#include "src/graphics/bitmaps/info_header.h"
+#include "src/common/byte_array.h"
 
 using namespace std;
 
-BitmapInfoHeader::BitmapInfoHeader(int sizeOfPixelArray, int widthInPixels, int heightInPixels)
+BitmapInfoHeader::BitmapInfoHeader(
+  int sizeOfPixelArray, int widthInPixels, int heightInPixels)
 : BitmapHeader {sizeOfPixelArray}
 {
   this->sizeOfThisHeader = 40;
@@ -24,23 +26,29 @@ BitmapInfoHeader::BitmapInfoHeader(int sizeOfPixelArray, int widthInPixels, int 
 
 char* BitmapInfoHeader::toBytes()
 {
-  char* byteArray = this->getEmptyByteArray();
+  ByteArrayBuilder byteArrayBuilder;
 
-  unordered_map<int, uint32_t> fourByteValues = 
+  unordered_map<int, uint32_t> fourByteValuesSet = 
     this->getListOfFourByteHeaderValues();
   
   unordered_map<int, uint16_t> twoByteValues = 
     this->getListOfTwoByteHeaderValues();
 
-  for (pair<int, uint32_t> keyAndValue : fourByteValues)
-    this->insertFourByteValueToCharArray(
-      byteArray, keyAndValue.first, keyAndValue.second);
-  
-  for (pair<int, uint32_t> keyAndValue : twoByteValues)
-    this->insertTwoByteValueToCharArray(
-      byteArray, keyAndValue.first, keyAndValue.second);
+  byteArrayBuilder.addValue(this->sizeOfThisHeader);
+  byteArrayBuilder.addValue(this->widthInPixels);
+  byteArrayBuilder.addValue(this->heightInPixels);
+  byteArrayBuilder.addValue(this->numberOfColorPlanes);
+  byteArrayBuilder.addValue(this->colorDepth);
+  byteArrayBuilder.addValue(this->compressionMethod);
+  byteArrayBuilder.addValue(this->rawBitmapDataSize);
+  byteArrayBuilder.addValue(this->horizontalResolutionPixelPerMeter);
+  byteArrayBuilder.addValue(this->verticalResolutionPixelsPerMeter);
+  byteArrayBuilder.addValue(this->colorTableEntries);
+  byteArrayBuilder.addValue(this->importantColors);
 
-  return byteArray;
+  char* byteArray = byteArrayBuilder.toArray();
+
+  return byteArrayBuilder.toArray();
 }
 
 unordered_map<int, uint16_t> BitmapInfoHeader::getListOfTwoByteHeaderValues()

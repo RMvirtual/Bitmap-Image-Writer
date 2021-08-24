@@ -1,4 +1,5 @@
 #include "src/graphics/bitmaps/file_header.h"
+#include "src/common/byte_array.h"
 
 BitmapFileHeader::BitmapFileHeader(int sizeOfPixelArray)
 : BitmapHeader {sizeOfPixelArray}
@@ -12,15 +13,15 @@ BitmapFileHeader::BitmapFileHeader(int sizeOfPixelArray)
 
 char* BitmapFileHeader::toBytes()
 {
-  char* myChars = this->getEmptyByteArray();
+  ByteArrayBuilder byteArrayBuilder;
 
-  myChars[0] = this->bitmapSignatureBytes[0];
-  myChars[1] = this->bitmapSignatureBytes[1];
+  byteArrayBuilder.addValue(this->bitmapSignatureBytes[0]);
+  byteArrayBuilder.addValue(this->bitmapSignatureBytes[1]);
+  byteArrayBuilder.addValue(this->sizeOfBitmapFile);
+  byteArrayBuilder.addValue(this->reservedBytes);
+  byteArrayBuilder.addValue(this->pixelDataOffset);
 
-  this->insertFourByteValueToCharArray(myChars, 2, this->sizeOfBitmapFile);
+  char* byteArray = byteArrayBuilder.toArray();
 
-  myChars[6] = this->reservedBytes;
-  myChars[10] = this->pixelDataOffset;
-
-  return myChars;
+  return byteArray;
 }
