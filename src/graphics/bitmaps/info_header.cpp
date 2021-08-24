@@ -48,6 +48,8 @@ char* BitmapInfoHeader::toBytes()
 
   char* byteArray = byteArrayBuilder.toArray();
 
+  cout << byteArray << endl;
+
   return byteArrayBuilder.toArray();
 }
 
