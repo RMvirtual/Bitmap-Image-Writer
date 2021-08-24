@@ -18,6 +18,8 @@ public:
 private:
   char* byteArray;
   int numberOfBytes;
+
+  char* copyArray();
 };
 
 #endif

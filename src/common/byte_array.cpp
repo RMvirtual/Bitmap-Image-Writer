@@ -21,7 +21,19 @@ int ByteArrayBuilder::getNumberOfBytes()
 
 char* ByteArrayBuilder::toArray()
 {
-  return this->byteArray;
+  char* arrayCopy = this->copyArray();
+
+  return arrayCopy;
+}
+
+char* ByteArrayBuilder::copyArray()
+{
+  char* arrayCopy = new char[this->numberOfBytes];
+
+  for (int byteNo = 0; byteNo < this->numberOfBytes; byteNo++)
+    arrayCopy[byteNo] = this->byteArray[byteNo];
+
+  return arrayCopy;
 }
 
 void ByteArrayBuilder::addFourByteValueToCharArray(uint32_t value)
