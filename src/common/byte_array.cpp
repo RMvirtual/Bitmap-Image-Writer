@@ -11,7 +11,7 @@ ByteArrayBuilder::ByteArrayBuilder()
 
 ByteArrayBuilder::~ByteArrayBuilder()
 {
-  delete[] this->byteArray;
+  delete this->byteArray;
 }
 
 int ByteArrayBuilder::getNumberOfBytes()
@@ -29,7 +29,7 @@ char* ByteArrayBuilder::toArray()
 char* ByteArrayBuilder::copyArray()
 {
   char* arrayCopy = new char[this->numberOfBytes];
-  
+
   char* startOfArray = this->byteArray;
   char* endOfArray = this->byteArray + this->numberOfBytes;
 

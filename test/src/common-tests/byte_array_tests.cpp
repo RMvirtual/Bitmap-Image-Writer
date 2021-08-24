@@ -65,6 +65,6 @@ TEST(ByteArrayTests, ShouldAddMultipleUint32ToArray)
   for (int byteNo = 0; byteNo < numberOfBytes; byteNo++)
     ASSERT_EQ(correctByteArray[byteNo], byteArray[byteNo]);
 
-  delete[] byteArray;
-  delete[] correctByteArray;
+  delete byteArray;
+  delete correctByteArray;
 }
