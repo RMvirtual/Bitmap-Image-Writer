@@ -28,12 +28,6 @@ char* BitmapInfoHeader::toBytes()
 {
   ByteArrayBuilder byteArrayBuilder;
 
-  unordered_map<int, uint32_t> fourByteValuesSet = 
-    this->getListOfFourByteHeaderValues();
-  
-  unordered_map<int, uint16_t> twoByteValues = 
-    this->getListOfTwoByteHeaderValues();
-
   byteArrayBuilder.addValue(this->sizeOfThisHeader);
   byteArrayBuilder.addValue(this->widthInPixels);
   byteArrayBuilder.addValue(this->heightInPixels);
@@ -48,34 +42,5 @@ char* BitmapInfoHeader::toBytes()
 
   char* byteArray = byteArrayBuilder.toArray();
 
-  cout << byteArray << endl;
-
   return byteArrayBuilder.toArray();
-}
-
-unordered_map<int, uint16_t> BitmapInfoHeader::getListOfTwoByteHeaderValues()
-{
-  unordered_map<int, uint16_t> twoByteValues = {
-    {12, this->numberOfColorPlanes},
-    {14, this->colorDepth}
-  };
-
-  return twoByteValues;
-}
-
-unordered_map<int, uint32_t> BitmapInfoHeader::getListOfFourByteHeaderValues()
-{
-  unordered_map<int, uint32_t> fourByteValues = {
-    {0, this->sizeOfThisHeader},
-    {4, this->widthInPixels},
-    {8, this->heightInPixels},
-    {16, this->compressionMethod},
-    {20, this->rawBitmapDataSize},
-    {24, this->horizontalResolutionPixelPerMeter},
-    {28, this->verticalResolutionPixelsPerMeter},
-    {32, this->colorTableEntries},
-    {36, this->importantColors}
-  };
-
-  return fourByteValues;
 }
