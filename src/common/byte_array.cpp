@@ -7,3 +7,8 @@ ByteArrayBuilder::ByteArrayBuilder()
     this->numberOfBytes = 0;
 }
 
+int ByteArrayBuilder::getNumberOfBytes()
+{
+    return this->numberOfBytes;
+}
+
