@@ -41,19 +41,12 @@ char* ByteArrayBuilder::copyArray()
 void ByteArrayBuilder::addValue(uint8_t value)
 {
   if (this->numberOfBytes == 0) {
-    delete this->byteArray;
-    this->byteArray = new char[4];
-
-    this->byteArray[this->numberOfBytes] = value;
-    this->byteArray[this->numberOfBytes + 1] = value >> 8;
-    this->byteArray[this->numberOfBytes + 2] = value >> 16;
-    this->byteArray[this->numberOfBytes + 3] = value >> 24;
-
-    this->numberOfBytes += 4;
+    this->byteArray[0] = value;
+    this->numberOfBytes++;
   }
 
   else {
-    char* newArray = new char[this->numberOfBytes + 4];
+    char* newArray = new char[this->numberOfBytes + 1];
 
     std::copy(
       this->byteArray, this->byteArray + this->numberOfBytes, newArray);
@@ -62,11 +55,7 @@ void ByteArrayBuilder::addValue(uint8_t value)
     this->byteArray = newArray;
 
     this->byteArray[this->numberOfBytes] = value;
-    this->byteArray[this->numberOfBytes + 1] = value >> 8;
-    this->byteArray[this->numberOfBytes + 2] = value >> 16;
-    this->byteArray[this->numberOfBytes + 3] = value >> 24;
-
-    this->numberOfBytes += 4;
+    this->numberOfBytes ++;
   }
 }
 
