@@ -97,6 +97,6 @@ TEST(GraphicsTests, ShouldGetBitmapFileHeader)
 
   ASSERT_EQ('B', bmpFileHeader.bitmapSignatureBytes[0]);
   ASSERT_EQ('M', bmpFileHeader.bitmapSignatureBytes[1]);
+  ASSERT_EQ(786486, bmpFileHeader.sizeOfBitmapFile);
 
-  
 }

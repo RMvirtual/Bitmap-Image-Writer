@@ -1,4 +1,5 @@
 #include <cstdint>
+#include <iostream>
 
 #include "src/graphics/bitmaps/headers/file_header.h"
 #include "src/common/byte_array.h"
