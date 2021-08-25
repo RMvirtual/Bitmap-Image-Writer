@@ -12,26 +12,17 @@ BitmapReader::BitmapReader()
   // Pass.
 }
 
-int BitmapReader::getLengthOfPayload(std::string filePath)
+int BitmapReader::getLengthOfPixelPayload(std::string filePath)
 {
-  string text;
-  ifstream fileStream(filePath);
+  int sizeOfFile = this->getSizeOfFile(filePath);
 
-  while (getline(fileStream, text)) {
-    cout << text;
-  }
-
-  fileStream.close();
-
-  return 1;
+  return sizeOfFile - 54;
 }
 
 int BitmapReader::getSizeOfFile(std::string filePath)
 {
   std::filesystem::path pathToFile {filePath};
   int fileSizeInBytes = std::filesystem::file_size(pathToFile);
-
-  cout << "Size is " << fileSizeInBytes << " bytes.\n";
 
   return fileSizeInBytes;
 }

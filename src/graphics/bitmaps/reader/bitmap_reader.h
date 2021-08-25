@@ -4,6 +4,6 @@ class BitmapReader
 {
 public:
   BitmapReader();
-  int getLengthOfPayload(std::string filePath);
+  int getLengthOfPixelPayload(std::string filePath);
   int getSizeOfFile(std::string filePath);
 };

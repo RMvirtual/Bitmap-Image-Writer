@@ -64,7 +64,7 @@ TEST(GraphicsTests, ShouldGetBitmapLength)
   );
 
   int correctSize = 786432;
-  int payloadSizeInBytes = bitmapReader.getLengthOfPayload(bitmapFile);
+  int payloadSizeInBytes = bitmapReader.getLengthOfPixelPayload(bitmapFile);
 
   ASSERT_EQ(correctSize, payloadSizeInBytes);
 }
