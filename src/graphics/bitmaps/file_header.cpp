@@ -21,8 +21,8 @@ char* BitmapFileHeader::toBytes()
 {
   ByteArrayBuilder byteArrayBuilder;
 
-  byteArrayBuilder.addValue((uint8_t) this->bitmapSignatureBytes[0]);
-  byteArrayBuilder.addValue((uint8_t) this->bitmapSignatureBytes[1]);
+  byteArrayBuilder.addValue(this->bitmapSignatureBytes[0]);
+  byteArrayBuilder.addValue(this->bitmapSignatureBytes[1]);
   byteArrayBuilder.addValue(this->sizeOfBitmapFile);
   byteArrayBuilder.addValue(this->reservedBytes);
   byteArrayBuilder.addValue(this->pixelDataOffset);

@@ -9,6 +9,14 @@ ByteArrayBuilder::ByteArrayBuilder()
   this->byteVector = {};
 }
 
+void ByteArrayBuilder::addValue(char value)
+{
+  this->appendValueToVector((uint8_t) value);
+
+  int sizeInBytesToAdd = sizeof(uint8_t);
+  this->numberOfBytes += sizeInBytesToAdd;
+}
+
 void ByteArrayBuilder::addValue(uint8_t value)
 {
   this->appendValueToVector(value);

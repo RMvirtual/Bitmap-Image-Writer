@@ -9,6 +9,9 @@ class ByteArrayBuilder
 public:
   ByteArrayBuilder();
 
+  // Add a character (converted to an 8-bit unsigned integer).
+  void addValue(char value);
+
   // Adds a value of 1 byte.
   void addValue(uint8_t value);
 
