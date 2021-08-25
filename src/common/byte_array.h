@@ -59,6 +59,7 @@ private:
   void appendValueToVector(int16_t value);
   void appendValueToVector(uint32_t value);
   void appendValueToVector(int32_t value);
+  int rightBitShiftValue(int value, int numberOfBits);
 };
 
 #endif

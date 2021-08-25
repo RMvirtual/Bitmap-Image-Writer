@@ -80,7 +80,7 @@ void ByteArrayBuilder::appendValueToVector(uint16_t value)
   int bytesToOverwrite = sizeof(uint16_t);
 
   this->byteVector.push_back(value);
-  this->byteVector.push_back(value >> 8);
+  this->byteVector.push_back(this->rightBitShiftValue(value, 8));
 }
 
 void ByteArrayBuilder::appendValueToVector(int16_t value)
@@ -88,7 +88,7 @@ void ByteArrayBuilder::appendValueToVector(int16_t value)
   int bytesToOverwrite = sizeof(int16_t);
 
   this->byteVector.push_back(value);
-  this->byteVector.push_back(value >> 8);
+  this->byteVector.push_back(this->rightBitShiftValue(value, 8));
 }
 
 void ByteArrayBuilder::appendValueToVector(uint32_t value)
@@ -96,9 +96,9 @@ void ByteArrayBuilder::appendValueToVector(uint32_t value)
   int bytesToOverwrite = sizeof(uint32_t);
 
   this->byteVector.push_back(value);
-  this->byteVector.push_back(value >> 8);
-  this->byteVector.push_back(value >> 16);
-  this->byteVector.push_back(value >> 24);
+  this->byteVector.push_back(this->rightBitShiftValue(value, 8));
+  this->byteVector.push_back(this->rightBitShiftValue(value, 16));
+  this->byteVector.push_back(this->rightBitShiftValue(value, 24));
 }
 
 void ByteArrayBuilder::appendValueToVector(int32_t value)
@@ -106,9 +106,9 @@ void ByteArrayBuilder::appendValueToVector(int32_t value)
   int bytesToOverwrite = sizeof(int32_t);
 
   this->byteVector.push_back(value);
-  this->byteVector.push_back(value >> 8);
-  this->byteVector.push_back(value >> 16);
-  this->byteVector.push_back(value >> 24);
+  this->byteVector.push_back(this->rightBitShiftValue(value, 8));
+  this->byteVector.push_back(this->rightBitShiftValue(value, 16));
+  this->byteVector.push_back(this->rightBitShiftValue(value, 24));
 }
 
 char* ByteArrayBuilder::toBytes()
@@ -147,4 +147,9 @@ char* ByteArrayBuilder::getEmptyArray(int size)
 int ByteArrayBuilder::getNumberOfBytes()
 {
   return this->numberOfBytes;
+}
+
+int ByteArrayBuilder::rightBitShiftValue(int value, int numberOfBits)
+{
+  return value >> numberOfBits;
 }
