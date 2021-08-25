@@ -44,29 +44,30 @@ BitmapFileHeader BitmapReader::getBitmapFileHeader(string filePath)
   bmpFileHeader.bitmapSignatureBytes[0] = string[0];
   bmpFileHeader.bitmapSignatureBytes[1] = string[1];
 
+  /*
   for (int i = 0; i < 54; i++) {
     cout << "Byte no " << i << ": " << (int) string[i] << endl;
   }
-  
+  */
   bmpFileHeader.sizeOfBitmapFile = uint32_t (
-    (uint8_t) string[3] << 24 |
+    (uint8_t) string[2] |
+    (uint8_t) string[3] << 8 |
     (uint8_t) string[4] << 16 |
-    (uint8_t) string[5] << 8 |
-    (uint8_t) string[6]
+    (uint8_t) string[5] << 24
   );
 
   bmpFileHeader.reservedBytes = uint32_t (
-    (uint8_t) string[6] << 24 |
-    (uint8_t) string[7] << 16 |
-    (uint8_t) string[8] << 8 |
-    (uint8_t) string[9]
+    (uint8_t) string[6] |
+    (uint8_t) string[7] << 8 |
+    (uint8_t) string[8] << 16 |
+    (uint8_t) string[9] << 24
   );
 
   bmpFileHeader.pixelDataOffset = uint32_t (
-    (uint8_t) string[10] << 24 |
-    (uint8_t) string[11] << 16 |
-    (uint8_t) string[12] << 8 |
-    (uint8_t) string[13]
+    (uint8_t) string[10] |
+    (uint8_t) string[11] << 8 |
+    (uint8_t) string[12] << 16 |
+    (uint8_t) string[13] << 24
   );
 
   return bmpFileHeader;
