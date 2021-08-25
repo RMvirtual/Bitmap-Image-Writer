@@ -46,6 +46,9 @@ private:
   std::vector<char> byteVector;
   int numberOfBytes;
 
+  void convertValueToBytes(int value, int lengthInBytes);
+  void processNewValue(int value, int lengthInBytes);
+
   /**
    * Converts the underlying vector of bytes into a new char array area
    * of dynamic memory and returns a pointer to it.
@@ -53,7 +56,6 @@ private:
   char* copyArray();
   char* getEmptyArray(int sizeInBytes);
   void copyVectorToArray(char* destinationArray);
-  void convertValueToBytes(int value, int lengthInBytes);
 };
 
 #endif

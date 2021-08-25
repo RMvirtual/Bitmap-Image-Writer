@@ -11,58 +11,50 @@ ByteArrayBuilder::ByteArrayBuilder()
 
 void ByteArrayBuilder::addValue(char value)
 {
-  int sizeInBytesToAdd = sizeof(uint8_t);
-  this->convertValueToBytes((uint8_t) value, sizeInBytesToAdd);
-
-  this->numberOfBytes += sizeInBytesToAdd;
+  int lengthInBytes = sizeof(uint8_t);
+  this->processNewValue((uint8_t) value, lengthInBytes);
 }
 
 void ByteArrayBuilder::addValue(uint8_t value)
 {
-  int sizeInBytesToAdd = sizeof(uint8_t);
-  this->convertValueToBytes(value, sizeInBytesToAdd);
-
-  this->numberOfBytes += sizeInBytesToAdd;
+  int lengthInBytes = sizeof(uint8_t);
+  this->processNewValue(value, lengthInBytes);
 }
 
 void ByteArrayBuilder::addValue(int8_t value)
 {
-  int sizeInBytesToAdd = sizeof(int8_t);
-  this->convertValueToBytes(value, sizeInBytesToAdd);
-
-  this->numberOfBytes += sizeInBytesToAdd;
+  int lengthInBytes = sizeof(int8_t);
+  this->processNewValue(value, lengthInBytes);
 }
 
 void ByteArrayBuilder::addValue(uint16_t value)
 {
-  int sizeInBytesToAdd = sizeof(uint16_t); 
-  this->convertValueToBytes(value, sizeInBytesToAdd);
-
-  this->numberOfBytes += sizeInBytesToAdd;
+  int lengthInBytes = sizeof(uint16_t); 
+  this->processNewValue(value, lengthInBytes);
 }
 
 void ByteArrayBuilder::addValue(int16_t value)
 {
-  int sizeInBytesToAdd = sizeof(int16_t);
-  this->convertValueToBytes(value, sizeInBytesToAdd);
-
-  this->numberOfBytes += sizeInBytesToAdd;
+  int lengthInBytes = sizeof(int16_t);
+  this->processNewValue(value, lengthInBytes);
 }
 
 void ByteArrayBuilder::addValue(uint32_t value)
 {
-  int sizeInBytesToAdd = sizeof(uint32_t);
-  this->convertValueToBytes(value, sizeInBytesToAdd);
-
-  this->numberOfBytes += sizeInBytesToAdd;
+  int lengthInBytes = sizeof(uint32_t);
+  this->processNewValue(value, lengthInBytes);
 }
 
 void ByteArrayBuilder::addValue(int32_t value)
 {
-  int sizeInBytesToAdd = sizeof(int32_t);
-  this->convertValueToBytes(value, sizeInBytesToAdd);
+  int lengthInBytes = sizeof(int32_t);
+  this->processNewValue(value, lengthInBytes);
+}
 
-  this->numberOfBytes += sizeInBytesToAdd;
+void ByteArrayBuilder::processNewValue(int value, int lengthInBytes)
+{
+  this->convertValueToBytes(value, lengthInBytes);
+  this->numberOfBytes += lengthInBytes;
 }
 
 void ByteArrayBuilder::convertValueToBytes(int value, int lengthInBytes)
