@@ -1,19 +1,20 @@
-# https://docs.bazel.build/versions/master/be/c-cpp.html#cc_binary
-
 cc_library(
     name = "graphics",
     srcs = [
         "bitmaps/header.cpp",
         "bitmaps/file_header.cpp",
         "bitmaps/info_header.cpp",
-        "bitmaps/pixel.cpp"
+        "bitmaps/pixel.cpp",
+        "bitmaps/reader/bitmap_reader.cpp"
     ],
     hdrs = [
         "bitmaps/header.h",
         "bitmaps/file_header.h",
         "bitmaps/info_header.h",
-        "bitmaps/pixel.h"
+        "bitmaps/pixel.h",
+        "bitmaps/reader/bitmap_reader.h"
     ],
     deps = ["//src/common:byte_array"],
-    visibility = ["//visibility:public"]
+    visibility = ["//visibility:public"],
+    copts = ["/std:c++17"]
 )

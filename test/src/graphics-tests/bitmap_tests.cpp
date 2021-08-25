@@ -6,6 +6,7 @@
 #include "src/graphics/bitmaps/file_header.h"
 #include "src/graphics/bitmaps/info_header.h"
 #include "src/graphics/bitmaps/pixel.h"
+#include "src/graphics/bitmaps/reader/bitmap_reader.h"
 
 TEST(GraphicsTests, ShouldCreateBitmap)
 {
@@ -51,4 +52,33 @@ TEST(GraphicsTests, ShouldCreateBitmap)
   
   std::string string1 = byte[0] ? "Little" : "big";
   std::cout << string1 << std::endl;
+}
+
+/*
+TEST(GraphicsTests, ShouldGetBitmapLength)
+{
+  BitmapReader bitmapReader;
+  
+  char* bitmapFile = (
+    "C:\\Users\\rmvir\\Desktop\\scc300-Win3D\\test\\output\\" \
+    "correct_resources\\blueImage512x512.bmp"
+  );
+
+  int lengthInBytes = bitmapReader.getLengthOfPayload(bitmapFile);
+}
+*/
+
+TEST(GraphicsTests, ShouldGetBitmapFileSize)
+{
+  BitmapReader bitmapReader;
+  
+  char* bitmapFile = (
+    "C:\\Users\\rmvir\\Desktop\\scc300-Win3D\\test\\output\\" \
+    "correct_resources\\blueImage512x512.bmp"
+  );
+
+  int correctSize = 786486;
+  int lengthInBytes = bitmapReader.getSizeOfFile(bitmapFile);
+
+  ASSERT_EQ(correctSize, lengthInBytes);
 }

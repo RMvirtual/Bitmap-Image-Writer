@@ -128,9 +128,7 @@ TEST(ByteArrayTests, ShouldAddMultipleSizeUnsignedIntsToArray)
 
   correctByteArray[0] = correctValue16bit;
   correctByteArray[1] = correctValue16bit >> 8;
-
   correctByteArray[2] = correctValue8bit;
-
   correctByteArray[3] = correctValue32bit;
   correctByteArray[4] = correctValue32bit >> 8;
   correctByteArray[5] = correctValue32bit >> 16;
