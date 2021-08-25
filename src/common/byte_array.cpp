@@ -103,11 +103,6 @@ void ByteArrayBuilder::appendValueToVector(int32_t value)
   this->byteVector.push_back(value >> 24);
 }
 
-int ByteArrayBuilder::getNumberOfBytes()
-{
-  return this->numberOfBytes;
-}
-
 char* ByteArrayBuilder::toBytes()
 {
   char* arrayCopy = this->copyArray();
@@ -117,14 +112,7 @@ char* ByteArrayBuilder::toBytes()
 
 char* ByteArrayBuilder::copyArray()
 {
-  char* arrayCopy = this->copyArray(this->numberOfBytes);
-
-  return arrayCopy;
-}
-
-char* ByteArrayBuilder::copyArray(int newSizeInBytes)
-{
-  char* arrayCopy = this->getEmptyArray(newSizeInBytes);
+  char* arrayCopy = this->getEmptyArray(this->numberOfBytes);
   this->copyVectorToArray(arrayCopy);
 
   return arrayCopy;
@@ -132,11 +120,9 @@ char* ByteArrayBuilder::copyArray(int newSizeInBytes)
 
 void ByteArrayBuilder::copyVectorToArray(char* destinationArray)
 {
-  int i = 0;
-
-  for (auto value : this->byteVector) {
-    destinationArray[i] = value;
-    i++;
+  for (int byteNo = 0; byteNo < this->numberOfBytes; byteNo++) {
+    char value = this->byteVector[byteNo];
+    destinationArray[byteNo] = value;
   }
 }
 
@@ -148,4 +134,9 @@ char* ByteArrayBuilder::getEmptyArray(int size)
     emptyArray[byteNo] = 0;
 
   return emptyArray;
+}
+
+int ByteArrayBuilder::getNumberOfBytes()
+{
+  return this->numberOfBytes;
 }

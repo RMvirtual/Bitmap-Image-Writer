@@ -48,7 +48,6 @@ private:
    * of dynamic memory and returns a pointer to it.
    */
   char* copyArray();
-  char* copyArray(int sizeToExpandTo);
   char* getEmptyArray(int sizeInBytes);
   void copyVectorToArray(char* destinationArray);
   void appendValueToVector(uint8_t value);
