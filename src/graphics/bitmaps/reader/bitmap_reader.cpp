@@ -45,7 +45,7 @@ BitmapFileHeader BitmapReader::getBitmapFileHeader(string filePath)
   bmpFileHeader.bitmapSignatureBytes[1] = string[1];
 
   for (int i = 0; i < 54; i++) {
-    cout << "Byte no" << i << ": " << (int) string[i] << endl;
+    cout << "Byte no " << i << ": " << (int) string[i] << endl;
   }
   
   bmpFileHeader.sizeOfBitmapFile = uint32_t (
