@@ -154,6 +154,7 @@ TEST(ByteArrayTests, ShouldAddEverySizeIntToBitmapBuilder)
   int8_t signed8bit = 425;
   int16_t signed16bit = 529;
   int32_t signed32bit = 51891897;
+  int normalInt = 44;
 
   byteArrayBuilder.addValue(charByte);
   byteArrayBuilder.addValue(unsigned8bit);
@@ -162,10 +163,11 @@ TEST(ByteArrayTests, ShouldAddEverySizeIntToBitmapBuilder)
   byteArrayBuilder.addValue(signed8bit);
   byteArrayBuilder.addValue(signed16bit);
   byteArrayBuilder.addValue(signed32bit);
+  byteArrayBuilder.addValue(normalInt);
 
   char* byteArray = byteArrayBuilder.toBytes();
 
-  int correctNumberOfBytes = 14;
+  int correctNumberOfBytes = 18;
   char* correctByteArray = new char[correctNumberOfBytes];
   int byteNo = 0;
 
@@ -184,6 +186,10 @@ TEST(ByteArrayTests, ShouldAddEverySizeIntToBitmapBuilder)
   correctByteArray[12] = signed32bit >> 8;
   correctByteArray[13] = signed32bit >> 16;
   correctByteArray[14] = signed32bit >> 24;
+  correctByteArray[15] = normalInt;
+  correctByteArray[16] = normalInt >> 8;
+  correctByteArray[17] = normalInt >> 16;
+  correctByteArray[18] = normalInt >> 24;
 
   for (int byteNo = 0; byteNo < correctNumberOfBytes; byteNo++)
     ASSERT_EQ(correctByteArray[byteNo], byteArray[byteNo]);
