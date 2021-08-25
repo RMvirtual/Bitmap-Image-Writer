@@ -6,139 +6,102 @@
 ByteArrayBuilder::ByteArrayBuilder()
 {
   this->numberOfBytes = 0;
-  this->byteArray = new char[1] {0};
-}
-
-ByteArrayBuilder::~ByteArrayBuilder()
-{
-  delete[] this->byteArray;
+  this->byteVector = {};
 }
 
 void ByteArrayBuilder::addValue(uint8_t value)
 {
+  this->appendValueToVector(value);
+
   int sizeInBytesToAdd = sizeof(uint8_t);
-
-  this->validateArraySizeForAddition(value);
-  this->insertValue(this->numberOfBytes, value);
-
   this->numberOfBytes += sizeInBytesToAdd;
 }
 
 void ByteArrayBuilder::addValue(int8_t value)
 {
+  this->appendValueToVector(value);
+
   int sizeInBytesToAdd = sizeof(int8_t);
-
-  this->validateArraySizeForAddition(value);
-  this->insertValue(this->numberOfBytes, value);
-
   this->numberOfBytes += sizeInBytesToAdd;
 }
 
 void ByteArrayBuilder::addValue(uint16_t value)
 {
-  int sizeInBytesToAdd = sizeof(uint16_t);
+  this->appendValueToVector(value);
 
-  this->validateArraySizeForAddition(sizeInBytesToAdd);
-  this->insertValue(this->numberOfBytes, value);
-  
+  int sizeInBytesToAdd = sizeof(uint16_t); 
   this->numberOfBytes += sizeInBytesToAdd;
 }
 
 void ByteArrayBuilder::addValue(int16_t value)
 {
-  int sizeInBytesToAdd = sizeof(int16_t);
+  this->appendValueToVector(value);
 
-  this->validateArraySizeForAddition(sizeInBytesToAdd);
-  this->insertValue(this->numberOfBytes, value);
-  
+  int sizeInBytesToAdd = sizeof(int16_t);
   this->numberOfBytes += sizeInBytesToAdd;
 }
 
 void ByteArrayBuilder::addValue(uint32_t value)
 {
-  int sizeInBytesToAdd = sizeof(uint32_t);
-  this->validateArraySizeForAddition(sizeInBytesToAdd);
-  this->insertValue(this->numberOfBytes, value);
+  this->appendValueToVector(value);
 
+  int sizeInBytesToAdd = sizeof(uint32_t);
   this->numberOfBytes += sizeInBytesToAdd;
 }
 
 void ByteArrayBuilder::addValue(int32_t value)
 {
-  int sizeInBytesToAdd = sizeof(int32_t);
-  this->validateArraySizeForAddition(sizeInBytesToAdd);
-  this->insertValue(this->numberOfBytes, value);
+  this->appendValueToVector(value);
 
+  int sizeInBytesToAdd = sizeof(int32_t);
   this->numberOfBytes += sizeInBytesToAdd;
 }
 
-void ByteArrayBuilder::validateArraySizeForAddition(int sizeInBytesToAdd)
+void ByteArrayBuilder::appendValueToVector(uint8_t value)
 {
-  if (this->numberOfBytes == 0)
-    this->initialiseArray(sizeInBytesToAdd);
-
-  else
-    this->expandArray(sizeInBytesToAdd);
+  this->byteVector.push_back(value);
 }
 
-void ByteArrayBuilder::insertValue(int byteIndex, uint8_t value)
+void ByteArrayBuilder::appendValueToVector(int8_t value)
 {
-  this->byteArray[byteIndex] = value;
+  this->byteVector.push_back(value);
 }
 
-void ByteArrayBuilder::insertValue(int byteIndex, int8_t value)
-{
-  this->byteArray[byteIndex] = value;
-}
-
-void ByteArrayBuilder::insertValue(int byteIndex, uint16_t value)
+void ByteArrayBuilder::appendValueToVector(uint16_t value)
 {
   int bytesToOverwrite = sizeof(uint16_t);
 
-  this->byteArray[byteIndex] = value;
-  this->byteArray[byteIndex + 1] = value >> 8;
+  this->byteVector.push_back(value);
+  this->byteVector.push_back(value >> 8);
 }
 
-void ByteArrayBuilder::insertValue(int byteIndex, int16_t value)
+void ByteArrayBuilder::appendValueToVector(int16_t value)
 {
   int bytesToOverwrite = sizeof(int16_t);
 
-  this->byteArray[byteIndex] = value;
-  this->byteArray[byteIndex + 1] = value >> 8;
+  this->byteVector.push_back(value);
+  this->byteVector.push_back(value >> 8);
 }
 
-void ByteArrayBuilder::insertValue(int byteIndex, uint32_t value)
+void ByteArrayBuilder::appendValueToVector(uint32_t value)
 {
   int bytesToOverwrite = sizeof(uint32_t);
 
-  this->byteArray[byteIndex] = value;
-  this->byteArray[byteIndex + 1] = value >> 8;
-  this->byteArray[byteIndex + 2] = value >> 16;
-  this->byteArray[byteIndex + 3] = value >> 24;
+  this->byteVector.push_back(value);
+  this->byteVector.push_back(value >> 8);
+  this->byteVector.push_back(value >> 16);
+  this->byteVector.push_back(value >> 24);
 }
 
-void ByteArrayBuilder::insertValue(int byteIndex, int32_t value)
+void ByteArrayBuilder::appendValueToVector(int32_t value)
 {
   int bytesToOverwrite = sizeof(int32_t);
 
-  this->byteArray[byteIndex] = value;
-  this->byteArray[byteIndex + 1] = value >> 8;
-  this->byteArray[byteIndex + 2] = value >> 16;
-  this->byteArray[byteIndex + 3] = value >> 24;
+  this->byteVector.push_back(value);
+  this->byteVector.push_back(value >> 8);
+  this->byteVector.push_back(value >> 16);
+  this->byteVector.push_back(value >> 24);
 }
-
-void ByteArrayBuilder::expandArray(int numberOfExtraBytes)
-{
-  char* newArray = this->copyArray(this->numberOfBytes + numberOfExtraBytes);
-  this->replaceArray(newArray);
-}
-
-void ByteArrayBuilder::initialiseArray(int initialSizeInBytes)
-{
-  delete[] this->byteArray;
-  this->byteArray = this->getEmptyArray(initialSizeInBytes);
-}
-
 
 int ByteArrayBuilder::getNumberOfBytes()
 {
@@ -162,17 +125,19 @@ char* ByteArrayBuilder::copyArray()
 char* ByteArrayBuilder::copyArray(int newSizeInBytes)
 {
   char* arrayCopy = this->getEmptyArray(newSizeInBytes);
-  this->copyArrayContents(arrayCopy);
+  this->copyVectorToArray(arrayCopy);
 
   return arrayCopy;
 }
 
-void ByteArrayBuilder::copyArrayContents(char* destinationArray)
+void ByteArrayBuilder::copyVectorToArray(char* destinationArray)
 {
-  char* startOfArray = this->byteArray;
-  char* endOfArray = this->byteArray + this->numberOfBytes;
+  int i = 0;
 
-  std::copy(startOfArray, endOfArray, destinationArray); 
+  for (auto value : this->byteVector) {
+    destinationArray[i] = value;
+    i++;
+  }
 }
 
 char* ByteArrayBuilder::getEmptyArray(int size)
@@ -183,10 +148,4 @@ char* ByteArrayBuilder::getEmptyArray(int size)
     emptyArray[byteNo] = 0;
 
   return emptyArray;
-}
-
-void ByteArrayBuilder::replaceArray(char* newArray)
-{
-  delete[] this->byteArray;
-  this->byteArray = newArray; 
 }

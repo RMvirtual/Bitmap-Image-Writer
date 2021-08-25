@@ -2,12 +2,12 @@
 #define BYTE_ARRAY_H
 
 #include <cstdint>
+#include <vector>
 
 class ByteArrayBuilder
 {
 public:
   ByteArrayBuilder();
-  ~ByteArrayBuilder();
 
   // Adds a value of 1 byte.
   void addValue(uint8_t value);
@@ -40,28 +40,23 @@ public:
   int getNumberOfBytes();
 
 private:
-  char* byteArray;
+  std::vector<char> byteVector;
   int numberOfBytes;
 
   /**
-   * Copies the underlying byte array into a new area of dynamic memory
-   * and returns a pointer to it.
+   * Converts the underlying vector of bytes into a new char array area
+   * of dynamic memory and returns a pointer to it.
    */
   char* copyArray();
   char* copyArray(int sizeToExpandTo);
   char* getEmptyArray(int sizeInBytes);
-  void copyArrayContents(char* destinationArray);
-  void replaceArray(char* newArray);
-  void expandArray(int numberOfExtraBytes);
-  void insertValue(int byteIndex, uint8_t value);
-  void insertValue(int byteIndex, int8_t value);
-  void insertValue(int byteIndex, uint16_t value);
-  void insertValue(int byteIndex, int16_t value);
-  void insertValue(int byteIndex, uint32_t value);
-  void insertValue(int byteIndex, int32_t value);
-  void initialiseArray(int initialSizeInBytes);
-  void validateArraySizeForAddition(int sizeInBytesToAdd);
-
+  void copyVectorToArray(char* destinationArray);
+  void appendValueToVector(uint8_t value);
+  void appendValueToVector(int8_t value);
+  void appendValueToVector(uint16_t value);
+  void appendValueToVector(int16_t value);
+  void appendValueToVector(uint32_t value);
+  void appendValueToVector(int32_t value);
 };
 
 #endif
