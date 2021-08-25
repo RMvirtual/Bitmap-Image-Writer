@@ -53,13 +53,7 @@ private:
   char* copyArray();
   char* getEmptyArray(int sizeInBytes);
   void copyVectorToArray(char* destinationArray);
-  void convertValueToBytes(uint8_t value);
-  void convertValueToBytes(int8_t value);
-  void convertValueToBytes(uint16_t value);
-  void convertValueToBytes(int16_t value);
-  void convertValueToBytes(uint32_t value);
-  void convertValueToBytes(int32_t value);
-  int rightBitShiftValue(int value, int numberOfBits);
+  void convertValueToBytes(int value, int lengthInBytes);
 };
 
 #endif
