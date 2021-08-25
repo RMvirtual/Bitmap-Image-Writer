@@ -7,6 +7,10 @@
 class ByteArrayBuilder
 {
 public:
+  /**
+   * Returns a byte array builder object for building up a byte array
+   * from various integer size values to represent the underlying bits.
+   */
   ByteArrayBuilder();
 
   // Add a character (converted to an 8-bit unsigned integer).
@@ -46,15 +50,36 @@ private:
   std::vector<char> byteVector;
   int numberOfBytes;
 
-  void convertValueToBytes(int value, int lengthInBytes);
+  /**
+   * Processes the integer value into bytes and stores them against
+   * this object. Requires the length of bytes that the integer should
+   * be split up into.
+   */
   void processNewValue(int value, int lengthInBytes);
 
+  /**
+   * Converts the integer value into 8-bit values dependent on its
+   * length in bytes and adds them to the underlying char vector.
+   */
+  void convertValueToBytes(int value, int lengthInBytes);
+  
   /**
    * Converts the underlying vector of bytes into a new char array area
    * of dynamic memory and returns a pointer to it.
    */
   char* copyArray();
+
+  /**
+   * Returns a pointer to an empty array of bytes stored in dynamic
+   * memory of a specific size. All values initialised to 0.
+   */
   char* getEmptyArray(int sizeInBytes);
+
+  /**
+   * Copies the contents of this object's underlying vector to a byte
+   * array location. Checks to ensure the array is of sufficient size
+   * should be performed before using this function.
+   */ 
   void copyVectorToArray(char* destinationArray);
 };
 
