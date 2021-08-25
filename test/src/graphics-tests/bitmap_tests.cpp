@@ -54,7 +54,6 @@ TEST(GraphicsTests, ShouldCreateBitmap)
   std::cout << string1 << std::endl;
 }
 
-/*
 TEST(GraphicsTests, ShouldGetBitmapLength)
 {
   BitmapReader bitmapReader;
@@ -64,9 +63,11 @@ TEST(GraphicsTests, ShouldGetBitmapLength)
     "correct_resources\\blueImage512x512.bmp"
   );
 
-  int lengthInBytes = bitmapReader.getLengthOfPayload(bitmapFile);
+  int correctSize = 786432;
+  int payloadSizeInBytes = bitmapReader.getLengthOfPayload(bitmapFile);
+
+  ASSERT_EQ(correctSize, payloadSizeInBytes);
 }
-*/
 
 TEST(GraphicsTests, ShouldGetBitmapFileSize)
 {
@@ -78,7 +79,7 @@ TEST(GraphicsTests, ShouldGetBitmapFileSize)
   );
 
   int correctSize = 786486;
-  int lengthInBytes = bitmapReader.getSizeOfFile(bitmapFile);
+  int fileSizeInBytes = bitmapReader.getSizeOfFile(bitmapFile);
 
-  ASSERT_EQ(correctSize, lengthInBytes);
+  ASSERT_EQ(correctSize, fileSizeInBytes);
 }
