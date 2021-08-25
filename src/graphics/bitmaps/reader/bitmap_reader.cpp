@@ -38,8 +38,6 @@ BitmapFileHeader BitmapReader::getBitmapFileHeader(string filePath)
     std::istreambuf_iterator<char>()
   );
 
-  string.c_str();
-
   BitmapFileHeader bmpFileHeader {2};
   bmpFileHeader.bitmapSignatureBytes[0] = string[0];
   bmpFileHeader.bitmapSignatureBytes[1] = string[1];
@@ -93,18 +91,26 @@ BitmapInfoHeader BitmapReader::getBitmapInfoHeader(string filePath)
   */
 
   bmpInfoHeader.sizeOfThisHeader = uint32_t (
-    (uint8_t) string[15] |
-    (uint8_t) string[16] << 8 |
-    (uint8_t) string[17] << 16 |
-    (uint8_t) string[18] << 24
+    (uint8_t) string[14] |
+    (uint8_t) string[15] << 8 |
+    (uint8_t) string[16] << 16 |
+    (uint8_t) string[17] << 24
   );
 
   bmpInfoHeader.widthInPixels = uint32_t (
-    (uint8_t) string[19] |
-    (uint8_t) string[20] << 8 |
-    (uint8_t) string[21] << 16 |
-    (uint8_t) string[22] << 24
+    (uint8_t) string[18] |
+    (uint8_t) string[19] << 8 |
+    (uint8_t) string[20] << 16 |
+    (uint8_t) string[21] << 24
   );
+
+  bmpInfoHeader.heightInPixels = uint32_t (
+    (uint8_t) string[22] |
+    (uint8_t) string[23] << 8 |
+    (uint8_t) string[24] << 16 |
+    (uint8_t) string[25] << 24
+  );
+
 
   return bmpInfoHeader;
 }

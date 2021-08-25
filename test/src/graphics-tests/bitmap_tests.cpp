@@ -115,5 +115,6 @@ TEST(GraphicsTests, ShouldGetBitmapInfoHeader)
 
   ASSERT_EQ(40, bmpInfoHeader.sizeOfThisHeader);
   ASSERT_EQ(512, bmpInfoHeader.widthInPixels);
+  ASSERT_EQ(512, bmpInfoHeader.heightInPixels);
 
 }
