@@ -3,6 +3,12 @@
 #include "src/graphics/bitmaps/headers/file_header.h"
 #include "src/common/byte_array.h"
 
+BitmapFileHeader::BitmapFileHeader(int sizeOfHeaderInBytes)
+: BitmapHeader {sizeOfHeaderInBytes}
+{
+  // pass;
+}
+
 BitmapFileHeader::BitmapFileHeader(int sizeOfHeaderInBytes, int widthInPixels, int heightInPixels)
 : BitmapHeader {sizeOfHeaderInBytes}
 {

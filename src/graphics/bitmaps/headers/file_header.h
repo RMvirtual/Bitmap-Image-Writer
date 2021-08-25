@@ -8,12 +8,12 @@ class BitmapFileHeader
 : public BitmapHeader
 {
 public:
+  BitmapFileHeader(int sizeOfHeaderInBytes);
   BitmapFileHeader(
     int sizeOfHeaderInBytes, int widthInPixels, int heightInPixels);
 
   char* toBytes();
 
-private:
   char bitmapSignatureBytes[2];
   uint32_t sizeOfBitmapFile;
   uint32_t reservedBytes;

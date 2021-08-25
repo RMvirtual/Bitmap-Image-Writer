@@ -78,7 +78,8 @@
 			"xmemory": "cpp",
 			"xstddef": "cpp",
 			"xtr1common": "cpp",
-			"cstdarg": "cpp"
+			"cstdarg": "cpp",
+			"filesystem": "cpp"
 		}
 	}
 }

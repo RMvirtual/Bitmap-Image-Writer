@@ -83,3 +83,20 @@ TEST(GraphicsTests, ShouldGetBitmapFileSize)
 
   ASSERT_EQ(correctSize, fileSizeInBytes);
 }
+
+TEST(GraphicsTests, ShouldGetBitmapFileHeader)
+{
+  BitmapReader bmpReader;
+  
+  char* bmpFile = (
+    "C:\\Users\\rmvir\\Desktop\\scc300-Win3D\\test\\output\\" \
+    "correct_resources\\blueImage512x512.bmp"
+  );
+
+  BitmapFileHeader bmpFileHeader = bmpReader.getBitmapFileHeader(bmpFile);
+
+  ASSERT_EQ('B', bmpFileHeader.bitmapSignatureBytes[0]);
+  ASSERT_EQ('M', bmpFileHeader.bitmapSignatureBytes[1]);
+
+  
+}
