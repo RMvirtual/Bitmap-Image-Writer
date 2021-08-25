@@ -154,7 +154,11 @@ TEST(ByteArrayTests, ShouldAddEverySizeIntToBitmapBuilder)
   int8_t signed8bit = 425;
   int16_t signed16bit = 529;
   int32_t signed32bit = 51891897;
+  int8_t negativeSigned8bit = -425;
+  int16_t negativeSigned16bit = -529;
+  int32_t negativeSigned32bit = -51891897;
   int normalInt = 44;
+  int normalNegativeInt = -44;
 
   byteArrayBuilder.addValue(charByte);
   byteArrayBuilder.addValue(unsigned8bit);
@@ -163,11 +167,14 @@ TEST(ByteArrayTests, ShouldAddEverySizeIntToBitmapBuilder)
   byteArrayBuilder.addValue(signed8bit);
   byteArrayBuilder.addValue(signed16bit);
   byteArrayBuilder.addValue(signed32bit);
+  byteArrayBuilder.addValue(negativeSigned8bit);
+  byteArrayBuilder.addValue(negativeSigned16bit);
+  byteArrayBuilder.addValue(negativeSigned32bit);
   byteArrayBuilder.addValue(normalInt);
 
   char* byteArray = byteArrayBuilder.toBytes();
 
-  int correctNumberOfBytes = 18;
+  int correctNumberOfBytes = 26;
   char* correctByteArray = new char[correctNumberOfBytes];
   int byteNo = 0;
 
@@ -186,10 +193,17 @@ TEST(ByteArrayTests, ShouldAddEverySizeIntToBitmapBuilder)
   correctByteArray[12] = signed32bit >> 8;
   correctByteArray[13] = signed32bit >> 16;
   correctByteArray[14] = signed32bit >> 24;
-  correctByteArray[15] = normalInt;
-  correctByteArray[16] = normalInt >> 8;
-  correctByteArray[17] = normalInt >> 16;
-  correctByteArray[18] = normalInt >> 24;
+  correctByteArray[15] = negativeSigned8bit;
+  correctByteArray[16] = negativeSigned16bit;
+  correctByteArray[17] = negativeSigned16bit >> 8;
+  correctByteArray[18] = negativeSigned32bit;
+  correctByteArray[19] = negativeSigned32bit >> 8;
+  correctByteArray[20] = negativeSigned32bit >> 16;
+  correctByteArray[21] = negativeSigned32bit >> 24;
+  correctByteArray[22] = normalInt;
+  correctByteArray[23] = normalInt >> 8;
+  correctByteArray[24] = normalInt >> 16;
+  correctByteArray[25] = normalInt >> 24;
 
   for (int byteNo = 0; byteNo < correctNumberOfBytes; byteNo++)
     ASSERT_EQ(correctByteArray[byteNo], byteArray[byteNo]);
