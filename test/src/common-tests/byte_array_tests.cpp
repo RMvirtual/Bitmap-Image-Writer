@@ -142,3 +142,53 @@ TEST(ByteArrayTests, ShouldAddMultipleSizeUnsignedIntsToArray)
   delete[] byteArray;
   delete[] correctByteArray;
 }
+
+TEST(ByteArrayTests, ShouldAddEverySizeIntToBitmapBuilder)
+{
+  ByteArrayBuilder byteArrayBuilder;
+
+  char charByte = 'a';
+  uint8_t unsigned8bit = 20;
+  uint16_t unsigned16bit = 21596;
+  uint32_t unsigned32bit = 8589429;
+  int8_t signed8bit = 425;
+  int16_t signed16bit = 529;
+  int32_t signed32bit = 51891897;
+
+  byteArrayBuilder.addValue(charByte);
+  byteArrayBuilder.addValue(unsigned8bit);
+  byteArrayBuilder.addValue(unsigned16bit);
+  byteArrayBuilder.addValue(unsigned32bit);
+  byteArrayBuilder.addValue(signed8bit);
+  byteArrayBuilder.addValue(signed16bit);
+  byteArrayBuilder.addValue(signed32bit);
+
+  char* byteArray = byteArrayBuilder.toBytes();
+
+  int correctNumberOfBytes = 14;
+  char* correctByteArray = new char[correctNumberOfBytes];
+  int byteNo = 0;
+
+  correctByteArray[0] = charByte;
+  correctByteArray[1] = unsigned8bit;
+  correctByteArray[2] = unsigned16bit;
+  correctByteArray[3] = unsigned16bit >> 8;
+  correctByteArray[4] = unsigned32bit;
+  correctByteArray[5] = unsigned32bit >> 8;
+  correctByteArray[6] = unsigned32bit >> 16;
+  correctByteArray[7] = unsigned32bit >> 24;
+  correctByteArray[8] = signed8bit;
+  correctByteArray[9] = signed16bit;
+  correctByteArray[10] = signed16bit >> 8;
+  correctByteArray[11] = signed32bit;
+  correctByteArray[12] = signed32bit >> 8;
+  correctByteArray[13] = signed32bit >> 16;
+  correctByteArray[14] = signed32bit >> 24;
+
+  for (int byteNo = 0; byteNo < correctNumberOfBytes; byteNo++)
+    ASSERT_EQ(correctByteArray[byteNo], byteArray[byteNo]);
+
+  delete[] byteArray;
+  delete[] correctByteArray;
+
+}

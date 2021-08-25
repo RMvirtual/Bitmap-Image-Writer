@@ -20,7 +20,7 @@ BitmapInfoHeader::BitmapInfoHeader(
   this->rawBitmapDataSize = 0; 
   this->horizontalResolutionPixelPerMeter = 0;
   this->verticalResolutionPixelsPerMeter = 0; 
-  this->colorTableEntries = 0; 
+  this->colorTableEntries = 0;
   this->importantColors = 0; 
 }
 

@@ -1,6 +1,4 @@
-#include <algorithm>
-#include <iostream>
-
+#include <cstdint>
 #include "src/common/byte_array.h"
 
 ByteArrayBuilder::ByteArrayBuilder()
