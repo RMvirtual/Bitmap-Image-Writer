@@ -100,5 +100,20 @@ TEST(GraphicsTests, ShouldGetBitmapFileHeader)
   ASSERT_EQ(786486, bmpFileHeader.sizeOfBitmapFile);
   ASSERT_EQ(0, bmpFileHeader.reservedBytes);
   ASSERT_EQ(54, bmpFileHeader.pixelDataOffset);
+}
+
+TEST(GraphicsTests, ShouldGetBitmapInfoHeader)
+{
+  BitmapReader bmpReader;
   
+  char* bmpFile = (
+    "C:\\Users\\rmvir\\Desktop\\scc300-Win3D\\test\\output\\" \
+    "correct_resources\\blueImage512x512.bmp"
+  );
+
+  BitmapInfoHeader bmpInfoHeader = bmpReader.getBitmapInfoHeader(bmpFile);
+
+  ASSERT_EQ(40, bmpInfoHeader.sizeOfThisHeader);
+  ASSERT_EQ(512, bmpInfoHeader.widthInPixels);
+
 }

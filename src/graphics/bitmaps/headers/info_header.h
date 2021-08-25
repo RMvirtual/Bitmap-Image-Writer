@@ -7,12 +7,12 @@
 class BitmapInfoHeader : public BitmapHeader
 {
 public:
+  BitmapInfoHeader(int sizeOfHeaderInBytes);
   BitmapInfoHeader(
     int sizeOfHeaderInBytes, int widthInPixels, int heightInPixels);
   
   char* toBytes();
 
-private:
   uint32_t sizeOfThisHeader;
   int32_t widthInPixels;
   int32_t heightInPixels;

@@ -72,3 +72,39 @@ BitmapFileHeader BitmapReader::getBitmapFileHeader(string filePath)
 
   return bmpFileHeader;
 }
+
+BitmapInfoHeader BitmapReader::getBitmapInfoHeader(string filePath)
+{
+  ifstream file(filePath);
+
+  string string(
+    (std::istreambuf_iterator<char>(file)),
+    std::istreambuf_iterator<char>()
+  );
+
+  string.c_str();
+
+  BitmapInfoHeader bmpInfoHeader {2};
+
+  /*
+  for (int i = 0; i < 54; i++) {
+    cout << "Byte no " << i << ": " << (int) string[i] << endl;
+  }
+  */
+
+  bmpInfoHeader.sizeOfThisHeader = uint32_t (
+    (uint8_t) string[15] |
+    (uint8_t) string[16] << 8 |
+    (uint8_t) string[17] << 16 |
+    (uint8_t) string[18] << 24
+  );
+
+  bmpInfoHeader.widthInPixels = uint32_t (
+    (uint8_t) string[19] |
+    (uint8_t) string[20] << 8 |
+    (uint8_t) string[21] << 16 |
+    (uint8_t) string[22] << 24
+  );
+
+  return bmpInfoHeader;
+}
