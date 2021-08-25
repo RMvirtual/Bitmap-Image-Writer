@@ -3,8 +3,8 @@
 #include <iostream>
 #include <string>
 
-#include "src/graphics/bitmaps/file_header.h"
-#include "src/graphics/bitmaps/info_header.h"
+#include "src/graphics/bitmaps/headers/file_header.h"
+#include "src/graphics/bitmaps/headers/info_header.h"
 #include "src/graphics/bitmaps/pixel.h"
 #include "src/graphics/bitmaps/reader/bitmap_reader.h"
 

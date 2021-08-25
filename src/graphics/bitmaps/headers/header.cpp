@@ -1,4 +1,4 @@
-#include "src/graphics/bitmaps/header.h"
+#include "src/graphics/bitmaps/headers/header.h"
 
 BitmapHeader::BitmapHeader(int sizeOfHeaderInBytes)
 {

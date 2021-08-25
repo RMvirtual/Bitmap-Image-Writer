@@ -26,3 +26,4 @@ int BitmapReader::getSizeOfFile(std::string filePath)
 
   return fileSizeInBytes;
 }
+

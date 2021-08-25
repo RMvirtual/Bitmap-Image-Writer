@@ -2,7 +2,7 @@
 #include <iostream>
 #include <unordered_map>
 
-#include "src/graphics/bitmaps/info_header.h"
+#include "src/graphics/bitmaps/headers/info_header.h"
 #include "src/common/byte_array.h"
 
 using namespace std;

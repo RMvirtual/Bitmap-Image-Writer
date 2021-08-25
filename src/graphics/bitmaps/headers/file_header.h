@@ -2,7 +2,7 @@
 #define BITMAP_FILE_HEADER_H
 
 #include <cstdint>
-#include "src/graphics/bitmaps/header.h"
+#include "src/graphics/bitmaps/headers/header.h"
 
 class BitmapFileHeader
 : public BitmapHeader
