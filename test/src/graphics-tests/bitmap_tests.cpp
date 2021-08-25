@@ -66,7 +66,7 @@ TEST(GraphicsTests, ShouldGetBitmapLength)
   int correctSize = 786432;
   int payloadSizeInBytes = bitmapReader.getLengthOfPixelPayload(bitmapFile);
 
-  ASSERT_EQ(correctSize, payloadSizeInBytes);
+  EXPECT_EQ(correctSize, payloadSizeInBytes);
 }
 
 TEST(GraphicsTests, ShouldGetBitmapFileSize)
@@ -81,7 +81,7 @@ TEST(GraphicsTests, ShouldGetBitmapFileSize)
   int correctSize = 786486;
   int fileSizeInBytes = bitmapReader.getSizeOfFile(bitmapFile);
 
-  ASSERT_EQ(correctSize, fileSizeInBytes);
+  EXPECT_EQ(correctSize, fileSizeInBytes);
 }
 
 TEST(GraphicsTests, ShouldGetBitmapFileHeader)
@@ -95,11 +95,11 @@ TEST(GraphicsTests, ShouldGetBitmapFileHeader)
 
   BitmapFileHeader bmpFileHeader = bmpReader.getBitmapFileHeader(bmpFile);
 
-  ASSERT_EQ('B', bmpFileHeader.bitmapSignatureBytes[0]);
-  ASSERT_EQ('M', bmpFileHeader.bitmapSignatureBytes[1]);
-  ASSERT_EQ(786486, bmpFileHeader.sizeOfBitmapFile);
-  ASSERT_EQ(0, bmpFileHeader.reservedBytes);
-  ASSERT_EQ(54, bmpFileHeader.pixelDataOffset);
+  EXPECT_EQ('B', bmpFileHeader.bitmapSignatureBytes[0]);
+  EXPECT_EQ('M', bmpFileHeader.bitmapSignatureBytes[1]);
+  EXPECT_EQ(786486, bmpFileHeader.sizeOfBitmapFile);
+  EXPECT_EQ(0, bmpFileHeader.reservedBytes);
+  EXPECT_EQ(54, bmpFileHeader.pixelDataOffset);
 }
 
 TEST(GraphicsTests, ShouldGetBitmapInfoHeader)
@@ -113,8 +113,15 @@ TEST(GraphicsTests, ShouldGetBitmapInfoHeader)
 
   BitmapInfoHeader bmpInfoHeader = bmpReader.getBitmapInfoHeader(bmpFile);
 
-  ASSERT_EQ(40, bmpInfoHeader.sizeOfThisHeader);
-  ASSERT_EQ(512, bmpInfoHeader.widthInPixels);
-  ASSERT_EQ(512, bmpInfoHeader.heightInPixels);
+  EXPECT_EQ(40, bmpInfoHeader.sizeOfThisHeader);
+  EXPECT_EQ(512, bmpInfoHeader.widthInPixels);
+  EXPECT_EQ(512, bmpInfoHeader.heightInPixels);
+  EXPECT_EQ(1, bmpInfoHeader.numberOfColorPlanes);
+  EXPECT_EQ(0, bmpInfoHeader.compressionMethod);
+  EXPECT_EQ(0, bmpInfoHeader.rawBitmapDataSize);
+  EXPECT_EQ(0, bmpInfoHeader.horizontalResolutionPixelPerMeter);
+  EXPECT_EQ(0, bmpInfoHeader.verticalResolutionPixelsPerMeter);
+  EXPECT_EQ(0, bmpInfoHeader.colorTableEntries);
+  EXPECT_EQ(0, bmpInfoHeader.importantColors);
 
 }

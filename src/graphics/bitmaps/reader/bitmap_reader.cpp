@@ -80,8 +80,6 @@ BitmapInfoHeader BitmapReader::getBitmapInfoHeader(string filePath)
     std::istreambuf_iterator<char>()
   );
 
-  string.c_str();
-
   BitmapInfoHeader bmpInfoHeader {2};
 
   /*
@@ -111,6 +109,57 @@ BitmapInfoHeader BitmapReader::getBitmapInfoHeader(string filePath)
     (uint8_t) string[25] << 24
   );
 
+  bmpInfoHeader.numberOfColorPlanes = uint16_t (
+    (uint8_t) string[26] |
+    (uint8_t) string[27] << 8
+  );
+
+  bmpInfoHeader.colorDepth = uint16_t (
+    (uint8_t) string[28] |
+    (uint8_t) string[29] << 8
+  );
+
+  bmpInfoHeader.compressionMethod = uint32_t (
+    (uint8_t) string[30] |
+    (uint8_t) string[31] << 8 |
+    (uint8_t) string[32] << 16 |
+    (uint8_t) string[33] << 24
+  );
+
+  bmpInfoHeader.rawBitmapDataSize = uint32_t (
+    (uint8_t) string[34] |
+    (uint8_t) string[35] << 8 |
+    (uint8_t) string[36] << 16 |
+    (uint8_t) string[37] << 24
+  );
+
+  bmpInfoHeader.horizontalResolutionPixelPerMeter = uint32_t (
+    (uint8_t) string[38] |
+    (uint8_t) string[39] << 8 |
+    (uint8_t) string[40] << 16 |
+    (uint8_t) string[41] << 24
+  );
+
+  bmpInfoHeader.verticalResolutionPixelsPerMeter = uint32_t (
+    (uint8_t) string[42] |
+    (uint8_t) string[43] << 8 |
+    (uint8_t) string[44] << 16 |
+    (uint8_t) string[45] << 24
+  );
+
+  bmpInfoHeader.colorTableEntries = uint32_t (
+    (uint8_t) string[46] |
+    (uint8_t) string[47] << 8 |
+    (uint8_t) string[48] << 16 |
+    (uint8_t) string[49] << 24
+  );
+
+  bmpInfoHeader.importantColors = uint32_t (
+    (uint8_t) string[50] |
+    (uint8_t) string[51] << 8 |
+    (uint8_t) string[52] << 16 |
+    (uint8_t) string[53] << 24
+  );
 
   return bmpInfoHeader;
 }
