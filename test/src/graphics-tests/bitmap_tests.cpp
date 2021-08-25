@@ -123,5 +123,4 @@ TEST(GraphicsTests, ShouldGetBitmapInfoHeader)
   EXPECT_EQ(0, bmpInfoHeader.verticalResolutionPixelsPerMeter);
   EXPECT_EQ(0, bmpInfoHeader.colorTableEntries);
   EXPECT_EQ(0, bmpInfoHeader.importantColors);
-
 }

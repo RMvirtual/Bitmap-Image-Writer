@@ -95,18 +95,18 @@ BitmapInfoHeader BitmapReader::getBitmapInfoHeader(string filePath)
     (uint8_t) string[17] << 24
   );
 
-  bmpInfoHeader.widthInPixels = uint32_t (
-    (uint8_t) string[18] |
-    (uint8_t) string[19] << 8 |
-    (uint8_t) string[20] << 16 |
-    (uint8_t) string[21] << 24
+  bmpInfoHeader.widthInPixels = int32_t (
+    (int8_t) string[18] |
+    (int8_t) string[19] << 8 |
+    (int8_t) string[20] << 16 |
+    (int8_t) string[21] << 24
   );
 
-  bmpInfoHeader.heightInPixels = uint32_t (
-    (uint8_t) string[22] |
-    (uint8_t) string[23] << 8 |
-    (uint8_t) string[24] << 16 |
-    (uint8_t) string[25] << 24
+  bmpInfoHeader.heightInPixels = int32_t (
+    (int8_t) string[22] |
+    (int8_t) string[23] << 8 |
+    (int8_t) string[24] << 16 |
+    (int8_t) string[25] << 24
   );
 
   bmpInfoHeader.numberOfColorPlanes = uint16_t (
@@ -133,18 +133,18 @@ BitmapInfoHeader BitmapReader::getBitmapInfoHeader(string filePath)
     (uint8_t) string[37] << 24
   );
 
-  bmpInfoHeader.horizontalResolutionPixelPerMeter = uint32_t (
-    (uint8_t) string[38] |
-    (uint8_t) string[39] << 8 |
-    (uint8_t) string[40] << 16 |
-    (uint8_t) string[41] << 24
+  bmpInfoHeader.horizontalResolutionPixelPerMeter = int32_t (
+    (int8_t) string[38] |
+    (int8_t) string[39] << 8 |
+    (int8_t) string[40] << 16 |
+    (int8_t) string[41] << 24
   );
 
-  bmpInfoHeader.verticalResolutionPixelsPerMeter = uint32_t (
-    (uint8_t) string[42] |
-    (uint8_t) string[43] << 8 |
-    (uint8_t) string[44] << 16 |
-    (uint8_t) string[45] << 24
+  bmpInfoHeader.verticalResolutionPixelsPerMeter = int32_t (
+    (int8_t) string[42] |
+    (int8_t) string[43] << 8 |
+    (int8_t) string[44] << 16 |
+    (int8_t) string[45] << 24
   );
 
   bmpInfoHeader.colorTableEntries = uint32_t (
