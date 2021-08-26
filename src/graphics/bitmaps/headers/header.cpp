@@ -1,5 +1,10 @@
 #include "src/graphics/bitmaps/headers/header.h"
 
+BitmapHeader::BitmapHeader()
+{
+  this->sizeOfHeaderInBytes = 0;
+}
+
 BitmapHeader::BitmapHeader(int sizeOfHeaderInBytes)
 {
   this->sizeOfHeaderInBytes = sizeOfHeaderInBytes;

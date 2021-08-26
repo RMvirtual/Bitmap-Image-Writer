@@ -7,6 +7,7 @@
 class BitmapDibHeader : public BitmapHeader
 {
 public:
+  BitmapDibHeader();
   BitmapDibHeader(int sizeOfHeaderInBytes);
   BitmapDibHeader(
     int sizeOfHeaderInBytes, int widthInPixels, int heightInPixels);

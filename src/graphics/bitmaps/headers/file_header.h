@@ -9,6 +9,7 @@ class BitmapFileHeader
 : public BitmapHeader
 {
 public:
+  BitmapFileHeader();
   BitmapFileHeader(int sizeOfHeaderInBytes);
   BitmapFileHeader(
     int sizeOfHeaderInBytes, int widthInPixels, int heightInPixels);

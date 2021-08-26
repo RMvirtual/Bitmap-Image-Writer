@@ -17,7 +17,7 @@ BitmapReader::BitmapReader()
 BitmapFileHeader BitmapReader::getBitmapFileHeader(string filePath)
 {
   string bytes = this->getStringOfBytesFromFile(filePath);
-  BitmapFileHeader bmpFileHeader {2};
+  BitmapFileHeader bmpFileHeader;
   
   bmpFileHeader.setSignatureBytes(bytes[0], bytes[1]);
 
@@ -36,46 +36,46 @@ BitmapFileHeader BitmapReader::getBitmapFileHeader(string filePath)
 BitmapDibHeader BitmapReader::getBitmapDibHeader(string filePath)
 {
   string bytes = this->getStringOfBytesFromFile(filePath);
-  BitmapDibHeader bmpInfoHeader {2};
+  BitmapDibHeader bmpDibHeader;
 
   uint32_t headerSize = this->getFourBytesFromString(bytes, 14);
-  bmpInfoHeader.setSizeOfHeaderInBytes(headerSize);
+  bmpDibHeader.setSizeOfHeaderInBytes(headerSize);
 
   uint32_t widthInPixels = this->getFourBytesFromString(bytes, 18);  
-  bmpInfoHeader.setWidthInPixels(widthInPixels);
+  bmpDibHeader.setWidthInPixels(widthInPixels);
 
   int32_t heightInPixels = this->getFourBytesFromString(bytes, 22);  
-  bmpInfoHeader.setHeightInPixels(heightInPixels);
+  bmpDibHeader.setHeightInPixels(heightInPixels);
 
   uint16_t numberOfColorPlanes = this->getTwoBytesFromString(bytes, 26);
-  bmpInfoHeader.setNumberOfColourPlanes(numberOfColorPlanes);
+  bmpDibHeader.setNumberOfColourPlanes(numberOfColorPlanes);
 
   uint16_t colorDepth = this->getTwoBytesFromString(bytes, 28);
-  bmpInfoHeader.setColorDepth(colorDepth);
+  bmpDibHeader.setColorDepth(colorDepth);
 
   uint32_t compressionMethod = this->getFourBytesFromString(bytes, 30);
-  bmpInfoHeader.setCompressionMethod(compressionMethod);
+  bmpDibHeader.setCompressionMethod(compressionMethod);
 
   uint32_t rawBitmapDataSize = this->getFourBytesFromString(bytes, 34);
-  bmpInfoHeader.setRawBitmapDataSize(rawBitmapDataSize);
+  bmpDibHeader.setRawBitmapDataSize(rawBitmapDataSize);
 
   /* May be issues here in the future due to conversion between
   unsigned and signed ints with only one function. */
   int32_t horizontalPixelsPerMetre = this->getFourBytesFromString(bytes, 38);
-  bmpInfoHeader.setHorizontalPixelsPerMetre(horizontalPixelsPerMetre);
+  bmpDibHeader.setHorizontalPixelsPerMetre(horizontalPixelsPerMetre);
 
   /* May be issues here in the future due to conversion between
   unsigned and signed ints with only one function. */
   int32_t verticalPixelsPerMetre = this->getFourBytesFromString(bytes, 42);
-  bmpInfoHeader.setVerticalPixelsPerMetre(verticalPixelsPerMetre);
+  bmpDibHeader.setVerticalPixelsPerMetre(verticalPixelsPerMetre);
 
   uint32_t colorTableEntries = this->getFourBytesFromString(bytes, 46);
-  bmpInfoHeader.setColorTableEntries(colorTableEntries);
+  bmpDibHeader.setColorTableEntries(colorTableEntries);
 
   uint32_t importantColors = this->getFourBytesFromString(bytes, 50);
-  bmpInfoHeader.setImportantColours(importantColors);
+  bmpDibHeader.setImportantColours(importantColors);
 
-  return bmpInfoHeader;
+  return bmpDibHeader;
 }
 
 int BitmapReader::getSizeOfFile(string filePath)

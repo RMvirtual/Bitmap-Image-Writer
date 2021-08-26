@@ -7,6 +7,12 @@
 
 using namespace std;
 
+BitmapDibHeader::BitmapDibHeader()
+: BitmapHeader {}
+{
+  // Pass.
+}
+
 BitmapDibHeader::BitmapDibHeader(int sizeOfHeaderInBytes)
 : BitmapHeader {sizeOfHeaderInBytes}
 {
