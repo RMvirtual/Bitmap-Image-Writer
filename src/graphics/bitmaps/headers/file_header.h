@@ -16,8 +16,17 @@ public:
   char* toBytes();
 
   void setSignatureBytes(std::string bytesSignature);
+  void setSignatureBytes(char firstSignatureByte, char secondSignatureByte);
+  void setSizeOfBitmapFile(uint32_t sizeOfBitmapFile);
+  void setReservedBytes(uint32_t reservedBytes);
+  void setPixelDataOffset(uint32_t pixelDataOffsetInBytes);
 
-  char bitmapSignatureBytes[2];
+  std::string getSignatureBytes();
+  uint32_t getSizeOfBitmapFile();
+  uint32_t getReservedBytes();
+  uint32_t getPixelDataOffset();
+
+  char signatureBytes[2];
   uint32_t sizeOfBitmapFile;
   uint32_t reservedBytes;
   uint32_t pixelDataOffset;

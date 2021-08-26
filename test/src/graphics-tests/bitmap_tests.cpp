@@ -90,8 +90,8 @@ TEST(GraphicsTests, ShouldGetBitmapFileHeader)
 
   BitmapFileHeader bmpFileHeader = bmpReader.getBitmapFileHeader(bmpFile);
 
-  EXPECT_EQ('B', bmpFileHeader.bitmapSignatureBytes[0]);
-  EXPECT_EQ('M', bmpFileHeader.bitmapSignatureBytes[1]);
+  EXPECT_EQ('B', bmpFileHeader.signatureBytes[0]);
+  EXPECT_EQ('M', bmpFileHeader.signatureBytes[1]);
   EXPECT_EQ(786486, bmpFileHeader.sizeOfBitmapFile);
   EXPECT_EQ(0, bmpFileHeader.reservedBytes);
   EXPECT_EQ(54, bmpFileHeader.pixelDataOffset);
