@@ -6,7 +6,7 @@
 
 using namespace std;
 
-TEST(BytesConverterTest, ShouldConvertFourCharacterTo32bitInteger)
+TEST(BytesConverterTest, ShouldConvertFourCharactersTo32bitInteger)
 {
   BytesConverter bytesConverter;
   string stringToConvert = "1234";
@@ -17,4 +17,17 @@ TEST(BytesConverterTest, ShouldConvertFourCharacterTo32bitInteger)
   uint32_t correctValue = 875770417;
 
   EXPECT_DOUBLE_EQ(correctValue, convertedValue);  
+}
+
+TEST(BytesConverterTest, ShouldConvertTwoCharactersTo32bitInteger)
+{
+  BytesConverter bytesConverter;
+  string stringToConvert = "xo";
+
+  uint16_t convertedValue 
+    = bytesConverter.convertTwoCharactersTo16bitInteger(stringToConvert);
+
+  uint16_t correctValue = 28536;
+
+  EXPECT_DOUBLE_EQ(correctValue, convertedValue);
 }
