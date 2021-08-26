@@ -15,13 +15,10 @@ BitmapFileHeader::BitmapFileHeader(int widthInPixels, int heightInPixels)
 {
   this->initialiseDefaultValues();
 
-  int metadataSize = 54;
-
   int sizeOfPixelArray = this->calculateSizeOfPixelArray(
     widthInPixels, heightInPixels);
 
-  this->sizeOfBitmapFile = metadataSize + sizeOfPixelArray;  
-  this->pixelDataOffset = metadataSize;
+  this->sizeOfBitmapFile = this->pixelDataOffset + sizeOfPixelArray;
 }
 
 char* BitmapFileHeader::toBytes()
@@ -51,7 +48,6 @@ void BitmapFileHeader::initialiseDefaultValues()
 int BitmapFileHeader::calculateSizeOfPixelArray(
   int widthInPixels, int heightInPixels)
 {
-  int metadataSize = 54;
   int sizeOfPixelArray = 3 * widthInPixels * heightInPixels;
 
   return sizeOfPixelArray;
