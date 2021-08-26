@@ -7,6 +7,7 @@
 #include "src/graphics/bitmaps/headers/file_header.h"
 #include "src/graphics/bitmaps/headers/dib_header.h"
 #include "src/common/bytes_converter.h"
+#include "src/common/file_opener.h"
 
 using namespace std;
 
@@ -17,7 +18,9 @@ BitmapReader::BitmapReader()
 
 BitmapFileHeader BitmapReader::getBitmapFileHeader(string filePath)
 {
-  string bytes = this->getStringOfBytesFromFile(filePath);
+  FileOpener fileOpener;
+  string bytes = fileOpener.convertFileToString(filePath);
+
   BitmapFileHeader bmpFileHeader;
   BytesConverter bytesConverter;
 
@@ -43,7 +46,9 @@ BitmapFileHeader BitmapReader::getBitmapFileHeader(string filePath)
 
 BitmapDibHeader BitmapReader::getBitmapDibHeader(string filePath)
 {
-  string bytes = this->getStringOfBytesFromFile(filePath);
+  FileOpener fileOpener;
+  string bytes = fileOpener.convertFileToString(filePath);
+  
   BitmapDibHeader bmpDibHeader;
   BytesConverter bytesConverter;
 
@@ -111,20 +116,6 @@ int BitmapReader::getSizeOfFile(string filePath)
   int fileSizeInBytes = filesystem::file_size(pathToFile);
 
   return fileSizeInBytes;
-}
-
-string BitmapReader::getStringOfBytesFromFile(string filePath)
-{
-  ifstream file(filePath);
-
-  string bytes(
-    (std::istreambuf_iterator<char>(file)),
-    std::istreambuf_iterator<char>()
-  );
-
-  file.close();
-
-  return bytes;
 }
 
 int BitmapReader::getLengthOfPixelPayload(string filePath)

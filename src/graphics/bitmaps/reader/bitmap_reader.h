@@ -14,5 +14,4 @@ public:
   int getLengthOfPixelPayload(std::string filePath);
 
 private:
-  std::string getStringOfBytesFromFile(std::string filePath); 
 };
