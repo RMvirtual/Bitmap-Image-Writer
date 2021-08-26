@@ -10,9 +10,7 @@ class BitmapFileHeader
 {
 public:
   BitmapFileHeader();
-  BitmapFileHeader(int sizeOfHeaderInBytes);
-  BitmapFileHeader(
-    int sizeOfHeaderInBytes, int widthInPixels, int heightInPixels);
+  BitmapFileHeader(int widthInPixels, int heightInPixels);
 
   char* toBytes();
 

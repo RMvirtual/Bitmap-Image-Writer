@@ -5,20 +5,13 @@
 #include "src/common/byte_array.h"
 
 BitmapFileHeader::BitmapFileHeader()
-: BitmapHeader {}
-{
-  this->initialiseDefaultValues();
-  this->setSizeOfHeaderInBytes(14);
-}
-
-BitmapFileHeader::BitmapFileHeader(int sizeOfHeaderInBytes)
-: BitmapHeader {sizeOfHeaderInBytes}
+: BitmapHeader {14}
 {
   this->initialiseDefaultValues();
 }
 
-BitmapFileHeader::BitmapFileHeader(int sizeOfHeaderInBytes, int widthInPixels, int heightInPixels)
-: BitmapHeader {sizeOfHeaderInBytes}
+BitmapFileHeader::BitmapFileHeader(int widthInPixels, int heightInPixels)
+: BitmapHeader {14}
 {
   this->initialiseDefaultValues();
 

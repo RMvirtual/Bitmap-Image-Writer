@@ -12,7 +12,7 @@ TEST(GraphicsTests, ShouldCreateBitmap)
 {
   int widthInPixels = 512, heightInPixels = 512;
 
-  BitmapFileHeader bmpFileHeader {14, widthInPixels, heightInPixels};
+  BitmapFileHeader bmpFileHeader {widthInPixels, heightInPixels};
   BitmapDibHeader bmpInfoHeader {40, widthInPixels, heightInPixels};
   Pixel pixel {100, 255, 255};
   Pixel blackPixel {0, 0, 0};
