@@ -2,6 +2,7 @@
 #define BITMAP_FILE_HEADER_H
 
 #include <cstdint>
+#include <string>
 #include "src/graphics/bitmaps/headers/header.h"
 
 class BitmapFileHeader
@@ -13,6 +14,8 @@ public:
     int sizeOfHeaderInBytes, int widthInPixels, int heightInPixels);
 
   char* toBytes();
+
+  void setSignatureBytes(std::string bytesSignature);
 
   char bitmapSignatureBytes[2];
   uint32_t sizeOfBitmapFile;

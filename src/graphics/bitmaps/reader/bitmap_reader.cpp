@@ -29,38 +29,53 @@ int BitmapReader::getSizeOfFile(string filePath)
   return fileSizeInBytes;
 }
 
+uint32_t BitmapReader::convertBytesStringToInteger(string bytesString)
+{
+  return uint32_t (
+    (uint8_t) bytesString[0] |
+    (uint8_t) bytesString[1] << 8 |
+    (uint8_t) bytesString[2] << 16 |
+    (uint8_t) bytesString[3] << 24
+  );
+}
+
 BitmapFileHeader BitmapReader::getBitmapFileHeader(string filePath)
 {
   ifstream file(filePath);
 
-  string string(
+  string readBytes(
     (std::istreambuf_iterator<char>(file)),
     std::istreambuf_iterator<char>()
   );
 
   BitmapFileHeader bmpFileHeader {2};
-  bmpFileHeader.bitmapSignatureBytes[0] = string[0];
-  bmpFileHeader.bitmapSignatureBytes[1] = string[1];
+  bmpFileHeader.bitmapSignatureBytes[0] = readBytes[0];
+  bmpFileHeader.bitmapSignatureBytes[1] = readBytes[1];
 
+  string sizeOfBitmapBytes = readBytes.substr(2, 4);
+  bmpFileHeader.sizeOfBitmapFile = this->convertBytesStringToInteger(sizeOfBitmapBytes);
+
+  /*
   bmpFileHeader.sizeOfBitmapFile = uint32_t (
-    (uint8_t) string[2] |
-    (uint8_t) string[3] << 8 |
-    (uint8_t) string[4] << 16 |
-    (uint8_t) string[5] << 24
+    (uint8_t) readBytes[2] |
+    (uint8_t) readBytes[3] << 8 |
+    (uint8_t) readBytes[4] << 16 |
+    (uint8_t) readBytes[5] << 24
   );
+  */
 
   bmpFileHeader.reservedBytes = uint32_t (
-    (uint8_t) string[6] |
-    (uint8_t) string[7] << 8 |
-    (uint8_t) string[8] << 16 |
-    (uint8_t) string[9] << 24
+    (uint8_t) readBytes[6] |
+    (uint8_t) readBytes[7] << 8 |
+    (uint8_t) readBytes[8] << 16 |
+    (uint8_t) readBytes[9] << 24
   );
 
   bmpFileHeader.pixelDataOffset = uint32_t (
-    (uint8_t) string[10] |
-    (uint8_t) string[11] << 8 |
-    (uint8_t) string[12] << 16 |
-    (uint8_t) string[13] << 24
+    (uint8_t) readBytes[10] |
+    (uint8_t) readBytes[11] << 8 |
+    (uint8_t) readBytes[12] << 16 |
+    (uint8_t) readBytes[13] << 24
   );
 
   return bmpFileHeader;
