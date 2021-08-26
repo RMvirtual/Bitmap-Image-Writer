@@ -7,6 +7,7 @@
 #include "src/graphics/bitmaps/headers/dib_header.h"
 #include "src/graphics/bitmaps/pixel.h"
 #include "src/graphics/bitmaps/reader/bitmap_reader.h"
+#include "src/common/file_opener.h"
 
 TEST(GraphicsTests, ShouldCreateBitmap)
 {
@@ -74,7 +75,8 @@ TEST(GraphicsTests, ShouldGetBitmapFileSize)
   );
 
   int correctSize = 786486;
-  int fileSizeInBytes = bitmapReader.getSizeOfFile(bitmapFile);
+  FileOpener fileOpener;
+  int fileSizeInBytes = fileOpener.getSizeOfFile(bitmapFile);
 
   EXPECT_EQ(correctSize, fileSizeInBytes);
 }

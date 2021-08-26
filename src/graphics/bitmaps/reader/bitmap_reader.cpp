@@ -48,7 +48,7 @@ BitmapDibHeader BitmapReader::getBitmapDibHeader(string filePath)
 {
   FileOpener fileOpener;
   string bytes = fileOpener.convertFileToString(filePath);
-  
+
   BitmapDibHeader bmpDibHeader;
   BytesConverter bytesConverter;
 
@@ -110,17 +110,10 @@ BitmapDibHeader BitmapReader::getBitmapDibHeader(string filePath)
   return bmpDibHeader;
 }
 
-int BitmapReader::getSizeOfFile(string filePath)
-{
-  filesystem::path pathToFile {filePath};
-  int fileSizeInBytes = filesystem::file_size(pathToFile);
-
-  return fileSizeInBytes;
-}
-
 int BitmapReader::getLengthOfPixelPayload(string filePath)
 {
-  int sizeOfFile = this->getSizeOfFile(filePath);
+  FileOpener fileOpener;
+  int sizeOfFile = fileOpener.getSizeOfFile(filePath);
 
   return sizeOfFile - 54;
 }
