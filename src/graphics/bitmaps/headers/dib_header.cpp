@@ -10,13 +10,31 @@ using namespace std;
 BitmapDibHeader::BitmapDibHeader()
 : BitmapHeader {}
 {
-  // Pass.
+  this->widthInPixels = 0;
+  this->heightInPixels = 0;
+  this->numberOfColorPlanes = 1; 
+  this->colorDepth = 24; 
+  this->compressionMethod = 0;  
+  this->rawBitmapDataSize = 0; 
+  this->horizontalPixelsPerMetre = 0;
+  this->verticalPixelsPerMetre = 0; 
+  this->colorTableEntries = 0;
+  this->importantColors = 0; 
 }
 
 BitmapDibHeader::BitmapDibHeader(int sizeOfHeaderInBytes)
 : BitmapHeader {sizeOfHeaderInBytes}
 {
-  // Pass.
+  this->widthInPixels = 0;
+  this->heightInPixels = 0;
+  this->numberOfColorPlanes = 1; 
+  this->colorDepth = 24; 
+  this->compressionMethod = 0;  
+  this->rawBitmapDataSize = 0; 
+  this->horizontalPixelsPerMetre = 0;
+  this->verticalPixelsPerMetre = 0; 
+  this->colorTableEntries = 0;
+  this->importantColors = 0; 
 }
 
 BitmapDibHeader::BitmapDibHeader(

@@ -7,13 +7,29 @@
 BitmapFileHeader::BitmapFileHeader()
 : BitmapHeader {}
 {
-  // pass;
+  this->signatureBytes[0] = 'B';
+  this->signatureBytes[1] = 'M';
+
+  int metadataSize = 54;
+  int sizeOfPixels = 0;
+  this->sizeOfBitmapFile = metadataSize + sizeOfPixels;
+  
+  this->reservedBytes = 0;
+  this->pixelDataOffset = metadataSize;
 }
 
 BitmapFileHeader::BitmapFileHeader(int sizeOfHeaderInBytes)
 : BitmapHeader {sizeOfHeaderInBytes}
 {
-  // pass;
+  this->signatureBytes[0] = 'B';
+  this->signatureBytes[1] = 'M';
+
+  int metadataSize = 54;
+  int sizeOfPixels = 0;
+  this->sizeOfBitmapFile = metadataSize + sizeOfPixels;
+  
+  this->reservedBytes = 0;
+  this->pixelDataOffset = metadataSize;
 }
 
 BitmapFileHeader::BitmapFileHeader(int sizeOfHeaderInBytes, int widthInPixels, int heightInPixels)
