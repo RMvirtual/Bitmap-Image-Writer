@@ -64,12 +64,18 @@ BitmapFileHeader BitmapReader::getBitmapFileHeader(string filePath)
   );
   */
 
+  string reservedBytes = readBytes.substr(6, 4);
+  bmpFileHeader.reservedBytes = this->convertBytesStringToInteger(
+    reservedBytes);
+  
+  /*
   bmpFileHeader.reservedBytes = uint32_t (
     (uint8_t) readBytes[6] |
     (uint8_t) readBytes[7] << 8 |
     (uint8_t) readBytes[8] << 16 |
     (uint8_t) readBytes[9] << 24
   );
+  */
 
   bmpFileHeader.pixelDataOffset = uint32_t (
     (uint8_t) readBytes[10] |
