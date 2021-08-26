@@ -26,6 +26,7 @@ public:
   uint32_t getReservedBytes();
   uint32_t getPixelDataOffset();
 
+private:
   char signatureBytes[2];
   uint32_t sizeOfBitmapFile;
   uint32_t reservedBytes;

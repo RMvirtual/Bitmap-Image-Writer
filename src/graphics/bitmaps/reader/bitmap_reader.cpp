@@ -50,19 +50,26 @@ BitmapFileHeader BitmapReader::getBitmapFileHeader(string filePath)
 
   BitmapFileHeader bmpFileHeader {2};
   
-  bmpFileHeader.signatureBytes[0] = bytes[0];
-  bmpFileHeader.signatureBytes[1] = bytes[1];
-
-  string sizeOfBitmapFile = bytes.substr(2, 4);
-  bmpFileHeader.sizeOfBitmapFile = this->convertBytesStringToInteger(sizeOfBitmapFile);
-
-  string reservedBytes = bytes.substr(6, 4);
-  bmpFileHeader.reservedBytes = this->convertBytesStringToInteger(
-    reservedBytes);
+  bmpFileHeader.setSignatureBytes(bytes[0], bytes[1]);
   
-  string pixelDataOffset = bytes.substr(10, 4);
-  bmpFileHeader.pixelDataOffset = this->convertBytesStringToInteger(
-    pixelDataOffset);
+  // bmpFileHeader.signatureBytes[0] = bytes[0];
+  // bmpFileHeader.signatureBytes[1] = bytes[1];
+
+  string sizeOfBitmapFileString = bytes.substr(2, 4);
+  uint32_t sizeOfBitmapFile = this->convertBytesStringToInteger(sizeOfBitmapFileString);
+  bmpFileHeader.setSizeOfBitmapFile(sizeOfBitmapFile);
+
+  string reservedBytesString = bytes.substr(6, 4);
+  uint32_t reservedBytes = this->convertBytesStringToInteger(
+    reservedBytesString);
+
+  bmpFileHeader.setReservedBytes(reservedBytes);
+
+  string pixelDataOffsetString = bytes.substr(10, 4);
+  uint32_t pixelDataOffset = this->convertBytesStringToInteger(
+    pixelDataOffsetString);
+
+  bmpFileHeader.setPixelDataOffset(pixelDataOffset);
 
   return bmpFileHeader;
 }
