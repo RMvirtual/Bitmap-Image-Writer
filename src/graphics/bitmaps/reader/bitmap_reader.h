@@ -11,6 +11,4 @@ public:
   BitmapFileHeader getBitmapFileHeader(std::string filePath);
   BitmapDibHeader getBitmapDibHeader(std::string filePath);
   int getLengthOfPixelPayload(std::string filePath);
-
-private:
 };
