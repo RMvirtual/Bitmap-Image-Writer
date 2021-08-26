@@ -107,7 +107,7 @@ TEST(GraphicsTests, ShouldGetBitmapInfoHeader)
     "correct_resources\\blueImage512x512.bmp"
   );
 
-  BitmapDibHeader bmpInfoHeader = bmpReader.getBitmapInfoHeader(bmpFile);
+  BitmapDibHeader bmpInfoHeader = bmpReader.getBitmapDibHeader(bmpFile);
 
   EXPECT_EQ(40, bmpInfoHeader.getSizeOfHeaderInBytes());
   EXPECT_EQ(512, bmpInfoHeader.getWidthInPixels());

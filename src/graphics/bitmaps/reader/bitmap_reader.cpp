@@ -29,6 +29,20 @@ int BitmapReader::getSizeOfFile(string filePath)
   return fileSizeInBytes;
 }
 
+string BitmapReader::getStringOfBytesFromFile(string filePath)
+{
+  ifstream file(filePath);
+
+  string bytes(
+    (std::istreambuf_iterator<char>(file)),
+    std::istreambuf_iterator<char>()
+  );
+
+  file.close();
+
+  return bytes;
+}
+
 uint32_t BitmapReader::convertStringTo32BitInteger(string bytesString)
 {
   return uint32_t (
@@ -71,13 +85,7 @@ uint32_t BitmapReader::getFourBytesFromString(
 
 BitmapFileHeader BitmapReader::getBitmapFileHeader(string filePath)
 {
-  ifstream file(filePath);
-
-  string bytes(
-    (std::istreambuf_iterator<char>(file)),
-    std::istreambuf_iterator<char>()
-  );
-
+  string bytes = this->getStringOfBytesFromFile(filePath);
   BitmapFileHeader bmpFileHeader {2};
   
   bmpFileHeader.setSignatureBytes(bytes[0], bytes[1]);
@@ -94,15 +102,9 @@ BitmapFileHeader BitmapReader::getBitmapFileHeader(string filePath)
   return bmpFileHeader;
 }
 
-BitmapDibHeader BitmapReader::getBitmapInfoHeader(string filePath)
+BitmapDibHeader BitmapReader::getBitmapDibHeader(string filePath)
 {
-  ifstream file(filePath);
-
-  string bytes(
-    (std::istreambuf_iterator<char>(file)),
-    std::istreambuf_iterator<char>()
-  );
-
+  string bytes = this->getStringOfBytesFromFile(filePath);
   BitmapDibHeader bmpInfoHeader {2};
 
   uint32_t headerSize = this->getFourBytesFromString(bytes, 14);
