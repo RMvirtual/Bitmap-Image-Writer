@@ -3,6 +3,7 @@
 
 #include <cstdint>
 #include "src/graphics/bitmaps/headers/header.h"
+#include "src/common/byte_array.h"
 
 class BitmapDibHeader : public BitmapHeader
 {
@@ -48,6 +49,7 @@ private:
   uint32_t importantColors;
 
   void initialiseDefaultValues();
+  ByteArrayBuilder getByteArrayBuilder();
 };
 
 #endif

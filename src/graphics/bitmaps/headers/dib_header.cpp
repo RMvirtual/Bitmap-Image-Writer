@@ -24,6 +24,14 @@ BitmapDibHeader::BitmapDibHeader(int widthInPixels, int heightInPixels)
 
 char* BitmapDibHeader::toBytes()
 {
+  ByteArrayBuilder byteArrayBuilder = this->getByteArrayBuilder();
+  char* byteArray = byteArrayBuilder.toBytes();
+
+  return byteArray;
+}
+
+ByteArrayBuilder BitmapDibHeader::getByteArrayBuilder()
+{
   ByteArrayBuilder byteArrayBuilder;
 
   byteArrayBuilder.addValue(this->getSizeOfHeaderInBytes());
@@ -38,9 +46,7 @@ char* BitmapDibHeader::toBytes()
   byteArrayBuilder.addValue(this->colorTableEntries);
   byteArrayBuilder.addValue(this->importantColors);
 
-  char* byteArray = byteArrayBuilder.toBytes();
-
-  return byteArray;
+  return byteArrayBuilder;
 }
 
 void BitmapDibHeader::initialiseDefaultValues()
