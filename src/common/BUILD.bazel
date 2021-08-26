@@ -1,7 +1,7 @@
 # https://docs.bazel.build/versions/master/be/c-cpp.html#cc_binary
 
 cc_library(
-    name = "byte_array",
+    name = "common",
     srcs = ["byte_array.cpp", "bytes_converter.cpp", "file_opener.cpp"],
     hdrs = ["byte_array.h", "bytes_converter.h", "file_opener.h"],
     visibility = ["//visibility:public"],

@@ -1,0 +1,1 @@
+bazel test --test_output=all --test_summary=terse //test/src/common-tests:bytes_converter_tests

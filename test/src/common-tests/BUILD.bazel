@@ -6,6 +6,16 @@ cc_test(
     srcs = ["byte_array_tests.cpp"],
     deps = [
         "@com_google_googletest//:gtest_main",
-        "//src/common:byte_array"
+        "//src/common:common"
+    ],
+)
+
+cc_test(
+    name = "bytes_converter_tests",
+    size = "small",
+    srcs = ["bytes_converter_tests.cpp"],
+    deps = [
+        "@com_google_googletest//:gtest_main",
+        "//src/common:common"
     ],
 )
