@@ -7,6 +7,7 @@ public:
   BitmapHeader(int sizeOfHeaderInBytes);
   virtual char* toBytes() = 0;
   int getSizeOfHeaderInBytes();
+  void setSizeOfHeaderInBytes(int size);
 
 private:
   int sizeOfHeaderInBytes;

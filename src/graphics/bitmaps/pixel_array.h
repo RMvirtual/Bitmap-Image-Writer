@@ -11,7 +11,7 @@ class PixelArray
 public:
   vector<Pixel> pixels;
 
-  PixelArray();
+  PixelArray(vector<Pixel> pixels, int widthInPixels, int heightInPixels);
   int widthInPixels;
   int heightInPixels;
 };

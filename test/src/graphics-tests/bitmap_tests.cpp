@@ -108,14 +108,14 @@ TEST(GraphicsTests, ShouldGetBitmapInfoHeader)
 
   BitmapDibHeader bmpInfoHeader = bmpReader.getBitmapInfoHeader(bmpFile);
 
-  EXPECT_EQ(40, bmpInfoHeader.sizeOfThisHeader);
+  EXPECT_EQ(40, bmpInfoHeader.getSizeOfHeaderInBytes());
   EXPECT_EQ(512, bmpInfoHeader.widthInPixels);
   EXPECT_EQ(512, bmpInfoHeader.heightInPixels);
   EXPECT_EQ(1, bmpInfoHeader.numberOfColorPlanes);
   EXPECT_EQ(0, bmpInfoHeader.compressionMethod);
   EXPECT_EQ(0, bmpInfoHeader.rawBitmapDataSize);
-  EXPECT_EQ(0, bmpInfoHeader.horizontalResolutionPixelPerMeter);
-  EXPECT_EQ(0, bmpInfoHeader.verticalResolutionPixelsPerMeter);
+  EXPECT_EQ(0, bmpInfoHeader.horizontalPixelsPerMetre);
+  EXPECT_EQ(0, bmpInfoHeader.verticalPixelsPerMetre);
   EXPECT_EQ(0, bmpInfoHeader.colorTableEntries);
   EXPECT_EQ(0, bmpInfoHeader.importantColors);
 }

@@ -9,3 +9,8 @@ int BitmapHeader::getSizeOfHeaderInBytes()
 {
   return this->sizeOfHeaderInBytes;
 }
+
+void BitmapHeader::setSizeOfHeaderInBytes(int size)
+{
+  this->sizeOfHeaderInBytes = size;
+}

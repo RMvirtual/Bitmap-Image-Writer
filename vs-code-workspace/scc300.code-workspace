@@ -79,7 +79,8 @@
 			"xstddef": "cpp",
 			"xtr1common": "cpp",
 			"cstdarg": "cpp",
-			"filesystem": "cpp"
+			"filesystem": "cpp",
+			"queue": "cpp"
 		}
 	}
 }

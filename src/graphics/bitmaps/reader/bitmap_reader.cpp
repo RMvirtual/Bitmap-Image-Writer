@@ -77,12 +77,12 @@ BitmapDibHeader BitmapReader::getBitmapInfoHeader(string filePath)
 
   BitmapDibHeader bmpInfoHeader {2};
 
-  bmpInfoHeader.sizeOfThisHeader = uint32_t (
+  bmpInfoHeader.setSizeOfHeaderInBytes(uint32_t (
     (uint8_t) string[14] |
     (uint8_t) string[15] << 8 |
     (uint8_t) string[16] << 16 |
     (uint8_t) string[17] << 24
-  );
+  ));
 
   bmpInfoHeader.widthInPixels = int32_t (
     (int8_t) string[18] |
@@ -122,14 +122,14 @@ BitmapDibHeader BitmapReader::getBitmapInfoHeader(string filePath)
     (uint8_t) string[37] << 24
   );
 
-  bmpInfoHeader.horizontalResolutionPixelPerMeter = int32_t (
+  bmpInfoHeader.horizontalPixelsPerMetre = int32_t (
     (int8_t) string[38] |
     (int8_t) string[39] << 8 |
     (int8_t) string[40] << 16 |
     (int8_t) string[41] << 24
   );
 
-  bmpInfoHeader.verticalResolutionPixelsPerMeter = int32_t (
+  bmpInfoHeader.verticalPixelsPerMetre = int32_t (
     (int8_t) string[42] |
     (int8_t) string[43] << 8 |
     (int8_t) string[44] << 16 |
