@@ -127,46 +127,6 @@ string BitmapReader::getStringOfBytesFromFile(string filePath)
   return bytes;
 }
 
-uint32_t BitmapReader::convertStringTo32BitInteger(string bytesString)
-{
-  BytesConverter bytesConverter;
-  uint32_t convertedBytes = 
-    bytesConverter.convertFourCharactersTo32bitInteger(bytesString);
-  
-  return convertedBytes; 
-}
-
-uint16_t BitmapReader::convertStringTo16BitInteger(string bytesString)
-{
-  BytesConverter bytesConverter;
-  uint16_t convertedBytes = 
-    bytesConverter.convertTwoCharactersTo16bitInteger(bytesString);
-  
-  return convertedBytes; 
-}
-
-uint16_t BitmapReader::getTwoBytesFromString(
-  string bytes, int startingByteIndex)
-{
-  string extractedBytesAsString = bytes.substr(startingByteIndex, 2);
-  
-  uint16_t extractedBytes = this->convertStringTo16BitInteger(
-    extractedBytesAsString);
-  
-  return extractedBytes;
-}
-
-uint32_t BitmapReader::getFourBytesFromString(
-  string bytes, int startingByteIndex)
-{
-  string extractedBytesAsString = bytes.substr(startingByteIndex, 4);
-  
-  uint32_t extractedBytes = this->convertStringTo32BitInteger(
-    extractedBytesAsString);
-  
-  return extractedBytes;
-}
-
 int BitmapReader::getLengthOfPixelPayload(string filePath)
 {
   int sizeOfFile = this->getSizeOfFile(filePath);
