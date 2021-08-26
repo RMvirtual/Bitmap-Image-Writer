@@ -2,7 +2,7 @@
 
 cc_library(
     name = "byte_array",
-    srcs = ["byte_array.cpp"],
-    hdrs = ["byte_array.h"],
+    srcs = ["byte_array.cpp", "bytes_converter.cpp"],
+    hdrs = ["byte_array.h", "bytes_converter.h"],
     visibility = ["//visibility:public"]
 )

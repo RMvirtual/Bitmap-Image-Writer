@@ -6,6 +6,7 @@
 #include "src/graphics/bitmaps/reader/bitmap_reader.h"
 #include "src/graphics/bitmaps/headers/file_header.h"
 #include "src/graphics/bitmaps/headers/dib_header.h"
+#include "src/common/bytes_converter.h"
 
 using namespace std;
 
@@ -102,20 +103,20 @@ string BitmapReader::getStringOfBytesFromFile(string filePath)
 
 uint32_t BitmapReader::convertStringTo32BitInteger(string bytesString)
 {
-  return uint32_t (
-    (uint8_t) bytesString[0] |
-    (uint8_t) bytesString[1] << 8 |
-    (uint8_t) bytesString[2] << 16 |
-    (uint8_t) bytesString[3] << 24
-  );
+  BytesConverter bytesConverter;
+  uint32_t convertedBytes = 
+    bytesConverter.convertFourCharactersTo32bitInteger(bytesString);
+  
+  return convertedBytes; 
 }
 
 uint16_t BitmapReader::convertStringTo16BitInteger(string bytesString)
 {
-  return uint32_t (
-    (uint8_t) bytesString[0] |
-    (uint8_t) bytesString[1] << 8
-  );
+  BytesConverter bytesConverter;
+  uint16_t convertedBytes = 
+    bytesConverter.convertTwoCharactersTo16bitInteger(bytesString);
+  
+  return convertedBytes; 
 }
 
 uint16_t BitmapReader::getTwoBytesFromString(
