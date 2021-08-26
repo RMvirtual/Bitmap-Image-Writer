@@ -2,18 +2,18 @@
 #include <iostream>
 #include <unordered_map>
 
-#include "src/graphics/bitmaps/headers/info_header.h"
+#include "src/graphics/bitmaps/headers/dib_header.h"
 #include "src/common/byte_array.h"
 
 using namespace std;
 
-BitmapInfoHeader::BitmapInfoHeader(int sizeOfHeaderInBytes)
+BitmapDibHeader::BitmapDibHeader(int sizeOfHeaderInBytes)
 : BitmapHeader {sizeOfHeaderInBytes}
 {
   // Pass.
 }
 
-BitmapInfoHeader::BitmapInfoHeader(
+BitmapDibHeader::BitmapDibHeader(
   int sizeOfHeaderInBytes, int widthInPixels, int heightInPixels)
 : BitmapHeader {sizeOfHeaderInBytes}
 {
@@ -30,7 +30,7 @@ BitmapInfoHeader::BitmapInfoHeader(
   this->importantColors = 0; 
 }
 
-char* BitmapInfoHeader::toBytes()
+char* BitmapDibHeader::toBytes()
 {
   ByteArrayBuilder byteArrayBuilder;
 

@@ -4,11 +4,11 @@
 #include <cstdint>
 #include "src/graphics/bitmaps/headers/header.h"
 
-class BitmapInfoHeader : public BitmapHeader
+class BitmapDibHeader : public BitmapHeader
 {
 public:
-  BitmapInfoHeader(int sizeOfHeaderInBytes);
-  BitmapInfoHeader(
+  BitmapDibHeader(int sizeOfHeaderInBytes);
+  BitmapDibHeader(
     int sizeOfHeaderInBytes, int widthInPixels, int heightInPixels);
   
   char* toBytes();

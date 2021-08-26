@@ -3,14 +3,14 @@ cc_library(
     srcs = [
         "bitmaps/headers/header.cpp",
         "bitmaps/headers/file_header.cpp",
-        "bitmaps/headers/info_header.cpp",
+        "bitmaps/headers/dib_header.cpp",
         "bitmaps/pixel.cpp",
         "bitmaps/reader/bitmap_reader.cpp"
     ],
     hdrs = [
         "bitmaps/headers/header.h",
         "bitmaps/headers/file_header.h",
-        "bitmaps/headers/info_header.h",
+        "bitmaps/headers/dib_header.h",
         "bitmaps/pixel.h",
         "bitmaps/reader/bitmap_reader.h"
     ],

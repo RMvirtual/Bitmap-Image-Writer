@@ -4,7 +4,7 @@
 #include <string>
 
 #include "src/graphics/bitmaps/headers/file_header.h"
-#include "src/graphics/bitmaps/headers/info_header.h"
+#include "src/graphics/bitmaps/headers/dib_header.h"
 #include "src/graphics/bitmaps/pixel.h"
 #include "src/graphics/bitmaps/reader/bitmap_reader.h"
 
@@ -13,7 +13,7 @@ TEST(GraphicsTests, ShouldCreateBitmap)
   int widthInPixels = 512, heightInPixels = 512;
 
   BitmapFileHeader bmpFileHeader {14, widthInPixels, heightInPixels};
-  BitmapInfoHeader bmpInfoHeader {40, widthInPixels, heightInPixels};
+  BitmapDibHeader bmpInfoHeader {40, widthInPixels, heightInPixels};
   Pixel pixel {100, 255, 255};
   Pixel blackPixel {0, 0, 0};
 
@@ -34,12 +34,7 @@ TEST(GraphicsTests, ShouldCreateBitmap)
   size_t numberOfPixels = widthInPixels * heightInPixels;
   
   for (int i = 0; i < numberOfPixels; i++) {
-    Pixel* currentPixel = &blackPixel;
-    
-    if (i % 100)
-      currentPixel = &pixel;
-
-    char* pixelBytes = (*currentPixel).toBytes();
+    char* pixelBytes = pixel.toBytes();
     fout.write(pixelBytes, 3);
 
     delete[] pixelBytes;
@@ -111,7 +106,7 @@ TEST(GraphicsTests, ShouldGetBitmapInfoHeader)
     "correct_resources\\blueImage512x512.bmp"
   );
 
-  BitmapInfoHeader bmpInfoHeader = bmpReader.getBitmapInfoHeader(bmpFile);
+  BitmapDibHeader bmpInfoHeader = bmpReader.getBitmapInfoHeader(bmpFile);
 
   EXPECT_EQ(40, bmpInfoHeader.sizeOfThisHeader);
   EXPECT_EQ(512, bmpInfoHeader.widthInPixels);

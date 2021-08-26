@@ -5,7 +5,7 @@
 
 #include "src/graphics/bitmaps/reader/bitmap_reader.h"
 #include "src/graphics/bitmaps/headers/file_header.h"
-#include "src/graphics/bitmaps/headers/info_header.h"
+#include "src/graphics/bitmaps/headers/dib_header.h"
 
 using namespace std;
 
@@ -42,11 +42,6 @@ BitmapFileHeader BitmapReader::getBitmapFileHeader(string filePath)
   bmpFileHeader.bitmapSignatureBytes[0] = string[0];
   bmpFileHeader.bitmapSignatureBytes[1] = string[1];
 
-  /*
-  for (int i = 0; i < 54; i++) {
-    cout << "Byte no " << i << ": " << (int) string[i] << endl;
-  }
-  */
   bmpFileHeader.sizeOfBitmapFile = uint32_t (
     (uint8_t) string[2] |
     (uint8_t) string[3] << 8 |
@@ -71,7 +66,7 @@ BitmapFileHeader BitmapReader::getBitmapFileHeader(string filePath)
   return bmpFileHeader;
 }
 
-BitmapInfoHeader BitmapReader::getBitmapInfoHeader(string filePath)
+BitmapDibHeader BitmapReader::getBitmapInfoHeader(string filePath)
 {
   ifstream file(filePath);
 
@@ -80,13 +75,7 @@ BitmapInfoHeader BitmapReader::getBitmapInfoHeader(string filePath)
     std::istreambuf_iterator<char>()
   );
 
-  BitmapInfoHeader bmpInfoHeader {2};
-
-  /*
-  for (int i = 0; i < 54; i++) {
-    cout << "Byte no " << i << ": " << (int) string[i] << endl;
-  }
-  */
+  BitmapDibHeader bmpInfoHeader {2};
 
   bmpInfoHeader.sizeOfThisHeader = uint32_t (
     (uint8_t) string[14] |
