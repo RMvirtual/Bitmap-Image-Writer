@@ -14,7 +14,7 @@ cc_library(
         "bitmaps/pixel.h",
         "bitmaps/reader/bitmap_reader.h"
     ],
-    deps = ["//src/common:byte_array"],
+    deps = ["//src/common:common"],
     visibility = ["//visibility:public"],
     copts = ["/std:c++17"]
 )
