@@ -26,15 +26,16 @@ public:
 
   int32_t getWidthInPixels();
   int32_t getHeightInPixels();
-  uint16_t getNumberOfColourPlanes();
+  uint16_t getNumberOfColorPlanes();
   uint16_t getColorDepth();
   uint32_t getCompressionMethod();
   uint32_t getRawBitmapDataSize();
   int32_t getHorizontalPixelsPerMetre();
   int32_t getVerticalPixelsPerMetre();
   uint32_t getColorTableEntries();
-  uint32_t getImportantColours();
+  uint32_t getImportantColors();
 
+private:
   int32_t widthInPixels;
   int32_t heightInPixels;
   uint16_t numberOfColorPlanes;

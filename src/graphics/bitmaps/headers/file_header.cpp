@@ -69,7 +69,11 @@ void BitmapFileHeader::setPixelDataOffset(uint32_t pixelDataOffsetInBytes)
 
 std::string BitmapFileHeader::getSignatureBytes()
 {
-  return this->signatureBytes;
+  std::string signatureBytes = "";
+  signatureBytes += this->signatureBytes[0];
+  signatureBytes += this->signatureBytes[1];
+
+  return signatureBytes;
 }
 
 uint32_t BitmapFileHeader::getSizeOfBitmapFile()

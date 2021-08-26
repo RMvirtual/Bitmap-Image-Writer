@@ -11,6 +11,6 @@ public:
   int getSizeOfFile(std::string filePath);
   BitmapFileHeader getBitmapFileHeader(std::string filePath);
   BitmapDibHeader getBitmapInfoHeader(std::string filePath);
-  uint32_t convertBytesStringToInteger(std::string bytesString);
-  
+  uint32_t convert32BitStringToInteger(std::string bytesString);
+  uint16_t convert16BitStringToInteger(std::string bytesString);
 };

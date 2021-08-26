@@ -29,13 +29,21 @@ int BitmapReader::getSizeOfFile(string filePath)
   return fileSizeInBytes;
 }
 
-uint32_t BitmapReader::convertBytesStringToInteger(string bytesString)
+uint32_t BitmapReader::convert32BitStringToInteger(string bytesString)
 {
   return uint32_t (
     (uint8_t) bytesString[0] |
     (uint8_t) bytesString[1] << 8 |
     (uint8_t) bytesString[2] << 16 |
     (uint8_t) bytesString[3] << 24
+  );
+}
+
+uint16_t BitmapReader::convert16BitStringToInteger(string bytesString)
+{
+  return uint32_t (
+    (uint8_t) bytesString[0] |
+    (uint8_t) bytesString[1] << 8
   );
 }
 
@@ -56,17 +64,17 @@ BitmapFileHeader BitmapReader::getBitmapFileHeader(string filePath)
   // bmpFileHeader.signatureBytes[1] = bytes[1];
 
   string sizeOfBitmapFileString = bytes.substr(2, 4);
-  uint32_t sizeOfBitmapFile = this->convertBytesStringToInteger(sizeOfBitmapFileString);
+  uint32_t sizeOfBitmapFile = this->convert32BitStringToInteger(sizeOfBitmapFileString);
   bmpFileHeader.setSizeOfBitmapFile(sizeOfBitmapFile);
 
   string reservedBytesString = bytes.substr(6, 4);
-  uint32_t reservedBytes = this->convertBytesStringToInteger(
+  uint32_t reservedBytes = this->convert32BitStringToInteger(
     reservedBytesString);
 
   bmpFileHeader.setReservedBytes(reservedBytes);
 
   string pixelDataOffsetString = bytes.substr(10, 4);
-  uint32_t pixelDataOffset = this->convertBytesStringToInteger(
+  uint32_t pixelDataOffset = this->convert32BitStringToInteger(
     pixelDataOffsetString);
 
   bmpFileHeader.setPixelDataOffset(pixelDataOffset);
@@ -78,85 +86,80 @@ BitmapDibHeader BitmapReader::getBitmapInfoHeader(string filePath)
 {
   ifstream file(filePath);
 
-  string string(
+  string bytes(
     (std::istreambuf_iterator<char>(file)),
     std::istreambuf_iterator<char>()
   );
 
   BitmapDibHeader bmpInfoHeader {2};
 
-  bmpInfoHeader.setSizeOfHeaderInBytes(uint32_t (
-    (uint8_t) string[14] |
-    (uint8_t) string[15] << 8 |
-    (uint8_t) string[16] << 16 |
-    (uint8_t) string[17] << 24
-  ));
+  string headerSizeString = bytes.substr(14, 4);
+  uint32_t headerSize = this->convert32BitStringToInteger(headerSizeString);
+  bmpInfoHeader.setSizeOfHeaderInBytes(headerSize);
 
-  bmpInfoHeader.widthInPixels = int32_t (
-    (int8_t) string[18] |
-    (int8_t) string[19] << 8 |
-    (int8_t) string[20] << 16 |
-    (int8_t) string[21] << 24
-  );
+  string widthInPixelsString = bytes.substr(18, 4);
+  int32_t widthInPixels = this->convert32BitStringToInteger(
+    widthInPixelsString);
+  
+  bmpInfoHeader.setWidthInPixels(widthInPixels);
 
-  bmpInfoHeader.heightInPixels = int32_t (
-    (int8_t) string[22] |
-    (int8_t) string[23] << 8 |
-    (int8_t) string[24] << 16 |
-    (int8_t) string[25] << 24
-  );
+  string heightInPixelsAsString = bytes.substr(22, 4);
+  int32_t heightInPixels = this->convert32BitStringToInteger(
+    heightInPixelsAsString);
+  
+  bmpInfoHeader.setHeightInPixels(heightInPixels);
 
-  bmpInfoHeader.numberOfColorPlanes = uint16_t (
-    (uint8_t) string[26] |
-    (uint8_t) string[27] << 8
-  );
+  string numberOfColorPlanesAsString = bytes.substr(26, 2);
+  uint16_t numberOfColorPlanes = this->convert16BitStringToInteger(
+    numberOfColorPlanesAsString);
 
-  bmpInfoHeader.colorDepth = uint16_t (
-    (uint8_t) string[28] |
-    (uint8_t) string[29] << 8
-  );
+  bmpInfoHeader.setNumberOfColourPlanes(numberOfColorPlanes);
 
-  bmpInfoHeader.compressionMethod = uint32_t (
-    (uint8_t) string[30] |
-    (uint8_t) string[31] << 8 |
-    (uint8_t) string[32] << 16 |
-    (uint8_t) string[33] << 24
-  );
+  string colorDepthAsString = bytes.substr(28, 2);
+  uint16_t colorDepth = this->convert16BitStringToInteger(
+    colorDepthAsString);
 
-  bmpInfoHeader.rawBitmapDataSize = uint32_t (
-    (uint8_t) string[34] |
-    (uint8_t) string[35] << 8 |
-    (uint8_t) string[36] << 16 |
-    (uint8_t) string[37] << 24
-  );
+  bmpInfoHeader.setColorDepth(colorDepth);
 
-  bmpInfoHeader.horizontalPixelsPerMetre = int32_t (
-    (int8_t) string[38] |
-    (int8_t) string[39] << 8 |
-    (int8_t) string[40] << 16 |
-    (int8_t) string[41] << 24
-  );
+  string compressionMethodAsString = bytes.substr(30, 4);
+  uint32_t compressionMethod = this->convert32BitStringToInteger(
+    compressionMethodAsString);
 
-  bmpInfoHeader.verticalPixelsPerMetre = int32_t (
-    (int8_t) string[42] |
-    (int8_t) string[43] << 8 |
-    (int8_t) string[44] << 16 |
-    (int8_t) string[45] << 24
-  );
+  bmpInfoHeader.setCompressionMethod(compressionMethod);
 
-  bmpInfoHeader.colorTableEntries = uint32_t (
-    (uint8_t) string[46] |
-    (uint8_t) string[47] << 8 |
-    (uint8_t) string[48] << 16 |
-    (uint8_t) string[49] << 24
-  );
+  string rawBitmapDataSizeAsString = bytes.substr(34, 4);
+  uint32_t rawBitmapDataSize = this->convert32BitStringToInteger(
+    rawBitmapDataSizeAsString);
 
-  bmpInfoHeader.importantColors = uint32_t (
-    (uint8_t) string[50] |
-    (uint8_t) string[51] << 8 |
-    (uint8_t) string[52] << 16 |
-    (uint8_t) string[53] << 24
-  );
+  bmpInfoHeader.setRawBitmapDataSize(rawBitmapDataSize);
+
+  /* May be issues here in the future due to conversion between
+  unsigned and signed ints with only one function. */
+  string horizontalPixelsPerMetreAsString = bytes.substr(38, 4);
+  int32_t horizontalPixelsPerMetre = this->convert32BitStringToInteger(
+    horizontalPixelsPerMetreAsString);
+
+  bmpInfoHeader.setHorizontalPixelsPerMetre(horizontalPixelsPerMetre);
+
+  /* May be issues here in the future due to conversion between
+  unsigned and signed ints with only one function. */
+  string verticalPixelsPerMetreAsString = bytes.substr(42, 4);
+  int32_t verticalPixelsPerMetre = this->convert32BitStringToInteger(
+    verticalPixelsPerMetreAsString);
+
+  bmpInfoHeader.setVerticalPixelsPerMetre(verticalPixelsPerMetre);
+
+  string colorTableEntriesAsString = bytes.substr(46, 4);
+  uint32_t colorTableEntries = this->convert32BitStringToInteger(
+    colorTableEntriesAsString);
+
+  bmpInfoHeader.setColorTableEntries(colorTableEntries);
+
+  string importantColorsAsString = bytes.substr(50, 4);
+  uint32_t importantColors = this->convert32BitStringToInteger(
+    importantColorsAsString);
+
+  bmpInfoHeader.setImportantColours(importantColors);
 
   return bmpInfoHeader;
 }

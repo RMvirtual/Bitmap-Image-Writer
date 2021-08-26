@@ -91,7 +91,8 @@ TEST(GraphicsTests, ShouldGetBitmapFileHeader)
   BitmapFileHeader bmpFileHeader = bmpReader.getBitmapFileHeader(bmpFile);
 
   EXPECT_EQ('B', bmpFileHeader.getSignatureBytes()[0]);
-  EXPECT_EQ('M', bmpFileHeader.getSignatureBytes()[1]);
+  EXPECT_EQ('M', bmpFileHeader.getSignatureBytes()[1]);  
+  EXPECT_EQ("BM", bmpFileHeader.getSignatureBytes());
   EXPECT_EQ(786486, bmpFileHeader.getSizeOfBitmapFile());
   EXPECT_EQ(0, bmpFileHeader.getReservedBytes());
   EXPECT_EQ(54, bmpFileHeader.getPixelDataOffset());
@@ -109,13 +110,13 @@ TEST(GraphicsTests, ShouldGetBitmapInfoHeader)
   BitmapDibHeader bmpInfoHeader = bmpReader.getBitmapInfoHeader(bmpFile);
 
   EXPECT_EQ(40, bmpInfoHeader.getSizeOfHeaderInBytes());
-  EXPECT_EQ(512, bmpInfoHeader.widthInPixels);
-  EXPECT_EQ(512, bmpInfoHeader.heightInPixels);
-  EXPECT_EQ(1, bmpInfoHeader.numberOfColorPlanes);
-  EXPECT_EQ(0, bmpInfoHeader.compressionMethod);
-  EXPECT_EQ(0, bmpInfoHeader.rawBitmapDataSize);
-  EXPECT_EQ(0, bmpInfoHeader.horizontalPixelsPerMetre);
-  EXPECT_EQ(0, bmpInfoHeader.verticalPixelsPerMetre);
-  EXPECT_EQ(0, bmpInfoHeader.colorTableEntries);
-  EXPECT_EQ(0, bmpInfoHeader.importantColors);
+  EXPECT_EQ(512, bmpInfoHeader.getWidthInPixels());
+  EXPECT_EQ(512, bmpInfoHeader.getHeightInPixels());
+  EXPECT_EQ(1, bmpInfoHeader.getNumberOfColorPlanes());
+  EXPECT_EQ(0, bmpInfoHeader.getCompressionMethod());
+  EXPECT_EQ(0, bmpInfoHeader.getRawBitmapDataSize());
+  EXPECT_EQ(0, bmpInfoHeader.getHorizontalPixelsPerMetre());
+  EXPECT_EQ(0, bmpInfoHeader.getVerticalPixelsPerMetre());
+  EXPECT_EQ(0, bmpInfoHeader.getColorTableEntries());
+  EXPECT_EQ(0, bmpInfoHeader.getImportantColors());
 }

@@ -92,7 +92,7 @@ void BitmapDibHeader::setVerticalPixelsPerMetre(int32_t verticalPixelsPerMetre)
 
 void BitmapDibHeader::setColorTableEntries(uint32_t colorTableEntries)
 {
-  this->colorTableEntries = this->colorTableEntries;
+  this->colorTableEntries = colorTableEntries;
 }
 
 void BitmapDibHeader::setImportantColours(uint32_t importantColors)
@@ -110,7 +110,7 @@ int32_t BitmapDibHeader::getHeightInPixels()
   return this->heightInPixels;
 }
 
-uint16_t BitmapDibHeader::getNumberOfColourPlanes()
+uint16_t BitmapDibHeader::getNumberOfColorPlanes()
 {
   return this->numberOfColorPlanes;
 }
@@ -145,7 +145,7 @@ uint32_t BitmapDibHeader::getColorTableEntries()
   return this->colorTableEntries;
 }
 
-uint32_t BitmapDibHeader::getImportantColours()
+uint32_t BitmapDibHeader::getImportantColors()
 {
   return this->importantColors;
 }
