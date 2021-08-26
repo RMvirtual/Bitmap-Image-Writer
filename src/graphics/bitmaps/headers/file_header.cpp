@@ -7,42 +7,27 @@
 BitmapFileHeader::BitmapFileHeader()
 : BitmapHeader {}
 {
-  this->signatureBytes[0] = 'B';
-  this->signatureBytes[1] = 'M';
-
-  int metadataSize = 54;
-  int sizeOfPixels = 0;
-  this->sizeOfBitmapFile = metadataSize + sizeOfPixels;
-  
-  this->reservedBytes = 0;
-  this->pixelDataOffset = metadataSize;
+  this->initialiseDefaultValues();
+  this->setSizeOfHeaderInBytes(14);
 }
 
 BitmapFileHeader::BitmapFileHeader(int sizeOfHeaderInBytes)
 : BitmapHeader {sizeOfHeaderInBytes}
 {
-  this->signatureBytes[0] = 'B';
-  this->signatureBytes[1] = 'M';
-
-  int metadataSize = 54;
-  int sizeOfPixels = 0;
-  this->sizeOfBitmapFile = metadataSize + sizeOfPixels;
-  
-  this->reservedBytes = 0;
-  this->pixelDataOffset = metadataSize;
+  this->initialiseDefaultValues();
 }
 
 BitmapFileHeader::BitmapFileHeader(int sizeOfHeaderInBytes, int widthInPixels, int heightInPixels)
 : BitmapHeader {sizeOfHeaderInBytes}
 {
-  this->signatureBytes[0] = 'B';
-  this->signatureBytes[1] = 'M';
+  this->initialiseDefaultValues();
 
   int metadataSize = 54;
-  int sizeOfPixels = 3 * widthInPixels * heightInPixels;
-  this->sizeOfBitmapFile = metadataSize + sizeOfPixels;
-  
-  this->reservedBytes = 0;
+
+  int sizeOfPixelArray = this->calculateSizeOfPixelArray(
+    widthInPixels, heightInPixels);
+
+  this->sizeOfBitmapFile = metadataSize + sizeOfPixelArray;  
   this->pixelDataOffset = metadataSize;
 }
 
@@ -59,6 +44,24 @@ char* BitmapFileHeader::toBytes()
   char* byteArray = byteArrayBuilder.toBytes();
 
   return byteArray;
+}
+
+void BitmapFileHeader::initialiseDefaultValues()
+{
+  this->setSignatureBytes('B', 'M');
+
+  this->sizeOfBitmapFile = 54;
+  this->reservedBytes = 0;
+  this->pixelDataOffset = 54;
+}
+
+int BitmapFileHeader::calculateSizeOfPixelArray(
+  int widthInPixels, int heightInPixels)
+{
+  int metadataSize = 54;
+  int sizeOfPixelArray = 3 * widthInPixels * heightInPixels;
+
+  return sizeOfPixelArray;
 }
 
 void BitmapFileHeader::setSignatureBytes(std::string bytesSignature)
