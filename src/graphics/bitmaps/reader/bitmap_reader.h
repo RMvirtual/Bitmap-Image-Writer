@@ -10,12 +10,13 @@ public:
 
   BitmapFileHeader getBitmapFileHeader(std::string filePath);
   BitmapDibHeader getBitmapDibHeader(std::string filePath);
+  int getSizeOfFile(std::string filePath);
+  int getLengthOfPixelPayload(std::string filePath);
+
+private:
   std::string getStringOfBytesFromFile(std::string filePath); 
   uint32_t getFourBytesFromString(std::string bytes, int startingByteIndex);
   uint16_t getTwoBytesFromString(std::string bytes, int startingByteIndex);
   uint32_t convertStringTo32BitInteger(std::string bytesString);
   uint16_t convertStringTo16BitInteger(std::string bytesString);
-  int getSizeOfFile(std::string filePath);
-  int getLengthOfPixelPayload(std::string filePath);
-
 };
