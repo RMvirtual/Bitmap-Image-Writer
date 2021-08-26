@@ -8,49 +8,18 @@
 using namespace std;
 
 BitmapDibHeader::BitmapDibHeader()
-: BitmapHeader {}
+: BitmapHeader {40}
 {
-  this->widthInPixels = 0;
-  this->heightInPixels = 0;
-  this->numberOfColorPlanes = 1; 
-  this->colorDepth = 24; 
-  this->compressionMethod = 0;  
-  this->rawBitmapDataSize = 0; 
-  this->horizontalPixelsPerMetre = 0;
-  this->verticalPixelsPerMetre = 0; 
-  this->colorTableEntries = 0;
-  this->importantColors = 0; 
+  this->initialiseDefaultValues();
 }
 
-BitmapDibHeader::BitmapDibHeader(int sizeOfHeaderInBytes)
-: BitmapHeader {sizeOfHeaderInBytes}
+BitmapDibHeader::BitmapDibHeader(int widthInPixels, int heightInPixels)
+: BitmapHeader {40}
 {
-  this->widthInPixels = 0;
-  this->heightInPixels = 0;
-  this->numberOfColorPlanes = 1; 
-  this->colorDepth = 24; 
-  this->compressionMethod = 0;  
-  this->rawBitmapDataSize = 0; 
-  this->horizontalPixelsPerMetre = 0;
-  this->verticalPixelsPerMetre = 0; 
-  this->colorTableEntries = 0;
-  this->importantColors = 0; 
-}
+  this->initialiseDefaultValues();
 
-BitmapDibHeader::BitmapDibHeader(
-  int sizeOfHeaderInBytes, int widthInPixels, int heightInPixels)
-: BitmapHeader {sizeOfHeaderInBytes}
-{
   this->widthInPixels = widthInPixels;
-  this->heightInPixels = heightInPixels;
-  this->numberOfColorPlanes = 1; 
-  this->colorDepth = 24; 
-  this->compressionMethod = 0;  
-  this->rawBitmapDataSize = 0; 
-  this->horizontalPixelsPerMetre = 0;
-  this->verticalPixelsPerMetre = 0; 
-  this->colorTableEntries = 0;
-  this->importantColors = 0; 
+  this->heightInPixels = heightInPixels;  
 }
 
 char* BitmapDibHeader::toBytes()
@@ -72,6 +41,20 @@ char* BitmapDibHeader::toBytes()
   char* byteArray = byteArrayBuilder.toBytes();
 
   return byteArray;
+}
+
+void BitmapDibHeader::initialiseDefaultValues()
+{
+  this->widthInPixels = 0;
+  this->heightInPixels = 0;
+  this->numberOfColorPlanes = 1; 
+  this->colorDepth = 24; 
+  this->compressionMethod = 0;  
+  this->rawBitmapDataSize = 0; 
+  this->horizontalPixelsPerMetre = 0;
+  this->verticalPixelsPerMetre = 0; 
+  this->colorTableEntries = 0;
+  this->importantColors = 0; 
 }
 
 void BitmapDibHeader::setWidthInPixels(int32_t widthInPixels)

@@ -8,9 +8,8 @@ class BitmapDibHeader : public BitmapHeader
 {
 public:
   BitmapDibHeader();
-  BitmapDibHeader(int sizeOfHeaderInBytes);
   BitmapDibHeader(
-    int sizeOfHeaderInBytes, int widthInPixels, int heightInPixels);
+    int widthInPixels, int heightInPixels);
   
   char* toBytes();
 
@@ -47,6 +46,8 @@ private:
   int32_t verticalPixelsPerMetre;
   uint32_t colorTableEntries;
   uint32_t importantColors;
+
+  void initialiseDefaultValues();
 };
 
 #endif
