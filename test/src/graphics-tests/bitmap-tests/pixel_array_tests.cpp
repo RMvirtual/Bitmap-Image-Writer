@@ -1,14 +1,9 @@
-#include <fstream>
 #include <gtest/gtest.h>
-#include <iostream>
-#include <string>
+#include <vector>
 
-#include "src/graphics/bitmaps/packet/headers/file_header.h"
-#include "src/graphics/bitmaps/packet/headers/dib_header.h"
 #include "src/graphics/bitmaps/packet/pixels/pixel_array.h"
 #include "src/graphics/bitmaps/packet/pixels/pixel.h"
 #include "src/graphics/bitmaps/reader/bitmap_reader.h"
-#include "src/common/file_opener.h"
 
 TEST(BitmapTests, ShouldGetPixelArray)
 {
@@ -28,7 +23,7 @@ TEST(BitmapTests, ShouldGetPixelArray)
     correctPixels.push_back(bluePixel);
   
   PixelArray correctPixelArray = PixelArray {
-    correctPixels, 512, 512};
+    correctPixels, imageWidth, imageHeight};
 
   for (int pixelNo = 0; pixelNo < totalPixels; pixelNo++) {
     Pixel pixelToTest = pixelArray.pixels[pixelNo];

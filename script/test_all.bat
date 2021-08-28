@@ -1,4 +1,4 @@
-:cls
+cls
 
 @echo off
 
