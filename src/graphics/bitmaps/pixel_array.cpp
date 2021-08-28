@@ -5,6 +5,7 @@
 #include <queue>
 #include <vector>
 #include <iomanip>
+#include <iostream>
 
 using namespace std;
 
@@ -19,6 +20,8 @@ PixelArray::PixelArray(vector<Pixel> pixels, int widthInPixels, int heightInPixe
     );
 
   this->pixels = pixels;
+  this->widthInPixels = widthInPixels;
+  this->heightInPixels = heightInPixels;
 
   /*
   queue<Pixel> pixelQueue;
@@ -41,7 +44,7 @@ PixelArray::PixelArray(vector<Pixel> pixels, int widthInPixels, int heightInPixe
 
 int PixelArray::sizeInBytes()
 {
-  int numberOfPixels = this->widthInPixels * this->heightInPixels;
+  int numberOfPixels = this->sizeInPixels();
   int numberOfColourChannels = 3;
 
   int totalSizeInBytes = numberOfPixels * numberOfColourChannels;
@@ -49,3 +52,9 @@ int PixelArray::sizeInBytes()
   return totalSizeInBytes;
 }
 
+int PixelArray::sizeInPixels()
+{
+  int numberOfPixels = this->widthInPixels * this->heightInPixels;
+
+  return numberOfPixels;
+}

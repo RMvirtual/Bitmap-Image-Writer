@@ -157,3 +157,17 @@ TEST(GraphicsTests, ShouldGetPixelSizeInBytes)
   EXPECT_EQ(correctSizeInBytes, actualSizeInBytes);
 }
 
+TEST(GraphicsTests, ShouldGetNumberOfPixels)
+{
+  char* bmpFile = (
+    "C:\\Users\\rmvir\\Desktop\\scc300-Win3D\\test\\output\\" \
+    "correct_resources\\blueImage512x512.bmp"
+  );
+
+  PixelArray pixelArray = BitmapReader::getPixelArray(bmpFile);
+
+  int correctSizeInPixels = 512 * 512;
+  int actualSizeInPixels = pixelArray.sizeInPixels();
+
+  EXPECT_EQ(correctSizeInPixels, actualSizeInPixels);
+}
