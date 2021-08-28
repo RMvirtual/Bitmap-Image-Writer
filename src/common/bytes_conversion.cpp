@@ -1,28 +1,28 @@
-#include "src/common/bytes_converter.h"
+#include "src/common/bytes_conversion.h"
 
-uint32_t BytesConverter::getFourBytesFromSubstring(
+uint32_t BytesConversion::getFourBytesFromSubstring(
   string stringToConvert, int startingByteIndex)
 {
   string slicedString = stringToConvert.substr(startingByteIndex, 4);
   
-  uint32_t extractedBytes = this->convertFourCharactersTo32bitInteger(
-    slicedString);
+  uint32_t extractedBytes = 
+    BytesConversion::convertFourCharactersTo32bitInteger(slicedString);
   
   return extractedBytes;
 }
 
-uint16_t BytesConverter::getTwoBytesFromSubstring(
+uint16_t BytesConversion::getTwoBytesFromSubstring(
   string stringToConvert, int startingByteIndex)
 {
   string slicedString = stringToConvert.substr(startingByteIndex, 2);
 
-  uint16_t extractedBytes = this->convertTwoCharactersTo16bitInteger(
-    slicedString);
+  uint16_t extractedBytes =
+    BytesConversion::convertTwoCharactersTo16bitInteger(slicedString);
   
   return extractedBytes;
 }
 
-uint32_t BytesConverter::convertFourCharactersTo32bitInteger(
+uint32_t BytesConversion::convertFourCharactersTo32bitInteger(
   string stringToConvert)
 {
   return uint32_t (
@@ -33,7 +33,7 @@ uint32_t BytesConverter::convertFourCharactersTo32bitInteger(
   );
 }
 
-uint16_t BytesConverter::convertTwoCharactersTo16bitInteger(
+uint16_t BytesConversion::convertTwoCharactersTo16bitInteger(
   string stringToConvert)
 {
   return uint32_t (

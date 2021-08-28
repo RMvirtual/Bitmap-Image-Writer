@@ -2,17 +2,16 @@
 #include <iostream>
 #include <vector>
 
-#include "src/common/bytes_converter.h"
+#include "src/common/bytes_conversion.h"
 
 using namespace std;
 
 TEST(BytesConverterTest, ShouldGetTwoBytesFromSubstring)
 {
-  BytesConverter bytesConverter;
   string stringToConvert = "crym3@river";
 
   uint32_t convertedValue 
-    = bytesConverter.getTwoBytesFromSubstring(stringToConvert, 3);
+    = BytesConversion::getTwoBytesFromSubstring(stringToConvert, 3);
 
   uint32_t correctValue = 13165;
 
@@ -21,11 +20,10 @@ TEST(BytesConverterTest, ShouldGetTwoBytesFromSubstring)
 
 TEST(BytesConverterTest, ShouldGetFourBytesFromSubstring)
 {
-  BytesConverter bytesConverter;
   string stringToConvert = "crym3@river";
 
   uint32_t convertedValue 
-    = bytesConverter.getFourBytesFromSubstring(stringToConvert, 3);
+    = BytesConversion::getFourBytesFromSubstring(stringToConvert, 3);
 
   uint32_t correctValue = 1916810093;
 
@@ -34,11 +32,10 @@ TEST(BytesConverterTest, ShouldGetFourBytesFromSubstring)
 
 TEST(BytesConverterTest, ShouldConvertFourCharactersTo32bitInteger)
 {
-  BytesConverter bytesConverter;
   string stringToConvert = "1234";
 
   uint32_t convertedValue 
-    = bytesConverter.convertFourCharactersTo32bitInteger(stringToConvert);
+    = BytesConversion::convertFourCharactersTo32bitInteger(stringToConvert);
 
   uint32_t correctValue = 875770417;
 
@@ -47,11 +44,10 @@ TEST(BytesConverterTest, ShouldConvertFourCharactersTo32bitInteger)
 
 TEST(BytesConverterTest, ShouldConvertTwoCharactersTo32bitInteger)
 {
-  BytesConverter bytesConverter;
   string stringToConvert = "xo";
 
   uint16_t convertedValue 
-    = bytesConverter.convertTwoCharactersTo16bitInteger(stringToConvert);
+    = BytesConversion::convertTwoCharactersTo16bitInteger(stringToConvert);
 
   uint16_t correctValue = 28536;
 

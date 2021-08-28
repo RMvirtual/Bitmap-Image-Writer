@@ -134,13 +134,19 @@ TEST(GraphicsTests, ShouldGetPixelArray)
   );
 
   PixelArray pixelArray = bmpReader.getPixelArray(bmpFile);
-  PixelArray correctPixelArray = PixelArray{std::vector<Pixel>{{0,0,0}}, 1, 1};
+  PixelArray correctPixelArray = PixelArray{
+    std::vector<Pixel>{{0,0,0}},
+    1, 1
+  };
 
   for (int pixelNo = 0; pixelNo < pixelArray.pixels.size(); pixelNo++) {
     Pixel pixelToTest = pixelArray.pixels[pixelNo];
     Pixel correctPixel = correctPixelArray.pixels[pixelNo];
 
-    EXPECT_EQ(correctPixel.toBytes(), pixelToTest.toBytes());
+    EXPECT_EQ(correctPixel.getRed(), pixelToTest.getRed());
+    EXPECT_EQ(correctPixel.getGreen(), pixelToTest.getGreen());
+    EXPECT_EQ(correctPixel.getBlue(), pixelToTest.getBlue());
+
   }
 
 }
