@@ -21,13 +21,16 @@ TEST(BitmapTests, ShouldGetPixelArray)
   std::vector<Pixel> correctPixels;
   Pixel bluePixel {100, 255, 255};
 
-  for (int i = 0; i < 512 * 512; i++)
+  int imageWidth = 512, imageHeight = 512;
+  int totalPixels = imageWidth * imageHeight;
+
+  for (int pixelNo = 0; pixelNo < totalPixels; pixelNo++)
     correctPixels.push_back(bluePixel);
   
   PixelArray correctPixelArray = PixelArray {
     correctPixels, 512, 512};
 
-  for (int pixelNo = 0; pixelNo < 512 * 512; pixelNo++) {
+  for (int pixelNo = 0; pixelNo < totalPixels; pixelNo++) {
     Pixel pixelToTest = pixelArray.pixels[pixelNo];
     Pixel correctPixel = correctPixelArray.pixels[pixelNo];
 
