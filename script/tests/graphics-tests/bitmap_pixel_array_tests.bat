@@ -1,1 +1,1 @@
-bazel test --test_output=all --test_summary=terse //test/src/graphics-tests/bitmap-tests:bitmap_pixel_array_tests
+bazel test --test_output=all --test_summary=terse //test/src/graphics-tests/bitmap-tests:pixel_array_tests
