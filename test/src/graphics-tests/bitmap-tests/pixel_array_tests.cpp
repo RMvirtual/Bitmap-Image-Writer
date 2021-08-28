@@ -19,10 +19,10 @@ TEST(BitmapTests, ShouldGetPixelArray)
 
   PixelArray pixelArray = BitmapReader::getPixelArray(bmpFile);
   std::vector<Pixel> correctPixels;
+  Pixel bluePixel {100, 255, 255};
 
-  for (int i = 0; i < 512 * 512; i++) {
-    correctPixels.push_back(Pixel {100, 255, 255});
-  }
+  for (int i = 0; i < 512 * 512; i++)
+    correctPixels.push_back(bluePixel);
   
   PixelArray correctPixelArray = PixelArray {
     correctPixels, 512, 512};
