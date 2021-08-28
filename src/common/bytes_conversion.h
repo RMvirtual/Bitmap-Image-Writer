@@ -1,3 +1,6 @@
+#ifndef BYTES_CONVERSION_H
+#define BYTES_CONVERSION_H
+
 #include <cstdint>
 #include <string>
 
@@ -11,3 +14,5 @@ namespace BytesConversion
   uint32_t convertFourCharactersTo32bitInteger(string stringToConvert);
   uint16_t convertTwoCharactersTo16bitInteger(string stringToConvert);
 };
+
+#endif
