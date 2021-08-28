@@ -1,0 +1,1 @@
+bazel test --test_output=all --test_summary=terse //test/src/graphics-tests/bitmap-tests:bitmap_header_tests

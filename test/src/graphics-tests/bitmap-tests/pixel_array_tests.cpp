@@ -10,7 +10,7 @@
 #include "src/graphics/bitmaps/reader/bitmap_reader.h"
 #include "src/common/file_opener.h"
 
-TEST(GraphicsTests, ShouldGetPixelArray)
+TEST(BitmapTests, ShouldGetPixelArray)
 {
   char* bmpFile = (
     "C:\\Users\\rmvir\\Desktop\\scc300-Win3D\\test\\output\\" \
@@ -37,7 +37,7 @@ TEST(GraphicsTests, ShouldGetPixelArray)
   }
 }
 
-TEST(GraphicsTests, ShouldGetPixelSizeInBytes)
+TEST(BitmapTests, ShouldGetPixelSizeInBytes)
 {
   char* bmpFile = (
     "C:\\Users\\rmvir\\Desktop\\scc300-Win3D\\test\\output\\" \
@@ -52,7 +52,7 @@ TEST(GraphicsTests, ShouldGetPixelSizeInBytes)
   EXPECT_EQ(correctSizeInBytes, actualSizeInBytes);
 }
 
-TEST(GraphicsTests, ShouldGetNumberOfPixels)
+TEST(BitmapTests, ShouldGetNumberOfPixels)
 {
   char* bmpFile = (
     "C:\\Users\\rmvir\\Desktop\\scc300-Win3D\\test\\output\\" \

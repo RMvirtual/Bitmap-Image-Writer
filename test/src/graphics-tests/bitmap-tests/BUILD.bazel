@@ -1,0 +1,21 @@
+load("@rules_cc//cc:defs.bzl", "cc_test")
+
+cc_test(
+    name = "bitmap_header_tests",
+    size = "small",
+    srcs = ["header_tests.cpp"],
+    deps = [
+        "@com_google_googletest//:gtest_main",
+        "//src/graphics/bitmaps:bitmaps"
+    ]
+)
+
+cc_test(
+    name = "bitmap_pixel_array_tests",
+    size = "small",
+    srcs = ["pixel_array_tests.cpp"],
+    deps = [
+        "@com_google_googletest//:gtest_main",
+        "//src/graphics/bitmaps:bitmaps"
+    ]
+)

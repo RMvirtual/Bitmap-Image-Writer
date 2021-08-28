@@ -10,7 +10,7 @@
 #include "src/graphics/bitmaps/reader/bitmap_reader.h"
 #include "src/common/file_opener.h"
 
-TEST(GraphicsTests, ShouldCreateBitmap)
+TEST(BitmapTests, ShouldCreateBitmap)
 {
   int widthInPixels = 512, heightInPixels = 512;
 
@@ -50,7 +50,7 @@ TEST(GraphicsTests, ShouldCreateBitmap)
   fout.close();
 }
 
-TEST(GraphicsTests, ShouldGetBitmapLength)
+TEST(BitmapTests, ShouldGetBitmapLength)
 {
   char* bitmapFile = (
     "C:\\Users\\rmvir\\Desktop\\scc300-Win3D\\test\\output\\" \
@@ -63,7 +63,7 @@ TEST(GraphicsTests, ShouldGetBitmapLength)
   EXPECT_EQ(correctSize, payloadSizeInBytes);
 }
 
-TEST(GraphicsTests, ShouldGetBitmapFileSize)
+TEST(BitmapTests, ShouldGetBitmapFileSize)
 { 
   char* bitmapFile = (
     "C:\\Users\\rmvir\\Desktop\\scc300-Win3D\\test\\output\\" \
@@ -77,7 +77,7 @@ TEST(GraphicsTests, ShouldGetBitmapFileSize)
   EXPECT_EQ(correctSize, fileSizeInBytes);
 }
 
-TEST(GraphicsTests, ShouldGetBitmapFileHeader)
+TEST(BitmapTests, ShouldGetBitmapFileHeader)
 { 
   char* bmpFile = (
     "C:\\Users\\rmvir\\Desktop\\scc300-Win3D\\test\\output\\" \
@@ -94,7 +94,7 @@ TEST(GraphicsTests, ShouldGetBitmapFileHeader)
   EXPECT_EQ(54, bmpFileHeader.getPixelDataOffset());
 }
 
-TEST(GraphicsTests, ShouldGetBitmapInfoHeader)
+TEST(BitmapTests, ShouldGetBitmapInfoHeader)
 {
   char* bmpFile = (
     "C:\\Users\\rmvir\\Desktop\\scc300-Win3D\\test\\output\\" \
@@ -114,4 +114,3 @@ TEST(GraphicsTests, ShouldGetBitmapInfoHeader)
   EXPECT_EQ(0, bmpInfoHeader.getColorTableEntries());
   EXPECT_EQ(0, bmpInfoHeader.getImportantColors());
 }
-

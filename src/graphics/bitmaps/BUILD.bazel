@@ -1,0 +1,22 @@
+cc_library(
+    name = "bitmaps",
+    srcs = [
+        "packet/headers/header.cpp",
+        "packet/headers/file_header.cpp",
+        "packet/headers/dib_header.cpp",
+        "packet/pixels/pixel.cpp",
+        "packet/pixels/pixel_array.cpp",
+        "reader/bitmap_reader.cpp"
+    ],
+    hdrs = [
+        "packet/headers/header.h",
+        "packet/headers/file_header.h",
+        "packet/headers/dib_header.h",
+        "packet/pixels/pixel.h",
+        "packet/pixels/pixel_array.h",
+        "reader/bitmap_reader.h"
+    ],
+    deps = ["//src/common:common"],
+    visibility = ["//visibility:public"],
+    copts = ["/std:c++17"]
+)
