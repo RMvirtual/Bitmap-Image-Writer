@@ -5,6 +5,7 @@
 
 #include "src/graphics/bitmaps/headers/file_header.h"
 #include "src/graphics/bitmaps/headers/dib_header.h"
+#include "src/graphics/bitmaps/pixel_array.h"
 #include "src/graphics/bitmaps/pixel.h"
 #include "src/graphics/bitmaps/reader/bitmap_reader.h"
 #include "src/common/file_opener.h"
@@ -121,4 +122,25 @@ TEST(GraphicsTests, ShouldGetBitmapInfoHeader)
   EXPECT_EQ(0, bmpInfoHeader.getVerticalPixelsPerMetre());
   EXPECT_EQ(0, bmpInfoHeader.getColorTableEntries());
   EXPECT_EQ(0, bmpInfoHeader.getImportantColors());
+}
+
+TEST(GraphicsTests, ShouldGetPixelArray)
+{
+  BitmapReader bmpReader;
+
+  char* bmpFile = (
+    "C:\\Users\\rmvir\\Desktop\\scc300-Win3D\\test\\output\\" \
+    "correct_resources\\blueImage512x512.bmp"
+  );
+
+  PixelArray pixelArray = bmpReader.getPixelArray(bmpFile);
+  PixelArray correctPixelArray = PixelArray{std::vector<Pixel>{{0,0,0}}, 1, 1};
+
+  for (int pixelNo = 0; pixelNo < pixelArray.pixels.size(); pixelNo++) {
+    Pixel pixelToTest = pixelArray.pixels[pixelNo];
+    Pixel correctPixel = correctPixelArray.pixels[pixelNo];
+
+    EXPECT_EQ(correctPixel.toBytes(), pixelToTest.toBytes());
+  }
+
 }

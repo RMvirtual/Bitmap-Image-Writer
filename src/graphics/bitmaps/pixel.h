@@ -1,3 +1,6 @@
+#ifndef PIXEL_H
+#define PIXEL_H
+
 #include <cstdint>
 
 class Pixel
@@ -11,3 +14,5 @@ private:
   uint8_t green;
   uint8_t blue;
 };
+
+#endif

@@ -9,17 +9,15 @@
 #include "src/common/bytes_converter.h"
 #include "src/common/file_opener.h"
 
-using namespace std;
-
 BitmapReader::BitmapReader()
 {
   // Pass.
 }
 
-BitmapFileHeader BitmapReader::getBitmapFileHeader(string filePath)
+BitmapFileHeader BitmapReader::getBitmapFileHeader(std::string filePath)
 {
   FileOpener fileOpener;
-  string bytes = fileOpener.convertFileToString(filePath);
+  std::string bytes = fileOpener.convertFileToString(filePath);
 
   BitmapFileHeader bmpFileHeader;
   BytesConverter bytesConverter;
@@ -44,10 +42,10 @@ BitmapFileHeader BitmapReader::getBitmapFileHeader(string filePath)
   return bmpFileHeader;
 }
 
-BitmapDibHeader BitmapReader::getBitmapDibHeader(string filePath)
+BitmapDibHeader BitmapReader::getBitmapDibHeader(std::string filePath)
 {
   FileOpener fileOpener;
-  string bytes = fileOpener.convertFileToString(filePath);
+  std::string bytes = fileOpener.convertFileToString(filePath);
 
   BitmapDibHeader bmpDibHeader;
   BytesConverter bytesConverter;
@@ -110,10 +108,18 @@ BitmapDibHeader BitmapReader::getBitmapDibHeader(string filePath)
   return bmpDibHeader;
 }
 
-int BitmapReader::getLengthOfPixelPayload(string filePath)
+PixelArray BitmapReader::getPixelArray(std::string filePath)
+{
+  vector<Pixel> pixels = {{0, 0, 0}};
+
+  return PixelArray(pixels, 1, 1);
+}
+
+int BitmapReader::getLengthOfPixelPayload(std::string filePath)
 {
   FileOpener fileOpener;
   int sizeOfFile = fileOpener.getSizeOfFile(filePath);
 
   return sizeOfFile - 54;
 }
+

@@ -5,6 +5,7 @@ cc_library(
         "bitmaps/headers/file_header.cpp",
         "bitmaps/headers/dib_header.cpp",
         "bitmaps/pixel.cpp",
+        "bitmaps/pixel_array.cpp",
         "bitmaps/reader/bitmap_reader.cpp"
     ],
     hdrs = [
@@ -12,6 +13,7 @@ cc_library(
         "bitmaps/headers/file_header.h",
         "bitmaps/headers/dib_header.h",
         "bitmaps/pixel.h",
+        "bitmaps/pixel_array.h",
         "bitmaps/reader/bitmap_reader.h"
     ],
     deps = ["//src/common:common"],
