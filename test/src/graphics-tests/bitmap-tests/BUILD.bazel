@@ -19,3 +19,13 @@ cc_test(
         "//src/graphics/bitmaps:bitmaps"
     ]
 )
+
+cc_test(
+    name = "bitmap_reader_tests",
+    size = "small",
+    srcs = ["reader_tests.cpp"],
+    deps = [
+        "@com_google_googletest//:gtest_main",
+        "//src/graphics/bitmaps:bitmaps"
+    ]
+)

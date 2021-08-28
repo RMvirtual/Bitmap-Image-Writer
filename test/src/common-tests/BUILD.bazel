@@ -19,3 +19,13 @@ cc_test(
         "//src/common:common"
     ],
 )
+
+cc_test(
+    name = "filesystem_tests",
+    size = "small",
+    srcs = ["filesystem_tests.cpp"],
+    deps = [
+        "@com_google_googletest//:gtest_main",
+        "//src/common:common"
+    ],
+)

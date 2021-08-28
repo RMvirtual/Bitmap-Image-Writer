@@ -52,19 +52,6 @@ TEST(BitmapTests, ShouldCreateBitmap)
 
 }
 
-TEST(BitmapTests, ShouldGetBitmapLength)
-{
-  char* bitmapFile = (
-    "C:\\Users\\rmvir\\Desktop\\scc300-Win3D\\test\\output\\" \
-    "correct_resources\\blueImage512x512.bmp"
-  );
-
-  int correctSize = 786432;
-  int payloadSizeInBytes = BitmapReader::getPixelArraySizeInBytes(bitmapFile);
-
-  EXPECT_EQ(correctSize, payloadSizeInBytes);
-}
-
 TEST(BitmapTests, ShouldGetBitmapFileSize)
 { 
   char* bitmapFile = (

@@ -64,3 +64,4 @@ TEST(BitmapTests, ShouldGetNumberOfPixels)
 
   EXPECT_EQ(correctSizeInPixels, actualSizeInPixels);
 }
+
