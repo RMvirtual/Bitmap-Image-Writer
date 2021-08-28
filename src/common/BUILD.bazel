@@ -2,8 +2,8 @@
 
 cc_library(
     name = "common",
-    srcs = ["byte_array.cpp", "bytes_conversion.cpp", "file_opener.cpp"],
-    hdrs = ["byte_array.h", "bytes_conversion.h", "file_opener.h"],
+    srcs = ["byte_array.cpp", "bytes_conversion.cpp", "filesystem.cpp"],
+    hdrs = ["byte_array.h", "bytes_conversion.h", "filesystem.h"],
     visibility = ["//visibility:public"],
     copts = ["/std:c++17"]
 )

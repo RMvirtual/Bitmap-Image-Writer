@@ -7,12 +7,11 @@
 #include "src/graphics/bitmaps/packet/headers/file_header.h"
 #include "src/graphics/bitmaps/packet/headers/dib_header.h"
 #include "src/common/bytes_conversion.h"
-#include "src/common/file_opener.h"
+#include "src/common/filesystem.h"
 
 BitmapFileHeader BitmapReader::getBitmapFileHeader(std::string filePath)
 {
-  FileOpener fileOpener;
-  std::string bytes = fileOpener.convertFileToString(filePath);
+  std::string bytes = Filesystem::convertFileToString(filePath);
 
   BitmapFileHeader bmpFileHeader;
 
@@ -38,8 +37,7 @@ BitmapFileHeader BitmapReader::getBitmapFileHeader(std::string filePath)
 
 BitmapDibHeader BitmapReader::getBitmapDibHeader(std::string filePath)
 {
-  FileOpener fileOpener;
-  std::string bytes = fileOpener.convertFileToString(filePath);
+  std::string bytes = Filesystem::convertFileToString(filePath);
 
   BitmapDibHeader bmpDibHeader;
 
@@ -103,8 +101,7 @@ BitmapDibHeader BitmapReader::getBitmapDibHeader(std::string filePath)
 
 PixelArray BitmapReader::getPixelArray(std::string filePath)
 {
-  FileOpener fileOpener;
-  std::string bytes = fileOpener.convertFileToString(filePath);
+  std::string bytes = Filesystem::convertFileToString(filePath);
 
   int lengthOfPixelArray = BitmapReader::getLengthOfPixelPayload(filePath);
   
@@ -126,8 +123,7 @@ PixelArray BitmapReader::getPixelArray(std::string filePath)
 
 int BitmapReader::getLengthOfPixelPayload(std::string filePath)
 {
-  FileOpener fileOpener;
-  int sizeOfFile = fileOpener.getSizeOfFile(filePath);
+  int sizeOfFile = Filesystem::getSizeOfFile(filePath);
 
   return sizeOfFile - 54;
 }

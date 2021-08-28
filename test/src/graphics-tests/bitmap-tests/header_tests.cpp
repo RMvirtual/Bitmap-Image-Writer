@@ -8,7 +8,7 @@
 #include "src/graphics/bitmaps/packet/pixels/pixel_array.h"
 #include "src/graphics/bitmaps/packet/pixels/pixel.h"
 #include "src/graphics/bitmaps/reader/bitmap_reader.h"
-#include "src/common/file_opener.h"
+#include "src/common/filesystem.h"
 
 TEST(BitmapTests, ShouldCreateBitmap)
 {
@@ -16,13 +16,13 @@ TEST(BitmapTests, ShouldCreateBitmap)
 
   BitmapFileHeader bmpFileHeader {widthInPixels, heightInPixels};
   BitmapDibHeader bmpInfoHeader {widthInPixels, heightInPixels};
-  Pixel pixel {100, 255, 255};
+  Pixel bluePixel {100, 255, 255};
 
   size_t numberOfPixels = widthInPixels * heightInPixels;
   std::vector<Pixel> pixelsToAdd;
 
   for (int i = 0; i < numberOfPixels; i++)
-    pixelsToAdd.push_back(pixel);
+    pixelsToAdd.push_back(bluePixel);
 
   PixelArray pixelArray {pixelsToAdd, widthInPixels, heightInPixels};
 
@@ -48,6 +48,8 @@ TEST(BitmapTests, ShouldCreateBitmap)
   delete[] bmpInfoHeaderBytes;
 
   fout.close();
+
+
 }
 
 TEST(BitmapTests, ShouldGetBitmapLength)
@@ -71,8 +73,7 @@ TEST(BitmapTests, ShouldGetBitmapFileSize)
   );
 
   int correctSize = 786486;
-  FileOpener fileOpener;
-  int fileSizeInBytes = fileOpener.getSizeOfFile(bitmapFile);
+  int fileSizeInBytes = Filesystem::getSizeOfFile(bitmapFile);
 
   EXPECT_EQ(correctSize, fileSizeInBytes);
 }

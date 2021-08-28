@@ -3,9 +3,8 @@
 
 #include <string>
 
-class FileOpener
+namespace Filesystem
 {
-public:
   std::string convertFileToString(std::string filePath);
   int getSizeOfFile(std::string filePath);
 };
