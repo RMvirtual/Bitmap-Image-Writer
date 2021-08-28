@@ -2,10 +2,8 @@
 
 @echo off
 
-for /R tests %%f in (*.bat) do (
-    if not "%%x" == "%~0" call "%%x"
+for /R tests\ %%f in (*.bat) do (
+    call "%%f"
 )
 
 @echo on
-
-:for /R tests %%f in (*.bat) do Echo %%f
