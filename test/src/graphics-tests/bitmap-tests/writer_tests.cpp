@@ -48,4 +48,33 @@ TEST(BitmapWriterTests, ShouldCreateBitmap)
   delete[] bmpInfoHeaderBytes;
 
   fout.close();
+
+  char* correctImage =
+    "C:\\Users\\rmvir\\Desktop\\scc300-Win3D\\test\\output\\" \
+    "correct_resources\\blueImage512x512.bmp";
+
+  BitmapFileHeader correctFileHeader 
+    = BitmapReader::getBitmapFileHeader(correctImage);
+
+  BitmapDibHeader correctDibHeader =
+    BitmapReader::getBitmapDibHeader(correctImage);
+
+  PixelArray correctPixels = BitmapReader::getPixelArray(correctImage);
+  
+  int correctPixelSizeInBytes
+    = BitmapReader::getPixelArraySizeInBytes(correctImage);
+
+  char* myImage = 
+    "C:\\Users\\rmvir\\Desktop\\scc300-Win3D\\test\\output\\myImage.bmp";
+  
+  BitmapFileHeader myImageFileHeader 
+    = BitmapReader::getBitmapFileHeader(myImage);
+
+  BitmapDibHeader myImageDibHeader =
+    BitmapReader::getBitmapDibHeader(myImage);
+
+  PixelArray myImageCorrectPixels = BitmapReader::getPixelArray(myImage);
+  
+  int myImageCorrectPixelSizeInBytes
+    = BitmapReader::getPixelArraySizeInBytes(myImage);
 }
