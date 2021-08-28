@@ -60,7 +60,7 @@ TEST(BitmapTests, ShouldGetBitmapLength)
   );
 
   int correctSize = 786432;
-  int payloadSizeInBytes = BitmapReader::getLengthOfPixelPayload(bitmapFile);
+  int payloadSizeInBytes = BitmapReader::getPixelArraySizeInBytes(bitmapFile);
 
   EXPECT_EQ(correctSize, payloadSizeInBytes);
 }

@@ -103,7 +103,7 @@ PixelArray BitmapReader::getPixelArray(std::string filePath)
 {
   std::string bytes = Filesystem::convertFileToString(filePath);
 
-  int lengthOfPixelArray = BitmapReader::getLengthOfPixelPayload(filePath);
+  int lengthOfPixelArray = BitmapReader::getPixelArraySizeInBytes(filePath);
   
   std::vector<Pixel> pixels;
 
@@ -121,10 +121,14 @@ PixelArray BitmapReader::getPixelArray(std::string filePath)
   return PixelArray(pixels, 512, 512);
 }
 
-int BitmapReader::getLengthOfPixelPayload(std::string filePath)
+int BitmapReader::getPixelArraySizeInBytes(std::string filePath)
 {
-  int sizeOfFile = Filesystem::getSizeOfFile(filePath);
+  BitmapFileHeader bmpFileHeader = BitmapReader::getBitmapFileHeader(filePath);
+  int sizeOfFile = bmpFileHeader.getSizeOfBitmapFile();
+  int pixelDataOffset = bmpFileHeader.getPixelDataOffset();
 
-  return sizeOfFile - 54;
+  int sizeOfPixelArrayInBytes = sizeOfFile - pixelDataOffset;
+
+  return sizeOfPixelArrayInBytes;
 }
 
