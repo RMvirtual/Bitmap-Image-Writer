@@ -107,11 +107,26 @@ PixelArray BitmapReader::getPixelArray(std::string filePath)
   std::string bytes = fileOpener.convertFileToString(filePath);
 
   int lengthOfPixelArray = BitmapReader::getLengthOfPixelPayload(filePath);
+  std::cout << "length of pixel array: " << lengthOfPixelArray << std::endl; 
+  
+  std::vector<Pixel> pixels;
 
-  // for (int byteNo = 0; byteNo < lengthOfPixelArray; byteNo++)
-  vector<Pixel> pixels = {{0, 0, 0}};
+  int byteNo = 54;
 
-  return PixelArray(pixels, 1, 1);
+  for (byteNo = 0; byteNo < 512 * 512 * 3; byteNo += 3) {
+    uint8_t blueValue = bytes[byteNo + 54];
+    uint8_t greenValue = bytes[byteNo + 1 + 54];
+    uint8_t redValue = bytes[byteNo + 2 + 54];
+
+    Pixel pixel {redValue, greenValue, blueValue};
+    pixels.push_back(pixel);
+  }
+
+std::cout << "Ended on byte no: " << byteNo << std::endl;
+std::cout << "Correct size of pixels should be " << 262144 << std::endl;
+std::cout << "Vector size is now " << pixels.size()<< std::endl;
+
+  return PixelArray(pixels, 512, 512);
 }
 
 int BitmapReader::getLengthOfPixelPayload(std::string filePath)

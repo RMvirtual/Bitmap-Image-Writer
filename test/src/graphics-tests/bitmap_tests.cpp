@@ -17,7 +17,6 @@ TEST(GraphicsTests, ShouldCreateBitmap)
   BitmapFileHeader bmpFileHeader {widthInPixels, heightInPixels};
   BitmapDibHeader bmpInfoHeader {widthInPixels, heightInPixels};
   Pixel pixel {100, 255, 255};
-  Pixel blackPixel {0, 0, 0};
 
   size_t numberOfPixels = widthInPixels * heightInPixels;
   std::vector<Pixel> pixelsToAdd;
@@ -124,19 +123,21 @@ TEST(GraphicsTests, ShouldGetPixelArray)
   );
 
   PixelArray pixelArray = BitmapReader::getPixelArray(bmpFile);
-  PixelArray correctPixelArray = PixelArray{
-    std::vector<Pixel>{{0,0,0}},
-    1, 1
-  };
+  std::vector<Pixel> correctPixels;
 
-  for (int pixelNo = 0; pixelNo < pixelArray.pixels.size(); pixelNo++) {
+  for (int i = 0; i < 512 * 512; i++) {
+    correctPixels.push_back(Pixel {100, 255, 255});
+  }
+  
+  PixelArray correctPixelArray = PixelArray {correctPixels, 512, 512};
+
+  for (int pixelNo = 0; pixelNo < 512 * 512; pixelNo++) {
+    std::cout << pixelNo << std::endl;
     Pixel pixelToTest = pixelArray.pixels[pixelNo];
     Pixel correctPixel = correctPixelArray.pixels[pixelNo];
 
     EXPECT_EQ(correctPixel.getRed(), pixelToTest.getRed());
     EXPECT_EQ(correctPixel.getGreen(), pixelToTest.getGreen());
     EXPECT_EQ(correctPixel.getBlue(), pixelToTest.getBlue());
-
   }
-
 }
