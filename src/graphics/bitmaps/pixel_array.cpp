@@ -39,3 +39,13 @@ PixelArray::PixelArray(vector<Pixel> pixels, int widthInPixels, int heightInPixe
   */
 }
 
+int PixelArray::sizeInBytes()
+{
+  int numberOfPixels = this->widthInPixels * this->heightInPixels;
+  int numberOfColourChannels = 3;
+
+  int totalSizeInBytes = numberOfPixels * numberOfColourChannels;
+
+  return totalSizeInBytes;
+}
+

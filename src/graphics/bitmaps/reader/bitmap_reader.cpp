@@ -136,3 +136,4 @@ int BitmapReader::getLengthOfPixelPayload(std::string filePath)
 
   return sizeOfFile - 54;
 }
+

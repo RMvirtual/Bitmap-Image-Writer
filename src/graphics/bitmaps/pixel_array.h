@@ -14,6 +14,9 @@ public:
   PixelArray(vector<Pixel> pixels, int widthInPixels, int heightInPixels);
   int widthInPixels;
   int heightInPixels;
+  char* toBytes();
+  int sizeInBytes();
+  int sizeInPixels();
 };
 
 #endif
