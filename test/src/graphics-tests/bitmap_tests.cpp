@@ -53,23 +53,19 @@ TEST(GraphicsTests, ShouldCreateBitmap)
 
 TEST(GraphicsTests, ShouldGetBitmapLength)
 {
-  BitmapReader bitmapReader;
-  
   char* bitmapFile = (
     "C:\\Users\\rmvir\\Desktop\\scc300-Win3D\\test\\output\\" \
     "correct_resources\\blueImage512x512.bmp"
   );
 
   int correctSize = 786432;
-  int payloadSizeInBytes = bitmapReader.getLengthOfPixelPayload(bitmapFile);
+  int payloadSizeInBytes = BitmapReader::getLengthOfPixelPayload(bitmapFile);
 
   EXPECT_EQ(correctSize, payloadSizeInBytes);
 }
 
 TEST(GraphicsTests, ShouldGetBitmapFileSize)
-{
-  BitmapReader bitmapReader;
-  
+{ 
   char* bitmapFile = (
     "C:\\Users\\rmvir\\Desktop\\scc300-Win3D\\test\\output\\" \
     "correct_resources\\blueImage512x512.bmp"
@@ -83,15 +79,13 @@ TEST(GraphicsTests, ShouldGetBitmapFileSize)
 }
 
 TEST(GraphicsTests, ShouldGetBitmapFileHeader)
-{
-  BitmapReader bmpReader;
-  
+{ 
   char* bmpFile = (
     "C:\\Users\\rmvir\\Desktop\\scc300-Win3D\\test\\output\\" \
     "correct_resources\\blueImage512x512.bmp"
   );
 
-  BitmapFileHeader bmpFileHeader = bmpReader.getBitmapFileHeader(bmpFile);
+  BitmapFileHeader bmpFileHeader = BitmapReader::getBitmapFileHeader(bmpFile);
 
   EXPECT_EQ('B', bmpFileHeader.getSignatureBytes()[0]);
   EXPECT_EQ('M', bmpFileHeader.getSignatureBytes()[1]);  
@@ -103,14 +97,12 @@ TEST(GraphicsTests, ShouldGetBitmapFileHeader)
 
 TEST(GraphicsTests, ShouldGetBitmapInfoHeader)
 {
-  BitmapReader bmpReader;
-  
   char* bmpFile = (
     "C:\\Users\\rmvir\\Desktop\\scc300-Win3D\\test\\output\\" \
     "correct_resources\\blueImage512x512.bmp"
   );
 
-  BitmapDibHeader bmpInfoHeader = bmpReader.getBitmapDibHeader(bmpFile);
+  BitmapDibHeader bmpInfoHeader = BitmapReader::getBitmapDibHeader(bmpFile);
 
   EXPECT_EQ(40, bmpInfoHeader.getSizeOfHeaderInBytes());
   EXPECT_EQ(512, bmpInfoHeader.getWidthInPixels());
@@ -126,14 +118,12 @@ TEST(GraphicsTests, ShouldGetBitmapInfoHeader)
 
 TEST(GraphicsTests, ShouldGetPixelArray)
 {
-  BitmapReader bmpReader;
-
   char* bmpFile = (
     "C:\\Users\\rmvir\\Desktop\\scc300-Win3D\\test\\output\\" \
     "correct_resources\\blueImage512x512.bmp"
   );
 
-  PixelArray pixelArray = bmpReader.getPixelArray(bmpFile);
+  PixelArray pixelArray = BitmapReader::getPixelArray(bmpFile);
   PixelArray correctPixelArray = PixelArray{
     std::vector<Pixel>{{0,0,0}},
     1, 1

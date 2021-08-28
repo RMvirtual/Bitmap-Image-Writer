@@ -9,11 +9,6 @@
 #include "src/common/bytes_conversion.h"
 #include "src/common/file_opener.h"
 
-BitmapReader::BitmapReader()
-{
-  // Pass.
-}
-
 BitmapFileHeader BitmapReader::getBitmapFileHeader(std::string filePath)
 {
   FileOpener fileOpener;
@@ -111,7 +106,7 @@ PixelArray BitmapReader::getPixelArray(std::string filePath)
   FileOpener fileOpener;
   std::string bytes = fileOpener.convertFileToString(filePath);
 
-  int lengthOfPixelArray = this->getLengthOfPixelPayload(filePath);
+  int lengthOfPixelArray = BitmapReader::getLengthOfPixelPayload(filePath);
 
   // for (int byteNo = 0; byteNo < lengthOfPixelArray; byteNo++)
   vector<Pixel> pixels = {{0, 0, 0}};
@@ -126,4 +121,3 @@ int BitmapReader::getLengthOfPixelPayload(std::string filePath)
 
   return sizeOfFile - 54;
 }
-
