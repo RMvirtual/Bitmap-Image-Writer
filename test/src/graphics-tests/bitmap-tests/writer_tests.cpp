@@ -10,6 +10,16 @@
 #include "src/graphics/bitmaps/reader/bitmap_reader.h"
 #include "src/common/filesystem.h"
 
+void compareBitmapFileHeaders(
+  BitmapFileHeader header1, BitmapFileHeader header2)
+{
+  EXPECT_EQ(header1.getSignatureBytes()[0], header2.getSignatureBytes()[0]);
+  EXPECT_EQ(header1.getSignatureBytes()[1], header2.getSignatureBytes()[1]);
+  EXPECT_EQ(header1.getReservedBytes(), header2.getReservedBytes());
+  EXPECT_EQ(header1.getSizeOfBitmapFile(), header2.getSizeOfBitmapFile());
+  EXPECT_EQ(header2.getPixelDataOffset(), header2.getPixelDataOffset());
+}
+
 TEST(BitmapWriterTests, ShouldCreateBitmap)
 {
   int widthInPixels = 512, heightInPixels = 512;
@@ -77,4 +87,6 @@ TEST(BitmapWriterTests, ShouldCreateBitmap)
   
   int myImageCorrectPixelSizeInBytes
     = BitmapReader::getPixelArraySizeInBytes(myImage);
+
+  compareBitmapFileHeaders(correctFileHeader, myImageFileHeader);
 }
