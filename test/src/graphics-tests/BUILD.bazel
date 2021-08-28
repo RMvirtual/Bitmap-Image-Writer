@@ -3,9 +3,9 @@ load("@rules_cc//cc:defs.bzl", "cc_test")
 cc_test(
     name = "bitmap_tests",
     size = "small",
-    srcs = ["bitmap_tests.cpp"],
+    srcs = ["bitmap_tests.cpp", "pixel_array_tests.cpp"],
     deps = [
         "@com_google_googletest//:gtest_main",
         "//src/graphics:graphics"
-    ],
+    ]
 )

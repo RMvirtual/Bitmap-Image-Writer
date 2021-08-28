@@ -3,7 +3,7 @@
 
 #include <cstdint>
 #include <string>
-#include "src/graphics/bitmaps/headers/header.h"
+#include "src/graphics/bitmaps/packet/headers/header.h"
 
 class BitmapFileHeader
 : public BitmapHeader

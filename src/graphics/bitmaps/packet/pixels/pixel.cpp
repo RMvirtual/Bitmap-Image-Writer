@@ -1,4 +1,4 @@
-#include "src/graphics/bitmaps/pixel.h"
+#include "src/graphics/bitmaps/packet/pixels/pixel.h"
 #include "src/common/byte_array.h"
 #include <stdexcept>
 

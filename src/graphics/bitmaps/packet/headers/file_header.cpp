@@ -1,7 +1,7 @@
 #include <cstdint>
 #include <iostream>
 
-#include "src/graphics/bitmaps/headers/file_header.h"
+#include "src/graphics/bitmaps/packet/headers/file_header.h"
 #include "src/common/byte_array.h"
 
 BitmapFileHeader::BitmapFileHeader()

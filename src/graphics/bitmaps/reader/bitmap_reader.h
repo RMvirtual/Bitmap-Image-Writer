@@ -1,8 +1,8 @@
 #include <string>
 
-#include "src/graphics/bitmaps/headers/file_header.h"
-#include "src/graphics/bitmaps/headers/dib_header.h"
-#include "src/graphics/bitmaps/pixel_array.h"
+#include "src/graphics/bitmaps/packet/headers/file_header.h"
+#include "src/graphics/bitmaps/packet/headers/dib_header.h"
+#include "src/graphics/bitmaps/packet/pixels/pixel_array.h"
 
 namespace BitmapReader
 {

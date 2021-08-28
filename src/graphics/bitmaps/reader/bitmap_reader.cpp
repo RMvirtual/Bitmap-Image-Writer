@@ -4,8 +4,8 @@
 #include <string>
 
 #include "src/graphics/bitmaps/reader/bitmap_reader.h"
-#include "src/graphics/bitmaps/headers/file_header.h"
-#include "src/graphics/bitmaps/headers/dib_header.h"
+#include "src/graphics/bitmaps/packet/headers/file_header.h"
+#include "src/graphics/bitmaps/packet/headers/dib_header.h"
 #include "src/common/bytes_conversion.h"
 #include "src/common/file_opener.h"
 

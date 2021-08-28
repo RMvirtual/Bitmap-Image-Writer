@@ -1,4 +1,4 @@
-#include "src/graphics/bitmaps/headers/header.h"
+#include "src/graphics/bitmaps/packet/headers/header.h"
 
 BitmapHeader::BitmapHeader()
 {

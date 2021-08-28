@@ -2,7 +2,7 @@
 #define PIXEL_ARRAY_H
 
 #include <vector>
-#include "src/graphics/bitmaps/pixel.h"
+#include "src/graphics/bitmaps/packet/pixels/pixel.h"
 
 using namespace std;
 

@@ -1,5 +1,5 @@
-#include "src/graphics/bitmaps/pixel_array.h"
-#include "src/graphics/bitmaps/pixel.h"
+#include "src/graphics/bitmaps/packet/pixels/pixel.h"
+#include "src/graphics/bitmaps/packet/pixels/pixel_array.h"
 
 #include <string>
 #include <queue>

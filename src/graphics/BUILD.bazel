@@ -1,19 +1,19 @@
 cc_library(
     name = "graphics",
     srcs = [
-        "bitmaps/headers/header.cpp",
-        "bitmaps/headers/file_header.cpp",
-        "bitmaps/headers/dib_header.cpp",
-        "bitmaps/pixel.cpp",
-        "bitmaps/pixel_array.cpp",
+        "bitmaps/packet/headers/header.cpp",
+        "bitmaps/packet/headers/file_header.cpp",
+        "bitmaps/packet/headers/dib_header.cpp",
+        "bitmaps/packet/pixels/pixel.cpp",
+        "bitmaps/packet/pixels/pixel_array.cpp",
         "bitmaps/reader/bitmap_reader.cpp"
     ],
     hdrs = [
-        "bitmaps/headers/header.h",
-        "bitmaps/headers/file_header.h",
-        "bitmaps/headers/dib_header.h",
-        "bitmaps/pixel.h",
-        "bitmaps/pixel_array.h",
+        "bitmaps/packet/headers/header.h",
+        "bitmaps/packet/headers/file_header.h",
+        "bitmaps/packet/headers/dib_header.h",
+        "bitmaps/packet/pixels/pixel.h",
+        "bitmaps/packet/pixels/pixel_array.h",
         "bitmaps/reader/bitmap_reader.h"
     ],
     deps = ["//src/common:common"],
