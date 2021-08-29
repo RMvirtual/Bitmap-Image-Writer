@@ -68,9 +68,9 @@ std::string getBlueImagePath()
 
 TEST(BitmapReaderTests, ShouldExtractFileHeaderFromFile)
 { 
-  std::string imageToTest = getBlueImagePath();
+  std::string imagePath = getBlueImagePath();
 
-  BitmapFileHeader fileHeader = BitmapReader::getBitmapFileHeader(imageToTest);
+  BitmapFileHeader fileHeader = BitmapReader::getBitmapFileHeader(imagePath);
   BitmapFileHeader correctFileHeader = setUpBluePixelFileHeader();
   
   compareBitmapFileHeaders(correctFileHeader, fileHeader);
@@ -78,9 +78,9 @@ TEST(BitmapReaderTests, ShouldExtractFileHeaderFromFile)
 
 TEST(BitmapReaderTests, ShouldExtractDibHeaderFromFile)
 {
-  std::string imageToTest = getBlueImagePath();
+  std::string imagePath = getBlueImagePath();
 
-  BitmapDibHeader dibHeader = BitmapReader::getBitmapDibHeader(imageToTest);
+  BitmapDibHeader dibHeader = BitmapReader::getBitmapDibHeader(imagePath);
   BitmapDibHeader correctDibHeader = setUpBluePixelDibHeader();
 
   compareBitmapDibHeaders(correctDibHeader, dibHeader);
@@ -88,9 +88,9 @@ TEST(BitmapReaderTests, ShouldExtractDibHeaderFromFile)
 
 TEST(BitmapReaderTests, ShouldExtractPixelArrayFromFile)
 {
-  std::string imageToTest = getBlueImagePath();
+  std::string imagePath = getBlueImagePath();
 
-  PixelArray pixelArrayToTest = BitmapReader::getPixelArray(imageToTest);
+  PixelArray pixelArrayToTest = BitmapReader::getPixelArray(imagePath);
   PixelArray correctPixelArray = setUpBluePixelArray();
 
   comparePixelArrays(correctPixelArray, pixelArrayToTest);
@@ -98,11 +98,10 @@ TEST(BitmapReaderTests, ShouldExtractPixelArrayFromFile)
 
 TEST(BitmapReaderTests, ShouldExtractPixelArraySizeFromFile)
 {
-  std::string imageToTest = getBlueImagePath();
+  std::string imagePath = getBlueImagePath();
 
   int correctSize = 786432;
-  int payloadSizeInBytes = BitmapReader::getPixelArraySizeInBytes(
-    imageToTest);
+  int payloadSizeInBytes = BitmapReader::getPixelArraySizeInBytes(imagePath);
 
   EXPECT_EQ(correctSize, payloadSizeInBytes);
 }
