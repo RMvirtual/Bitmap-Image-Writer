@@ -41,13 +41,17 @@ void compareBitmapDibHeaders(
   EXPECT_EQ(header1.getImportantColors(), header2.getImportantColors());
 }
 
-void comparePixelArrays(PixelArray pixelArray1, PixelArray pixelArray2)
+void comparePixelArrayAttributes(
+  PixelArray pixelArray1, PixelArray pixelArray2)
 {
   EXPECT_EQ(pixelArray1.getHeightInPixels(), pixelArray2.getHeightInPixels());
   EXPECT_EQ(pixelArray1.getWidthInPixels(), pixelArray2.getWidthInPixels());
   EXPECT_EQ(pixelArray1.sizeInPixels(), pixelArray2.sizeInPixels());
   EXPECT_EQ(pixelArray1.sizeInBytes(), pixelArray2.sizeInBytes());
+}
 
+void comparePixelArrayContents(PixelArray pixelArray1, PixelArray pixelArray2)
+{
   int numberOfPixels = pixelArray1.sizeInPixels();
 
   for (int pixelNo = 0; pixelNo < numberOfPixels; pixelNo++) {
@@ -58,6 +62,12 @@ void comparePixelArrays(PixelArray pixelArray1, PixelArray pixelArray2)
     EXPECT_EQ(pixel1.getGreen(), pixel2.getGreen());
     EXPECT_EQ(pixel1.getRed(), pixel2.getRed());
   }
+}
+
+void comparePixelArrays(PixelArray pixelArray1, PixelArray pixelArray2)
+{
+  comparePixelArrayAttributes(pixelArray1, pixelArray2);
+  comparePixelArrayContents(pixelArray1, pixelArray2);
 }
 
 void compareBitmapImages(BitmapImage image1, BitmapImage image2)
