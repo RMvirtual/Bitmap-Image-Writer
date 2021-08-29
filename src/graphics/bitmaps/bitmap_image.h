@@ -13,6 +13,8 @@ public:
     PixelArray PixelArray
   );
 
+  static BitmapImage fromFile(std::string filePath);
+
   char* toBytes();
   int getSizeOfBytes();
 

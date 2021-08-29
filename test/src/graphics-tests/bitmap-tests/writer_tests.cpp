@@ -66,6 +66,13 @@ void comparePixelArrays(PixelArray pixelArray1, PixelArray pixelArray2)
   }
 }
 
+void compareBitmapImages(BitmapImage image1, BitmapImage image2)
+{
+  compareBitmapFileHeaders(image1.getFileHeader(), image2.getFileHeader());
+  compareBitmapDibHeaders(image1.getDibHeader(), image2.getDibHeader());
+  comparePixelArrays(image1.getPixelArray(), image2.getPixelArray());
+}
+
 BitmapImage setupBlueBitmapImage()
 {
   int widthInPixels = 512, heightInPixels = 512;
@@ -101,37 +108,22 @@ void writeBitmapImage(BitmapImage bitmapImage, std::string filePath)
 
 TEST(BitmapWriterTests, ShouldCreateBitmap)
 {
-  BitmapImage bitmapImage = setupBlueBitmapImage();
-
   char* outputPath = 
     "C:\\Users\\rmvir\\Desktop\\scc300-Win3D\\test\\output\\myImage.bmp";
-
+  
+  BitmapImage bitmapImage = setupBlueBitmapImage();
   writeBitmapImage(bitmapImage, outputPath);
 
-  char* correctImage =
+  char* correctImagePath =
     "C:\\Users\\rmvir\\Desktop\\scc300-Win3D\\test\\output\\" \
     "correct_resources\\blueImage512x512.bmp";
 
-  BitmapFileHeader correctFileHeader 
-    = BitmapReader::getBitmapFileHeader(correctImage);
-
-  BitmapDibHeader correctDibHeader =
-    BitmapReader::getBitmapDibHeader(correctImage);
-
-  PixelArray correctPixels = BitmapReader::getPixelArray(correctImage);
+  BitmapImage correctImage = BitmapImage::fromFile(correctImagePath);
   
-  char* myImage = 
+  char* imageToTestPath = 
     "C:\\Users\\rmvir\\Desktop\\scc300-Win3D\\test\\output\\myImage.bmp";
   
-  BitmapFileHeader myImageFileHeader 
-    = BitmapReader::getBitmapFileHeader(myImage);
+  BitmapImage imageToTest = BitmapImage::fromFile(imageToTestPath);
 
-  BitmapDibHeader myImageDibHeader =
-    BitmapReader::getBitmapDibHeader(myImage);
-
-  PixelArray myImageCorrectPixels = BitmapReader::getPixelArray(myImage);
-
-  compareBitmapFileHeaders(correctFileHeader, myImageFileHeader);
-  compareBitmapDibHeaders(correctDibHeader, myImageDibHeader);
-  comparePixelArrays(correctPixels, myImageCorrectPixels);
+  compareBitmapImages(correctImage, imageToTest);
 }

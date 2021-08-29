@@ -1,5 +1,6 @@
 #include "src/graphics/bitmaps/bitmap_image.h"
 #include "src/common/byte_array.h"
+#include "src/graphics/bitmaps/reader/bitmap_reader.h"
 
 BitmapImage::BitmapImage(
   BitmapFileHeader fileHeader, BitmapDibHeader dibHeader,
@@ -8,6 +9,17 @@ BitmapImage::BitmapImage(
   this->fileHeader = fileHeader;
   this->dibHeader = dibHeader;
   this->pixelArray = pixelArray;
+}
+
+BitmapImage BitmapImage::fromFile(std::string filePath)
+{
+  BitmapFileHeader fileHeader = BitmapReader::getBitmapFileHeader(filePath);
+  BitmapDibHeader dibHeader =BitmapReader::getBitmapDibHeader(filePath);
+  PixelArray pixelArray = BitmapReader::getPixelArray(filePath);
+
+  BitmapImage newBitmapImage {fileHeader, dibHeader, pixelArray};
+
+  return newBitmapImage;
 }
 
 char* BitmapImage::toBytes()
