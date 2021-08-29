@@ -4,8 +4,6 @@
 
 #include "src/common/byte_array.h"
 
-using namespace std;
-
 TEST(ByteArrayTests, ShouldCreateByteArray)
 {
   ByteArrayBuilder byteArrayBuilder;
@@ -36,7 +34,7 @@ TEST(ByteArrayTests, ShouldAddUint8ToArray)
 TEST(ByteArrayTests, ShouldAddUint16ToArray)
 {
   ByteArrayBuilder byteArrayBuilder;
-  vector<uint16_t> values = {20};
+  std::vector<uint16_t> values = {20};
 
   for (auto value : values)
     byteArrayBuilder.addValue(value);
@@ -81,7 +79,7 @@ TEST(ByteArrayTests, ShouldAddMultiple32bitUnsignedIntsToArray)
 {
   ByteArrayBuilder byteArrayBuilder;
   
-  vector<uint32_t> correctValues = {20, 40, 45318294};
+  std::vector<uint32_t> correctValues = {20, 40, 45318294};
 
   for (auto value : correctValues)
     byteArrayBuilder.addValue(value);
