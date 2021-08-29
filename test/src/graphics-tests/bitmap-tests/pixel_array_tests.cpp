@@ -5,7 +5,7 @@
 #include "src/graphics/bitmaps/packet/pixels/pixel.h"
 #include "src/graphics/bitmaps/reader/bitmap_reader.h"
 
-TEST(BitmapTests, ShouldGetPixelSizeInBytes)
+TEST(BitmapPixelArrayTests, ShouldGetPixelSizeInBytes)
 {
   char* bmpFile = (
     "C:\\Users\\rmvir\\Desktop\\scc300-Win3D\\test\\output\\" \
@@ -20,7 +20,7 @@ TEST(BitmapTests, ShouldGetPixelSizeInBytes)
   EXPECT_EQ(correctSizeInBytes, actualSizeInBytes);
 }
 
-TEST(BitmapTests, ShouldGetNumberOfPixels)
+TEST(BitmapPixelArrayTests, ShouldGetNumberOfPixels)
 {
   char* bmpFile = (
     "C:\\Users\\rmvir\\Desktop\\scc300-Win3D\\test\\output\\" \

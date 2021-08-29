@@ -24,9 +24,9 @@ cc_test(
 )
 
 cc_test(
-    name = "writer_tests",
+    name = "bitmap_image_tests",
     size = "small",
-    srcs = ["writer_tests.cpp"],
+    srcs = ["bitmap_image_tests.cpp"],
     deps = [
         "@com_google_googletest//:gtest_main",
         "//src/graphics/bitmaps:bitmaps",

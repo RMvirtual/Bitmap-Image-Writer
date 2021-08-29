@@ -36,7 +36,7 @@ BitmapImage setupBlueBitmapImage()
   return bitmapImage;
 }
 
-TEST(BitmapWriterTests, ShouldCreateBitmap)
+TEST(BitmapImageTests, ShouldWriteBitmap)
 {
   char* imageToTestPath = 
     "C:\\Users\\rmvir\\Desktop\\scc300-Win3D\\test\\output\\myImage.bmp";
