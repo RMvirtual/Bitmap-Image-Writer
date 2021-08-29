@@ -87,15 +87,12 @@ BitmapImage setupBlueBitmapImage()
   return bitmapImage;
 }
 
-void writeBitmapImage(BitmapImage bitmapImage)
+void writeBitmapImage(BitmapImage bitmapImage, std::string filePath)
 {
-  char* outputPath = 
-    "C:\\Users\\rmvir\\Desktop\\scc300-Win3D\\test\\output\\myImage.bmp";
-
   char* bitmapImageBytes = bitmapImage.toBytes();
   int bitmapImageSize = bitmapImage.getSizeOfBytes();
 
-  std::ofstream fout(outputPath, std::ios::binary);
+  std::ofstream fout(filePath, std::ios::binary);
   fout.write(bitmapImageBytes, bitmapImageSize);  
   fout.close();
 
@@ -105,7 +102,11 @@ void writeBitmapImage(BitmapImage bitmapImage)
 TEST(BitmapWriterTests, ShouldCreateBitmap)
 {
   BitmapImage bitmapImage = setupBlueBitmapImage();
-  writeBitmapImage(bitmapImage);
+
+  char* outputPath = 
+    "C:\\Users\\rmvir\\Desktop\\scc300-Win3D\\test\\output\\myImage.bmp";
+
+  writeBitmapImage(bitmapImage, outputPath);
 
   char* correctImage =
     "C:\\Users\\rmvir\\Desktop\\scc300-Win3D\\test\\output\\" \
@@ -119,9 +120,6 @@ TEST(BitmapWriterTests, ShouldCreateBitmap)
 
   PixelArray correctPixels = BitmapReader::getPixelArray(correctImage);
   
-  int correctPixelSizeInBytes
-    = BitmapReader::getPixelArraySizeInBytes(correctImage);
-
   char* myImage = 
     "C:\\Users\\rmvir\\Desktop\\scc300-Win3D\\test\\output\\myImage.bmp";
   
@@ -132,9 +130,6 @@ TEST(BitmapWriterTests, ShouldCreateBitmap)
     BitmapReader::getBitmapDibHeader(myImage);
 
   PixelArray myImageCorrectPixels = BitmapReader::getPixelArray(myImage);
-  
-  int myImageCorrectPixelSizeInBytes
-    = BitmapReader::getPixelArraySizeInBytes(myImage);
 
   compareBitmapFileHeaders(correctFileHeader, myImageFileHeader);
   compareBitmapDibHeaders(correctDibHeader, myImageDibHeader);
