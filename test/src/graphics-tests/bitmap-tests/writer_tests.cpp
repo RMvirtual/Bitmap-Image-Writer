@@ -108,21 +108,17 @@ void writeBitmapImage(BitmapImage bitmapImage, std::string filePath)
 
 TEST(BitmapWriterTests, ShouldCreateBitmap)
 {
-  char* outputPath = 
+  char* imageToTestPath = 
     "C:\\Users\\rmvir\\Desktop\\scc300-Win3D\\test\\output\\myImage.bmp";
-  
-  BitmapImage bitmapImage = setupBlueBitmapImage();
-  writeBitmapImage(bitmapImage, outputPath);
 
   char* correctImagePath =
     "C:\\Users\\rmvir\\Desktop\\scc300-Win3D\\test\\output\\" \
     "correct_resources\\blueImage512x512.bmp";
 
-  BitmapImage correctImage = BitmapImage::fromFile(correctImagePath);
+  BitmapImage bitmapImage = setupBlueBitmapImage();
+  writeBitmapImage(bitmapImage, imageToTestPath);
   
-  char* imageToTestPath = 
-    "C:\\Users\\rmvir\\Desktop\\scc300-Win3D\\test\\output\\myImage.bmp";
-  
+  BitmapImage correctImage = BitmapImage::fromFile(correctImagePath);  
   BitmapImage imageToTest = BitmapImage::fromFile(imageToTestPath);
 
   compareBitmapImages(correctImage, imageToTest);
