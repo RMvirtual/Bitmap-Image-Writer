@@ -4,15 +4,15 @@
 #include <vector>
 #include "src/graphics/bitmaps/packet/pixels/pixel.h"
 
-using namespace std;
-
 class PixelArray
 {
 public:
-  vector<Pixel> pixels;
+  std::vector<Pixel> pixels;
 
   PixelArray();
-  PixelArray(vector<Pixel> pixels, int widthInPixels, int heightInPixels);
+  PixelArray(
+    std::vector<Pixel> pixels, int widthInPixels, int heightInPixels);
+    
   char* toBytes();
   int sizeInBytes();
   int sizeInPixels();

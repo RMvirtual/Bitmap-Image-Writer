@@ -1,7 +1,7 @@
 #ifndef BINARY_OPS_H
 #define BINARY_OPS_H
 
-namespace BinaryOps
+namespace Maths
 {
   class BinaryOperation
   {

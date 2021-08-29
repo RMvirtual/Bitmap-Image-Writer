@@ -1,11 +1,7 @@
 #include <cstdint>
-#include <iostream>
-#include <unordered_map>
 
 #include "src/graphics/bitmaps/packet/headers/dib_header.h"
 #include "src/common/byte_array.h"
-
-using namespace std;
 
 BitmapDibHeader::BitmapDibHeader()
 : BitmapHeader {40}

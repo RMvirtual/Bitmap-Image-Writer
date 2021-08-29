@@ -3,9 +3,6 @@
 #include <iostream>
 #include "src/maths/matrix/matrix.h"
 
-using namespace Maths;
-using namespace std;
-
 std::vector<std::vector<double>> setup2DVector()
 {
   std::vector<std::vector<double>> vector2D = {
@@ -19,7 +16,7 @@ std::vector<std::vector<double>> setup2DVector()
 TEST(MatrixTests, ShouldCreateMatrixFrom2DVector)
 {
   std::vector<std::vector<double>> vector2D = setup2DVector();
-  Matrix matrix = Matrix(vector2D);
+  Maths::Matrix matrix = Maths::Matrix(vector2D);
 
   std::vector<std::vector<double>> correctElements = {
     {1, 2, 3, 4},
@@ -38,7 +35,7 @@ TEST(MatrixTests, ShouldCreateMatrixFrom2DVector)
 TEST(MatrixTests, ShouldReturnWidthAsTwo)
 {
   std::vector<std::vector<double>> vector2D = setup2DVector();
-  Matrix matrix = Matrix(vector2D);
+  Maths::Matrix matrix = Maths::Matrix(vector2D);
 
   int width = matrix.width();
   int correctWidth = vector2D.size();  
@@ -49,7 +46,7 @@ TEST(MatrixTests, ShouldReturnWidthAsTwo)
 TEST(MatrixTests, ShouldReturnWidthAsZero)
 {
   std::vector<std::vector<double>> vector2D = {};
-  Matrix matrix = Matrix();
+  Maths::Matrix matrix = Maths::Matrix();
 
   int width = matrix.width();
   int correctWidth = vector2D.size();
@@ -60,7 +57,7 @@ TEST(MatrixTests, ShouldReturnWidthAsZero)
 TEST(MatrixTests, ShouldReturnHeightAsFour)
 {
   std::vector<std::vector<double>> vector2D = setup2DVector();
-  Matrix matrix = Matrix(vector2D);
+  Maths::Matrix matrix = Maths::Matrix(vector2D);
 
   int height = matrix.height();
   int correctHeight = vector2D.front().size();
@@ -72,7 +69,7 @@ TEST(MatrixTests, ShouldReturnHeightAsZero)
 {
   std::vector<std::vector<double>> vector2D = {};
 
-  Matrix matrix = Matrix();
+  Maths::Matrix matrix = Maths::Matrix();
   int height = matrix.height();
 
   EXPECT_EQ(height, 0);
@@ -82,7 +79,7 @@ TEST(MatrixTests, ShouldGetColumn)
 {
   std::vector<std::vector<double>> vector2D = setup2DVector();
 
-  Matrix matrix = Matrix(vector2D);
+  Maths::Matrix matrix = Maths::Matrix(vector2D);
 
   std::vector<double> column = matrix.getColumn(0);
   std::vector<double> correctValues = {1, 2, 3, 4};
@@ -94,7 +91,7 @@ TEST(MatrixTests, ShouldGetColumn)
 TEST(MatrixTests, ShouldGetRow)
 {
   std::vector<std::vector<double>> vector2D = setup2DVector();
-  Matrix matrix = Matrix(vector2D);
+  Maths::Matrix matrix = Maths::Matrix(vector2D);
 
   std::vector<double> row = matrix.getRow(0);
   std::vector<double> correctValues = {1, 5};
@@ -110,8 +107,8 @@ TEST(MatrixTests, ShouldMultiplyMatrixByA2DVector)
     {3, 4}
   };
 
-  Matrix matrix = Matrix(vector2D);
-  Maths::Vector vector = Vector(5, 6);
+  Maths::Matrix matrix = Maths::Matrix(vector2D);
+  Maths::Vector vector = Maths::Vector(5, 6);
 
   Maths::Vector multipledResult = vector * matrix;
   Maths::Vector correctVector(23, 34);
@@ -128,8 +125,8 @@ TEST(MatrixTests, ShouldMultiplyMatrixByA3DVector)
     {7, 8, 9}
   };
 
-  Matrix matrix = Matrix(vector2D);
-  Maths::Vector vector = Vector(10, 11, 12);
+  Maths::Matrix matrix = Maths::Matrix(vector2D);
+  Maths::Vector vector = Maths::Vector(10, 11, 12);
 
   Maths::Vector multipledResult = matrix * vector;
   Maths::Vector correctVector(138, 171, 204);
@@ -152,10 +149,10 @@ TEST(MatrixTests, ShouldMultiplyMatrixByAnotherMatrix)
     {16, 17, 18}
   };
 
-  Matrix lhsMatrix = Matrix(vector1);
-  Matrix rhsMatrix = Matrix(vector2);
+  Maths::Matrix lhsMatrix = Maths::Matrix(vector1);
+  Maths::Matrix rhsMatrix = Maths::Matrix(vector2);
 
-  Matrix resultMatrix = lhsMatrix * rhsMatrix;
+  Maths::Matrix resultMatrix = lhsMatrix * rhsMatrix;
 
   std::vector<std::vector<double>> correctValues = {
     {138, 171, 204},
@@ -163,7 +160,7 @@ TEST(MatrixTests, ShouldMultiplyMatrixByAnotherMatrix)
     {210, 261, 312}
   };
 
-  Matrix correctMatrix(correctValues);
+  Maths::Matrix correctMatrix(correctValues);
 
   for (int columnNo = 0; columnNo < correctMatrix.width(); columnNo++)
     for (int rowNo = 0; rowNo < correctMatrix.height(); rowNo++)
@@ -187,10 +184,10 @@ TEST(MatrixTests, ShouldMultiplyMatrixByAMatrixWithDifferentHeight)
     {13, 14, 15}
   };
 
-  Matrix lhsMatrix = Matrix(vector1);
-  Matrix rhsMatrix = Matrix(vector2);
+  Maths::Matrix lhsMatrix = Maths::Matrix(vector1);
+  Maths::Matrix rhsMatrix = Maths::Matrix(vector2);
 
-  Matrix resultMatrix = lhsMatrix * rhsMatrix;
+  Maths::Matrix resultMatrix = lhsMatrix * rhsMatrix;
 
   std::vector<std::vector<double>> correctVectors = {
     {76, 100},
@@ -198,7 +195,7 @@ TEST(MatrixTests, ShouldMultiplyMatrixByAMatrixWithDifferentHeight)
     {130, 172}
   };
 
-  Matrix correctMatrix(correctVectors);
+  Maths::Matrix correctMatrix(correctVectors);
 
   for (int columnNo = 0; columnNo < correctMatrix.width(); columnNo++)
     for (int rowNo = 0; rowNo < correctMatrix.height(); rowNo++)
@@ -215,10 +212,10 @@ TEST(MatrixTests, ShouldPrintMatrixAsString)
     {4, 5, 6}
   };
 
-  Matrix matrix = Matrix(values);
-  string actualString = matrix.toString();
+  Maths::Matrix matrix = Maths::Matrix(values);
+  std::string actualString = matrix.toString();
 
-  string correctString = (
+  std::string correctString = (
     "| 1 4 |\n" \
     "| 2 5 |\n" \
     "| 3 6 |" \
@@ -230,7 +227,7 @@ TEST(MatrixTests, ShouldPrintMatrixAsString)
 TEST(MatrixTests, ColumnShouldBeIterable)
 {
   std::vector<double> correctValues = {1, 2, 3, 4};
-  Column column = Column(correctValues);
+  Maths::Column column = Maths::Column(correctValues);
 
   std::vector<double> valuesFromIteration = {};
   

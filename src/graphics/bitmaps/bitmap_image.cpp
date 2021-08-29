@@ -29,7 +29,7 @@ char* BitmapImage::toBytes()
 
   char* allBytes = byteArrayBuilder.toBytes();
 
-  vector<char*> byteArrays = {
+  std::vector<char*> byteArrays = {
     fileHeaderBytes, dibHeaderBytes, pixelArrayBytes};
 
   for (auto byteArray : byteArrays)

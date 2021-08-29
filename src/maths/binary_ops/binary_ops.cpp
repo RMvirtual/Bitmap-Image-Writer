@@ -1,51 +1,49 @@
 #include "binary_ops.h";
 
-using namespace BinaryOps;
-
-double Addition::perform(double left, double right)
+double Maths::Addition::perform(double left, double right)
 {
   return left + right;
 }
 
-double Subtraction::perform(double left, double right)
+double Maths::Subtraction::perform(double left, double right)
 {
   return left - right;
 }
 
-double Multiplication::perform(double left, double right)
+double Maths::Multiplication::perform(double left, double right)
 {
   return left * right;
 }
 
-double Division::perform(double left, double right)
+double Maths::Division::perform(double left, double right)
 {
   return left / right;
 }
 
-BinaryOperation::BinaryOperation()
+Maths::BinaryOperation::BinaryOperation()
 {
   // Pass.
 }
 
-Addition::Addition()
+Maths::Addition::Addition()
 : BinaryOperation()
 {
   // Pass.
 }
 
-Subtraction::Subtraction()
+Maths::Subtraction::Subtraction()
 : BinaryOperation()
 {
   // Pass.
 }
 
-Multiplication::Multiplication()
+Maths::Multiplication::Multiplication()
 : BinaryOperation()
 {
   // Pass.
 }
 
-Division::Division()
+Maths::Division::Division()
 : BinaryOperation()
 {
   // Pass.

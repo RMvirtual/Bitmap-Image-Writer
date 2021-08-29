@@ -2,11 +2,9 @@
 #include <iostream>
 #include "src/maths/binary_ops/binary_ops.h"
 
-using namespace BinaryOps;
-
 TEST(BinaryOpsTests, ShouldAddTwoDoubles)
 {
-  Addition additionOp = Addition();
+  Maths::Addition additionOp = Maths::Addition();
   double number = additionOp.perform(1, 1);
   double correctNumber = 2;
 
@@ -15,7 +13,7 @@ TEST(BinaryOpsTests, ShouldAddTwoDoubles)
 
 TEST(BinaryOpsTests, ShouldAddTwoNegativeDoubles)
 {
-  Addition additionOp = Addition();
+  Maths::Addition additionOp = Maths::Addition();
   double number = additionOp.perform(-5, -5);
   double correctNumber = -10;
 
@@ -24,7 +22,7 @@ TEST(BinaryOpsTests, ShouldAddTwoNegativeDoubles)
 
 TEST(BinaryOpsTests, ShouldAddNegativeAndPositiveDoubles)
 {
-  Addition additionOp = Addition();
+  Maths::Addition additionOp = Maths::Addition();
   double number = additionOp.perform(5, -10);
   double correctNumber = -5;
 
@@ -33,7 +31,7 @@ TEST(BinaryOpsTests, ShouldAddNegativeAndPositiveDoubles)
 
 TEST(BinaryOpsTests, ShouldSubtractTwoDoubles)
 {
-  Subtraction subtractionOp = Subtraction();
+  Maths::Subtraction subtractionOp = Maths::Subtraction();
   double number = subtractionOp.perform(30, 7);
   double correctNumber = 23;
 
@@ -42,7 +40,7 @@ TEST(BinaryOpsTests, ShouldSubtractTwoDoubles)
 
 TEST(BinaryOpsTests, ShouldSubtractTwoNegativeDoubles)
 {
-  Subtraction subtractionOp = Subtraction();
+  Maths::Subtraction subtractionOp = Maths::Subtraction();
   double number = subtractionOp.perform(-30, -7);
   double correctNumber = -23;
 
@@ -51,7 +49,7 @@ TEST(BinaryOpsTests, ShouldSubtractTwoNegativeDoubles)
 
 TEST(BinaryOpsTests, ShouldMultiplyTwoDoubles)
 {
-  Multiplication multiplicationOp = Multiplication();
+  Maths::Multiplication multiplicationOp = Maths::Multiplication();
   double number = multiplicationOp.perform(6, 3);
   double correctNumber = 18;
 
@@ -60,7 +58,7 @@ TEST(BinaryOpsTests, ShouldMultiplyTwoDoubles)
 
 TEST(BinaryOpsTests, ShouldMultiplyTwoNegativeDoubles)
 {
-  Multiplication multiplicationOp = Multiplication();
+  Maths::Multiplication multiplicationOp = Maths::Multiplication();
   double number = multiplicationOp.perform(-6, -3);
   double correctNumber = 18;
 
@@ -69,7 +67,7 @@ TEST(BinaryOpsTests, ShouldMultiplyTwoNegativeDoubles)
 
 TEST(BinaryOpsTests, ShouldDivideTwoDoubles)
 {
-  Division divisionOp = Division();
+  Maths::Division divisionOp = Maths::Division();
   double number = divisionOp.perform(100, 5);
   double correctNumber = 20;
 
@@ -78,7 +76,7 @@ TEST(BinaryOpsTests, ShouldDivideTwoDoubles)
 
 TEST(BinaryOpsTests, ShouldDivideTwoNegativeDoubles)
 {
-  Division divisionOp = Division();
+  Maths::Division divisionOp = Maths::Division();
   double number = divisionOp.perform(-100, -5);
   double correctNumber = 20;
 

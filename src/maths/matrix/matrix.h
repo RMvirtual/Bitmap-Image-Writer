@@ -6,8 +6,6 @@
 #include "src/maths/matrix/column.h"
 #include "src/maths/vector/vector.h"
 
-using namespace std;
-
 namespace Maths
 {
   class Matrix
@@ -17,14 +15,14 @@ namespace Maths
       Matrix();
 
       // Returns a matrix populated with one column of values.
-      Matrix(vector<double> columnValues);
+      Matrix(std::vector<double> columnValues);
       
       /**
        * Returns a matrix populated with multiple columns of values.
        * All rows in the vector must be the same size or an arithmetic
        * error with throw.
        */
-      Matrix(vector<vector<double>> columns);
+      Matrix(std::vector<std::vector<double>> columns);
 
       // Returns the width (number of columns) of the matrix.
       int width();
@@ -33,10 +31,10 @@ namespace Maths
       int height();
 
       // Returns an stl vector containing the values of a specific row.
-      vector<double> getRow(int index);
+      std::vector<double> getRow(int index);
 
       // Returns an stl vector containing the values of a specific column.
-      vector<double> getColumn(int index);
+      std::vector<double> getColumn(int index);
 
       /**
        * Returns a 2D stl vector containing single vectors all the
@@ -44,7 +42,7 @@ namespace Maths
        * each vector contains the values found in all the rows of a
        * single column).
        */
-      vector<vector<double>> getColumns();
+      std::vector<std::vector<double>> getColumns();
       
       /**
        * Returns a 2D stl vector containing single vectors of all the
@@ -52,14 +50,14 @@ namespace Maths
        * (i.e. each vector contains the values found in all the columns
        * of single row).
        */
-      vector<vector<double>> getRows();
+      std::vector<std::vector<double>> getRows();
 
       /**
        * Returns a Column Proxy object that extends an stl vector
        * representing a column of values (can be indexed again using
        * the subscript operator to get the actual row value.
        */
-      Column operator [] (int columnIndex);
+      Maths::Column operator [] (int columnIndex);
 
       // Multiplies the matrix by a vector.
       Maths::Vector operator * (Maths::Vector vectorRhs);
@@ -75,10 +73,10 @@ namespace Maths
        * | 2 5 8 |
        * | 3 6 9 |
        */
-      string toString();
+      std::string toString();
 
     private:
-      vector<Column> columns;
+      std::vector<Column> columns;
 
       // Multiplies a vector against this matrix.
       Maths::Vector multiplyVector(Maths::Vector vector);
@@ -97,15 +95,15 @@ namespace Maths
        * the columns and rows of a new matrix object resulting from
        * the multiplication of two other matrices.
        */
-      vector<vector<double>> getValuesFromMatrixMultiplication(
+      std::vector<std::vector<double>> getValuesFromMatrixMultiplication(
         Matrix matrix);
 
       /**
        * Calculates the product of all row values against the values
        * found in an stl vector representing a column of values.
        */
-      vector<double> getProductAgainstAllRowsWithColumn(
-        vector<double> column);
+      std::vector<double> getProductAgainstAllRowsWithColumn(
+        std::vector<double> column);
 
       // Calculates the product between two vectors.
       double getProductBetweenTwoVectors(
@@ -124,7 +122,7 @@ namespace Maths
        * index in two different vectors.
        */
       double getProductBetweenTwoVectorsAtSameIndex(
-        vector<double> vector1, vector<double> vector2,
+        std::vector<double> vector1, std::vector<double> vector2,
         int commonIndex
       );
 
@@ -142,7 +140,7 @@ namespace Maths
        * index in two different vectors.
        */
       double getProductBetweenTwoVectorsAtSameIndex(
-        Maths::Vector vector1, vector<double> vector2,
+        Maths::Vector vector1, std::vector<double> vector2,
         int commonIndex
       );
 
@@ -152,15 +150,15 @@ namespace Maths
        * columns, and the inner vectors to represent columns containing
        * the actual row values.
        */
-      void setVectorAsColumnsAndRows(vector<vector<double>> vector);
+      void setVectorAsColumnsAndRows(std::vector<std::vector<double>> vector);
       
       /**
        * Checks that a 2D stl vector follows the valid width and
        * height dimensions required to be processed into the matrix's
        * contents.
        */
-      bool checkVectorIsValidMatrixSize(vector<vector<double>> vector);
-        
+      bool checkVectorIsValidMatrixSize(std::vector<std::vector<double>> vector);
+
       /**
        * Checks whether a Maths::Vector object has the correct
        * dimensions to be used in a multiplication operation against
@@ -183,7 +181,7 @@ namespace Maths
        * | 2 5 8 |
        * | 3 6 9 |
        */
-      string getAllValuesAsString();
+      std::string getAllValuesAsString();
 
       /**
        * Returns a vector of values formatted as a string representing
@@ -191,11 +189,11 @@ namespace Maths
        * 
        * | 1 4 7 |
        */
-      string formatStlVectorAsMatrixRow(vector<double> vector);
+      std::string formatStlVectorAsMatrixRow(std::vector<double> vector);
   };
 }
 
 // Multiplies the matrix by a vector.
-Maths::Vector operator * (Maths::Vector vectorLhs, Matrix matrixRhs);
+Maths::Vector operator * (Maths::Vector vectorLhs, Maths::Matrix matrixRhs);
 
 #endif

@@ -5,8 +5,6 @@
 #include <iterator>
 #include <vector>
 
-using namespace std;
-
 namespace Maths
 {
   // A class representing a vertical column of values in a Matrix.
@@ -35,7 +33,7 @@ namespace Maths
     std::vector<double>::const_iterator end() const;
 
   private:
-    vector<double> values;
+    std::vector<double> values;
   };
 }
 

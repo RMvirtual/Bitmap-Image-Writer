@@ -2,18 +2,16 @@
 #include <iostream>
 #include "src/maths/vector/vector.h"
 
-using namespace Maths;
-
 TEST(VectorTests, ShouldCreateVectorWithTwoElements)
 {
-  Vector vector = Vector(1, 2);
+  Maths::Vector vector = Maths::Vector(1, 2);
   EXPECT_EQ(1, vector[0]);
   EXPECT_EQ(2, vector[1]);
 }
 
 TEST(VectorTests, ShouldCreateVectorWithThreeElements)
 {
-  Vector vector = Vector(4, 5, 6);
+  Maths::Vector vector = Maths::Vector(4, 5, 6);
   EXPECT_EQ(4, vector[0]);
   EXPECT_EQ(5, vector[1]);
   EXPECT_EQ(6, vector[2]);
@@ -21,7 +19,7 @@ TEST(VectorTests, ShouldCreateVectorWithThreeElements)
 
 TEST(VectorTests, ShouldCreateVectorWithFourElements)
 {
-  Vector vector = Vector(1, 2, 3, 4);
+  Maths::Vector vector = Maths::Vector(1, 2, 3, 4);
   EXPECT_EQ(1, vector[0]);
   EXPECT_EQ(2, vector[1]);
   EXPECT_EQ(3, vector[2]);
@@ -31,7 +29,7 @@ TEST(VectorTests, ShouldCreateVectorWithFourElements)
 TEST(VectorTests, ShouldCreateVectorWithArray)
 {
   double array[] = {1, 2, 3};
-  Vector vector = Vector(array, 3);
+  Maths::Vector vector = Maths::Vector(array, 3);
 
   EXPECT_EQ(1, vector[0]);
   EXPECT_EQ(2, vector[1]);
@@ -40,8 +38,8 @@ TEST(VectorTests, ShouldCreateVectorWithArray)
 
 TEST(VectorTests, ShouldCreateVectorWithStlVector)
 {
-  vector<double> stlVector = {1, 2, 3}; 
-  Vector vector = Vector(stlVector);
+  std::vector<double> stlVector = {1, 2, 3}; 
+  Maths::Vector vector = Maths::Vector(stlVector);
 
   EXPECT_EQ(1, vector[0]);
   EXPECT_EQ(2, vector[1]);
@@ -50,24 +48,24 @@ TEST(VectorTests, ShouldCreateVectorWithStlVector)
 
 TEST(VectorTests, LengthShouldBeTwo)
 {
-  Vector vector = {1, 2};
+  Maths::Vector vector = {1, 2};
   EXPECT_EQ(2, vector.length());
 }
 
 TEST(VectorTests, LengthShouldBeFive)
 {
-  Vector vector({1, 2, 3, 4, 5});
+  Maths::Vector vector({1, 2, 3, 4, 5});
   EXPECT_EQ(5, vector.length());
 }
 
 TEST(VectorTests, ShouldCalculateMagnitudeWithTwoElements)
 {
-  Vector vectorWithMagnitudeOf13 = Vector(12, -5);
+  Maths::Vector vectorWithMagnitudeOf13 = Maths::Vector(12, -5);
   double magnitude = vectorWithMagnitudeOf13.magnitude();
 
   EXPECT_DOUBLE_EQ(13, magnitude);
 
-  Vector vectorWithMagnitudeOfSqrt5 = Vector(1, -2);
+  Maths::Vector vectorWithMagnitudeOfSqrt5 = Maths::Vector(1, -2);
   magnitude = vectorWithMagnitudeOfSqrt5.magnitude();
 
   EXPECT_DOUBLE_EQ(sqrt(5), magnitude);
@@ -75,8 +73,8 @@ TEST(VectorTests, ShouldCalculateMagnitudeWithTwoElements)
 
 TEST(VectorTests, ShouldCalculateMagnitudeOfThreeElementVectors)
 {
-  Vector vector1 = Vector(1, 1, 2);
-  Vector vector2 = Vector(-4, -8, 6);
+  Maths::Vector vector1 = Maths::Vector(1, 1, 2);
+  Maths::Vector vector2 = Maths::Vector(-4, -8, 6);
 
   double vector1Magnitude = vector1.magnitude();
   double vector1CorrectMagnitude = 2.4494897427831779;
@@ -90,7 +88,7 @@ TEST(VectorTests, ShouldCalculateMagnitudeOfThreeElementVectors)
 
 TEST(VectorTests, ShouldIndexDirectlyWithOperator)
 {
-  Vector vector = Vector(5, 6);
+  Maths::Vector vector = Maths::Vector(5, 6);
 
   EXPECT_DOUBLE_EQ(5, vector[0]);
   EXPECT_DOUBLE_EQ(6, vector[1]);
@@ -98,10 +96,10 @@ TEST(VectorTests, ShouldIndexDirectlyWithOperator)
 
 TEST(VectorTests, ShouldAddTwoVectorsWithPositiveValues)
 {
-  Vector lhsVector = Vector(1, 2, 3, 4);
-  Vector rhsVector = Vector(5, 6, 7, 8);
+  Maths::Vector lhsVector = Maths::Vector(1, 2, 3, 4);
+  Maths::Vector rhsVector = Maths::Vector(5, 6, 7, 8);
 
-  Vector newVector = lhsVector + rhsVector;
+  Maths::Vector newVector = lhsVector + rhsVector;
 
   double correctValues[] = {6, 8, 10, 12};
 
@@ -111,9 +109,9 @@ TEST(VectorTests, ShouldAddTwoVectorsWithPositiveValues)
 
 TEST(VectorTests, ShouldAddTwoVectorsWithMixedSignValues)
 {
-  Vector lhsVector = Vector(-1, -5, 15, 6);
-  Vector rhsVector = Vector(5, 6, -7, 8);
-  Vector newVector = lhsVector + rhsVector;
+  Maths::Vector lhsVector = Maths::Vector(-1, -5, 15, 6);
+  Maths::Vector rhsVector = Maths::Vector(5, 6, -7, 8);
+  Maths::Vector newVector = lhsVector + rhsVector;
 
   double correctValues[] = {4, 1, 8, 14};
 
@@ -123,10 +121,10 @@ TEST(VectorTests, ShouldAddTwoVectorsWithMixedSignValues)
 
 TEST(VectorTests, ShouldSubtractTwoVectorsWithPositiveValues)
 {
-  Vector lhsVector = Vector(5, 6, 7, 8);
-  Vector rhsVector = Vector(1, 3, 5, 7);
+  Maths::Vector lhsVector = Maths::Vector(5, 6, 7, 8);
+  Maths::Vector rhsVector = Maths::Vector(1, 3, 5, 7);
 
-  Vector newVector = lhsVector - rhsVector;
+  Maths::Vector newVector = lhsVector - rhsVector;
 
   double correctValues[] = {4, 3, 2, 1};
 
@@ -136,9 +134,9 @@ TEST(VectorTests, ShouldSubtractTwoVectorsWithPositiveValues)
 
 TEST(VectorTests, ShouldSubtractTwoVectorsWithMixedSignValues)
 {
-  Vector lhsVector = Vector(-1, -5, 15, 6);
-  Vector rhsVector = Vector(5, 6, -7, 8);
-  Vector newVector = lhsVector - rhsVector;
+  Maths::Vector lhsVector = Maths::Vector(-1, -5, 15, 6);
+  Maths::Vector rhsVector = Maths::Vector(5, 6, -7, 8);
+  Maths::Vector newVector = lhsVector - rhsVector;
 
   double correctValues[] = {-6, -11, 22, -2};
 
@@ -148,10 +146,10 @@ TEST(VectorTests, ShouldSubtractTwoVectorsWithMixedSignValues)
 
 TEST(VectorTests, ShouldMultiplyVectorWithScalarOnRHS)
 {
-  Vector vector = Vector(5, 6, 7, -8);
+  Maths::Vector vector = Maths::Vector(5, 6, 7, -8);
   double scalar = 2;
 
-  Vector newVector = vector * scalar;
+  Maths::Vector newVector = vector * scalar;
 
   double correctValues[] = {10, 12, 14, -16};
 
@@ -161,8 +159,8 @@ TEST(VectorTests, ShouldMultiplyVectorWithScalarOnRHS)
 
 TEST(VectorTests, ShouldMultiplyVectorWithScalarOnLHS)
 {
-  Vector vector = Vector(5, 6, 7, -8);
-  Vector newVector = 2 * vector;
+  Maths::Vector vector = Maths::Vector(5, 6, 7, -8);
+  Maths::Vector newVector = 2 * vector;
 
   double correctValues[] = {10, 12, 14, -16};
 
@@ -172,8 +170,8 @@ TEST(VectorTests, ShouldMultiplyVectorWithScalarOnLHS)
 
 TEST(VectorTests, ShouldDivideVectorWithAScalar)
 {
-  Vector vector = Vector(8, 16, 32, -50);
-  Vector newVector = vector / 2;
+  Maths::Vector vector = Maths::Vector(8, 16, 32, -50);
+  Maths::Vector newVector = vector / 2;
 
   double correctValues[] = {4, 8, 16, -25};
 
@@ -183,8 +181,8 @@ TEST(VectorTests, ShouldDivideVectorWithAScalar)
 
 TEST(VectorTests, DotProductOfVectorsWithPositiveValues)
 {
-  Vector lhsVector = Vector(1, 2, 3, 4);
-  Vector rhsVector = Vector(5, 6, 7, 8);
+  Maths::Vector lhsVector = Maths::Vector(1, 2, 3, 4);
+  Maths::Vector rhsVector = Maths::Vector(5, 6, 7, 8);
 
   double dotProduct = lhsVector * rhsVector;
   double correctDotProduct = 70;
@@ -194,8 +192,8 @@ TEST(VectorTests, DotProductOfVectorsWithPositiveValues)
 
 TEST(VectorTests, DotProductOfVectorsWithMixedValues)
 {
-  Vector lhsVector = Vector(-1, -5, 15, 6);
-  Vector rhsVector = Vector(5, -6, -7, 8);
+  Maths::Vector lhsVector = Maths::Vector(-1, -5, 15, 6);
+  Maths::Vector rhsVector = Maths::Vector(5, -6, -7, 8);
 
   double dotProduct = lhsVector * rhsVector;
   double correctDotProduct = -32;
@@ -205,7 +203,7 @@ TEST(VectorTests, DotProductOfVectorsWithMixedValues)
 
 TEST(VectorTests, ShouldPrintVectorToString)
 {
-  Vector vector = Vector(1, 2, 3, 4);
+  Maths::Vector vector = Maths::Vector(1, 2, 3, 4);
   std::cout << vector.toString() << std::endl;
 
   // Fails on precision of double values with trailing zeroes.
@@ -218,16 +216,16 @@ TEST(VectorTests, ShouldPrintVectorToString)
 
 TEST(VectorTests, ShouldPrintVectorAsStringDirectlyInCout)
 {
-  Vector vector = Vector(1, 2, 3, 4);
+  Maths::Vector vector = Maths::Vector(1, 2, 3, 4);
   std::cout << vector << std::endl;
 }
 
 TEST(VectorTests, ShouldCalculateVectorProduct)
 {
-  Vector vector1 = Vector(2, 3, 4);
-  Vector vector2 = Vector(5, 6, 7);
+  Maths::Vector vector1 = Maths::Vector(2, 3, 4);
+  Maths::Vector vector2 = Maths::Vector(5, 6, 7);
 
-  Vector vectorProduct = vector1.vectorProduct(vector2);
+  Maths::Vector vectorProduct = vector1.vectorProduct(vector2);
   double correctValues[] = {-3, 6, -3};
 
   int noOfValues = vectorProduct.length();
@@ -242,8 +240,8 @@ TEST(VectorTests, ShouldCalculateVectorProduct)
 
 TEST(VectorTests, ShouldCalculateAngleBetweenTwoVectors)
 {
-  Vector vector1 = Vector(1, 2, 3);
-  Vector vector2 = Vector(4, 5, 6);
+  Maths::Vector vector1 = Maths::Vector(1, 2, 3);
+  Maths::Vector vector2 = Maths::Vector(4, 5, 6);
 
   double angleInRadians = vector1.angle(vector2);
   double correctAngle = 0.22572612855273419;
@@ -254,7 +252,7 @@ TEST(VectorTests, ShouldCalculateAngleBetweenTwoVectors)
 TEST(VectorTests, ShouldIterateThroughVector)
 {
   std::vector<double> correctValues = {1, 2, 3};
-  Vector vector = Vector(correctValues);
+  Maths::Vector vector = Maths::Vector(correctValues);
 
   std::vector<double> valuesFromIteration = {};
 

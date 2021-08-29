@@ -7,9 +7,6 @@
 #include <cstdarg>
 #include "src/maths/binary_ops/binary_ops.h"
 
-using namespace std;
-using namespace BinaryOps;
-
 namespace Maths
 {
   class Vector
@@ -33,7 +30,7 @@ namespace Maths
     Vector(double a, double b, double c, double d);
 
     // Creates a new vector using the STL vector as a parameter.
-    Vector(vector<double> stlVector);
+    Vector(std::vector<double> stlVector);
 
     /**
      * Returns the scalar/dot product from this vector with another
@@ -85,7 +82,7 @@ namespace Maths
     Vector operator/(double scalar);
 
     // Returns a string representation of the vector.
-    string toString();
+    std::string toString();
 
     // Returns an iterator at the start of the vector's values.
     std::vector<double>::iterator begin();
@@ -100,14 +97,14 @@ namespace Maths
     std::vector<double>::const_iterator end() const;
 
   private:
-    vector<double> values;
+    std::vector<double> values;
 
     /**
      * Takes a binary operation and performs it with this vector
      * against another vector.
      */
     Vector performBinaryOperationWithVector(
-        Vector vector, BinaryOperation *operation);
+        Vector vector, Maths::BinaryOperation *operation);
 
     /**
      * Takes a binary operation and performs it with this vector
@@ -133,7 +130,7 @@ namespace Maths
      * Converts the contents of an array into a standard library
      * vector.
      */
-    vector<double> createStlVectorFromArray(double *array, int length);
+    std::vector<double> createStlVectorFromArray(double *array, int length);
 
     /**
      * Returns an STL vector containing the values found when
@@ -146,29 +143,27 @@ namespace Maths
     double squareNumberAndAddToSum(double number, double sum);
 
     // Returns a string representation of a point.
-    string getPointAsString(int pointIndex);
+    std::string getPointAsString(int pointIndex);
 
     /**
      * Returns each string representation of every point,
      * concatenated together by a comma and a space (excluding the
      * last point).
      */
-    string getAllPointsAsString();
+    std::string getAllPointsAsString();
   };
 }
-
-using namespace Maths;
 
 /**
  * Overloaded * operator that allows multiplication between a scalar
  * double on the LHS and a vector on the RHS.
  */
-Vector operator*(double scalarLhs, Vector vectorRhs);
+Maths::Vector operator*(double scalarLhs, Maths::Vector vectorRhs);
 
 /**
  * Allows the vector to be printed to cout directly as an object with
  * toString() needing to be called.
  */
-ostream &operator<<(ostream &_stream, Vector v);
+std::ostream &operator<<(std::ostream &_stream, Maths::Vector vector);
 
 #endif
