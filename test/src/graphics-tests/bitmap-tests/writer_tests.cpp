@@ -12,14 +12,9 @@
 #include "src/graphics/bitmaps/bitmap_image.h"
 #include "test/src/graphics-tests/bitmap-tests/bitmap_image_comparators.hpp"
 
-BitmapImage setupBlueBitmapImage()
+PixelArray setUpBluePixelArray(int widthInPixels, int heightInPixels)
 {
-  int widthInPixels = 512, heightInPixels = 512;
-
-  BitmapFileHeader bmpFileHeader {widthInPixels, heightInPixels};
-  BitmapDibHeader bmpInfoHeader {widthInPixels, heightInPixels};
   Pixel bluePixel {100, 255, 255};
-
   size_t numberOfPixels = widthInPixels * heightInPixels;
   std::vector<Pixel> pixelsToAdd;
 
@@ -28,21 +23,20 @@ BitmapImage setupBlueBitmapImage()
 
   PixelArray pixelArray {pixelsToAdd, widthInPixels, heightInPixels};
 
+  return pixelArray;
+}
+
+BitmapImage setupBlueBitmapImage()
+{
+  int widthInPixels = 512, heightInPixels = 512;
+
+  BitmapFileHeader bmpFileHeader {widthInPixels, heightInPixels};
+  BitmapDibHeader bmpInfoHeader {widthInPixels, heightInPixels};
+  PixelArray pixelArray = setUpBluePixelArray(widthInPixels, heightInPixels);
+
   BitmapImage bitmapImage {bmpFileHeader, bmpInfoHeader, pixelArray};
 
   return bitmapImage;
-}
-
-void writeBitmapImage(BitmapImage bitmapImage, std::string filePath)
-{
-  char* bitmapImageBytes = bitmapImage.toBytes();
-  int bitmapImageSize = bitmapImage.getSizeOfBytes();
-
-  std::ofstream fout(filePath, std::ios::binary);
-  fout.write(bitmapImageBytes, bitmapImageSize);  
-  fout.close();
-
-  delete[] bitmapImageBytes;
 }
 
 TEST(BitmapWriterTests, ShouldCreateBitmap)
@@ -55,7 +49,7 @@ TEST(BitmapWriterTests, ShouldCreateBitmap)
     "correct_resources\\blueImage512x512.bmp";
 
   BitmapImage bitmapImage = setupBlueBitmapImage();
-  writeBitmapImage(bitmapImage, imageToTestPath);
+  bitmapImage.writeToFile(imageToTestPath);
   
   BitmapImage correctImage = BitmapImage::fromFile(correctImagePath);  
   BitmapImage imageToTest = BitmapImage::fromFile(imageToTestPath);

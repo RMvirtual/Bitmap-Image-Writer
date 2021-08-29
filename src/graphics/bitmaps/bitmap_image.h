@@ -17,6 +17,7 @@ public:
 
   char* toBytes();
   int getSizeOfBytes();
+  void writeToFile(std::string filePath);
 
   void setFileHeader(BitmapFileHeader fileHeader);
   void setDibHeader(BitmapDibHeader dibHeader);

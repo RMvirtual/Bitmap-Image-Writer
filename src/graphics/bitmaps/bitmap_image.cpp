@@ -1,6 +1,9 @@
+#include <fstream>
+
 #include "src/graphics/bitmaps/bitmap_image.h"
 #include "src/common/byte_array.h"
 #include "src/graphics/bitmaps/reader/bitmap_reader.h"
+#include "src/common/filesystem.h"
 
 BitmapImage::BitmapImage(
   BitmapFileHeader fileHeader, BitmapDibHeader dibHeader,
@@ -48,6 +51,18 @@ char* BitmapImage::toBytes()
     delete[] byteArray;
 
   return allBytes;
+}
+
+void BitmapImage::writeToFile(std::string filePath)
+{
+  char* bitmapImageBytes = this->toBytes();
+  int bitmapImageSize = this->getSizeOfBytes();
+
+  std::ofstream fout(filePath, std::ios::binary);
+  fout.write(bitmapImageBytes, bitmapImageSize);  
+  fout.close();
+
+  delete[] bitmapImageBytes;
 }
 
 int BitmapImage::getSizeOfBytes()
