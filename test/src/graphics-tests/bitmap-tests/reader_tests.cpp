@@ -4,6 +4,22 @@
 #include "src/graphics/bitmaps/packet/pixels/pixel_array.h"
 #include "src/graphics/bitmaps/reader/bitmap_reader.h"
 
+PixelArray setUpBluePixelArray()
+{
+  std::vector<Pixel> pixels;
+  Pixel bluePixel {100, 255, 255};
+
+  int imageWidth = 512, imageHeight = 512;
+  int totalPixels = imageWidth * imageHeight;
+
+  for (int pixelNo = 0; pixelNo < totalPixels; pixelNo++)
+    pixels.push_back(bluePixel);
+  
+  PixelArray pixelArray = PixelArray {pixels, imageWidth, imageHeight};
+
+  return pixelArray;
+}
+
 void compareBitmapFileHeaders(
   BitmapFileHeader header1, BitmapFileHeader header2)
 {
@@ -59,6 +75,8 @@ void comparePixelArrays(PixelArray pixelArray1, PixelArray pixelArray2)
   }
 }
 
+
+
 TEST(BitmapReaderTests, ShouldExtractFileHeaderFromImage)
 { 
   char* imageToTest = (
@@ -97,23 +115,13 @@ TEST(BitmapReaderTests, ShouldExtractDibHeaderFromImage)
 
 TEST(BitmapReaderTests, ShouldExtractPixelArrayFromImage)
 {
-  char* bmpFile = (
+  char* imageToTest = (
     "C:\\Users\\rmvir\\Desktop\\scc300-Win3D\\test\\output\\" \
     "correct_resources\\blueImage512x512.bmp"
   );
 
-  PixelArray pixelArrayToTest = BitmapReader::getPixelArray(bmpFile);
-  std::vector<Pixel> correctPixels;
-  Pixel bluePixel {100, 255, 255};
-
-  int imageWidth = 512, imageHeight = 512;
-  int totalPixels = imageWidth * imageHeight;
-
-  for (int pixelNo = 0; pixelNo < totalPixels; pixelNo++)
-    correctPixels.push_back(bluePixel);
-  
-  PixelArray correctPixelArray = PixelArray {
-    correctPixels, imageWidth, imageHeight};
+  PixelArray pixelArrayToTest = BitmapReader::getPixelArray(imageToTest);
+  PixelArray correctPixelArray = setUpBluePixelArray();
 
   comparePixelArrays(correctPixelArray, pixelArrayToTest);
 }
