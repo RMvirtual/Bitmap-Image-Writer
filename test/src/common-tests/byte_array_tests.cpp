@@ -125,9 +125,8 @@ TEST(ByteArrayTests, ShouldAddCharacterArrayToBuilder)
   correctValues[0] = 'a'; correctValues[1] = 'b';
   correctValues[2] = 'c'; correctValues[3] = 'd';
 
-  for (int i = 0; i < totalNumberOfBytes; i++) {
+  for (int i = 0; i < totalNumberOfBytes; i++)
     EXPECT_EQ(correctValues[i], bytes[i]);
-  }
 }
 
 TEST(ByteArrayTests, ShouldAddMultipleSizeUnsignedIntsToArray)

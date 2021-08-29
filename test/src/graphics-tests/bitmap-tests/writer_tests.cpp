@@ -48,8 +48,8 @@ void compareBitmapDibHeaders(
 
 void comparePixelArrays(PixelArray pixelArray1, PixelArray pixelArray2)
 {
-  EXPECT_EQ(pixelArray1.heightInPixels, pixelArray2.heightInPixels);
-  EXPECT_EQ(pixelArray1.widthInPixels, pixelArray2.widthInPixels);
+  EXPECT_EQ(pixelArray1.getHeightInPixels(), pixelArray2.getHeightInPixels());
+  EXPECT_EQ(pixelArray1.getWidthInPixels(), pixelArray2.getWidthInPixels());
   EXPECT_EQ(pixelArray1.sizeInPixels(), pixelArray2.sizeInPixels());
   EXPECT_EQ(pixelArray1.sizeInBytes(), pixelArray2.sizeInBytes());
 

@@ -7,9 +7,15 @@
 #include <iomanip>
 #include <iostream>
 
-using namespace std;
+PixelArray::PixelArray()
+{
+  this->pixels = std::vector<Pixel>{};
+  this->widthInPixels = 0;
+  this->heightInPixels = 0;
+}
 
-PixelArray::PixelArray(vector<Pixel> pixels, int widthInPixels, int heightInPixels)
+PixelArray::PixelArray(
+  std::vector<Pixel> pixels, int widthInPixels, int heightInPixels)
 {
   if (pixels.size() != widthInPixels * heightInPixels)
     throw length_error(
@@ -57,4 +63,24 @@ int PixelArray::sizeInPixels()
   int numberOfPixels = this->widthInPixels * this->heightInPixels;
 
   return numberOfPixels;
+}
+
+void PixelArray::setWidthInPixels(int width)
+{
+  this->widthInPixels = width;
+}
+
+void PixelArray::setHeightInPixels(int height)
+{
+  this->heightInPixels = height;
+}
+
+int PixelArray::getWidthInPixels()
+{
+  return this->widthInPixels;
+}
+
+int PixelArray::getHeightInPixels()
+{
+  return this->heightInPixels;
 }

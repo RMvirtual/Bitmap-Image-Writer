@@ -11,12 +11,21 @@ class PixelArray
 public:
   vector<Pixel> pixels;
 
+  PixelArray();
   PixelArray(vector<Pixel> pixels, int widthInPixels, int heightInPixels);
-  int widthInPixels;
-  int heightInPixels;
   char* toBytes();
   int sizeInBytes();
   int sizeInPixels();
+
+  void setWidthInPixels(int width);
+  void setHeightInPixels(int height);
+
+  int getWidthInPixels();
+  int getHeightInPixels();
+
+private:
+  int widthInPixels;
+  int heightInPixels;
 };
 
 #endif

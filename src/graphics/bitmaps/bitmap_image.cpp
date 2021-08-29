@@ -23,8 +23,18 @@ char* BitmapImage::toBytes()
   char* pixelArrayBytes = this->pixelArray.toBytes();
   int pixelArraySize = this->pixelArray.sizeInBytes();
 
-  char* allBytes = new char[fileHeaderSize + dibHeaderSize + pixelArraySize];
-  
+  byteArrayBuilder.addValues(fileHeaderBytes, fileHeaderSize);
+  byteArrayBuilder.addValues(dibHeaderBytes, dibHeaderSize);
+  byteArrayBuilder.addValues(pixelArrayBytes, pixelArraySize);
+
+  char* allBytes = byteArrayBuilder.toBytes();
+
+  vector<char*> byteArrays = {
+    fileHeaderBytes, dibHeaderBytes, pixelArrayBytes};
+
+  for (auto byteArray : byteArrays)
+    delete[] byteArray;
+
   return allBytes;
 }
 
