@@ -13,6 +13,14 @@ void ByteArrayBuilder::addValue(char value)
   this->processNewValue((uint8_t) value, lengthInBytes);
 }
 
+void ByteArrayBuilder::addValues(char* values, int numberOfBytes)
+{
+  for (int i = 0; i < numberOfBytes; i++) {
+    char value = values[i];
+    this->addValue(value);
+  }
+}
+
 void ByteArrayBuilder::addValue(uint8_t value)
 {
   int lengthInBytes = sizeof(uint8_t);

@@ -108,6 +108,28 @@ TEST(ByteArrayTests, ShouldAddMultiple32bitUnsignedIntsToArray)
   delete[] correctByteArray;
 }
 
+TEST(ByteArrayTests, ShouldAddCharacterArrayToBuilder)
+{
+  ByteArrayBuilder byteArrayBuilder;
+
+  char* characters = new char[3];
+  characters[0] = 'a'; characters[1] = 'b'; characters[2] = 'c';
+
+  byteArrayBuilder.addValues(characters, 3);
+  byteArrayBuilder.addValue('d');
+
+  char* bytes = byteArrayBuilder.toBytes();
+
+  int totalNumberOfBytes = 4;
+  char* correctValues = new char[totalNumberOfBytes];
+  correctValues[0] = 'a'; correctValues[1] = 'b';
+  correctValues[2] = 'c'; correctValues[3] = 'd';
+
+  for (int i = 0; i < totalNumberOfBytes; i++) {
+    EXPECT_EQ(correctValues[i], bytes[i]);
+  }
+}
+
 TEST(ByteArrayTests, ShouldAddMultipleSizeUnsignedIntsToArray)
 {
   ByteArrayBuilder byteArrayBuilder;
@@ -208,5 +230,4 @@ TEST(ByteArrayTests, ShouldAddEverySizeIntToBitmapBuilder)
 
   delete[] byteArray;
   delete[] correctByteArray;
-
 }

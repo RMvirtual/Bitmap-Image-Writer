@@ -16,6 +16,9 @@ public:
   // Add a character (converted to an 8-bit unsigned integer).
   void addValue(char value);
 
+  // Add an array of characters (converted to 8-bit unsigned integers).
+  void addValues(char* values, int numberOfBytes);
+
   // Adds a value of 1 byte.
   void addValue(uint8_t value);
 

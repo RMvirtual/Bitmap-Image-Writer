@@ -1,6 +1,7 @@
 cc_library(
     name = "bitmaps",
     srcs = [
+        "bitmap_image.cpp",
         "packet/headers/header.cpp",
         "packet/headers/file_header.cpp",
         "packet/headers/dib_header.cpp",
@@ -9,6 +10,7 @@ cc_library(
         "reader/bitmap_reader.cpp"
     ],
     hdrs = [
+        "bitmap_image.h",
         "packet/headers/header.h",
         "packet/headers/file_header.h",
         "packet/headers/dib_header.h",
