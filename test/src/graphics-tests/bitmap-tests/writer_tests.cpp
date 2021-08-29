@@ -9,6 +9,7 @@
 #include "src/graphics/bitmaps/packet/pixels/pixel.h"
 #include "src/graphics/bitmaps/reader/bitmap_reader.h"
 #include "src/common/filesystem.h"
+#include "src/graphics/bitmaps/bitmap_image.h"
 
 void compareBitmapFileHeaders(
   BitmapFileHeader header1, BitmapFileHeader header2)
@@ -81,28 +82,19 @@ TEST(BitmapWriterTests, ShouldCreateBitmap)
 
   PixelArray pixelArray {pixelsToAdd, widthInPixels, heightInPixels};
 
+  BitmapImage bitmapImage {bmpFileHeader, bmpInfoHeader, pixelArray};
+
   char* outputPath = 
     "C:\\Users\\rmvir\\Desktop\\scc300-Win3D\\test\\output\\myImage.bmp";
 
+  char* bitmapImageBytes = bitmapImage.toBytes();
+  int bitmapImageSize = bitmapImage.getSizeOfBytes();
+
   std::ofstream fout(outputPath, std::ios::binary);
-
-  char* bmpFileHeaderBytes = bmpFileHeader.toBytes();
-  char* bmpInfoHeaderBytes = bmpInfoHeader.toBytes();
-  
-  fout.write(bmpFileHeaderBytes, bmpFileHeader.getSizeOfHeaderInBytes());
-  fout.write(bmpInfoHeaderBytes, bmpInfoHeader.getSizeOfHeaderInBytes());
-  
-  for (auto pixel : pixelArray.pixels) {
-    char* pixelBytes = pixel.toBytes();
-    fout.write(pixelBytes, 3);
-
-    delete[] pixelBytes;
-  }
-
-  delete[] bmpFileHeaderBytes;
-  delete[] bmpInfoHeaderBytes;
-
+  fout.write(bitmapImageBytes, bitmapImageSize);  
   fout.close();
+
+  delete[] bitmapImageBytes;
 
   char* correctImage =
     "C:\\Users\\rmvir\\Desktop\\scc300-Win3D\\test\\output\\" \

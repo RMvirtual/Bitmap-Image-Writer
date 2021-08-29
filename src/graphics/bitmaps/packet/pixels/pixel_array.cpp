@@ -1,5 +1,6 @@
 #include "src/graphics/bitmaps/packet/pixels/pixel.h"
 #include "src/graphics/bitmaps/packet/pixels/pixel_array.h"
+#include "src/common/byte_array.h"
 
 #include <string>
 #include <queue>
@@ -46,6 +47,20 @@ PixelArray::PixelArray(
   }
 
   */
+}
+
+char* PixelArray::toBytes()
+{
+  ByteArrayBuilder byteArrayBuilder;
+
+  for (auto pixel : this->pixels) {
+    char* pixelBytes = pixel.toBytes();
+    byteArrayBuilder.addValues(pixelBytes, 3);
+    
+    delete[] pixelBytes;
+  }
+
+  return byteArrayBuilder.toBytes();
 }
 
 int PixelArray::sizeInBytes()
