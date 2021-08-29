@@ -3,6 +3,31 @@
 #include "src/graphics/bitmaps/packet/pixels/pixel.h"
 #include "src/graphics/bitmaps/packet/pixels/pixel_array.h"
 #include "src/graphics/bitmaps/reader/bitmap_reader.h"
+#include "src/graphics/bitmaps/bitmap_image.h"
+
+BitmapFileHeader setUpBluePixelFileHeader()
+{
+  BitmapFileHeader fileHeader;
+
+  fileHeader.setSignatureBytes("BM");
+  fileHeader.setSizeOfBitmapFile(786486);
+  fileHeader.setReservedBytes(0);
+  fileHeader.setPixelDataOffset(54);
+
+  return fileHeader;
+}
+
+BitmapDibHeader setUpBluePixelDibHeader()
+{
+  BitmapDibHeader dibHeader = BitmapDibHeader();
+
+  dibHeader.setSizeOfHeaderInBytes(40);
+  dibHeader.setWidthInPixels(512);
+  dibHeader.setHeightInPixels(512);
+  dibHeader.setNumberOfColourPlanes(1);
+
+  return dibHeader;
+}
 
 PixelArray setUpBluePixelArray()
 {
@@ -18,6 +43,17 @@ PixelArray setUpBluePixelArray()
   PixelArray pixelArray = PixelArray {pixels, imageWidth, imageHeight};
 
   return pixelArray;
+}
+
+BitmapImage setUpBluePixelBitmapImage()
+{
+  BitmapFileHeader fileHeader = setUpBluePixelFileHeader();
+  BitmapDibHeader dibHeader = setUpBluePixelDibHeader();
+  PixelArray pixelArray = setUpBluePixelArray();
+
+  BitmapImage bitmapImage {fileHeader, dibHeader, pixelArray};
+
+  return bitmapImage;
 }
 
 void compareBitmapFileHeaders(
@@ -75,9 +111,14 @@ void comparePixelArrays(PixelArray pixelArray1, PixelArray pixelArray2)
   }
 }
 
+void compareBitmapImages(BitmapImage image1, BitmapImage image2)
+{
+  compareBitmapFileHeaders(image1.getFileHeader(), image2.getFileHeader());
+  compareBitmapDibHeaders(image1.getDibHeader(), image2.getDibHeader());
+  comparePixelArrays(image1.getPixelArray(), image2.getPixelArray());
+}
 
-
-TEST(BitmapReaderTests, ShouldExtractFileHeaderFromImage)
+TEST(BitmapReaderTests, ShouldExtractFileHeaderFromFile)
 { 
   char* imageToTest = (
     "C:\\Users\\rmvir\\Desktop\\scc300-Win3D\\test\\output\\" \
@@ -85,17 +126,12 @@ TEST(BitmapReaderTests, ShouldExtractFileHeaderFromImage)
   );
 
   BitmapFileHeader fileHeader = BitmapReader::getBitmapFileHeader(imageToTest);
-  BitmapFileHeader correctFileHeader = BitmapFileHeader();
-
-  correctFileHeader.setSignatureBytes("BM");
-  correctFileHeader.setSizeOfBitmapFile(786486);
-  correctFileHeader.setReservedBytes(0);
-  correctFileHeader.setPixelDataOffset(54);
-
+  BitmapFileHeader correctFileHeader = setUpBluePixelFileHeader();
+  
   compareBitmapFileHeaders(correctFileHeader, fileHeader);
 }
 
-TEST(BitmapReaderTests, ShouldExtractDibHeaderFromImage)
+TEST(BitmapReaderTests, ShouldExtractDibHeaderFromFile)
 {
   char* bmpFile = (
     "C:\\Users\\rmvir\\Desktop\\scc300-Win3D\\test\\output\\" \
@@ -103,17 +139,12 @@ TEST(BitmapReaderTests, ShouldExtractDibHeaderFromImage)
   );
 
   BitmapDibHeader dibHeader = BitmapReader::getBitmapDibHeader(bmpFile);
-  BitmapDibHeader correctDibHeader = BitmapDibHeader();
-
-  correctDibHeader.setSizeOfHeaderInBytes(40);
-  correctDibHeader.setWidthInPixels(512);
-  correctDibHeader.setHeightInPixels(512);
-  correctDibHeader.setNumberOfColourPlanes(1);
+  BitmapDibHeader correctDibHeader = setUpBluePixelDibHeader();
 
   compareBitmapDibHeaders(correctDibHeader, dibHeader);
 }
 
-TEST(BitmapReaderTests, ShouldExtractPixelArrayFromImage)
+TEST(BitmapReaderTests, ShouldExtractPixelArrayFromFile)
 {
   char* imageToTest = (
     "C:\\Users\\rmvir\\Desktop\\scc300-Win3D\\test\\output\\" \
@@ -126,7 +157,7 @@ TEST(BitmapReaderTests, ShouldExtractPixelArrayFromImage)
   comparePixelArrays(correctPixelArray, pixelArrayToTest);
 }
 
-TEST(BitmapReaderTests, ShouldExtractPixelArraySizeFromImage)
+TEST(BitmapReaderTests, ShouldExtractPixelArraySizeFromFile)
 {
   char* bitmapFile = (
     "C:\\Users\\rmvir\\Desktop\\scc300-Win3D\\test\\output\\" \
@@ -137,4 +168,16 @@ TEST(BitmapReaderTests, ShouldExtractPixelArraySizeFromImage)
   int payloadSizeInBytes = BitmapReader::getPixelArraySizeInBytes(bitmapFile);
 
   EXPECT_EQ(correctSize, payloadSizeInBytes);
+}
+
+TEST(BitmapReaderTests, ShouldExtractBitmapImageObjectFromFile)
+{
+  char* imagePath =
+    "C:\\Users\\rmvir\\Desktop\\scc300-Win3D\\test\\output\\" \
+    "correct_resources\\blueImage512x512.bmp";
+
+  BitmapImage imageToTest = BitmapImage::fromFile(imagePath);
+  BitmapImage correctImage = setUpBluePixelBitmapImage();
+
+  compareBitmapImages(correctImage, imageToTest);
 }
