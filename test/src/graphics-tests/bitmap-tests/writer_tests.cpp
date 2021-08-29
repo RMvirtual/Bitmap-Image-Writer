@@ -66,7 +66,7 @@ void comparePixelArrays(PixelArray pixelArray1, PixelArray pixelArray2)
   }
 }
 
-TEST(BitmapWriterTests, ShouldCreateBitmap)
+BitmapImage setupBlueBitmapImage()
 {
   int widthInPixels = 512, heightInPixels = 512;
 
@@ -84,6 +84,11 @@ TEST(BitmapWriterTests, ShouldCreateBitmap)
 
   BitmapImage bitmapImage {bmpFileHeader, bmpInfoHeader, pixelArray};
 
+  return bitmapImage;
+}
+
+void writeBitmapImage(BitmapImage bitmapImage)
+{
   char* outputPath = 
     "C:\\Users\\rmvir\\Desktop\\scc300-Win3D\\test\\output\\myImage.bmp";
 
@@ -95,6 +100,12 @@ TEST(BitmapWriterTests, ShouldCreateBitmap)
   fout.close();
 
   delete[] bitmapImageBytes;
+}
+
+TEST(BitmapWriterTests, ShouldCreateBitmap)
+{
+  BitmapImage bitmapImage = setupBlueBitmapImage();
+  writeBitmapImage(bitmapImage);
 
   char* correctImage =
     "C:\\Users\\rmvir\\Desktop\\scc300-Win3D\\test\\output\\" \
