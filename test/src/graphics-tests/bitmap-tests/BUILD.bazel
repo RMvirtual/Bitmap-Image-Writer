@@ -1,3 +1,15 @@
+cc_library(
+    name = "bitmap_image_comparators",
+    hdrs = [
+        "bitmap_image_comparators.hpp"
+    ],
+    deps = [
+        "@com_google_googletest//:gtest_main",
+        "//src/graphics/bitmaps:bitmaps"
+    ],
+    visibility = ["//visibility:public"]
+)
+
 load("@rules_cc//cc:defs.bzl", "cc_test")
 
 cc_test(
@@ -6,7 +18,8 @@ cc_test(
     srcs = ["reader_tests.cpp"],
     deps = [
         "@com_google_googletest//:gtest_main",
-        "//src/graphics/bitmaps:bitmaps"
+        "//src/graphics/bitmaps:bitmaps",
+        "//test/src/graphics-tests/bitmap-tests:bitmap_image_comparators"
     ]
 )
 
