@@ -1,6 +1,4 @@
-#include <fstream>
 #include <gtest/gtest.h>
-#include <iostream>
 #include <string>
 
 #include "src/graphics/bitmaps/packet/headers/file_header.h"
@@ -8,7 +6,6 @@
 #include "src/graphics/bitmaps/packet/pixels/pixel_array.h"
 #include "src/graphics/bitmaps/packet/pixels/pixel.h"
 #include "src/graphics/bitmaps/reader/bitmap_reader.h"
-#include "src/common/filesystem.h"
 #include "src/graphics/bitmaps/bitmap_image.h"
 #include "test/src/graphics-tests/bitmap-tests/bitmap_image_comparators.hpp"
 
