@@ -55,7 +55,7 @@ int BitmapFileHeader::calculateSizeOfPixelArray(
 void BitmapFileHeader::setSignatureBytes(std::string bytesSignature)
 {
   this->signatureBytes[0] = bytesSignature[0];
-  this->signatureBytes[0] = bytesSignature[1];
+  this->signatureBytes[1] = bytesSignature[1];
 }
 
 void BitmapFileHeader::setSignatureBytes(

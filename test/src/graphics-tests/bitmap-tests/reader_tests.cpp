@@ -4,21 +4,58 @@
 #include "src/graphics/bitmaps/packet/pixels/pixel_array.h"
 #include "src/graphics/bitmaps/reader/bitmap_reader.h"
 
+void compareBitmapFileHeaders(
+  BitmapFileHeader header1, BitmapFileHeader header2)
+{
+  EXPECT_EQ(header1.getSignatureBytes()[0], header2.getSignatureBytes()[0]);
+  EXPECT_EQ(header1.getSignatureBytes()[1], header2.getSignatureBytes()[1]);
+  EXPECT_EQ(header1.getSizeOfBitmapFile(), header2.getSizeOfBitmapFile());
+  EXPECT_EQ(header1.getReservedBytes(), header2.getReservedBytes());
+  EXPECT_EQ(header2.getPixelDataOffset(), header2.getPixelDataOffset());
+}
+
+void compareBitmapDibHeaders(
+  BitmapDibHeader header1, BitmapDibHeader header2)
+{
+  EXPECT_EQ(
+    header1.getSizeOfHeaderInBytes(), header2.getSizeOfHeaderInBytes());
+
+  EXPECT_EQ(header1.getWidthInPixels(), header2.getWidthInPixels());
+  EXPECT_EQ(header1.getHeightInPixels(), header2.getHeightInPixels());
+  EXPECT_EQ(
+    header1.getNumberOfColorPlanes(), header2.getNumberOfColorPlanes());
+
+  EXPECT_EQ(header1.getColorDepth(), header2.getColorDepth());
+  EXPECT_EQ(header1.getCompressionMethod(), header2.getCompressionMethod());
+  EXPECT_EQ(header1.getRawBitmapDataSize(), header2.getRawBitmapDataSize());
+  EXPECT_EQ(
+    header1.getHorizontalPixelsPerMetre(),
+    header2.getHorizontalPixelsPerMetre()
+  );
+
+  EXPECT_EQ(
+    header1.getVerticalPixelsPerMetre(), header2.getVerticalPixelsPerMetre());
+
+  EXPECT_EQ(header1.getColorTableEntries(), header2.getColorTableEntries());
+  EXPECT_EQ(header1.getImportantColors(), header2.getImportantColors());
+}
+
 TEST(BitmapReaderTests, ShouldExtractBitmapFileHeaderFromImage)
 { 
-  char* bmpFile = (
+  char* imageToTest = (
     "C:\\Users\\rmvir\\Desktop\\scc300-Win3D\\test\\output\\" \
     "correct_resources\\blueImage512x512.bmp"
   );
 
-  BitmapFileHeader bmpFileHeader = BitmapReader::getBitmapFileHeader(bmpFile);
+  BitmapFileHeader fileHeader = BitmapReader::getBitmapFileHeader(imageToTest);
+  BitmapFileHeader correctFileHeader = BitmapFileHeader();
 
-  EXPECT_EQ('B', bmpFileHeader.getSignatureBytes()[0]);
-  EXPECT_EQ('M', bmpFileHeader.getSignatureBytes()[1]);  
-  EXPECT_EQ("BM", bmpFileHeader.getSignatureBytes());
-  EXPECT_EQ(786486, bmpFileHeader.getSizeOfBitmapFile());
-  EXPECT_EQ(0, bmpFileHeader.getReservedBytes());
-  EXPECT_EQ(54, bmpFileHeader.getPixelDataOffset());
+  correctFileHeader.setSignatureBytes("BM");
+  correctFileHeader.setSizeOfBitmapFile(786486);
+  correctFileHeader.setReservedBytes(0);
+  correctFileHeader.setPixelDataOffset(54);
+
+  compareBitmapFileHeaders(correctFileHeader, fileHeader);
 }
 
 TEST(BitmapReaderTests, ShouldExtractBitmapInfoHeaderFromImage)
@@ -28,18 +65,15 @@ TEST(BitmapReaderTests, ShouldExtractBitmapInfoHeaderFromImage)
     "correct_resources\\blueImage512x512.bmp"
   );
 
-  BitmapDibHeader bmpInfoHeader = BitmapReader::getBitmapDibHeader(bmpFile);
+  BitmapDibHeader dibHeader = BitmapReader::getBitmapDibHeader(bmpFile);
+  BitmapDibHeader correctDibHeader = BitmapDibHeader();
 
-  EXPECT_EQ(40, bmpInfoHeader.getSizeOfHeaderInBytes());
-  EXPECT_EQ(512, bmpInfoHeader.getWidthInPixels());
-  EXPECT_EQ(512, bmpInfoHeader.getHeightInPixels());
-  EXPECT_EQ(1, bmpInfoHeader.getNumberOfColorPlanes());
-  EXPECT_EQ(0, bmpInfoHeader.getCompressionMethod());
-  EXPECT_EQ(0, bmpInfoHeader.getRawBitmapDataSize());
-  EXPECT_EQ(0, bmpInfoHeader.getHorizontalPixelsPerMetre());
-  EXPECT_EQ(0, bmpInfoHeader.getVerticalPixelsPerMetre());
-  EXPECT_EQ(0, bmpInfoHeader.getColorTableEntries());
-  EXPECT_EQ(0, bmpInfoHeader.getImportantColors());
+  correctDibHeader.setSizeOfHeaderInBytes(40);
+  correctDibHeader.setWidthInPixels(512);
+  correctDibHeader.setHeightInPixels(512);
+  correctDibHeader.setNumberOfColourPlanes(1);
+
+  compareBitmapDibHeaders(correctDibHeader, dibHeader);
 }
 
 TEST(BitmapReaderTests, ShouldExtractPixelArrayFromImage)
