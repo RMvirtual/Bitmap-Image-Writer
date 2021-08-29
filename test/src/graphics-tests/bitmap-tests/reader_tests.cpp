@@ -40,7 +40,26 @@ void compareBitmapDibHeaders(
   EXPECT_EQ(header1.getImportantColors(), header2.getImportantColors());
 }
 
-TEST(BitmapReaderTests, ShouldExtractBitmapFileHeaderFromImage)
+void comparePixelArrays(PixelArray pixelArray1, PixelArray pixelArray2)
+{
+  EXPECT_EQ(pixelArray1.getHeightInPixels(), pixelArray2.getHeightInPixels());
+  EXPECT_EQ(pixelArray1.getWidthInPixels(), pixelArray2.getWidthInPixels());
+  EXPECT_EQ(pixelArray1.sizeInPixels(), pixelArray2.sizeInPixels());
+  EXPECT_EQ(pixelArray1.sizeInBytes(), pixelArray2.sizeInBytes());
+
+  int numberOfPixels = pixelArray1.sizeInPixels();
+
+  for (int pixelNo = 0; pixelNo < numberOfPixels; pixelNo++) {
+    Pixel pixel1 = pixelArray1.pixels[pixelNo];
+    Pixel pixel2 = pixelArray2.pixels[pixelNo];
+
+    EXPECT_EQ(pixel1.getBlue(), pixel2.getBlue());
+    EXPECT_EQ(pixel1.getGreen(), pixel2.getGreen());
+    EXPECT_EQ(pixel1.getRed(), pixel2.getRed());
+  }
+}
+
+TEST(BitmapReaderTests, ShouldExtractFileHeaderFromImage)
 { 
   char* imageToTest = (
     "C:\\Users\\rmvir\\Desktop\\scc300-Win3D\\test\\output\\" \
@@ -58,7 +77,7 @@ TEST(BitmapReaderTests, ShouldExtractBitmapFileHeaderFromImage)
   compareBitmapFileHeaders(correctFileHeader, fileHeader);
 }
 
-TEST(BitmapReaderTests, ShouldExtractBitmapInfoHeaderFromImage)
+TEST(BitmapReaderTests, ShouldExtractDibHeaderFromImage)
 {
   char* bmpFile = (
     "C:\\Users\\rmvir\\Desktop\\scc300-Win3D\\test\\output\\" \
@@ -83,7 +102,7 @@ TEST(BitmapReaderTests, ShouldExtractPixelArrayFromImage)
     "correct_resources\\blueImage512x512.bmp"
   );
 
-  PixelArray pixelArray = BitmapReader::getPixelArray(bmpFile);
+  PixelArray pixelArrayToTest = BitmapReader::getPixelArray(bmpFile);
   std::vector<Pixel> correctPixels;
   Pixel bluePixel {100, 255, 255};
 
@@ -96,14 +115,7 @@ TEST(BitmapReaderTests, ShouldExtractPixelArrayFromImage)
   PixelArray correctPixelArray = PixelArray {
     correctPixels, imageWidth, imageHeight};
 
-  for (int pixelNo = 0; pixelNo < totalPixels; pixelNo++) {
-    Pixel pixelToTest = pixelArray.pixels[pixelNo];
-    Pixel correctPixel = correctPixelArray.pixels[pixelNo];
-
-    EXPECT_EQ(correctPixel.getRed(), pixelToTest.getRed());
-    EXPECT_EQ(correctPixel.getGreen(), pixelToTest.getGreen());
-    EXPECT_EQ(correctPixel.getBlue(), pixelToTest.getBlue());
-  }
+  comparePixelArrays(correctPixelArray, pixelArrayToTest);
 }
 
 TEST(BitmapReaderTests, ShouldExtractPixelArraySizeFromImage)
