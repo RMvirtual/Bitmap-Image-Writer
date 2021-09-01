@@ -1,10 +1,12 @@
 cc_library(
     name = "shapes",
     hdrs = [
-        "triangle.h"
+        "triangle.h",
+        "straight_line.h"
     ],
     srcs = [
-        "triangle.cpp"
+        "triangle.cpp",
+        "straight_line.cpp"
     ],
     deps = [
         "//src/graphics/bitmaps:bitmaps",

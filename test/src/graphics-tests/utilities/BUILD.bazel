@@ -1,0 +1,22 @@
+cc_library(
+    name = "bitmap_image_comparators",
+    hdrs = ["bitmap_image_comparators.h"],
+    srcs = ["bitmap_image_comparators.cpp"],
+    deps = [
+        "@com_google_googletest//:gtest_main",
+        "//src/graphics/bitmaps:bitmaps"
+    ],
+    visibility = ["//visibility:public"]
+)
+
+cc_library(
+    name = "bitmap_set_up",
+    hdrs = ["bitmap_set_up.h"],
+    srcs = ["bitmap_set_up.cpp"],
+    deps = [
+        "@com_google_googletest//:gtest_main",
+        "//src/graphics/bitmaps:bitmaps",
+        "//test/src/graphics-tests/utilities:bitmap_image_comparators"
+    ],
+    visibility = ["//visibility:public"]
+)

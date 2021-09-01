@@ -12,6 +12,10 @@ namespace Maths
   class Vector
   {
   public:
+
+    // Creates an empty vector.
+    Vector();
+
     /**
      * Creates a new vector with an array of doubles as the vector
      * elements. Requires the length of the array to be passed in

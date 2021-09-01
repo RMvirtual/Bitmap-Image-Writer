@@ -4,101 +4,46 @@
 #include "src/graphics/bitmaps/packet/pixels/pixel_array.h"
 #include "src/graphics/bitmaps/reader/bitmap_reader.h"
 #include "src/graphics/bitmaps/bitmap_image.h"
-#include "test/src/graphics-tests/bitmap-tests/bitmap_image_comparators.hpp"
-
-BitmapFileHeader setUpBluePixelFileHeader()
-{
-  BitmapFileHeader fileHeader;
-
-  fileHeader.setSignatureBytes("BM");
-  fileHeader.setSizeOfBitmapFile(786486);
-  fileHeader.setReservedBytes(0);
-  fileHeader.setPixelDataOffset(54);
-
-  return fileHeader;
-}
-
-BitmapDibHeader setUpBluePixelDibHeader()
-{
-  BitmapDibHeader dibHeader = BitmapDibHeader();
-
-  dibHeader.setSizeOfHeaderInBytes(40);
-  dibHeader.setWidthInPixels(512);
-  dibHeader.setHeightInPixels(512);
-  dibHeader.setNumberOfColourPlanes(1);
-
-  return dibHeader;
-}
-
-PixelArray setUpBluePixelArray()
-{
-  std::vector<Pixel> pixels;
-  Pixel bluePixel {100, 255, 255};
-
-  int imageWidth = 512, imageHeight = 512;
-  int totalPixels = imageWidth * imageHeight;
-
-  for (int pixelNo = 0; pixelNo < totalPixels; pixelNo++)
-    pixels.push_back(bluePixel);
-  
-  PixelArray pixelArray = PixelArray {pixels, imageWidth, imageHeight};
-
-  return pixelArray;
-}
-
-BitmapImage setUpBluePixelBitmapImage()
-{
-  BitmapFileHeader fileHeader = setUpBluePixelFileHeader();
-  BitmapDibHeader dibHeader = setUpBluePixelDibHeader();
-  PixelArray pixelArray = setUpBluePixelArray();
-
-  BitmapImage bitmapImage {fileHeader, dibHeader, pixelArray};
-
-  return bitmapImage;
-}
-
-std::string getBlueImagePath()
-{
-  std::string imagePath = 
-    "C:\\Users\\rmvir\\Desktop\\scc300-Win3D\\test\\output\\" \
-    "correct_resources\\blueImage512x512.bmp";
-
-  return imagePath;
-}
+#include "test/src/graphics-tests/utilities/bitmap_image_comparators.h"
+#include "test/src/graphics-tests/utilities/bitmap_set_up.h"
 
 TEST(BitmapReaderTests, ShouldExtractFileHeaderFromFile)
 { 
-  std::string imagePath = getBlueImagePath();
+  std::string imagePath = BitmapSetUp::getBlueImagePath();
 
   BitmapFileHeader fileHeader = BitmapReader::getBitmapFileHeader(imagePath);
-  BitmapFileHeader correctFileHeader = setUpBluePixelFileHeader();
   
-  compareBitmapFileHeaders(correctFileHeader, fileHeader);
+  BitmapFileHeader correctFileHeader = 
+    BitmapSetUp::setUpBluePixelFileHeader();
+  
+  BitmapImageComparison::compareBitmapFileHeaders(
+    correctFileHeader, fileHeader);
 }
 
 TEST(BitmapReaderTests, ShouldExtractDibHeaderFromFile)
 {
-  std::string imagePath = getBlueImagePath();
+  std::string imagePath = BitmapSetUp::getBlueImagePath();
 
   BitmapDibHeader dibHeader = BitmapReader::getBitmapDibHeader(imagePath);
-  BitmapDibHeader correctDibHeader = setUpBluePixelDibHeader();
+  BitmapDibHeader correctDibHeader = BitmapSetUp::setUpBluePixelDibHeader();
 
-  compareBitmapDibHeaders(correctDibHeader, dibHeader);
+  BitmapImageComparison::compareBitmapDibHeaders(correctDibHeader, dibHeader);
 }
 
 TEST(BitmapReaderTests, ShouldExtractPixelArrayFromFile)
 {
-  std::string imagePath = getBlueImagePath();
+  std::string imagePath = BitmapSetUp::getBlueImagePath();
 
   PixelArray pixelArrayToTest = BitmapReader::getPixelArray(imagePath);
-  PixelArray correctPixelArray = setUpBluePixelArray();
+  PixelArray correctPixelArray = BitmapSetUp::setUpBluePixelArray();
 
-  comparePixelArrays(correctPixelArray, pixelArrayToTest);
+  BitmapImageComparison::comparePixelArrays(
+    correctPixelArray, pixelArrayToTest);
 }
 
 TEST(BitmapReaderTests, ShouldExtractPixelArraySizeFromFile)
 {
-  std::string imagePath = getBlueImagePath();
+  std::string imagePath = BitmapSetUp::getBlueImagePath();
 
   int correctSize = 786432;
   int payloadSizeInBytes = BitmapReader::getPixelArraySizeInBytes(imagePath);
@@ -108,10 +53,10 @@ TEST(BitmapReaderTests, ShouldExtractPixelArraySizeFromFile)
 
 TEST(BitmapReaderTests, ShouldExtractBitmapImageObjectFromFile)
 {
-  std::string imagePath = getBlueImagePath();
+  std::string imagePath = BitmapSetUp::getBlueImagePath();
 
   BitmapImage imageToTest = BitmapImage::fromFile(imagePath);
-  BitmapImage correctImage = setUpBluePixelBitmapImage();
+  BitmapImage correctImage = BitmapSetUp::setUpBlueBitmapImage();
 
-  compareBitmapImages(correctImage, imageToTest);
+  BitmapImageComparison::compareBitmapImages(correctImage, imageToTest);
 }

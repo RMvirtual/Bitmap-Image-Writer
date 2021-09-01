@@ -4,8 +4,9 @@
 #include "src/graphics/bitmaps/packet/pixels/pixel_array.h"
 #include "src/graphics/bitmaps/reader/bitmap_reader.h"
 #include "src/graphics/bitmaps/bitmap_image.h"
+#include "test/src/graphics-tests/utilities/bitmap_image_comparators.h"
 
-void compareBitmapFileHeaders(
+void BitmapImageComparison::compareBitmapFileHeaders(
   BitmapFileHeader header1, BitmapFileHeader header2)
 {
   EXPECT_EQ(header1.getSignatureBytes()[0], header2.getSignatureBytes()[0]);
@@ -15,7 +16,7 @@ void compareBitmapFileHeaders(
   EXPECT_EQ(header2.getPixelDataOffset(), header2.getPixelDataOffset());
 }
 
-void compareBitmapDibHeaders(
+void BitmapImageComparison::compareBitmapDibHeaders(
   BitmapDibHeader header1, BitmapDibHeader header2)
 {
   EXPECT_EQ(
@@ -41,7 +42,7 @@ void compareBitmapDibHeaders(
   EXPECT_EQ(header1.getImportantColors(), header2.getImportantColors());
 }
 
-void comparePixelArrayAttributes(
+void BitmapImageComparison::comparePixelArrayAttributes(
   PixelArray pixelArray1, PixelArray pixelArray2)
 {
   EXPECT_EQ(pixelArray1.getHeightInPixels(), pixelArray2.getHeightInPixels());
@@ -50,7 +51,8 @@ void comparePixelArrayAttributes(
   EXPECT_EQ(pixelArray1.sizeInBytes(), pixelArray2.sizeInBytes());
 }
 
-void comparePixelArrayContents(PixelArray pixelArray1, PixelArray pixelArray2)
+void BitmapImageComparison::comparePixelArrayContents(
+  PixelArray pixelArray1, PixelArray pixelArray2)
 {
   int numberOfPixels = pixelArray1.sizeInPixels();
 
@@ -64,15 +66,24 @@ void comparePixelArrayContents(PixelArray pixelArray1, PixelArray pixelArray2)
   }
 }
 
-void comparePixelArrays(PixelArray pixelArray1, PixelArray pixelArray2)
+void BitmapImageComparison::comparePixelArrays(
+  PixelArray pixelArray1, PixelArray pixelArray2)
 {
-  comparePixelArrayAttributes(pixelArray1, pixelArray2);
-  comparePixelArrayContents(pixelArray1, pixelArray2);
+  BitmapImageComparison::comparePixelArrayAttributes(
+    pixelArray1, pixelArray2);
+  
+  BitmapImageComparison::comparePixelArrayContents(pixelArray1, pixelArray2);
 }
 
-void compareBitmapImages(BitmapImage image1, BitmapImage image2)
+void BitmapImageComparison::compareBitmapImages(
+  BitmapImage image1, BitmapImage image2)
 {
-  compareBitmapFileHeaders(image1.getFileHeader(), image2.getFileHeader());
-  compareBitmapDibHeaders(image1.getDibHeader(), image2.getDibHeader());
-  comparePixelArrays(image1.getPixelArray(), image2.getPixelArray());
+  BitmapImageComparison::compareBitmapFileHeaders(
+    image1.getFileHeader(), image2.getFileHeader());
+  
+  BitmapImageComparison::compareBitmapDibHeaders(
+    image1.getDibHeader(), image2.getDibHeader());
+  
+  BitmapImageComparison::comparePixelArrays(
+    image1.getPixelArray(), image2.getPixelArray());
 }

@@ -1,13 +1,9 @@
 load("@rules_cc//cc:defs.bzl", "cc_test")
 
 cc_test(
-    name = "bitmap_image_tests",
+    name = "shape_tests",
     size = "small",
-    srcs = [
-        "bitmap_image_tests.cpp",
-        "reader_tests.cpp",
-        "pixel_array_tests.cpp"
-    ],
+    srcs = ["straight_line_tests.cpp"],
     deps = [
         "@com_google_googletest//:gtest_main",
         "//src/graphics/bitmaps:bitmaps",

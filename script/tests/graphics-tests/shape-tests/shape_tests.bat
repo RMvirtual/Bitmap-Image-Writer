@@ -1,0 +1,1 @@
+bazel test --test_output=all --test_summary=detailed //test/src/graphics-tests/shape-tests:shape_tests

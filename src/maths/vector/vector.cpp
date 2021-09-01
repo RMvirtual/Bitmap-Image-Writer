@@ -5,6 +5,11 @@
 #include <string>
 #include <cstdarg>
 
+Maths::Vector::Vector()
+{
+  this->values = {};
+}
+
 Maths::Vector::Vector(double a, double b)
 {
   this->values = {a, b};
