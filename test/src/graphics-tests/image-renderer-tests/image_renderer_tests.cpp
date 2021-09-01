@@ -1,6 +1,6 @@
 #include <gtest/gtest.h>
 #include "src/graphics/image-rendering/image_renderer.h"
-
+#include "test/src/graphics-tests/utilities/bitmap_image_comparators.h"
 
 TEST(ImageRendererTests, ShouldFillImageRed)
 {
@@ -17,6 +17,13 @@ TEST(ImageRendererTests, ShouldFillImageRed)
     "C:\\Users\\rmvir\\Desktop\\scc300-Win3D\\test\\output\\redFill.bmp";
 
   bmpImage.writeToFile(outputFile);
+
+  char* correctFile = 
+    "C:\\Users\\rmvir\\Desktop\\scc300-Win3D\\test\\output\\" \
+    "correct_resources\\redFill512x512.bmp";
+  
+  BitmapImage correctImage = BitmapImage::fromFile(correctFile);
+  BitmapImageComparison::compareBitmapImages(bmpImage, correctImage);
 }
 
 TEST(ImageRendererTests, ShouldCalculateFileSize)
