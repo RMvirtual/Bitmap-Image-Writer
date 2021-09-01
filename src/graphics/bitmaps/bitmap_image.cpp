@@ -5,6 +5,11 @@
 #include "src/graphics/bitmaps/reader/bitmap_reader.h"
 #include "src/common/filesystem.h"
 
+BitmapImage::BitmapImage()
+{
+  // Pass.
+}
+
 BitmapImage::BitmapImage(
   BitmapFileHeader fileHeader, BitmapDibHeader dibHeader,
   PixelArray pixelArray)
@@ -56,7 +61,7 @@ char* BitmapImage::toBytes()
 void BitmapImage::writeToFile(std::string filePath)
 {
   char* bitmapImageBytes = this->toBytes();
-  int bitmapImageSize = this->getSizeOfBytes();
+  int bitmapImageSize = this->getSizeOfFile();
 
   std::ofstream fout(filePath, std::ios::binary);
   fout.write(bitmapImageBytes, bitmapImageSize);  
@@ -65,9 +70,14 @@ void BitmapImage::writeToFile(std::string filePath)
   delete[] bitmapImageBytes;
 }
 
-int BitmapImage::getSizeOfBytes()
+int BitmapImage::getSizeOfFile()
 {
   return this->fileHeader.getSizeOfBitmapFile();
+}
+
+void BitmapImage::setSizeOfBitmapFile(uint32_t sizeOfFile)
+{
+  this->fileHeader.setSizeOfBitmapFile(sizeOfFile);
 }
 
 void BitmapImage::setFileHeader(BitmapFileHeader fileHeader)

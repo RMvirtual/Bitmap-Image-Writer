@@ -1,8 +1,7 @@
 cc_library(
-    name = "bitmaps",
-    hdrs = ["src/graphics/image-rendering/image_renderer.h"],
-    srcs = ["src/graphics/image-rendering/image_renderer.cpp"],
-    deps = ["//src/graphics/bitmaps:bitmaps],
+    name = "image_renderer",
+    hdrs = ["image_renderer.h"],
+    srcs = ["image_renderer.cpp"],
+    deps = ["//src/graphics/bitmaps:bitmaps"],
     visibility = ["//visibility:public"],
-    copts = ["/std:c++17"]
 )

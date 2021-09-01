@@ -8,6 +8,8 @@
 class BitmapImage
 {
 public:
+  BitmapImage();
+  
   BitmapImage(
     BitmapFileHeader fileHeader, BitmapDibHeader dibHeader,
     PixelArray PixelArray
@@ -16,12 +18,15 @@ public:
   static BitmapImage fromFile(std::string filePath);
 
   char* toBytes();
-  int getSizeOfBytes();
   void writeToFile(std::string filePath);
 
   void setFileHeader(BitmapFileHeader fileHeader);
   void setDibHeader(BitmapDibHeader dibHeader);
   void setPixelArray(PixelArray pixelArray);
+
+  void setSizeOfBitmapFile(uint32_t sizeOfBitmapFile);
+  int getSizeOfFile();
+
   BitmapFileHeader getFileHeader();
   BitmapDibHeader getDibHeader();
   PixelArray getPixelArray();

@@ -25,7 +25,7 @@ TEST(StraightLineTests, ShouldDrawLine)
 
   int pixelWidth = pixelArray.getWidthInPixels();
   int pixelsHeight = pixelArray.getHeightInPixels();
-  
+
   int totalPixels = pixelArray.sizeInPixels();
 
   Shapes::StraightLine straightLine {{100, 100}};
