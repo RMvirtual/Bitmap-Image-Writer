@@ -17,6 +17,8 @@ public:
   int sizeInBytes();
   int sizeInPixels();
 
+  void setPixel(Pixel pixel, int rowNumber, int columnNo);
+
   void setWidthInPixels(int width);
   void setHeightInPixels(int height);
 
@@ -27,5 +29,7 @@ private:
   int widthInPixels;
   int heightInPixels;
 };
+
+
 
 #endif

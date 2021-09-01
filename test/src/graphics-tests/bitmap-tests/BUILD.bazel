@@ -30,7 +30,8 @@ cc_test(
     deps = [
         "@com_google_googletest//:gtest_main",
         "//src/graphics/bitmaps:bitmaps",
-        "//test/src/graphics-tests/bitmap-tests:bitmap_image_comparators"
+        "//test/src/graphics-tests/bitmap-tests:bitmap_image_comparators",
+        "//src/graphics/shapes:shapes"
     ]
 )
 

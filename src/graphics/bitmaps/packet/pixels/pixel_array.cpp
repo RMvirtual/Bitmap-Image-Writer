@@ -63,6 +63,13 @@ char* PixelArray::toBytes()
   return byteArrayBuilder.toBytes();
 }
 
+void PixelArray::setPixel(Pixel pixel, int rowNumber, int columnNo)
+{
+  int index = (rowNumber * this->widthInPixels - 1) + columnNo;
+  
+  this->pixels[index] = pixel;
+}
+
 int PixelArray::sizeInBytes()
 {
   int numberOfPixels = this->sizeInPixels();

@@ -7,10 +7,9 @@ cc_library(
         "triangle.cpp"
     ],
     deps = [
-        "//src/graphics:bitmaps",
+        "//src/graphics/bitmaps:bitmaps",
         "//src/maths:vectors",
         "//src/maths:matrices"
     ],
-    visibility = ["//visibility:public"],
-    copts = ["/std:c++17"]
+    visibility = ["//visibility:public"]
 )
