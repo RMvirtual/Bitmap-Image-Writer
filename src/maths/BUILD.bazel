@@ -1,24 +1,22 @@
-# https://docs.bazel.build/versions/master/be/c-cpp.html#cc_binary
-
 cc_library(
     name = "vectors",
-    srcs = ["vector/vector.cpp"],
     hdrs = ["vector/vector.h"],
+    srcs = ["vector/vector.cpp"],
     visibility = ["//visibility:public"],
     deps = ["//src/maths:binary_ops"]
 )
 
 cc_library(
     name = "matrices",
-    srcs = ["matrix/matrix.cpp", "matrix/column.cpp"],
     hdrs = ["matrix/matrix.h", "matrix/column.h"],
+    srcs = ["matrix/matrix.cpp", "matrix/column.cpp"],
     visibility = ["//visibility:public"],
     deps = ["//src/maths:vectors"]
 )
 
 cc_library(
     name = "binary_ops",
-    srcs = ["binary_ops/binary_ops.cpp"],
     hdrs = ["binary_ops/binary_ops.h"],
+    srcs = ["binary_ops/binary_ops.cpp"],
     visibility = ["//visibility:public"]
 )
