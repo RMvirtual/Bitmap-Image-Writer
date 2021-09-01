@@ -1,0 +1,16 @@
+cc_library(
+    name = "shapes",
+    hdrs = [
+        "triangle.h"
+    ],
+    srcs = [
+        "triangle.cpp"
+    ],
+    deps = [
+        "//src/graphics:bitmaps",
+        "//src/maths:vectors",
+        "//src/maths:matrices"
+    ],
+    visibility = ["//visibility:public"],
+    copts = ["/std:c++17"]
+)

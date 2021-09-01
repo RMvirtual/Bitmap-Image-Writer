@@ -53,3 +53,9 @@ TEST(BitmapImageTests, ShouldWriteBitmap)
 
   compareBitmapImages(correctImage, imageToTest);
 }
+
+TEST(BitmapImageTests, ShouldDrawTriangle)
+{
+  BitmapImage bitmapImage = setupBlueBitmapImage();
+  
+}
