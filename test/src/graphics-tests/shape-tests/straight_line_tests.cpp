@@ -35,8 +35,7 @@ TEST(StraightLineTests, ShouldDrawLine)
   while (x < straightLine.endPoint[0]) {
     pixelArray.setPixel(blackPixel, x, y);
 
-    x++;
-    y++;
+    x++; y++;
   }
 
   bitmapImage.setPixelArray(pixelArray);

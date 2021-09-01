@@ -1,7 +1,8 @@
 #include <vector>
 #include "src/maths/vector/vector.h"
 
-namespace Shapes {
+namespace Shapes
+{
   class Triangle
   {
   public:

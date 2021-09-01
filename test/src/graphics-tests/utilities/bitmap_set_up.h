@@ -8,10 +8,10 @@
 #include "test/src/graphics-tests/utilities/bitmap_image_comparators.h"
 
 namespace BitmapSetUp {
+  BitmapImage setUpBlueBitmapImage();
   BitmapFileHeader setUpBluePixelFileHeader();
   BitmapDibHeader setUpBluePixelDibHeader();
   PixelArray setUpBluePixelArray();
-  BitmapImage setUpBlueBitmapImage();
   std::string getBlueImagePath();
 }
 
