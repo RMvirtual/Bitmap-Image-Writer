@@ -65,7 +65,7 @@ char* PixelArray::toBytes()
 
 void PixelArray::setPixel(Pixel pixel, int rowNumber, int columnNo)
 {
-  int index = (rowNumber * this->widthInPixels - 1) + columnNo;
+  int index = (rowNumber * this->widthInPixels) + columnNo;
   
   this->pixels[index] = pixel;
 }

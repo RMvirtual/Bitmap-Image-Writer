@@ -80,7 +80,7 @@ TEST(BitmapImageTests, ShouldDrawLine)
 
   while (x < straightLine[0]) { 
     // This bit causes bazel test error.
-    // pixelArray.setPixel(blackPixel, x, y);
+    pixelArray.setPixel(blackPixel, x, y);
 
     x++;
     y++;
