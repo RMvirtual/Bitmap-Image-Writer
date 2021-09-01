@@ -27,6 +27,7 @@ public:
   int getSizeOfFile();
   int32_t getWidthInPixels();
   int32_t getHeightInPixels();
+  int getNumberOfPixels();
 
   void setSizeOfFile(uint32_t sizeOfBitmapFile);
   void setWidthInPixels(int32_t widthInPixels);
@@ -40,6 +41,8 @@ private:
   BitmapFileHeader fileHeader;
   BitmapDibHeader dibHeader;
   PixelArray pixelArray;
+
+  void recalculateFileSize();
 };
 
 #endif

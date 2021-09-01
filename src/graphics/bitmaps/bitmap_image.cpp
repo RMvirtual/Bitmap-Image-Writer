@@ -58,6 +58,20 @@ char* BitmapImage::toBytes()
   return allBytes;
 }
 
+void BitmapImage::recalculateFileSize()
+{
+  int widthInPixels = this->getWidthInPixels();
+  int heightInPixels = this->getHeightInPixels();
+
+  this->pixelArray.setWidthInPixels(this->getWidthInPixels());
+  this->pixelArray.setHeightInPixels(this->getHeightInPixels());
+
+  int pixelArraySize = this->pixelArray.sizeInBytes();
+  int headersSize = this->fileHeader.getPixelDataOffset();
+
+  this->fileHeader.setSizeOfBitmapFile(headersSize + pixelArraySize);
+}
+
 void BitmapImage::writeToFile(std::string filePath)
 {
   char* bitmapImageBytes = this->toBytes();
@@ -78,6 +92,11 @@ int32_t BitmapImage::getWidthInPixels()
 int32_t BitmapImage::getHeightInPixels()
 {
   return this->dibHeader.getHeightInPixels();
+}
+
+int BitmapImage::getNumberOfPixels()
+{
+  return this->pixelArray.sizeInPixels();
 }
 
 int BitmapImage::getSizeOfFile()
@@ -103,11 +122,13 @@ PixelArray BitmapImage::getPixelArray()
 void BitmapImage::setWidthInPixels(int32_t widthInPixels)
 {
   this->dibHeader.setWidthInPixels(widthInPixels);
+  this->recalculateFileSize();
 }
 
 void BitmapImage::setHeightInPixels(int32_t heightInPixels)
 {
   this->dibHeader.setHeightInPixels(heightInPixels);
+  this->recalculateFileSize();
 }
 
 void BitmapImage::setSizeOfFile(uint32_t sizeOfFile)

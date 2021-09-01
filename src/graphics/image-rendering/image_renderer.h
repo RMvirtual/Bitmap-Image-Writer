@@ -15,13 +15,10 @@ namespace ImageRendering
     void fill(uint8_t red, uint8_t green, uint8_t blue);
     void setWidth(int widthInPixels);
     void setHeight(int heightInPixels);
-    void calculateFileSize();
     int getFileSize();
 
   private:
     BitmapImage bitmapImage;
-    int widthInPixels;
-    int heightInPixels;
   };
 }
 
