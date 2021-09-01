@@ -70,12 +70,47 @@ void BitmapImage::writeToFile(std::string filePath)
   delete[] bitmapImageBytes;
 }
 
+int32_t BitmapImage::getWidthInPixels()
+{
+  return this->dibHeader.getWidthInPixels();
+}
+
+int32_t BitmapImage::getHeightInPixels()
+{
+  return this->dibHeader.getHeightInPixels();
+}
+
 int BitmapImage::getSizeOfFile()
 {
   return this->fileHeader.getSizeOfBitmapFile();
 }
 
-void BitmapImage::setSizeOfBitmapFile(uint32_t sizeOfFile)
+BitmapFileHeader BitmapImage::getFileHeader()
+{
+  return this->fileHeader;
+}
+
+BitmapDibHeader BitmapImage::getDibHeader()
+{
+  return this->dibHeader;
+}
+
+PixelArray BitmapImage::getPixelArray()
+{
+  return this->pixelArray;
+}
+
+void BitmapImage::setWidthInPixels(int32_t widthInPixels)
+{
+  this->dibHeader.setWidthInPixels(widthInPixels);
+}
+
+void BitmapImage::setHeightInPixels(int32_t heightInPixels)
+{
+  this->dibHeader.setHeightInPixels(heightInPixels);
+}
+
+void BitmapImage::setSizeOfFile(uint32_t sizeOfFile)
 {
   this->fileHeader.setSizeOfBitmapFile(sizeOfFile);
 }
@@ -93,19 +128,4 @@ void BitmapImage::setDibHeader(BitmapDibHeader dibHeader)
 void BitmapImage::setPixelArray(PixelArray pixelArray)
 {
   this->pixelArray = pixelArray;
-}
-
-BitmapFileHeader BitmapImage::getFileHeader()
-{
-  return this->fileHeader;
-}
-
-BitmapDibHeader BitmapImage::getDibHeader()
-{
-  return this->dibHeader;
-}
-
-PixelArray BitmapImage::getPixelArray()
-{
-  return this->pixelArray;
 }

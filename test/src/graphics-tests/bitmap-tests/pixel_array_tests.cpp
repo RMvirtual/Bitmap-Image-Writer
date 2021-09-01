@@ -8,8 +8,8 @@
 TEST(BitmapPixelArrayTests, ShouldGetPixelSizeInBytes)
 {
   char* bmpFile = (
-    "C:\\Users\\rmvir\\Desktop\\scc300-Win3D\\test\\output\\" \
-    "correct_resources\\blueImage512x512.bmp"
+    "C:\\Users\\rmvir\\Desktop\\scc300-Win3D\\test\\resources\\" \
+    "correct-resources\\blueImage512x512.bmp"
   );
 
   PixelArray pixelArray = BitmapReader::getPixelArray(bmpFile);
@@ -23,8 +23,8 @@ TEST(BitmapPixelArrayTests, ShouldGetPixelSizeInBytes)
 TEST(BitmapPixelArrayTests, ShouldGetNumberOfPixels)
 {
   char* bmpFile = (
-    "C:\\Users\\rmvir\\Desktop\\scc300-Win3D\\test\\output\\" \
-    "correct_resources\\blueImage512x512.bmp"
+    "C:\\Users\\rmvir\\Desktop\\scc300-Win3D\\test\\resources\\" \
+    "correct-resources\\blueImage512x512.bmp"
   );
 
   PixelArray pixelArray = BitmapReader::getPixelArray(bmpFile);

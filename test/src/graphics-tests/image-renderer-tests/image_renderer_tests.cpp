@@ -19,8 +19,8 @@ TEST(ImageRendererTests, ShouldFillImageRed)
   bmpImage.writeToFile(outputFile);
 
   char* correctFile = 
-    "C:\\Users\\rmvir\\Desktop\\scc300-Win3D\\test\\output\\" \
-    "correct_resources\\redFill512x512.bmp";
+    "C:\\Users\\rmvir\\Desktop\\scc300-Win3D\\test\\resources\\" \
+    "correct-resources\\redFill512x512.bmp";
   
   BitmapImage correctImage = BitmapImage::fromFile(correctFile);
   BitmapImageComparison::compareBitmapImages(bmpImage, correctImage);

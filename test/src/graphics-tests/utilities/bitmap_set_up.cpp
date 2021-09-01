@@ -59,8 +59,8 @@ BitmapImage BitmapSetUp::setUpBlueBitmapImage()
 std::string BitmapSetUp::getBlueImagePath()
 {
   std::string imagePath =
-      "C:\\Users\\rmvir\\Desktop\\scc300-Win3D\\test\\output\\"
-      "correct_resources\\blueImage512x512.bmp";
+      "C:\\Users\\rmvir\\Desktop\\scc300-Win3D\\test\\resources\\"
+      "correct-resources\\blueImage512x512.bmp";
 
   return imagePath;
 }

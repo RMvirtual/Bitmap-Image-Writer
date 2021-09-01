@@ -24,8 +24,13 @@ public:
   void setDibHeader(BitmapDibHeader dibHeader);
   void setPixelArray(PixelArray pixelArray);
 
-  void setSizeOfBitmapFile(uint32_t sizeOfBitmapFile);
   int getSizeOfFile();
+  int32_t getWidthInPixels();
+  int32_t getHeightInPixels();
+
+  void setSizeOfFile(uint32_t sizeOfBitmapFile);
+  void setWidthInPixels(int32_t widthInPixels);
+  void setHeightInPixels(int32_t heightInPixels);
 
   BitmapFileHeader getFileHeader();
   BitmapDibHeader getDibHeader();
