@@ -18,7 +18,6 @@ public:
   int sizeInPixels();
 
   void populateMissingPixels();
-
   void setPixel(Pixel pixel, int rowNumber, int columnNo);
 
   void setWidthInPixels(int width);
@@ -26,10 +25,17 @@ public:
 
   int getWidthInPixels();
   int getHeightInPixels();
+  int getRowStride();
 
 private:
   int widthInPixels;
   int heightInPixels;
+  int rowSizeInBytes;
+  int rowPadding;
+
+  void calculateRowSizeInBytes();
+  char* getRowOfPixelsAsBytes(int rowNo);
+  int getPixelIndexByRowAndColumn(int rowNo, int columnNo);
 };
 
 

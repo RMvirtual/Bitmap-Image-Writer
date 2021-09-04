@@ -77,10 +77,14 @@ TEST(BitmapPixelArrayTests, ShouldGetPixelArrayBytes)
   PixelArray pixelArray {pixels, 2, 2};
 
   char* pixelArrayBytes = pixelArray.toBytes();
+  uint8_t correctBytes[] = {
+    255, 255, 255, 255, 255, 255, 0, 0,
+    255, 255, 255, 255, 255, 255, 0, 0
+  };
 
   for (int byteNo = 0; byteNo < pixelArray.sizeInBytes(); byteNo++) {
     uint8_t currentByte = (uint8_t) pixelArrayBytes[byteNo];
-    uint8_t correctValue = 255;
+    uint8_t correctValue = correctBytes[byteNo];
 
     EXPECT_EQ(currentByte, correctValue);
   }

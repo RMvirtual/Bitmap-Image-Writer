@@ -13,6 +13,7 @@ PixelArray::PixelArray()
   this->pixels = std::vector<Pixel>{};
   this->widthInPixels = 0;
   this->heightInPixels = 0;
+  this->calculateRowSizeInBytes();
 }
 
 PixelArray::PixelArray(
@@ -29,6 +30,7 @@ PixelArray::PixelArray(
   this->pixels = pixels;
   this->widthInPixels = widthInPixels;
   this->heightInPixels = heightInPixels;
+  this->calculateRowSizeInBytes();
 
   /*
   queue<Pixel> pixelQueue;
@@ -46,21 +48,58 @@ PixelArray::PixelArray(
     }
   }
   */
+}
 
+void PixelArray::calculateRowSizeInBytes()
+{
+  int padding = 0;
+  int unpaddedRowSize = this->widthInPixels * 3;  
+  int differenceInAlignment = unpaddedRowSize % 4;
+
+  if (differenceInAlignment)
+    padding = 4 - differenceInAlignment;
+
+  this->rowSizeInBytes = unpaddedRowSize + padding;
 }
 
 char* PixelArray::toBytes()
 {
   ByteArrayBuilder byteArrayBuilder;
 
-  for (auto pixel : this->pixels) {
-    char* pixelBytes = pixel.toBytes();
-    byteArrayBuilder.addValues(pixelBytes, 3);
-    
-    delete[] pixelBytes;
+  for (int rowNo = 0; rowNo < this->heightInPixels; rowNo++) {
+    char* pixelRowBytes = this->getRowOfPixelsAsBytes(rowNo);
+    byteArrayBuilder.addValues(pixelRowBytes, this->rowSizeInBytes);
+
+    delete[] pixelRowBytes;
   }
 
   return byteArrayBuilder.toBytes();
+}
+
+char* PixelArray::getRowOfPixelsAsBytes(int rowNo)
+{
+  ByteArrayBuilder byteArrayBuilder;
+
+  for (int columnNo = 0; columnNo < this->widthInPixels; columnNo++) {
+    int index = this->getPixelIndexByRowAndColumn(rowNo, columnNo);
+    Pixel pixel = this->pixels[index];
+
+    char* pixelBytes = pixel.toBytes();
+    byteArrayBuilder.addValues(pixelBytes, 3);
+
+    delete[] pixelBytes;
+  }
+
+  for (int paddingByte = 0; paddingByte < this->rowPadding; paddingByte++) {
+    byteArrayBuilder.addValue(0);
+  }
+
+  return byteArrayBuilder.toBytes();
+}
+
+int PixelArray::getPixelIndexByRowAndColumn(int rowNo, int columnNo)
+{
+  return rowNo * widthInPixels + columnNo;
 }
 
 void PixelArray::populateMissingPixels()
@@ -72,7 +111,7 @@ void PixelArray::populateMissingPixels()
   if (hasMissingPixels) {
     Pixel blankPixel {0, 0, 0};
 
-    while (numberOfPopulatedPixels < 240000) {
+    while (numberOfPopulatedPixels < totalExpectedPixels) {
       this->pixels.push_back(blankPixel);
       numberOfPopulatedPixels++;
     }
@@ -124,6 +163,11 @@ void PixelArray::setWidthInPixels(int width)
 void PixelArray::setHeightInPixels(int height)
 {
   this->heightInPixels = height;
+}
+
+int PixelArray::getRowStride()
+{
+  return this->rowSizeInBytes;
 }
 
 int PixelArray::getWidthInPixels()

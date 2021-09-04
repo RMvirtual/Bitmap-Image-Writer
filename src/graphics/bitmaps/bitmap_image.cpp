@@ -9,7 +9,7 @@
 
 BitmapImage::BitmapImage()
 {
-  // Pass.
+  
 }
 
 BitmapImage::BitmapImage(
@@ -45,7 +45,9 @@ char* BitmapImage::toBytes()
   char* pixelArrayBytes = this->pixelArray.toBytes();
   int pixelArraySize = this->pixelArray.sizeInBytes();
 
-  std::cout << "Pixel array size: " << std::to_string(pixelArraySize) << std::endl;
+  std::cout << "Pixel array size: "
+    << std::to_string(pixelArraySize)
+    << std::endl;
 
   byteArrayBuilder.addValues(fileHeaderBytes, fileHeaderSize);
   byteArrayBuilder.addValues(dibHeaderBytes, dibHeaderSize);
