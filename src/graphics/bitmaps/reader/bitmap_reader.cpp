@@ -13,7 +13,6 @@ BitmapHeaders::FileHeader BitmapReader::getBitmapFileHeader(
   std::string filePath)
 {
   std::string bytes = Filesystem::convertFileToString(filePath);
-
   BitmapHeaders::FileHeader bmpFileHeader;
 
   bmpFileHeader.setSignatureBytes(bytes[0], bytes[1]);

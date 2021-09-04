@@ -1,5 +1,14 @@
 #include "src/graphics/bitmaps/packet/pixels/pixel_array_size_calculator.h"
 
+int Pixels::calculatePixelArraySizeInBytes(
+  int widthInPixels, int heightInPixels)
+{
+  int rowSizeInBytes = Pixels::calculateRowSizeInBytes(widthInPixels);
+  int pixelArraySizeInBytes = rowSizeInBytes * heightInPixels;
+
+  return pixelArraySizeInBytes;
+}
+
 int Pixels::calculateRowSizeInBytes(int widthInPixels)
 {
   int padding = Pixels::calculateRowPadding(widthInPixels);

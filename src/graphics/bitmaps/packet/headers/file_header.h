@@ -24,6 +24,7 @@ public:
   uint32_t getSizeOfBitmapFile();
   uint32_t getReservedBytes();
   uint32_t getPixelDataOffset();
+  int getPixelArraySizeInBytes();
 
 private:
   char signatureBytes[2];
@@ -32,7 +33,6 @@ private:
   uint32_t pixelDataOffset;
 
   void initialiseDefaultValues();
-  int calculateSizeOfPixelArray(int widthInPixels, int heightInPixels);
 };}
 
 #endif
