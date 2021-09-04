@@ -45,15 +45,15 @@ PixelArray::PixelArray(
       this->pixels.push_back(currentPixel);
     }
   }
-
   */
+
 }
 
 char* PixelArray::toBytes()
 {
   ByteArrayBuilder byteArrayBuilder;
 
-  for (auto pixel : this->pixels) {
+    for (auto pixel : this->pixels) {
     char* pixelBytes = pixel.toBytes();
     byteArrayBuilder.addValues(pixelBytes, 3);
     
@@ -63,12 +63,49 @@ char* PixelArray::toBytes()
   return byteArrayBuilder.toBytes();
 }
 
-void PixelArray::setPixel(Pixel pixel, int rowNumber, int columnNo)
+void PixelArray::populateMissingPixels()
 {
-  int index = (rowNumber * this->widthInPixels) + columnNo;
+  int totalExpectedPixels = this->getHeightInPixels() * this->getWidthInPixels();
+  int numberOfPopulatedPixels = this->pixels.size();
+  bool hasMissingPixels = (numberOfPopulatedPixels < totalExpectedPixels);
+
+  std::cout << "Total expected pixels: " << std::to_string(totalExpectedPixels) << std::endl;
   
+  if (hasMissingPixels) {
+    std::cout << "Has missing pixels." << std::endl;
+
+    Pixel blankPixel {0, 0, 0};
+
+    while (numberOfPopulatedPixels < 240000) {
+      this->pixels.push_back(blankPixel);
+      numberOfPopulatedPixels++;
+    }
+  }
+}
+
+void PixelArray::setPixel(Pixel pixel, int rowNo, int columnNo)
+{
+  bool rowIndexOutOfBounds = (rowNo > this->heightInPixels || rowNo < 0);
+
+  bool columnIndexOutOfBounds = (
+    columnNo > this->widthInPixels || columnNo < 0);
+
+  bool indexOutOfBounds = (rowIndexOutOfBounds || columnIndexOutOfBounds);
+
+
+  if (indexOutOfBounds) {
+    throw std::runtime_error(
+      "PixelArray: setPixel(): Index " + std::to_string(rowNo) + ", "
+      + std::to_string(columnNo) + " out of bounds."
+    );
+  }
+
+  int index = (rowNo * this->widthInPixels) + columnNo;
+  std::cout << "Index is " + std::to_string(index) << std::endl;
+
   this->pixels[index] = pixel;
 }
+
 
 int PixelArray::sizeInBytes()
 {

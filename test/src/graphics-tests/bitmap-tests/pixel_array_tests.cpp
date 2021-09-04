@@ -5,6 +5,39 @@
 #include "src/graphics/bitmaps/packet/pixels/pixel.h"
 #include "src/graphics/bitmaps/reader/bitmap_reader.h"
 
+void isGreenPixel(Pixel pixel)
+{
+    EXPECT_EQ(pixel.getGreen(), 255);
+    EXPECT_EQ(pixel.getBlue(), 0);
+    EXPECT_EQ(pixel.getRed(), 0);
+}
+
+void isRedPixel(Pixel pixel)
+{
+  EXPECT_EQ(pixel.getGreen(), 0);
+  EXPECT_EQ(pixel.getBlue(), 0);
+  EXPECT_EQ(pixel.getRed(), 255);
+}
+
+TEST(BitmapPixelArrayTests, ShouldSetPixel)
+{
+  Pixel redPixel = {255, 0, 0};
+  std::vector<Pixel> redPixels = {redPixel, redPixel, redPixel, redPixel};
+  PixelArray pixelArray {redPixels, 2, 2};
+
+  Pixel greenPixel = {0, 255, 0};
+  pixelArray.setPixel(greenPixel, 1, 1);
+
+  for (int pixelNo = 0; pixelNo < 3; pixelNo++) {
+    Pixel pixel = pixelArray.pixels[pixelNo];
+    isRedPixel(pixel);
+  }
+
+  Pixel modifiedPixel = pixelArray.pixels[3];
+  isGreenPixel(modifiedPixel);
+}
+
+
 TEST(BitmapPixelArrayTests, ShouldGetPixelSizeInBytes)
 {
   char* bmpFile = (
@@ -34,4 +67,3 @@ TEST(BitmapPixelArrayTests, ShouldGetNumberOfPixels)
 
   EXPECT_EQ(correctSizeInPixels, actualSizeInPixels);
 }
-

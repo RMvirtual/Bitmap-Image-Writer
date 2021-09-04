@@ -63,8 +63,10 @@ void BitmapImage::recalculateFileSize()
   int widthInPixels = this->getWidthInPixels();
   int heightInPixels = this->getHeightInPixels();
 
-  this->pixelArray.setWidthInPixels(this->getWidthInPixels());
-  this->pixelArray.setHeightInPixels(this->getHeightInPixels());
+  this->pixelArray.setWidthInPixels(widthInPixels);
+  this->pixelArray.setHeightInPixels(heightInPixels);
+
+  this->pixelArray.populateMissingPixels();
 
   int pixelArraySize = this->pixelArray.sizeInBytes();
   int headersSize = this->fileHeader.getPixelDataOffset();
@@ -117,6 +119,11 @@ BitmapDibHeader BitmapImage::getDibHeader()
 PixelArray BitmapImage::getPixelArray()
 {
   return this->pixelArray;
+}
+
+void BitmapImage::setPixel(int row, int column, Pixel pixel)
+{
+  this->pixelArray.setPixel(pixel, row, column);
 }
 
 void BitmapImage::setWidthInPixels(int32_t widthInPixels)

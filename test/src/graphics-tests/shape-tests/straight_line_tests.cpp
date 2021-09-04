@@ -8,9 +8,11 @@
 #include "src/graphics/shapes/triangle.h"
 #include "src/graphics/shapes/straight_line.h"
 #include "test/src/graphics-tests/utilities/bitmap_set_up.h"
+#include "src/graphics/image-rendering/image_renderer.h"
 
 TEST(StraightLineTests, ShouldDrawLine)
 {
+  
   BitmapImage bitmapImage = BitmapSetUp::setUpBlueBitmapImage();
   Pixel blackPixel {0, 0, 0};
 
@@ -28,6 +30,7 @@ TEST(StraightLineTests, ShouldDrawLine)
 
   int totalPixels = pixelArray.sizeInPixels();
 
+  ImageRendering::ImageRenderer imageRenderer;
   Shapes::StraightLine straightLine {{100, 100}};
 
   double x = 0, y = 0;

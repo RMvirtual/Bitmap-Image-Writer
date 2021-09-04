@@ -4,6 +4,7 @@
 #include <cstdint>
 
 #include "src/graphics/bitmaps/bitmap_image.h"
+#include "src/graphics/bitmaps/packet/pixels/pixel.h"
 
 namespace ImageRendering
 {
@@ -11,8 +12,11 @@ namespace ImageRendering
   {
   public:
     ImageRenderer();
+    
     BitmapImage toBitmap();
     void fill(uint8_t red, uint8_t green, uint8_t blue);
+    
+    void setPixel(int row, int column, Pixel pixel);
     void setWidth(int widthInPixels);
     void setHeight(int heightInPixels);
     int getFileSize();

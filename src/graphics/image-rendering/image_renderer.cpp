@@ -27,14 +27,16 @@ void ImageRendering::ImageRenderer::fill(
 
   int totalPixels = this->bitmapImage.getNumberOfPixels();
 
-  for (int pixelNo = 0; pixelNo < totalPixels; pixelNo++)
-    pixels.push_back(pixel);
-  
+  for (int rowNo = 0; rowNo < heightInPixels; rowNo++) {
+    for (int columnNo = 0; columnNo < widthInPixels; columnNo++) {
+      this->setPixel(rowNo, columnNo, pixel);
+    }
+  }
+}
 
-  PixelArray pixelArray = PixelArray {
-    pixels, widthInPixels, heightInPixels};
-  
-  this->bitmapImage.setPixelArray(pixelArray);
+void ImageRendering::ImageRenderer::setPixel(int row, int column, Pixel pixel)
+{
+  this->bitmapImage.setPixel(row, column, pixel);
 }
 
 void ImageRendering::ImageRenderer::setWidth(int widthInPixels)

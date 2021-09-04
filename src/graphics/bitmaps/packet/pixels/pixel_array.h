@@ -17,6 +17,8 @@ public:
   int sizeInBytes();
   int sizeInPixels();
 
+  void populateMissingPixels();
+
   void setPixel(Pixel pixel, int rowNumber, int columnNo);
 
   void setWidthInPixels(int width);

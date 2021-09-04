@@ -9,6 +9,7 @@ cc_test(
         "//src/graphics/bitmaps:bitmaps",
         "//test/src/graphics-tests/utilities:bitmap_image_comparators",
         "//test/src/graphics-tests/utilities:bitmap_set_up",
-        "//src/graphics/shapes:shapes"
+        "//src/graphics/shapes:shapes",
+        "//src/graphics/image-rendering:image_renderer"
     ]
 )
