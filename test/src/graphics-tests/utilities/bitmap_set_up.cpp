@@ -17,9 +17,9 @@ BitmapFileHeader BitmapSetUp::setUpBluePixelFileHeader()
   return fileHeader;
 }
 
-BitmapDibHeader BitmapSetUp::setUpBluePixelDibHeader()
+BitmapHeaders::DibHeader BitmapSetUp::setUpBluePixelDibHeader()
 {
-  BitmapDibHeader dibHeader = BitmapDibHeader();
+  BitmapHeaders::DibHeader dibHeader;
 
   dibHeader.setSizeOfHeaderInBytes(40);
   dibHeader.setWidthInPixels(512);
@@ -48,7 +48,7 @@ PixelArray BitmapSetUp::setUpBluePixelArray()
 BitmapImage BitmapSetUp::setUpBlueBitmapImage()
 {
   BitmapFileHeader fileHeader = setUpBluePixelFileHeader();
-  BitmapDibHeader dibHeader = setUpBluePixelDibHeader();
+  BitmapHeaders::DibHeader dibHeader = setUpBluePixelDibHeader();
   PixelArray pixelArray = setUpBluePixelArray();
 
   BitmapImage bitmapImage{fileHeader, dibHeader, pixelArray};

@@ -11,7 +11,7 @@ public:
   BitmapImage();
   
   BitmapImage(
-    BitmapFileHeader fileHeader, BitmapDibHeader dibHeader,
+    BitmapFileHeader fileHeader, BitmapHeaders::DibHeader dibHeader,
     PixelArray PixelArray
   );
 
@@ -21,7 +21,7 @@ public:
   void writeToFile(std::string filePath);
 
   void setFileHeader(BitmapFileHeader fileHeader);
-  void setDibHeader(BitmapDibHeader dibHeader);
+  void setDibHeader(BitmapHeaders::DibHeader dibHeader);
   void setPixelArray(PixelArray pixelArray);
 
   int getSizeOfFile();
@@ -35,12 +35,12 @@ public:
   void setPixel(int row, int column, Pixel pixel);
 
   BitmapFileHeader getFileHeader();
-  BitmapDibHeader getDibHeader();
+  BitmapHeaders::DibHeader getDibHeader();
   PixelArray getPixelArray();
 
 private:
   BitmapFileHeader fileHeader;
-  BitmapDibHeader dibHeader;
+  BitmapHeaders::DibHeader dibHeader;
   PixelArray pixelArray;
 
   void recalculateFileSize();

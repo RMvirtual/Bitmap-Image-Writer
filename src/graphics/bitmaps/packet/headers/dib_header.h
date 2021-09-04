@@ -5,11 +5,12 @@
 #include "src/graphics/bitmaps/packet/headers/header.h"
 #include "src/common/byte_array.h"
 
-class BitmapDibHeader : public BitmapHeader
+namespace BitmapHeaders {
+class DibHeader : public BitmapHeader
 {
 public:
-  BitmapDibHeader();
-  BitmapDibHeader(
+  DibHeader();
+  DibHeader(
     int widthInPixels, int heightInPixels);
   
   char* toBytes();
@@ -50,6 +51,6 @@ private:
 
   void initialiseDefaultValues();
   ByteArrayBuilder getByteArrayBuilder();
-};
+};}
 
 #endif

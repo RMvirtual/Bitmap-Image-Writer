@@ -17,7 +17,7 @@ void BitmapImageComparison::compareBitmapFileHeaders(
 }
 
 void BitmapImageComparison::compareBitmapDibHeaders(
-  BitmapDibHeader header1, BitmapDibHeader header2)
+  BitmapHeaders::DibHeader header1, BitmapHeaders::DibHeader header2)
 {
   EXPECT_EQ(
     header1.getSizeOfHeaderInBytes(), header2.getSizeOfHeaderInBytes());

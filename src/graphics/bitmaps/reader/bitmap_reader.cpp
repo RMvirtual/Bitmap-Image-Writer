@@ -35,11 +35,12 @@ BitmapFileHeader BitmapReader::getBitmapFileHeader(std::string filePath)
   return bmpFileHeader;
 }
 
-BitmapDibHeader BitmapReader::getBitmapDibHeader(std::string filePath)
+BitmapHeaders::DibHeader BitmapReader::getBitmapDibHeader(
+  std::string filePath)
 {
   std::string bytes = Filesystem::convertFileToString(filePath);
 
-  BitmapDibHeader bmpDibHeader;
+  BitmapHeaders::DibHeader bmpDibHeader;
 
   uint32_t headerSize = BytesConversion::getFourBytesFromSubstring(bytes, 14);
   bmpDibHeader.setSizeOfHeaderInBytes(headerSize);

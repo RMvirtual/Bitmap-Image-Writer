@@ -24,8 +24,11 @@ TEST(BitmapReaderTests, ShouldExtractDibHeaderFromFile)
 {
   std::string imagePath = BitmapSetUp::getBlueImagePath();
 
-  BitmapDibHeader dibHeader = BitmapReader::getBitmapDibHeader(imagePath);
-  BitmapDibHeader correctDibHeader = BitmapSetUp::setUpBluePixelDibHeader();
+  BitmapHeaders::DibHeader dibHeader =
+    BitmapReader::getBitmapDibHeader(imagePath);
+  
+  BitmapHeaders::DibHeader correctDibHeader = 
+    BitmapSetUp::setUpBluePixelDibHeader();
 
   BitmapImageComparison::compareBitmapDibHeaders(correctDibHeader, dibHeader);
 }
