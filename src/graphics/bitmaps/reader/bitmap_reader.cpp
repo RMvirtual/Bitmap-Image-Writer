@@ -107,7 +107,7 @@ PixelArray BitmapReader::getPixelArray(std::string filePath)
 
   int lengthOfPixelArray = BitmapReader::getPixelArraySizeInBytes(filePath);
   
-  std::vector<Pixel> pixels;
+  std::vector<Pixels::Pixel> pixels;
 
   int byteNo = 54;
 
@@ -116,7 +116,7 @@ PixelArray BitmapReader::getPixelArray(std::string filePath)
     uint8_t greenValue = bytes[byteNo + 1 + 54];
     uint8_t redValue = bytes[byteNo + 2 + 54];
 
-    Pixel pixel {redValue, greenValue, blueValue};
+    Pixels::Pixel pixel {redValue, greenValue, blueValue};
     pixels.push_back(pixel);
   }
 

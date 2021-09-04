@@ -33,7 +33,7 @@ public:
   void setSizeOfFile(uint32_t sizeOfBitmapFile);
   void setWidthInPixels(int32_t widthInPixels);
   void setHeightInPixels(int32_t heightInPixels);
-  void setPixel(int row, int column, Pixel pixel);
+  void setPixel(int row, int column, Pixels::Pixel pixel);
 
   BitmapHeaders::FileHeader getFileHeader();
   BitmapHeaders::DibHeader getDibHeader();

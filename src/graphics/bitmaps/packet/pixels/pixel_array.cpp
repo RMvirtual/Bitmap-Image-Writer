@@ -11,14 +11,14 @@
 
 PixelArray::PixelArray()
 {
-  this->pixels = std::vector<Pixel> {};
+  this->pixels = std::vector<Pixels::Pixel> {};
   this->widthInPixels = 0;
   this->heightInPixels = 0;
   this->calculateRowStride();
 }
 
 PixelArray::PixelArray(
-  std::vector<Pixel> pixels, int widthInPixels, int heightInPixels)
+  std::vector<Pixels::Pixel> pixels, int widthInPixels, int heightInPixels)
 {
   if (pixels.size() != widthInPixels * heightInPixels)
     throw std::length_error(
@@ -60,7 +60,7 @@ char* PixelArray::getRowOfPixelsAsBytes(int rowNo)
 
   for (int columnNo = 0; columnNo < this->widthInPixels; columnNo++) {
     int index = this->getPixelIndexByRowAndColumn(rowNo, columnNo);
-    Pixel pixel = this->pixels[index];
+    Pixels::Pixel pixel = this->pixels[index];
 
     char* pixelBytes = pixel.toBytes();
     byteArrayBuilder.addValues(pixelBytes, 3);
@@ -87,7 +87,7 @@ void PixelArray::populateMissingPixels()
   bool hasMissingPixels = (numberOfPopulatedPixels < totalExpectedPixels);
   
   if (hasMissingPixels) {
-    Pixel blankPixel {0, 0, 0};
+    Pixels::Pixel blankPixel {0, 0, 0};
 
     while (numberOfPopulatedPixels < totalExpectedPixels) {
       this->pixels.push_back(blankPixel);
@@ -96,7 +96,7 @@ void PixelArray::populateMissingPixels()
   }
 }
 
-void PixelArray::setPixel(Pixel pixel, int rowNo, int columnNo)
+void PixelArray::setPixel(Pixels::Pixel pixel, int rowNo, int columnNo)
 {
   bool rowIndexOutOfBounds = (rowNo > this->heightInPixels || rowNo < 0);
 

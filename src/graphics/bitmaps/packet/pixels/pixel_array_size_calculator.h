@@ -1,5 +1,3 @@
-
-
 namespace Pixels
 {
   int calculateRowSizeInBytes(int widthInPixels);

@@ -57,8 +57,8 @@ void BitmapImageComparison::comparePixelArrayContents(
   int numberOfPixels = pixelArray1.sizeInPixels();
 
   for (int pixelNo = 0; pixelNo < numberOfPixels; pixelNo++) {
-    Pixel pixel1 = pixelArray1.pixels[pixelNo];
-    Pixel pixel2 = pixelArray2.pixels[pixelNo];
+    Pixels::Pixel pixel1 = pixelArray1.pixels[pixelNo];
+    Pixels::Pixel pixel2 = pixelArray2.pixels[pixelNo];
 
     EXPECT_EQ(pixel1.getBlue(), pixel2.getBlue());
     EXPECT_EQ(pixel1.getGreen(), pixel2.getGreen());

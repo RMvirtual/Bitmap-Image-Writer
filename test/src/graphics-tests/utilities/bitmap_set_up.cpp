@@ -31,8 +31,8 @@ BitmapHeaders::DibHeader BitmapSetUp::setUpBluePixelDibHeader()
 
 PixelArray BitmapSetUp::setUpBluePixelArray()
 {
-  std::vector<Pixel> pixels;
-  Pixel bluePixel{100, 255, 255};
+  std::vector<Pixels::Pixel> pixels;
+  Pixels::Pixel bluePixel{100, 255, 255};
 
   int imageWidth = 512, imageHeight = 512;
   int totalPixels = imageWidth * imageHeight;

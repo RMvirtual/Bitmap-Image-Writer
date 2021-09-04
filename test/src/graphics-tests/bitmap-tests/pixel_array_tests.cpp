@@ -7,14 +7,14 @@
 #include "src/graphics/bitmaps/reader/bitmap_reader.h"
 #include "src/graphics/bitmaps/packet/pixels/pixel_array_size_calculator.h"
 
-void isGreenPixel(Pixel pixel)
+void isGreenPixel(Pixels::Pixel pixel)
 {
     EXPECT_EQ(pixel.getGreen(), 255);
     EXPECT_EQ(pixel.getBlue(), 0);
     EXPECT_EQ(pixel.getRed(), 0);
 }
 
-void isRedPixel(Pixel pixel)
+void isRedPixel(Pixels::Pixel pixel)
 {
   EXPECT_EQ(pixel.getGreen(), 0);
   EXPECT_EQ(pixel.getBlue(), 0);
@@ -23,19 +23,19 @@ void isRedPixel(Pixel pixel)
 
 TEST(BitmapPixelArrayTests, ShouldSetPixel)
 {
-  Pixel redPixel = {255, 0, 0};
-  std::vector<Pixel> redPixels = {redPixel, redPixel, redPixel, redPixel};
+  Pixels::Pixel redPixel = {255, 0, 0};
+  std::vector<Pixels::Pixel> redPixels = {redPixel, redPixel, redPixel, redPixel};
   PixelArray pixelArray {redPixels, 2, 2};
 
-  Pixel greenPixel = {0, 255, 0};
+  Pixels::Pixel greenPixel = {0, 255, 0};
   pixelArray.setPixel(greenPixel, 1, 1);
 
   for (int pixelNo = 0; pixelNo < 3; pixelNo++) {
-    Pixel pixel = pixelArray.pixels[pixelNo];
+    Pixels::Pixel pixel = pixelArray.pixels[pixelNo];
     isRedPixel(pixel);
   }
 
-  Pixel modifiedPixel = pixelArray.pixels[3];
+  Pixels::Pixel modifiedPixel = pixelArray.pixels[3];
   isGreenPixel(modifiedPixel);
 }
 
@@ -72,8 +72,8 @@ TEST(BitmapPixelArrayTests, ShouldGetNumberOfPixels)
 
 TEST(BitmapPixelArrayTests, ShouldGetPixelArrayBytes)
 {
-  Pixel pixel {255, 255, 255};
-  std::vector<Pixel> pixels = {pixel, pixel, pixel, pixel};
+  Pixels::Pixel pixel {255, 255, 255};
+  std::vector<Pixels::Pixel> pixels = {pixel, pixel, pixel, pixel};
 
   PixelArray pixelArray {pixels, 2, 2};
 
@@ -110,7 +110,7 @@ TEST(BitmapPixelTests, ShouldCalculatePixelArrayRowSizeInBytes)
 
 TEST(BitmapPixelArrayTests, ShouldGetPixelBytes)
 {
-  Pixel pixel {255, 255, 255};
+  Pixels::Pixel pixel {255, 255, 255};
 
   char* bytes = pixel.toBytes();
 

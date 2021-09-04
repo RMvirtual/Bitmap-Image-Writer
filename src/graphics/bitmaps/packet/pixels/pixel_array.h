@@ -7,18 +7,18 @@
 class PixelArray
 {
 public:
-  std::vector<Pixel> pixels;
+  std::vector<Pixels::Pixel> pixels;
 
   PixelArray();
   PixelArray(
-    std::vector<Pixel> pixels, int widthInPixels, int heightInPixels);
+    std::vector<Pixels::Pixel> pixels, int widthInPixels, int heightInPixels);
     
   char* toBytes();
   int sizeInBytes();
   int sizeInPixels();
 
   void populateMissingPixels();
-  void setPixel(Pixel pixel, int rowNumber, int columnNo);
+  void setPixel(Pixels::Pixel pixel, int rowNumber, int columnNo);
 
   void setWidthInPixels(int width);
   void setHeightInPixels(int height);

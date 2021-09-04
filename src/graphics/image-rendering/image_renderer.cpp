@@ -19,8 +19,8 @@ BitmapImage ImageRendering::ImageRenderer::toBitmap()
 void ImageRendering::ImageRenderer::fill(
   uint8_t red, uint8_t green, uint8_t blue)
 {
-  std::vector<Pixel> pixels;
-  Pixel pixel {red, green, blue};
+  std::vector<Pixels::Pixel> pixels;
+  Pixels::Pixel pixel {red, green, blue};
 
   int widthInPixels = this->bitmapImage.getWidthInPixels();
   int heightInPixels = this->bitmapImage.getHeightInPixels();
@@ -34,7 +34,8 @@ void ImageRendering::ImageRenderer::fill(
   }
 }
 
-void ImageRendering::ImageRenderer::setPixel(int row, int column, Pixel pixel)
+void ImageRendering::ImageRenderer::setPixel(
+  int row, int column, Pixels::Pixel pixel)
 {
   this->bitmapImage.setPixel(row, column, pixel);
 }

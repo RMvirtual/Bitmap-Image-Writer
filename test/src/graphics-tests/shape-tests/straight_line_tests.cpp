@@ -14,7 +14,7 @@ TEST(StraightLineTests, ShouldDrawLine)
 {
   
   BitmapImage bitmapImage = BitmapSetUp::setUpBlueBitmapImage();
-  Pixel blackPixel {0, 0, 0};
+  Pixels::Pixel blackPixel {0, 0, 0};
 
   Maths::Vector vertex1 {50, 100};
   Maths::Vector vertex2 {50, -100};

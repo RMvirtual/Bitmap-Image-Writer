@@ -126,7 +126,7 @@ PixelArray BitmapImage::getPixelArray()
   return this->pixelArray;
 }
 
-void BitmapImage::setPixel(int row, int column, Pixel pixel)
+void BitmapImage::setPixel(int row, int column, Pixels::Pixel pixel)
 {
   this->pixelArray.setPixel(pixel, row, column);
 }
