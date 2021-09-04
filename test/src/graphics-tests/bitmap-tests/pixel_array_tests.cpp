@@ -5,6 +5,7 @@
 #include "src/graphics/bitmaps/packet/pixels/pixel_array.h"
 #include "src/graphics/bitmaps/packet/pixels/pixel.h"
 #include "src/graphics/bitmaps/reader/bitmap_reader.h"
+#include "src/graphics/bitmaps/packet/pixels/pixel_array_size_calculator.h"
 
 void isGreenPixel(Pixel pixel)
 {
@@ -77,6 +78,7 @@ TEST(BitmapPixelArrayTests, ShouldGetPixelArrayBytes)
   PixelArray pixelArray {pixels, 2, 2};
 
   char* pixelArrayBytes = pixelArray.toBytes();
+
   uint8_t correctBytes[] = {
     255, 255, 255, 255, 255, 255, 0, 0,
     255, 255, 255, 255, 255, 255, 0, 0
@@ -88,6 +90,22 @@ TEST(BitmapPixelArrayTests, ShouldGetPixelArrayBytes)
 
     EXPECT_EQ(currentByte, correctValue);
   }
+}
+
+TEST(BitmapPixelArrayTests, ShouldCalculatePadding)
+{
+  int correctPadding = 2;
+  int actualPadding = Pixels::calculateRowPadding(6);
+
+  EXPECT_EQ(correctPadding, actualPadding);
+}
+
+TEST(BitmapPixelTests, ShouldCalculatePixelArrayRowSizeInBytes)
+{
+  int correctSize = 20;
+  int actualSize = Pixels::calculateRowSizeInBytes(6);
+  
+  EXPECT_EQ(correctSize, actualSize);
 }
 
 TEST(BitmapPixelArrayTests, ShouldGetPixelBytes)

@@ -7,6 +7,7 @@ cc_library(
         "packet/headers/dib_header.h",
         "packet/pixels/pixel.h",
         "packet/pixels/pixel_array.h",
+        "packet/pixels/pixel_array_size_calculator.h",
         "reader/bitmap_reader.h"
     ],
     srcs = [
@@ -16,6 +17,7 @@ cc_library(
         "packet/headers/dib_header.cpp",
         "packet/pixels/pixel.cpp",
         "packet/pixels/pixel_array.cpp",
+        "packet/pixels/pixel_array_size_calculator.cpp",
         "reader/bitmap_reader.cpp"
     ],
     deps = ["//src/common:common"],

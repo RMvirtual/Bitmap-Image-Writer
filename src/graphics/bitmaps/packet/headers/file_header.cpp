@@ -49,6 +49,8 @@ int BitmapFileHeader::calculateSizeOfPixelArray(
 {
   int sizeOfPixelArray = 3 * widthInPixels * heightInPixels;
 
+  
+
   return sizeOfPixelArray;
 }
 

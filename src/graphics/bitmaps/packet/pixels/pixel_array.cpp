@@ -1,6 +1,7 @@
 #include "src/graphics/bitmaps/packet/pixels/pixel.h"
 #include "src/graphics/bitmaps/packet/pixels/pixel_array.h"
 #include "src/common/byte_array.h"
+#include "src/graphics/bitmaps/packet/pixels/pixel_array_size_calculator.h"
 
 #include <string>
 #include <queue>
@@ -52,14 +53,7 @@ PixelArray::PixelArray(
 
 void PixelArray::calculateRowSizeInBytes()
 {
-  int padding = 0;
-  int unpaddedRowSize = this->widthInPixels * 3;  
-  int differenceInAlignment = unpaddedRowSize % 4;
-
-  if (differenceInAlignment)
-    padding = 4 - differenceInAlignment;
-
-  this->rowSizeInBytes = unpaddedRowSize + padding;
+  this->rowSizeInBytes = Pixels::calculateRowSizeInBytes(this->widthInPixels);
 }
 
 char* PixelArray::toBytes()
@@ -140,10 +134,7 @@ void PixelArray::setPixel(Pixel pixel, int rowNo, int columnNo)
 
 int PixelArray::sizeInBytes()
 {
-  int numberOfPixels = this->sizeInPixels();
-  int numberOfColourChannels = 3;
-
-  int totalSizeInBytes = numberOfPixels * numberOfColourChannels;
+  int totalSizeInBytes = this->rowSizeInBytes * this->heightInPixels;
 
   return totalSizeInBytes;
 }
