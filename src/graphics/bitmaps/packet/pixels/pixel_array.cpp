@@ -92,7 +92,6 @@ void PixelArray::setPixel(Pixel pixel, int rowNo, int columnNo)
 
   bool indexOutOfBounds = (rowIndexOutOfBounds || columnIndexOutOfBounds);
 
-
   if (indexOutOfBounds) {
     throw std::runtime_error(
       "PixelArray: setPixel(): Index " + std::to_string(rowNo) + ", "

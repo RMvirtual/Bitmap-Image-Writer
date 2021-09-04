@@ -8,14 +8,15 @@ TEST(ImageRendererTests, ShouldFillImageRed)
 
   imageRenderer.setWidth(512);
   imageRenderer.setHeight(512);
-
+  
   imageRenderer.fill(255, 0, 0);
-
+  
   BitmapImage bmpImage = imageRenderer.toBitmap();
 
   char* outputFile =
     "C:\\Users\\rmvir\\Desktop\\scc300-Win3D\\test\\output\\redFill.bmp";
 
+  // Issue is here.
   bmpImage.writeToFile(outputFile);
 
   char* correctFile = 
