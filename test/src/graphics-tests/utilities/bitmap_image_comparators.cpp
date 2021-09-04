@@ -7,7 +7,7 @@
 #include "test/src/graphics-tests/utilities/bitmap_image_comparators.h"
 
 void BitmapImageComparison::compareBitmapFileHeaders(
-  BitmapFileHeader header1, BitmapFileHeader header2)
+  BitmapHeaders::FileHeader header1, BitmapHeaders::FileHeader header2)
 {
   EXPECT_EQ(header1.getSignatureBytes()[0], header2.getSignatureBytes()[0]);
   EXPECT_EQ(header1.getSignatureBytes()[1], header2.getSignatureBytes()[1]);

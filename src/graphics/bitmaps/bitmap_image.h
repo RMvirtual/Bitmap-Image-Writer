@@ -11,7 +11,8 @@ public:
   BitmapImage();
   
   BitmapImage(
-    BitmapFileHeader fileHeader, BitmapHeaders::DibHeader dibHeader,
+    BitmapHeaders::FileHeader fileHeader,
+    BitmapHeaders::DibHeader dibHeader,
     PixelArray PixelArray
   );
 
@@ -20,7 +21,7 @@ public:
   char* toBytes();
   void writeToFile(std::string filePath);
 
-  void setFileHeader(BitmapFileHeader fileHeader);
+  void setFileHeader(BitmapHeaders::FileHeader fileHeader);
   void setDibHeader(BitmapHeaders::DibHeader dibHeader);
   void setPixelArray(PixelArray pixelArray);
 
@@ -34,12 +35,12 @@ public:
   void setHeightInPixels(int32_t heightInPixels);
   void setPixel(int row, int column, Pixel pixel);
 
-  BitmapFileHeader getFileHeader();
+  BitmapHeaders::FileHeader getFileHeader();
   BitmapHeaders::DibHeader getDibHeader();
   PixelArray getPixelArray();
 
 private:
-  BitmapFileHeader fileHeader;
+  BitmapHeaders::FileHeader fileHeader;
   BitmapHeaders::DibHeader dibHeader;
   PixelArray pixelArray;
 

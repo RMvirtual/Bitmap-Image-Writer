@@ -5,9 +5,9 @@
 #include "test/src/graphics-tests/utilities/bitmap_image_comparators.h"
 #include "test/src/graphics-tests/utilities/bitmap_set_up.h"
 
-BitmapFileHeader BitmapSetUp::setUpBluePixelFileHeader()
+BitmapHeaders::FileHeader BitmapSetUp::setUpBluePixelFileHeader()
 {
-  BitmapFileHeader fileHeader;
+  BitmapHeaders::FileHeader fileHeader;
 
   fileHeader.setSignatureBytes("BM");
   fileHeader.setSizeOfBitmapFile(786486);
@@ -47,7 +47,7 @@ PixelArray BitmapSetUp::setUpBluePixelArray()
 
 BitmapImage BitmapSetUp::setUpBlueBitmapImage()
 {
-  BitmapFileHeader fileHeader = setUpBluePixelFileHeader();
+  BitmapHeaders::FileHeader fileHeader = setUpBluePixelFileHeader();
   BitmapHeaders::DibHeader dibHeader = setUpBluePixelDibHeader();
   PixelArray pixelArray = setUpBluePixelArray();
 

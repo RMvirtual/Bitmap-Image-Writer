@@ -6,7 +6,7 @@
 
 namespace BitmapReader
 {
-  BitmapFileHeader getBitmapFileHeader(std::string filePath);
+  BitmapHeaders::FileHeader getBitmapFileHeader(std::string filePath);
   BitmapHeaders::DibHeader getBitmapDibHeader(std::string filePath);
   int getPixelArraySizeInBytes(std::string filePath);
   PixelArray getPixelArray(std::string filePath);

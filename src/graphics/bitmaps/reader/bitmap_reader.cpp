@@ -9,11 +9,12 @@
 #include "src/common/bytes_conversion.h"
 #include "src/common/filesystem.h"
 
-BitmapFileHeader BitmapReader::getBitmapFileHeader(std::string filePath)
+BitmapHeaders::FileHeader BitmapReader::getBitmapFileHeader(
+  std::string filePath)
 {
   std::string bytes = Filesystem::convertFileToString(filePath);
 
-  BitmapFileHeader bmpFileHeader;
+  BitmapHeaders::FileHeader bmpFileHeader;
 
   bmpFileHeader.setSignatureBytes(bytes[0], bytes[1]);
 
@@ -124,7 +125,9 @@ PixelArray BitmapReader::getPixelArray(std::string filePath)
 
 int BitmapReader::getPixelArraySizeInBytes(std::string filePath)
 {
-  BitmapFileHeader bmpFileHeader = BitmapReader::getBitmapFileHeader(filePath);
+  BitmapHeaders::FileHeader bmpFileHeader =
+    BitmapReader::getBitmapFileHeader(filePath);
+  
   int sizeOfFile = bmpFileHeader.getSizeOfBitmapFile();
   int pixelDataOffset = bmpFileHeader.getPixelDataOffset();
 

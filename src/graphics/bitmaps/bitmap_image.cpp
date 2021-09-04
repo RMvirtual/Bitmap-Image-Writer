@@ -11,7 +11,8 @@ BitmapImage::BitmapImage()
 }
 
 BitmapImage::BitmapImage(
-  BitmapFileHeader fileHeader, BitmapHeaders::DibHeader dibHeader,
+  BitmapHeaders::FileHeader fileHeader,
+  BitmapHeaders::DibHeader dibHeader,
   PixelArray pixelArray)
 {
   this->fileHeader = fileHeader;
@@ -21,10 +22,11 @@ BitmapImage::BitmapImage(
 
 BitmapImage BitmapImage::fromFile(std::string filePath)
 {
-  BitmapFileHeader fileHeader = BitmapReader::getBitmapFileHeader(filePath);
+  BitmapHeaders::FileHeader fileHeader = 
+    BitmapReader::getBitmapFileHeader(filePath);
   
-  BitmapHeaders::DibHeader dibHeader = BitmapReader::getBitmapDibHeader(
-    filePath);
+  BitmapHeaders::DibHeader dibHeader = 
+    BitmapReader::getBitmapDibHeader(filePath);
   
   PixelArray pixelArray = BitmapReader::getPixelArray(filePath);
 
@@ -109,7 +111,7 @@ int BitmapImage::getSizeOfFile()
   return this->fileHeader.getSizeOfBitmapFile();
 }
 
-BitmapFileHeader BitmapImage::getFileHeader()
+BitmapHeaders::FileHeader BitmapImage::getFileHeader()
 {
   return this->fileHeader;
 }
@@ -146,7 +148,7 @@ void BitmapImage::setSizeOfFile(uint32_t sizeOfFile)
   this->fileHeader.setSizeOfBitmapFile(sizeOfFile);
 }
 
-void BitmapImage::setFileHeader(BitmapFileHeader fileHeader)
+void BitmapImage::setFileHeader(BitmapHeaders::FileHeader fileHeader)
 {
   this->fileHeader = fileHeader;
 }

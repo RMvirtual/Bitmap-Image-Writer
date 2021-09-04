@@ -51,7 +51,7 @@ void ImageRendering::ImageRenderer::setHeight(int heightInPixels)
 
 int ImageRendering::ImageRenderer::getFileSize()
 {
-  BitmapFileHeader fileHeader = this->bitmapImage.getFileHeader();
+  BitmapHeaders::FileHeader fileHeader = this->bitmapImage.getFileHeader();
   
   return fileHeader.getSizeOfBitmapFile();
 }

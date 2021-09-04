@@ -11,7 +11,7 @@
 namespace BitmapImageComparison
 {
   void compareBitmapFileHeaders(
-      BitmapFileHeader header1, BitmapFileHeader header2);
+    BitmapHeaders::FileHeader header1, BitmapHeaders::FileHeader header2);
 
   void compareBitmapDibHeaders(
     BitmapHeaders::DibHeader header1, BitmapHeaders::DibHeader header2);
@@ -19,10 +19,12 @@ namespace BitmapImageComparison
   void comparePixelArrayAttributes(
       PixelArray pixelArray1, PixelArray pixelArray2);
 
-  void comparePixelArrayContents(PixelArray pixelArray1, PixelArray pixelArray2);
-
-  void comparePixelArrays(PixelArray pixelArray1, PixelArray pixelArray2);
-
+  void comparePixelArrayContents(
+    PixelArray pixelArray1, PixelArray pixelArray2);
+  
+  void comparePixelArrays(
+    PixelArray pixelArray1, PixelArray pixelArray2);
+  
   void compareBitmapImages(BitmapImage image1, BitmapImage image2);
 }
 

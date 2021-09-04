@@ -11,9 +11,10 @@ TEST(BitmapReaderTests, ShouldExtractFileHeaderFromFile)
 { 
   std::string imagePath = BitmapSetUp::getBlueImagePath();
 
-  BitmapFileHeader fileHeader = BitmapReader::getBitmapFileHeader(imagePath);
+  BitmapHeaders::FileHeader fileHeader = 
+    BitmapReader::getBitmapFileHeader(imagePath);
   
-  BitmapFileHeader correctFileHeader = 
+  BitmapHeaders::FileHeader correctFileHeader = 
     BitmapSetUp::setUpBluePixelFileHeader();
   
   BitmapImageComparison::compareBitmapFileHeaders(

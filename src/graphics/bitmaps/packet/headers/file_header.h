@@ -5,12 +5,12 @@
 #include <string>
 #include "src/graphics/bitmaps/packet/headers/header.h"
 
-class BitmapFileHeader
-: public BitmapHeader
+namespace BitmapHeaders {
+class FileHeader : public BitmapHeader
 {
 public:
-  BitmapFileHeader();
-  BitmapFileHeader(int widthInPixels, int heightInPixels);
+  FileHeader();
+  FileHeader(int widthInPixels, int heightInPixels);
 
   char* toBytes();
 
@@ -33,6 +33,6 @@ private:
 
   void initialiseDefaultValues();
   int calculateSizeOfPixelArray(int widthInPixels, int heightInPixels);
-};
+};}
 
 #endif
