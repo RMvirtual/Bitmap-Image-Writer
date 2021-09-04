@@ -133,11 +133,13 @@ int PixelArray::sizeInPixels()
 void PixelArray::setWidthInPixels(int width)
 {
   this->widthInPixels = width;
+  this->calculateRowSizeInBytes();
 }
 
 void PixelArray::setHeightInPixels(int height)
 {
   this->heightInPixels = height;
+  this->calculateRowSizeInBytes();
 }
 
 int PixelArray::getRowStride()

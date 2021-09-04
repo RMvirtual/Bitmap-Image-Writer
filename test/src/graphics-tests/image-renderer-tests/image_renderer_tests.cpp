@@ -16,7 +16,6 @@ TEST(ImageRendererTests, ShouldFillImageRed)
   char* outputFile =
     "C:\\Users\\rmvir\\Desktop\\scc300-Win3D\\test\\output\\redFill.bmp";
 
-  // Issue is here.
   bmpImage.writeToFile(outputFile);
 
   char* correctFile = 
