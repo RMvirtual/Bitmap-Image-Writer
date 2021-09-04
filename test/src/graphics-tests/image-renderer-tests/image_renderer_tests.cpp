@@ -25,7 +25,6 @@ TEST(ImageRendererTests, ShouldFillImageRed)
   
   BitmapImage correctImage = BitmapImage::fromFile(correctFile);
   BitmapImageComparison::compareBitmapImages(bmpImage, correctImage);
-  // Hello
 }
 
 TEST(ImageRendererTests, ShouldCalculateFileSize)

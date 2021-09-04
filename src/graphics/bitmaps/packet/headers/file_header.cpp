@@ -1,6 +1,7 @@
 #include <cstdint>
 
 #include "src/graphics/bitmaps/packet/headers/file_header.h"
+#include "src/graphics/bitmaps/packet/pixels/pixel_array_size_calculator.h"
 #include "src/common/byte_array.h"
 
 BitmapFileHeader::BitmapFileHeader()
@@ -47,9 +48,8 @@ void BitmapFileHeader::initialiseDefaultValues()
 int BitmapFileHeader::calculateSizeOfPixelArray(
   int widthInPixels, int heightInPixels)
 {
-  int sizeOfPixelArray = 3 * widthInPixels * heightInPixels;
-
-  
+  int rowSizeInBytes = Pixels::calculateRowSizeInBytes(widthInPixels);
+  int sizeOfPixelArray = rowSizeInBytes * heightInPixels;
 
   return sizeOfPixelArray;
 }

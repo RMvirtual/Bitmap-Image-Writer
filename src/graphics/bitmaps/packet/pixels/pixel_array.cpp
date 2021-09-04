@@ -11,7 +11,7 @@
 
 PixelArray::PixelArray()
 {
-  this->pixels = std::vector<Pixel>{};
+  this->pixels = std::vector<Pixel> {};
   this->widthInPixels = 0;
   this->heightInPixels = 0;
   this->calculateRowSizeInBytes();
@@ -32,27 +32,11 @@ PixelArray::PixelArray(
   this->widthInPixels = widthInPixels;
   this->heightInPixels = heightInPixels;
   this->calculateRowSizeInBytes();
-
-  /*
-  queue<Pixel> pixelQueue;
-
-  for (auto pixel : pixels) {
-    pixelQueue.push(pixel);
-  }
-
-  for (int rowNo = 0; rowNo < heightInPixels; rowNo++) {
-    for (int columnNo = 0; columnNo < widthInPixels; columnNo++) {
-      Pixel currentPixel = pixelQueue.front();
-      pixelQueue.pop();    
-
-      this->pixels.push_back(currentPixel);
-    }
-  }
-  */
 }
 
 void PixelArray::calculateRowSizeInBytes()
 {
+  this->rowPadding = Pixels::calculateRowPadding(this->widthInPixels);
   this->rowSizeInBytes = Pixels::calculateRowSizeInBytes(this->widthInPixels);
 }
 
