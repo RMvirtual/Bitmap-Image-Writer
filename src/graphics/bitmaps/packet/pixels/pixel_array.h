@@ -4,6 +4,7 @@
 #include <vector>
 #include "src/graphics/bitmaps/packet/pixels/pixel.h"
 
+namespace Pixels {
 class PixelArray
 {
 public:
@@ -36,8 +37,6 @@ private:
   void calculateRowStride();
   char* getRowOfPixelsAsBytes(int rowNo);
   int getPixelIndexByRowAndColumn(int rowNo, int columnNo);
-};
-
-
+};}
 
 #endif

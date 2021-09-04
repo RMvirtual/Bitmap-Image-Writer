@@ -29,7 +29,7 @@ BitmapHeaders::DibHeader BitmapSetUp::setUpBluePixelDibHeader()
   return dibHeader;
 }
 
-PixelArray BitmapSetUp::setUpBluePixelArray()
+Pixels::PixelArray BitmapSetUp::setUpBluePixelArray()
 {
   std::vector<Pixels::Pixel> pixels;
   Pixels::Pixel bluePixel{100, 255, 255};
@@ -40,7 +40,8 @@ PixelArray BitmapSetUp::setUpBluePixelArray()
   for (int pixelNo = 0; pixelNo < totalPixels; pixelNo++)
     pixels.push_back(bluePixel);
 
-  PixelArray pixelArray = PixelArray{pixels, imageWidth, imageHeight};
+  Pixels::PixelArray pixelArray = Pixels::PixelArray {
+    pixels, imageWidth, imageHeight};
 
   return pixelArray;
 }
@@ -49,7 +50,7 @@ BitmapImage BitmapSetUp::setUpBlueBitmapImage()
 {
   BitmapHeaders::FileHeader fileHeader = setUpBluePixelFileHeader();
   BitmapHeaders::DibHeader dibHeader = setUpBluePixelDibHeader();
-  PixelArray pixelArray = setUpBluePixelArray();
+  Pixels::PixelArray pixelArray = setUpBluePixelArray();
 
   BitmapImage bitmapImage{fileHeader, dibHeader, pixelArray};
 

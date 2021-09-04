@@ -23,7 +23,7 @@ TEST(StraightLineTests, ShouldDrawLine)
   std::vector<Maths::Vector> vertices {vertex1, vertex2, vertex3};
   Shapes::Triangle triangle {vertices};
 
-  PixelArray pixelArray = bitmapImage.getPixelArray();
+  Pixels::PixelArray pixelArray = bitmapImage.getPixelArray();
 
   int pixelWidth = pixelArray.getWidthInPixels();
   int pixelsHeight = pixelArray.getHeightInPixels();

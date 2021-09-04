@@ -101,7 +101,7 @@ BitmapHeaders::DibHeader BitmapReader::getBitmapDibHeader(
   return bmpDibHeader;
 }
 
-PixelArray BitmapReader::getPixelArray(std::string filePath)
+Pixels::PixelArray BitmapReader::getPixelArray(std::string filePath)
 {
   std::string bytes = Filesystem::convertFileToString(filePath);
 
@@ -120,7 +120,7 @@ PixelArray BitmapReader::getPixelArray(std::string filePath)
     pixels.push_back(pixel);
   }
 
-  return PixelArray(pixels, 512, 512);
+  return Pixels::PixelArray(pixels, 512, 512);
 }
 
 int BitmapReader::getPixelArraySizeInBytes(std::string filePath)

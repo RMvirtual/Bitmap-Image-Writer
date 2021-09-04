@@ -25,7 +25,7 @@ TEST(BitmapPixelArrayTests, ShouldSetPixel)
 {
   Pixels::Pixel redPixel = {255, 0, 0};
   std::vector<Pixels::Pixel> redPixels = {redPixel, redPixel, redPixel, redPixel};
-  PixelArray pixelArray {redPixels, 2, 2};
+  Pixels::PixelArray pixelArray {redPixels, 2, 2};
 
   Pixels::Pixel greenPixel = {0, 255, 0};
   pixelArray.setPixel(greenPixel, 1, 1);
@@ -47,7 +47,7 @@ TEST(BitmapPixelArrayTests, ShouldGetPixelSizeInBytes)
     "correct-resources\\blueImage512x512.bmp"
   );
 
-  PixelArray pixelArray = BitmapReader::getPixelArray(bmpFile);
+  Pixels::PixelArray pixelArray = BitmapReader::getPixelArray(bmpFile);
 
   int correctSizeInBytes = 786432;
   int actualSizeInBytes = pixelArray.sizeInBytes();
@@ -62,7 +62,7 @@ TEST(BitmapPixelArrayTests, ShouldGetNumberOfPixels)
     "correct-resources\\blueImage512x512.bmp"
   );
 
-  PixelArray pixelArray = BitmapReader::getPixelArray(bmpFile);
+  Pixels::PixelArray pixelArray = BitmapReader::getPixelArray(bmpFile);
 
   int correctSizeInPixels = 512 * 512;
   int actualSizeInPixels = pixelArray.sizeInPixels();
@@ -72,16 +72,16 @@ TEST(BitmapPixelArrayTests, ShouldGetNumberOfPixels)
 
 TEST(BitmapPixelArrayTests, ShouldGetPixelArrayBytes)
 {
-  Pixels::Pixel pixel {255, 255, 255};
+  Pixels::Pixel pixel {255, 200, 150};
   std::vector<Pixels::Pixel> pixels = {pixel, pixel, pixel, pixel};
 
-  PixelArray pixelArray {pixels, 2, 2};
+  Pixels::PixelArray pixelArray {pixels, 2, 2};
 
   char* pixelArrayBytes = pixelArray.toBytes();
 
   uint8_t correctBytes[] = {
-    255, 255, 255, 255, 255, 255, 0, 0,
-    255, 255, 255, 255, 255, 255, 0, 0
+    150, 200, 255, 150, 200, 255, 0, 0,
+    150, 200, 255, 150, 200, 255, 0, 0
   };
 
   for (int byteNo = 0; byteNo < pixelArray.sizeInBytes(); byteNo++) {

@@ -9,7 +9,7 @@
 #include <iomanip>
 #include <iostream>
 
-PixelArray::PixelArray()
+Pixels::PixelArray::PixelArray()
 {
   this->pixels = std::vector<Pixels::Pixel> {};
   this->widthInPixels = 0;
@@ -17,7 +17,7 @@ PixelArray::PixelArray()
   this->calculateRowStride();
 }
 
-PixelArray::PixelArray(
+Pixels::PixelArray::PixelArray(
   std::vector<Pixels::Pixel> pixels, int widthInPixels, int heightInPixels)
 {
   if (pixels.size() != widthInPixels * heightInPixels)
@@ -34,13 +34,13 @@ PixelArray::PixelArray(
   this->calculateRowStride();
 }
 
-void PixelArray::calculateRowStride()
+void Pixels::PixelArray::calculateRowStride()
 {
   this->rowPadding = Pixels::calculateRowPadding(this->widthInPixels);
   this->rowSizeInBytes = Pixels::calculateRowSizeInBytes(this->widthInPixels);
 }
 
-char* PixelArray::toBytes()
+char* Pixels::PixelArray::toBytes()
 {
   ByteArrayBuilder byteArrayBuilder;
 
@@ -54,7 +54,7 @@ char* PixelArray::toBytes()
   return byteArrayBuilder.toBytes();
 }
 
-char* PixelArray::getRowOfPixelsAsBytes(int rowNo)
+char* Pixels::PixelArray::getRowOfPixelsAsBytes(int rowNo)
 {
   ByteArrayBuilder byteArrayBuilder;
 
@@ -75,12 +75,12 @@ char* PixelArray::getRowOfPixelsAsBytes(int rowNo)
   return byteArrayBuilder.toBytes();
 }
 
-int PixelArray::getPixelIndexByRowAndColumn(int rowNo, int columnNo)
+int Pixels::PixelArray::getPixelIndexByRowAndColumn(int rowNo, int columnNo)
 {
   return rowNo * widthInPixels + columnNo;
 }
 
-void PixelArray::populateMissingPixels()
+void Pixels::PixelArray::populateMissingPixels()
 {
   int totalExpectedPixels = this->getHeightInPixels() * this->getWidthInPixels();
   int numberOfPopulatedPixels = this->pixels.size();
@@ -96,7 +96,7 @@ void PixelArray::populateMissingPixels()
   }
 }
 
-void PixelArray::setPixel(Pixels::Pixel pixel, int rowNo, int columnNo)
+void Pixels::PixelArray::setPixel(Pixels::Pixel pixel, int rowNo, int columnNo)
 {
   bool rowIndexOutOfBounds = (rowNo > this->heightInPixels || rowNo < 0);
 
@@ -107,7 +107,7 @@ void PixelArray::setPixel(Pixels::Pixel pixel, int rowNo, int columnNo)
 
   if (indexOutOfBounds) {
     throw std::runtime_error(
-      "PixelArray: setPixel(): Index " + std::to_string(rowNo) + ", "
+      "Pixels::PixelArray: setPixel(): Index " + std::to_string(rowNo) + ", "
       + std::to_string(columnNo) + " out of bounds."
     );
   }
@@ -116,43 +116,43 @@ void PixelArray::setPixel(Pixels::Pixel pixel, int rowNo, int columnNo)
   this->pixels[index] = pixel;
 }
 
-int PixelArray::sizeInBytes()
+int Pixels::PixelArray::sizeInBytes()
 {
   int totalSizeInBytes = this->rowSizeInBytes * this->heightInPixels;
 
   return totalSizeInBytes;
 }
 
-int PixelArray::sizeInPixels()
+int Pixels::PixelArray::sizeInPixels()
 {
   int numberOfPixels = this->widthInPixels * this->heightInPixels;
 
   return numberOfPixels;
 }
 
-void PixelArray::setWidthInPixels(int width)
+void Pixels::PixelArray::setWidthInPixels(int width)
 {
   this->widthInPixels = width;
   this->calculateRowStride();
 }
 
-void PixelArray::setHeightInPixels(int height)
+void Pixels::PixelArray::setHeightInPixels(int height)
 {
   this->heightInPixels = height;
   this->calculateRowStride();
 }
 
-int PixelArray::getRowStride()
+int Pixels::PixelArray::getRowStride()
 {
   return this->rowSizeInBytes;
 }
 
-int PixelArray::getWidthInPixels()
+int Pixels::PixelArray::getWidthInPixels()
 {
   return this->widthInPixels;
 }
 
-int PixelArray::getHeightInPixels()
+int Pixels::PixelArray::getHeightInPixels()
 {
   return this->heightInPixels;
 }

@@ -38,8 +38,8 @@ TEST(BitmapReaderTests, ShouldExtractPixelArrayFromFile)
 {
   std::string imagePath = BitmapSetUp::getBlueImagePath();
 
-  PixelArray pixelArrayToTest = BitmapReader::getPixelArray(imagePath);
-  PixelArray correctPixelArray = BitmapSetUp::setUpBluePixelArray();
+  Pixels::PixelArray pixelArrayToTest = BitmapReader::getPixelArray(imagePath);
+  Pixels::PixelArray correctPixelArray = BitmapSetUp::setUpBluePixelArray();
 
   BitmapImageComparison::comparePixelArrays(
     correctPixelArray, pixelArrayToTest);

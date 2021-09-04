@@ -11,7 +11,7 @@ namespace BitmapSetUp {
   BitmapImage setUpBlueBitmapImage();
   BitmapHeaders::FileHeader setUpBluePixelFileHeader();
   BitmapHeaders::DibHeader setUpBluePixelDibHeader();
-  PixelArray setUpBluePixelArray();
+  Pixels::PixelArray setUpBluePixelArray();
   std::string getBlueImagePath();
 }
 

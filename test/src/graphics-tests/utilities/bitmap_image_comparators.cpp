@@ -43,7 +43,7 @@ void BitmapImageComparison::compareBitmapDibHeaders(
 }
 
 void BitmapImageComparison::comparePixelArrayAttributes(
-  PixelArray pixelArray1, PixelArray pixelArray2)
+  Pixels::PixelArray pixelArray1, Pixels::PixelArray pixelArray2)
 {
   EXPECT_EQ(pixelArray1.getHeightInPixels(), pixelArray2.getHeightInPixels());
   EXPECT_EQ(pixelArray1.getWidthInPixels(), pixelArray2.getWidthInPixels());
@@ -52,7 +52,7 @@ void BitmapImageComparison::comparePixelArrayAttributes(
 }
 
 void BitmapImageComparison::comparePixelArrayContents(
-  PixelArray pixelArray1, PixelArray pixelArray2)
+  Pixels::PixelArray pixelArray1, Pixels::PixelArray pixelArray2)
 {
   int numberOfPixels = pixelArray1.sizeInPixels();
 
@@ -67,7 +67,7 @@ void BitmapImageComparison::comparePixelArrayContents(
 }
 
 void BitmapImageComparison::comparePixelArrays(
-  PixelArray pixelArray1, PixelArray pixelArray2)
+  Pixels::PixelArray pixelArray1, Pixels::PixelArray pixelArray2)
 {
   BitmapImageComparison::comparePixelArrayAttributes(
     pixelArray1, pixelArray2);
