@@ -101,8 +101,6 @@ void PixelArray::setPixel(Pixel pixel, int rowNo, int columnNo)
   }
 
   int index = (rowNo * this->widthInPixels) + columnNo;
-  std::cout << "Index is " + std::to_string(index) << std::endl;
-
   this->pixels[index] = pixel;
 }
 
