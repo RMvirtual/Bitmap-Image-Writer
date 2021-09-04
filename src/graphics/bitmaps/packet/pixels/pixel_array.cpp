@@ -53,7 +53,7 @@ char* PixelArray::toBytes()
 {
   ByteArrayBuilder byteArrayBuilder;
 
-    for (auto pixel : this->pixels) {
+  for (auto pixel : this->pixels) {
     char* pixelBytes = pixel.toBytes();
     byteArrayBuilder.addValues(pixelBytes, 3);
     
@@ -68,12 +68,8 @@ void PixelArray::populateMissingPixels()
   int totalExpectedPixels = this->getHeightInPixels() * this->getWidthInPixels();
   int numberOfPopulatedPixels = this->pixels.size();
   bool hasMissingPixels = (numberOfPopulatedPixels < totalExpectedPixels);
-
-  std::cout << "Total expected pixels: " << std::to_string(totalExpectedPixels) << std::endl;
   
   if (hasMissingPixels) {
-    std::cout << "Has missing pixels." << std::endl;
-
     Pixel blankPixel {0, 0, 0};
 
     while (numberOfPopulatedPixels < 240000) {
@@ -102,7 +98,6 @@ void PixelArray::setPixel(Pixel pixel, int rowNo, int columnNo)
   int index = (rowNo * this->widthInPixels) + columnNo;
   this->pixels[index] = pixel;
 }
-
 
 int PixelArray::sizeInBytes()
 {

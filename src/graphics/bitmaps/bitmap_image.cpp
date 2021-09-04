@@ -1,5 +1,7 @@
 #include <fstream>
 
+#include <iostream> // remove after debug.
+
 #include "src/graphics/bitmaps/bitmap_image.h"
 #include "src/common/byte_array.h"
 #include "src/graphics/bitmaps/reader/bitmap_reader.h"
@@ -43,8 +45,12 @@ char* BitmapImage::toBytes()
   char* pixelArrayBytes = this->pixelArray.toBytes();
   int pixelArraySize = this->pixelArray.sizeInBytes();
 
+  std::cout << "Pixel array size: " << std::to_string(pixelArraySize) << std::endl;
+
   byteArrayBuilder.addValues(fileHeaderBytes, fileHeaderSize);
   byteArrayBuilder.addValues(dibHeaderBytes, dibHeaderSize);
+
+  // Bug occurs here.
   byteArrayBuilder.addValues(pixelArrayBytes, pixelArraySize);
 
   char* allBytes = byteArrayBuilder.toBytes();
@@ -69,13 +75,14 @@ void BitmapImage::recalculateFileSize()
   this->pixelArray.populateMissingPixels();
 
   int pixelArraySize = this->pixelArray.sizeInBytes();
-  int headersSize = this->fileHeader.getPixelDataOffset();
+  int sizeOfAllHeaders = this->fileHeader.getPixelDataOffset();
 
-  this->fileHeader.setSizeOfBitmapFile(headersSize + pixelArraySize);
+  this->fileHeader.setSizeOfBitmapFile(sizeOfAllHeaders + pixelArraySize);
 }
 
 void BitmapImage::writeToFile(std::string filePath)
 {
+  // Bug lies here.
   char* bitmapImageBytes = this->toBytes();
   int bitmapImageSize = this->getSizeOfFile();
 

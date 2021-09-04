@@ -1,3 +1,4 @@
+#include <cstdint>
 #include <gtest/gtest.h>
 #include <vector>
 
@@ -66,4 +67,35 @@ TEST(BitmapPixelArrayTests, ShouldGetNumberOfPixels)
   int actualSizeInPixels = pixelArray.sizeInPixels();
 
   EXPECT_EQ(correctSizeInPixels, actualSizeInPixels);
+}
+
+TEST(BitmapPixelArrayTests, ShouldGetPixelArrayBytes)
+{
+  Pixel pixel {255, 255, 255};
+  std::vector<Pixel> pixels = {pixel, pixel, pixel, pixel};
+
+  PixelArray pixelArray {pixels, 2, 2};
+
+  char* pixelArrayBytes = pixelArray.toBytes();
+
+  for (int byteNo = 0; byteNo < pixelArray.sizeInBytes(); byteNo++) {
+    uint8_t currentByte = (uint8_t) pixelArrayBytes[byteNo];
+    uint8_t correctValue = 255;
+
+    EXPECT_EQ(currentByte, correctValue);
+  }
+}
+
+TEST(BitmapPixelArrayTests, ShouldGetPixelBytes)
+{
+  Pixel pixel {255, 255, 255};
+
+  char* bytes = pixel.toBytes();
+
+  for (int byteNo = 0; byteNo < 3; byteNo++) {
+    uint8_t currentByte = (uint8_t) *(bytes + byteNo);
+    uint8_t correctValue = 255;
+
+    EXPECT_EQ(currentByte, correctValue); 
+  }
 }
