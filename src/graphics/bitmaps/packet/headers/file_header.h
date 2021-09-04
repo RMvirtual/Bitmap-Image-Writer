@@ -6,7 +6,7 @@
 #include "src/graphics/bitmaps/packet/headers/header.h"
 
 namespace BitmapHeaders {
-class FileHeader : public BitmapHeader
+class FileHeader : public Header
 {
 public:
   FileHeader();

@@ -4,13 +4,13 @@
 #include "src/common/byte_array.h"
 
 BitmapHeaders::DibHeader::DibHeader()
-: BitmapHeader {40}
+: BitmapHeaders::Header {40}
 {
   this->initialiseDefaultValues();
 }
 
 BitmapHeaders::DibHeader::DibHeader(int widthInPixels, int heightInPixels)
-: BitmapHeader {40}
+: BitmapHeaders::Header {40}
 {
   this->initialiseDefaultValues();
 

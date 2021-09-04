@@ -5,13 +5,13 @@
 #include "src/common/byte_array.h"
 
 BitmapHeaders::FileHeader::FileHeader()
-: BitmapHeader {14}
+: BitmapHeaders::Header {14}
 {
   this->initialiseDefaultValues();
 }
 
 BitmapHeaders::FileHeader::FileHeader(int widthInPixels, int heightInPixels)
-: BitmapHeader {14}
+: BitmapHeaders::Header {14}
 {
   this->initialiseDefaultValues();
 

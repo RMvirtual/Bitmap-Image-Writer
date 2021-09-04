@@ -6,7 +6,7 @@
 #include "src/common/byte_array.h"
 
 namespace BitmapHeaders {
-class DibHeader : public BitmapHeader
+class DibHeader : public BitmapHeaders::Header
 {
 public:
   DibHeader();

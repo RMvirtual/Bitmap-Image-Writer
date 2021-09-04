@@ -1,11 +1,12 @@
 #ifndef BITMAP_HEADER_H
 #define BITMAP_HEADER_H
 
-class BitmapHeader
+namespace BitmapHeaders {
+class Header
 {
 public:
-  BitmapHeader();
-  BitmapHeader(int sizeOfHeaderInBytes);
+  Header();
+  Header(int sizeOfHeaderInBytes);
   
   virtual char* toBytes() = 0;
   int getSizeOfHeaderInBytes();
@@ -13,6 +14,6 @@ public:
 
 private:
   int sizeOfHeaderInBytes;
-};
+};}
 
 #endif

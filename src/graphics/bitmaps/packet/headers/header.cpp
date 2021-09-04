@@ -1,21 +1,21 @@
 #include "src/graphics/bitmaps/packet/headers/header.h"
 
-BitmapHeader::BitmapHeader()
+BitmapHeaders::Header::Header()
 {
   this->sizeOfHeaderInBytes = 0;
 }
 
-BitmapHeader::BitmapHeader(int sizeOfHeaderInBytes)
+BitmapHeaders::Header::Header(int sizeOfHeaderInBytes)
 {
   this->sizeOfHeaderInBytes = sizeOfHeaderInBytes;
 }
 
-int BitmapHeader::getSizeOfHeaderInBytes()
+int BitmapHeaders::Header::getSizeOfHeaderInBytes()
 {
   return this->sizeOfHeaderInBytes;
 }
 
-void BitmapHeader::setSizeOfHeaderInBytes(int size)
+void BitmapHeaders::Header::setSizeOfHeaderInBytes(int size)
 {
   this->sizeOfHeaderInBytes = size;
 }
