@@ -33,7 +33,7 @@ private:
   int rowSizeInBytes;
   int rowPadding;
 
-  void calculateRowSizeInBytes();
+  void calculateRowStride();
   char* getRowOfPixelsAsBytes(int rowNo);
   int getPixelIndexByRowAndColumn(int rowNo, int columnNo);
 };

@@ -14,7 +14,7 @@ PixelArray::PixelArray()
   this->pixels = std::vector<Pixel> {};
   this->widthInPixels = 0;
   this->heightInPixels = 0;
-  this->calculateRowSizeInBytes();
+  this->calculateRowStride();
 }
 
 PixelArray::PixelArray(
@@ -31,10 +31,10 @@ PixelArray::PixelArray(
   this->pixels = pixels;
   this->widthInPixels = widthInPixels;
   this->heightInPixels = heightInPixels;
-  this->calculateRowSizeInBytes();
+  this->calculateRowStride();
 }
 
-void PixelArray::calculateRowSizeInBytes()
+void PixelArray::calculateRowStride()
 {
   this->rowPadding = Pixels::calculateRowPadding(this->widthInPixels);
   this->rowSizeInBytes = Pixels::calculateRowSizeInBytes(this->widthInPixels);
@@ -133,13 +133,13 @@ int PixelArray::sizeInPixels()
 void PixelArray::setWidthInPixels(int width)
 {
   this->widthInPixels = width;
-  this->calculateRowSizeInBytes();
+  this->calculateRowStride();
 }
 
 void PixelArray::setHeightInPixels(int height)
 {
   this->heightInPixels = height;
-  this->calculateRowSizeInBytes();
+  this->calculateRowStride();
 }
 
 int PixelArray::getRowStride()
