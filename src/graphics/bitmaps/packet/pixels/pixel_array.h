@@ -38,10 +38,14 @@ private:
   char* getRowOfPixelsAsBytes(int rowNo);
   int getPixelIndexByRowAndColumn(int rowNo, int columnNo);
   int getRowStride();
-  void addPixelToByteArrayBuilder(
+
+  void addPixelByIndexToByteArray(
+    int rowNo, int columnNo, ByteArrayBuilder* byteArrayBuilder);
+
+  void addPixelToByteArray(
     Pixels::Pixel pixel, ByteArrayBuilder* byteArrayBuilder);
   
-  void addPaddingBytesToByteArrayBuilder(ByteArrayBuilder* byteArrayBuilder);
+  void addPaddingBytesToByteArray(ByteArrayBuilder* byteArrayBuilder);
 
 };}
 
