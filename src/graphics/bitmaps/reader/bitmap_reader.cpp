@@ -8,6 +8,7 @@
 #include "src/graphics/bitmaps/packet/headers/dib_header.h"
 #include "src/common/bytes_conversion.h"
 #include "src/common/filesystem.h"
+#include "src/graphics/bitmaps/packet/pixels/pixel_array_size_calculator.h"
 
 BitmapHeaders::FileHeader BitmapReader::getBitmapFileHeader(
   std::string filePath)
@@ -37,25 +38,28 @@ Pixels::PixelArray BitmapReader::getPixelArray(std::string filePath)
   BitmapHeaders::DibHeader dibHeader = 
     BitmapReader::getBitmapDibHeader(filePath);
 
-  int startingByteNo = fileHeader.getPixelDataOffset();
+  int pixelDataOffset = fileHeader.getPixelDataOffset();
   int arraySizeInBytes = fileHeader.getPixelArraySizeInBytes();
   int widthInPixels = dibHeader.getWidthInPixels();
   int heightInPixels = dibHeader.getHeightInPixels();
 
+  int rowSizeInBytes = Pixels::calculateRowSizeInBytes(widthInPixels);
+  int unpaddedRowSize = Pixels::calculateUnpaddedRowSize(widthInPixels);
+
+  // Issues with padding bytes will occur here for each row.
+
   std::vector<Pixels::Pixel> pixels;
 
-  int byteNo = 54;
-
-  for (byteNo = 0; byteNo < 512 * 512 * 3; byteNo += 3) {
-    uint8_t blueValue = bytes[byteNo + 54];
-    uint8_t greenValue = bytes[byteNo + 1 + 54];
-    uint8_t redValue = bytes[byteNo + 2 + 54];
+  for (int byteNo = pixelDataOffset; byteNo < arraySizeInBytes + pixelDataOffset; byteNo += 3) {
+    uint8_t blueValue = bytes[byteNo];
+    uint8_t greenValue = bytes[byteNo + 1];
+    uint8_t redValue = bytes[byteNo + 2];
 
     Pixels::Pixel pixel {redValue, greenValue, blueValue};
     pixels.push_back(pixel);
   }
 
-  return Pixels::PixelArray(pixels, 512, 512);
+  return Pixels::PixelArray(pixels, widthInPixels, heightInPixels);
 }
 
 int BitmapReader::getPixelArraySizeInBytes(std::string filePath)
