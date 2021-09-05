@@ -1,4 +1,5 @@
 #include <string>
+#include <vector>
 
 #include "src/graphics/bitmaps/packet/headers/file_header.h"
 #include "src/graphics/bitmaps/packet/headers/dib_header.h"
@@ -59,5 +60,7 @@ namespace BitmapReader
   void parseImportantColours(
     std::string bytes, BitmapHeaders::DibHeader* dibHeader);
 
-  Pixels::Pixel parsePixelFromBytes(std::string* bytes, int byteNo);
+  Pixels::Pixel parsePixelFromBytes(std::string* bytes, int startingByteNo);
+  void parsePixelFromBytesToVector(
+    std::string* bytes, std::vector<Pixels::Pixel>* pixels, int startingByteNo);
 };
