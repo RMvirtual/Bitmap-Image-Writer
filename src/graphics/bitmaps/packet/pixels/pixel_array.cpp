@@ -124,13 +124,17 @@ void Pixels::PixelArray::populateMissingPixels()
   bool hasMissingPixels = (numberOfPopulatedPixels < totalExpectedPixels);
   
   if (hasMissingPixels) {
-    Pixels::Pixel blankPixel {0, 0, 0};
-
     while (numberOfPopulatedPixels < totalExpectedPixels) {
-      this->pixels.push_back(blankPixel);
+      this->addBlankPixel();
       numberOfPopulatedPixels++;
     }
   }
+}
+
+void Pixels::PixelArray::addBlankPixel()
+{
+  Pixels::Pixel blankPixel {0, 0, 0};
+  this->pixels.push_back(blankPixel);
 }
 
 void Pixels::PixelArray::setPixel(

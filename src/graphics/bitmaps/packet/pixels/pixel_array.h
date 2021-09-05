@@ -35,6 +35,7 @@ private:
   int rowPadding;
 
   void initialisePixelArray(int widthInPixels, int heightInPixels);
+  void addBlankPixel();
   void populateMissingPixels();
   void calculateRowStride();
   char* getRowOfPixelsAsBytes(int rowNo);
