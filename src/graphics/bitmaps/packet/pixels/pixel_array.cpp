@@ -121,7 +121,7 @@ void Pixels::PixelArray::populateMissingPixels()
 {
   int totalExpectedPixels = this->getHeightInPixels() * this->getWidthInPixels();
   int numberOfPopulatedPixels = this->pixels.size();
-  bool hasMissingPixels = (numberOfPopulatedPixels < totalExpectedPixels);
+  bool hasMissingPixels = this->hasMissingPixels();
   
   if (hasMissingPixels) {
     while (numberOfPopulatedPixels < totalExpectedPixels) {
@@ -129,6 +129,15 @@ void Pixels::PixelArray::populateMissingPixels()
       numberOfPopulatedPixels++;
     }
   }
+}
+
+bool Pixels::PixelArray::hasMissingPixels()
+{
+  int totalExpectedPixels = this->getHeightInPixels() * this->getWidthInPixels();
+  int numberOfActualPixels = this->pixels.size();
+  bool hasMissingPixels = (numberOfActualPixels < totalExpectedPixels);
+
+  return hasMissingPixels;
 }
 
 void Pixels::PixelArray::addBlankPixel()

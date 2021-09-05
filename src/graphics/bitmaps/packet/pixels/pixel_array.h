@@ -35,6 +35,8 @@ private:
   int rowPadding;
 
   void initialisePixelArray(int widthInPixels, int heightInPixels);
+  
+  bool hasMissingPixels();
   void addBlankPixel();
   void populateMissingPixels();
   void calculateRowStride();
