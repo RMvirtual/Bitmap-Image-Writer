@@ -63,12 +63,17 @@ char* Pixels::PixelArray::getRowOfPixelsAsBytes(int rowNo)
 {
   ByteArrayBuilder byteArrayBuilder;
 
-  for (int columnNo = 0; columnNo < this->widthInPixels; columnNo++)
-    this->addPixelByIndexToByteArray(rowNo, columnNo, &byteArrayBuilder);
-
+  this->addRowOfPixelsToByteArray(rowNo, &byteArrayBuilder);
   this->addPaddingBytesToByteArray(&byteArrayBuilder);
 
   return byteArrayBuilder.toBytes();
+}
+
+void Pixels::PixelArray::addRowOfPixelsToByteArray(
+  int rowNo, ByteArrayBuilder* byteArrayBuilder)
+{
+  for (int columnNo = 0; columnNo < this->widthInPixels; columnNo++)
+    this->addPixelByIndexToByteArray(rowNo, columnNo, byteArrayBuilder);
 }
 
 void Pixels::PixelArray::addPixelByIndexToByteArray(

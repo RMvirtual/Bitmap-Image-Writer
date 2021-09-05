@@ -39,6 +39,9 @@ private:
   int getPixelIndexByRowAndColumn(int rowNo, int columnNo);
   int getRowStride();
 
+  void addRowOfPixelsToByteArray(
+    int rowNo, ByteArrayBuilder* byteArrayBuilder);
+
   void addPixelByIndexToByteArray(
     int rowNo, int columnNo, ByteArrayBuilder* byteArrayBuilder);
 
