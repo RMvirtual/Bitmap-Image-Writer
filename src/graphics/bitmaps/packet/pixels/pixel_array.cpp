@@ -40,15 +40,20 @@ void Pixels::PixelArray::calculateRowStride()
 char* Pixels::PixelArray::toBytes()
 {
   ByteArrayBuilder byteArrayBuilder;
-
-  for (int rowNo = 0; rowNo < this->heightInPixels; rowNo++) {
-    char* pixelRowBytes = this->getRowOfPixelsAsBytes(rowNo);
-    byteArrayBuilder.addValues(pixelRowBytes, this->rowSizeInBytes);
-
-    delete[] pixelRowBytes;
-  }
+  this->addAllPixelRowsToByteArray(&byteArrayBuilder);
 
   return byteArrayBuilder.toBytes();
+}
+
+void Pixels::PixelArray::addAllPixelRowsToByteArray(
+  ByteArrayBuilder* byteArrayBuilder)
+{
+  for (int rowNo = 0; rowNo < this->heightInPixels; rowNo++) {
+    char* pixelRowBytes = this->getRowOfPixelsAsBytes(rowNo);
+    byteArrayBuilder->addValues(pixelRowBytes, this->rowSizeInBytes);
+
+    delete[] pixelRowBytes;
+  }   
 }
 
 char* Pixels::PixelArray::getRowOfPixelsAsBytes(int rowNo)
@@ -126,7 +131,7 @@ void Pixels::PixelArray::addBlankPixels(int numberOfPixelsToAdd)
 
 int Pixels::PixelArray::getNumberOfMissingPixels()
 {
-  int totalExpectedPixels = this->getHeightInPixels() * this->getWidthInPixels();
+  int totalExpectedPixels = this->sizeInPixels();
   int numberOfActualPixels = this->pixels.size();
   
   int numberOfMissingPixels = totalExpectedPixels - numberOfActualPixels;
@@ -143,12 +148,8 @@ void Pixels::PixelArray::addBlankPixel()
 void Pixels::PixelArray::setPixel(
   Pixels::Pixel pixel, int rowNo, int columnNo)
 {
-  bool rowIndexOutOfBounds = (rowNo > this->heightInPixels || rowNo < 0);
-
-  bool columnIndexOutOfBounds = (
-    columnNo > this->widthInPixels || columnNo < 0);
-
-  bool indexOutOfBounds = (rowIndexOutOfBounds || columnIndexOutOfBounds);
+  int index = this->convertRowAndColumnToIndex(rowNo, columnNo);
+  bool indexOutOfBounds = (index < 0 || index > this->sizeInPixels());
 
   if (indexOutOfBounds) {
     throw std::runtime_error(
@@ -157,7 +158,6 @@ void Pixels::PixelArray::setPixel(
     );
   }
 
-  int index = (rowNo * this->widthInPixels) + columnNo;
   this->pixels[index] = pixel;
 }
 

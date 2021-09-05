@@ -43,7 +43,10 @@ private:
   void calculateRowStride();
   char* getRowOfPixelsAsBytes(int rowNo);
   int convertRowAndColumnToIndex(int rowNo, int columnNo);
+  bool isIndexOutOfBounds(int index);
   int getRowStride();
+
+  void addAllPixelRowsToByteArray(ByteArrayBuilder* byteArrayBuilder);
 
   void addRowOfPixelsToByteArray(
     int rowNo, ByteArrayBuilder* byteArrayBuilder);
