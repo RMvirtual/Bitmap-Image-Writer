@@ -58,9 +58,10 @@ void BitmapReader::parseRowOfBytesToVector(
   int unpaddedRowSizeInBytes = 
     Pixels::calculateUnpaddedRowSize(widthInPixels);
 
+  int sizeOfPixel = 3;
+
   for (int columnNo = 0; columnNo < widthInPixels; columnNo ++) {
-    int byteNo = rowStartingByteNo + columnNo * 3;
-    // columnNo is byte number, not pixel number.
+    int byteNo = rowStartingByteNo + columnNo * sizeOfPixel;
 
     Pixels::Pixel pixel = BitmapReader::parsePixelFromBytes(
       bytes, byteNo);
@@ -79,15 +80,6 @@ Pixels::Pixel BitmapReader::parsePixelFromBytes(
   Pixels::Pixel pixel {redValue, greenValue, blueValue};
 
   return pixel;
-}
-
-void BitmapReader::parsePixelFromBytesToVector(
-  std::string* bytes, Pixels::PixelArray* pixels, int startingByteNo)
-{
-  Pixels::Pixel pixel = BitmapReader::parsePixelFromBytes(
-    bytes, startingByteNo);
-      
-  // pixels->push_back(pixel); 
 }
 
 int BitmapReader::getPixelArraySizeInBytes(std::string filePath)

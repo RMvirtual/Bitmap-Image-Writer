@@ -69,8 +69,5 @@ namespace BitmapReader
     std::string* bytes, Pixels::PixelArray* pixels, 
     int rowNo, int rowStartingByteNo);
 
-  void parsePixelFromBytesToVector(
-    std::string* bytes, Pixels::PixelArray* pixels, int startingByteNo);
-
   Pixels::Pixel parsePixelFromBytes(std::string* bytes, int startingByteNo);
 };
