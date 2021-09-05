@@ -12,9 +12,7 @@
 Pixels::PixelArray::PixelArray()
 {
   this->pixels = std::vector<Pixels::Pixel> {};
-  this->widthInPixels = 0;
-  this->heightInPixels = 0;
-  this->calculateRowStride();
+  this->initialiseAttributes(0, 0);
 }
 
 Pixels::PixelArray::PixelArray(
@@ -29,6 +27,12 @@ Pixels::PixelArray::PixelArray(
     );
 
   this->pixels = pixels;
+  this->initialiseAttributes(widthInPixels, heightInPixels);
+}
+
+void Pixels::PixelArray::initialiseAttributes(
+  int widthInPixels, int heightInPixels)
+{
   this->widthInPixels = widthInPixels;
   this->heightInPixels = heightInPixels;
   this->populateMissingPixels();
