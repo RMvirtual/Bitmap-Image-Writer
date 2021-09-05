@@ -16,8 +16,6 @@ public:
     std::vector<Pixels::Pixel> pixels, int widthInPixels, int heightInPixels);
     
   char* toBytes();
-  int sizeInBytes();
-  int sizeInPixels();
 
   void setPixel(Pixels::Pixel pixel, int rowNumber, int columnNo);
   void setWidthInPixels(int width);
@@ -27,6 +25,8 @@ public:
   Pixels::Pixel getPixel(int index);
   int getWidthInPixels();
   int getHeightInPixels();
+  int sizeInBytes();
+  int sizeInPixels();
 
 private:
   int widthInPixels;
@@ -34,31 +34,25 @@ private:
   int rowSizeInBytes;
   int rowPadding;
 
+  void addAllPixelsToByteArray(ByteArrayBuilder* byteArrayBuilder);
+  void addRowOfPixelsToByteArray(int rowNo, ByteArrayBuilder* byteArray);
+
+  void addPixelByIndexToByteArray(
+    int rowNo, int columnNo, ByteArrayBuilder* byteArray);
+
+  void addPixelToByteArray(Pixels::Pixel pixel, ByteArrayBuilder* byteArray);
+  void addPaddingBytesToByteArray(ByteArrayBuilder* byteArray);
+  char* getRowOfPixelsAsBytes(int rowNo);
+
   void initialisePixelArray(int widthInPixels, int heightInPixels);
-  
-  int getNumberOfMissingPixels();
+  void populateMissingPixels();
   void addBlankPixels(int numberOfPixelsToAdd);
   void addBlankPixel();
-  void populateMissingPixels();
   void calculateRowStride();
-  char* getRowOfPixelsAsBytes(int rowNo);
   int convertRowAndColumnToIndex(int rowNo, int columnNo);
   bool isIndexOutOfBounds(int index);
   int getRowStride();
-
-  void addAllPixelRowsToByteArray(ByteArrayBuilder* byteArrayBuilder);
-
-  void addRowOfPixelsToByteArray(
-    int rowNo, ByteArrayBuilder* byteArrayBuilder);
-
-  void addPixelByIndexToByteArray(
-    int rowNo, int columnNo, ByteArrayBuilder* byteArrayBuilder);
-
-  void addPixelToByteArray(
-    Pixels::Pixel pixel, ByteArrayBuilder* byteArrayBuilder);
-  
-  void addPaddingBytesToByteArray(ByteArrayBuilder* byteArrayBuilder);
-
+  int getNumberOfMissingPixels();
 };}
 
 #endif
