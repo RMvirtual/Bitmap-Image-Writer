@@ -36,7 +36,7 @@ private:
 
   void initialisePixelArray(int widthInPixels, int heightInPixels);
   
-  bool hasMissingPixels();
+  int getNumberOfMissingPixels();
   void addBlankPixels(int numberOfPixelsToAdd);
   void addBlankPixel();
   void populateMissingPixels();
