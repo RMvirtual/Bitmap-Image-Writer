@@ -3,6 +3,7 @@
 
 #include <vector>
 #include "src/graphics/bitmaps/packet/pixels/pixel.h"
+#include "src/common/byte_array.h"
 
 namespace Pixels {
 class PixelArray
@@ -31,12 +32,13 @@ private:
   int rowSizeInBytes;
   int rowPadding;
 
-  void initialiseAttributes(int widthInPixels, int heightInPixels);
+  void initialisePixelArray(int widthInPixels, int heightInPixels);
   void populateMissingPixels();
   void calculateRowStride();
   char* getRowOfPixelsAsBytes(int rowNo);
   int getPixelIndexByRowAndColumn(int rowNo, int columnNo);
   int getRowStride();
+  void addPaddingBytesToByteArrayBuilder(ByteArrayBuilder* byteArrayBuilder);
 };}
 
 #endif

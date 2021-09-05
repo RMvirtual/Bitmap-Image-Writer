@@ -12,7 +12,7 @@
 Pixels::PixelArray::PixelArray()
 {
   this->pixels = std::vector<Pixels::Pixel> {};
-  this->initialiseAttributes(0, 0);
+  this->initialisePixelArray(0, 0);
 }
 
 Pixels::PixelArray::PixelArray(
@@ -27,10 +27,10 @@ Pixels::PixelArray::PixelArray(
     );
 
   this->pixels = pixels;
-  this->initialiseAttributes(widthInPixels, heightInPixels);
+  this->initialisePixelArray(widthInPixels, heightInPixels);
 }
 
-void Pixels::PixelArray::initialiseAttributes(
+void Pixels::PixelArray::initialisePixelArray(
   int widthInPixels, int heightInPixels)
 {
   this->widthInPixels = widthInPixels;
@@ -73,11 +73,16 @@ char* Pixels::PixelArray::getRowOfPixelsAsBytes(int rowNo)
     delete[] pixelBytes;
   }
 
-  for (int paddingByte = 0; paddingByte < this->rowPadding; paddingByte++) {
-    byteArrayBuilder.addValue(0);
-  }
+  this->addPaddingBytesToByteArrayBuilder(&byteArrayBuilder);
 
   return byteArrayBuilder.toBytes();
+}
+
+void Pixels::PixelArray::addPaddingBytesToByteArrayBuilder(
+  ByteArrayBuilder* byteArrayBuilder)
+{
+  for (int byteNo = 0; byteNo < this->rowPadding; byteNo++)
+    (*byteArrayBuilder).addValue(0);
 }
 
 int Pixels::PixelArray::getPixelIndexByRowAndColumn(int rowNo, int columnNo)
