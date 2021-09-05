@@ -119,16 +119,20 @@ int Pixels::PixelArray::convertRowAndColumnToIndex(int rowNo, int columnNo)
 
 void Pixels::PixelArray::populateMissingPixels()
 {
-  int totalExpectedPixels = this->getHeightInPixels() * this->getWidthInPixels();
-  int numberOfPopulatedPixels = this->pixels.size();
   bool hasMissingPixels = this->hasMissingPixels();
   
   if (hasMissingPixels) {
-    while (numberOfPopulatedPixels < totalExpectedPixels) {
-      this->addBlankPixel();
-      numberOfPopulatedPixels++;
-    }
+    int totalExpectedPixels = this->sizeInPixels();
+    int numberOfPopulatedPixels = this->pixels.size();
+
+    this->addBlankPixels(totalExpectedPixels - numberOfPopulatedPixels);
   }
+}
+
+void Pixels::PixelArray::addBlankPixels(int numberOfPixelsToAdd)
+{
+  for (int i = 0; i < numberOfPixelsToAdd; i++)
+    this->addBlankPixel();
 }
 
 bool Pixels::PixelArray::hasMissingPixels()

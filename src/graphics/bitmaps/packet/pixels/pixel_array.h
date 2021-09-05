@@ -37,6 +37,7 @@ private:
   void initialisePixelArray(int widthInPixels, int heightInPixels);
   
   bool hasMissingPixels();
+  void addBlankPixels(int numberOfPixelsToAdd);
   void addBlankPixel();
   void populateMissingPixels();
   void calculateRowStride();
