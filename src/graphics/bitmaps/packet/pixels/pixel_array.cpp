@@ -79,9 +79,7 @@ void Pixels::PixelArray::addRowOfPixelsToByteArray(
 void Pixels::PixelArray::addPixelByIndexToByteArray(
   int rowNo, int columnNo, ByteArrayBuilder* byteArrayBuilder)
 {
-  int index = this->getPixelIndexByRowAndColumn(rowNo, columnNo);
-  Pixels::Pixel pixel = this->pixels[index];
-
+  Pixels::Pixel pixel = this->getPixelByRowAndColumn(rowNo, columnNo);
   this->addPixelToByteArray(pixel, byteArrayBuilder);
 }
 
@@ -101,7 +99,16 @@ void Pixels::PixelArray::addPaddingBytesToByteArray(
     byteArrayBuilder->addValue(0);
 }
 
-int Pixels::PixelArray::getPixelIndexByRowAndColumn(int rowNo, int columnNo)
+Pixels::Pixel Pixels::PixelArray::getPixelByRowAndColumn(
+  int rowNo, int columnNo)
+{
+  int index = this->convertRowAndColumnToIndex(rowNo, columnNo);
+  Pixels::Pixel pixel = this->pixels[index];
+
+  return pixel;
+}
+
+int Pixels::PixelArray::convertRowAndColumnToIndex(int rowNo, int columnNo)
 {
   return rowNo * widthInPixels + columnNo;
 }

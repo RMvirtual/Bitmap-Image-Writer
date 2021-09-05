@@ -36,7 +36,8 @@ private:
   void populateMissingPixels();
   void calculateRowStride();
   char* getRowOfPixelsAsBytes(int rowNo);
-  int getPixelIndexByRowAndColumn(int rowNo, int columnNo);
+  Pixels::Pixel getPixelByRowAndColumn(int rowNo, int columnNo);
+  int convertRowAndColumnToIndex(int rowNo, int columnNo);
   int getRowStride();
 
   void addRowOfPixelsToByteArray(
