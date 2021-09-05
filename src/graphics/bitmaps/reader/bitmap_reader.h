@@ -35,4 +35,27 @@ namespace BitmapReader
   void parseHeightInPixels(
     std::string bytes, BitmapHeaders::DibHeader* dibHeader);
 
+  void parseNumberOfColourPlanes(
+    std::string bytes, BitmapHeaders::DibHeader* dibHeader);
+
+  void parseColourDepth(
+    std::string bytes, BitmapHeaders::DibHeader* dibHeader);
+
+  void parseCompressionMethod(
+    std::string bytes, BitmapHeaders::DibHeader* dibHeader);
+
+  void parseRawBitmapDataSize(
+    std::string bytes, BitmapHeaders::DibHeader* dibHeader);
+
+  void parseHorizontalPixelsPerMetre(
+    std::string bytes, BitmapHeaders::DibHeader* dibHeader);
+
+  void parseVerticalPixelsPerMetre(
+    std::string bytes, BitmapHeaders::DibHeader* dibHeader);
+
+  void parseColourTableEntries(
+    std::string bytes, BitmapHeaders::DibHeader* dibHeader);
+
+  void parseImportantColours(
+    std::string bytes, BitmapHeaders::DibHeader* dibHeader);
 };
