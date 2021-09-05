@@ -23,6 +23,8 @@ public:
   void setWidthInPixels(int width);
   void setHeightInPixels(int height);
 
+  Pixels::Pixel getPixel(int rowNo, int columnNo);
+  Pixels::Pixel getPixel(int index);
   int getWidthInPixels();
   int getHeightInPixels();
 
@@ -36,7 +38,6 @@ private:
   void populateMissingPixels();
   void calculateRowStride();
   char* getRowOfPixelsAsBytes(int rowNo);
-  Pixels::Pixel getPixelByRowAndColumn(int rowNo, int columnNo);
   int convertRowAndColumnToIndex(int rowNo, int columnNo);
   int getRowStride();
 
