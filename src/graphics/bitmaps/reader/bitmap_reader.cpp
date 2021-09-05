@@ -44,19 +44,21 @@ Pixels::PixelArray BitmapReader::getPixelArray(std::string filePath)
   int heightInPixels = dibHeader.getHeightInPixels();
 
   int rowSizeInBytes = Pixels::calculateRowSizeInBytes(widthInPixels);
-  int unpaddedRowSize = Pixels::calculateUnpaddedRowSize(widthInPixels);
-
-  // Issues with padding bytes will occur here for each row.
+  int unpaddedRowSizeInBytes = Pixels::calculateUnpaddedRowSize(widthInPixels);
 
   std::vector<Pixels::Pixel> pixels;
 
-  for (int byteNo = pixelDataOffset; byteNo < arraySizeInBytes + pixelDataOffset; byteNo += 3) {
-    uint8_t blueValue = bytes[byteNo];
-    uint8_t greenValue = bytes[byteNo + 1];
-    uint8_t redValue = bytes[byteNo + 2];
+  for (int rowNo = 0; rowNo < heightInPixels; rowNo++) {
+    int rowStartingByteNo = rowNo * rowSizeInBytes + pixelDataOffset;
 
-    Pixels::Pixel pixel {redValue, greenValue, blueValue};
-    pixels.push_back(pixel);
+    for (int byteNo = 0; byteNo < unpaddedRowSizeInBytes; byteNo += 3) {
+      uint8_t blueValue = bytes[rowStartingByteNo + byteNo];
+      uint8_t greenValue = bytes[rowStartingByteNo + byteNo + 1];
+      uint8_t redValue = bytes[rowStartingByteNo + byteNo + 2];
+
+      Pixels::Pixel pixel {redValue, greenValue, blueValue};
+      pixels.push_back(pixel);
+    }
   }
 
   return Pixels::PixelArray(pixels, widthInPixels, heightInPixels);

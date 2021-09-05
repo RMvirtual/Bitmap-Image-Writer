@@ -58,4 +58,6 @@ namespace BitmapReader
 
   void parseImportantColours(
     std::string bytes, BitmapHeaders::DibHeader* dibHeader);
+
+  
 };
