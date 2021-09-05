@@ -38,25 +38,33 @@ Pixels::PixelArray BitmapReader::getPixelArray(std::string filePath)
   BitmapHeaders::DibHeader dibHeader = 
     BitmapReader::getBitmapDibHeader(filePath);
 
+  Pixels::PixelArray pixelArray = BitmapReader::parseBytesToVector(
+    &bytes, fileHeader, dibHeader);
+
+  return pixelArray;
+}
+
+Pixels::PixelArray BitmapReader::parseBytesToVector(
+  std::string* bytes, BitmapHeaders::FileHeader fileHeader,
+  BitmapHeaders::DibHeader dibHeader)
+{
   int pixelDataOffset = fileHeader.getPixelDataOffset();
-  int arraySizeInBytes = fileHeader.getPixelArraySizeInBytes();
   int widthInPixels = dibHeader.getWidthInPixels();
   int heightInPixels = dibHeader.getHeightInPixels();
-
   int rowSizeInBytes = Pixels::calculateRowSizeInBytes(widthInPixels);
-  int unpaddedRowSizeInBytes = Pixels::calculateUnpaddedRowSize(widthInPixels);
 
   std::vector<Pixels::Pixel> pixels;
 
   for (int rowNo = 0; rowNo < heightInPixels; rowNo++) {
-    int rowStartingByteNo = rowNo * rowSizeInBytes + pixelDataOffset;
+    int startOfRowByteIndex = rowNo * rowSizeInBytes + pixelDataOffset;
 
     BitmapReader::parseRowOfBytesToVector(
-      &bytes, &pixels, widthInPixels, rowStartingByteNo);
+      bytes, &pixels, widthInPixels, startOfRowByteIndex);
   }
 
   return Pixels::PixelArray(pixels, widthInPixels, heightInPixels);
 }
+
 
 void BitmapReader::parseRowOfBytesToVector(
   std::string* bytes, std::vector<Pixels::Pixel>* pixels, 
