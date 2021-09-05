@@ -67,10 +67,7 @@ char* Pixels::PixelArray::getRowOfPixelsAsBytes(int rowNo)
     int index = this->getPixelIndexByRowAndColumn(rowNo, columnNo);
     Pixels::Pixel pixel = this->pixels[index];
 
-    char* pixelBytes = pixel.toBytes();
-    byteArrayBuilder.addValues(pixelBytes, 3);
-
-    delete[] pixelBytes;
+    this->addPixelToByteArrayBuilder(pixel, &byteArrayBuilder);
   }
 
   this->addPaddingBytesToByteArrayBuilder(&byteArrayBuilder);
@@ -78,11 +75,20 @@ char* Pixels::PixelArray::getRowOfPixelsAsBytes(int rowNo)
   return byteArrayBuilder.toBytes();
 }
 
+void Pixels::PixelArray::addPixelToByteArrayBuilder(
+  Pixels::Pixel pixel, ByteArrayBuilder* byteArrayBuilder)
+{
+  char* pixelBytes = pixel.toBytes();
+  byteArrayBuilder->addValues(pixelBytes, 3);
+
+  delete[] pixelBytes;
+}
+
 void Pixels::PixelArray::addPaddingBytesToByteArrayBuilder(
   ByteArrayBuilder* byteArrayBuilder)
 {
   for (int byteNo = 0; byteNo < this->rowPadding; byteNo++)
-    (*byteArrayBuilder).addValue(0);
+    byteArrayBuilder->addValue(0);
 }
 
 int Pixels::PixelArray::getPixelIndexByRowAndColumn(int rowNo, int columnNo)
