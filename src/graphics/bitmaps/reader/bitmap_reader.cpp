@@ -13,26 +13,54 @@ BitmapHeaders::FileHeader BitmapReader::getBitmapFileHeader(
   std::string filePath)
 {
   std::string bytes = Filesystem::convertFileToString(filePath);
-  BitmapHeaders::FileHeader bmpFileHeader;
-
-  bmpFileHeader.setSignatureBytes(bytes[0], bytes[1]);
-
-  uint32_t sizeOfBitmapFile
-    = BytesConversion::getFourBytesFromSubstring(bytes, 2);
+  BitmapHeaders::FileHeader fileHeader = BitmapReader::parseFileHeader(bytes);
   
-  bmpFileHeader.setSizeOfBitmapFile(sizeOfBitmapFile);
+  return fileHeader;
+}
 
+BitmapHeaders::FileHeader BitmapReader::parseFileHeader(std::string bytes)
+{
+  BitmapHeaders::FileHeader fileHeader;
+
+  BitmapReader::parseSignatureBytes(bytes, &fileHeader);
+  BitmapReader::parseSizeOfBitmapFile(bytes, &fileHeader);
+  BitmapReader::parseReservedBytes(bytes, &fileHeader);
+  BitmapReader::parsePixelDataOffset(bytes, &fileHeader);
+
+  return fileHeader;
+}
+
+void BitmapReader::parseSignatureBytes(
+  std::string bytes, BitmapHeaders::FileHeader* fileHeader)
+{
+  fileHeader->setSignatureBytes(bytes[0], bytes[1]);
+}
+
+void BitmapReader::parseSizeOfBitmapFile(
+  std::string bytes, BitmapHeaders::FileHeader* fileHeader)
+{
+  uint32_t sizeOfBitmapFile =
+    BytesConversion::getFourBytesFromSubstring(bytes, 2);
+  
+  fileHeader->setSizeOfBitmapFile(sizeOfBitmapFile);
+}
+
+void BitmapReader::parseReservedBytes(
+  std::string bytes, BitmapHeaders::FileHeader* fileHeader)
+{
   uint32_t reservedBytes
     = BytesConversion::getFourBytesFromSubstring(bytes, 6);
   
-  bmpFileHeader.setReservedBytes(reservedBytes);
+  fileHeader->setReservedBytes(reservedBytes);
+}
 
+void BitmapReader::parsePixelDataOffset(
+  std::string bytes, BitmapHeaders::FileHeader* fileHeader)
+{
   uint32_t pixelDataOffset 
     = BytesConversion::getFourBytesFromSubstring(bytes, 10);
   
-  bmpFileHeader.setPixelDataOffset(pixelDataOffset);
-
-  return bmpFileHeader;
+  fileHeader->setPixelDataOffset(pixelDataOffset);
 }
 
 BitmapHeaders::DibHeader BitmapReader::getBitmapDibHeader(
