@@ -14,7 +14,7 @@ BitmapHeaders::FileHeader BitmapReader::getBitmapFileHeader(
 {
   std::string bytes = Filesystem::convertFileToString(filePath);
   BitmapHeaders::FileHeader fileHeader = BitmapReader::parseFileHeader(bytes);
-  
+
   return fileHeader;
 }
 
@@ -67,65 +67,87 @@ BitmapHeaders::DibHeader BitmapReader::getBitmapDibHeader(
   std::string filePath)
 {
   std::string bytes = Filesystem::convertFileToString(filePath);
+  BitmapHeaders::DibHeader bmpDibHeader = BitmapReader::parseDibHeader(bytes);
 
-  BitmapHeaders::DibHeader bmpDibHeader;
+  return bmpDibHeader;
+}
 
-  uint32_t headerSize = BytesConversion::getFourBytesFromSubstring(bytes, 14);
-  bmpDibHeader.setSizeOfHeaderInBytes(headerSize);
+BitmapHeaders::DibHeader BitmapReader::parseDibHeader(std::string bytes)
+{
+  BitmapHeaders::DibHeader dibHeader;
 
-  uint32_t widthInPixels
-    = BytesConversion::getFourBytesFromSubstring(bytes, 18);
-  
-  bmpDibHeader.setWidthInPixels(widthInPixels);
-
-  int32_t heightInPixels
-    = BytesConversion::getFourBytesFromSubstring(bytes, 22);
-
-  bmpDibHeader.setHeightInPixels(heightInPixels);
+  BitmapReader::parseHeaderSize(bytes, &dibHeader);
+  BitmapReader::parseWidthInPixels(bytes, &dibHeader);
+  BitmapReader::parseHeightInPixels(bytes, &dibHeader);
 
   uint16_t numberOfColorPlanes
     = BytesConversion::getTwoBytesFromSubstring(bytes, 26);
   
-  bmpDibHeader.setNumberOfColourPlanes(numberOfColorPlanes);
+  dibHeader.setNumberOfColourPlanes(numberOfColorPlanes);
 
   uint16_t colorDepth = BytesConversion::getTwoBytesFromSubstring(bytes, 28);
-  bmpDibHeader.setColorDepth(colorDepth);
+  dibHeader.setColorDepth(colorDepth);
 
   uint32_t compressionMethod
     = BytesConversion::getFourBytesFromSubstring(bytes, 30);
   
-  bmpDibHeader.setCompressionMethod(compressionMethod);
+  dibHeader.setCompressionMethod(compressionMethod);
 
   uint32_t rawBitmapDataSize
     = BytesConversion::getFourBytesFromSubstring(bytes, 34);
   
-  bmpDibHeader.setRawBitmapDataSize(rawBitmapDataSize);
+  dibHeader.setRawBitmapDataSize(rawBitmapDataSize);
 
   /* May be issues here in the future due to conversion between
   unsigned and signed ints with only one function. */
   int32_t horizontalPixelsPerMetre
     = BytesConversion::getFourBytesFromSubstring(bytes, 38);
   
-  bmpDibHeader.setHorizontalPixelsPerMetre(horizontalPixelsPerMetre);
+  dibHeader.setHorizontalPixelsPerMetre(horizontalPixelsPerMetre);
 
   /* May be issues here in the future due to conversion between
   unsigned and signed ints with only one function. */
   int32_t verticalPixelsPerMetre
     = BytesConversion::getFourBytesFromSubstring(bytes, 42);
   
-  bmpDibHeader.setVerticalPixelsPerMetre(verticalPixelsPerMetre);
+  dibHeader.setVerticalPixelsPerMetre(verticalPixelsPerMetre);
 
   uint32_t colorTableEntries
     = BytesConversion::getFourBytesFromSubstring(bytes, 46);
   
-  bmpDibHeader.setColorTableEntries(colorTableEntries);
+  dibHeader.setColorTableEntries(colorTableEntries);
 
   uint32_t importantColors
     = BytesConversion::getFourBytesFromSubstring(bytes, 50);
   
-  bmpDibHeader.setImportantColours(importantColors);
+  dibHeader.setImportantColours(importantColors);
 
-  return bmpDibHeader;
+  return dibHeader;
+}
+
+void BitmapReader::parseHeaderSize(
+  std::string bytes, BitmapHeaders::DibHeader* dibHeader)
+{
+  uint32_t headerSize = BytesConversion::getFourBytesFromSubstring(bytes, 14);
+  dibHeader->setSizeOfHeaderInBytes(headerSize);
+}
+
+void BitmapReader::parseWidthInPixels(
+  std::string bytes, BitmapHeaders::DibHeader* dibHeader)
+{
+  uint32_t widthInPixels
+    = BytesConversion::getFourBytesFromSubstring(bytes, 18);
+  
+  dibHeader->setWidthInPixels(widthInPixels);
+}
+
+void BitmapReader::parseHeightInPixels(
+  std::string bytes, BitmapHeaders::DibHeader* dibHeader)
+{
+  int32_t heightInPixels
+    = BytesConversion::getFourBytesFromSubstring(bytes, 22);
+
+  dibHeader->setHeightInPixels(heightInPixels);
 }
 
 Pixels::PixelArray BitmapReader::getPixelArray(std::string filePath)
