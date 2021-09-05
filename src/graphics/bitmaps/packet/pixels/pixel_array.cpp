@@ -31,6 +31,7 @@ Pixels::PixelArray::PixelArray(
   this->pixels = pixels;
   this->widthInPixels = widthInPixels;
   this->heightInPixels = heightInPixels;
+  this->populateMissingPixels();
   this->calculateRowStride();
 }
 
@@ -96,7 +97,8 @@ void Pixels::PixelArray::populateMissingPixels()
   }
 }
 
-void Pixels::PixelArray::setPixel(Pixels::Pixel pixel, int rowNo, int columnNo)
+void Pixels::PixelArray::setPixel(
+  Pixels::Pixel pixel, int rowNo, int columnNo)
 {
   bool rowIndexOutOfBounds = (rowNo > this->heightInPixels || rowNo < 0);
 
@@ -107,7 +109,7 @@ void Pixels::PixelArray::setPixel(Pixels::Pixel pixel, int rowNo, int columnNo)
 
   if (indexOutOfBounds) {
     throw std::runtime_error(
-      "Pixels::PixelArray: setPixel(): Index " + std::to_string(rowNo) + ", "
+      "Pixels::PixelArray::setPixel(): Index " + std::to_string(rowNo) + ", "
       + std::to_string(columnNo) + " out of bounds."
     );
   }
@@ -134,12 +136,14 @@ void Pixels::PixelArray::setWidthInPixels(int width)
 {
   this->widthInPixels = width;
   this->calculateRowStride();
+  this->populateMissingPixels();
 }
 
 void Pixels::PixelArray::setHeightInPixels(int height)
 {
   this->heightInPixels = height;
   this->calculateRowStride();
+  this->populateMissingPixels();
 }
 
 int Pixels::PixelArray::getRowStride()

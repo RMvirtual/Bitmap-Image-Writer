@@ -71,8 +71,6 @@ void BitmapImage::recalculateFileSize()
   this->pixelArray.setWidthInPixels(widthInPixels);
   this->pixelArray.setHeightInPixels(heightInPixels);
 
-  this->pixelArray.populateMissingPixels();
-
   int pixelArraySize = this->pixelArray.sizeInBytes();
   int sizeOfAllHeaders = this->fileHeader.getPixelDataOffset();
 

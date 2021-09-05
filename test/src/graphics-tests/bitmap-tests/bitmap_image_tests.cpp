@@ -27,8 +27,3 @@ TEST(BitmapImageTests, ShouldWriteBitmap)
 
   BitmapImageComparison::compareBitmapImages(correctImage, imageToTest);
 }
-
-TEST(BitmapHeaderTests, ShouldCalculateSizeCorrectly)
-{
-  
-}

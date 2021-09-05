@@ -21,14 +21,22 @@ int Pixels::calculateRowSizeInBytes(int widthInPixels)
 
 int Pixels::calculateRowPadding(int widthInPixels)
 {
-  int padding = 0;
-  int sizeOfPixelsInBytes = 3;
-  
-  int unpaddedRowSize = widthInPixels * sizeOfPixelsInBytes;
+  int unpaddedRowSize = Pixels::calculateUnpaddedRowSize(widthInPixels);
   int differenceInAlignment = unpaddedRowSize % 4;
+
+  int padding = 0;
 
   if (differenceInAlignment)
     padding = 4 - differenceInAlignment;
 
   return padding;
+}
+
+int Pixels::calculateUnpaddedRowSize(int widthInPixels)
+{
+  int sizeOfPixelsInBytes = 3;
+  
+  int unpaddedRowSize = widthInPixels * sizeOfPixelsInBytes;
+
+  return unpaddedRowSize; 
 }
