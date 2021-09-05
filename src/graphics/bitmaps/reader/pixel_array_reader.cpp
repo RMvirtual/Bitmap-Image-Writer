@@ -1,6 +1,3 @@
-#include <filesystem>
-#include <fstream>
-#include <iostream>
 #include <string>
 
 #include "src/common/filesystem.h"
@@ -10,6 +7,10 @@
 #include "src/graphics/bitmaps/packet/pixels/pixel_array.h"
 #include "src/common/bytes_conversion.h"
 #include "src/graphics/bitmaps/packet/pixels/pixel_array_size_calculator.h"
+
+/**
+ * Could probably be refactored better.
+ */
 
 Pixels::PixelArray BitmapReader::getPixelArray(std::string filePath)
 {
@@ -94,5 +95,3 @@ int BitmapReader::getPixelArraySizeInBytes(std::string filePath)
 
   return sizeOfPixelArrayInBytes;
 }
-
-
