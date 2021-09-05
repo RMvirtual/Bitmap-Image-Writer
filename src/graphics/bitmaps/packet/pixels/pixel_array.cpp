@@ -18,14 +18,6 @@ Pixels::PixelArray::PixelArray()
 Pixels::PixelArray::PixelArray(
   std::vector<Pixels::Pixel> pixels, int widthInPixels, int heightInPixels)
 {
-  if (pixels.size() != widthInPixels * heightInPixels)
-    throw std::length_error(
-      "Number of pixels does not match given height and width. " \
-      "Number of pixels is " + std::to_string(pixels.size()) + " while " \
-      "correct size from parameters is " + std::to_string(
-        widthInPixels * heightInPixels)
-    );
-
   this->pixels = pixels;
   this->initialisePixelArray(widthInPixels, heightInPixels);
 }
