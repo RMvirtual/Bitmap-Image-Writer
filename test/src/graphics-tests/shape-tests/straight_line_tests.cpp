@@ -3,7 +3,6 @@
 
 #include "src/graphics/bitmaps/packet/pixels/pixel_array.h"
 #include "src/graphics/bitmaps/packet/pixels/pixel.h"
-#include "src/graphics/bitmaps/reader/bitmap_reader.h"
 #include "src/graphics/bitmaps/bitmap_image.h"
 #include "src/graphics/shapes/triangle.h"
 #include "src/graphics/shapes/straight_line.h"

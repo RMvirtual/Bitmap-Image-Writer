@@ -18,7 +18,9 @@ cc_library(
         "packet/pixels/pixel.cpp",
         "packet/pixels/pixel_array.cpp",
         "packet/pixels/pixel_array_size_calculator.cpp",
-        "reader/bitmap_reader.cpp"
+        "reader/file_header_reader.cpp",
+        "reader/dib_header_reader.cpp",
+        "reader/pixel_array_reader.cpp",
     ],
     deps = ["//src/common:common"],
     visibility = ["//visibility:public"],

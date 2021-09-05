@@ -8,12 +8,7 @@
 namespace BitmapReader
 {
   BitmapHeaders::FileHeader getBitmapFileHeader(std::string filePath);
-  BitmapHeaders::DibHeader getBitmapDibHeader(std::string filePath);
-  int getPixelArraySizeInBytes(std::string filePath);
-  Pixels::PixelArray getPixelArray(std::string filePath);
-
   BitmapHeaders::FileHeader parseFileHeader(std::string bytes);
-  BitmapHeaders::DibHeader parseDibHeader(std::string bytes);
 
   void parseSignatureBytes(
     std::string bytes, BitmapHeaders::FileHeader* fileHeader);
@@ -26,6 +21,9 @@ namespace BitmapReader
 
   void parsePixelDataOffset(
     std::string bytes, BitmapHeaders::FileHeader* fileHeader);
+
+  BitmapHeaders::DibHeader getBitmapDibHeader(std::string filePath);
+  BitmapHeaders::DibHeader parseDibHeader(std::string bytes);
 
   void parseHeaderSize(
     std::string bytes, BitmapHeaders::DibHeader* dibHeader);
@@ -60,17 +58,19 @@ namespace BitmapReader
   void parseImportantColours(
     std::string bytes, BitmapHeaders::DibHeader* dibHeader);
 
+  int getPixelArraySizeInBytes(std::string filePath);
+  Pixels::PixelArray getPixelArray(std::string filePath);
+
   Pixels::PixelArray parseBytesToVector(
     std::string* bytes, BitmapHeaders::FileHeader fileHeader,
     BitmapHeaders::DibHeader dibHeader);
 
   void parseRowOfBytesToVector(
-    std::string* bytes, std::vector<Pixels::Pixel>* pixels, 
-    int widthInPixels, int rowStartingByteNo);
+    std::string* bytes, Pixels::PixelArray* pixels, 
+    int rowNo, int rowStartingByteNo);
 
   void parsePixelFromBytesToVector(
-    std::string* bytes, std::vector<Pixels::Pixel>* pixels, int startingByteNo);
+    std::string* bytes, Pixels::PixelArray* pixels, int startingByteNo);
 
   Pixels::Pixel parsePixelFromBytes(std::string* bytes, int startingByteNo);
-
 };
