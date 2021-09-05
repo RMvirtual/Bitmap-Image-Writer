@@ -51,15 +51,26 @@ Pixels::PixelArray BitmapReader::getPixelArray(std::string filePath)
   for (int rowNo = 0; rowNo < heightInPixels; rowNo++) {
     int rowStartingByteNo = rowNo * rowSizeInBytes + pixelDataOffset;
 
-    for (int byteNo = 0; byteNo < unpaddedRowSizeInBytes; byteNo += 3) {
-      int offsetByteNo = rowStartingByteNo + byteNo;
-      
-      BitmapReader::parsePixelFromBytesToVector(
-        &bytes, &pixels, offsetByteNo);
-    }
+    BitmapReader::parseRowOfBytesToVector(
+      &bytes, &pixels, widthInPixels, rowStartingByteNo);
   }
 
   return Pixels::PixelArray(pixels, widthInPixels, heightInPixels);
+}
+
+void BitmapReader::parseRowOfBytesToVector(
+  std::string* bytes, std::vector<Pixels::Pixel>* pixels, 
+  int widthInPixels, int rowStartingByteNo)
+{
+  int unpaddedRowSizeInBytes = 
+    Pixels::calculateUnpaddedRowSize(widthInPixels);
+
+  for (int byteNo = 0; byteNo < unpaddedRowSizeInBytes; byteNo += 3) {
+    int offsetByteNo = rowStartingByteNo + byteNo;
+    
+    BitmapReader::parsePixelFromBytesToVector(
+      bytes, pixels, offsetByteNo);
+  }
 }
 
 void BitmapReader::parsePixelFromBytesToVector(

@@ -60,7 +60,13 @@ namespace BitmapReader
   void parseImportantColours(
     std::string bytes, BitmapHeaders::DibHeader* dibHeader);
 
-  Pixels::Pixel parsePixelFromBytes(std::string* bytes, int startingByteNo);
+  void parseRowOfBytesToVector(
+    std::string* bytes, std::vector<Pixels::Pixel>* pixels, 
+    int widthInPixels, int rowStartingByteNo);
+
   void parsePixelFromBytesToVector(
     std::string* bytes, std::vector<Pixels::Pixel>* pixels, int startingByteNo);
+
+  Pixels::Pixel parsePixelFromBytes(std::string* bytes, int startingByteNo);
+
 };
