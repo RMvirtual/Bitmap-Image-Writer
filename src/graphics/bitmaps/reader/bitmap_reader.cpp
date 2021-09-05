@@ -18,6 +18,59 @@ BitmapHeaders::FileHeader BitmapReader::getBitmapFileHeader(
   return fileHeader;
 }
 
+BitmapHeaders::DibHeader BitmapReader::getBitmapDibHeader(
+  std::string filePath)
+{
+  std::string bytes = Filesystem::convertFileToString(filePath);
+  BitmapHeaders::DibHeader dibHeader = BitmapReader::parseDibHeader(bytes);
+
+  return dibHeader;
+}
+
+Pixels::PixelArray BitmapReader::getPixelArray(std::string filePath)
+{
+  std::string bytes = Filesystem::convertFileToString(filePath);
+  
+  BitmapHeaders::FileHeader fileHeader = 
+    BitmapReader::getBitmapFileHeader(filePath);
+
+  BitmapHeaders::DibHeader dibHeader = 
+    BitmapReader::getBitmapDibHeader(filePath);
+
+  int startingByteNo = fileHeader.getPixelDataOffset();
+  int arraySizeInBytes = fileHeader.getPixelArraySizeInBytes();
+  int widthInPixels = dibHeader.getWidthInPixels();
+  int heightInPixels = dibHeader.getHeightInPixels();
+
+  std::vector<Pixels::Pixel> pixels;
+
+  int byteNo = 54;
+
+  for (byteNo = 0; byteNo < 512 * 512 * 3; byteNo += 3) {
+    uint8_t blueValue = bytes[byteNo + 54];
+    uint8_t greenValue = bytes[byteNo + 1 + 54];
+    uint8_t redValue = bytes[byteNo + 2 + 54];
+
+    Pixels::Pixel pixel {redValue, greenValue, blueValue};
+    pixels.push_back(pixel);
+  }
+
+  return Pixels::PixelArray(pixels, 512, 512);
+}
+
+int BitmapReader::getPixelArraySizeInBytes(std::string filePath)
+{
+  BitmapHeaders::FileHeader bmpFileHeader =
+    BitmapReader::getBitmapFileHeader(filePath);
+  
+  int sizeOfFile = bmpFileHeader.getSizeOfBitmapFile();
+  int pixelDataOffset = bmpFileHeader.getPixelDataOffset();
+
+  int sizeOfPixelArrayInBytes = sizeOfFile - pixelDataOffset;
+
+  return sizeOfPixelArrayInBytes;
+}
+
 BitmapHeaders::FileHeader BitmapReader::parseFileHeader(std::string bytes)
 {
   BitmapHeaders::FileHeader fileHeader;
@@ -80,15 +133,6 @@ void BitmapReader::parsePixelDataOffset(
     = BytesConversion::getFourBytesFromSubstring(bytes, 10);
   
   fileHeader->setPixelDataOffset(pixelDataOffset);
-}
-
-BitmapHeaders::DibHeader BitmapReader::getBitmapDibHeader(
-  std::string filePath)
-{
-  std::string bytes = Filesystem::convertFileToString(filePath);
-  BitmapHeaders::DibHeader bmpDibHeader = BitmapReader::parseDibHeader(bytes);
-
-  return bmpDibHeader;
 }
 
 void BitmapReader::parseHeaderSize(
@@ -190,38 +234,4 @@ void BitmapReader::parseImportantColours(
   dibHeader->setImportantColours(importantColors);
 }
 
-Pixels::PixelArray BitmapReader::getPixelArray(std::string filePath)
-{
-  std::string bytes = Filesystem::convertFileToString(filePath);
-
-  int lengthOfPixelArray = BitmapReader::getPixelArraySizeInBytes(filePath);
-  
-  std::vector<Pixels::Pixel> pixels;
-
-  int byteNo = 54;
-
-  for (byteNo = 0; byteNo < 512 * 512 * 3; byteNo += 3) {
-    uint8_t blueValue = bytes[byteNo + 54];
-    uint8_t greenValue = bytes[byteNo + 1 + 54];
-    uint8_t redValue = bytes[byteNo + 2 + 54];
-
-    Pixels::Pixel pixel {redValue, greenValue, blueValue};
-    pixels.push_back(pixel);
-  }
-
-  return Pixels::PixelArray(pixels, 512, 512);
-}
-
-int BitmapReader::getPixelArraySizeInBytes(std::string filePath)
-{
-  BitmapHeaders::FileHeader bmpFileHeader =
-    BitmapReader::getBitmapFileHeader(filePath);
-  
-  int sizeOfFile = bmpFileHeader.getSizeOfBitmapFile();
-  int pixelDataOffset = bmpFileHeader.getPixelDataOffset();
-
-  int sizeOfPixelArrayInBytes = sizeOfFile - pixelDataOffset;
-
-  return sizeOfPixelArrayInBytes;
-}
 
