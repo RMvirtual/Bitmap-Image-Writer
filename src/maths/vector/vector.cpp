@@ -66,15 +66,13 @@ std::vector<double> Maths::Vector::calculateCrossProductValues(
   Maths::Vector vector)
 {
   Maths::Vector self = *this;
-  int x = 0, y = 1, z = 2;
+  const int x = 0, y = 1, z = 2;
 
   double crossX = (self[y] * vector[z]) - (self[z] * vector[y]);
   double crossY = (self[z] * vector[x]) - (self[x] * vector[z]);
   double crossZ = (self[x] * vector[y]) - (self[y] * vector[x]);
 
-  std::vector<double> coordinates = {crossX, crossY, crossZ};
-
-  return coordinates;
+  return std::vector<double> {crossX, crossY, crossZ};
 }
 
 double Maths::Vector::angle(Maths::Vector vector)
@@ -117,7 +115,7 @@ Maths::Vector Maths::Vector::operator+(Maths::Vector rhsVector)
 {
   Addition *addition = new Addition();
 
-  Vector newVector = this->performBinaryOperationWithVector(
+  Vector newVector = this->performBinaryOperation(
     rhsVector, addition);
 
   delete addition;
@@ -129,7 +127,7 @@ Maths::Vector Maths::Vector::operator-(Maths::Vector rhsVector)
 {
   Subtraction *subtractionOp = new Subtraction();
 
-  Vector newVector = this->performBinaryOperationWithVector(
+  Vector newVector = this->performBinaryOperation(
     rhsVector, subtractionOp);
 
   delete subtractionOp;
@@ -158,24 +156,22 @@ std::vector<double> Maths::Vector::multiplyElements(Maths::Vector vector)
 
 Maths::Vector Maths::Vector::operator*(double scalar)
 {
-  Maths::Multiplication *multiplicationOp = new Maths::Multiplication();
+  Maths::Multiplication *multiplication = new Maths::Multiplication();
 
-  Maths::Vector newVector = this->performBinaryOperationWithScalar(
-    scalar, multiplicationOp);
+  Maths::Vector newVector = this->performBinaryOperation(
+    scalar, multiplication);
 
-  delete multiplicationOp;
+  delete multiplication;
 
   return newVector;
 }
 
 Maths::Vector Maths::Vector::operator/(double scalar)
 {
-  Maths::Division *divisionOp = new Maths::Division();
+  Maths::Division *division = new Maths::Division();
+  Maths::Vector newVector = this->performBinaryOperation(scalar, division);
 
-  Maths::Vector newVector = this->performBinaryOperationWithScalar(
-    scalar, divisionOp);
-
-  delete divisionOp;
+  delete division;
 
   return newVector;
 }
@@ -187,11 +183,9 @@ Maths::Vector operator*(double scalarLHS, Maths::Vector vectorRHS)
   return newVector;
 }
 
-std::ostream &operator<<(std::ostream &strm, Maths::Vector vector)
+std::ostream &operator<<(std::ostream& outstream, Maths::Vector vector)
 {
-  std::string string = vector.toString();
-
-  return strm << string;
+  return outstream << vector.toString();
 }
 
 std::string Maths::Vector::toString()
@@ -243,7 +237,7 @@ std::string Maths::Vector::getPointAsString(int pointIndex)
   return pointIndexString + ": " + pointValue;
 }
 
-Maths::Vector Maths::Vector::performBinaryOperationWithVector(
+Maths::Vector Maths::Vector::performBinaryOperation(
     Maths::Vector rhsVector, Maths::BinaryOperation *operation)
 {
   std::vector<double> newElements = {};
@@ -256,7 +250,7 @@ Maths::Vector Maths::Vector::performBinaryOperationWithVector(
   return Maths::Vector(newElements);
 }
 
-Maths::Vector Maths::Vector::performBinaryOperationWithScalar(
+Maths::Vector Maths::Vector::performBinaryOperation(
     double scalar, Maths::BinaryOperation *operation)
 {
   std::vector<double> newElements = {};
