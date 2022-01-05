@@ -4,39 +4,29 @@ int Pixels::calculatePixelArraySizeInBytes(
   int widthInPixels, int heightInPixels)
 {
   int rowSizeInBytes = Pixels::calculateRowSizeInBytes(widthInPixels);
-  int pixelArraySizeInBytes = rowSizeInBytes * heightInPixels;
-
-  return pixelArraySizeInBytes;
+  
+  return rowSizeInBytes * heightInPixels;
 }
 
 int Pixels::calculateRowSizeInBytes(int widthInPixels)
 {
-  int padding = Pixels::calculateRowPadding(widthInPixels);
-  int sizeOfPixelInBytes = 3;
+  const int padding = Pixels::calculateRowPadding(widthInPixels);
+  const int sizeOfPixelInBytes = 3;
   
-  int rowSizeInBytes = widthInPixels * sizeOfPixelInBytes + padding;
-
-  return rowSizeInBytes;
+  return widthInPixels * sizeOfPixelInBytes + padding;
 }
 
 int Pixels::calculateRowPadding(int widthInPixels)
 {
-  int unpaddedRowSize = Pixels::calculateUnpaddedRowSize(widthInPixels);
-  int differenceInAlignment = unpaddedRowSize % 4;
+  const int unpaddedRowSize = Pixels::calculateUnpaddedRowSize(widthInPixels);
+  const int differenceInAlignment = unpaddedRowSize % 4;
 
-  int padding = 0;
-
-  if (differenceInAlignment)
-    padding = 4 - differenceInAlignment;
-
-  return padding;
+  return differenceInAlignment ? 4 - differenceInAlignment : 0;
 }
 
 int Pixels::calculateUnpaddedRowSize(int widthInPixels)
 {
-  int sizeOfPixelsInBytes = 3;
+  const int sizeOfPixelsInBytes = 3;
   
-  int unpaddedRowSize = widthInPixels * sizeOfPixelsInBytes;
-
-  return unpaddedRowSize; 
+  return widthInPixels * sizeOfPixelsInBytes; 
 }

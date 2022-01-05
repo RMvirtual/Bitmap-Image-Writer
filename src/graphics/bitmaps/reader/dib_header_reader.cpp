@@ -2,13 +2,11 @@
 #include "src/common/bytes_conversion.h"
 #include "src/graphics/bitmaps/reader/bitmap_reader.h"
 
-BitmapHeaders::DibHeader BitmapReader::getBitmapDibHeader(
-  std::string filePath)
+BitmapHeaders::DibHeader BitmapReader::getBitmapDibHeader(std::string filePath)
 {
   std::string bytes = Filesystem::convertFileToString(filePath);
-  BitmapHeaders::DibHeader dibHeader = BitmapReader::parseDibHeader(bytes);
-
-  return dibHeader;
+  
+  return BitmapReader::parseDibHeader(bytes);
 }
 
 BitmapHeaders::DibHeader BitmapReader::parseDibHeader(std::string bytes)

@@ -6,9 +6,8 @@ BitmapHeaders::FileHeader BitmapReader::getBitmapFileHeader(
   std::string filePath)
 {
   std::string bytes = Filesystem::convertFileToString(filePath);
-  BitmapHeaders::FileHeader fileHeader = BitmapReader::parseFileHeader(bytes);
-
-  return fileHeader;
+  
+  return BitmapReader::parseFileHeader(bytes);
 }
 
 BitmapHeaders::FileHeader BitmapReader::parseFileHeader(std::string bytes)

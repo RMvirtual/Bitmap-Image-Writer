@@ -16,16 +16,13 @@ Pixels::PixelArray BitmapReader::getPixelArray(std::string filePath)
 {
   std::string bytes = Filesystem::convertFileToString(filePath);
   
-  BitmapHeaders::FileHeader fileHeader = 
-    BitmapReader::getBitmapFileHeader(filePath);
+  BitmapHeaders::FileHeader fileHeader = BitmapReader::getBitmapFileHeader(
+    filePath);
 
-  BitmapHeaders::DibHeader dibHeader = 
-    BitmapReader::getBitmapDibHeader(filePath);
+  BitmapHeaders::DibHeader dibHeader = BitmapReader::getBitmapDibHeader(
+    filePath);
 
-  Pixels::PixelArray pixelArray = BitmapReader::parseBytesToVector(
-    &bytes, fileHeader, dibHeader);
-
-  return pixelArray;
+  return BitmapReader::parseBytesToVector(&bytes, fileHeader, dibHeader);
 }
 
 Pixels::PixelArray BitmapReader::parseBytesToVector(
@@ -52,8 +49,8 @@ Pixels::PixelArray BitmapReader::parseBytesToVector(
 }
 
 void BitmapReader::parseRowOfBytesToVector(
-  std::string* bytes, Pixels::PixelArray* pixels, 
-  int rowNo, int rowStartingByteNo)
+  std::string* bytes, Pixels::PixelArray* pixels, int rowNo,
+  int rowStartingByteNo)
 {
   int widthInPixels = pixels->getWidthInPixels();
   int unpaddedRowSizeInBytes = 
@@ -64,9 +61,7 @@ void BitmapReader::parseRowOfBytesToVector(
   for (int columnNo = 0; columnNo < widthInPixels; columnNo ++) {
     int byteNo = rowStartingByteNo + columnNo * sizeOfPixel;
 
-    Pixels::Pixel pixel = BitmapReader::parsePixelFromBytes(
-      bytes, byteNo);
-
+    Pixels::Pixel pixel = BitmapReader::parsePixelFromBytes(bytes, byteNo);
     pixels->setPixel(pixel, rowNo, columnNo);   
   }
 }
@@ -85,13 +80,11 @@ Pixels::Pixel BitmapReader::parsePixelFromBytes(
 
 int BitmapReader::getPixelArraySizeInBytes(std::string filePath)
 {
-  BitmapHeaders::FileHeader bmpFileHeader =
-    BitmapReader::getBitmapFileHeader(filePath);
+  BitmapHeaders::FileHeader bmpFileHeader = BitmapReader::getBitmapFileHeader(
+    filePath);
   
   int sizeOfFile = bmpFileHeader.getSizeOfBitmapFile();
   int pixelDataOffset = bmpFileHeader.getPixelDataOffset();
 
-  int sizeOfPixelArrayInBytes = sizeOfFile - pixelDataOffset;
-
-  return sizeOfPixelArrayInBytes;
+  return sizeOfFile - pixelDataOffset;
 }

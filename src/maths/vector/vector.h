@@ -1,10 +1,11 @@
 #ifndef VECTOR_H
 #define VECTOR_H
 
+#include <cstdarg>
 #include <iostream>
 #include <string>
 #include <vector>
-#include <cstdarg>
+
 #include "src/maths/binary_ops/binary_ops.h"
 
 namespace Maths

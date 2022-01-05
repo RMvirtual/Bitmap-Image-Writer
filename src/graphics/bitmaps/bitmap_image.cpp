@@ -11,8 +11,7 @@ BitmapImage::BitmapImage()
 }
 
 BitmapImage::BitmapImage(
-  BitmapHeaders::FileHeader fileHeader,
-  BitmapHeaders::DibHeader dibHeader,
+  BitmapHeaders::FileHeader fileHeader, BitmapHeaders::DibHeader dibHeader,
   Pixels::PixelArray pixelArray)
 {
   this->fileHeader = fileHeader;
