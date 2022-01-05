@@ -238,7 +238,7 @@ std::string Maths::Vector::getPointAsString(int pointIndex)
 }
 
 Maths::Vector Maths::Vector::performBinaryOperation(
-    Maths::Vector rhsVector, Maths::BinaryOperation *operation)
+  Maths::Vector rhsVector, Maths::BinaryOperation* operation)
 {
   std::vector<double> newElements = {};
   int numOfElements = this->length();
@@ -251,7 +251,7 @@ Maths::Vector Maths::Vector::performBinaryOperation(
 }
 
 Maths::Vector Maths::Vector::performBinaryOperation(
-    double scalar, Maths::BinaryOperation *operation)
+  double scalar, Maths::BinaryOperation* operation)
 {
   std::vector<double> newElements = {};
   int numOfElements = this->length();

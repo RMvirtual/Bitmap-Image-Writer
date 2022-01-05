@@ -12,7 +12,6 @@ namespace Maths
   class Vector
   {
   public:
-
     // Creates an empty vector.
     Vector();
 
