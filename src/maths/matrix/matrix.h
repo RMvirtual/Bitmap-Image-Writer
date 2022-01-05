@@ -110,7 +110,7 @@ namespace Maths
         std::vector<double> vector1, std::vector<double> vector2);
 
       // Calculates the product between two vectors.
-      double getProduct(
+      double calculateProduct(
         std::vector<double> vector1, Maths::Vector vector2);
       
       // Calculates the product between two vectors.
@@ -150,14 +150,14 @@ namespace Maths
        * columns, and the inner vectors to represent columns containing
        * the actual row values.
        */
-      void setVectorAsColumnsAndRows(std::vector<std::vector<double>> vector);
+      void from2DVector(std::vector<std::vector<double>> vector);
       
       /**
        * Checks that a 2D stl vector follows the valid width and
        * height dimensions required to be processed into the matrix's
        * contents.
        */
-      bool checkVectorIsValidMatrixSize(std::vector<std::vector<double>> vector);
+      bool isVectorValidSize(std::vector<std::vector<double>> vector);
 
       /**
        * Checks whether a Maths::Vector object has the correct
@@ -173,7 +173,7 @@ namespace Maths
        */
       bool isMatrixMultipliable(Matrix matrix);
       
-      bool isColumnIndexOutOfRange(int columnIndex);
+      bool isColumnIndexInRange(int columnIndex);
 
       /**
        * Returns all the values of this matrix formatted as a string.
