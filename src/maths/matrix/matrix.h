@@ -191,7 +191,7 @@ namespace Maths
        * 
        * | 1 4 7 |
        */
-      std::string formatStlVectorAsMatrixRow(std::vector<double> vector);
+      std::string transposeToMatrixRow(std::vector<double> vector);
   };
 }
 

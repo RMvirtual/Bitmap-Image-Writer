@@ -259,9 +259,7 @@ Maths::Column Maths::Matrix::operator [] (int columnIndex)
   if (this->isColumnIndexOutOfRange(columnIndex))
     throw std::out_of_range("Column index is out of range.");
 
-  Column column = this->columns[columnIndex]; 
-  
-  return column;
+  return this->columns[columnIndex];
 }
 
 bool Maths::Matrix::isColumnIndexOutOfRange(int index)
@@ -288,7 +286,7 @@ std::string Maths::Matrix::getAllValuesAsString()
 
   for (int rowNo = 0; rowNo < noOfRows; rowNo++) {
     std::vector<double> row = rows[rowNo];
-    std::string rowOfValues = this->formatStlVectorAsMatrixRow(row);
+    std::string rowOfValues = this->transposeToMatrixRow(row);
 
     bool moreRows = (rowNo < noOfRows - 1);
     
@@ -301,8 +299,7 @@ std::string Maths::Matrix::getAllValuesAsString()
   return allValues;
 }
 
-std::string Maths::Matrix::formatStlVectorAsMatrixRow(
-  std::vector<double> vector)
+std::string Maths::Matrix::transposeToMatrixRow(std::vector<double> vector)
 {
   std::string rowOfValues = "| ";
 
@@ -313,7 +310,5 @@ std::string Maths::Matrix::formatStlVectorAsMatrixRow(
     rowOfValues += stringFormatter.str() + " ";
   }
   
-  rowOfValues += "|";
-
-  return rowOfValues;
+  return rowOfValues += "|";
 }
