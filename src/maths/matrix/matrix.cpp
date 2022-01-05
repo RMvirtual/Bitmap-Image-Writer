@@ -21,11 +21,8 @@ Maths::Matrix::Matrix(std::vector<double> column)
 
 Maths::Matrix::Matrix(std::vector<std::vector<double>> matrixColumns)
 {
-  if (this->isVectorValidSize(matrixColumns))
-    this->from2DVector(matrixColumns);
-
-  else
-    throw std::runtime_error(
+  this->isVectorValidSize(matrixColumns) ?
+    this->from2DVector(matrixColumns) : throw std::runtime_error(
       "Arithmetic error: Vector is not a congruent size to be used to " \
       "populate a matrix."
     );
