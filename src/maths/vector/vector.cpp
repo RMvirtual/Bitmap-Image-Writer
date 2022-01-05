@@ -1,9 +1,10 @@
-#include "vector.h"
-#include <vector>
-#include <iostream>
 #include <cmath>
-#include <string>
 #include <cstdarg>
+#include <iostream>
+#include <string>
+#include <vector>
+
+#include "vector.h"
 
 Maths::Vector::Vector()
 {
@@ -30,20 +31,12 @@ Maths::Vector::Vector(std::vector<double> myVector)
   this->values = myVector;
 }
 
-Maths::Vector::Vector(double array[], int noOfArrayElements)
+Maths::Vector::Vector(double array[], int arrayLength)
 {
-  this->createVectorFromArray(array, noOfArrayElements);
+  this->values = this->transformToStlVector(array, arrayLength);
 }
 
-void Maths::Vector::createVectorFromArray(double *array, int length)
-{
-  std::vector<double> vectorFromArray = this->createStlVectorFromArray(
-    array, length);
-
-  this->values = vectorFromArray;
-}
-
-std::vector<double> Maths::Vector::createStlVectorFromArray(
+std::vector<double> Maths::Vector::transformToStlVector(
   double *array, int length)
 {
   std::vector<double> newVector = {};
@@ -56,12 +49,9 @@ std::vector<double> Maths::Vector::createStlVectorFromArray(
 
 double Maths::Vector::dotProduct(Maths::Vector vector)
 {
-  int numOfElements = this->length();
-  std::vector<double> newElements = this->multiplyElements(vector);
-
   double dotProduct = 0;
 
-  for (auto element : newElements)
+  for (auto element : this->multiplyElements(vector))
     dotProduct += element;
 
   return dotProduct;
@@ -69,12 +59,7 @@ double Maths::Vector::dotProduct(Maths::Vector vector)
 
 Maths::Vector Maths::Vector::vectorProduct(Maths::Vector vector)
 {
-  std::vector<double> coordinates =
-    this->calculateCrossProductValues(vector);
-
-  Maths::Vector crossProductVector = Maths::Vector(coordinates);
-
-  return crossProductVector;
+  return Maths::Vector(this->calculateCrossProductValues(vector));
 }
 
 std::vector<double> Maths::Vector::calculateCrossProductValues(
@@ -94,14 +79,8 @@ std::vector<double> Maths::Vector::calculateCrossProductValues(
 
 double Maths::Vector::angle(Maths::Vector vector)
 {
-  double dotProduct = this->dotProduct(vector);
-  double magnitudeOf1stVector = this->magnitude();
-  double magnitudeOf2ndVector = vector.magnitude();
-
-  double angle = acos(
-    dotProduct / (magnitudeOf1stVector * magnitudeOf2ndVector));
-
-  return angle;
+  return acos(
+    this->dotProduct(vector) / (this->magnitude() * vector.magnitude()));
 }
 
 int Maths::Vector::length()
@@ -121,10 +100,7 @@ double Maths::Vector::magnitude()
 
 double Maths::Vector::squareNumberAndAddToSum(double number, double sum)
 {
-  double numberSquared = pow(number, 2);
-  sum += numberSquared;
-
-  return sum;
+  return sum += pow(number, 2);
 }
 
 double Maths::Vector::get(int index)
@@ -139,12 +115,12 @@ double Maths::Vector::operator[](int index)
 
 Maths::Vector Maths::Vector::operator+(Maths::Vector rhsVector)
 {
-  Addition *additionOp = new Addition();
+  Addition *addition = new Addition();
 
   Vector newVector = this->performBinaryOperationWithVector(
-      rhsVector, additionOp);
+    rhsVector, addition);
 
-  delete additionOp;
+  delete addition;
 
   return newVector;
 }
@@ -173,10 +149,7 @@ std::vector<double> Maths::Vector::multiplyElements(Maths::Vector vector)
   std::vector<double> newElements;
 
   for (int elementNo = 0; elementNo < numOfElements; elementNo++) {
-    double lhsElement = this->values[elementNo];
-    double rhsElement = vector[elementNo];
-
-    double multipliedResult = lhsElement * rhsElement;
+    double multipliedResult = this->values[elementNo] * vector[elementNo];
     newElements.push_back(multipliedResult);
   }
 
@@ -200,7 +173,7 @@ Maths::Vector Maths::Vector::operator/(double scalar)
   Maths::Division *divisionOp = new Maths::Division();
 
   Maths::Vector newVector = this->performBinaryOperationWithScalar(
-      scalar, divisionOp);
+    scalar, divisionOp);
 
   delete divisionOp;
 
@@ -223,10 +196,7 @@ std::ostream &operator<<(std::ostream &strm, Maths::Vector vector)
 
 std::string Maths::Vector::toString()
 {
-  std::string allPoints = this->getAllPointsAsString();
-  std::string vectorRepresentation = "[" + allPoints + "]";
-
-  return vectorRepresentation;
+  return "[" + this->getAllPointsAsString() + "]";
 }
 
 std::vector<double>::iterator Maths::Vector::begin()
@@ -251,63 +221,49 @@ std::vector<double>::const_iterator Maths::Vector::end() const
 
 std::string Maths::Vector::getAllPointsAsString()
 {
-  std::string pointsRepresentation = "";
+  std::string pointsString = "";
   int noOfPoints = this->length();
 
   for (int pointNo = 0; pointNo < noOfPoints; pointNo++) {
-    std::string point = this->getPointAsString(pointNo);
-    pointsRepresentation += point;
+    pointsString += this->getPointAsString(pointNo);
+    bool morePointsRemaining = (pointNo < noOfPoints - 1);
 
-    bool morePointsToAdd = (pointNo < noOfPoints - 1);
-
-    if (morePointsToAdd)
-      pointsRepresentation += ", ";
+    if (morePointsRemaining)
+      pointsString += ", ";
   }
 
-  return pointsRepresentation;
+  return pointsString;
 }
 
 std::string Maths::Vector::getPointAsString(int pointIndex)
 {
-  std::string pointIndexAsString = std::to_string(pointIndex);
+  std::string pointIndexString = std::to_string(pointIndex);
   std::string pointValue = std::to_string(this->get(pointIndex));
 
-  std::string pointRepresentation = pointIndexAsString + ": " + pointValue;
-
-  return pointRepresentation;
+  return pointIndexString + ": " + pointValue;
 }
 
 Maths::Vector Maths::Vector::performBinaryOperationWithVector(
     Maths::Vector rhsVector, Maths::BinaryOperation *operation)
 {
-  int numOfElements = this->length();
   std::vector<double> newElements = {};
+  int numOfElements = this->length();
 
-  for (int elementNo = 0; elementNo < numOfElements; elementNo++) {
-    double lhsElement = this->values[elementNo];
-    double rhsElement = rhsVector[elementNo];
+  for (int elementNo = 0; elementNo < numOfElements; elementNo++)
+    newElements.push_back(
+      operation->perform(this->values[elementNo], rhsVector[elementNo]));
 
-    double newElement = operation->perform(lhsElement, rhsElement);
-    newElements.push_back(newElement);
-  }
-
-  Vector newVector = Vector(newElements);
-
-  return newVector;
+  return Maths::Vector(newElements);
 }
 
 Maths::Vector Maths::Vector::performBinaryOperationWithScalar(
     double scalar, Maths::BinaryOperation *operation)
 {
-  int numOfElements = this->length();
   std::vector<double> newElements = {};
+  int numOfElements = this->length();
 
-  for (auto element : this->values) {
-    double newElement = operation->perform(element, scalar);
-    newElements.push_back(newElement);
-  }
+  for (auto element : this->values)
+    newElements.push_back(operation->perform(element, scalar));
 
-  Maths::Vector newVector = Maths::Vector(newElements);
-
-  return newVector;
+  return Maths::Vector(newElements);
 }

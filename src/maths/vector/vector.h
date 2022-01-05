@@ -134,7 +134,7 @@ namespace Maths
      * Converts the contents of an array into a standard library
      * vector.
      */
-    std::vector<double> createStlVectorFromArray(double *array, int length);
+    std::vector<double> transformToStlVector(double *array, int length);
 
     /**
      * Returns an STL vector containing the values found when

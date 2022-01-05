@@ -102,8 +102,7 @@ namespace Maths
        * Calculates the product of all row values against the values
        * found in an stl vector representing a column of values.
        */
-      std::vector<double> getProductAgainstAllRows(
-        std::vector<double> column);
+      std::vector<double> getProductAgainstAllRows(std::vector<double> column);
 
       // Calculates the product between two vectors.
       double calculateProduct(
