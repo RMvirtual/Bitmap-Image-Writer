@@ -96,16 +96,12 @@ double Maths::Vector::operator [] (int index)
 
 Maths::Vector Maths::Vector::operator + (Maths::Vector rhsVector)
 {
-  Addition addition = Addition();
-
-  return this->performBinaryOperation(rhsVector, addition);
+  return this->performBinaryOperation(rhsVector, Addition());
 }
 
 Maths::Vector Maths::Vector::operator - (Maths::Vector rhsVector)
 {
-  Subtraction subtractionOp = Subtraction();
-
-  return this->performBinaryOperation(rhsVector, subtractionOp);
+  return this->performBinaryOperation(rhsVector, Subtraction());
 }
 
 double Maths::Vector::operator * (Maths::Vector rhsVector)
@@ -126,16 +122,12 @@ std::vector<double> Maths::Vector::multiplyElements(Maths::Vector vector)
 
 Maths::Vector Maths::Vector::operator * (double scalar)
 {
-  Maths::Multiplication multiplication = Maths::Multiplication();
-
-  return this->performBinaryOperation(scalar, multiplication);
+  return this->performBinaryOperation(scalar, Maths::Multiplication());
 }
 
 Maths::Vector Maths::Vector::operator / (double scalar)
 {
-  Maths::Division division = Maths::Division();
-
-  return this->performBinaryOperation(scalar, division);
+  return this->performBinaryOperation(scalar, Maths::Division());
 }
 
 Maths::Vector operator * (double scalarLHS, Maths::Vector vectorRHS)
