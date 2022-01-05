@@ -78,15 +78,10 @@ double Maths::Vector::magnitude()
 {
   double sum = 0;
 
-  for (auto vectorElement : this->values)
-    sum = this->squareNumberAndAddToSum(vectorElement, sum);
+  for (auto value : this->values)
+    sum += pow(value, 2);
 
   return sqrt(sum);
-}
-
-double Maths::Vector::squareNumberAndAddToSum(double number, double sum)
-{
-  return sum += pow(number, 2);
 }
 
 double Maths::Vector::get(int index)
@@ -139,7 +134,7 @@ Maths::Vector Maths::Vector::operator * (double scalar)
 Maths::Vector Maths::Vector::operator / (double scalar)
 {
   Maths::Division division = Maths::Division();
-  
+
   return this->performBinaryOperation(scalar, division);
 }
 
