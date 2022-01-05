@@ -256,10 +256,9 @@ double Maths::Matrix::calculateProduct(
 
 Maths::Column Maths::Matrix::operator [] (int columnIndex)
 {
-  if (this->isColumnIndexOutOfRange(columnIndex))
-    throw std::out_of_range("Column index is out of range.");
-
-  return this->columns[columnIndex];
+  return this->isColumnIndexOutOfRange(columnIndex) ?
+    throw std::out_of_range("Column index is out of range.") : 
+    this->columns[columnIndex];
 }
 
 bool Maths::Matrix::isColumnIndexOutOfRange(int index)
