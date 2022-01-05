@@ -2,6 +2,7 @@
 #include <cmath>
 #include <cstdarg>
 #include <iostream>
+#include <numeric>
 #include <string>
 #include <vector>
 
@@ -34,28 +35,14 @@ Maths::Vector::Vector(std::vector<double> myVector)
 
 Maths::Vector::Vector(double array[], int arrayLength)
 {
-  this->values = this->transformToStlVector(array, arrayLength);
-}
-
-std::vector<double> Maths::Vector::transformToStlVector(
-  double *array, int length)
-{
-  std::vector<double> newVector = {};
-
-  for (int i = 0; i < length; i++)
-    newVector.push_back(array[i]);
-
-  return newVector;
+  this->values = {array, array + arrayLength};
 }
 
 double Maths::Vector::dotProduct(Maths::Vector vector)
 {
-  double dotProduct = 0;
-
-  for (auto element : this->multiplyElements(vector))
-    dotProduct += element;
-
-  return dotProduct;
+  std::vector<double> multiples = this->multiplyElements(vector);
+  
+  return std::accumulate(multiples.begin(), multiples.end(), 0.0);
 }
 
 Maths::Vector Maths::Vector::vectorProduct(Maths::Vector vector)

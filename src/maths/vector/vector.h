@@ -129,12 +129,6 @@ namespace Maths
     void createVectorFromArray(double *array, int length);
 
     /**
-     * Converts the contents of an array into a standard library
-     * vector.
-     */
-    std::vector<double> transformToStlVector(double *array, int length);
-
-    /**
      * Returns an STL vector containing the values found when
      * performing the cross product of this vector with another
      * vector. Only works for vectors of length 3.
@@ -142,7 +136,7 @@ namespace Maths
     std::vector<double> calculateCrossProductValues(Vector vector);
 
     // Squares a number and adds it to a sum value.
-    double squareNumberAndAddToSum(double number, double sum);
+    static double squareNumberAndAddToSum(double number, double sum);
 
     // Returns a string representation of a point.
     std::string getPointAsString(int pointIndex);
