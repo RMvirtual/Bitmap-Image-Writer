@@ -28,9 +28,9 @@ Maths::Vector::Vector(double a, double b, double c, double d)
   this->values = {a, b, c, d};
 }
 
-Maths::Vector::Vector(std::vector<double> myVector)
+Maths::Vector::Vector(std::vector<double> values)
 {
-  this->values = myVector;
+  this->values = values;
 }
 
 Maths::Vector::Vector(double array[], int arrayLength)
@@ -130,14 +130,11 @@ double Maths::Vector::operator*(Maths::Vector rhsVector)
 
 std::vector<double> Maths::Vector::multiplyElements(Maths::Vector vector)
 {
-  int numOfElements = this->length();
-
   std::vector<double> newElements;
-
-  for (int elementNo = 0; elementNo < numOfElements; elementNo++) {
-    double multipliedResult = this->values[elementNo] * vector[elementNo];
-    newElements.push_back(multipliedResult);
-  }
+  int numOfElements = this->length();
+  
+  for (int elementNo = 0; elementNo < numOfElements; elementNo++)
+    newElements.push_back(this->values[elementNo] * vector[elementNo]);
 
   return newElements;
 }
@@ -166,9 +163,7 @@ Maths::Vector Maths::Vector::operator/(double scalar)
 
 Maths::Vector operator*(double scalarLHS, Maths::Vector vectorRHS)
 {
-  Maths::Vector newVector = vectorRHS * scalarLHS;
-
-  return newVector;
+  return vectorRHS * scalarLHS;
 }
 
 std::ostream &operator<<(std::ostream& outstream, Maths::Vector vector)
