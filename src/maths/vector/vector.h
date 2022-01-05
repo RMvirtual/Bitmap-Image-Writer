@@ -107,13 +107,13 @@ namespace Maths
      * against another vector.
      */
     Vector performBinaryOperation(
-        Vector vector, Maths::BinaryOperation *operation);
+      Vector vector, Maths::BinaryOperation &operation);
 
     /**
      * Takes a binary operation and performs it with this vector
      * against a scalar quantity.
      */
-    Vector performBinaryOperation(double scalar, BinaryOperation *operation);
+    Vector performBinaryOperation(double scalar, BinaryOperation &operation);
 
     /**
      * Multiplies the elements of two vectors together and returns
@@ -154,12 +154,12 @@ namespace Maths
  * Overloaded * operator that allows multiplication between a scalar
  * double on the LHS and a vector on the RHS.
  */
-Maths::Vector operator*(double scalarLhs, Maths::Vector vectorRhs);
+Maths::Vector operator * (double scalarLhs, Maths::Vector vectorRhs);
 
 /**
  * Allows the vector to be printed to cout directly as an object with
  * toString() needing to be called.
  */
-std::ostream &operator<<(std::ostream &_stream, Maths::Vector vector);
+std::ostream &operator << (std::ostream &_stream, Maths::Vector vector);
 
 #endif
