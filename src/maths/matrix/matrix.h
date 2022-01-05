@@ -95,33 +95,33 @@ namespace Maths
        * the columns and rows of a new matrix object resulting from
        * the multiplication of two other matrices.
        */
-      std::vector<std::vector<double>> getValuesFromMatrixMultiplication(
+      std::vector<std::vector<double>> getValuesFromMultiplication(
         Matrix matrix);
 
       /**
        * Calculates the product of all row values against the values
        * found in an stl vector representing a column of values.
        */
-      std::vector<double> getProductAgainstAllRowsWithColumn(
+      std::vector<double> getProductAgainstAllRows(
         std::vector<double> column);
 
       // Calculates the product between two vectors.
-      double getProductBetweenTwoVectors(
+      double calculateProduct(
         std::vector<double> vector1, std::vector<double> vector2);
 
       // Calculates the product between two vectors.
-      double getProductBetweenTwoVectors(
+      double getProduct(
         std::vector<double> vector1, Maths::Vector vector2);
       
       // Calculates the product between two vectors.
-      double getProductBetweenTwoVectors(
+      double calculateProduct(
         Maths::Vector vector1, std::vector<double> vector2);
 
       /**
        * Calculates the product between two items found at the same
        * index in two different vectors.
        */
-      double getProductBetweenTwoVectorsAtSameIndex(
+      double calculateProduct(
         std::vector<double> vector1, std::vector<double> vector2,
         int commonIndex
       );
@@ -130,7 +130,7 @@ namespace Maths
        * Calculates the product between two items found at the same
        * index in two different vectors.
        */
-      double getProductBetweenTwoVectorsAtSameIndex(
+      double calculateProduct(
         std::vector<double> vector1, Maths::Vector vector2,
         int commonIndex
       );
@@ -139,7 +139,7 @@ namespace Maths
        * Calculates the product between two items found at the same
        * index in two different vectors.
        */
-      double getProductBetweenTwoVectorsAtSameIndex(
+      double calculateProduct(
         Maths::Vector vector1, std::vector<double> vector2,
         int commonIndex
       );
@@ -173,6 +173,8 @@ namespace Maths
        */
       bool isMatrixMultipliable(Matrix matrix);
       
+      bool isColumnIndexOutOfRange(int columnIndex);
+
       /**
        * Returns all the values of this matrix formatted as a string.
        * Follows the format:

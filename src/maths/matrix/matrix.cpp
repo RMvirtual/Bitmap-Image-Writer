@@ -48,21 +48,15 @@ int Maths::Matrix::width()
 
 int Maths::Matrix::height()
 {
-  int height = 0;
   bool matrixIsNotEmpty = (!this->columns.empty());
 
-  if (matrixIsNotEmpty)
-    height = this->columns.front().size();
-
-  return height;
+  return matrixIsNotEmpty ? this->columns.front().size() : 0;
 }
 
 bool Maths::Matrix::checkVectorIsValidMatrixSize(
   std::vector<std::vector<double>> vector)
 {
-  bool contentsEmpty = vector.empty();
-
-  if (contentsEmpty)
+  if (vector.empty())
     return false;
   
   int sizeToCheck = vector.front().size();
@@ -83,9 +77,7 @@ bool Maths::Matrix::isVectorMultipliable(Maths::Vector vector)
   int vectorHeight = vector.length();
   int matrixWidth = this->width();
 
-  bool isVectorCongruentSize = (vectorHeight == matrixWidth);
-
-  return isVectorCongruentSize;
+  return (vectorHeight == matrixWidth);
 }
 
 bool Maths::Matrix::isMatrixMultipliable(Maths::Matrix otherMatrix)
@@ -93,9 +85,7 @@ bool Maths::Matrix::isMatrixMultipliable(Maths::Matrix otherMatrix)
   int lhsMatrixWidth = this->width();
   int rhsMatrixHeight = otherMatrix.height();
 
-  bool isMatrixCongruentSize = (lhsMatrixWidth == rhsMatrixHeight);
-
-  return isMatrixCongruentSize;
+  return (lhsMatrixWidth == rhsMatrixHeight);
 }
 
 std::vector<double> Maths::Matrix::getColumn(int index)
@@ -123,10 +113,8 @@ std::vector<std::vector<double>> Maths::Matrix::getColumns()
 {
   std::vector<std::vector<double>> columns = {};
 
-  for (int i = 0; i < this->width(); i++) {
-    std::vector<double> column = this->getColumn(i);
-    columns.push_back(column);
-  }
+  for (int columnNo = 0; columnNo < this->width(); columnNo++)
+    columns.push_back(this->getColumn(columnNo));
 
   return columns;
 }
@@ -135,48 +123,35 @@ std::vector<std::vector<double>> Maths::Matrix::getRows()
 {
   std::vector<std::vector<double>> rows = {};
 
-  for (int i = 0; i < this->height(); i++) {
-    std::vector<double> row = this->getRow(i);
-    rows.push_back(row);
-  }
+  for (int rowNo = 0; rowNo < this->height(); rowNo++)
+    rows.push_back(this->getRow(rowNo));
 
   return rows;
 }
 
 Maths::Vector Maths::Matrix::operator * (Maths::Vector vector)
 {
-  bool vectorIsIncongruentSize = 
-    !this->isVectorMultipliable(vector);
-
-  if (vectorIsIncongruentSize)
+  if (!this->isVectorMultipliable(vector))
     throw std::length_error(
       "Arithmetic error: Vector is incongruent size to the " \
       "to the Matrix it is being multiplied against."
     );
   
-  Maths::Vector newVector = this->multiplyVector(vector);
-
-  return newVector;
+  return this->multiplyVector(vector);
 }
 
 Maths::Vector Maths::Matrix::multiplyVector(Maths::Vector vector)
-{
-  std::vector<double> newVectorValues
-    = this->getMultipliedVectorValues(vector);
-  
-  Maths::Vector newVector = Maths::Vector(newVectorValues);
-
-  return newVector;
+{ 
+  return Maths::Vector(this->getMultipliedVectorValues(vector));
 }
 
 std::vector<double> Maths::Matrix::getMultipliedVectorValues(
   Maths::Vector vector)
 {
   std::vector<double> newVectorValues = {};
-  std::vector<std::vector<double>> rows = this->getRows();
 
-  for (auto row : rows) {
-    double newValue = this->getProductBetweenTwoVectors(row, vector);
+  for (auto row : this->getRows()) {
+    double newValue = this->getProduct(row, vector);
     newVectorValues.push_back(newValue);
   }
 
@@ -185,72 +160,52 @@ std::vector<double> Maths::Matrix::getMultipliedVectorValues(
 
 Maths::Matrix Maths::Matrix::operator * (Maths::Matrix matrixRhs)
 {
-  bool matrixIsIncongruentSize = !this->isMatrixMultipliable(matrixRhs);
-
-  if (matrixIsIncongruentSize)
+  if (!this->isMatrixMultipliable(matrixRhs))
     throw std::length_error(
       "Arithmetic error: Matrix has incongruent dimensions to the " \
       "to the Matrix it is being multiplied against."
     );
   
-  Matrix newMatrix = multiplyMatrix(matrixRhs);
-
-  return newMatrix;
+  return multiplyMatrix(matrixRhs);
 }
 
 Maths::Matrix Maths::Matrix::multiplyMatrix(Maths::Matrix matrixToMultiply)
 {
-  std::vector<std::vector<double>> newMatrixValues = 
-    this->getValuesFromMatrixMultiplication(matrixToMultiply);
-  
-  Maths::Matrix newMatrix = Maths::Matrix(newMatrixValues);
-
-  return newMatrix;
+  return Maths::Matrix(
+    this->getValuesFromMultiplication(matrixToMultiply));
 }
 
-std::vector<std::vector<double>>
-Maths::Matrix::getValuesFromMatrixMultiplication(
-  Maths::Matrix matrixToMultiply)
+std::vector<std::vector<double>> 
+Maths::Matrix::getValuesFromMultiplication(
+Maths::Matrix matrixToMultiply)
 {
   std::vector<std::vector<double>> newMatrixValues = {};
   
-  std::vector<std::vector<double>> otherMatrixColumns =
-    matrixToMultiply.getColumns();
-
-  for (auto otherMatrixColumn : otherMatrixColumns) {
-    std::vector<double> newColumn =
-      this->getProductAgainstAllRowsWithColumn(otherMatrixColumn);
-
-    newMatrixValues.push_back(newColumn);
-  }
+  for (auto column : matrixToMultiply.getColumns())
+    newMatrixValues.push_back(this->getProductAgainstAllRows(column));
 
   return newMatrixValues;
 }
 
-std::vector<double> Maths::Matrix::getProductAgainstAllRowsWithColumn(
+std::vector<double> Maths::Matrix::getProductAgainstAllRows(
   std::vector<double> column)
 {
   std::vector<double> newColumn = {};
-  std::vector<std::vector<double>> matrixRows = this->getRows();
 
-  for (auto row : matrixRows) {
-    double newColumnValue = this->getProductBetweenTwoVectors(
-      row, column);
-
-    newColumn.push_back(newColumnValue);
-  }
+  for (auto row : this->getRows())
+    newColumn.push_back(this->calculateProduct(row, column));
 
   return newColumn; 
 }
 
-double Maths::Matrix::getProductBetweenTwoVectors(
+double Maths::Matrix::calculateProduct(
   std::vector<double> vector1, std::vector<double> vector2)
 {
   double totalProduct = 0;
   int noOfValues = vector1.size();
 
   for (int commonIndex = 0; commonIndex < noOfValues; commonIndex++) {
-    double product = this->getProductBetweenTwoVectorsAtSameIndex(
+    double product = this->calculateProduct(
       vector1, vector2, commonIndex);
     
     totalProduct += product;
@@ -259,14 +214,14 @@ double Maths::Matrix::getProductBetweenTwoVectors(
   return totalProduct;
 }
 
-double Maths::Matrix::getProductBetweenTwoVectors(
+double Maths::Matrix::getProduct(
   std::vector<double> vector1, Maths::Vector vector2)
 {
   double totalProduct = 0;
   int noOfValues = vector1.size();
 
   for (int commonIndex = 0; commonIndex < noOfValues; commonIndex++) {
-    double product = this->getProductBetweenTwoVectorsAtSameIndex(
+    double product = this->calculateProduct(
       vector1, vector2, commonIndex);
     
     totalProduct += product;
@@ -275,52 +230,43 @@ double Maths::Matrix::getProductBetweenTwoVectors(
   return totalProduct;
 }
 
-double Maths::Matrix::getProductBetweenTwoVectors(
+double Maths::Matrix::calculateProduct(
   Maths::Vector vector1, std::vector<double> vector2)
 {
-  return this->getProductBetweenTwoVectors(vector2, vector1);
+  return this->getProduct(vector2, vector1);
 }
 
-double Maths::Matrix::getProductBetweenTwoVectorsAtSameIndex(
+double Maths::Matrix::calculateProduct(
   std::vector<double> vector1, std::vector<double> vector2, int commonIndex)
 {
-  double value1 = vector1[commonIndex];
-  double value2 = vector2[commonIndex];
-
-  double product = value1 * value2;
-
-  return product;
+  return vector1[commonIndex] * vector2[commonIndex];
 }
 
-double Maths::Matrix::getProductBetweenTwoVectorsAtSameIndex(
+double Maths::Matrix::calculateProduct(
   std::vector<double> vector1, Maths::Vector vector2, int commonIndex)
 {
-  double value1 = vector1[commonIndex];
-  double value2 = vector2[commonIndex];
-
-  double product = value1 * value2;
-
-  return product;
+  return vector1[commonIndex] * vector2[commonIndex];
 }
 
-double Maths::Matrix::getProductBetweenTwoVectorsAtSameIndex(
+double Maths::Matrix::calculateProduct(
   Maths::Vector vector1, std::vector<double> vector2, int commonIndex)
 {
-  return this->getProductBetweenTwoVectorsAtSameIndex(
-    vector2, vector1, commonIndex);
+  return this->calculateProduct(vector2, vector1, commonIndex);
 }
 
 Maths::Column Maths::Matrix::operator [] (int columnIndex)
 {
-  int indexRange = this->width() - 1;
-  bool outOfRange = (columnIndex < 0 || columnIndex > indexRange);
-  
-  if (outOfRange)
+  if (this->isColumnIndexOutOfRange(columnIndex))
     throw std::out_of_range("Column index is out of range.");
 
   Column column = this->columns[columnIndex]; 
   
   return column;
+}
+
+bool Maths::Matrix::isColumnIndexOutOfRange(int index)
+{
+  return (index < 0 || index > this->width() - 1);
 }
 
 Maths::Vector operator * (Maths::Vector vectorLhs, Maths::Matrix matrixRhs)
@@ -330,9 +276,7 @@ Maths::Vector operator * (Maths::Vector vectorLhs, Maths::Matrix matrixRhs)
 
 std::string Maths::Matrix::toString()
 {
-  std::string allValues = this->getAllValuesAsString();
-
-  return allValues;
+  return this->getAllValuesAsString();
 }
 
 std::string Maths::Matrix::getAllValuesAsString()
