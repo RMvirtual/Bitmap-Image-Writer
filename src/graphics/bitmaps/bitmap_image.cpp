@@ -7,7 +7,7 @@
 
 BitmapImage::BitmapImage()
 {
-  // Pass.
+  // Pass
 }
 
 BitmapImage BitmapImage::fromHeaders(BitmapImageHeaders headers)
@@ -116,9 +116,9 @@ Pixels::PixelArray BitmapImage::getPixelArray()
   return this->pixelArray;
 }
 
-void BitmapImage::setPixel(int row, int column, Pixels::Pixel pixel)
+void BitmapImage::setPixel(Pixels::PixelData pixelData)
 {
-  this->pixelArray.setPixel(pixel, row, column);
+  this->pixelArray.setPixel(pixelData);
 }
 
 void BitmapImage::setWidthInPixels(int32_t widthInPixels)

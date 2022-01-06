@@ -24,11 +24,19 @@ void isRedPixel(Pixels::Pixel pixel)
 TEST(BitmapPixelArrayTests, ShouldSetPixel)
 {
   Pixels::Pixel redPixel = {255, 0, 0};
-  std::vector<Pixels::Pixel> redPixels = {redPixel, redPixel, redPixel, redPixel};
+  std::vector<Pixels::Pixel> redPixels = {
+    redPixel, redPixel, redPixel, redPixel};
+
   Pixels::PixelArray pixelArray {redPixels, 2, 2};
 
-  Pixels::Pixel greenPixel = {0, 255, 0};
-  pixelArray.setPixel(greenPixel, 1, 1);
+  Pixels::PixelData greenPixelData;
+  greenPixelData.red = 0;
+  greenPixelData.green = 255;
+  greenPixelData.blue = 0;
+  greenPixelData.rowNo = 1;
+  greenPixelData.columnNo = 1;
+  
+  pixelArray.setPixel(greenPixelData);
 
   for (int pixelNo = 0; pixelNo < 3; pixelNo++) {
     Pixels::Pixel pixel = pixelArray.pixels[pixelNo];

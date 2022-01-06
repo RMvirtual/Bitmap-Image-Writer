@@ -16,7 +16,7 @@ namespace ImageRendering
     BitmapImage toBitmap();
     void fill(uint8_t red, uint8_t green, uint8_t blue);
     
-    void setPixel(int row, int column, Pixels::Pixel pixel);
+    void setPixel(Pixels::PixelData pixelData);
     void setWidth(int widthInPixels);
     void setHeight(int heightInPixels);
     int getFileSize();

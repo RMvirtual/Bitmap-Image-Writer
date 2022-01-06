@@ -4,6 +4,7 @@
 #include "src/graphics/bitmaps/packet/headers/file_header.h"
 #include "src/graphics/bitmaps/packet/headers/dib_header.h"
 #include "src/graphics/bitmaps/packet/pixels/pixel_array.h"
+#include "src/graphics/bitmaps/packet/pixels/pixel_data.h"
 #include "src/graphics/bitmaps/packet/pixels/pixel.h"
 
 ImageRendering::ImageRenderer::ImageRenderer()
@@ -20,24 +21,30 @@ void ImageRendering::ImageRenderer::fill(
   uint8_t red, uint8_t green, uint8_t blue)
 {
   std::vector<Pixels::Pixel> pixels;
-  Pixels::Pixel pixel {red, green, blue};
 
   int widthInPixels = this->bitmapImage.getWidthInPixels();
   int heightInPixels = this->bitmapImage.getHeightInPixels();
 
   int totalPixels = this->bitmapImage.getNumberOfPixels();
 
+  Pixels::PixelData pixelData;
+  pixelData.red = red;
+  pixelData.green = green;
+  pixelData.blue = blue;
+
   for (int rowNo = 0; rowNo < heightInPixels; rowNo++) {
     for (int columnNo = 0; columnNo < widthInPixels; columnNo++) {
-      this->setPixel(rowNo, columnNo, pixel);
+      pixelData.rowNo = rowNo;
+      pixelData.columnNo = columnNo;
+      
+      this->setPixel(pixelData);
     }
   }
 }
 
-void ImageRendering::ImageRenderer::setPixel(
-  int row, int column, Pixels::Pixel pixel)
+void ImageRendering::ImageRenderer::setPixel(Pixels::PixelData pixelData)
 {
-  this->bitmapImage.setPixel(row, column, pixel);
+  this->bitmapImage.setPixel(pixelData);
 }
 
 void ImageRendering::ImageRenderer::setWidth(int widthInPixels)

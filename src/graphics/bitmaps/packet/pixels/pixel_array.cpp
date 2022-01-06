@@ -117,25 +117,25 @@ void Pixels::PixelArray::addBlankPixel()
   this->pixels.push_back(blankPixel);
 }
 
-int Pixels::PixelArray::convertRowAndColumnToIndex(int rowNo, int columnNo)
+int Pixels::PixelArray::convertToIndex(int rowNo, int columnNo)
 {
   return rowNo * widthInPixels + columnNo;
 }
 
-void Pixels::PixelArray::setPixel(
-  Pixels::Pixel pixel, int rowNo, int columnNo)
+void Pixels::PixelArray::setPixel(Pixels::PixelData pixelData)
 {
-  int index = this->convertRowAndColumnToIndex(rowNo, columnNo);
+  int index = this->convertToIndex(pixelData.rowNo, pixelData.columnNo);
   bool indexOutOfBounds = (index < 0 || index > this->sizeInPixels());
 
   if (indexOutOfBounds) {
     throw std::runtime_error(
-      "Pixels::PixelArray::setPixel(): Index " + std::to_string(rowNo) + ", "
-      + std::to_string(columnNo) + " out of bounds."
+      "Pixels::PixelArray::setPixel(): Index "
+      + std::to_string(pixelData.rowNo) + ", "
+      + std::to_string(pixelData.columnNo) + " out of bounds."
     );
   }
 
-  this->pixels[index] = pixel;
+  this->pixels[index] = {pixelData.red, pixelData.green, pixelData.blue};
 }
 
 void Pixels::PixelArray::setWidthInPixels(int width)
@@ -150,7 +150,7 @@ void Pixels::PixelArray::setHeightInPixels(int height)
 
 Pixels::Pixel Pixels::PixelArray::getPixel(int rowNo, int columnNo)
 {
-  int index = this->convertRowAndColumnToIndex(rowNo, columnNo);
+  int index = this->convertToIndex(rowNo, columnNo);
   
   return this->pixels[index];
 }

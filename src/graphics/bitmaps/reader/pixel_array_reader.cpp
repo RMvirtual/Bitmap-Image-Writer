@@ -5,13 +5,13 @@
 #include "src/graphics/bitmaps/packet/headers/file_header.h"
 #include "src/graphics/bitmaps/packet/headers/dib_header.h"
 #include "src/graphics/bitmaps/packet/pixels/pixel_array.h"
+#include "src/graphics/bitmaps/packet/pixels/pixel_data.h"
 #include "src/common/bytes_conversion.h"
 #include "src/graphics/bitmaps/packet/pixels/pixel_array_size_calculator.h"
 
 /**
  * Could probably be refactored better.
  */
-
 Pixels::PixelArray BitmapReader::getPixelArray(std::string filePath)
 {
   std::string bytes = Filesystem::convertFileToString(filePath);
@@ -41,39 +41,45 @@ Pixels::PixelArray BitmapReader::parseBytesToVector(
   for (int rowNo = 0; rowNo < heightInPixels; rowNo++) {
     int startOfRowByteIndex = rowNo * rowSizeInBytes + pixelDataOffset;
 
-    BitmapReader::parseRowOfBytesToVector(
+    BitmapReader::parsePixelFromBytes(
       bytes, &pixels, rowNo, startOfRowByteIndex);
   }
 
   return pixels;
 }
 
-void BitmapReader::parseRowOfBytesToVector(
+void BitmapReader::parsePixelFromBytes(
   std::string* bytes, Pixels::PixelArray* pixels, int rowNo,
   int rowStartingByteNo)
 {
   int widthInPixels = pixels->getWidthInPixels();
-  int unpaddedRowSizeInBytes = 
-    Pixels::calculateUnpaddedRowSize(widthInPixels);
+  int unpaddedRowSizeInBytes = Pixels::calculateUnpaddedRowSize(widthInPixels);
 
-  int sizeOfPixel = 3;
+  const int sizeOfPixel = 3;
 
   for (int columnNo = 0; columnNo < widthInPixels; columnNo ++) {
     int byteNo = rowStartingByteNo + columnNo * sizeOfPixel;
 
-    Pixels::Pixel pixel = BitmapReader::parsePixelFromBytes(bytes, byteNo);
-    pixels->setPixel(pixel, rowNo, columnNo);   
+    Pixels::PixelData pixelData = BitmapReader::parsePixelDataFromBytes(
+      bytes, byteNo);
+
+    pixelData.columnNo = columnNo;
+    pixelData.rowNo = rowNo;
+
+    pixels->setPixel(pixelData);
   }
 }
 
-Pixels::Pixel BitmapReader::parsePixelFromBytes(
+Pixels::PixelData BitmapReader::parsePixelDataFromBytes(
   std::string* bytes, int startingByteNo)
 {
-  uint8_t blueValue = (*bytes)[startingByteNo];
-  uint8_t greenValue = (*bytes)[startingByteNo + 1];
-  uint8_t redValue = (*bytes)[startingByteNo + 2];
+  Pixels::PixelData pixelData;
 
-  return Pixels::Pixel {redValue, greenValue, blueValue};
+  pixelData.blue = (*bytes)[startingByteNo];
+  pixelData.green = (*bytes)[startingByteNo + 1];
+  pixelData.red = (*bytes)[startingByteNo + 2];
+
+  return pixelData;
 }
 
 int BitmapReader::getPixelArraySizeInBytes(std::string filePath)

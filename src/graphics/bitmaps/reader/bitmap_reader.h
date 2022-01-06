@@ -5,6 +5,7 @@
 #include "src/graphics/bitmaps/packet/headers/file_header.h"
 #include "src/graphics/bitmaps/packet/headers/dib_header.h"
 #include "src/graphics/bitmaps/packet/pixels/pixel_array.h"
+#include "src/graphics/bitmaps/packet/pixels/pixel_data.h"
 
 namespace BitmapReader
 {
@@ -68,9 +69,10 @@ namespace BitmapReader
     std::string* bytes, BitmapHeaders::FileHeader fileHeader,
     BitmapHeaders::DibHeader dibHeader);
 
-  void parseRowOfBytesToVector(
+  void parsePixelFromBytes(
     std::string* bytes, Pixels::PixelArray* pixels, 
     int rowNo, int rowStartingByteNo);
 
-  Pixels::Pixel parsePixelFromBytes(std::string* bytes, int startingByteNo);
+  Pixels::PixelData parsePixelDataFromBytes(
+    std::string* bytes, int startingByteNo);
 };

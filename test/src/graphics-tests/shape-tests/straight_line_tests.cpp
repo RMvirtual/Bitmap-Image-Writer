@@ -10,10 +10,8 @@
 #include "src/graphics/image-rendering/image_renderer.h"
 
 TEST(StraightLineTests, ShouldDrawLine)
-{
-  
+{  
   BitmapImage bitmapImage = BitmapSetUp::setUpBlueBitmapImage();
-  Pixels::Pixel blackPixel {0, 0, 0};
 
   Maths::Vector vertex1 {50, 100};
   Maths::Vector vertex2 {50, -100};
@@ -34,8 +32,16 @@ TEST(StraightLineTests, ShouldDrawLine)
 
   double x = 0, y = 0;
 
+  Pixels::PixelData blackPixelData;
+  blackPixelData.red = 0;
+  blackPixelData.green = 0;
+  blackPixelData.blue = 0;
+
   while (x < straightLine.endPoint[0]) {
-    pixelArray.setPixel(blackPixel, x, y);
+    blackPixelData.columnNo = x;
+    blackPixelData.rowNo = y;
+    
+    pixelArray.setPixel(blackPixelData);
 
     x++; y++;
   }

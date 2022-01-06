@@ -5,6 +5,7 @@
 #include "src/graphics/bitmaps/packet/headers/file_header.h"
 #include "src/graphics/bitmaps/packet/headers/dib_header.h"
 #include "src/graphics/bitmaps/packet/pixels/pixel_array.h"
+#include "src/graphics/bitmaps/packet/pixels/pixel_data.h"
 
 class BitmapImage
 {
@@ -29,7 +30,7 @@ public:
   void setSizeOfFile(uint32_t sizeOfBitmapFile);
   void setWidthInPixels(int32_t widthInPixels);
   void setHeightInPixels(int32_t heightInPixels);
-  void setPixel(int row, int column, Pixels::Pixel pixel);
+  void setPixel(Pixels::PixelData pixelData);
 
   BitmapHeaders::FileHeader getFileHeader();
   BitmapHeaders::DibHeader getDibHeader();

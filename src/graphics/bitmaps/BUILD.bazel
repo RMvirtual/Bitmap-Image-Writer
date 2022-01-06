@@ -6,6 +6,7 @@ cc_library(
         "packet/headers/file_header.h",
         "packet/headers/dib_header.h",
         "packet/headers/bitmap_image_headers.h",
+        "packet/pixels/pixel_data.h",
         "packet/pixels/pixel.h",
         "packet/pixels/pixel_array.h",
         "packet/pixels/pixel_array_size_calculator.h",
