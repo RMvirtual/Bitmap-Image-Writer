@@ -22,21 +22,9 @@ BitmapImage BitmapImage::fromHeaders(BitmapImageHeaders headers)
 
 BitmapImage BitmapImage::fromFile(std::string filePath)
 {
-  BitmapHeaders::FileHeader fileHeader = BitmapReader::getBitmapFileHeader(
-    filePath);
+  BitmapImageHeaders headers = BitmapReader::getBitmapImageHeaders(filePath);
   
-  BitmapHeaders::DibHeader dibHeader = BitmapReader::getBitmapDibHeader(
-    filePath);
-  
-  Pixels::PixelArray pixelArray = BitmapReader::getPixelArray(filePath);
-
-  BitmapImageHeaders bitmapHeaders;
-  
-  bitmapHeaders.fileHeader = fileHeader;
-  bitmapHeaders.dibHeader = dibHeader;
-  bitmapHeaders.pixelArray = pixelArray;
-
-  return BitmapImage::fromHeaders(bitmapHeaders);
+  return BitmapImage::fromHeaders(headers);
 }
 
 char* BitmapImage::toBytes()

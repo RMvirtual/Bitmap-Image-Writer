@@ -1,12 +1,15 @@
 #include <string>
 #include <vector>
 
+#include "src/graphics/bitmaps/packet/headers/bitmap_image_headers.h"
 #include "src/graphics/bitmaps/packet/headers/file_header.h"
 #include "src/graphics/bitmaps/packet/headers/dib_header.h"
 #include "src/graphics/bitmaps/packet/pixels/pixel_array.h"
 
 namespace BitmapReader
 {
+  BitmapImageHeaders getBitmapImageHeaders(std::string filePath);
+
   BitmapHeaders::FileHeader getBitmapFileHeader(std::string filePath);
   BitmapHeaders::FileHeader parseFileHeader(std::string bytes);
 
