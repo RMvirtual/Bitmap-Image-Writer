@@ -8,7 +8,7 @@
 
 ImageRendering::ImageRenderer::ImageRenderer()
 {
-  this->bitmapImage;
+  this->bitmapImage = {};
 }
 
 BitmapImage ImageRendering::ImageRenderer::toBitmap()

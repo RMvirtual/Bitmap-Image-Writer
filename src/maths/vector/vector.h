@@ -107,14 +107,15 @@ namespace Maths
      * Takes a binary operation and performs it with this vector
      * against another vector.
      */
-    Vector performBinaryOperation(
-      Vector vector, Maths::BinaryOperation &operation);
+    template<class BinaryOperation>
+    Vector performBinaryOperation(Vector vector);
 
     /**
      * Takes a binary operation and performs it with this vector
      * against a scalar quantity.
      */
-    Vector performBinaryOperation(double scalar, BinaryOperation &operation);
+    template<class BinaryOperation>
+    Vector performBinaryOperation(double scalar);
 
     /**
      * Multiplies the elements of two vectors together and returns

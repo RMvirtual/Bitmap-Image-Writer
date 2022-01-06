@@ -3,7 +3,7 @@
 int Pixels::calculatePixelArraySizeInBytes(
   int widthInPixels, int heightInPixels)
 {
-  int rowSizeInBytes = Pixels::calculateRowSizeInBytes(widthInPixels);
+  const int rowSizeInBytes = Pixels::calculateRowSizeInBytes(widthInPixels);
   
   return rowSizeInBytes * heightInPixels;
 }
@@ -28,5 +28,5 @@ int Pixels::calculateUnpaddedRowSize(int widthInPixels)
 {
   const int sizeOfPixelsInBytes = 3;
   
-  return widthInPixels * sizeOfPixelsInBytes; 
+  return widthInPixels * sizeOfPixelsInBytes;
 }

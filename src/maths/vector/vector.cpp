@@ -96,12 +96,12 @@ double Maths::Vector::operator [] (int index)
 
 Maths::Vector Maths::Vector::operator + (Maths::Vector rhsVector)
 {
-  return this->performBinaryOperation(rhsVector, Addition());
+  return this->performBinaryOperation<Addition>(rhsVector);
 }
 
 Maths::Vector Maths::Vector::operator - (Maths::Vector rhsVector)
 {
-  return this->performBinaryOperation(rhsVector, Subtraction());
+  return this->performBinaryOperation<Subtraction>(rhsVector);
 }
 
 double Maths::Vector::operator * (Maths::Vector rhsVector)
@@ -122,12 +122,12 @@ std::vector<double> Maths::Vector::multiplyElements(Maths::Vector vector)
 
 Maths::Vector Maths::Vector::operator * (double scalar)
 {
-  return this->performBinaryOperation(scalar, Maths::Multiplication());
+  return this->performBinaryOperation<Multiplication>(scalar);
 }
 
 Maths::Vector Maths::Vector::operator / (double scalar)
 {
-  return this->performBinaryOperation(scalar, Maths::Division());
+  return this->performBinaryOperation<Division>(scalar);
 }
 
 Maths::Vector operator * (double scalarLHS, Maths::Vector vectorRHS)
@@ -140,12 +140,14 @@ std::ostream &operator << (std::ostream& outstream, Maths::Vector vector)
   return outstream << vector.toString();
 }
 
-Maths::Vector Maths::Vector::performBinaryOperation(
-  Maths::Vector rhsVector, Maths::BinaryOperation& operation)
+
+template<class BinaryOperation>
+Maths::Vector Maths::Vector::performBinaryOperation(Maths::Vector rhsVector)
 {
   std::vector<double> newElements = {};
   int numOfElements = this->length();
-
+  BinaryOperation operation = {};
+  
   for (int elementNo = 0; elementNo < numOfElements; elementNo++)
     newElements.push_back(
       operation.perform(this->values[elementNo], rhsVector[elementNo]));
@@ -153,11 +155,12 @@ Maths::Vector Maths::Vector::performBinaryOperation(
   return Maths::Vector(newElements);
 }
 
-Maths::Vector Maths::Vector::performBinaryOperation(
-  double scalar, Maths::BinaryOperation& operation)
+template<class BinaryOperation>
+Maths::Vector Maths::Vector::performBinaryOperation(double scalar)
 {
   std::vector<double> newElements = {};
   int numOfElements = this->length();
+  BinaryOperation operation = {};
 
   for (auto element : this->values)
     newElements.push_back(operation.perform(element, scalar));
