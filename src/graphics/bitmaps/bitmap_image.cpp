@@ -1,37 +1,42 @@
 #include <fstream>
 
-#include "src/graphics/bitmaps/bitmap_image.h"
 #include "src/common/byte_array.h"
-#include "src/graphics/bitmaps/reader/bitmap_reader.h"
 #include "src/common/filesystem.h"
+#include "src/graphics/bitmaps/bitmap_image.h"
+#include "src/graphics/bitmaps/reader/bitmap_reader.h"
 
 BitmapImage::BitmapImage()
 {
   // Pass.
 }
 
-BitmapImage::BitmapImage(
-  BitmapHeaders::FileHeader fileHeader, BitmapHeaders::DibHeader dibHeader,
-  Pixels::PixelArray pixelArray)
+BitmapImage BitmapImage::fromHeaders(BitmapImageHeaders headers)
 {
-  this->fileHeader = fileHeader;
-  this->dibHeader = dibHeader;
-  this->pixelArray = pixelArray;
+  BitmapImage image;
+  image.fileHeader = headers.fileHeader;
+  image.dibHeader = headers.dibHeader;
+  image.pixelArray = headers.pixelArray;
+
+  return image;
 }
 
 BitmapImage BitmapImage::fromFile(std::string filePath)
 {
-  BitmapHeaders::FileHeader fileHeader = 
-    BitmapReader::getBitmapFileHeader(filePath);
+  BitmapHeaders::FileHeader fileHeader = BitmapReader::getBitmapFileHeader(
+    filePath);
   
-  BitmapHeaders::DibHeader dibHeader = 
-    BitmapReader::getBitmapDibHeader(filePath);
+  BitmapHeaders::DibHeader dibHeader = BitmapReader::getBitmapDibHeader(
+    filePath);
   
   Pixels::PixelArray pixelArray = BitmapReader::getPixelArray(filePath);
 
-  BitmapImage newBitmapImage {fileHeader, dibHeader, pixelArray};
+  BitmapImageHeaders bitmapHeaders;
+  
+  bitmapHeaders.fileHeader = fileHeader;
+  bitmapHeaders.dibHeader = dibHeader;
+  bitmapHeaders.pixelArray = pixelArray;
 
-  return newBitmapImage;
+  return BitmapImage::fromHeaders(bitmapHeaders);
 }
 
 char* BitmapImage::toBytes()

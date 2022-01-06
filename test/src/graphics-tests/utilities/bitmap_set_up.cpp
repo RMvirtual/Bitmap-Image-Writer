@@ -47,13 +47,12 @@ Pixels::PixelArray BitmapSetUp::setUpBluePixelArray()
 
 BitmapImage BitmapSetUp::setUpBlueBitmapImage()
 {
-  BitmapHeaders::FileHeader fileHeader = setUpBluePixelFileHeader();
-  BitmapHeaders::DibHeader dibHeader = setUpBluePixelDibHeader();
-  Pixels::PixelArray pixelArray = setUpBluePixelArray();
+  BitmapImageHeaders headers;
+  headers.fileHeader = setUpBluePixelFileHeader();
+  headers.dibHeader = setUpBluePixelDibHeader();
+  headers.pixelArray = setUpBluePixelArray();
 
-  BitmapImage bitmapImage{fileHeader, dibHeader, pixelArray};
-
-  return bitmapImage;
+  return BitmapImage::fromHeaders(headers);
 }
 
 std::string BitmapSetUp::getBlueImagePath()

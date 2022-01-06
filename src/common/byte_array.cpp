@@ -15,10 +15,8 @@ void ByteArrayBuilder::addValue(char value)
 
 void ByteArrayBuilder::addValues(char* values, int numberOfBytes)
 {
-  for (int i = 0; i < numberOfBytes; i++) {
-    char value = values[i];
-    this->addValue(value);
-  }
+  for (int byteNo = 0; byteNo < numberOfBytes; byteNo++)
+    this->addValue(values[byteNo]);
 }
 
 void ByteArrayBuilder::addValue(uint8_t value)

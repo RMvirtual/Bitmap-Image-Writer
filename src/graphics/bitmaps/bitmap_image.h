@@ -5,17 +5,19 @@
 #include "src/graphics/bitmaps/packet/headers/dib_header.h"
 #include "src/graphics/bitmaps/packet/pixels/pixel_array.h"
 
+struct BitmapImageHeaders
+{
+  BitmapHeaders::FileHeader fileHeader;
+  BitmapHeaders::DibHeader dibHeader;
+  Pixels::PixelArray pixelArray;
+};
+
 class BitmapImage
 {
 public:
   BitmapImage();
-  
-  BitmapImage(
-    BitmapHeaders::FileHeader fileHeader,
-    BitmapHeaders::DibHeader dibHeader,
-    Pixels::PixelArray pixelArray
-  );
 
+  static BitmapImage fromHeaders(BitmapImageHeaders headers);
   static BitmapImage fromFile(std::string filePath);
 
   char* toBytes();

@@ -41,7 +41,7 @@ int Maths::Matrix::width()
 
 int Maths::Matrix::height()
 {
-  return this->columns.empty() ? 0 : this->columns.front().size();
+  return this->columns.size() ? this->columns.front().size() : 0;
 }
 
 bool Maths::Matrix::isVectorValidSize(std::vector<std::vector<double>> vector)

@@ -1,5 +1,6 @@
 #include <iostream>
 #include <vector>
+
 #include "src/maths/matrix/column.h"
 
 Maths::Column::Column(std::vector<double> vector)
@@ -15,9 +16,7 @@ double Maths::Column::operator [] (int rowIndex)
   if (outOfRange)
     throw std::out_of_range("Row index is out of range.");
 
-  double value = (*this).values[rowIndex];
-
-  return value;
+  return (*this).values[rowIndex];
 }
 
 int Maths::Column::size()
