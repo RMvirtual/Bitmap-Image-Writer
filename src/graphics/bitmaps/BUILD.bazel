@@ -25,7 +25,10 @@ cc_library(
         "reader/dib_header_reader.cpp",
         "reader/pixel_array_reader.cpp",
     ],
-    deps = ["//src/common:common"],
+    deps = [
+        "//src/common:common",
+        "//src/graphics/colours:colours"
+    ],
     visibility = ["//visibility:public"],
     copts = ["/std:c++17"]
 )

@@ -113,7 +113,8 @@ void Pixels::PixelArray::addBlankPixels(int numberOfPixelsToAdd)
 
 void Pixels::PixelArray::addBlankPixel()
 {
-  Pixels::Pixel blankPixel {0, 0, 0};
+  Colours blackColours = {0, 0, 0};
+  Pixels::Pixel blankPixel {blackColours};
   this->pixels.push_back(blankPixel);
 }
 
@@ -135,7 +136,7 @@ void Pixels::PixelArray::setPixel(Pixels::PixelData pixelData)
     );
   }
 
-  this->pixels[index] = {pixelData.red, pixelData.green, pixelData.blue};
+  this->pixels[index] = {pixelData.colours};
 }
 
 void Pixels::PixelArray::setWidthInPixels(int width)

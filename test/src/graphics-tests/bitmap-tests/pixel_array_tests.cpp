@@ -23,16 +23,24 @@ void isRedPixel(Pixels::Pixel pixel)
 
 TEST(BitmapPixelArrayTests, ShouldSetPixel)
 {
-  Pixels::Pixel redPixel = {255, 0, 0};
+  Colours redColours;
+  redColours.red = 255;
+  redColours.green = 0;
+  redColours.blue = 0;
+
+  Pixels::Pixel redPixel = {redColours};
   std::vector<Pixels::Pixel> redPixels = {
     redPixel, redPixel, redPixel, redPixel};
 
   Pixels::PixelArray pixelArray {redPixels, 2, 2};
 
+  Colours greenColours;
+  greenColours.red = 0;
+  greenColours.green = 255;
+  greenColours.blue = 0;
+
   Pixels::PixelData greenPixelData;
-  greenPixelData.red = 0;
-  greenPixelData.green = 255;
-  greenPixelData.blue = 0;
+  greenPixelData.colours = greenColours;  
   greenPixelData.rowNo = 1;
   greenPixelData.columnNo = 1;
   
@@ -46,7 +54,6 @@ TEST(BitmapPixelArrayTests, ShouldSetPixel)
   Pixels::Pixel modifiedPixel = pixelArray.pixels[3];
   isGreenPixel(modifiedPixel);
 }
-
 
 TEST(BitmapPixelArrayTests, ShouldGetPixelSizeInBytes)
 {
@@ -80,7 +87,12 @@ TEST(BitmapPixelArrayTests, ShouldGetNumberOfPixels)
 
 TEST(BitmapPixelArrayTests, ShouldGetPixelArrayBytes)
 {
-  Pixels::Pixel pixel {255, 200, 150};
+  Colours colours;
+  colours.red = 255;
+  colours.green = 200;
+  colours.blue = 150;
+
+  Pixels::Pixel pixel {colours};
   std::vector<Pixels::Pixel> pixels = {pixel, pixel, pixel, pixel};
 
   Pixels::PixelArray pixelArray {pixels, 2, 2};
@@ -118,7 +130,12 @@ TEST(BitmapPixelTests, ShouldCalculatePixelArrayRowSizeInBytes)
 
 TEST(BitmapPixelArrayTests, ShouldGetPixelBytes)
 {
-  Pixels::Pixel pixel {255, 255, 255};
+  Colours colours;
+  colours.red = 255;
+  colours.green = 255;
+  colours.blue = 255;
+
+  Pixels::Pixel pixel {colours};
 
   char* bytes = pixel.toBytes();
 

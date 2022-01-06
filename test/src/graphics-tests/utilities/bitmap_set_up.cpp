@@ -3,6 +3,7 @@
 #include "src/graphics/bitmaps/bitmap_image.h"
 #include "test/src/graphics-tests/utilities/bitmap_image_comparators.h"
 #include "test/src/graphics-tests/utilities/bitmap_set_up.h"
+#include "src/graphics/colours/colours.h"
 
 BitmapHeaders::FileHeader BitmapSetUp::setUpBluePixelFileHeader()
 {
@@ -31,7 +32,13 @@ BitmapHeaders::DibHeader BitmapSetUp::setUpBluePixelDibHeader()
 Pixels::PixelArray BitmapSetUp::setUpBluePixelArray()
 {
   std::vector<Pixels::Pixel> pixels;
-  Pixels::Pixel bluePixel{100, 255, 255};
+
+  Colours blueColours;
+  blueColours.red = 100;
+  blueColours.green = 255;
+  blueColours.blue = 255;
+
+  Pixels::Pixel bluePixel {blueColours};
 
   int imageWidth = 512, imageHeight = 512;
   int totalPixels = imageWidth * imageHeight;

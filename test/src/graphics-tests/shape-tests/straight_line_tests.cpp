@@ -32,16 +32,19 @@ TEST(StraightLineTests, ShouldDrawLine)
 
   double x = 0, y = 0;
 
-  Pixels::PixelData blackPixelData;
-  blackPixelData.red = 0;
-  blackPixelData.green = 0;
-  blackPixelData.blue = 0;
+  Colours colours;
+  colours.red = 0;
+  colours.green = 0;
+  colours.blue = 0;
+
+  Pixels::PixelData pixelData;
+  pixelData.colours = colours;
 
   while (x < straightLine.endPoint[0]) {
-    blackPixelData.columnNo = x;
-    blackPixelData.rowNo = y;
+    pixelData.columnNo = x;
+    pixelData.rowNo = y;
     
-    pixelArray.setPixel(blackPixelData);
+    pixelArray.setPixel(pixelData);
 
     x++; y++;
   }

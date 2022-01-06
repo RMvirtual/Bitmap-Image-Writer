@@ -3,13 +3,13 @@
 
 #include <cstdint>
 
+#include "src/graphics/colours/colours.h"
+
 namespace Pixels
 {
   struct PixelData
   {
-    uint8_t red;
-    uint8_t green;
-    uint8_t blue;
+    Colours colours;
     int rowNo;
     int columnNo;
   };

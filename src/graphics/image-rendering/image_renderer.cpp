@@ -1,5 +1,6 @@
 #include <cstdint>
 
+#include "src/graphics/colours/colours.h"
 #include "src/graphics/image-rendering/image_renderer.h"
 #include "src/graphics/bitmaps/packet/headers/file_header.h"
 #include "src/graphics/bitmaps/packet/headers/dib_header.h"
@@ -17,8 +18,7 @@ BitmapImage ImageRendering::ImageRenderer::toBitmap()
   return this->bitmapImage;
 }
 
-void ImageRendering::ImageRenderer::fill(
-  uint8_t red, uint8_t green, uint8_t blue)
+void ImageRendering::ImageRenderer::fill(Colours colours)
 {
   std::vector<Pixels::Pixel> pixels;
 
@@ -28,9 +28,7 @@ void ImageRendering::ImageRenderer::fill(
   int totalPixels = this->bitmapImage.getNumberOfPixels();
 
   Pixels::PixelData pixelData;
-  pixelData.red = red;
-  pixelData.green = green;
-  pixelData.blue = blue;
+  pixelData.colours = colours;
 
   for (int rowNo = 0; rowNo < heightInPixels; rowNo++) {
     for (int columnNo = 0; columnNo < widthInPixels; columnNo++) {

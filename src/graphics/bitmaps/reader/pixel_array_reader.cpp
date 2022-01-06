@@ -60,9 +60,11 @@ void BitmapReader::parsePixelFromBytes(
   for (int columnNo = 0; columnNo < widthInPixels; columnNo ++) {
     int byteNo = rowStartingByteNo + columnNo * sizeOfPixel;
 
-    Pixels::PixelData pixelData = BitmapReader::parsePixelDataFromBytes(
-      bytes, byteNo);
+    Pixels::PixelData pixelData;
 
+    pixelData.colours = BitmapReader::parsePixelColoursFromBytes(
+      bytes, byteNo);
+      
     pixelData.columnNo = columnNo;
     pixelData.rowNo = rowNo;
 
@@ -70,16 +72,16 @@ void BitmapReader::parsePixelFromBytes(
   }
 }
 
-Pixels::PixelData BitmapReader::parsePixelDataFromBytes(
+Colours BitmapReader::parsePixelColoursFromBytes(
   std::string* bytes, int startingByteNo)
 {
-  Pixels::PixelData pixelData;
+  Colours colours;
 
-  pixelData.blue = (*bytes)[startingByteNo];
-  pixelData.green = (*bytes)[startingByteNo + 1];
-  pixelData.red = (*bytes)[startingByteNo + 2];
+  colours.blue = (*bytes)[startingByteNo];
+  colours.green = (*bytes)[startingByteNo + 1];
+  colours.red = (*bytes)[startingByteNo + 2];
 
-  return pixelData;
+  return colours;
 }
 
 int BitmapReader::getPixelArraySizeInBytes(std::string filePath)

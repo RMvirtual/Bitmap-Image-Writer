@@ -1,25 +1,28 @@
-#include "src/graphics/bitmaps/packet/pixels/pixel.h"
-#include "src/common/byte_array.h"
 #include <stdexcept>
 
-Pixels::Pixel::Pixel(uint8_t red, uint8_t green, uint8_t blue)
+#include "src/common/byte_array.h"
+#include "src/graphics/colours/colours.h"
+#include "src/graphics/bitmaps/packet/pixels/pixel.h"
+
+Pixels::Pixel::Pixel(Colours colours)
 {
-  this->red = red;
-  this->green = green;
-  this->blue = blue;
+  this->colours = colours;
 }
 
 char* Pixels::Pixel::toBytes()
 {
   ByteArrayBuilder byteArrayBuilder;
 
-  byteArrayBuilder.addValue(this->blue);
-  byteArrayBuilder.addValue(this->green);
-  byteArrayBuilder.addValue(this->red);
+  byteArrayBuilder.addValue(this->colours.blue);
+  byteArrayBuilder.addValue(this->colours.green);
+  byteArrayBuilder.addValue(this->colours.red);
 
-  char* byteArray = byteArrayBuilder.toBytes();
+  return byteArrayBuilder.toBytes();
+}
 
-  return byteArray;
+void Pixels::Pixel::setColours(Colours colours)
+{
+  this->colours = colours;
 }
 
 void Pixels::Pixel::setRed(uint8_t value)
@@ -27,7 +30,7 @@ void Pixels::Pixel::setRed(uint8_t value)
   bool isWithinRange = (value >= 0 && value <= 255);
 
   if (isWithinRange)
-    this->red = value;
+    this->colours.red = value;
 
   else
     throw std::invalid_argument("Must be between 0 and 255.");
@@ -35,25 +38,30 @@ void Pixels::Pixel::setRed(uint8_t value)
 
 void Pixels::Pixel::setGreen(uint8_t value)
 {
-  this->green = value;
+  this->colours.green = value;
 }
 
 void Pixels::Pixel::setBlue(uint8_t value)
 {
-  this->blue = value;
+  this->colours.blue = value;
+}
+
+Colours Pixels::Pixel::getColours()
+{
+  return this->colours;
 }
 
 uint8_t Pixels::Pixel::getRed()
 {
-  return this->red;
+  return this->colours.red;
 }
 
 uint8_t Pixels::Pixel::getGreen()
 {
-  return this->green;
+  return this->colours.green;
 }
 
 uint8_t Pixels::Pixel::getBlue()
 {
-  return this->blue;
+  return this->colours.blue;
 }

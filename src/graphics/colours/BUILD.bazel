@@ -1,0 +1,7 @@
+cc_library(
+    name = "colours",
+    hdrs = ["colours.h"],
+    srcs = [],
+    deps = [],
+    visibility = ["//visibility:public"],
+)

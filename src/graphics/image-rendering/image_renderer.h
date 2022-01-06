@@ -5,6 +5,7 @@
 
 #include "src/graphics/bitmaps/bitmap_image.h"
 #include "src/graphics/bitmaps/packet/pixels/pixel.h"
+#include "src/graphics/colours/colours.h"
 
 namespace ImageRendering
 {
@@ -14,7 +15,7 @@ namespace ImageRendering
     ImageRenderer();
     
     BitmapImage toBitmap();
-    void fill(uint8_t red, uint8_t green, uint8_t blue);
+    void fill(Colours colours);
     
     void setPixel(Pixels::PixelData pixelData);
     void setWidth(int widthInPixels);

@@ -9,7 +9,12 @@ TEST(ImageRendererTests, ShouldFillImageRed)
   imageRenderer.setWidth(512);
   imageRenderer.setHeight(512);
   
-  imageRenderer.fill(255, 0, 0);
+  Colours colours;
+  colours.red = 255;
+  colours.green = 0;
+  colours.blue = 0;
+
+  imageRenderer.fill(colours);
   
   BitmapImage bmpImage = imageRenderer.toBitmap();
 
