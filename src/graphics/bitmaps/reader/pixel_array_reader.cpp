@@ -73,9 +73,7 @@ Pixels::Pixel BitmapReader::parsePixelFromBytes(
   uint8_t greenValue = (*bytes)[startingByteNo + 1];
   uint8_t redValue = (*bytes)[startingByteNo + 2];
 
-  Pixels::Pixel pixel {redValue, greenValue, blueValue};
-
-  return pixel;
+  return Pixels::Pixel {redValue, greenValue, blueValue};
 }
 
 int BitmapReader::getPixelArraySizeInBytes(std::string filePath)

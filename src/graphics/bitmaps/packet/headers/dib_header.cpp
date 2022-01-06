@@ -35,9 +35,8 @@ void BitmapHeaders::DibHeader::initialiseDefaultValues()
 char* BitmapHeaders::DibHeader::toBytes()
 {
   ByteArrayBuilder byteArrayBuilder = this->getByteArrayBuilder();
-  char* byteArray = byteArrayBuilder.toBytes();
-
-  return byteArray;
+  
+  return byteArrayBuilder.toBytes();
 }
 
 ByteArrayBuilder BitmapHeaders::DibHeader::getByteArrayBuilder()

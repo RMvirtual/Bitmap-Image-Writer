@@ -39,10 +39,7 @@ Pixels::PixelArray BitmapSetUp::setUpBluePixelArray()
   for (int pixelNo = 0; pixelNo < totalPixels; pixelNo++)
     pixels.push_back(bluePixel);
 
-  Pixels::PixelArray pixelArray = Pixels::PixelArray {
-    pixels, imageWidth, imageHeight};
-
-  return pixelArray;
+  return Pixels::PixelArray {pixels, imageWidth, imageHeight};
 }
 
 BitmapImage BitmapSetUp::setUpBlueBitmapImage()
@@ -57,9 +54,8 @@ BitmapImage BitmapSetUp::setUpBlueBitmapImage()
 
 std::string BitmapSetUp::getBlueImagePath()
 {
-  std::string imagePath =
+  return (
       "C:\\Users\\rmvir\\Desktop\\scc300-Win3D\\test\\resources\\"
-      "correct-resources\\blueImage512x512.bmp";
-
-  return imagePath;
+      "correct-resources\\blueImage512x512.bmp"
+  );
 }
