@@ -15,6 +15,8 @@ public:
    */
   ByteArrayBuilder();
 
+  void addValue(char value);
+
   // Add a character (converted to an 8-bit unsigned integer).
   void addValue(unsigned char value);
 

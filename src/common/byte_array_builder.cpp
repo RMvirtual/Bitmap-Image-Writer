@@ -8,9 +8,14 @@ ByteArrayBuilder::ByteArrayBuilder()
   this->bytes = {};
 }
 
+void ByteArrayBuilder::addValue(char value)
+{
+  this->processNewValue(value, 1);
+}
+
 void ByteArrayBuilder::addValue(unsigned char value)
 {
-  this->processNewValue((uint8_t) value, 1);
+  this->processNewValue(value, 1);
 }
 
 void ByteArrayBuilder::addValues(unsigned char* values, int numberOfBytes)

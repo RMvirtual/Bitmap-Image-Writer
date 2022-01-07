@@ -87,7 +87,7 @@ TEST(ByteArrayTests, ShouldAddMultiple32bitUnsignedIntsToArray)
   unsigned char* byteArray = byteArrayBuilder.toBytes();
 
   int numberOfBytes = correctValues.size() * 4;
-  char* correctByteArray = new char[numberOfBytes];
+  unsigned char* correctByteArray = new unsigned char[numberOfBytes];
   int byteNo = 0;
 
   for (auto value : correctValues) {
@@ -119,7 +119,7 @@ TEST(ByteArrayTests, ShouldAddCharacterArrayToBuilder)
   unsigned char* bytes = byteArrayBuilder.toBytes();
 
   int totalNumberOfBytes = 4;
-  char* correctValues = new char[totalNumberOfBytes];
+  unsigned char* correctValues = new unsigned char[totalNumberOfBytes];
   correctValues[0] = 'a'; correctValues[1] = 'b';
   correctValues[2] = 'c'; correctValues[3] = 'd';
 
@@ -142,7 +142,7 @@ TEST(ByteArrayTests, ShouldAddMultipleSizeUnsignedIntsToArray)
   unsigned char* byteArray = byteArrayBuilder.toBytes();
 
   int numberOfBytes = 7;
-  char* correctByteArray = new char[numberOfBytes];
+  unsigned char* correctByteArray = new unsigned char[numberOfBytes];
   int byteNo = 0;
 
   correctByteArray[0] = correctValue16bit;
@@ -192,7 +192,7 @@ TEST(ByteArrayTests, ShouldAddEverySizeIntToBitmapBuilder)
   unsigned char* byteArray = byteArrayBuilder.toBytes();
 
   int correctNumberOfBytes = 26;
-  char* correctByteArray = new char[correctNumberOfBytes];
+  unsigned char* correctByteArray = new unsigned char[correctNumberOfBytes];
   int byteNo = 0;
 
   correctByteArray[0] = charByte;
@@ -223,8 +223,8 @@ TEST(ByteArrayTests, ShouldAddEverySizeIntToBitmapBuilder)
   correctByteArray[25] = normalInt >> 24;
 
   for (int byteNo = 0; byteNo < correctNumberOfBytes; byteNo++)
-    ASSERT_EQ(correctByteArray[byteNo], byteArray[byteNo]);
-
+    EXPECT_EQ(correctByteArray[byteNo], byteArray[byteNo]);
+    
   delete[] byteArray;
   delete[] correctByteArray;
 }
