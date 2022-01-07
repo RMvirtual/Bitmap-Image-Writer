@@ -1,34 +1,12 @@
 cc_library(
     name = "bitmaps",
-    hdrs = [
-        "bitmap_image.h",
-        "packet/headers/header.h",
-        "packet/headers/file_header.h",
-        "packet/headers/dib_header.h",
-        "packet/headers/bitmap_image_headers.h",
-        "packet/pixels/pixel_data.h",
-        "packet/pixels/pixel.h",
-        "packet/pixels/pixel_array.h",
-        "packet/pixels/pixel_array_size_calculator.h",
-        "reader/bitmap_reader.h",
-        "reader/pixel_reader_data.h"
-    ],
-    srcs = [
-        "bitmap_image.cpp",
-        "packet/headers/header.cpp",
-        "packet/headers/file_header.cpp",
-        "packet/headers/dib_header.cpp",
-        "packet/pixels/pixel.cpp",
-        "packet/pixels/pixel_array.cpp",
-        "packet/pixels/pixel_array_size_calculator.cpp",
-        "reader/bitmap_reader.cpp",
-        "reader/file_header_reader.cpp",
-        "reader/dib_header_reader.cpp",
-        "reader/pixel_array_reader.cpp",
-    ],
+    hdrs = ["bitmap_image.h"],
+    srcs = ["bitmap_image.cpp"],
     deps = [
         "//src/common:common",
-        "//src/graphics/colours:colours"
+        "//src/graphics/colours:colours",
+        "//src/graphics/bitmaps/packet:bitmap_packet",
+        "//src/graphics/bitmaps/reader:bitmap_reader"
     ],
     visibility = ["//visibility:public"],
     copts = ["/std:c++17"]

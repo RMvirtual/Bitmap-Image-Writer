@@ -1,6 +1,6 @@
 #include <stdexcept>
 
-#include "src/common/byte_array.h"
+#include "src/common/byte_array_builder.h"
 #include "src/graphics/colours/colours.h"
 #include "src/graphics/bitmaps/packet/pixels/pixel.h"
 
@@ -9,7 +9,7 @@ Pixels::Pixel::Pixel(Colours colours)
   this->colours = colours;
 }
 
-char* Pixels::Pixel::toBytes()
+unsigned char* Pixels::Pixel::toBytes()
 {
   ByteArrayBuilder byteArrayBuilder;
 

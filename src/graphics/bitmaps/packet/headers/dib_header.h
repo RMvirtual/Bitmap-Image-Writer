@@ -3,7 +3,7 @@
 
 #include <cstdint>
 #include "src/graphics/bitmaps/packet/headers/header.h"
-#include "src/common/byte_array.h"
+#include "src/common/byte_array_builder.h"
 
 namespace BitmapHeaders {
 class DibHeader : public BitmapHeaders::Header
@@ -13,7 +13,7 @@ public:
   DibHeader(
     int widthInPixels, int heightInPixels);
   
-  char* toBytes();
+  unsigned char* toBytes();
 
   void setWidthInPixels(int32_t widthInPixels);
   void setHeightInPixels(int32_t heightInPixels);

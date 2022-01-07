@@ -1,0 +1,14 @@
+cc_library(
+    name = "bitmap_packet",
+    hdrs = [
+        "bitmap_packet.h",
+    ],
+    srcs = [],
+    deps = [
+        "//src/common:common",
+        "//src/graphics/bitmaps/packet/headers:bitmap_headers",
+        "//src/graphics/bitmaps/packet/pixels:bitmap_pixels",
+    ],
+    visibility = ["//visibility:public"],
+    copts = ["/std:c++17"]
+)

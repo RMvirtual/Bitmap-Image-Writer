@@ -1,5 +1,6 @@
 #include <gtest/gtest.h>
 
+#include <iostream>
 #include "test/src/graphics-tests/utilities/bitmap_image_comparators.h"
 #include "test/src/graphics-tests/utilities/bitmap_set_up.h"
 #include "src/graphics/bitmaps/reader/bitmap_reader.h"
@@ -20,6 +21,7 @@ TEST(PixelArrayReaderTests, ShouldReadPixelArrayFromFile)
 
   Pixels::PixelArray pixelArrayToTest = BitmapReader::getPixelArray(imagePath);
   Pixels::PixelArray correctPixelArray = BitmapSetUp::setUpBluePixelArray();
+
 
   BitmapImageComparison::comparePixelArrays(
     correctPixelArray, pixelArrayToTest);

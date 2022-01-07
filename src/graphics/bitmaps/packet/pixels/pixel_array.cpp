@@ -1,6 +1,6 @@
 #include "src/graphics/bitmaps/packet/pixels/pixel.h"
 #include "src/graphics/bitmaps/packet/pixels/pixel_array.h"
-#include "src/common/byte_array.h"
+#include "src/common/byte_array_builder.h"
 #include "src/graphics/bitmaps/packet/pixels/pixel_array_size_calculator.h"
 
 #include <string>
@@ -46,7 +46,7 @@ void Pixels::PixelArray::populateMissingPixels()
     this->addBlankPixels(numberOfMissingPixels);
 }
 
-char* Pixels::PixelArray::toBytes()
+unsigned char* Pixels::PixelArray::toBytes()
 {
   ByteArrayBuilder byteArrayBuilder;
   this->addAllPixelsToByteArray(&byteArrayBuilder);
@@ -58,7 +58,7 @@ void Pixels::PixelArray::addAllPixelsToByteArray(
   ByteArrayBuilder* byteArrayBuilder)
 {
   for (int rowNo = 0; rowNo < this->heightInPixels; rowNo++) {
-    char* pixelRowBytes = this->getRowOfPixelsAsBytes(rowNo);
+    unsigned char* pixelRowBytes = this->getRowOfPixelsAsBytes(rowNo);
     byteArrayBuilder->addValues(pixelRowBytes, this->rowSizeInBytes);
 
     delete[] pixelRowBytes;
@@ -82,7 +82,7 @@ void Pixels::PixelArray::addPixelByIndexToByteArray(
 void Pixels::PixelArray::addPixelToByteArray(
   Pixels::Pixel pixel, ByteArrayBuilder* byteArrayBuilder)
 {
-  char* pixelBytes = pixel.toBytes();
+  unsigned char* pixelBytes = pixel.toBytes();
   byteArrayBuilder->addValues(pixelBytes, 3);
 
   delete[] pixelBytes;
@@ -95,7 +95,7 @@ void Pixels::PixelArray::addPaddingBytesToByteArray(
     byteArrayBuilder->addValue(0);
 }
 
-char* Pixels::PixelArray::getRowOfPixelsAsBytes(int rowNo)
+unsigned char* Pixels::PixelArray::getRowOfPixelsAsBytes(int rowNo)
 {
   ByteArrayBuilder byteArrayBuilder;
 

@@ -2,7 +2,7 @@
 
 #include "src/graphics/bitmaps/packet/headers/file_header.h"
 #include "src/graphics/bitmaps/packet/pixels/pixel_array_size_calculator.h"
-#include "src/common/byte_array.h"
+#include "src/common/byte_array_builder.h"
 
 BitmapHeaders::FileHeader::FileHeader() : BitmapHeaders::Header {14}
 {
@@ -20,7 +20,7 @@ BitmapHeaders::FileHeader::FileHeader(int widthInPixels, int heightInPixels)
   this->sizeOfBitmapFile = this->pixelDataOffset + pixelArraySize;
 }
 
-char* BitmapHeaders::FileHeader::toBytes()
+unsigned char* BitmapHeaders::FileHeader::toBytes()
 {
   ByteArrayBuilder byteArrayBuilder;
 

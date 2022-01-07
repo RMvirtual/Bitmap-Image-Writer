@@ -17,12 +17,12 @@ std::string BitmapSetUp::getBlueImagePath()
 
 BitmapImage BitmapSetUp::setUpBlueBitmapImage()
 {
-  BitmapImageHeaders headers;
-  headers.fileHeader = setUpBluePixelFileHeader();
-  headers.dibHeader = setUpBluePixelDibHeader();
-  headers.pixelArray = setUpBluePixelArray();
+  BitmapPacket packet;
+  packet.fileHeader = setUpBluePixelFileHeader();
+  packet.dibHeader = setUpBluePixelDibHeader();
+  packet.pixelArray = setUpBluePixelArray();
 
-  return BitmapImage::fromHeaders(headers);
+  return BitmapImage::fromPacket(packet);
 }
 
 BitmapHeaders::FileHeader BitmapSetUp::setUpBluePixelFileHeader()

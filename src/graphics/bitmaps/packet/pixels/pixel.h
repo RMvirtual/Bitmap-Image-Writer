@@ -10,7 +10,7 @@ namespace Pixels
   {
     public:
       Pixel(Colours colours);
-      char* toBytes();
+      unsigned char* toBytes();
 
       void setColours(Colours colours);
       void setRed(uint8_t value);

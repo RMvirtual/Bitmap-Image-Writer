@@ -3,7 +3,7 @@
 
 #include <vector>
 #include "src/graphics/bitmaps/packet/pixels/pixel.h"
-#include "src/common/byte_array.h"
+#include "src/common/byte_array_builder.h"
 #include "src/graphics/bitmaps/packet/pixels/pixel_data.h"
 
 namespace Pixels {
@@ -16,7 +16,7 @@ namespace Pixels {
     PixelArray(
       std::vector<Pixels::Pixel> pixels, int widthInPixels, int heightInPixels);
       
-    char* toBytes();
+    unsigned char* toBytes();
 
     void setPixel(Pixels::PixelData pixelData);
     void setWidthInPixels(int width);
@@ -43,7 +43,7 @@ namespace Pixels {
 
     void addPixelToByteArray(Pixels::Pixel pixel, ByteArrayBuilder* byteArray);
     void addPaddingBytesToByteArray(ByteArrayBuilder* byteArray);
-    char* getRowOfPixelsAsBytes(int rowNo);
+    unsigned char* getRowOfPixelsAsBytes(int rowNo);
 
     void initialisePixelArray(int widthInPixels, int heightInPixels);
     void populateMissingPixels();

@@ -12,7 +12,7 @@ public:
   FileHeader();
   FileHeader(int widthInPixels, int heightInPixels);
 
-  char* toBytes();
+  unsigned char* toBytes();
 
   void setSignatureBytes(std::string bytesSignature);
   void setSignatureBytes(char firstSignatureByte, char secondSignatureByte);

@@ -8,7 +8,7 @@ public:
   Header();
   Header(int sizeOfHeaderInBytes);
   
-  virtual char* toBytes() = 0;
+  virtual unsigned char* toBytes() = 0;
   int getSizeOfHeaderInBytes();
   void setSizeOfHeaderInBytes(int size);
 

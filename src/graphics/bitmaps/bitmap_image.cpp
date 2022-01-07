@@ -1,6 +1,6 @@
 #include <fstream>
 
-#include "src/common/byte_array.h"
+#include "src/common/byte_array_builder.h"
 #include "src/common/filesystem.h"
 #include "src/graphics/bitmaps/bitmap_image.h"
 #include "src/graphics/bitmaps/reader/bitmap_reader.h"
@@ -10,7 +10,7 @@ BitmapImage::BitmapImage()
   // Pass
 }
 
-BitmapImage BitmapImage::fromHeaders(BitmapImageHeaders headers)
+BitmapImage BitmapImage::fromPacket(BitmapPacket headers)
 {
   BitmapImage image;
   image.fileHeader = headers.fileHeader;
@@ -22,31 +22,31 @@ BitmapImage BitmapImage::fromHeaders(BitmapImageHeaders headers)
 
 BitmapImage BitmapImage::fromFile(std::string filePath)
 {
-  BitmapImageHeaders headers = BitmapReader::getBitmapImageHeaders(filePath);
+  BitmapPacket packet = BitmapReader::getBitmapPacket(filePath);
   
-  return BitmapImage::fromHeaders(headers);
+  return BitmapImage::fromPacket(packet);
 }
 
-char* BitmapImage::toBytes()
+unsigned char* BitmapImage::toBytes()
 {
   ByteArrayBuilder byteArrayBuilder;
 
-  char* fileHeaderBytes = this->fileHeader.toBytes();
+  unsigned char* fileHeaderBytes = this->fileHeader.toBytes();
   int fileHeaderSize = this->fileHeader.getSizeOfHeaderInBytes();
 
-  char* dibHeaderBytes = this->dibHeader.toBytes();
+  unsigned char* dibHeaderBytes = this->dibHeader.toBytes();
   int dibHeaderSize = this->dibHeader.getSizeOfHeaderInBytes();
 
-  char* pixelArrayBytes = this->pixelArray.toBytes();
+  unsigned char* pixelArrayBytes = this->pixelArray.toBytes();
   int pixelArraySize = this->pixelArray.sizeInBytes();
 
   byteArrayBuilder.addValues(fileHeaderBytes, fileHeaderSize);
   byteArrayBuilder.addValues(dibHeaderBytes, dibHeaderSize);
   byteArrayBuilder.addValues(pixelArrayBytes, pixelArraySize);
 
-  char* allBytes = byteArrayBuilder.toBytes();
+  unsigned char* allBytes = byteArrayBuilder.toBytes();
 
-  std::vector<char*> byteArrays = {
+  std::vector<unsigned char*> byteArrays = {
     fileHeaderBytes, dibHeaderBytes, pixelArrayBytes};
 
   for (auto byteArray : byteArrays)
@@ -71,11 +71,11 @@ void BitmapImage::recalculateFileSize()
 
 void BitmapImage::writeToFile(std::string filePath)
 {
-  char* bitmapImageBytes = this->toBytes();
+  unsigned char* bitmapImageBytes = this->toBytes();
   int bitmapImageSize = this->getSizeOfFile();
 
   std::ofstream fout(filePath, std::ios::binary);
-  fout.write(bitmapImageBytes, bitmapImageSize);  
+  fout.write((char *) bitmapImageBytes, bitmapImageSize);  
   fout.close();
 
   delete[] bitmapImageBytes;

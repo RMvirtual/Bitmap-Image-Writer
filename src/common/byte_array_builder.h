@@ -4,6 +4,8 @@
 #include <cstdint>
 #include <vector>
 
+#include "src/common/byte.h"
+
 class ByteArrayBuilder
 {
 public:
@@ -14,13 +16,10 @@ public:
   ByteArrayBuilder();
 
   // Add a character (converted to an 8-bit unsigned integer).
-  void addValue(char value);
+  void addValue(unsigned char value);
 
   // Add an array of characters (converted to 8-bit unsigned integers).
-  void addValues(char* values, int numberOfBytes);
-
-  // Adds a value of 1 byte.
-  void addValue(uint8_t value);
+  void addValues(unsigned char* values, int numberOfBytes);
 
   // Adds a value of 1 byte.
   void addValue(int8_t value);
@@ -41,7 +40,7 @@ public:
    * Returns a character array pointer towards a copy of the bytes
    * constructed from adding to the ByteArrayBuilder class.
    */ 
-  char* toBytes();
+  unsigned char* toBytes();
   
   /**
    * Returns the current number of bytes that the length of the
@@ -50,8 +49,7 @@ public:
   int getNumberOfBytes();
 
 private:
-  std::vector<char> byteVector;
-  int numberOfBytes;
+  std::vector<Byte> bytes;
 
   /**
    * Processes the integer value into bytes and stores them against
@@ -70,20 +68,8 @@ private:
    * Converts the underlying vector of bytes into a new char array area
    * of dynamic memory and returns a pointer to it.
    */
-  char* copyArray();
-
-  /**
-   * Returns a pointer to an empty array of bytes stored in dynamic
-   * memory of a specific size. All values initialised to 0.
-   */
-  char* getEmptyArray(int sizeInBytes);
-
-  /**
-   * Copies the contents of this object's underlying vector to a byte
-   * array location. Checks to ensure the array is of sufficient size
-   * should be performed before using this function.
-   */ 
-  void copyVectorToArray(char* destinationArray);
+  unsigned char* copyArray();
+  unsigned char* getEmptyArray();
 };
 
 #endif

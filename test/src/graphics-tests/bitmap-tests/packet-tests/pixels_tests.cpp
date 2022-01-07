@@ -72,7 +72,7 @@ TEST(PixelTests, ShouldStreamPixelIntoBytes)
   Colours colours = getWhiteColours();
 
   Pixels::Pixel pixel {colours};
-  char* bytes = pixel.toBytes();
+  unsigned char* bytes = pixel.toBytes();
 
   for (int byteNo = 0; byteNo < 3; byteNo++) {
     uint8_t currentByte = (uint8_t) *(bytes + byteNo);
@@ -127,7 +127,7 @@ TEST(PixelArrayTests, ShouldStreamPixelArrayIntoBytes)
   std::vector<Pixels::Pixel> pixels {pixel, pixel, pixel, pixel};
   Pixels::PixelArray pixelArray {pixels, 2, 2};
 
-  char* pixelArrayBytes = pixelArray.toBytes();
+  unsigned char* pixelArrayBytes = pixelArray.toBytes();
 
   uint8_t correctBytes[] = {
     150, 200, 255, 150, 200, 255, 0, 0,

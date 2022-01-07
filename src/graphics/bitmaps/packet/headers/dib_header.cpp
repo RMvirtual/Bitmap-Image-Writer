@@ -1,7 +1,7 @@
 #include <cstdint>
 
 #include "src/graphics/bitmaps/packet/headers/dib_header.h"
-#include "src/common/byte_array.h"
+#include "src/common/byte_array_builder.h"
 
 BitmapHeaders::DibHeader::DibHeader()
 : BitmapHeaders::Header {40}
@@ -32,7 +32,7 @@ void BitmapHeaders::DibHeader::initialiseDefaultValues()
   this->importantColors = 0; 
 }
 
-char* BitmapHeaders::DibHeader::toBytes()
+unsigned char* BitmapHeaders::DibHeader::toBytes()
 {
   ByteArrayBuilder byteArrayBuilder = this->getByteArrayBuilder();
   

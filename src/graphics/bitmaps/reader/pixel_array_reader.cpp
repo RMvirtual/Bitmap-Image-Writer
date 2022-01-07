@@ -29,7 +29,13 @@ Pixels::PixelArray BitmapReader::getPixelArray(std::string filePath)
     pixelReaderData.widthInPixels);
 
   pixelReaderData.pixelDataOffset = fileHeader.getPixelDataOffset();
+
+  char* bytesAddressPointer = (char *) &bytes;
+  std::cout << "address of bytes: " << bytesAddressPointer;
+  
   pixelReaderData.pixelPointer = ((char*) &bytes) + pixelReaderData.pixelDataOffset;
+
+  std::cout << "Pixel Pointer values " << (pixelReaderData.pixelPointer);
 
   return BitmapReader::parseBytesToPixelArray(pixelReaderData);
 }

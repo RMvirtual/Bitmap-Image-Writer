@@ -1,7 +1,7 @@
-#include "src/graphics/bitmaps/packet/headers/bitmap_image_headers.h"
+#include "src/graphics/bitmaps/packet/bitmap_packet.h"
 #include "src/graphics/bitmaps/reader/bitmap_reader.h"
 
-BitmapImageHeaders BitmapReader::getBitmapImageHeaders(std::string filePath)
+BitmapPacket BitmapReader::getBitmapPacket(std::string filePath)
 {
   BitmapHeaders::FileHeader fileHeader = BitmapReader::getBitmapFileHeader(
     filePath);
@@ -11,7 +11,7 @@ BitmapImageHeaders BitmapReader::getBitmapImageHeaders(std::string filePath)
   
   Pixels::PixelArray pixelArray = BitmapReader::getPixelArray(filePath);
 
-  BitmapImageHeaders bitmapHeaders;
+  BitmapPacket bitmapHeaders;
   
   bitmapHeaders.fileHeader = fileHeader;
   bitmapHeaders.dibHeader = dibHeader;

@@ -19,7 +19,6 @@ std::string Filesystem::convertFileToString(std::string filePath)
 int Filesystem::getSizeOfFile(std::string filePath)
 {
   std::filesystem::path pathToFile {filePath};
-  int fileSizeInBytes = std::filesystem::file_size(pathToFile);
 
-  return fileSizeInBytes;
+  return std::filesystem::file_size(pathToFile);
 }

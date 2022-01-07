@@ -1,7 +1,7 @@
 #ifndef BITMAP_IMAGE_H
 #define BITMAP_IMAGE_H
 
-#include "src/graphics/bitmaps/packet/headers/bitmap_image_headers.h"
+#include "src/graphics/bitmaps/packet/bitmap_packet.h"
 #include "src/graphics/bitmaps/packet/headers/file_header.h"
 #include "src/graphics/bitmaps/packet/headers/dib_header.h"
 #include "src/graphics/bitmaps/packet/pixels/pixel_array.h"
@@ -12,10 +12,10 @@ class BitmapImage
 public:
   BitmapImage();
 
-  static BitmapImage fromHeaders(BitmapImageHeaders headers);
+  static BitmapImage fromPacket(BitmapPacket headers);
   static BitmapImage fromFile(std::string filePath);
 
-  char* toBytes();
+  unsigned char* toBytes();
   void writeToFile(std::string filePath);
 
   void setFileHeader(BitmapHeaders::FileHeader fileHeader);
