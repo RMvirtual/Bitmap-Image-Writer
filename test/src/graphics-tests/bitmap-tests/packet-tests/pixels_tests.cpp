@@ -34,18 +34,44 @@ Pixels::PixelArray getRedPixelArray()
   std::vector<Pixels::Pixel> redPixels {
     redPixel, redPixel, redPixel, redPixel};
 
-  return {redPixels, 2, 2};  
+  return {redPixels, 2, 2};
 }
 
-TEST(PixelTests, ShouldStreamPixelIntoBytes)
+Colours getRedColours()
+{
+  Colours colours;
+  colours.red = 255;
+  colours.green = 0;
+  colours.blue = 0;
+
+  return colours;
+}
+
+Colours getGreenColours()
+{
+  Colours colours;
+  colours.red = 0;
+  colours.green = 255;
+  colours.blue = 0;
+
+  return colours;
+}
+
+Colours getWhiteColours()
 {
   Colours colours;
   colours.red = 255;
   colours.green = 255;
   colours.blue = 255;
 
-  Pixels::Pixel pixel {colours};
+  return colours;
+}
 
+TEST(PixelTests, ShouldStreamPixelIntoBytes)
+{
+  Colours colours = getWhiteColours();
+
+  Pixels::Pixel pixel {colours};
   char* bytes = pixel.toBytes();
 
   for (int byteNo = 0; byteNo < 3; byteNo++) {
@@ -58,11 +84,7 @@ TEST(PixelTests, ShouldStreamPixelIntoBytes)
 
 TEST(PixelArrayTests, ShouldSetPixelInPixelArray)
 {
-  Colours redColours;
-  redColours.red = 255;
-  redColours.green = 0;
-  redColours.blue = 0;
-
+  Colours redColours = getRedColours();
   Pixels::Pixel redPixel {redColours};
 
   std::vector<Pixels::Pixel> redPixels {
@@ -70,11 +92,7 @@ TEST(PixelArrayTests, ShouldSetPixelInPixelArray)
 
   Pixels::PixelArray pixelArray = getRedPixelArray();
 
-  Colours greenColours;
-  greenColours.red = 0;
-  greenColours.green = 255;
-  greenColours.blue = 0;
-
+  Colours greenColours = getGreenColours();
   Pixels::PixelData greenPixelData;
   greenPixelData.colours = greenColours;  
   greenPixelData.rowNo = 1;
@@ -92,10 +110,10 @@ TEST(PixelArrayTests, ShouldGetNumberOfPixelsInPixelArray)
 {
   Pixels::PixelArray pixelArray = getRedPixelArray();
 
-  int correctSizeInPixels = 2 * 2;
-  int actualSizeInPixels = pixelArray.sizeInPixels();
+  int correctNumberOfPixels = 4;
+  int actualNumberOfPixels = pixelArray.sizeInPixels();
 
-  EXPECT_EQ(correctSizeInPixels, actualSizeInPixels);
+  EXPECT_EQ(correctNumberOfPixels, actualNumberOfPixels);
 }
 
 TEST(PixelArrayTests, ShouldStreamPixelArrayIntoBytes)
@@ -107,7 +125,6 @@ TEST(PixelArrayTests, ShouldStreamPixelArrayIntoBytes)
 
   Pixels::Pixel pixel {colours};
   std::vector<Pixels::Pixel> pixels {pixel, pixel, pixel, pixel};
-
   Pixels::PixelArray pixelArray {pixels, 2, 2};
 
   char* pixelArrayBytes = pixelArray.toBytes();

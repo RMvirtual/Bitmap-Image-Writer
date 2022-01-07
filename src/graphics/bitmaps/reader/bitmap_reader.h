@@ -12,8 +12,10 @@
 namespace BitmapReader
 {
   BitmapImageHeaders getBitmapImageHeaders(std::string filePath);
-
   BitmapHeaders::FileHeader getBitmapFileHeader(std::string filePath);
+  BitmapHeaders::DibHeader getBitmapDibHeader(std::string filePath);
+  Pixels::PixelArray getPixelArray(std::string filePath);
+  
   BitmapHeaders::FileHeader parseFileHeader(std::string bytes);
 
   void parseSignatureBytes(
@@ -28,7 +30,6 @@ namespace BitmapReader
   void parsePixelDataOffset(
     std::string bytes, BitmapHeaders::FileHeader* fileHeader);
 
-  BitmapHeaders::DibHeader getBitmapDibHeader(std::string filePath);
   BitmapHeaders::DibHeader parseDibHeader(std::string bytes);
 
   void parseHeaderSize(
@@ -65,7 +66,7 @@ namespace BitmapReader
     std::string bytes, BitmapHeaders::DibHeader* dibHeader);
 
   int getPixelArraySizeInBytes(std::string filePath);
-  Pixels::PixelArray getPixelArray(std::string filePath);
+  
 
   Pixels::PixelArray parseBytesToPixelArray(PixelReaderData pixelReaderData);
 

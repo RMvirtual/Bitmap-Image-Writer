@@ -7,7 +7,17 @@
 #include "test/src/graphics-tests/utilities/bitmap_image_comparators.h"
 #include "test/src/graphics-tests/utilities/bitmap_set_up.h"
 
-TEST(BitmapReaderTests, ShouldExtractFileHeaderFromFile)
+TEST(BitmapImageReaderTests, ShouldExtractBitmapImageObjectFromFile)
+{
+  std::string imagePath = BitmapSetUp::getBlueImagePath();
+
+  BitmapImage imageToTest = BitmapImage::fromFile(imagePath);
+  BitmapImage correctImage = BitmapSetUp::setUpBlueBitmapImage();
+
+  BitmapImageComparison::compareBitmapImages(correctImage, imageToTest);
+}
+
+TEST(BitmapHeaderReaderTests, ShouldExtractFileHeaderFromFile)
 { 
   std::string imagePath = BitmapSetUp::getBlueImagePath();
 
@@ -21,7 +31,7 @@ TEST(BitmapReaderTests, ShouldExtractFileHeaderFromFile)
     correctFileHeader, fileHeader);
 }
 
-TEST(BitmapReaderTests, ShouldExtractDibHeaderFromFile)
+TEST(BitmapHeaderReaderTests, ShouldExtractDibHeaderFromFile)
 {
   std::string imagePath = BitmapSetUp::getBlueImagePath();
 
@@ -32,14 +42,4 @@ TEST(BitmapReaderTests, ShouldExtractDibHeaderFromFile)
     BitmapSetUp::setUpBluePixelDibHeader();
 
   BitmapImageComparison::compareBitmapDibHeaders(correctDibHeader, dibHeader);
-}
-
-TEST(BitmapReaderTests, ShouldExtractBitmapImageObjectFromFile)
-{
-  std::string imagePath = BitmapSetUp::getBlueImagePath();
-
-  BitmapImage imageToTest = BitmapImage::fromFile(imagePath);
-  BitmapImage correctImage = BitmapSetUp::setUpBlueBitmapImage();
-
-  BitmapImageComparison::compareBitmapImages(correctImage, imageToTest);
 }
