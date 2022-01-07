@@ -1,9 +1,29 @@
+#include <iostream>
+
 #include "src/graphics/bitmaps/packet/pixels/pixel.h"
 #include "src/graphics/bitmaps/packet/pixels/pixel_array.h"
 #include "src/graphics/bitmaps/bitmap_image.h"
 #include "test/src/graphics-tests/utilities/bitmap_image_comparators.h"
 #include "test/src/graphics-tests/utilities/bitmap_set_up.h"
 #include "src/graphics/colours/colours.h"
+
+std::string BitmapSetUp::getBlueImagePath()
+{
+  return (
+    "C:\\Users\\rmvir\\Desktop\\scc300-Win3D\\test\\resources\\"
+    "correct-resources\\blueImage512x512.bmp"
+  );
+}
+
+BitmapImage BitmapSetUp::setUpBlueBitmapImage()
+{
+  BitmapImageHeaders headers;
+  headers.fileHeader = setUpBluePixelFileHeader();
+  headers.dibHeader = setUpBluePixelDibHeader();
+  headers.pixelArray = setUpBluePixelArray();
+
+  return BitmapImage::fromHeaders(headers);
+}
 
 BitmapHeaders::FileHeader BitmapSetUp::setUpBluePixelFileHeader()
 {
@@ -46,23 +66,7 @@ Pixels::PixelArray BitmapSetUp::setUpBluePixelArray()
   for (int pixelNo = 0; pixelNo < totalPixels; pixelNo++)
     pixels.push_back(bluePixel);
 
+  std::cout << "Gets here."; 
+
   return Pixels::PixelArray {pixels, imageWidth, imageHeight};
-}
-
-BitmapImage BitmapSetUp::setUpBlueBitmapImage()
-{
-  BitmapImageHeaders headers;
-  headers.fileHeader = setUpBluePixelFileHeader();
-  headers.dibHeader = setUpBluePixelDibHeader();
-  headers.pixelArray = setUpBluePixelArray();
-
-  return BitmapImage::fromHeaders(headers);
-}
-
-std::string BitmapSetUp::getBlueImagePath()
-{
-  return (
-      "C:\\Users\\rmvir\\Desktop\\scc300-Win3D\\test\\resources\\"
-      "correct-resources\\blueImage512x512.bmp"
-  );
 }

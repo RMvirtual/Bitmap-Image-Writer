@@ -120,7 +120,7 @@ void Pixels::PixelArray::addBlankPixel()
 
 int Pixels::PixelArray::convertToIndex(int rowNo, int columnNo)
 {
-  return rowNo * widthInPixels + columnNo;
+  return rowNo * this->widthInPixels + columnNo;
 }
 
 void Pixels::PixelArray::setPixel(Pixels::PixelData pixelData)
@@ -136,7 +136,9 @@ void Pixels::PixelArray::setPixel(Pixels::PixelData pixelData)
     );
   }
 
-  this->pixels[index] = {pixelData.colours};
+  // Adding colours here when should be a pixel.
+  Pixels::Pixel newPixel = Pixel(pixelData.colours);
+  this->pixels[index] = newPixel;
 }
 
 void Pixels::PixelArray::setWidthInPixels(int width)

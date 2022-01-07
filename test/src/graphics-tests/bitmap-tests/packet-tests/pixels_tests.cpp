@@ -6,6 +6,7 @@
 #include "src/graphics/bitmaps/packet/pixels/pixel.h"
 #include "src/graphics/bitmaps/reader/bitmap_reader.h"
 #include "src/graphics/bitmaps/packet/pixels/pixel_array_size_calculator.h"
+#include "test/src/graphics-tests/utilities/bitmap_set_up.h"
 
 void isGreenPixel(Pixels::Pixel pixel)
 {
@@ -21,18 +22,53 @@ void isRedPixel(Pixels::Pixel pixel)
   EXPECT_EQ(pixel.getRed(), 255);
 }
 
-TEST(BitmapPixelArrayTests, ShouldSetPixel)
+Pixels::PixelArray getRedPixelArray()
 {
   Colours redColours;
   redColours.red = 255;
   redColours.green = 0;
   redColours.blue = 0;
 
-  Pixels::Pixel redPixel = {redColours};
-  std::vector<Pixels::Pixel> redPixels = {
+  Pixels::Pixel redPixel {redColours};
+
+  std::vector<Pixels::Pixel> redPixels {
     redPixel, redPixel, redPixel, redPixel};
 
-  Pixels::PixelArray pixelArray {redPixels, 2, 2};
+  return {redPixels, 2, 2};  
+}
+
+TEST(PixelTests, ShouldStreamPixelIntoBytes)
+{
+  Colours colours;
+  colours.red = 255;
+  colours.green = 255;
+  colours.blue = 255;
+
+  Pixels::Pixel pixel {colours};
+
+  char* bytes = pixel.toBytes();
+
+  for (int byteNo = 0; byteNo < 3; byteNo++) {
+    uint8_t currentByte = (uint8_t) *(bytes + byteNo);
+    uint8_t correctValue = 255;
+
+    EXPECT_EQ(currentByte, correctValue); 
+  }
+}
+
+TEST(PixelArrayTests, ShouldSetPixelInPixelArray)
+{
+  Colours redColours;
+  redColours.red = 255;
+  redColours.green = 0;
+  redColours.blue = 0;
+
+  Pixels::Pixel redPixel {redColours};
+
+  std::vector<Pixels::Pixel> redPixels {
+    redPixel, redPixel, redPixel, redPixel};
+
+  Pixels::PixelArray pixelArray = getRedPixelArray();
 
   Colours greenColours;
   greenColours.red = 0;
@@ -44,48 +80,25 @@ TEST(BitmapPixelArrayTests, ShouldSetPixel)
   greenPixelData.rowNo = 1;
   greenPixelData.columnNo = 1;
   
+  for (int pixelNo = 0; pixelNo < 4; pixelNo++)
+    isRedPixel(pixelArray.pixels[pixelNo]);
+
   pixelArray.setPixel(greenPixelData);
-
-  for (int pixelNo = 0; pixelNo < 3; pixelNo++) {
-    Pixels::Pixel pixel = pixelArray.pixels[pixelNo];
-    isRedPixel(pixel);
-  }
-
   Pixels::Pixel modifiedPixel = pixelArray.pixels[3];
   isGreenPixel(modifiedPixel);
 }
 
-TEST(BitmapPixelArrayTests, ShouldGetPixelSizeInBytes)
+TEST(PixelArrayTests, ShouldGetNumberOfPixelsInPixelArray)
 {
-  char* bmpFile = (
-    "C:\\Users\\rmvir\\Desktop\\scc300-Win3D\\test\\resources\\" \
-    "correct-resources\\blueImage512x512.bmp"
-  );
+  Pixels::PixelArray pixelArray = getRedPixelArray();
 
-  Pixels::PixelArray pixelArray = BitmapReader::getPixelArray(bmpFile);
-
-  int correctSizeInBytes = 786432;
-  int actualSizeInBytes = pixelArray.sizeInBytes();
-
-  EXPECT_EQ(correctSizeInBytes, actualSizeInBytes);
-}
-
-TEST(BitmapPixelArrayTests, ShouldGetNumberOfPixels)
-{
-  char* bmpFile = (
-    "C:\\Users\\rmvir\\Desktop\\scc300-Win3D\\test\\resources\\" \
-    "correct-resources\\blueImage512x512.bmp"
-  );
-
-  Pixels::PixelArray pixelArray = BitmapReader::getPixelArray(bmpFile);
-
-  int correctSizeInPixels = 512 * 512;
+  int correctSizeInPixels = 2 * 2;
   int actualSizeInPixels = pixelArray.sizeInPixels();
 
   EXPECT_EQ(correctSizeInPixels, actualSizeInPixels);
 }
 
-TEST(BitmapPixelArrayTests, ShouldGetPixelArrayBytes)
+TEST(PixelArrayTests, ShouldStreamPixelArrayIntoBytes)
 {
   Colours colours;
   colours.red = 255;
@@ -93,7 +106,7 @@ TEST(BitmapPixelArrayTests, ShouldGetPixelArrayBytes)
   colours.blue = 150;
 
   Pixels::Pixel pixel {colours};
-  std::vector<Pixels::Pixel> pixels = {pixel, pixel, pixel, pixel};
+  std::vector<Pixels::Pixel> pixels {pixel, pixel, pixel, pixel};
 
   Pixels::PixelArray pixelArray {pixels, 2, 2};
 
@@ -112,7 +125,7 @@ TEST(BitmapPixelArrayTests, ShouldGetPixelArrayBytes)
   }
 }
 
-TEST(BitmapPixelArrayTests, ShouldCalculatePadding)
+TEST(PixelArrayTests, ShouldCalculatePixelArrayRowPadding)
 {
   int correctPadding = 2;
   int actualPadding = Pixels::calculateRowPadding(6);
@@ -120,29 +133,10 @@ TEST(BitmapPixelArrayTests, ShouldCalculatePadding)
   EXPECT_EQ(correctPadding, actualPadding);
 }
 
-TEST(BitmapPixelTests, ShouldCalculatePixelArrayRowSizeInBytes)
+TEST(PixelArrayTests, ShouldCalculatePixelArrayRowSizeInBytes)
 {
   int correctSize = 20;
   int actualSize = Pixels::calculateRowSizeInBytes(6);
   
   EXPECT_EQ(correctSize, actualSize);
-}
-
-TEST(BitmapPixelArrayTests, ShouldGetPixelBytes)
-{
-  Colours colours;
-  colours.red = 255;
-  colours.green = 255;
-  colours.blue = 255;
-
-  Pixels::Pixel pixel {colours};
-
-  char* bytes = pixel.toBytes();
-
-  for (int byteNo = 0; byteNo < 3; byteNo++) {
-    uint8_t currentByte = (uint8_t) *(bytes + byteNo);
-    uint8_t correctValue = 255;
-
-    EXPECT_EQ(currentByte, correctValue); 
-  }
 }

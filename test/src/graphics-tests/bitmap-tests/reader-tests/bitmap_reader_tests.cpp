@@ -34,27 +34,6 @@ TEST(BitmapReaderTests, ShouldExtractDibHeaderFromFile)
   BitmapImageComparison::compareBitmapDibHeaders(correctDibHeader, dibHeader);
 }
 
-TEST(BitmapReaderTests, ShouldExtractPixelArrayFromFile)
-{
-  std::string imagePath = BitmapSetUp::getBlueImagePath();
-
-  Pixels::PixelArray pixelArrayToTest = BitmapReader::getPixelArray(imagePath);
-  Pixels::PixelArray correctPixelArray = BitmapSetUp::setUpBluePixelArray();
-
-  BitmapImageComparison::comparePixelArrays(
-    correctPixelArray, pixelArrayToTest);
-}
-
-TEST(BitmapReaderTests, ShouldExtractPixelArraySizeFromFile)
-{
-  std::string imagePath = BitmapSetUp::getBlueImagePath();
-
-  int correctSize = 786432;
-  int payloadSizeInBytes = BitmapReader::getPixelArraySizeInBytes(imagePath);
-
-  EXPECT_EQ(correctSize, payloadSizeInBytes);
-}
-
 TEST(BitmapReaderTests, ShouldExtractBitmapImageObjectFromFile)
 {
   std::string imagePath = BitmapSetUp::getBlueImagePath();

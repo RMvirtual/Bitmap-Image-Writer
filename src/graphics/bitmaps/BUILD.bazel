@@ -10,7 +10,8 @@ cc_library(
         "packet/pixels/pixel.h",
         "packet/pixels/pixel_array.h",
         "packet/pixels/pixel_array_size_calculator.h",
-        "reader/bitmap_reader.h"
+        "reader/bitmap_reader.h",
+        "reader/pixel_reader_data.h"
     ],
     srcs = [
         "bitmap_image.cpp",

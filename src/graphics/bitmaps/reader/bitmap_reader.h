@@ -7,6 +7,7 @@
 #include "src/graphics/bitmaps/packet/pixels/pixel_array.h"
 #include "src/graphics/bitmaps/packet/pixels/pixel_data.h"
 #include "src/graphics/colours/colours.h"
+#include "src/graphics/bitmaps/reader/pixel_reader_data.h"
 
 namespace BitmapReader
 {
@@ -66,13 +67,10 @@ namespace BitmapReader
   int getPixelArraySizeInBytes(std::string filePath);
   Pixels::PixelArray getPixelArray(std::string filePath);
 
-  Pixels::PixelArray parseBytesToVector(
-    std::string* bytes, BitmapHeaders::FileHeader fileHeader,
-    BitmapHeaders::DibHeader dibHeader);
+  Pixels::PixelArray parseBytesToPixelArray(PixelReaderData pixelReaderData);
 
-  void parsePixelFromBytes(
-    std::string* bytes, Pixels::PixelArray* pixels, 
-    int rowNo, int rowStartingByteNo);
+  void parsePixelsFromRow(
+    char* pixelPointer, Pixels::PixelArray* pixels, int rowNo);
 
-  Colours parsePixelColoursFromBytes(std::string* bytes, int startingByteNo);
+  Colours parsePixelColours(char* pixelPointer);
 };

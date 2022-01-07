@@ -1,4 +1,5 @@
 #include <string>
+#include <iostream>
 
 #include "src/common/filesystem.h"
 #include "src/graphics/bitmaps/reader/bitmap_reader.h"
@@ -8,10 +9,8 @@
 #include "src/graphics/bitmaps/packet/pixels/pixel_data.h"
 #include "src/common/bytes_conversion.h"
 #include "src/graphics/bitmaps/packet/pixels/pixel_array_size_calculator.h"
+#include "src/graphics/bitmaps/reader/pixel_reader_data.h"
 
-/**
- * Could probably be refactored better.
- */
 Pixels::PixelArray BitmapReader::getPixelArray(std::string filePath)
 {
   std::string bytes = Filesystem::convertFileToString(filePath);
@@ -22,64 +21,71 @@ Pixels::PixelArray BitmapReader::getPixelArray(std::string filePath)
   BitmapHeaders::DibHeader dibHeader = BitmapReader::getBitmapDibHeader(
     filePath);
 
-  return BitmapReader::parseBytesToVector(&bytes, fileHeader, dibHeader);
+  PixelReaderData pixelReaderData {};
+
+  pixelReaderData.widthInPixels = dibHeader.getWidthInPixels();
+  pixelReaderData.heightInPixels = dibHeader.getHeightInPixels();
+  pixelReaderData.rowSizeInBytes = Pixels::calculateRowSizeInBytes(
+    pixelReaderData.widthInPixels);
+
+  pixelReaderData.pixelDataOffset = fileHeader.getPixelDataOffset();
+  pixelReaderData.pixelPointer = ((char*) &bytes) + pixelReaderData.pixelDataOffset;
+
+  return BitmapReader::parseBytesToPixelArray(pixelReaderData);
 }
 
-Pixels::PixelArray BitmapReader::parseBytesToVector(
-  std::string* bytes, BitmapHeaders::FileHeader fileHeader,
-  BitmapHeaders::DibHeader dibHeader)
+Pixels::PixelArray BitmapReader::parseBytesToPixelArray(
+  PixelReaderData pixelReaderData)
 {
-  int pixelDataOffset = fileHeader.getPixelDataOffset();
-  int widthInPixels = dibHeader.getWidthInPixels();
-  int heightInPixels = dibHeader.getHeightInPixels();
-  int rowSizeInBytes = Pixels::calculateRowSizeInBytes(widthInPixels);
+  Pixels::PixelArray pixels {};
 
-  Pixels::PixelArray pixels;
-  pixels.setWidthInPixels(widthInPixels);
-  pixels.setHeightInPixels(heightInPixels);
+  pixels.setWidthInPixels(pixelReaderData.widthInPixels);
+  pixels.setHeightInPixels(pixelReaderData.heightInPixels);
 
-  for (int rowNo = 0; rowNo < heightInPixels; rowNo++) {
-    int startOfRowByteIndex = rowNo * rowSizeInBytes + pixelDataOffset;
+  char* pixelPointer = pixelReaderData.pixelPointer;
 
-    BitmapReader::parsePixelFromBytes(
-      bytes, &pixels, rowNo, startOfRowByteIndex);
+  for (int rowNo = 0; rowNo < pixelReaderData.heightInPixels; rowNo++) {
+    BitmapReader::parsePixelsFromRow(
+      pixelPointer + (rowNo * pixelReaderData.rowSizeInBytes),
+      &pixels, rowNo
+    );
   }
 
   return pixels;
 }
 
-void BitmapReader::parsePixelFromBytes(
-  std::string* bytes, Pixels::PixelArray* pixels, int rowNo,
-  int rowStartingByteNo)
+void BitmapReader::parsePixelsFromRow(
+  char* pixelPointer, Pixels::PixelArray* pixelArray, int rowNo)
 {
-  int widthInPixels = pixels->getWidthInPixels();
+  int widthInPixels = pixelArray->getWidthInPixels();
   int unpaddedRowSizeInBytes = Pixels::calculateUnpaddedRowSize(widthInPixels);
+
+  std::cout << unpaddedRowSizeInBytes << std::endl;
 
   const int sizeOfPixel = 3;
 
-  for (int columnNo = 0; columnNo < widthInPixels; columnNo ++) {
-    int byteNo = rowStartingByteNo + columnNo * sizeOfPixel;
+  for (int columnNo = 0; columnNo < unpaddedRowSizeInBytes; columnNo += sizeOfPixel) {
+    Pixels::PixelData pixelData {};
 
-    Pixels::PixelData pixelData;
+    pixelData.colours = BitmapReader::parsePixelColours(
+      pixelPointer + (columnNo * sizeOfPixel));
 
-    pixelData.colours = BitmapReader::parsePixelColoursFromBytes(
-      bytes, byteNo);
-      
     pixelData.columnNo = columnNo;
     pixelData.rowNo = rowNo;
 
-    pixels->setPixel(pixelData);
+    pixelArray->setPixel(pixelData);
   }
+
+  // Does not get here.
 }
 
-Colours BitmapReader::parsePixelColoursFromBytes(
-  std::string* bytes, int startingByteNo)
+Colours BitmapReader::parsePixelColours(char* pixelPointer)
 {
   Colours colours;
 
-  colours.blue = (*bytes)[startingByteNo];
-  colours.green = (*bytes)[startingByteNo + 1];
-  colours.red = (*bytes)[startingByteNo + 2];
+  colours.blue = *pixelPointer;
+  colours.green = *(pixelPointer + 1);
+  colours.red = *(pixelPointer + 2);
 
   return colours;
 }

@@ -1,17 +1,13 @@
-load("@rules_cc//cc:defs.bzl", "cc_test")
-
 cc_test(
-    name = "bitmap_image_tests",
+    name = "bitmap_packet_tests",
     size = "small",
     srcs = [
-        "bitmap_image_tests.cpp",
-        "reader_tests.cpp",
+        "pixels_tests.cpp"
     ],
     deps = [
         "@com_google_googletest//:gtest_main",
         "//src/graphics/bitmaps:bitmaps",
         "//test/src/graphics-tests/utilities:bitmap_image_comparators",
         "//test/src/graphics-tests/utilities:bitmap_set_up",
-        "//src/graphics/shapes:shapes"
     ]
 )
