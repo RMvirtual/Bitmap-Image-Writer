@@ -13,13 +13,11 @@ public:
   FileHeader(int widthInPixels, int heightInPixels);
 
   unsigned char* toBytes();
-
   void setSignatureBytes(std::string bytesSignature);
   void setSignatureBytes(char firstSignatureByte, char secondSignatureByte);
   void setSizeOfBitmapFile(uint32_t sizeOfBitmapFile);
   void setReservedBytes(uint32_t reservedBytes);
   void setPixelDataOffset(uint32_t pixelDataOffsetInBytes);
-
   std::string getSignatureBytes();
   uint32_t getSizeOfBitmapFile();
   uint32_t getReservedBytes();
