@@ -191,3 +191,8 @@ TEST(BitmapHeaderWriterTests, ShouldWriteDibHeaderToByteArray)
   EXPECT_EQ(
     (unsigned char) (header.getImportantColors() >> 24), bytes[39].value);
 }
+
+TEST(BitmapHeaderWriterTests, ShouldWritePixelArrayToByteArray)
+{ 
+
+}
