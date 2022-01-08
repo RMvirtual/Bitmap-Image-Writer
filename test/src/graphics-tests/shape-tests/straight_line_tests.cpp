@@ -54,5 +54,8 @@ TEST(StraightLineTests, ShouldDrawLine)
   char* imageToTestPath = 
     "C:\\Users\\rmvir\\Desktop\\scc300-Win3D\\test\\output\\straightLine.bmp";
 
-  bitmapImage.writeToFile(imageToTestPath);
+  // Needs a bitmap image writer method to replace below.
+  // bitmapImage.writeToFile(imageToTestPath);
+
+  ASSERT_TRUE(false);
 }

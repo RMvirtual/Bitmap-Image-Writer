@@ -206,6 +206,7 @@ TEST(BitmapWriterTests, ShouldWritePixelArrayToByteArray)
   int numberOfPixels = pixelArray.sizeInPixels();
   int numberOfBytes = bytes.size();
 
+  // Row stride unaccounted for.
   // Only testing first 12 bytes for testing speed.
   for (int byteNo = 0; byteNo < 12; byteNo += 3) {
     Pixels::Pixel pixel = pixelArray.getPixel(byteNo / 3);
@@ -214,7 +215,6 @@ TEST(BitmapWriterTests, ShouldWritePixelArrayToByteArray)
     EXPECT_EQ(pixel.getGreen(), bytes[byteNo+1].value);
     EXPECT_EQ(pixel.getRed(), bytes[byteNo+2].value);
   }
-
 }
 
 TEST(BitmapWriterTests, ShouldWritePixelToByteArray)

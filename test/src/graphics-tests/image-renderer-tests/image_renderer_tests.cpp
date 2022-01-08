@@ -4,6 +4,8 @@
 
 TEST(ImageRendererTests, ShouldFillImageRed)
 {
+  ASSERT_TRUE(false);
+
   ImageRendering::ImageRenderer imageRenderer;
 
   imageRenderer.setWidth(512);
@@ -21,7 +23,7 @@ TEST(ImageRendererTests, ShouldFillImageRed)
   char* outputFile =
     "C:\\Users\\rmvir\\Desktop\\scc300-Win3D\\test\\output\\redFill.bmp";
 
-  bmpImage.writeToFile(outputFile);
+  // Needs a write output file method here to compare new red fill image.
 
   char* correctFile = 
     "C:\\Users\\rmvir\\Desktop\\scc300-Win3D\\test\\resources\\" \

@@ -14,9 +14,6 @@ public:
 
   static BitmapImage fromPacket(BitmapPacket headers);
   static BitmapImage fromFile(std::string filePath);
-
-  void writeToFile(std::string filePath);
-
   void setFileHeader(BitmapHeaders::FileHeader fileHeader);
   void setDibHeader(BitmapHeaders::DibHeader dibHeader);
   void setPixelArray(Pixels::PixelArray pixelArray);

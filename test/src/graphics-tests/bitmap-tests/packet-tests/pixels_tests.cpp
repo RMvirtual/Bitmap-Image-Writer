@@ -37,21 +37,6 @@ Pixels::PixelArray getRedPixelArray()
   return {redPixels, 2, 2};
 }
 
-TEST(PixelTests, ShouldStreamPixelIntoBytes)
-{
-  Colours colours = BitmapSetUp::getWhiteColours();
-
-  Pixels::Pixel pixel {colours};
-  unsigned char* bytes = pixel.toBytes();
-
-  for (int byteNo = 0; byteNo < 3; byteNo++) {
-    uint8_t currentByte = (uint8_t) *(bytes + byteNo);
-    uint8_t correctValue = 255;
-
-    EXPECT_EQ(currentByte, correctValue); 
-  }
-}
-
 TEST(PixelArrayTests, ShouldSetPixelInPixelArray)
 {
   Colours redColours = BitmapSetUp::getRedColours();
@@ -84,32 +69,6 @@ TEST(PixelArrayTests, ShouldGetNumberOfPixelsInPixelArray)
   int actualNumberOfPixels = pixelArray.sizeInPixels();
 
   EXPECT_EQ(correctNumberOfPixels, actualNumberOfPixels);
-}
-
-TEST(PixelArrayTests, ShouldStreamPixelArrayIntoBytes)
-{
-  Colours colours;
-  colours.red = 255;
-  colours.green = 200;
-  colours.blue = 150;
-
-  Pixels::Pixel pixel {colours};
-  std::vector<Pixels::Pixel> pixels {pixel, pixel, pixel, pixel};
-  Pixels::PixelArray pixelArray {pixels, 2, 2};
-
-  unsigned char* pixelArrayBytes = pixelArray.toBytes();
-
-  uint8_t correctBytes[] = {
-    150, 200, 255, 150, 200, 255, 0, 0,
-    150, 200, 255, 150, 200, 255, 0, 0
-  };
-
-  for (int byteNo = 0; byteNo < pixelArray.sizeInBytes(); byteNo++) {
-    uint8_t currentByte = (uint8_t) pixelArrayBytes[byteNo];
-    uint8_t correctValue = correctBytes[byteNo];
-
-    EXPECT_EQ(currentByte, correctValue);
-  }
 }
 
 TEST(PixelArrayTests, ShouldCalculatePixelArrayRowPadding)

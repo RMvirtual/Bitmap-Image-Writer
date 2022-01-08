@@ -51,7 +51,6 @@ ByteArray BitmapWriter::writePixelArray(Pixels::PixelArray pixelArray)
   int numberOfPixels = pixelArray.sizeInPixels();
 
   // No accounting for row stride yet.
-
   for (int pixelNo = 0; pixelNo < numberOfPixels; pixelNo++) {
     Pixels::Pixel pixel = pixelArray.getPixel(pixelNo);
     ByteArray pixelBytes = this->writePixel(pixel);

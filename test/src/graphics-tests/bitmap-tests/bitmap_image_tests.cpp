@@ -7,6 +7,7 @@
 
 TEST(BitmapImageTests, ShouldWriteBitmap)
 {
+  /*
   char* imageToTestPath = 
     "C:\\Users\\rmvir\\Desktop\\scc300-Win3D\\test\\output\\myImage.bmp";
 
@@ -21,4 +22,7 @@ TEST(BitmapImageTests, ShouldWriteBitmap)
   BitmapImage imageToTest = BitmapImage::fromFile(imageToTestPath);
 
   BitmapImageComparison::compareBitmapImages(correctImage, imageToTest);
+  */
+
+  EXPECT_TRUE(false);
 }
