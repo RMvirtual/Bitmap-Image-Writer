@@ -15,20 +15,41 @@ TEST(BitmapHeaderWriterTests, ShouldWriteFileHeaderToByteArray)
   EXPECT_EQ(header.getSignatureBytes()[1], bytes[1].value);
 
   // Bitmap file size.
-  EXPECT_EQ((unsigned char) (header.getSizeOfBitmapFile()), bytes[2].value);
-  EXPECT_EQ((unsigned char) (header.getSizeOfBitmapFile() >> 8), bytes[3].value);
-  EXPECT_EQ((unsigned char) (header.getSizeOfBitmapFile() >> 16), bytes[4].value);
-  EXPECT_EQ((unsigned char) (header.getSizeOfBitmapFile() >> 24), bytes[5].value);
+  EXPECT_EQ(
+    (unsigned char) (header.getSizeOfBitmapFile()), bytes[2].value);
+
+  EXPECT_EQ(
+    (unsigned char) (header.getSizeOfBitmapFile() >> 8), bytes[3].value);
+
+  EXPECT_EQ(
+    (unsigned char) (header.getSizeOfBitmapFile() >> 16), bytes[4].value);
+
+  EXPECT_EQ(
+    (unsigned char) (header.getSizeOfBitmapFile() >> 24), bytes[5].value);
 
   // Bitmap reserved bytes.
-  EXPECT_EQ((unsigned char) (header.getReservedBytes()), bytes[6].value);
-  EXPECT_EQ((unsigned char) (header.getReservedBytes() >> 8), bytes[7].value);
-  EXPECT_EQ((unsigned char) (header.getReservedBytes() >> 16), bytes[8].value);
-  EXPECT_EQ((unsigned char) (header.getReservedBytes() >> 24), bytes[9].value);
+  EXPECT_EQ(
+    (unsigned char) (header.getReservedBytes()), bytes[6].value);
+
+  EXPECT_EQ(
+    (unsigned char) (header.getReservedBytes() >> 8), bytes[7].value);
+
+  EXPECT_EQ(
+    (unsigned char) (header.getReservedBytes() >> 16), bytes[8].value);
+
+  EXPECT_EQ(
+    (unsigned char) (header.getReservedBytes() >> 24), bytes[9].value);
 
   // Bitmap pixel data offset value.
-  EXPECT_EQ((unsigned char) (header.getPixelDataOffset()), bytes[10].value);
-  EXPECT_EQ((unsigned char) (header.getPixelDataOffset() >> 8), bytes[11].value);
-  EXPECT_EQ((unsigned char) (header.getPixelDataOffset() >> 16), bytes[12].value);
-  EXPECT_EQ((unsigned char) (header.getPixelDataOffset() >> 24), bytes[13].value);
+  EXPECT_EQ(
+    (unsigned char) (header.getPixelDataOffset()), bytes[10].value);
+  
+  EXPECT_EQ(
+    (unsigned char) (header.getPixelDataOffset() >> 8), bytes[11].value);
+  
+  EXPECT_EQ(
+    (unsigned char) (header.getPixelDataOffset() >> 16), bytes[12].value);
+  
+  EXPECT_EQ(
+    (unsigned char) (header.getPixelDataOffset() >> 24), bytes[13].value);
 }
