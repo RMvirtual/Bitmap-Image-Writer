@@ -4,27 +4,23 @@
 #include <cstdint>
 #include "src/graphics/colours/colours.h"
 
-namespace Pixels
+namespace Pixels {
+class Pixel
 {
-  class Pixel
-  {
-    public:
-      Pixel(Colours colours);
-      unsigned char* toBytes();
+public:
+  Pixel(Colours colours);
 
-      void setColours(Colours colours);
-      void setRed(uint8_t value);
-      void setGreen(uint8_t value);
-      void setBlue(uint8_t value);
+  void setColours(Colours colours);
+  void setRed(uint8_t value);
+  void setGreen(uint8_t value);
+  void setBlue(uint8_t value);
+  Colours getColours();
+  uint8_t getRed();
+  uint8_t getGreen();
+  uint8_t getBlue();
 
-      Colours getColours();
-      uint8_t getRed();
-      uint8_t getGreen();
-      uint8_t getBlue();
-
-    private:
-      Colours colours;
-  };
-}
+private:
+  Colours colours;
+};}
 
 #endif

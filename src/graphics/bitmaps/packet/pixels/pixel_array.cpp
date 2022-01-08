@@ -46,57 +46,6 @@ void Pixels::PixelArray::populateMissingPixels()
     this->addBlankPixels(numberOfMissingPixels);
 }
 
-void Pixels::PixelArray::addAllPixelsToByteArray(
-  ByteArrayBuilder* byteArrayBuilder)
-{
-  for (int rowNo = 0; rowNo < this->heightInPixels; rowNo++) {
-    unsigned char* pixelRowBytes = this->getRowOfPixelsAsBytes(rowNo);
-    byteArrayBuilder->addValues(pixelRowBytes, this->rowSizeInBytes);
-
-    delete[] pixelRowBytes;
-  }
-}
-
-void Pixels::PixelArray::addRowOfPixelsToByteArray(
-  int rowNo, ByteArrayBuilder* byteArrayBuilder)
-{
-  for (int columnNo = 0; columnNo < this->widthInPixels; columnNo++)
-    this->addPixelByIndexToByteArray(rowNo, columnNo, byteArrayBuilder);
-}
-
-void Pixels::PixelArray::addPixelByIndexToByteArray(
-  int rowNo, int columnNo, ByteArrayBuilder* byteArrayBuilder)
-{
-  Pixels::Pixel pixel = this->getPixel(rowNo, columnNo);
-  this->addPixelToByteArray(pixel, byteArrayBuilder);
-}
-
-void Pixels::PixelArray::addPixelToByteArray(
-  Pixels::Pixel pixel, ByteArrayBuilder* byteArrayBuilder)
-{
-  unsigned char* pixelBytes = pixel.toBytes();
-  byteArrayBuilder->addValues(pixelBytes, 3);
-
-  delete[] pixelBytes;
-}
-
-void Pixels::PixelArray::addPaddingBytesToByteArray(
-  ByteArrayBuilder* byteArrayBuilder)
-{
-  for (int byteNo = 0; byteNo < this->rowPadding; byteNo++)
-    byteArrayBuilder->addValue(0);
-}
-
-unsigned char* Pixels::PixelArray::getRowOfPixelsAsBytes(int rowNo)
-{
-  ByteArrayBuilder byteArrayBuilder;
-
-  this->addRowOfPixelsToByteArray(rowNo, &byteArrayBuilder);
-  this->addPaddingBytesToByteArray(&byteArrayBuilder);
-
-  return byteArrayBuilder.toBytes();
-}
-
 void Pixels::PixelArray::addBlankPixels(int numberOfPixelsToAdd)
 {
   for (int pixelNo = 0; pixelNo < numberOfPixelsToAdd; pixelNo++)

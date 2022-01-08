@@ -12,6 +12,9 @@ namespace BitmapSetUp {
   BitmapHeaders::DibHeader setUpBluePixelDibHeader();
   Pixels::PixelArray setUpBluePixelArray();
   std::string getBlueImagePath();
+  Colours getWhiteColours();
+  Colours getGreenColours();
+  Colours getRedColours();
 }
 
 #endif

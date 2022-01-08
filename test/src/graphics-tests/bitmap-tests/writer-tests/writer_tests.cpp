@@ -4,7 +4,7 @@
 #include "src/graphics/bitmaps/packet/headers/file_header.h"
 #include "test/src/graphics-tests/utilities/bitmap_set_up.h"
 
-TEST(BitmapHeaderWriterTests, ShouldWriteFileHeaderToByteArray)
+TEST(BitmapWriterTests, ShouldWriteFileHeaderToByteArray)
 { 
   BitmapHeaders::FileHeader header = BitmapSetUp::setUpBluePixelFileHeader();
   BitmapWriter writer {};
@@ -54,7 +54,7 @@ TEST(BitmapHeaderWriterTests, ShouldWriteFileHeaderToByteArray)
     (unsigned char) (header.getPixelDataOffset() >> 24), bytes[13].value);
 }
 
-TEST(BitmapHeaderWriterTests, ShouldWriteDibHeaderToByteArray)
+TEST(BitmapWriterTests, ShouldWriteDibHeaderToByteArray)
 { 
   BitmapHeaders::DibHeader header = BitmapSetUp::setUpBluePixelDibHeader();
   BitmapWriter writer {};
@@ -192,7 +192,21 @@ TEST(BitmapHeaderWriterTests, ShouldWriteDibHeaderToByteArray)
     (unsigned char) (header.getImportantColors() >> 24), bytes[39].value);
 }
 
-TEST(BitmapHeaderWriterTests, ShouldWritePixelArrayToByteArray)
+TEST(BitmapWriterTests, ShouldWritePixelArrayToByteArray)
 { 
 
+}
+
+TEST(BitmapWriterTests, ShouldWritePixelToByteArray)
+{
+  Colours redRgbColours = BitmapSetUp::getRedColours();
+  Pixels::Pixel redPixel {redRgbColours};
+  BitmapWriter writer {};
+  ByteArray bytes = writer.writePixel(redPixel);
+
+  // 24-bit pixel only atm. Alpha channel to come later.
+  // Reverse ordering of bytes so BGR instead of RGB.
+  EXPECT_EQ(redRgbColours.blue, bytes[0].value);
+  EXPECT_EQ(redRgbColours.green, bytes[1].value);
+  EXPECT_EQ(redRgbColours.red, bytes[2].value);
 }

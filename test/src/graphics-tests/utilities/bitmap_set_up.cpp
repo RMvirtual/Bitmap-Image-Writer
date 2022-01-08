@@ -69,3 +69,33 @@ Pixels::PixelArray BitmapSetUp::setUpBluePixelArray()
 
   return Pixels::PixelArray {pixels, imageWidth, imageHeight};
 }
+
+Colours BitmapSetUp::getRedColours()
+{
+  Colours colours;
+  colours.red = 255;
+  colours.green = 0;
+  colours.blue = 0;
+
+  return colours;
+}
+
+Colours BitmapSetUp::getGreenColours()
+{
+  Colours colours;
+  colours.red = 0;
+  colours.green = 255;
+  colours.blue = 0;
+
+  return colours;
+}
+
+Colours BitmapSetUp::getWhiteColours()
+{
+  Colours colours;
+  colours.red = 255;
+  colours.green = 255;
+  colours.blue = 255;
+
+  return colours;
+}

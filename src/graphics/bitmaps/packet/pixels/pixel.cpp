@@ -9,17 +9,6 @@ Pixels::Pixel::Pixel(Colours colours)
   this->colours = colours;
 }
 
-unsigned char* Pixels::Pixel::toBytes()
-{
-  ByteArrayBuilder byteArrayBuilder;
-
-  byteArrayBuilder.addValue(this->colours.blue);
-  byteArrayBuilder.addValue(this->colours.green);
-  byteArrayBuilder.addValue(this->colours.red);
-
-  return byteArrayBuilder.toBytes();
-}
-
 void Pixels::Pixel::setColours(Colours colours)
 {
   this->colours = colours;

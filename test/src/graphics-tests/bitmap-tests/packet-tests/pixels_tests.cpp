@@ -37,39 +37,9 @@ Pixels::PixelArray getRedPixelArray()
   return {redPixels, 2, 2};
 }
 
-Colours getRedColours()
-{
-  Colours colours;
-  colours.red = 255;
-  colours.green = 0;
-  colours.blue = 0;
-
-  return colours;
-}
-
-Colours getGreenColours()
-{
-  Colours colours;
-  colours.red = 0;
-  colours.green = 255;
-  colours.blue = 0;
-
-  return colours;
-}
-
-Colours getWhiteColours()
-{
-  Colours colours;
-  colours.red = 255;
-  colours.green = 255;
-  colours.blue = 255;
-
-  return colours;
-}
-
 TEST(PixelTests, ShouldStreamPixelIntoBytes)
 {
-  Colours colours = getWhiteColours();
+  Colours colours = BitmapSetUp::getWhiteColours();
 
   Pixels::Pixel pixel {colours};
   unsigned char* bytes = pixel.toBytes();
@@ -84,7 +54,7 @@ TEST(PixelTests, ShouldStreamPixelIntoBytes)
 
 TEST(PixelArrayTests, ShouldSetPixelInPixelArray)
 {
-  Colours redColours = getRedColours();
+  Colours redColours = BitmapSetUp::getRedColours();
   Pixels::Pixel redPixel {redColours};
 
   std::vector<Pixels::Pixel> redPixels {
@@ -92,7 +62,7 @@ TEST(PixelArrayTests, ShouldSetPixelInPixelArray)
 
   Pixels::PixelArray pixelArray = getRedPixelArray();
 
-  Colours greenColours = getGreenColours();
+  Colours greenColours = BitmapSetUp::getGreenColours();
   Pixels::PixelData greenPixelData;
   greenPixelData.colours = greenColours;  
   greenPixelData.rowNo = 1;

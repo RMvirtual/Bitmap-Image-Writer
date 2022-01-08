@@ -33,16 +33,6 @@ namespace Pixels {
     int rowSizeInBytes;
     int rowPadding;
 
-    void addAllPixelsToByteArray(ByteArrayBuilder* byteArrayBuilder);
-    void addRowOfPixelsToByteArray(int rowNo, ByteArrayBuilder* byteArray);
-
-    void addPixelByIndexToByteArray(
-      int rowNo, int columnNo, ByteArrayBuilder* byteArray);
-
-    void addPixelToByteArray(Pixels::Pixel pixel, ByteArrayBuilder* byteArray);
-    void addPaddingBytesToByteArray(ByteArrayBuilder* byteArray);
-    unsigned char* getRowOfPixelsAsBytes(int rowNo);
-
     void initialisePixelArray(int widthInPixels, int heightInPixels);
     void populateMissingPixels();
     void addBlankPixels(int numberOfPixelsToAdd);
