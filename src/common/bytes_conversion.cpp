@@ -1,43 +1,36 @@
 #include "src/common/bytes_conversion.h"
+#include "src/common/byte_array.h"
 
-uint32_t BytesConversion::getFourBytesFromSubstring(
-  std::string stringToConvert, int startingByteIndex)
+uint32_t BytesConversion::get32BitInteger(ByteArray bytes, int startingIndex)
 {
-  std::string slicedString = stringToConvert.substr(startingByteIndex, 4);
-  
-  uint32_t extractedBytes = 
-    BytesConversion::convertFourCharactersTo32bitInteger(slicedString);
-  
-  return extractedBytes;
+  ByteArray fourBytes = bytes.slice(startingIndex, startingIndex + 4);
+   
+  return BytesConversion::convertTo32bitInteger(fourBytes);
 }
 
-uint16_t BytesConversion::getTwoBytesFromSubstring(
-  std::string stringToConvert, int startingByteIndex)
+uint16_t BytesConversion::get16BitInteger(ByteArray bytes, int startingIndex)
 {
-  std::string slicedString = stringToConvert.substr(startingByteIndex, 2);
-
-  uint16_t extractedBytes =
-    BytesConversion::convertTwoCharactersTo16bitInteger(slicedString);
+  ByteArray twoBytes = bytes.slice(startingIndex, startingIndex + 2);
   
-  return extractedBytes;
+  return BytesConversion::convertTo16bitInteger(twoBytes);
 }
 
-uint32_t BytesConversion::convertFourCharactersTo32bitInteger(
-  std::string stringToConvert)
+uint32_t BytesConversion::convertTo32bitInteger(ByteArray bytes)
 {
-  return uint32_t (
-    (uint8_t) stringToConvert[0] |
-    (uint8_t) stringToConvert[1] << 8 |
-    (uint8_t) stringToConvert[2] << 16 |
-    (uint8_t) stringToConvert[3] << 24
-  );
+  BytesConversion::ValueUnion values {};
+
+  for (int byteNo = 0; byteNo < 4; byteNo++)
+    values.byteValues[byteNo] = bytes[byteNo].value;
+
+  return values.fourByteValue;
 }
 
-uint16_t BytesConversion::convertTwoCharactersTo16bitInteger(
-  std::string stringToConvert)
+uint16_t BytesConversion::convertTo16bitInteger(ByteArray bytes)
 {
-  return uint32_t (
-    (uint8_t) stringToConvert[0] |
-    (uint8_t) stringToConvert[1] << 8
-  );
+  BytesConversion::ValueUnion values {};
+
+  for (int byteNo = 0; byteNo < 2; byteNo++)
+    values.byteValues[byteNo] = bytes[byteNo].value;
+
+  return values.twoByteValue;
 }

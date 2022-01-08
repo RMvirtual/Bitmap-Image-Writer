@@ -1,6 +1,7 @@
 #ifndef BYTE_ARRAY_BUILDER_H
 #define BYTE_ARRAY_BUILDER_H
 
+#include <string>
 #include <cstdint>
 #include <vector>
 
@@ -16,30 +17,31 @@ public:
    */
   ByteArrayBuilder();
 
-  void addValue(char value);
-
+  void add(char value);
+  
   // Add a character (converted to an 8-bit unsigned integer).
-  void addValue(unsigned char value);
+  void add(unsigned char value);
 
   // Add an array of characters (converted to 8-bit unsigned integers).
-  void addValues(unsigned char* values, int numberOfBytes);
+  void add(unsigned char* values, int numberOfBytes);
 
   // Adds a value of 1 byte.
-  void addValue(int8_t value);
+  void add(int8_t value);
 
   // Adds a value of 2 bytes.
-  void addValue(uint16_t value);
+  void add(uint16_t value);
 
   // Adds a value of 2 bytes.
-  void addValue(int16_t value);
+  void add(int16_t value);
 
   // Adds a value of 4 bytes.
-  void addValue(uint32_t value);
+  void add(uint32_t value);
 
   // Adds a value of 4 bytes.
-  void addValue(int32_t value);
+  void add(int32_t value);
 
   void add(ByteArray byteArray);
+  void add(std::string values);
 
   /**
    * Returns a character array pointer towards a copy of the bytes

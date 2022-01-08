@@ -4,13 +4,20 @@
 #include <cstdint>
 #include <string>
 
+#include "src/common/byte_array.h"
+
 namespace BytesConversion
 {
-  uint32_t getFourBytesFromSubstring(std::string stringToIndex, int startingIndex);
-  uint16_t getTwoBytesFromSubstring(std::string stringToIndex, int startingIndex);
+  uint32_t get32BitInteger(ByteArray bytes, int startingIndex);
+  uint16_t get16BitInteger(ByteArray bytes, int startingIndex);
+  uint32_t convertTo32bitInteger(ByteArray bytes);
+  uint16_t convertTo16bitInteger(ByteArray bytes);
 
-  uint32_t convertFourCharactersTo32bitInteger(std::string stringToConvert);
-  uint16_t convertTwoCharactersTo16bitInteger(std::string stringToConvert);
+  union ValueUnion {
+    uint32_t fourByteValue;
+    uint16_t twoByteValue;
+    uint8_t byteValues[4];
+  };
 };
 
 #endif

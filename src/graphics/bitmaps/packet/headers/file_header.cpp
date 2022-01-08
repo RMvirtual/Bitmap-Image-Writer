@@ -4,13 +4,12 @@
 #include "src/graphics/bitmaps/packet/pixels/pixel_array_size_calculator.h"
 #include "src/common/byte_array_builder.h"
 
-BitmapHeaders::FileHeader::FileHeader() : BitmapHeaders::Header {14}
+BitmapHeaders::FileHeader::FileHeader()
 {
   this->initialiseDefaultValues();
 }
 
 BitmapHeaders::FileHeader::FileHeader(int widthInPixels, int heightInPixels)
-: BitmapHeaders::Header {14}
 {
   this->initialiseDefaultValues();
 
@@ -18,6 +17,19 @@ BitmapHeaders::FileHeader::FileHeader(int widthInPixels, int heightInPixels)
     widthInPixels, heightInPixels);
 
   this->sizeOfBitmapFile = this->pixelDataOffset + pixelArraySize;
+}
+
+BitmapHeaders::FileHeader BitmapHeaders::FileHeader::fromValues(
+  BitmapHeaders::FileHeaderValues values)
+{
+  BitmapHeaders::FileHeader header {};
+
+  header.setSignatureBytes(values.signatureBytes);
+  header.setSizeOfBitmapFile(values.fileSize);
+  header.setReservedBytes(values.reservedBytes);
+  header.setPixelDataOffset(values.pixelDataOffsetInBytes);
+
+  return header;
 }
 
 void BitmapHeaders::FileHeader::initialiseDefaultValues()

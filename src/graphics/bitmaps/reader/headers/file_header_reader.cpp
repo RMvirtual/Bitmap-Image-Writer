@@ -1,0 +1,41 @@
+#include "src/common/filesystem.h"
+#include "src/common/bytes_conversion.h"
+#include "src/graphics/bitmaps/reader/headers/file_header_reader.h"
+
+FileHeaderReader::FileHeaderReader()
+{
+  // pass.
+}
+
+BitmapHeaders::FileHeader FileHeaderReader::convertBytes(ByteArray bytes)
+{
+  FileHeaderReader::parseSignatureBytes(bytes);
+  FileHeaderReader::parseSizeOfBitmapFile(bytes);
+  FileHeaderReader::parseReservedBytes(bytes);
+  FileHeaderReader::parsePixelDataOffset(bytes);
+
+  return this->fileHeader;
+}
+
+void FileHeaderReader::parseSignatureBytes(ByteArray bytes)
+{
+  this->fileHeader.setSignatureBytes(bytes[0].value, bytes[1].value);
+}
+
+void FileHeaderReader::parseSizeOfBitmapFile(ByteArray bytes)
+{
+  uint32_t sizeOfBitmapFile = BytesConversion::get32BitInteger(bytes, 2);
+  this->fileHeader.setSizeOfBitmapFile(sizeOfBitmapFile);
+}
+
+void FileHeaderReader::parseReservedBytes(ByteArray bytes)
+{
+  uint32_t reservedBytes = BytesConversion::get32BitInteger(bytes, 6);
+  this->fileHeader.setReservedBytes(reservedBytes);
+}
+
+void FileHeaderReader::parsePixelDataOffset(ByteArray bytes)
+{
+  uint32_t pixelDataOffset = BytesConversion::get32BitInteger(bytes, 10);
+  this->fileHeader.setPixelDataOffset(pixelDataOffset);
+}

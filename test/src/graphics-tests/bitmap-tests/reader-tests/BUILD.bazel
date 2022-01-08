@@ -3,14 +3,12 @@ cc_test(
     size = "small",
     srcs = [
         "image_reader_tests.cpp",
-        "header_reader_tests.cpp",
-        "pixel_array_reader_tests.cpp"
+        "header_reader_tests.cpp"
     ],
     deps = [
         "@com_google_googletest//:gtest_main",
         "//src/graphics/bitmaps:bitmaps",
         "//test/src/graphics-tests/utilities:bitmap_image_comparators",
-        "//test/src/graphics-tests/utilities:bitmap_set_up",
-        "//src/graphics/shapes:shapes"
+        "//test/src/graphics-tests/utilities:bitmap_set_up"
     ]
 )

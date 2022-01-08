@@ -1,12 +1,12 @@
 cc_library(
     name = "bitmap_headers",
     hdrs = [
-        "header.h",
         "file_header.h",
-        "dib_header.h"
+        "file_header_values.h",
+        "dib_header.h",
+        "dib_header_values.h"
     ],
     srcs = [
-        "header.cpp",
         "file_header.cpp",
         "dib_header.cpp"
     ],

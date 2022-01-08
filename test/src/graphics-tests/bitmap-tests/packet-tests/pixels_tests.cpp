@@ -4,7 +4,6 @@
 
 #include "src/graphics/bitmaps/packet/pixels/pixel_array.h"
 #include "src/graphics/bitmaps/packet/pixels/pixel.h"
-#include "src/graphics/bitmaps/reader/bitmap_reader.h"
 #include "src/graphics/bitmaps/packet/pixels/pixel_array_size_calculator.h"
 #include "test/src/graphics-tests/utilities/bitmap_set_up.h"
 

@@ -3,14 +3,16 @@
 
 #include <cstdint>
 #include <string>
-#include "src/graphics/bitmaps/packet/headers/header.h"
+
+#include "src/graphics/bitmaps/packet/headers/file_header_values.h"
 
 namespace BitmapHeaders {
-class FileHeader : public Header
+class FileHeader
 {
 public:
   FileHeader();
   FileHeader(int widthInPixels, int heightInPixels);
+  static FileHeader fromValues(FileHeaderValues values);
 
   void setSignatureBytes(std::string bytesSignature);
   void setSignatureBytes(char firstSignatureByte, char secondSignatureByte);

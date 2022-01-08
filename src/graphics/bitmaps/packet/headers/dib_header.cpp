@@ -1,7 +1,7 @@
 #include <cstdint>
 
 #include "src/graphics/bitmaps/packet/headers/dib_header.h"
-#include "src/common/byte_array_builder.h"
+#include "src/graphics/bitmaps/packet/headers/dib_header_values.h"
 
 BitmapHeaders::DibHeader::DibHeader()
 {
@@ -11,9 +11,27 @@ BitmapHeaders::DibHeader::DibHeader()
 BitmapHeaders::DibHeader::DibHeader(int widthInPixels, int heightInPixels)
 {
   this->initialiseDefaultValues();
+  this->setWidthInPixels(widthInPixels);
+  this->setHeightInPixels(heightInPixels);  
+}
 
-  this->widthInPixels = widthInPixels;
-  this->heightInPixels = heightInPixels;  
+BitmapHeaders::DibHeader BitmapHeaders::DibHeader::fromValues(
+  BitmapHeaders::DibHeaderValues values)
+{
+  BitmapHeaders::DibHeader header {};
+
+  header.setWidthInPixels(values.widthInPixels);
+  header.setHeightInPixels(values.heightInPixels);
+  header.setNumberOfColourPlanes(values.numberOfColorPlanes);
+  header.setColorDepth(values.colorDepth);
+  header.setCompressionMethod(values.compressionMethod);
+  header.setRawBitmapDataSize(values.rawBitmapDataSize);
+  header.setHorizontalPixelsPerMetre(values.horizontalPixelsPerMetre);
+  header.setVerticalPixelsPerMetre(values.verticalPixelsPerMetre);
+  header.setColorTableEntries(values.colorTableEntries);
+  header.setImportantColours(values.importantColors);
+
+  return header;
 }
 
 void BitmapHeaders::DibHeader::initialiseDefaultValues()
@@ -23,7 +41,7 @@ void BitmapHeaders::DibHeader::initialiseDefaultValues()
   this->numberOfColorPlanes = 1; 
   this->colorDepth = 24; 
   this->compressionMethod = 0;  
-  this->rawBitmapDataSize = 0; 
+  this->rawBitmapDataSize = 0;
   this->horizontalPixelsPerMetre = 0;
   this->verticalPixelsPerMetre = 0; 
   this->colorTableEntries = 0;
@@ -33,25 +51,6 @@ void BitmapHeaders::DibHeader::initialiseDefaultValues()
 int BitmapHeaders::DibHeader::getHeaderSizeInBytes()
 {
   return 40;
-}
-
-ByteArrayBuilder BitmapHeaders::DibHeader::getByteArrayBuilder()
-{
-  ByteArrayBuilder byteArrayBuilder;
-
-  byteArrayBuilder.addValue(this->getHeaderSizeInBytes());
-  byteArrayBuilder.addValue(this->widthInPixels);
-  byteArrayBuilder.addValue(this->heightInPixels);
-  byteArrayBuilder.addValue(this->numberOfColorPlanes);
-  byteArrayBuilder.addValue(this->colorDepth);
-  byteArrayBuilder.addValue(this->compressionMethod);
-  byteArrayBuilder.addValue(this->rawBitmapDataSize);
-  byteArrayBuilder.addValue(this->horizontalPixelsPerMetre);
-  byteArrayBuilder.addValue(this->verticalPixelsPerMetre);
-  byteArrayBuilder.addValue(this->colorTableEntries);
-  byteArrayBuilder.addValue(this->importantColors);
-
-  return byteArrayBuilder;
 }
 
 void BitmapHeaders::DibHeader::setWidthInPixels(int32_t widthInPixels)
@@ -75,32 +74,29 @@ void BitmapHeaders::DibHeader::setColorDepth(uint16_t colorDepth)
   this->colorDepth = colorDepth;
 }
 
-void BitmapHeaders::DibHeader::setCompressionMethod(
-  uint32_t compressionMethod)
+void BitmapHeaders::DibHeader::setCompressionMethod(uint32_t compressionMethod)
 {
   this->compressionMethod = compressionMethod;
 }
 
-void BitmapHeaders::DibHeader::setRawBitmapDataSize(
-  uint32_t rawBitmapDataSize)
+void BitmapHeaders::DibHeader::setRawBitmapDataSize(uint32_t rawBitmapDataSize)
 {
   this->rawBitmapDataSize = rawBitmapDataSize;
 }
 
 void BitmapHeaders::DibHeader::setHorizontalPixelsPerMetre(
-  int32_t horizontalPixelsPerMetre)
+  int32_t pixelsPerMetre)
 {
-  this->horizontalPixelsPerMetre = horizontalPixelsPerMetre;
+  this->horizontalPixelsPerMetre = pixelsPerMetre;
 }
 
 void BitmapHeaders::DibHeader::setVerticalPixelsPerMetre(
-  int32_t verticalPixelsPerMetre)
+  int32_t pixelsPerMetre)
 {
-  this->verticalPixelsPerMetre = verticalPixelsPerMetre;
+  this->verticalPixelsPerMetre = pixelsPerMetre;
 }
 
-void BitmapHeaders::DibHeader::setColorTableEntries(
-  uint32_t colorTableEntries)
+void BitmapHeaders::DibHeader::setColorTableEntries(uint32_t colorTableEntries)
 {
   this->colorTableEntries = colorTableEntries;
 }

@@ -1,4 +1,5 @@
 #include "src/common/byte_array.h"
+#include "src/common/byte_array_builder.h"
 
 ByteArray::ByteArray()
 {
@@ -19,4 +20,14 @@ Byte ByteArray::operator [](int index)
 int ByteArray::size()
 {
   return this->bytes.size();
+}
+
+ByteArray ByteArray::slice(int startIndex, int endIndex)
+{
+  ByteArrayBuilder byteArrayBuilder;
+
+  for (int index = startIndex; index <= endIndex; index++) 
+    byteArrayBuilder.add(this->bytes[index].value);
+ 
+  return byteArrayBuilder.toByteArray();
 }

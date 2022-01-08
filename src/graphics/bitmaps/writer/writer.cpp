@@ -17,11 +17,11 @@ ByteArray BitmapWriter::writeFileHeader(BitmapHeaders::FileHeader header)
   ByteArrayBuilder byteArrayBuilder {};
 
   std::string signatureBytes = header.getSignatureBytes();
-  byteArrayBuilder.addValue(signatureBytes[0]);
-  byteArrayBuilder.addValue(signatureBytes[1]);
-  byteArrayBuilder.addValue(header.getSizeOfBitmapFile()); 
-  byteArrayBuilder.addValue(header.getReservedBytes()); 
-  byteArrayBuilder.addValue(header.getPixelDataOffset());
+  byteArrayBuilder.add(signatureBytes[0]);
+  byteArrayBuilder.add(signatureBytes[1]);
+  byteArrayBuilder.add(header.getSizeOfBitmapFile()); 
+  byteArrayBuilder.add(header.getReservedBytes()); 
+  byteArrayBuilder.add(header.getPixelDataOffset());
 
   return byteArrayBuilder.toByteArray();
 }
@@ -30,17 +30,17 @@ ByteArray BitmapWriter::writeDibHeader(BitmapHeaders::DibHeader header)
 {
   ByteArrayBuilder byteArrayBuilder {};
 
-  byteArrayBuilder.addValue(header.getHeaderSizeInBytes());
-  byteArrayBuilder.addValue(header.getWidthInPixels());
-  byteArrayBuilder.addValue(header.getHeightInPixels());
-  byteArrayBuilder.addValue(header.getNumberOfColorPlanes());
-  byteArrayBuilder.addValue(header.getColorDepth());
-  byteArrayBuilder.addValue(header.getCompressionMethod());
-  byteArrayBuilder.addValue(header.getRawBitmapDataSize());
-  byteArrayBuilder.addValue(header.getHorizontalPixelsPerMetre());
-  byteArrayBuilder.addValue(header.getVerticalPixelsPerMetre());
-  byteArrayBuilder.addValue(header.getColorTableEntries());
-  byteArrayBuilder.addValue(header.getImportantColors());
+  byteArrayBuilder.add(header.getHeaderSizeInBytes());
+  byteArrayBuilder.add(header.getWidthInPixels());
+  byteArrayBuilder.add(header.getHeightInPixels());
+  byteArrayBuilder.add(header.getNumberOfColorPlanes());
+  byteArrayBuilder.add(header.getColorDepth());
+  byteArrayBuilder.add(header.getCompressionMethod());
+  byteArrayBuilder.add(header.getRawBitmapDataSize());
+  byteArrayBuilder.add(header.getHorizontalPixelsPerMetre());
+  byteArrayBuilder.add(header.getVerticalPixelsPerMetre());
+  byteArrayBuilder.add(header.getColorTableEntries());
+  byteArrayBuilder.add(header.getImportantColors());
 
   return byteArrayBuilder.toByteArray();
 }
@@ -65,9 +65,9 @@ ByteArray BitmapWriter::writePixel(Pixels::Pixel pixel)
 {
   ByteArrayBuilder byteArrayBuilder {};
 
-  byteArrayBuilder.addValue(pixel.getBlue());
-  byteArrayBuilder.addValue(pixel.getGreen());
-  byteArrayBuilder.addValue(pixel.getRed());
+  byteArrayBuilder.add(pixel.getBlue());
+  byteArrayBuilder.add(pixel.getGreen());
+  byteArrayBuilder.add(pixel.getRed());
 
   return byteArrayBuilder.toByteArray();
 }

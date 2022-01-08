@@ -22,7 +22,8 @@ BitmapImage BitmapImage::fromPacket(BitmapPacket headers)
 
 BitmapImage BitmapImage::fromFile(std::string filePath)
 {
-  BitmapPacket packet = BitmapReader::getBitmapPacket(filePath);
+  BitmapReader reader {};
+  BitmapPacket packet = reader.readBitmapPacket(filePath);
   
   return BitmapImage::fromPacket(packet);
 }

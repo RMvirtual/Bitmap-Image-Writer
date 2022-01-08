@@ -1,4 +1,5 @@
 #include <cstdint>
+#include <string>
 
 #include "src/common/byte.h"
 #include "src/common/byte_array_builder.h"
@@ -8,45 +9,54 @@ ByteArrayBuilder::ByteArrayBuilder()
   this->bytes = {};
 }
 
-void ByteArrayBuilder::addValue(char value)
+void ByteArrayBuilder::add(char value)
 {
   this->processNewValue(value, 1);
 }
 
-void ByteArrayBuilder::addValue(unsigned char value)
+void ByteArrayBuilder::add(unsigned char value)
 {
   this->processNewValue(value, 1);
 }
 
-void ByteArrayBuilder::addValues(unsigned char* values, int numberOfBytes)
+void ByteArrayBuilder::add(unsigned char* values, int numberOfBytes)
 {
   for (int byteNo = 0; byteNo < numberOfBytes; byteNo++)
-    this->addValue(values[byteNo]);
+    this->add(values[byteNo]);
 }
 
-void ByteArrayBuilder::addValue(int8_t value)
+void ByteArrayBuilder::add(int8_t value)
 {
   this->processNewValue(value, 1);
 }
 
-void ByteArrayBuilder::addValue(uint16_t value)
+void ByteArrayBuilder::add(uint16_t value)
 { 
   this->processNewValue(value, 2);
 }
 
-void ByteArrayBuilder::addValue(int16_t value)
+void ByteArrayBuilder::add(int16_t value)
 {
   this->processNewValue(value, 2);
 }
 
-void ByteArrayBuilder::addValue(uint32_t value)
+void ByteArrayBuilder::add(uint32_t value)
 {
   this->processNewValue(value, 4);
 }
 
-void ByteArrayBuilder::addValue(int32_t value)
+void ByteArrayBuilder::add(int32_t value)
 {
   this->processNewValue(value, 4);
+}
+
+void ByteArrayBuilder::add(std::string values)
+{
+  int numberOfValues = values.length();
+  const char* valuesAsChars {values.c_str()};
+
+  for (int byteNo = 0; byteNo < numberOfValues; byteNo++)
+    this->add(valuesAsChars[byteNo]);
 }
 
 void ByteArrayBuilder::add(ByteArray byteArray)

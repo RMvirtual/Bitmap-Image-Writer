@@ -2,7 +2,7 @@
 #define BITMAP_INFO_HEADER_H
 
 #include <cstdint>
-#include "src/common/byte_array_builder.h"
+#include "src/graphics/bitmaps/packet/headers/dib_header_values.h"
 
 namespace BitmapHeaders {
 class DibHeader
@@ -10,7 +10,8 @@ class DibHeader
 public:
   DibHeader();
   DibHeader(int widthInPixels, int heightInPixels);
-  
+  static DibHeader fromValues(DibHeaderValues values);
+
   void setWidthInPixels(int32_t widthInPixels);
   void setHeightInPixels(int32_t heightInPixels);
   void setNumberOfColourPlanes(uint16_t numberOfColorPlanes);
@@ -21,7 +22,6 @@ public:
   void setVerticalPixelsPerMetre(int32_t horizontalPixelsPerMetre);
   void setColorTableEntries(uint32_t colorTableEntries);
   void setImportantColours(uint32_t importantColors);
-
   int getHeaderSizeInBytes();
   int32_t getWidthInPixels();
   int32_t getHeightInPixels();
@@ -47,7 +47,6 @@ private:
   uint32_t importantColors;
 
   void initialiseDefaultValues();
-  ByteArrayBuilder getByteArrayBuilder();
 };}
 
 #endif

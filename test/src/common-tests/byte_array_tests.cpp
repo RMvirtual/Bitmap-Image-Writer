@@ -19,7 +19,7 @@ TEST(ByteArrayTests, ShouldAddUint8ToArray)
   ByteArrayBuilder byteArrayBuilder;
   uint8_t correctValue = 20;
 
-  byteArrayBuilder.addValue(correctValue);
+  byteArrayBuilder.add(correctValue);
 
   unsigned char* byteArray = byteArrayBuilder.toBytes();
   char* correctByteArray = new char[1];
@@ -37,7 +37,7 @@ TEST(ByteArrayTests, ShouldAddUint16ToArray)
   std::vector<uint16_t> values = {20};
 
   for (auto value : values)
-    byteArrayBuilder.addValue(value);
+    byteArrayBuilder.add(value);
 
   unsigned char* byteArray = byteArrayBuilder.toBytes();
   int numberOfBytes = byteArrayBuilder.getNumberOfBytes();
@@ -58,7 +58,7 @@ TEST(ByteArrayTests, ShouldAddUint32ToArray)
   ByteArrayBuilder byteArrayBuilder;
   uint32_t correctValue = 20;
 
-  byteArrayBuilder.addValue(correctValue);
+  byteArrayBuilder.add(correctValue);
 
   unsigned char* byteArray = byteArrayBuilder.toBytes();
 
@@ -82,7 +82,7 @@ TEST(ByteArrayTests, ShouldAddMultiple32bitUnsignedIntsToArray)
   std::vector<uint32_t> correctValues = {20, 40, 45318294};
 
   for (auto value : correctValues)
-    byteArrayBuilder.addValue(value);
+    byteArrayBuilder.add(value);
 
   unsigned char* byteArray = byteArrayBuilder.toBytes();
 
@@ -113,8 +113,8 @@ TEST(ByteArrayTests, ShouldAddCharacterArrayToBuilder)
   unsigned char* characters = new unsigned char[3];
   characters[0] = 'a'; characters[1] = 'b'; characters[2] = 'c';
 
-  byteArrayBuilder.addValues(characters, 3);
-  byteArrayBuilder.addValue('d');
+  byteArrayBuilder.add(characters, 3);
+  byteArrayBuilder.add('d');
 
   unsigned char* bytes = byteArrayBuilder.toBytes();
 
@@ -135,9 +135,9 @@ TEST(ByteArrayTests, ShouldAddMultipleSizeUnsignedIntsToArray)
   uint16_t correctValue16bit = 21596;
   uint32_t correctValue32bit = 8589429;
 
-  byteArrayBuilder.addValue(correctValue16bit);
-  byteArrayBuilder.addValue(correctValue8bit);
-  byteArrayBuilder.addValue(correctValue32bit);
+  byteArrayBuilder.add(correctValue16bit);
+  byteArrayBuilder.add(correctValue8bit);
+  byteArrayBuilder.add(correctValue32bit);
 
   unsigned char* byteArray = byteArrayBuilder.toBytes();
 
@@ -177,17 +177,17 @@ TEST(ByteArrayTests, ShouldAddEverySizeIntToBitmapBuilder)
   int normalInt = 44;
   int normalNegativeInt = -44;
 
-  byteArrayBuilder.addValue(charByte);
-  byteArrayBuilder.addValue(unsigned8bit);
-  byteArrayBuilder.addValue(unsigned16bit);
-  byteArrayBuilder.addValue(unsigned32bit);
-  byteArrayBuilder.addValue(signed8bit);
-  byteArrayBuilder.addValue(signed16bit);
-  byteArrayBuilder.addValue(signed32bit);
-  byteArrayBuilder.addValue(negativeSigned8bit);
-  byteArrayBuilder.addValue(negativeSigned16bit);
-  byteArrayBuilder.addValue(negativeSigned32bit);
-  byteArrayBuilder.addValue(normalInt);
+  byteArrayBuilder.add(charByte);
+  byteArrayBuilder.add(unsigned8bit);
+  byteArrayBuilder.add(unsigned16bit);
+  byteArrayBuilder.add(unsigned32bit);
+  byteArrayBuilder.add(signed8bit);
+  byteArrayBuilder.add(signed16bit);
+  byteArrayBuilder.add(signed32bit);
+  byteArrayBuilder.add(negativeSigned8bit);
+  byteArrayBuilder.add(negativeSigned16bit);
+  byteArrayBuilder.add(negativeSigned32bit);
+  byteArrayBuilder.add(normalInt);
 
   unsigned char* byteArray = byteArrayBuilder.toBytes();
 
