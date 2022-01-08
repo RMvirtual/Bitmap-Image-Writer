@@ -9,6 +9,7 @@ class BitmapWriter
 public:
   BitmapWriter();
   ByteArray writeFileHeader(BitmapHeaders::FileHeader header);
+  ByteArray writeDibHeader(BitmapHeaders::DibHeader header);
   
 private:
 

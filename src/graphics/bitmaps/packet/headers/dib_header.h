@@ -2,11 +2,10 @@
 #define BITMAP_INFO_HEADER_H
 
 #include <cstdint>
-#include "src/graphics/bitmaps/packet/headers/header.h"
 #include "src/common/byte_array_builder.h"
 
 namespace BitmapHeaders {
-class DibHeader : public BitmapHeaders::Header
+class DibHeader
 {
 public:
   DibHeader();
@@ -23,6 +22,7 @@ public:
   void setColorTableEntries(uint32_t colorTableEntries);
   void setImportantColours(uint32_t importantColors);
 
+  int getHeaderSizeInBytes();
   int32_t getWidthInPixels();
   int32_t getHeightInPixels();
   uint16_t getNumberOfColorPlanes();

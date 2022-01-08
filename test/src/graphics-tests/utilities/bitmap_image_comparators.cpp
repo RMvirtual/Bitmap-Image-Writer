@@ -19,7 +19,7 @@ void BitmapImageComparison::compareBitmapDibHeaders(
   BitmapHeaders::DibHeader header1, BitmapHeaders::DibHeader header2)
 {
   EXPECT_EQ(
-    header1.getSizeOfHeaderInBytes(), header2.getSizeOfHeaderInBytes());
+    header1.getHeaderSizeInBytes(), header2.getHeaderSizeInBytes());
 
   EXPECT_EQ(header1.getWidthInPixels(), header2.getWidthInPixels());
   EXPECT_EQ(header1.getHeightInPixels(), header2.getHeightInPixels());

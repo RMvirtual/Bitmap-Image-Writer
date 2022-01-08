@@ -13,7 +13,6 @@ BitmapHeaders::DibHeader BitmapReader::parseDibHeader(std::string bytes)
 {
   BitmapHeaders::DibHeader dibHeader;
 
-  BitmapReader::parseHeaderSize(bytes, &dibHeader);
   BitmapReader::parseWidthInPixels(bytes, &dibHeader);
   BitmapReader::parseHeightInPixels(bytes, &dibHeader);
   BitmapReader::parseNumberOfColourPlanes(bytes, &dibHeader);
@@ -26,13 +25,6 @@ BitmapHeaders::DibHeader BitmapReader::parseDibHeader(std::string bytes)
   BitmapReader::parseImportantColours(bytes, &dibHeader);
 
   return dibHeader;
-}
-
-void BitmapReader::parseHeaderSize(
-  std::string bytes, BitmapHeaders::DibHeader* dibHeader)
-{
-  uint32_t headerSize = BytesConversion::getFourBytesFromSubstring(bytes, 14);
-  dibHeader->setSizeOfHeaderInBytes(headerSize);
 }
 
 void BitmapReader::parseWidthInPixels(

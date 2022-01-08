@@ -39,9 +39,8 @@ BitmapHeaders::FileHeader BitmapSetUp::setUpBluePixelFileHeader()
 
 BitmapHeaders::DibHeader BitmapSetUp::setUpBluePixelDibHeader()
 {
-  BitmapHeaders::DibHeader dibHeader;
+  BitmapHeaders::DibHeader dibHeader {};
 
-  dibHeader.setSizeOfHeaderInBytes(40);
   dibHeader.setWidthInPixels(512);
   dibHeader.setHeightInPixels(512);
   dibHeader.setNumberOfColourPlanes(1);

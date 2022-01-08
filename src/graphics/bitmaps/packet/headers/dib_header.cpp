@@ -4,13 +4,11 @@
 #include "src/common/byte_array_builder.h"
 
 BitmapHeaders::DibHeader::DibHeader()
-: BitmapHeaders::Header {40}
 {
   this->initialiseDefaultValues();
 }
 
 BitmapHeaders::DibHeader::DibHeader(int widthInPixels, int heightInPixels)
-: BitmapHeaders::Header {40}
 {
   this->initialiseDefaultValues();
 
@@ -32,11 +30,16 @@ void BitmapHeaders::DibHeader::initialiseDefaultValues()
   this->importantColors = 0; 
 }
 
+int BitmapHeaders::DibHeader::getHeaderSizeInBytes()
+{
+  return 40;
+}
+
 ByteArrayBuilder BitmapHeaders::DibHeader::getByteArrayBuilder()
 {
   ByteArrayBuilder byteArrayBuilder;
 
-  byteArrayBuilder.addValue(this->getSizeOfHeaderInBytes());
+  byteArrayBuilder.addValue(this->getHeaderSizeInBytes());
   byteArrayBuilder.addValue(this->widthInPixels);
   byteArrayBuilder.addValue(this->heightInPixels);
   byteArrayBuilder.addValue(this->numberOfColorPlanes);

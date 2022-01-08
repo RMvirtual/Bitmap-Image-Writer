@@ -32,9 +32,6 @@ namespace BitmapReader
 
   BitmapHeaders::DibHeader parseDibHeader(std::string bytes);
 
-  void parseHeaderSize(
-    std::string bytes, BitmapHeaders::DibHeader* dibHeader);
-
   void parseWidthInPixels(
     std::string bytes, BitmapHeaders::DibHeader* dibHeader);
 
