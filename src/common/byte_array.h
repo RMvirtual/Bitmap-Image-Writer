@@ -10,7 +10,8 @@ class ByteArray
     ByteArray();
     void add(std::vector<Byte> bytes);
     Byte operator [](int index);
-
+    int size();
+    
   private:
     std::vector<Byte> bytes;
 };

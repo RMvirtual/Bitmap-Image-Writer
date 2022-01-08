@@ -65,8 +65,6 @@ Pixels::PixelArray BitmapSetUp::setUpBluePixelArray()
   for (int pixelNo = 0; pixelNo < totalPixels; pixelNo++)
     pixels.push_back(bluePixel);
 
-  std::cout << "Gets here."; 
-
   return Pixels::PixelArray {pixels, imageWidth, imageHeight};
 }
 

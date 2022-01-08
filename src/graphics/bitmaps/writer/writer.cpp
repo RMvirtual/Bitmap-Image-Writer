@@ -3,7 +3,7 @@
 #include "src/common/byte_array.h"
 #include "src/graphics/bitmaps/packet/headers/file_header.h"
 #include "src/graphics/bitmaps/packet/headers/dib_header.h"
-// #include "src/graphics/bitmaps/packet/pixels/pixel_array.h"
+#include "src/graphics/bitmaps/packet/pixels/pixel_array.h"
 #include "src/graphics/bitmaps/packet/pixels/pixel.h"
 #include "src/graphics/bitmaps/packet/bitmap_packet.h"
 
@@ -47,7 +47,19 @@ ByteArray BitmapWriter::writeDibHeader(BitmapHeaders::DibHeader header)
 
 ByteArray BitmapWriter::writePixelArray(Pixels::PixelArray pixelArray)
 {
-  return {};
+  ByteArrayBuilder byteArrayBuilder {};
+  int numberOfPixels = pixelArray.sizeInPixels();
+
+  // No accounting for row stride yet.
+
+  for (int pixelNo = 0; pixelNo < numberOfPixels; pixelNo++) {
+    Pixels::Pixel pixel = pixelArray.getPixel(pixelNo);
+    ByteArray pixelBytes = this->writePixel(pixel);
+
+    byteArrayBuilder.add(pixelBytes);
+  }
+
+  return byteArrayBuilder.toByteArray();
 }
 
 ByteArray BitmapWriter::writePixel(Pixels::Pixel pixel)
@@ -60,57 +72,3 @@ ByteArray BitmapWriter::writePixel(Pixels::Pixel pixel)
 
   return byteArrayBuilder.toByteArray();
 }
-
-/*
-void Pixels::PixelArray::addAllPixelsToByteArray(
-  ByteArrayBuilder* byteArrayBuilder)
-{
-  for (int rowNo = 0; rowNo < this->heightInPixels; rowNo++) {
-    unsigned char* pixelRowBytes = this->getRowOfPixelsAsBytes(rowNo);
-    byteArrayBuilder->addValues(pixelRowBytes, this->rowSizeInBytes);
-
-    delete[] pixelRowBytes;
-  }
-}
-
-void Pixels::PixelArray::addRowOfPixelsToByteArray(
-  int rowNo, ByteArrayBuilder* byteArrayBuilder)
-{
-  for (int columnNo = 0; columnNo < this->widthInPixels; columnNo++)
-    this->addPixelByIndexToByteArray(rowNo, columnNo, byteArrayBuilder);
-}
-
-void Pixels::PixelArray::addPixelByIndexToByteArray(
-  int rowNo, int columnNo, ByteArrayBuilder* byteArrayBuilder)
-{
-  Pixels::Pixel pixel = this->getPixel(rowNo, columnNo);
-  this->addPixelToByteArray(pixel, byteArrayBuilder);
-}
-
-
-void Pixels::PixelArray::addPixelToByteArray(
-  Pixels::Pixel pixel, ByteArrayBuilder* byteArrayBuilder)
-{
-  unsigned char* pixelBytes = pixel.toByte();
-  byteArrayBuilder->addValues(pixelBytes, 3);
-
-  delete[] pixelBytes;
-}
-
-void Pixels::PixelArray::addPaddingBytesToByteArray(
-  ByteArrayBuilder* byteArrayBuilder)
-{
-  for (int byteNo = 0; byteNo < this->rowPadding; byteNo++)
-    byteArrayBuilder->addValue(0);
-}
-
-unsigned char* Pixels::PixelArray::getRowOfPixelsAsBytes(int rowNo)
-{
-  ByteArrayBuilder byteArrayBuilder;
-
-  this->addRowOfPixelsToByteArray(rowNo, &byteArrayBuilder);
-  this->addPaddingBytesToByteArray(&byteArrayBuilder);
-
-  return byteArrayBuilder.toBytes();
-}
-*/

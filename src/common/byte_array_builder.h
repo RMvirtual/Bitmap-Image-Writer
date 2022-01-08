@@ -39,6 +39,8 @@ public:
   // Adds a value of 4 bytes.
   void addValue(int32_t value);
 
+  void add(ByteArray byteArray);
+
   /**
    * Returns a character array pointer towards a copy of the bytes
    * constructed from adding to the ByteArrayBuilder class.

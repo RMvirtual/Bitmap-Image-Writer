@@ -15,3 +15,8 @@ Byte ByteArray::operator [](int index)
 {
   return this->bytes[index];
 }
+
+int ByteArray::size()
+{
+  return this->bytes.size();
+}

@@ -49,6 +49,14 @@ void ByteArrayBuilder::addValue(int32_t value)
   this->processNewValue(value, 4);
 }
 
+void ByteArrayBuilder::add(ByteArray byteArray)
+{
+  int numberOfBytes = byteArray.size();
+
+  for (int byteNo = 0; byteNo < numberOfBytes; byteNo++)
+    this->bytes.push_back(byteArray[byteNo]);
+}
+
 void ByteArrayBuilder::processNewValue(int value, int lengthInBytes)
 {
   this->convertValueToBytes(value, lengthInBytes);

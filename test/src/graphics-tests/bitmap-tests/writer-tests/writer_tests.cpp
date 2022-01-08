@@ -193,7 +193,27 @@ TEST(BitmapWriterTests, ShouldWriteDibHeaderToByteArray)
 }
 
 TEST(BitmapWriterTests, ShouldWritePixelArrayToByteArray)
-{ 
+{
+  Pixels::PixelArray pixelArray = BitmapSetUp::setUpBluePixelArray();
+  BitmapWriter writer {};
+  ByteArray bytes = writer.writePixelArray(pixelArray);
+
+  Colours pixelRgbColours {};
+  pixelRgbColours.red = 100;
+  pixelRgbColours.green = 255;
+  pixelRgbColours.blue = 255;
+
+  int numberOfPixels = pixelArray.sizeInPixels();
+  int numberOfBytes = bytes.size();
+
+  // Only testing first 12 bytes for testing speed.
+  for (int byteNo = 0; byteNo < 12; byteNo += 3) {
+    Pixels::Pixel pixel = pixelArray.getPixel(byteNo / 3);
+
+    EXPECT_EQ(pixel.getBlue(), bytes[byteNo].value);
+    EXPECT_EQ(pixel.getGreen(), bytes[byteNo+1].value);
+    EXPECT_EQ(pixel.getRed(), bytes[byteNo+2].value);
+  }
 
 }
 
