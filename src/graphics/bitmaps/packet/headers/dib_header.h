@@ -10,11 +10,8 @@ class DibHeader : public BitmapHeaders::Header
 {
 public:
   DibHeader();
-  DibHeader(
-    int widthInPixels, int heightInPixels);
+  DibHeader(int widthInPixels, int heightInPixels);
   
-  unsigned char* toBytes();
-
   void setWidthInPixels(int32_t widthInPixels);
   void setHeightInPixels(int32_t heightInPixels);
   void setNumberOfColourPlanes(uint16_t numberOfColorPlanes);

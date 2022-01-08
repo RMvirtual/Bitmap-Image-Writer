@@ -15,8 +15,6 @@ namespace Pixels {
     PixelArray();
     PixelArray(
       std::vector<Pixels::Pixel> pixels, int widthInPixels, int heightInPixels);
-      
-    unsigned char* toBytes();
 
     void setPixel(Pixels::PixelData pixelData);
     void setWidthInPixels(int width);

@@ -1,0 +1,11 @@
+cc_library(
+    name = "bitmap_writer",
+    hdrs = ["writer.h"],
+    srcs = ["writer.cpp"],
+    deps = [
+        "//src/common:common",
+        "//src/graphics/bitmaps/packet:bitmap_packet"
+    ],
+    visibility = ["//visibility:public"],
+    copts = ["/std:c++17"]
+)

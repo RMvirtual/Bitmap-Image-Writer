@@ -20,19 +20,6 @@ BitmapHeaders::FileHeader::FileHeader(int widthInPixels, int heightInPixels)
   this->sizeOfBitmapFile = this->pixelDataOffset + pixelArraySize;
 }
 
-unsigned char* BitmapHeaders::FileHeader::toBytes()
-{
-  ByteArrayBuilder byteArrayBuilder;
-
-  byteArrayBuilder.addValue(this->signatureBytes[0]);
-  byteArrayBuilder.addValue(this->signatureBytes[1]);
-  byteArrayBuilder.addValue(this->sizeOfBitmapFile);
-  byteArrayBuilder.addValue(this->reservedBytes);
-  byteArrayBuilder.addValue(this->pixelDataOffset);
-
-  return byteArrayBuilder.toBytes();
-}
-
 void BitmapHeaders::FileHeader::initialiseDefaultValues()
 {
   this->setSignatureBytes('B', 'M');

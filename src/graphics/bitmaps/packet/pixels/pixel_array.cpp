@@ -46,14 +46,6 @@ void Pixels::PixelArray::populateMissingPixels()
     this->addBlankPixels(numberOfMissingPixels);
 }
 
-unsigned char* Pixels::PixelArray::toBytes()
-{
-  ByteArrayBuilder byteArrayBuilder;
-  this->addAllPixelsToByteArray(&byteArrayBuilder);
-
-  return byteArrayBuilder.toBytes();
-}
-
 void Pixels::PixelArray::addAllPixelsToByteArray(
   ByteArrayBuilder* byteArrayBuilder)
 {

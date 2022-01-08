@@ -1,10 +1,11 @@
-#ifndef BYTE_ARRAY_H
-#define BYTE_ARRAY_H
+#ifndef BYTE_ARRAY_BUILDER_H
+#define BYTE_ARRAY_BUILDER_H
 
 #include <cstdint>
 #include <vector>
 
 #include "src/common/byte.h"
+#include "src/common/byte_array.h"
 
 class ByteArrayBuilder
 {
@@ -43,7 +44,8 @@ public:
    * constructed from adding to the ByteArrayBuilder class.
    */ 
   unsigned char* toBytes();
-  
+  ByteArray toByteArray();
+
   /**
    * Returns the current number of bytes that the length of the
    * Byte Array currently stands at.

@@ -32,13 +32,6 @@ void BitmapHeaders::DibHeader::initialiseDefaultValues()
   this->importantColors = 0; 
 }
 
-unsigned char* BitmapHeaders::DibHeader::toBytes()
-{
-  ByteArrayBuilder byteArrayBuilder = this->getByteArrayBuilder();
-  
-  return byteArrayBuilder.toBytes();
-}
-
 ByteArrayBuilder BitmapHeaders::DibHeader::getByteArrayBuilder()
 {
   ByteArrayBuilder byteArrayBuilder;

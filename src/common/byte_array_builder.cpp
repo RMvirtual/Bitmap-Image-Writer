@@ -64,6 +64,14 @@ void ByteArrayBuilder::convertValueToBytes(int value, int lengthInBytes)
   }
 }
 
+ByteArray ByteArrayBuilder::toByteArray()
+{
+  ByteArray byteArray {};
+  byteArray.add(this->bytes);
+
+  return byteArray;
+}
+
 unsigned char* ByteArrayBuilder::toBytes()
 {
   return this->copyArray();

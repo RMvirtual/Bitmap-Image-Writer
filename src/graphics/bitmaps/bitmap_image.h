@@ -15,7 +15,6 @@ public:
   static BitmapImage fromPacket(BitmapPacket headers);
   static BitmapImage fromFile(std::string filePath);
 
-  unsigned char* toBytes();
   void writeToFile(std::string filePath);
 
   void setFileHeader(BitmapHeaders::FileHeader fileHeader);
