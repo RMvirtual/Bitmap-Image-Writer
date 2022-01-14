@@ -2,9 +2,9 @@
 #include <iostream>
 #include <vector>
 
-#include "src/common/bytes_conversion.h"
-#include "src/common/byte_array_builder.h"
-#include "src/common/byte_array.h"
+#include "src/common/byte-array/bytes_conversion.h"
+#include "src/common/byte-array/byte_array_builder.h"
+#include "src/common/byte-array/byte_array.h"
 
 TEST(BytesConverterTest, ShouldExtract16BitIntegerFromByteArray)
 {

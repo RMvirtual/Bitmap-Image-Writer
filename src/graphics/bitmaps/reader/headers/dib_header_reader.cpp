@@ -1,5 +1,5 @@
-#include "src/common/filesystem.h"
-#include "src/common/bytes_conversion.h"
+#include "src/common/filesystem/filesystem.h"
+#include "src/common/byte-array/bytes_conversion.h"
 #include "src/graphics/bitmaps/reader/headers/dib_header_reader.h"
 
 DibHeaderReader::DibHeaderReader()

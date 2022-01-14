@@ -2,9 +2,9 @@
 #define BITMAP_IMAGE_COMPARATORS_H
 
 #include <gtest/gtest.h>
-#include "src/graphics/bitmaps/packet/headers/file_header.h"
-#include "src/graphics/bitmaps/packet/headers/dib_header.h"
-#include "src/graphics/bitmaps/packet/pixels/pixel_array.h"
+#include "src/graphics/bitmaps/packet/headers/file-header/file_header.h"
+#include "src/graphics/bitmaps/packet/headers/dib-header/dib_header.h"
+#include "src/graphics/bitmaps/packet/pixel-array/pixel_array.h"
 #include "src/graphics/bitmaps/bitmap_image.h"
 
 namespace BitmapImageComparison

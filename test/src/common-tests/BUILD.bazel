@@ -29,3 +29,13 @@ cc_test(
         "//src/common:common"
     ],
 )
+
+cc_test(
+    name = "matrix_2d_tests",
+    size = "small",
+    srcs = ["matrix_tests.cpp"],
+    deps = [
+        "@com_google_googletest//:gtest_main",
+        "//src/common:common"
+    ],
+)

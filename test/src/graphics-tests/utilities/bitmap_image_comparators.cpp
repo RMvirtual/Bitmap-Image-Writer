@@ -1,7 +1,7 @@
 #include <gtest/gtest.h>
 
-#include "src/graphics/bitmaps/packet/pixels/pixel.h"
-#include "src/graphics/bitmaps/packet/pixels/pixel_array.h"
+#include "src/graphics/bitmaps/packet/pixel-array/pixels/pixel.h"
+#include "src/graphics/bitmaps/packet/pixel-array/pixel_array.h"
 #include "src/graphics/bitmaps/bitmap_image.h"
 #include "test/src/graphics-tests/utilities/bitmap_image_comparators.h"
 
@@ -56,8 +56,8 @@ void BitmapImageComparison::comparePixelArrayContents(
   int numberOfPixels = pixelArray1.sizeInPixels();
 
   for (int pixelNo = 0; pixelNo < numberOfPixels; pixelNo++) {
-    Pixels::Pixel pixel1 = pixelArray1.pixels[pixelNo];
-    Pixels::Pixel pixel2 = pixelArray2.pixels[pixelNo];
+    Pixels::RGBPixel pixel1 = pixelArray1.pixels[pixelNo];
+    Pixels::RGBPixel pixel2 = pixelArray2.pixels[pixelNo];
 
     EXPECT_EQ(pixel1.getBlue(), pixel2.getBlue());
     EXPECT_EQ(pixel1.getGreen(), pixel2.getGreen());

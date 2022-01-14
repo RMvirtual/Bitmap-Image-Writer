@@ -1,7 +1,7 @@
 #include <iostream>
 
-#include "src/graphics/bitmaps/packet/pixels/pixel.h"
-#include "src/graphics/bitmaps/packet/pixels/pixel_array.h"
+#include "src/graphics/bitmaps/packet/pixel-array/pixels/pixel.h"
+#include "src/graphics/bitmaps/packet/pixel-array/pixel_array.h"
 #include "src/graphics/bitmaps/bitmap_image.h"
 #include "test/src/graphics-tests/utilities/bitmap_image_comparators.h"
 #include "test/src/graphics-tests/utilities/bitmap_set_up.h"
@@ -50,14 +50,14 @@ BitmapHeaders::DibHeader BitmapSetUp::setUpBluePixelDibHeader()
 
 Pixels::PixelArray BitmapSetUp::setUpBluePixelArray()
 {
-  std::vector<Pixels::Pixel> pixels;
+  std::vector<Pixels::RGBPixel> pixels;
 
   Colours blueColours;
   blueColours.red = 100;
   blueColours.green = 255;
   blueColours.blue = 255;
 
-  Pixels::Pixel bluePixel {blueColours};
+  Pixels::RGBPixel bluePixel {blueColours};
 
   int imageWidth = 512, imageHeight = 512;
   int totalPixels = imageWidth * imageHeight;

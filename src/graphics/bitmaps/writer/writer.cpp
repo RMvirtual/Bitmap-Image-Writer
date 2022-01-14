@@ -52,7 +52,7 @@ ByteArray BitmapWriter::writePixelArray(Pixels::PixelArray pixelArray)
 
   // No accounting for row stride yet.
   for (int pixelNo = 0; pixelNo < numberOfPixels; pixelNo++) {
-    Pixels::Pixel pixel = pixelArray.getPixel(pixelNo);
+    Pixels::RGBPixel pixel = pixelArray.getPixel(pixelNo);
     ByteArray pixelBytes = this->writePixel(pixel);
 
     byteArrayBuilder.add(pixelBytes);
@@ -61,7 +61,7 @@ ByteArray BitmapWriter::writePixelArray(Pixels::PixelArray pixelArray)
   return byteArrayBuilder.toByteArray();
 }
 
-ByteArray BitmapWriter::writePixel(Pixels::Pixel pixel)
+ByteArray BitmapWriter::writePixel(Pixels::RGBPixel pixel)
 {
   ByteArrayBuilder byteArrayBuilder {};
 

@@ -1,7 +1,7 @@
 #include <gtest/gtest.h>
 
 #include "src/graphics/bitmaps/writer/writer.h"
-#include "src/graphics/bitmaps/packet/headers/file_header.h"
+#include "src/graphics/bitmaps/packet/headers/file-header/file_header.h"
 #include "test/src/graphics-tests/utilities/bitmap_set_up.h"
 
 TEST(BitmapWriterTests, ShouldWriteFileHeaderToByteArray)
@@ -209,7 +209,7 @@ TEST(BitmapWriterTests, ShouldWritePixelArrayToByteArray)
   // Row stride unaccounted for.
   // Only testing first 12 bytes for testing speed.
   for (int byteNo = 0; byteNo < 12; byteNo += 3) {
-    Pixels::Pixel pixel = pixelArray.getPixel(byteNo / 3);
+    Pixels::RGBPixel pixel = pixelArray.getPixel(byteNo / 3);
 
     EXPECT_EQ(pixel.getBlue(), bytes[byteNo].value);
     EXPECT_EQ(pixel.getGreen(), bytes[byteNo+1].value);
@@ -220,7 +220,7 @@ TEST(BitmapWriterTests, ShouldWritePixelArrayToByteArray)
 TEST(BitmapWriterTests, ShouldWritePixelToByteArray)
 {
   Colours redRgbColours = BitmapSetUp::getRedColours();
-  Pixels::Pixel redPixel {redRgbColours};
+  Pixels::RGBPixel redPixel {redRgbColours};
   BitmapWriter writer {};
   ByteArray bytes = writer.writePixel(redPixel);
 

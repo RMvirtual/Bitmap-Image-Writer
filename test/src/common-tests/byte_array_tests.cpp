@@ -2,7 +2,7 @@
 #include <iostream>
 #include <vector>
 
-#include "src/common/byte_array_builder.h"
+#include "src/common/byte-array/byte_array_builder.h"
 
 TEST(ByteArrayTests, ShouldCreateByteArray)
 {

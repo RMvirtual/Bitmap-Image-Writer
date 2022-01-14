@@ -4,9 +4,9 @@
 #include <string>
 
 #include "src/graphics/bitmaps/packet/bitmap_packet.h"
-#include "src/graphics/bitmaps/packet/headers/file_header.h"
-#include "src/graphics/bitmaps/packet/headers/dib_header.h"
-#include "src/common/byte_array.h"
+#include "src/graphics/bitmaps/packet/headers/file-header/file_header.h"
+#include "src/graphics/bitmaps/packet/headers/dib-header/dib_header.h"
+#include "src/common/byte-array/byte_array.h"
 
 class BitmapReader
 {
@@ -17,8 +17,11 @@ public:
 private:
   BitmapPacket packet;
 
-  BitmapHeaders::FileHeader getBitmapFileHeader(ByteArray bytes);
-  BitmapHeaders::DibHeader getBitmapDibHeader(ByteArray bytes);
+  void processIntoPacket(std::string filePath);
+  void processIntoPacket(ByteArray& bytes);
+  void processIntoFileHeader(ByteArray& bytes);
+  void processIntoDibHeader(ByteArray& bytes);
+  void processIntoPixelArray(ByteArray& bytes);  
 };
 
 #endif

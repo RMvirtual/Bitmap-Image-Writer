@@ -1,7 +1,7 @@
 #include <fstream>
 
-#include "src/common/byte_array_builder.h"
-#include "src/common/filesystem.h"
+#include "src/common/byte-array/byte_array_builder.h"
+#include "src/common/filesystem/filesystem.h"
 #include "src/graphics/bitmaps/bitmap_image.h"
 #include "src/graphics/bitmaps/reader/bitmap_reader.h"
 

@@ -2,19 +2,19 @@
 #include <gtest/gtest.h>
 #include <vector>
 
-#include "src/graphics/bitmaps/packet/pixels/pixel_array.h"
-#include "src/graphics/bitmaps/packet/pixels/pixel.h"
-#include "src/graphics/bitmaps/packet/pixels/pixel_array_size_calculator.h"
+#include "src/graphics/bitmaps/packet/pixel-array/pixel_array.h"
+#include "src/graphics/bitmaps/packet/pixel-array/pixels/pixel.h"
+#include "src/graphics/bitmaps/packet/pixel-array/pixel_array_size_calculator.h"
 #include "test/src/graphics-tests/utilities/bitmap_set_up.h"
 
-void isGreenPixel(Pixels::Pixel pixel)
+void isGreenPixel(Pixels::RGBPixel pixel)
 {
     EXPECT_EQ(pixel.getGreen(), 255);
     EXPECT_EQ(pixel.getBlue(), 0);
     EXPECT_EQ(pixel.getRed(), 0);
 }
 
-void isRedPixel(Pixels::Pixel pixel)
+void isRedPixel(Pixels::RGBPixel pixel)
 {
   EXPECT_EQ(pixel.getGreen(), 0);
   EXPECT_EQ(pixel.getBlue(), 0);
@@ -28,9 +28,9 @@ Pixels::PixelArray getRedPixelArray()
   redColours.green = 0;
   redColours.blue = 0;
 
-  Pixels::Pixel redPixel {redColours};
+  Pixels::RGBPixel redPixel {redColours};
 
-  std::vector<Pixels::Pixel> redPixels {
+  std::vector<Pixels::RGBPixel> redPixels {
     redPixel, redPixel, redPixel, redPixel};
 
   return {redPixels, 2, 2};
@@ -39,9 +39,9 @@ Pixels::PixelArray getRedPixelArray()
 TEST(PixelArrayTests, ShouldSetPixelInPixelArray)
 {
   Colours redColours = BitmapSetUp::getRedColours();
-  Pixels::Pixel redPixel {redColours};
+  Pixels::RGBPixel redPixel {redColours};
 
-  std::vector<Pixels::Pixel> redPixels {
+  std::vector<Pixels::RGBPixel> redPixels {
     redPixel, redPixel, redPixel, redPixel};
 
   Pixels::PixelArray pixelArray = getRedPixelArray();
@@ -56,7 +56,7 @@ TEST(PixelArrayTests, ShouldSetPixelInPixelArray)
     isRedPixel(pixelArray.pixels[pixelNo]);
 
   pixelArray.setPixel(greenPixelData);
-  Pixels::Pixel modifiedPixel = pixelArray.pixels[3];
+  Pixels::RGBPixel modifiedPixel = pixelArray.pixels[3];
   isGreenPixel(modifiedPixel);
 }
 

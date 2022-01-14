@@ -2,7 +2,7 @@
 #include <iostream>
 #include <vector>
 
-#include "src/common/filesystem.h"
+#include "src/common/filesystem/filesystem.h"
 
 TEST(FilesystemTests, ShouldGetSizeOfFile)
 { 

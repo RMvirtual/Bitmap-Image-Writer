@@ -1,5 +1,5 @@
-#include "src/common/filesystem.h"
-#include "src/common/bytes_conversion.h"
+#include "src/common/filesystem/filesystem.h"
+#include "src/common/byte-array/bytes_conversion.h"
 #include "src/graphics/bitmaps/reader/headers/file_header_reader.h"
 
 FileHeaderReader::FileHeaderReader()
@@ -9,10 +9,10 @@ FileHeaderReader::FileHeaderReader()
 
 BitmapHeaders::FileHeader FileHeaderReader::convertBytes(ByteArray bytes)
 {
-  FileHeaderReader::parseSignatureBytes(bytes);
-  FileHeaderReader::parseSizeOfBitmapFile(bytes);
-  FileHeaderReader::parseReservedBytes(bytes);
-  FileHeaderReader::parsePixelDataOffset(bytes);
+  this->parseSignatureBytes(bytes);
+  this->parseSizeOfBitmapFile(bytes);
+  this->parseReservedBytes(bytes);
+  this->parsePixelDataOffset(bytes);
 
   return this->fileHeader;
 }

@@ -20,7 +20,7 @@ BitmapImage ImageRendering::ImageRenderer::toBitmap()
 
 void ImageRendering::ImageRenderer::fill(Colours colours)
 {
-  std::vector<Pixels::Pixel> pixels;
+  std::vector<Pixels::RGBPixel> pixels;
 
   int widthInPixels = this->bitmapImage.getWidthInPixels();
   int heightInPixels = this->bitmapImage.getHeightInPixels();

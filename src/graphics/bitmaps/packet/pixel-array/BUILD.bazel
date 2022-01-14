@@ -1,0 +1,22 @@
+cc_library(
+    name = "bitmap_packet_pixel_array",
+    hdrs = [
+        "pixels/pixel_data.h",
+        "pixels/rgb_pixel.h",
+        "pixels/rgba_pixel.h",
+        "pixel_array.h",
+        "pixel_array_size_calculator.h"
+    ],
+    srcs = [
+        "pixels/rgb_pixel.cpp",
+        "pixels/rgba_pixel.cpp",
+        "pixel_array.cpp",
+        "pixel_array_size_calculator.cpp"
+    ],
+    deps = [
+        "//src/common:common",
+        "//src/graphics/colours:colours"
+    ],
+    visibility = ["//visibility:public"],
+    copts = ["/std:c++17"]
+)
