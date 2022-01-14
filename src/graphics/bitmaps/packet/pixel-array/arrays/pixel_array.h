@@ -15,9 +15,13 @@ public:
 
   void set(Pixels::RGBPixel pixel, int rowNo, int columnNo);
   Pixels::RGBPixel at(int rowNo, int columnNo);
+  int sizeInPixels();
 
 private:
   Common::Matrix2D<Pixels::RGBPixel> pixels {0, 0, {}};
+  int widthInPixels;
+  int heightInPixels;
+  
 };}
 
 #endif

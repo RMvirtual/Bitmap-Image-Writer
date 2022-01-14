@@ -84,7 +84,7 @@ TEST(PixelArrayTests, ShouldGetNumberOfPixelsInPixelArray)
   Pixels::PixelArray pixelArray = getRedPixelArray();
 
   int correctNumberOfPixels = 4;
-  int actualNumberOfPixels = 5;
+  int actualNumberOfPixels = pixelArray.sizeInPixels();
 
   EXPECT_EQ(correctNumberOfPixels, actualNumberOfPixels);
 }

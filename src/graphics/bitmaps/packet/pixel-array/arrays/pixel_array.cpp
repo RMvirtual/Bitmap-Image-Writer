@@ -4,13 +4,17 @@
 
 Pixels::PixelArray::PixelArray()
 {
-  this->pixels = {0, 0, {}};
+  this->widthInPixels = 0;
+  this->heightInPixels = 0;
+  this->pixels = {this->widthInPixels, this->heightInPixels, {}};
 }
 
 Pixels::PixelArray::PixelArray(
   int widthInPixels, int heightInPixels, Pixels::RGBPixel defaultPixel)
 {
   this->pixels = {widthInPixels, heightInPixels, defaultPixel};
+  this->widthInPixels = widthInPixels;
+  this->heightInPixels = heightInPixels;
 }
 
 void Pixels::PixelArray::set(Pixels::RGBPixel pixel, int rowNo, int columnNo)
@@ -21,4 +25,9 @@ void Pixels::PixelArray::set(Pixels::RGBPixel pixel, int rowNo, int columnNo)
 Pixels::RGBPixel Pixels::PixelArray::at(int rowNo, int columnNo)
 {
   return this->pixels.at(rowNo, columnNo);
+}
+
+int Pixels::PixelArray::sizeInPixels()
+{
+  return this->widthInPixels * this->heightInPixels;
 }
