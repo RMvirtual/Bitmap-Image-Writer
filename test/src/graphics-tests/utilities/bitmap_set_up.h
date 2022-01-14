@@ -1,8 +1,8 @@
 #ifndef BITMAP_SET_UP_H
 #define BITMAP_SET_UP_H
 
-#include "src/graphics/bitmaps/packet/pixel-array/pixels/pixel.h"
-#include "src/graphics/bitmaps/packet/pixel-array/pixel_array.h"
+#include "src/graphics/bitmaps/packet/pixel-array/pixels/rgb_pixel.h"
+#include "src/graphics/bitmaps/packet/pixel-array/arrays/pixel_array.h"
 #include "src/graphics/bitmaps/bitmap_image.h"
 #include "test/src/graphics-tests/utilities/bitmap_image_comparators.h"
 
@@ -13,9 +13,9 @@ namespace BitmapSetUp
   BitmapHeaders::DibHeader setUpBluePixelDibHeader();
   Pixels::PixelArray setUpBluePixelArray();
   std::string getBlueImagePath();
-  Colours getWhiteColours();
-  Colours getGreenColours();
-  Colours getRedColours();
+  RGBColours getWhiteColours();
+  RGBColours getGreenColours();
+  RGBColours getRedColours();
 }
 
 #endif

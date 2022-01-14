@@ -21,7 +21,6 @@ private:
   void processIntoPacket(ByteArray& bytes);
   void processIntoFileHeader(ByteArray& bytes);
   void processIntoDibHeader(ByteArray& bytes);
-  void processIntoPixelArray(ByteArray& bytes);  
 };
 
 #endif

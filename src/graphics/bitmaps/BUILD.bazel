@@ -4,7 +4,6 @@ cc_library(
     srcs = ["bitmap_image.cpp"],
     deps = [
         "//src/common:common",
-        "//src/graphics/colours:colours",
         "//src/graphics/bitmaps/packet:bitmap_packet",
         "//src/graphics/bitmaps/reader:bitmap_reader"
     ],

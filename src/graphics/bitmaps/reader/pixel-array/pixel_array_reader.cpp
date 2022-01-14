@@ -5,8 +5,3 @@ PixelArrayReader::PixelArrayReader(PixelArrayReaderConfiguration config)
 {
   this->config = config;
 }
-
-Pixels::PixelArray PixelArrayReader::convertBytes(ByteArray bytes)
-{
-  
-}

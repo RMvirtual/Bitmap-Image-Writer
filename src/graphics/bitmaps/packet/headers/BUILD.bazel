@@ -12,8 +12,7 @@ cc_library(
     ],
     deps = [
         "//src/common:common",
-        "//src/graphics/colours:colours",
-        "//src/graphics/bitmaps/packet/pixel-array:bitmap_pixels"
+        "//src/graphics/bitmaps/packet/pixel-array:bitmap_packet_pixel_array"
     ],
     visibility = ["//visibility:public"],
     copts = ["/std:c++17"]
