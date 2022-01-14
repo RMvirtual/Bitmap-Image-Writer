@@ -15,6 +15,8 @@ public:
 
   void set(Pixels::RGBPixel pixel, int rowNo, int columnNo);
   Pixels::RGBPixel at(int rowNo, int columnNo);
+  Pixels::RGBPixel at(int indexNo);
+
   int sizeInPixels();
 
 private:

@@ -52,18 +52,13 @@ Pixels::PixelArray BitmapSetUp::setUpBluePixelArray()
 {
   std::vector<Pixels::RGBPixel> pixels;
 
-  Colours blueColours;
-  blueColours.red = 100;
-  blueColours.green = 255;
-  blueColours.blue = 255;
+  Pixels::RGBColours blueColours;
+  blueColours.setRed(100);
+  blueColours.setGreen(255);
+  blueColours.setBlue(255);
 
   Pixels::RGBPixel bluePixel {blueColours};
-
   int imageWidth = 512, imageHeight = 512;
-  int totalPixels = imageWidth * imageHeight;
 
-  for (int pixelNo = 0; pixelNo < totalPixels; pixelNo++)
-    pixels.push_back(bluePixel);
-
-  return Pixels::PixelArray {pixels, imageWidth, imageHeight};
+  return Pixels::PixelArray {imageWidth, imageHeight, bluePixel};
 }

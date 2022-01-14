@@ -2,6 +2,8 @@
 #define MATRIX_2D_H
 
 #include <vector>
+#include <cmath>
+
 #include "src/common/matrix-2d/matrix_row.h"
 
 namespace Common {
@@ -12,6 +14,7 @@ public:
   Matrix2D(int width, int height, T defaultValue);
   void set(T element, int rowNo, int columnNo);
   T at(int rowNo, int columnNo);
+  T at(int index);
 
 private:
   int width;
@@ -44,5 +47,14 @@ template <class T> T Common::Matrix2D<T>::at(int rowNo, int columnIndex)
 {
   return this->rows.at(rowNo).at(columnIndex);
 }
+
+template <class T> T Common::Matrix2D<T>::at(int indexNo)
+{
+  int rowNo = floor(indexNo / this->width);
+  int columnNo = indexNo % this->width;
+
+  return this->at(rowNo, columnNo);
+}
+
 
 #endif

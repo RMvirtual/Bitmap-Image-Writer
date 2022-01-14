@@ -41,23 +41,14 @@ void BitmapImageComparison::compareBitmapDibHeaders(
   EXPECT_EQ(header1.getImportantColors(), header2.getImportantColors());
 }
 
-void BitmapImageComparison::comparePixelArrayAttributes(
-  Pixels::PixelArray pixelArray1, Pixels::PixelArray pixelArray2)
-{
-  EXPECT_EQ(pixelArray1.getHeightInPixels(), pixelArray2.getHeightInPixels());
-  EXPECT_EQ(pixelArray1.getWidthInPixels(), pixelArray2.getWidthInPixels());
-  EXPECT_EQ(pixelArray1.sizeInPixels(), pixelArray2.sizeInPixels());
-  EXPECT_EQ(pixelArray1.sizeInBytes(), pixelArray2.sizeInBytes());
-}
-
 void BitmapImageComparison::comparePixelArrayContents(
   Pixels::PixelArray pixelArray1, Pixels::PixelArray pixelArray2)
 {
   int numberOfPixels = pixelArray1.sizeInPixels();
 
   for (int pixelNo = 0; pixelNo < numberOfPixels; pixelNo++) {
-    Pixels::RGBPixel pixel1 = pixelArray1.pixels[pixelNo];
-    Pixels::RGBPixel pixel2 = pixelArray2.pixels[pixelNo];
+    Pixels::RGBColours pixel1 = pixelArray1.at(pixelNo).getColours();
+    Pixels::RGBColours pixel2 = pixelArray2.at(pixelNo).getColours();
 
     EXPECT_EQ(pixel1.getBlue(), pixel2.getBlue());
     EXPECT_EQ(pixel1.getGreen(), pixel2.getGreen());
@@ -67,22 +58,6 @@ void BitmapImageComparison::comparePixelArrayContents(
 
 void BitmapImageComparison::comparePixelArrays(
   Pixels::PixelArray pixelArray1, Pixels::PixelArray pixelArray2)
-{
-  BitmapImageComparison::comparePixelArrayAttributes(
-    pixelArray1, pixelArray2);
-  
+{  
   BitmapImageComparison::comparePixelArrayContents(pixelArray1, pixelArray2);
-}
-
-void BitmapImageComparison::compareBitmapImages(
-  BitmapImage image1, BitmapImage image2)
-{
-  BitmapImageComparison::compareBitmapFileHeaders(
-    image1.getFileHeader(), image2.getFileHeader());
-  
-  BitmapImageComparison::compareBitmapDibHeaders(
-    image1.getDibHeader(), image2.getDibHeader());
-  
-  BitmapImageComparison::comparePixelArrays(
-    image1.getPixelArray(), image2.getPixelArray());
 }
