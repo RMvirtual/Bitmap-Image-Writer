@@ -3,37 +3,20 @@
 
 #include <vector>
 #include "src/graphics/bitmaps/packet/pixel-array/pixels/rgb_pixel.h"
+#include "src/common/matrix-2D/matrix_2d.h"
 
 namespace Pixels {
 class PixelArray
 {
 public:
-  std::vector<Pixels::RGBPixel> pixels;
-
-  PixelArray();
   PixelArray(
-    std::vector<Pixels::RGBPixel> pixels, int widthInPixels, int heightInPixels);
+    int widthInPixels, int heightInPixels, Pixels::RGBPixel defaultPixel);
 
-  void setPixel();
-
-  Pixels::RGBPixel getPixel(int rowNo, int columnNo);
-  Pixels::RGBPixel getPixel(int index);
-  int getWidthInPixels();
-  int getHeightInPixels();
-  int sizeInBytes();
-  int sizeInPixels();
+  void set(Pixels::RGBPixel pixel, int rowNo, int columnNo);
+  Pixels::RGBPixel at(int rowNo, int columnNo);
 
 private:
-  int rowSizeInBytes;
-  int rowPadding;
-
-  void initialisePixelArray(int widthInPixels, int heightInPixels);
-  void populateMissingPixels();
-  void addBlankPixels(int numberOfPixelsToAdd);
-  void addBlankPixel();
-  void calculateRowStride();
-  int getRowStride();
-  int getNumberOfMissingPixels();
+  Common::Matrix2D<Pixels::RGBPixel> pixels;
 };}
 
 #endif

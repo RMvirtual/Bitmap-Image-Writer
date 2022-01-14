@@ -1,4 +1,4 @@
-#include "src/graphics/bitmaps/packet/pixel-array/pixel_array_size_calculator.h"
+#include "src/graphics/bitmaps/packet/pixel-array/arrays/pixel_array_size_calculator.h"
 
 int Pixels::calculatePixelArraySizeInBytes(int widthInPixels, int heightInPixels)
 {

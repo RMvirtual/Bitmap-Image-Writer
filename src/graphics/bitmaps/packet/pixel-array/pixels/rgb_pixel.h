@@ -7,6 +7,7 @@ namespace Pixels {
 class RGBPixel
 {
 public:
+  RGBPixel();
   RGBPixel(RGBColours colours);
   
   void setColours(RGBColours colours);
