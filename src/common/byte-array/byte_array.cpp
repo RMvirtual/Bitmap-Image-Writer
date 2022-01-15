@@ -6,13 +6,13 @@ ByteArray::ByteArray()
   this->bytes = {};
 }
 
-void ByteArray::add(std::vector<Byte> bytes)
+void ByteArray::add(std::vector<Byte>& bytes)
 {
   for (Byte byte : bytes)
     this->bytes.push_back(byte);
 }
 
-Byte ByteArray::operator [](int index)
+Byte& ByteArray::operator [](int index)
 {
   return this->bytes[index];
 }
@@ -26,7 +26,7 @@ ByteArray ByteArray::slice(int startIndex, int endIndex)
 {
   ByteArrayBuilder byteArrayBuilder;
 
-  for (int index = startIndex; index <= endIndex; index++) 
+  for (int index = startIndex; index < endIndex; index++) 
     byteArrayBuilder.add(this->bytes[index].value);
  
   return byteArrayBuilder.toByteArray();

@@ -8,11 +8,11 @@
 class PixelArrayReader
 {
 public:
-
   PixelArrayReader(PixelArrayReaderConfiguration config);
+  Pixels::PixelArray convertBytes(ByteArray& bytes);
 
 private:
-  Pixels::PixelArray pixelArray {0,0,{}};
+  Pixels::PixelArray pixelArray;
   PixelArrayReaderConfiguration config;
 };
 

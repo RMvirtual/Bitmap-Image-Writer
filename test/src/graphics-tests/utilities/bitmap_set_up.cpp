@@ -6,6 +6,7 @@
 #include "test/src/graphics-tests/utilities/bitmap_image_comparators.h"
 #include "test/src/graphics-tests/utilities/bitmap_set_up.h"
 #include "src/graphics/bitmaps/packet/pixel-array/pixels/colours/rgb_colours.h"
+#include "src/graphics/bitmaps/packet/pixel-array/arrays/pixel_array_values.h"
 
 std::string BitmapSetUp::getBlueImagePath()
 {
@@ -57,8 +58,10 @@ Pixels::PixelArray BitmapSetUp::setUpBluePixelArray()
   blueColours.setGreen(255);
   blueColours.setBlue(255);
 
-  Pixels::RGBPixel bluePixel {blueColours};
-  int imageWidth = 512, imageHeight = 512;
+  Pixels::PixelArrayValues values {};
+  values.widthInPixels = 512;
+  values.heightInPixels = 512;
+  values.defaultPixel = {blueColours};
 
-  return Pixels::PixelArray {imageWidth, imageHeight, bluePixel};
+  return Pixels::PixelArray {values};
 }

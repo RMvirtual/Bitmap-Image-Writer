@@ -9,7 +9,7 @@
 TEST(BytesConverterTest, ShouldExtract16BitIntegerFromByteArray)
 {
   ByteArrayBuilder byteArrayBuilder {};
-  byteArrayBuilder.add("crym3@river");
+  byteArrayBuilder.add(std::string {"crym3@river"});
   ByteArray byteArray = byteArrayBuilder.toByteArray();
 
   uint32_t value = BytesConversion::get16BitInteger(byteArray, 3);
@@ -21,7 +21,7 @@ TEST(BytesConverterTest, ShouldExtract16BitIntegerFromByteArray)
 TEST(BytesConverterTest, ShouldExtract32BitIntegerFromByteArray)
 {
   ByteArrayBuilder byteArrayBuilder {};
-  byteArrayBuilder.add("crym3@river");
+  byteArrayBuilder.add(std::string {"crym3@river"});
   ByteArray byteArray = byteArrayBuilder.toByteArray();
 
   uint32_t value = BytesConversion::get32BitInteger(byteArray, 3);

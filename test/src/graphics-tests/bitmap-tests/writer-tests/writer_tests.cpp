@@ -1,6 +1,8 @@
 #include <gtest/gtest.h>
 
 #include "src/graphics/bitmaps/writer/writer.h"
+#include "src/common/byte-array/byte_array.h"
+#include "src/graphics/bitmaps/packet/pixel-array/pixels/colours/rgb_colours.h"
 #include "src/graphics/bitmaps/packet/headers/file-header/file_header.h"
 #include "test/src/graphics-tests/utilities/bitmap_set_up.h"
 
@@ -198,10 +200,10 @@ TEST(BitmapWriterTests, ShouldWritePixelArrayToByteArray)
   BitmapWriter writer {};
   ByteArray bytes = writer.writePixelArray(pixelArray);
 
-  Colours pixelRgbColours {};
-  pixelRgbColours.red = 100;
-  pixelRgbColours.green = 255;
-  pixelRgbColours.blue = 255;
+  Pixels::RGBColours pixelRgbColours {};
+  pixelRgbColours.setRed(100);
+  pixelRgbColours.setGreen(255);
+  pixelRgbColours.setBlue(255);
 
   int numberOfPixels = pixelArray.sizeInPixels();
   int numberOfBytes = bytes.size();
@@ -209,24 +211,25 @@ TEST(BitmapWriterTests, ShouldWritePixelArrayToByteArray)
   // Row stride unaccounted for.
   // Only testing first 12 bytes for testing speed.
   for (int byteNo = 0; byteNo < 12; byteNo += 3) {
-    Pixels::RGBPixel pixel = pixelArray.getPixel(byteNo / 3);
+    Pixels::RGBPixel pixel = pixelArray.at(byteNo / 3);
+    Pixels::RGBColours colours = pixel.getColours();
 
-    EXPECT_EQ(pixel.getBlue(), bytes[byteNo].value);
-    EXPECT_EQ(pixel.getGreen(), bytes[byteNo+1].value);
-    EXPECT_EQ(pixel.getRed(), bytes[byteNo+2].value);
+    EXPECT_EQ(colours.getBlue(), bytes[byteNo].value);
+    EXPECT_EQ(colours.getGreen(), bytes[byteNo+1].value);
+    EXPECT_EQ(colours.getRed(), bytes[byteNo+2].value);
   }
 }
 
 TEST(BitmapWriterTests, ShouldWritePixelToByteArray)
 {
-  Colours redRgbColours = BitmapSetUp::getRedColours();
+  Pixels::RGBColours redRgbColours = BitmapSetUp::getRedColours();
   Pixels::RGBPixel redPixel {redRgbColours};
   BitmapWriter writer {};
   ByteArray bytes = writer.writePixel(redPixel);
 
   // 24-bit pixel only atm. Alpha channel to come later.
   // Reverse ordering of bytes so BGR instead of RGB.
-  EXPECT_EQ(redRgbColours.blue, bytes[0].value);
-  EXPECT_EQ(redRgbColours.green, bytes[1].value);
-  EXPECT_EQ(redRgbColours.red, bytes[2].value);
+  EXPECT_EQ(redRgbColours.getBlue(), bytes[0].value);
+  EXPECT_EQ(redRgbColours.getGreen(), bytes[1].value);
+  EXPECT_EQ(redRgbColours.getRed(), bytes[2].value);
 }

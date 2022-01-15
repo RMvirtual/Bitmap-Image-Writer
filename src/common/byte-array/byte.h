@@ -1,9 +1,11 @@
 #ifndef BYTE_H
 #define BYTE_H
 
+#include <cstdint>
+
 struct Byte
 {
-  unsigned char value; 
+  uint8_t value; 
 };
 
 #endif

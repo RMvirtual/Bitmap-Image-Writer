@@ -1,8 +1,8 @@
 #include <gtest/gtest.h>
 #include <string>
 
-#include "src/common/matrix-2D/matrix_row.h"
-#include "src/common/matrix-2D/matrix_2d.h"
+#include "src/common/matrix-2d/matrix_row.h"
+#include "src/common/matrix-2d/matrix_2d.h"
 
 TEST(Matrix2DTests, ShouldGetValuesFrom2DMatrixRow)
 {

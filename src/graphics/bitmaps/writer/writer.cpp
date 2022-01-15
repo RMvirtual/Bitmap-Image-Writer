@@ -1,10 +1,10 @@
 #include "src/graphics/bitmaps/writer/writer.h"
-#include "src/common/byte_array_builder.h"
-#include "src/common/byte_array.h"
-#include "src/graphics/bitmaps/packet/headers/file_header.h"
-#include "src/graphics/bitmaps/packet/headers/dib_header.h"
-#include "src/graphics/bitmaps/packet/pixels/pixel_array.h"
-#include "src/graphics/bitmaps/packet/pixels/pixel.h"
+#include "src/common/byte-array/byte_array_builder.h"
+#include "src/common/byte-array/byte_array.h"
+#include "src/graphics/bitmaps/packet/headers/file-header/file_header.h"
+#include "src/graphics/bitmaps/packet/headers/dib-header/dib_header.h"
+#include "src/graphics/bitmaps/packet/pixel-array/arrays/pixel_array.h"
+#include "src/graphics/bitmaps/packet/pixel-array/pixels/rgb_pixel.h"
 #include "src/graphics/bitmaps/packet/bitmap_packet.h"
 
 BitmapWriter::BitmapWriter()
@@ -15,8 +15,8 @@ BitmapWriter::BitmapWriter()
 ByteArray BitmapWriter::writeFileHeader(BitmapHeaders::FileHeader header)
 {
   ByteArrayBuilder byteArrayBuilder {};
-
-  std::string signatureBytes = header.getSignatureBytes();
+  auto signatureBytes = header.getSignatureBytes();
+  
   byteArrayBuilder.add(signatureBytes[0]);
   byteArrayBuilder.add(signatureBytes[1]);
   byteArrayBuilder.add(header.getSizeOfBitmapFile()); 
@@ -52,8 +52,8 @@ ByteArray BitmapWriter::writePixelArray(Pixels::PixelArray pixelArray)
 
   // No accounting for row stride yet.
   for (int pixelNo = 0; pixelNo < numberOfPixels; pixelNo++) {
-    Pixels::RGBPixel pixel = pixelArray.getPixel(pixelNo);
-    ByteArray pixelBytes = this->writePixel(pixel);
+    auto pixel = pixelArray.at(pixelNo);
+    auto pixelBytes = this->writePixel(pixel);
 
     byteArrayBuilder.add(pixelBytes);
   }
@@ -64,10 +64,11 @@ ByteArray BitmapWriter::writePixelArray(Pixels::PixelArray pixelArray)
 ByteArray BitmapWriter::writePixel(Pixels::RGBPixel pixel)
 {
   ByteArrayBuilder byteArrayBuilder {};
+  auto colours = pixel.getColours();
 
-  byteArrayBuilder.add(pixel.getBlue());
-  byteArrayBuilder.add(pixel.getGreen());
-  byteArrayBuilder.add(pixel.getRed());
+  byteArrayBuilder.add(colours.getBlue());
+  byteArrayBuilder.add(colours.getGreen());
+  byteArrayBuilder.add(colours.getRed());
 
   return byteArrayBuilder.toByteArray();
 }

@@ -6,7 +6,7 @@
 #include "test/src/graphics-tests/utilities/bitmap_image_comparators.h"
 
 void BitmapImageComparison::compareBitmapFileHeaders(
-  BitmapHeaders::FileHeader header1, BitmapHeaders::FileHeader header2)
+  BitmapHeaders::FileHeader& header1, BitmapHeaders::FileHeader& header2)
 {
   EXPECT_EQ(header1.getSignatureBytes()[0], header2.getSignatureBytes()[0]);
   EXPECT_EQ(header1.getSignatureBytes()[1], header2.getSignatureBytes()[1]);
@@ -16,7 +16,7 @@ void BitmapImageComparison::compareBitmapFileHeaders(
 }
 
 void BitmapImageComparison::compareBitmapDibHeaders(
-  BitmapHeaders::DibHeader header1, BitmapHeaders::DibHeader header2)
+  BitmapHeaders::DibHeader& header1, BitmapHeaders::DibHeader& header2)
 {
   EXPECT_EQ(
     header1.getHeaderSizeInBytes(), header2.getHeaderSizeInBytes());
@@ -41,23 +41,23 @@ void BitmapImageComparison::compareBitmapDibHeaders(
   EXPECT_EQ(header1.getImportantColors(), header2.getImportantColors());
 }
 
+void BitmapImageComparison::comparePixelArrays(
+  Pixels::PixelArray& pixelArray1, Pixels::PixelArray& pixelArray2)
+{  
+  BitmapImageComparison::comparePixelArrayContents(pixelArray1, pixelArray2);
+}
+
 void BitmapImageComparison::comparePixelArrayContents(
-  Pixels::PixelArray pixelArray1, Pixels::PixelArray pixelArray2)
+  Pixels::PixelArray& pixelArray1, Pixels::PixelArray& pixelArray2)
 {
   int numberOfPixels = pixelArray1.sizeInPixels();
 
   for (int pixelNo = 0; pixelNo < numberOfPixels; pixelNo++) {
-    Pixels::RGBColours pixel1 = pixelArray1.at(pixelNo).getColours();
-    Pixels::RGBColours pixel2 = pixelArray2.at(pixelNo).getColours();
+    auto pixel1Colours = pixelArray1.at(pixelNo).getColours();
+    auto pixel2Colours = pixelArray2.at(pixelNo).getColours();
 
-    EXPECT_EQ(pixel1.getBlue(), pixel2.getBlue());
-    EXPECT_EQ(pixel1.getGreen(), pixel2.getGreen());
-    EXPECT_EQ(pixel1.getRed(), pixel2.getRed());
+    EXPECT_EQ(pixel1Colours.getBlue(), pixel2Colours.getBlue());
+    EXPECT_EQ(pixel1Colours.getGreen(), pixel2Colours.getGreen());
+    EXPECT_EQ(pixel1Colours.getRed(), pixel2Colours.getRed());
   }
-}
-
-void BitmapImageComparison::comparePixelArrays(
-  Pixels::PixelArray pixelArray1, Pixels::PixelArray pixelArray2)
-{  
-  BitmapImageComparison::comparePixelArrayContents(pixelArray1, pixelArray2);
 }

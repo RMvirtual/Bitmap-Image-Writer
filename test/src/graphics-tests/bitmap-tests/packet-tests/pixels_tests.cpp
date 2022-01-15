@@ -3,6 +3,7 @@
 #include "src/graphics/bitmaps/packet/pixel-array/arrays/pixel_array.h"
 #include "src/graphics/bitmaps/packet/pixel-array/pixels/rgb_pixel.h"
 #include "src/graphics/bitmaps/packet/pixel-array/arrays/pixel_array_size_calculator.h"
+#include "src/graphics/bitmaps/packet/pixel-array/arrays/pixel_array_values.h"
 
 Pixels::RGBColours getRedColours()
 {
@@ -54,14 +55,12 @@ void isRedPixel(Pixels::RGBPixel pixel)
 
 Pixels::PixelArray getRedPixelArray()
 {
-  Pixels::RGBColours redColours;
-  redColours.setRed(255);
-  redColours.setGreen(0);
-  redColours.setBlue(0);
+  Pixels::PixelArrayValues values;
+  values.widthInPixels = 2;
+  values.heightInPixels = 2;
+  values.defaultPixel = {getRedColours()};
 
-  Pixels::RGBPixel redPixel {redColours};
-
-  return {2, 2, redPixel};
+  return {values};
 }
 
 TEST(PixelArrayTests, ShouldSetPixelInPixelArray)

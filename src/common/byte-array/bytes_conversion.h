@@ -8,10 +8,10 @@
 
 namespace BytesConversion
 {
-  uint32_t get32BitInteger(ByteArray bytes, int startingIndex);
-  uint16_t get16BitInteger(ByteArray bytes, int startingIndex);
-  uint32_t convertTo32bitInteger(ByteArray bytes);
-  uint16_t convertTo16bitInteger(ByteArray bytes);
+  uint32_t get32BitInteger(ByteArray& bytes, int startingIndex);
+  uint16_t get16BitInteger(ByteArray& bytes, int startingIndex);
+  uint32_t convertTo32bitInteger(ByteArray& bytes);
+  uint16_t convertTo16bitInteger(ByteArray& bytes);
 
   union ValueUnion {
     uint32_t fourByteValue;

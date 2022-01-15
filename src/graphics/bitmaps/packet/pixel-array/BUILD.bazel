@@ -7,6 +7,7 @@ cc_library(
         "pixels/colours/rgba_colours.h",
         "arrays/pixel_array.h",
         "arrays/pixel_array_size_calculator.h",
+        "arrays/pixel_array_values.h"
     ],
     srcs = [
         "pixels/rgb_pixel.cpp",

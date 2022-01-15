@@ -1,8 +1,8 @@
 #ifndef BYTE_ARRAY_BUILDER_H
 #define BYTE_ARRAY_BUILDER_H
 
-#include <string>
 #include <cstdint>
+#include <string>
 #include <vector>
 
 #include "src/common/byte-array/byte.h"
@@ -40,14 +40,9 @@ public:
   // Adds a value of 4 bytes.
   void add(int32_t value);
 
-  void add(ByteArray byteArray);
-  void add(std::string values);
+  void add(ByteArray& byteArray);
+  void add(std::string& values);
 
-  /**
-   * Returns a character array pointer towards a copy of the bytes
-   * constructed from adding to the ByteArrayBuilder class.
-   */ 
-  unsigned char* toBytes();
   ByteArray toByteArray();
 
   /**
@@ -60,24 +55,10 @@ private:
   std::vector<Byte> bytes;
 
   /**
-   * Processes the integer value into bytes and stores them against
-   * this object. Requires the length of bytes that the integer should
-   * be split up into.
-   */
-  void processNewValue(int value, int lengthInBytes);
-
-  /**
    * Converts the integer value into 8-bit values dependent on its
    * length in bytes and adds them to the underlying char vector.
    */
   void convertValueToBytes(unsigned int value, int lengthInBytes);
-  
-  /**
-   * Converts the underlying vector of bytes into a new char array area
-   * of dynamic memory and returns a pointer to it.
-   */
-  unsigned char* copyArray();
-  unsigned char* getEmptyArray();
 };
 
 #endif

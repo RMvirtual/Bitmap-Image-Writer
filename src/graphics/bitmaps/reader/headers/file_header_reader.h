@@ -8,15 +8,15 @@ class FileHeaderReader
 {
 public:
   FileHeaderReader();
-  BitmapHeaders::FileHeader convertBytes(ByteArray bytes);
+  BitmapHeaders::FileHeader convertBytes(ByteArray& bytes);
 
 private:
   BitmapHeaders::FileHeader fileHeader;
   
-  void parseSignatureBytes(ByteArray bytes);
-  void parseSizeOfBitmapFile(ByteArray bytes);
-  void parseReservedBytes(ByteArray bytes);
-  void parsePixelDataOffset(ByteArray bytes);
+  void parseSignatureBytes(ByteArray& bytes);
+  void parseSizeOfBitmapFile(ByteArray& bytes);
+  void parseReservedBytes(ByteArray& bytes);
+  void parsePixelDataOffset(ByteArray& bytes);
 };
 
 #endif

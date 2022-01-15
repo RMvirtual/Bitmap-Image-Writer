@@ -3,11 +3,6 @@
 #include "src/graphics/bitmaps/packet/headers/dib-header/dib_header.h"
 
 
-PixelArrayReaderConfiguration::PixelArrayReaderConfiguration()
-{
-  // Pass.
-}
-
 PixelArrayReaderConfiguration PixelArrayReaderConfiguration::fromHeaders(
   BitmapHeaders::FileHeader& fileHeader, BitmapHeaders::DibHeader& dibHeader)
 {
