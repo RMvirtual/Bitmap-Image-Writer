@@ -69,23 +69,21 @@ TEST(ByteArrayTests, ShouldAddMultiple32bitUnsignedIntsToArray)
 
 TEST(ByteArrayTests, ShouldAddCharArrayToArray)
 {
+
+  int noOfBytes = 4;
+  unsigned char* correctValues = new unsigned char[noOfBytes];
+  correctValues[0] = 'a';
+  correctValues[1] = 'b';
+  correctValues[2] = 'c';
+  correctValues[3] = 'd';
+
   ByteArrayBuilder byteArrayBuilder;
-
-  unsigned char* characters = new unsigned char[3];
-  characters[0] = 'a'; characters[1] = 'b'; characters[2] = 'c';
-
-  byteArrayBuilder.add(characters, 3);
-  byteArrayBuilder.add('d');
-
+  byteArrayBuilder.add(correctValues, noOfBytes);
   auto bytes = byteArrayBuilder.toByteArray();
 
-  int totalNumberOfBytes = 4;
-  unsigned char* correctValues = new unsigned char[totalNumberOfBytes];
-  correctValues[0] = 'a'; correctValues[1] = 'b';
-  correctValues[2] = 'c'; correctValues[3] = 'd';
+  for (int byteNo = 0; byteNo < noOfBytes; byteNo++)
+    EXPECT_EQ(correctValues[byteNo], bytes[byteNo].value);
 
-  for (int i = 0; i < totalNumberOfBytes; i++)
-    EXPECT_EQ(correctValues[i], bytes[i].value);
 }
 
 /*
