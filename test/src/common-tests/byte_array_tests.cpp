@@ -84,9 +84,8 @@ TEST(ByteArrayTests, ShouldAddCharArrayToArray)
   for (int byteNo = 0; byteNo < noOfBytes; byteNo++)
     EXPECT_EQ(correctValues[byteNo], bytes[byteNo].value);
 
+  delete[] correctValues;
 }
-
-/*
 
 TEST(ByteArrayTests, ShouldAddMultipleSizeUnsignedIntsToArray)
 {
@@ -181,5 +180,3 @@ TEST(ByteArrayTests, ShouldAddEverySizeIntToBitmapBuilder)
   for (int byteNo = 0; byteNo < correctNumberOfBytes; byteNo++)
     EXPECT_EQ(correctValues[byteNo], byteArray[byteNo].value);
 }
-
-*/
