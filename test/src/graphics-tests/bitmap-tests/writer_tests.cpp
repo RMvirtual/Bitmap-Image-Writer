@@ -18,8 +18,8 @@ void testTwoBytesAgainstValue(uint16_t intValue, ByteArray bytes)
 
 void testTwoBytesAgainstTwoChars(std::string chars, ByteArray bytes)
 {
-  EXPECT_EQ(chars[0], bytes[0].value);
-  EXPECT_EQ(chars[1], bytes[1].value);
+  EXPECT_EQ(chars[0], bytes[0]);
+  EXPECT_EQ(chars[1], bytes[1]);
 }
 
 TEST(BitmapWriterTests, ShouldConvertFileHeaderToBytes)

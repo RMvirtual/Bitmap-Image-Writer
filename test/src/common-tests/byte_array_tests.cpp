@@ -98,7 +98,7 @@ TEST(ByteArrayTests, ShouldAddUint8ToArray)
   ByteArray byteArray;
   byteArray.add(correctValue);
   
-  ASSERT_EQ(byteArray[0].value, correctValue);
+  ASSERT_EQ(byteArray[0], correctValue);
 }
 
 TEST(ByteArrayTests, ShouldAddUint16ToArray)
@@ -110,7 +110,7 @@ TEST(ByteArrayTests, ShouldAddUint16ToArray)
   int noOfBytes = byteArray.size();
 
   for (int byteNo = 0; byteNo < noOfBytes; byteNo++)
-    ASSERT_EQ(byteArray[byteNo].value, correctValue >> (byteNo * 8));
+    ASSERT_EQ(byteArray[byteNo], correctValue >> (byteNo * 8));
 }
 
 TEST(ByteArrayTests, ShouldAddUint32ToArray)
@@ -125,7 +125,7 @@ TEST(ByteArrayTests, ShouldAddUint32ToArray)
     int bitsToShift = byteNo * 8;
     uint8_t correctByte = correctValue >> bitsToShift;
 
-    ASSERT_EQ(byteArray[byteNo].value, correctByte);
+    ASSERT_EQ(byteArray[byteNo], correctByte);
   }
 }
 
@@ -143,7 +143,7 @@ TEST(ByteArrayTests, ShouldAddMultiple32bitUnsignedIntsToArray)
   int noOfValues = correctValues.size();
 
   for (int byteNo = 0; byteNo < noOfValues; byteNo++)
-    EXPECT_EQ(byteArray[byteNo].value, correctValues[byteNo]);
+    EXPECT_EQ(correctValues[byteNo], byteArray[byteNo]);
 }
 
 TEST(ByteArrayTests, ShouldAddCharArrayToArray)
@@ -159,7 +159,7 @@ TEST(ByteArrayTests, ShouldAddCharArrayToArray)
   byteArray.add(correctValues, noOfBytes);
 
   for (int byteNo = 0; byteNo < noOfBytes; byteNo++)
-    EXPECT_EQ(correctValues[byteNo], byteArray[byteNo].value);
+    EXPECT_EQ(correctValues[byteNo], byteArray[byteNo]);
 }
 
 TEST(ByteArrayTests, ShouldAddMultipleSizeUnsignedIntsToArray)
@@ -182,16 +182,15 @@ TEST(ByteArrayTests, ShouldAddMultipleSizeUnsignedIntsToArray)
   int numberOfBytes = correctValues.size();
 
   for (int byteNo = 0; byteNo < numberOfBytes; byteNo++)
-    EXPECT_EQ(correctValues[byteNo], byteArray[byteNo].value);
+    EXPECT_EQ(correctValues[byteNo], byteArray[byteNo]);
 }
 
 TEST(ByteArrayTests, ShouldAddEverySizeIntToBitmapBuilder)
 {
   auto byteArray = getEverySizeByteArray();
-  std::vector<unsigned char> correctValues = getEverySizeCorrectValues();
- 
+  auto correctValues = getEverySizeCorrectValues();
   int correctNumberOfBytes = correctValues.size();
 
   for (int byteNo = 0; byteNo < correctNumberOfBytes; byteNo++)
-    EXPECT_EQ(correctValues[byteNo], byteArray[byteNo].value);
+    EXPECT_EQ(correctValues[byteNo], byteArray[byteNo]);
 }

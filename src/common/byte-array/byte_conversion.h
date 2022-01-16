@@ -2,8 +2,6 @@
 #define BYTE_CONVERTOR_H
 
 #include <cstdint>
-#include <string>
-
 #include "src/common/byte-array/byte_array.h"
 
 namespace ByteConversion

@@ -1,7 +1,6 @@
 cc_library(
     name = "common",
     hdrs = [
-        "byte-array/byte.h",
         "byte-array/byte_array.h",
         "byte-array/byte_conversion.h",
         "filesystem/filesystem.h",

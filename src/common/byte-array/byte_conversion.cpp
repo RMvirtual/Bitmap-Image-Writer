@@ -7,9 +7,7 @@ ByteArray ByteConversion::convertToBytes(unsigned int value, int lengthInBytes)
 
   for (int byteNo = 0; byteNo < lengthInBytes; byteNo++) {
     int bitsToShift = byteNo * 8;
-    uint8_t newValue = (uint8_t) (value >> bitsToShift);
-
-    Byte newByte = {newValue};    
+    uint8_t newByte = (uint8_t) (value >> bitsToShift);
     bytes.add(newByte);
   }
 
@@ -21,7 +19,7 @@ uint16_t ByteConversion::convertTo16BitInt(const ByteArray& bytes)
   ByteConversion::ValueUnion values {};
 
   for (int byteNo = 0; byteNo < 2; byteNo++)
-    values.byteValues[byteNo] = bytes[byteNo].value;
+    values.byteValues[byteNo] = bytes[byteNo];
 
   return values.twoByteValue;
 }
@@ -36,12 +34,12 @@ uint16_t ByteConversion::convertTo16BitInt(
 
 uint32_t ByteConversion::convertTo32BitInt(const ByteArray& bytes)
 {
-  ByteConversion::ValueUnion values {};
+  ByteConversion::ValueUnion valueConverter {};
 
   for (int byteNo = 0; byteNo < 4; byteNo++)
-    values.byteValues[byteNo] = bytes[byteNo].value;
+    valueConverter.byteValues[byteNo] = bytes[byteNo];
 
-  return values.fourByteValue;
+  return valueConverter.fourByteValue;
 }
 
 uint32_t ByteConversion::convertTo32BitInt(

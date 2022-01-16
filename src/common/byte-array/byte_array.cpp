@@ -1,3 +1,5 @@
+#include <cstdint>
+
 #include "src/common/byte-array/byte_array.h"
 #include "src/common/byte-array/byte_conversion.h"
 
@@ -6,16 +8,9 @@ ByteArray::ByteArray()
   this->bytes = {};
 }
 
-void ByteArray::add(char value)
-{
-  auto newBytes = ByteConversion::convertToBytes(value, 1);
-  this->add(newBytes);
-}
-
 void ByteArray::add(unsigned char value)
 {
-  auto newBytes = ByteConversion::convertToBytes(value, 1);
-  this->add(newBytes);
+  this->bytes.push_back(value);
 }
 
 void ByteArray::add(const unsigned char* values, int numberOfBytes)
@@ -24,20 +19,8 @@ void ByteArray::add(const unsigned char* values, int numberOfBytes)
     this->add(values[byteNo]);
 }
 
-void ByteArray::add(int8_t value)
-{
-  auto newBytes = ByteConversion::convertToBytes(value, 1);
-  this->add(newBytes);
-}
-
 void ByteArray::add(uint16_t value)
 { 
-  auto newBytes = ByteConversion::convertToBytes(value, 2);
-  this->add(newBytes);
-}
-
-void ByteArray::add(int16_t value)
-{
   auto newBytes = ByteConversion::convertToBytes(value, 2);
   this->add(newBytes);
 }
@@ -48,15 +31,28 @@ void ByteArray::add(uint32_t value)
   this->add(newBytes);
 }
 
+void ByteArray::add(char value)
+{
+  auto newBytes = ByteConversion::convertToBytes(value, 1);
+  this->add(newBytes);
+}
+
+void ByteArray::add(int8_t value)
+{
+  auto newBytes = ByteConversion::convertToBytes(value, 1);
+  this->add(newBytes);
+}
+
+void ByteArray::add(int16_t value)
+{
+  auto newBytes = ByteConversion::convertToBytes(value, 2);
+  this->add(newBytes);
+}
+
 void ByteArray::add(int32_t value)
 {
   auto newBytes = ByteConversion::convertToBytes(value, 4);
   this->add(newBytes);
-}
-
-void ByteArray::add(const Byte& byte)
-{
-  this->bytes.push_back(byte);
 }
 
 void ByteArray::add(const std::string& values)
@@ -76,13 +72,13 @@ void ByteArray::add(const ByteArray& byteArray)
     this->bytes.push_back(byteArray[byteNo]);
 }
 
-void ByteArray::add(const std::vector<Byte>& bytes)
+void ByteArray::add(const std::vector<uint8_t>& bytes)
 {
-  for (Byte byte : bytes)
+  for (uint8_t byte : bytes)
     this->bytes.push_back(byte);
 }
 
-Byte ByteArray::operator [](int index) const
+uint8_t ByteArray::operator [](int index) const
 {
   return this->bytes[index];
 }

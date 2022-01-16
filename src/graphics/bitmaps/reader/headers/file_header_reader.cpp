@@ -21,7 +21,7 @@ BitmapHeaders::FileHeader BitmapReader::FileHeaderReader::convertBytes(
 void BitmapReader::FileHeaderReader::parseSignatureBytes(
   const ByteArray& bytes)
 {
-  this->fileHeader.setSignatureBytes(bytes[0].value, bytes[1].value);
+  this->fileHeader.setSignatureBytes(bytes[0], bytes[1]);
 }
 
 void BitmapReader::FileHeaderReader::parseSizeOfBitmapFile(

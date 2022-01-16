@@ -29,9 +29,9 @@ Pixels::PixelArray BitmapReader::PixelArrayReader::convertBytes(
     ByteArray pixelBytes = bytes.slice(byteNo, endOfPixelByteNo);
     
     Pixels::RGBColours colours {};
-    colours.setBlue(pixelBytes[0].value);
-    colours.setGreen(pixelBytes[1].value);
-    colours.setRed(pixelBytes[2].value);
+    colours.setBlue(pixelBytes[0]);
+    colours.setGreen(pixelBytes[1]);
+    colours.setRed(pixelBytes[2]);
 
     Pixels::RGBPixel pixel {colours};
 
