@@ -3,16 +3,16 @@
 
 Pixels::RGBAColours::RGBAColours()
 {
-  this->alpha = 0;
+  this->_alpha = 0;
 }
 
 void Pixels::RGBAColours::setAlpha(uint8_t alpha)
 {
-  this->alpha = alpha;
+  this->_alpha = alpha;
 }
 
-uint8_t Pixels::RGBAColours::getAlpha()
+uint8_t Pixels::RGBAColours::alpha() const
 {
-  return this->alpha;
+  return this->_alpha;
 }
 

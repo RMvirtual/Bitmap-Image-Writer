@@ -11,7 +11,7 @@ BitmapWriter::ImageWriter::ImageWriter()
   // pass.
 }
 
-ByteArray BitmapWriter::ImageWriter::convertToBytes(BitmapPacket packet)
+ByteArray BitmapWriter::ImageWriter::convertToBytes(const BitmapPacket& packet)
 {
   auto fileHeaderBytes = this->convertToBytes(packet.fileHeader);
   auto dibHeaderBytes = this->convertToBytes(packet.dibHeader);
@@ -26,7 +26,8 @@ ByteArray BitmapWriter::ImageWriter::convertToBytes(BitmapPacket packet)
   return allBytes;
 }
 
-ByteArray BitmapWriter::ImageWriter::convertToBytes(BitmapHeaders::FileHeader header)
+ByteArray BitmapWriter::ImageWriter::convertToBytes(
+const BitmapHeaders::FileHeader& header)
 {
   ByteArray byteArray {};
   auto signatureBytes = header.signatureBytes();
@@ -40,7 +41,8 @@ ByteArray BitmapWriter::ImageWriter::convertToBytes(BitmapHeaders::FileHeader he
   return byteArray;
 }
 
-ByteArray BitmapWriter::ImageWriter::convertToBytes(BitmapHeaders::DibHeader header)
+ByteArray BitmapWriter::ImageWriter::convertToBytes(
+  const BitmapHeaders::DibHeader& header)
 {
   ByteArray byteArray {};
 
@@ -59,7 +61,8 @@ ByteArray BitmapWriter::ImageWriter::convertToBytes(BitmapHeaders::DibHeader hea
   return byteArray;
 }
 
-ByteArray BitmapWriter::ImageWriter::convertToBytes(Pixels::PixelArray pixelArray)
+ByteArray BitmapWriter::ImageWriter::convertToBytes(
+  const Pixels::PixelArray& pixelArray)
 {
   ByteArray byteArray {};
   int numberOfPixels = pixelArray.sizeInPixels();
@@ -75,14 +78,15 @@ ByteArray BitmapWriter::ImageWriter::convertToBytes(Pixels::PixelArray pixelArra
   return byteArray;
 }
 
-ByteArray BitmapWriter::ImageWriter::convertToBytes(Pixels::RGBPixel pixel)
+ByteArray BitmapWriter::ImageWriter::convertToBytes(
+  const Pixels::RGBPixel& pixel)
 {
-  ByteArray byteArray {};
   auto colours = pixel.colours();
+  ByteArray byteArray {};
 
-  byteArray.add(colours.getBlue());
-  byteArray.add(colours.getGreen());
-  byteArray.add(colours.getRed());
+  byteArray.add(colours.blue());
+  byteArray.add(colours.green());
+  byteArray.add(colours.red());
 
   return byteArray;
 }

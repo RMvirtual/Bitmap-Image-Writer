@@ -5,9 +5,9 @@
 
 Pixels::RGBColours::RGBColours()
 {
-  this->red = 0;
-  this->green = 0;
-  this->blue = 0;
+  this->_red = 0;
+  this->_green = 0;
+  this->_blue = 0;
 }
 
 void Pixels::RGBColours::setRed(uint8_t value)
@@ -15,7 +15,7 @@ void Pixels::RGBColours::setRed(uint8_t value)
   bool isWithinRange = (value >= 0 && value <= 255);
 
   if (isWithinRange)
-    this->red = value;
+    this->_red = value;
 
   else
     throw std::invalid_argument("Must be between 0 and 255.");
@@ -23,25 +23,25 @@ void Pixels::RGBColours::setRed(uint8_t value)
 
 void Pixels::RGBColours::setGreen(uint8_t value)
 {
-  this->green = value;
+  this->_green = value;
 }
 
 void Pixels::RGBColours::setBlue(uint8_t value)
 {
-  this->blue = value;
+  this->_blue = value;
 }
 
-uint8_t Pixels::RGBColours::getRed()
+uint8_t Pixels::RGBColours::red() const
 {
-  return this->red;
+  return this->_red;
 }
 
-uint8_t Pixels::RGBColours::getGreen()
+uint8_t Pixels::RGBColours::green() const
 {
-  return this->green;
+  return this->_green;
 }
 
-uint8_t Pixels::RGBColours::getBlue()
+uint8_t Pixels::RGBColours::blue() const
 {
-  return this->blue;
+  return this->_blue;
 }

@@ -16,7 +16,7 @@ void Pixels::RGBPixel::setColours(const Pixels::RGBColours& colours)
   this->_colours = colours;
 }
 
-Pixels::RGBColours Pixels::RGBPixel::colours()
+Pixels::RGBColours Pixels::RGBPixel::colours() const
 {
   return this->_colours;
 }

@@ -9,11 +9,11 @@ class RGBAPixel
 public:
   RGBAPixel(RGBAColours colours);
 
-  void setColours(RGBAColours colours);  
-  RGBAColours getColours();
+  RGBAColours colours() const;
+  void setColours(const RGBAColours& colours);
 
 private:
-  RGBAColours colours;
+  RGBAColours _colours;
 };}
 
 #endif

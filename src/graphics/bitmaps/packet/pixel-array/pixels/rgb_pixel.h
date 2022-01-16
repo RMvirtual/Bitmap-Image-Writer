@@ -11,7 +11,7 @@ public:
   RGBPixel(const RGBColours& colours);
   
   void setColours(const RGBColours& colours);
-  RGBColours colours();
+  RGBColours colours() const;
 
 private:
   RGBColours _colours;

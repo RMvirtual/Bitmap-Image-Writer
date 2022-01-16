@@ -11,10 +11,10 @@ public:
   RGBAColours();
   
   void setAlpha(uint8_t alpha);
-  uint8_t getAlpha();
+  uint8_t alpha() const;
 
 private:
-  uint8_t alpha;
+  uint8_t _alpha;
 };}
 
 #endif

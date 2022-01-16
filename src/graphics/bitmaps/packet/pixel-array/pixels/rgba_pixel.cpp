@@ -3,15 +3,15 @@
 
 Pixels::RGBAPixel::RGBAPixel(Pixels::RGBAColours colours)
 {
-  this->colours = colours;
+  this->_colours = colours;
 }
 
-Pixels::RGBAColours Pixels::RGBAPixel::getColours()
+Pixels::RGBAColours Pixels::RGBAPixel::colours() const
 {
-  return this->colours;
+  return this->_colours;
 }
 
-void Pixels::RGBAPixel::setColours(Pixels::RGBAColours colours)
+void Pixels::RGBAPixel::setColours(const Pixels::RGBAColours& colours)
 {
-  this->colours = colours;
+  this->_colours = colours;
 }

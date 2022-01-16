@@ -20,11 +20,24 @@ TEST(BitmapWriterTests, ShouldConvertFileHeaderToBytes)
 
   EXPECT_EQ(correctSignatureBytes, returnedSignatureBytes);
 
+  // Compare size of bitmap file.
+  auto correctFileSize = fileHeader.sizeOfBitmapFile();
+  uint32_t fileSize = ByteConversion::convertTo32BitInt(bytes.slice(2,6));
+    
+  EXPECT_EQ(correctFileSize, fileSize);
+
   // Compare reserved bytes.
   auto correctReservedBytes = fileHeader.reservedBytes();
-  
+
   uint32_t reservedBytes = ByteConversion::convertTo32BitInt(
-    bytes.slice(2, 6));
+    bytes.slice(6,10));
 
   EXPECT_EQ(correctReservedBytes, reservedBytes);
+
+  // Compare pixel array offset.
+  auto correctPixelArrayOffset = fileHeader.pixelDataOffset();
+  uint32_t pixelArrayOffset = ByteConversion::convertTo32BitInt(
+    bytes.slice(10,14));
+
+  EXPECT_EQ(correctPixelArrayOffset, pixelArrayOffset);
 }

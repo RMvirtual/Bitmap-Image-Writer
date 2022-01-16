@@ -54,8 +54,8 @@ void BitmapImageComparison::comparePixelArrayContents(
     auto pixel1Colours = pixelArray1.at(pixelNo).colours();
     auto pixel2Colours = pixelArray2.at(pixelNo).colours();
 
-    EXPECT_EQ(pixel1Colours.getBlue(), pixel2Colours.getBlue());
-    EXPECT_EQ(pixel1Colours.getGreen(), pixel2Colours.getGreen());
-    EXPECT_EQ(pixel1Colours.getRed(), pixel2Colours.getRed());
+    EXPECT_EQ(pixel1Colours.blue(), pixel2Colours.blue());
+    EXPECT_EQ(pixel1Colours.green(), pixel2Colours.green());
+    EXPECT_EQ(pixel1Colours.red(), pixel2Colours.red());
   }
 }
