@@ -40,7 +40,7 @@ public:
   // Adds a value of 4 bytes.
   void add(int32_t value);
 
-  void add(ByteArray& byteArray);
+  void add(const ByteArray& byteArray);
   void add(std::string& values);
 
   ByteArray toByteArray();

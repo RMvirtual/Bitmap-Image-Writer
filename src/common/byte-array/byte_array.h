@@ -10,9 +10,9 @@ class ByteArray
     ByteArray();
     
     void add(const std::vector<Byte>& bytes);
-    Byte& operator [](int index);
-    int size();
-    ByteArray slice(int startIndex, int endIndex);
+    Byte operator [](int index) const;
+    int size() const;
+    ByteArray slice(int startIndex, int endIndex) const;
 
   private:
     std::vector<Byte> bytes;

@@ -59,7 +59,7 @@ void ByteArrayBuilder::add(std::string& values)
     this->add(valuesAsChars[byteNo]);
 }
 
-void ByteArrayBuilder::add(ByteArray& byteArray)
+void ByteArrayBuilder::add(const ByteArray& byteArray)
 {
   int numberOfBytes = byteArray.size();
 

@@ -12,17 +12,17 @@ void ByteArray::add(const std::vector<Byte>& bytes)
     this->bytes.push_back(byte);
 }
 
-Byte& ByteArray::operator [](int index)
+Byte ByteArray::operator [](int index) const
 {
   return this->bytes[index];
 }
 
-int ByteArray::size()
+int ByteArray::size() const
 {
   return this->bytes.size();
 }
 
-ByteArray ByteArray::slice(int startIndex, int endIndex)
+ByteArray ByteArray::slice(int startIndex, int endIndex) const
 {
   ByteArrayBuilder byteArrayBuilder;
 
