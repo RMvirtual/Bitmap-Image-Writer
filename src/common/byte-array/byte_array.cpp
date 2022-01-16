@@ -6,7 +6,7 @@ ByteArray::ByteArray()
   this->bytes = {};
 }
 
-void ByteArray::add(std::vector<Byte>& bytes)
+void ByteArray::add(const std::vector<Byte>& bytes)
 {
   for (Byte byte : bytes)
     this->bytes.push_back(byte);

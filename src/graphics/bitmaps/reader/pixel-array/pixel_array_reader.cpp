@@ -19,13 +19,12 @@ Pixels::PixelArray PixelArrayReader::convertBytes(ByteArray& bytes)
 
   this->pixelArray = Pixels::PixelArray {values};
   
-  // Iterate pixels from the bytes.
   int noOfBytes = bytes.size();
-  int sizeOfPixel = 4;
+  int sizeOfPixel = 3;
 
-  // Need to transpose straight array of bytes to pixel matrix format.
-  for (int byteNo = 0; byteNo < noOfBytes; byteNo += 3) {
-    ByteArray pixelBytes = bytes.slice(byteNo, byteNo + sizeOfPixel);
+  for (int byteNo = 0; byteNo < noOfBytes; byteNo += sizeOfPixel) {
+    int endOfPixelByteNo = byteNo + sizeOfPixel;
+    ByteArray pixelBytes = bytes.slice(byteNo, endOfPixelByteNo);
     
     Pixels::RGBColours colours {};
     colours.setBlue(pixelBytes[0].value);
@@ -34,7 +33,8 @@ Pixels::PixelArray PixelArrayReader::convertBytes(ByteArray& bytes)
 
     Pixels::RGBPixel pixel {colours};
 
-    this->pixelArray.set(pixel, byteNo / 3);
+    int pixelNo = byteNo / sizeOfPixel;
+    this->pixelArray.set(pixel, pixelNo);
   }
 
   return this->pixelArray;
