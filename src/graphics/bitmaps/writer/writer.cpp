@@ -13,15 +13,11 @@ BitmapWriter::ImageWriter::ImageWriter()
 
 ByteArray BitmapWriter::ImageWriter::convertToBytes(const BitmapPacket& packet)
 {
-  auto fileHeaderBytes = this->convertToBytes(packet.fileHeader);
-  auto dibHeaderBytes = this->convertToBytes(packet.dibHeader);
-  auto pixelArrayBytes = this->convertToBytes(packet.pixelArray);
-
   ByteArray allBytes {};
 
-  allBytes.add(fileHeaderBytes);
-  allBytes.add(dibHeaderBytes);
-  allBytes.add(pixelArrayBytes);
+  allBytes.add(this->convertToBytes(packet.fileHeader));
+  allBytes.add(this->convertToBytes(packet.dibHeader));
+  allBytes.add(this->convertToBytes(packet.pixelArray));
 
   return allBytes;
 }
@@ -30,10 +26,7 @@ ByteArray BitmapWriter::ImageWriter::convertToBytes(
   const BitmapHeaders::FileHeader& header)
 {
   ByteArray byteArray {};
-  auto signatureBytes = header.signatureBytes();
-  
-  byteArray.add(signatureBytes[0]);
-  byteArray.add(signatureBytes[1]);
+  byteArray.add(header.signatureBytes());
   byteArray.add(header.fileSizeInBytes()); 
   byteArray.add(header.reservedBytes()); 
   byteArray.add(header.pixelArrayOffsetInBytes());

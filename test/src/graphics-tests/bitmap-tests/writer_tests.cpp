@@ -52,3 +52,12 @@ TEST(BitmapWriterTests, ShouldConvertDibHeaderToBytes)
   testFourBytesAgainstValue(header.colorTableEntries(), bytes.slice(32,36));
   testFourBytesAgainstValue(header.importantColors(), bytes.slice(36,40));
 }
+
+TEST(BitmapWriterTests, ShouldConvertPixelArrayToBytes)
+{
+  BitmapWriter::ImageWriter writer {};
+  auto pixelArray = BitmapSetUp::setUpBluePixelArray();
+  auto bytes = writer.convertToBytes(pixelArray);
+
+  EXPECT_TRUE(false);
+}
