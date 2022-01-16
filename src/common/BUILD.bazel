@@ -3,8 +3,7 @@ cc_library(
     hdrs = [
         "byte-array/byte.h",
         "byte-array/byte_array.h",
-        "byte-array/byte_array_builder.h",
-        "byte-array/bytes_conversion.h",
+        "byte-array/byte_conversion.h",
         "filesystem/filesystem.h",
         "matrix-2d/matrix_2d.h",
         "matrix-2d/matrix_row.h",
@@ -12,8 +11,7 @@ cc_library(
     ],
     srcs = [
         "byte-array/byte_array.cpp",
-        "byte-array/byte_array_builder.cpp",
-        "byte-array/bytes_conversion.cpp",
+        "byte-array/byte_conversion.cpp",
         "filesystem/filesystem.cpp"
     ],
     visibility = ["//visibility:public"],

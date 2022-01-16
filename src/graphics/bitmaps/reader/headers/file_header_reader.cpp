@@ -1,5 +1,5 @@
 #include "src/common/filesystem/filesystem.h"
-#include "src/common/byte-array/bytes_conversion.h"
+#include "src/common/byte-array/byte_conversion.h"
 #include "src/graphics/bitmaps/reader/headers/file_header_reader.h"
 
 BitmapReader::FileHeaderReader::FileHeaderReader()
@@ -27,20 +27,20 @@ void BitmapReader::FileHeaderReader::parseSignatureBytes(
 void BitmapReader::FileHeaderReader::parseSizeOfBitmapFile(
   const ByteArray& bytes)
 {
-  uint32_t sizeOfBitmapFile = BytesConversion::get32BitInteger(bytes, 2);
+  uint32_t sizeOfBitmapFile = ByteConversion::convertTo32BitInt(bytes, 2);
   this->fileHeader.setSizeOfBitmapFile(sizeOfBitmapFile);
 }
 
 void BitmapReader::FileHeaderReader::parseReservedBytes(
   const ByteArray& bytes)
 {
-  uint32_t reservedBytes = BytesConversion::get32BitInteger(bytes, 6);
+  uint32_t reservedBytes = ByteConversion::convertTo32BitInt(bytes, 6);
   this->fileHeader.setReservedBytes(reservedBytes);
 }
 
 void BitmapReader::FileHeaderReader::parsePixelDataOffset(
   const ByteArray& bytes)
 {
-  uint32_t pixelDataOffset = BytesConversion::get32BitInteger(bytes, 10);
+  uint32_t pixelDataOffset = ByteConversion::convertTo32BitInt(bytes, 10);
   this->fileHeader.setPixelDataOffset(pixelDataOffset);
 }

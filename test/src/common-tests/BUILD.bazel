@@ -3,17 +3,7 @@ load("@rules_cc//cc:defs.bzl", "cc_test")
 cc_test(
     name = "byte_array_tests",
     size = "small",
-    srcs = ["byte_array_tests.cpp"],
-    deps = [
-        "@com_google_googletest//:gtest_main",
-        "//src/common:common"
-    ],
-)
-
-cc_test(
-    name = "bytes_converter_tests",
-    size = "small",
-    srcs = ["bytes_converter_tests.cpp"],
+    srcs = ["byte_array_tests.cpp", "byte_conversion_tests.cpp"],
     deps = [
         "@com_google_googletest//:gtest_main",
         "//src/common:common"

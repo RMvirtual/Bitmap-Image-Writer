@@ -1,5 +1,4 @@
 #include "src/graphics/bitmaps/writer/writer.h"
-#include "src/common/byte-array/byte_array_builder.h"
 #include "src/common/byte-array/byte_array.h"
 #include "src/graphics/bitmaps/packet/headers/file-header/file_header.h"
 #include "src/graphics/bitmaps/packet/headers/dib-header/dib_header.h"
@@ -14,40 +13,40 @@ BitmapWriter::ImageWriter::ImageWriter()
 
 ByteArray BitmapWriter::ImageWriter::writeFileHeader(BitmapHeaders::FileHeader header)
 {
-  ByteArrayBuilder byteArrayBuilder {};
+  ByteArray byteArray {};
   auto signatureBytes = header.signatureBytes();
   
-  byteArrayBuilder.add(signatureBytes[0]);
-  byteArrayBuilder.add(signatureBytes[1]);
-  byteArrayBuilder.add(header.sizeOfBitmapFile()); 
-  byteArrayBuilder.add(header.reservedBytes()); 
-  byteArrayBuilder.add(header.pixelDataOffset());
+  byteArray.add(signatureBytes[0]);
+  byteArray.add(signatureBytes[1]);
+  byteArray.add(header.sizeOfBitmapFile()); 
+  byteArray.add(header.reservedBytes()); 
+  byteArray.add(header.pixelDataOffset());
 
-  return byteArrayBuilder.toByteArray();
+  return byteArray;
 }
 
 ByteArray BitmapWriter::ImageWriter::writeDibHeader(BitmapHeaders::DibHeader header)
 {
-  ByteArrayBuilder byteArrayBuilder {};
+  ByteArray byteArray {};
 
-  byteArrayBuilder.add(header.headerSizeInBytes());
-  byteArrayBuilder.add(header.widthInPixels());
-  byteArrayBuilder.add(header.heightInPixels());
-  byteArrayBuilder.add(header.numberOfColorPlanes());
-  byteArrayBuilder.add(header.colorDepth());
-  byteArrayBuilder.add(header.compressionMethod());
-  byteArrayBuilder.add(header.rawBitmapDataSize());
-  byteArrayBuilder.add(header.horizontalPixelsPerMetre());
-  byteArrayBuilder.add(header.verticalPixelsPerMetre());
-  byteArrayBuilder.add(header.colorTableEntries());
-  byteArrayBuilder.add(header.importantColors());
+  byteArray.add(header.headerSizeInBytes());
+  byteArray.add(header.widthInPixels());
+  byteArray.add(header.heightInPixels());
+  byteArray.add(header.numberOfColorPlanes());
+  byteArray.add(header.colorDepth());
+  byteArray.add(header.compressionMethod());
+  byteArray.add(header.rawBitmapDataSize());
+  byteArray.add(header.horizontalPixelsPerMetre());
+  byteArray.add(header.verticalPixelsPerMetre());
+  byteArray.add(header.colorTableEntries());
+  byteArray.add(header.importantColors());
 
-  return byteArrayBuilder.toByteArray();
+  return byteArray;
 }
 
 ByteArray BitmapWriter::ImageWriter::writePixelArray(Pixels::PixelArray pixelArray)
 {
-  ByteArrayBuilder byteArrayBuilder {};
+  ByteArray byteArray {};
   int numberOfPixels = pixelArray.sizeInPixels();
 
   // No accounting for row stride yet.
@@ -55,20 +54,20 @@ ByteArray BitmapWriter::ImageWriter::writePixelArray(Pixels::PixelArray pixelArr
     auto pixel = pixelArray.at(pixelNo);
     auto pixelBytes = this->writePixel(pixel);
 
-    byteArrayBuilder.add(pixelBytes);
+    byteArray.add(pixelBytes);
   }
 
-  return byteArrayBuilder.toByteArray();
+  return byteArray;
 }
 
 ByteArray BitmapWriter::ImageWriter::writePixel(Pixels::RGBPixel pixel)
 {
-  ByteArrayBuilder byteArrayBuilder {};
+  ByteArray byteArray {};
   auto colours = pixel.colours();
 
-  byteArrayBuilder.add(colours.getBlue());
-  byteArrayBuilder.add(colours.getGreen());
-  byteArrayBuilder.add(colours.getRed());
+  byteArray.add(colours.getBlue());
+  byteArray.add(colours.getGreen());
+  byteArray.add(colours.getRed());
 
-  return byteArrayBuilder.toByteArray();
+  return byteArray;
 }

@@ -2,7 +2,6 @@
 #include <filesystem>
 
 #include "src/common/filesystem/filesystem.h"
-#include "src/common/byte-array/byte_array_builder.h"
 #include "src/common/byte-array/byte_array.h"
 
 std::string Filesystem::convertFileToString(const std::string& filePath)
@@ -23,10 +22,10 @@ ByteArray Filesystem::convertFileToByteArray(const std::string& filePath)
 {
   std::string fileContents = Filesystem::convertFileToString(filePath);
 
-  ByteArrayBuilder byteArrayBuilder {};
-  byteArrayBuilder.add(fileContents);
+  ByteArray byteArray {};
+  byteArray.add(fileContents);
 
-  return byteArrayBuilder.toByteArray();
+  return byteArray;
 }
 
 int Filesystem::getSizeOfFile(const std::string& filePath)

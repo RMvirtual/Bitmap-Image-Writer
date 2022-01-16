@@ -1,7 +1,7 @@
 #include <gtest/gtest.h>
 #include <vector>
 
-#include "src/common/byte-array/byte_array_builder.h"
+#include "src/common/byte-array/byte_array.h"
 
 void addValueToVector(std::vector<unsigned char>& vector, int32_t value)
 {
@@ -29,7 +29,7 @@ void addValueToVector(std::vector<unsigned char>& vector, uint16_t value)
 
 ByteArray getEverySizeByteArray()
 {
-  ByteArrayBuilder byteArrayBuilder;
+  ByteArray byteArray;
 
   char charByte = 'a';
   uint8_t unsigned8bit = 20;
@@ -44,19 +44,19 @@ ByteArray getEverySizeByteArray()
   int normalInt = 44;
   int normalNegativeInt = -44;
 
-  byteArrayBuilder.add(charByte);
-  byteArrayBuilder.add(unsigned8bit);
-  byteArrayBuilder.add(unsigned16bit);
-  byteArrayBuilder.add(unsigned32bit);
-  byteArrayBuilder.add(signed8bit);
-  byteArrayBuilder.add(signed16bit);
-  byteArrayBuilder.add(signed32bit);
-  byteArrayBuilder.add(negativeSigned8bit);
-  byteArrayBuilder.add(negativeSigned16bit);
-  byteArrayBuilder.add(negativeSigned32bit);
-  byteArrayBuilder.add(normalInt);
+  byteArray.add(charByte);
+  byteArray.add(unsigned8bit);
+  byteArray.add(unsigned16bit);
+  byteArray.add(unsigned32bit);
+  byteArray.add(signed8bit);
+  byteArray.add(signed16bit);
+  byteArray.add(signed32bit);
+  byteArray.add(negativeSigned8bit);
+  byteArray.add(negativeSigned16bit);
+  byteArray.add(negativeSigned32bit);
+  byteArray.add(normalInt);
 
-  return byteArrayBuilder.toByteArray();
+  return byteArray;
 }
 
 std::vector<unsigned char> getEverySizeCorrectValues()
@@ -95,9 +95,8 @@ TEST(ByteArrayTests, ShouldAddUint8ToArray)
 {
   uint8_t correctValue = 20;
 
-  ByteArrayBuilder byteArrayBuilder;
-  byteArrayBuilder.add(correctValue);
-  auto byteArray = byteArrayBuilder.toByteArray();
+  ByteArray byteArray;
+  byteArray.add(correctValue);
   
   ASSERT_EQ(byteArray[0].value, correctValue);
 }
@@ -105,10 +104,9 @@ TEST(ByteArrayTests, ShouldAddUint8ToArray)
 TEST(ByteArrayTests, ShouldAddUint16ToArray)
 {
   uint16_t correctValue = 20;
-  ByteArrayBuilder byteArrayBuilder;
-  byteArrayBuilder.add(correctValue);
-  auto byteArray = byteArrayBuilder.toByteArray();
 
+  ByteArray byteArray;
+  byteArray.add(correctValue);
   int noOfBytes = byteArray.size();
 
   for (int byteNo = 0; byteNo < noOfBytes; byteNo++)
@@ -118,10 +116,9 @@ TEST(ByteArrayTests, ShouldAddUint16ToArray)
 TEST(ByteArrayTests, ShouldAddUint32ToArray)
 {
   uint32_t correctValue = 20500;
-  ByteArrayBuilder byteArrayBuilder;
-  byteArrayBuilder.add(correctValue);
-  auto byteArray = byteArrayBuilder.toByteArray();
-
+  
+  ByteArray byteArray;
+  byteArray.add(correctValue);
   int noOfBytes = byteArray.size();
 
   for (int byteNo = 0; byteNo < noOfBytes; byteNo++) {
@@ -134,16 +131,15 @@ TEST(ByteArrayTests, ShouldAddUint32ToArray)
 
 TEST(ByteArrayTests, ShouldAddMultiple32bitUnsignedIntsToArray)
 {
-  ByteArrayBuilder byteArrayBuilder;
+  ByteArray byteArray;
   std::vector<unsigned char> correctValues;
   std::vector<uint32_t> values = {20, 40, 45318294};
 
   for (auto value : values) {
-    byteArrayBuilder.add(value);
+    byteArray.add(value);
     addValueToVector(correctValues, value);
   }
 
-  auto byteArray = byteArrayBuilder.toByteArray();
   int noOfValues = correctValues.size();
 
   for (int byteNo = 0; byteNo < noOfValues; byteNo++)
@@ -159,29 +155,24 @@ TEST(ByteArrayTests, ShouldAddCharArrayToArray)
   correctValues[2] = 'c';
   correctValues[3] = 'd';
 
-  ByteArrayBuilder byteArrayBuilder;
-  byteArrayBuilder.add(correctValues, noOfBytes);
-  auto bytes = byteArrayBuilder.toByteArray();
+  ByteArray byteArray;
+  byteArray.add(correctValues, noOfBytes);
 
   for (int byteNo = 0; byteNo < noOfBytes; byteNo++)
-    EXPECT_EQ(correctValues[byteNo], bytes[byteNo].value);
-
-  delete[] correctValues;
+    EXPECT_EQ(correctValues[byteNo], byteArray[byteNo].value);
 }
 
 TEST(ByteArrayTests, ShouldAddMultipleSizeUnsignedIntsToArray)
 {
-  ByteArrayBuilder byteArrayBuilder;
+  ByteArray byteArray;
   
   uint8_t value8Bit = 20;
   uint16_t value16Bit = 21596;
   uint32_t value32Bit = 8589429;
 
-  byteArrayBuilder.add(value8Bit);
-  byteArrayBuilder.add(value16Bit);
-  byteArrayBuilder.add(value32Bit);
-
-  auto byteArray = byteArrayBuilder.toByteArray();
+  byteArray.add(value8Bit);
+  byteArray.add(value16Bit);
+  byteArray.add(value32Bit);
 
   std::vector<unsigned char> correctValues{};
   correctValues.push_back(value8Bit);
