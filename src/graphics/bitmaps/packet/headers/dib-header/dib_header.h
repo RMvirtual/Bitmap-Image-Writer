@@ -22,29 +22,29 @@ public:
   void setVerticalPixelsPerMetre(int32_t horizontalPixelsPerMetre);
   void setColorTableEntries(uint32_t colorTableEntries);
   void setImportantColours(uint32_t importantColors);
-  int getHeaderSizeInBytes() const;
-  int32_t getWidthInPixels() const;
-  int32_t getHeightInPixels() const;
-  uint16_t getNumberOfColorPlanes() const;
-  uint16_t getColorDepth() const;
-  uint32_t getCompressionMethod() const;
-  uint32_t getRawBitmapDataSize() const;
-  int32_t getHorizontalPixelsPerMetre() const;
-  int32_t getVerticalPixelsPerMetre() const;
-  uint32_t getColorTableEntries() const;
-  uint32_t getImportantColors() const;
+  int headerSizeInBytes() const;
+  int32_t widthInPixels() const;
+  int32_t heightInPixels() const;
+  uint16_t numberOfColorPlanes() const;
+  uint16_t colorDepth() const;
+  uint32_t compressionMethod() const;
+  uint32_t rawBitmapDataSize() const;
+  int32_t horizontalPixelsPerMetre() const;
+  int32_t verticalPixelsPerMetre() const;
+  uint32_t colorTableEntries() const;
+  uint32_t importantColors() const;
 
 private:
-  int32_t widthInPixels;
-  int32_t heightInPixels;
-  uint16_t numberOfColorPlanes;
-  uint16_t colorDepth;
-  uint32_t compressionMethod;
-  uint32_t rawBitmapDataSize; 
-  int32_t horizontalPixelsPerMetre;
-  int32_t verticalPixelsPerMetre;
-  uint32_t colorTableEntries;
-  uint32_t importantColors;
+  int32_t _widthInPixels;
+  int32_t _heightInPixels;
+  uint16_t _numberOfColorPlanes;
+  uint16_t _colorDepth;
+  uint32_t _compressionMethod;
+  uint32_t _rawBitmapDataSize; 
+  int32_t _horizontalPixelsPerMetre;
+  int32_t _verticalPixelsPerMetre;
+  uint32_t _colorTableEntries;
+  uint32_t _importantColors;
 
   void initialiseDefaultValues();
 };}

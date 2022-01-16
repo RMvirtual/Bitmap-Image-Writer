@@ -8,11 +8,12 @@ PixelArrayReaderConfiguration PixelArrayReaderConfiguration::fromHeaders(
 {
   PixelArrayReaderConfiguration config {};
 
-  config.startingByteIndex = fileHeader.getPixelDataOffset();
+  config.startingByteIndex = fileHeader.pixelDataOffset();
   config.rowPaddingInBytes = 1;
   config.rowSizeInBytes = 1;
-  config.heightInPixels = dibHeader.getHeightInPixels();
-  config.widthInPixels = dibHeader.getWidthInPixels();
+  config.heightInPixels = dibHeader.heightInPixels();
+  config.widthInPixels = dibHeader.widthInPixels();
+  config.pixelFormat = PixelArrayReaderConfiguration::RGB;
 
   return config;
 }

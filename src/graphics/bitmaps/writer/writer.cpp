@@ -15,13 +15,13 @@ BitmapWriter::BitmapWriter()
 ByteArray BitmapWriter::writeFileHeader(BitmapHeaders::FileHeader header)
 {
   ByteArrayBuilder byteArrayBuilder {};
-  auto signatureBytes = header.getSignatureBytes();
+  auto signatureBytes = header.signatureBytes();
   
   byteArrayBuilder.add(signatureBytes[0]);
   byteArrayBuilder.add(signatureBytes[1]);
-  byteArrayBuilder.add(header.getSizeOfBitmapFile()); 
-  byteArrayBuilder.add(header.getReservedBytes()); 
-  byteArrayBuilder.add(header.getPixelDataOffset());
+  byteArrayBuilder.add(header.sizeOfBitmapFile()); 
+  byteArrayBuilder.add(header.reservedBytes()); 
+  byteArrayBuilder.add(header.pixelDataOffset());
 
   return byteArrayBuilder.toByteArray();
 }
@@ -30,17 +30,17 @@ ByteArray BitmapWriter::writeDibHeader(BitmapHeaders::DibHeader header)
 {
   ByteArrayBuilder byteArrayBuilder {};
 
-  byteArrayBuilder.add(header.getHeaderSizeInBytes());
-  byteArrayBuilder.add(header.getWidthInPixels());
-  byteArrayBuilder.add(header.getHeightInPixels());
-  byteArrayBuilder.add(header.getNumberOfColorPlanes());
-  byteArrayBuilder.add(header.getColorDepth());
-  byteArrayBuilder.add(header.getCompressionMethod());
-  byteArrayBuilder.add(header.getRawBitmapDataSize());
-  byteArrayBuilder.add(header.getHorizontalPixelsPerMetre());
-  byteArrayBuilder.add(header.getVerticalPixelsPerMetre());
-  byteArrayBuilder.add(header.getColorTableEntries());
-  byteArrayBuilder.add(header.getImportantColors());
+  byteArrayBuilder.add(header.headerSizeInBytes());
+  byteArrayBuilder.add(header.widthInPixels());
+  byteArrayBuilder.add(header.heightInPixels());
+  byteArrayBuilder.add(header.numberOfColorPlanes());
+  byteArrayBuilder.add(header.colorDepth());
+  byteArrayBuilder.add(header.compressionMethod());
+  byteArrayBuilder.add(header.rawBitmapDataSize());
+  byteArrayBuilder.add(header.horizontalPixelsPerMetre());
+  byteArrayBuilder.add(header.verticalPixelsPerMetre());
+  byteArrayBuilder.add(header.colorTableEntries());
+  byteArrayBuilder.add(header.importantColors());
 
   return byteArrayBuilder.toByteArray();
 }

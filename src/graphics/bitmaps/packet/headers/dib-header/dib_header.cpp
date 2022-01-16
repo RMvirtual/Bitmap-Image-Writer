@@ -36,122 +36,122 @@ BitmapHeaders::DibHeader BitmapHeaders::DibHeader::fromValues(
 
 void BitmapHeaders::DibHeader::initialiseDefaultValues()
 {
-  this->widthInPixels = 0;
-  this->heightInPixels = 0;
-  this->numberOfColorPlanes = 1; 
-  this->colorDepth = 24; 
-  this->compressionMethod = 0;  
-  this->rawBitmapDataSize = 0;
-  this->horizontalPixelsPerMetre = 0;
-  this->verticalPixelsPerMetre = 0; 
-  this->colorTableEntries = 0;
-  this->importantColors = 0; 
+  this->_widthInPixels = 0;
+  this->_heightInPixels = 0;
+  this->_numberOfColorPlanes = 1; 
+  this->_colorDepth = 24; 
+  this->_compressionMethod = 0;  
+  this->_rawBitmapDataSize = 0;
+  this->_horizontalPixelsPerMetre = 0;
+  this->_verticalPixelsPerMetre = 0; 
+  this->_colorTableEntries = 0;
+  this->_importantColors = 0; 
 }
 
-int BitmapHeaders::DibHeader::getHeaderSizeInBytes() const
+int BitmapHeaders::DibHeader::headerSizeInBytes() const
 {
   return 40;
 }
 
 void BitmapHeaders::DibHeader::setWidthInPixels(int32_t widthInPixels)
 {
-  this->widthInPixels = widthInPixels;
+  this->_widthInPixels = widthInPixels;
 }
 
 void BitmapHeaders::DibHeader::setHeightInPixels(int32_t heightInPixels)
 {
-  this->heightInPixels = heightInPixels;
+  this->_heightInPixels = heightInPixels;
 }
 
 void BitmapHeaders::DibHeader::setNumberOfColourPlanes(
   uint16_t numberOfColorPlanes)
 {
-  this->numberOfColorPlanes = numberOfColorPlanes;
+  this->_numberOfColorPlanes = numberOfColorPlanes;
 }
 
 void BitmapHeaders::DibHeader::setColorDepth(uint16_t colorDepth)
 {
-  this->colorDepth = colorDepth;
+  this->_colorDepth = colorDepth;
 }
 
 void BitmapHeaders::DibHeader::setCompressionMethod(uint32_t compressionMethod)
 {
-  this->compressionMethod = compressionMethod;
+  this->_compressionMethod = compressionMethod;
 }
 
 void BitmapHeaders::DibHeader::setRawBitmapDataSize(uint32_t rawBitmapDataSize)
 {
-  this->rawBitmapDataSize = rawBitmapDataSize;
+  this->_rawBitmapDataSize = rawBitmapDataSize;
 }
 
 void BitmapHeaders::DibHeader::setHorizontalPixelsPerMetre(
   int32_t pixelsPerMetre)
 {
-  this->horizontalPixelsPerMetre = pixelsPerMetre;
+  this->_horizontalPixelsPerMetre = pixelsPerMetre;
 }
 
 void BitmapHeaders::DibHeader::setVerticalPixelsPerMetre(
   int32_t pixelsPerMetre)
 {
-  this->verticalPixelsPerMetre = pixelsPerMetre;
+  this->_verticalPixelsPerMetre = pixelsPerMetre;
 }
 
 void BitmapHeaders::DibHeader::setColorTableEntries(uint32_t colorTableEntries)
 {
-  this->colorTableEntries = colorTableEntries;
+  this->_colorTableEntries = colorTableEntries;
 }
 
 void BitmapHeaders::DibHeader::setImportantColours(uint32_t importantColors)
 {
-  this->importantColors = importantColors;
+  this->_importantColors = importantColors;
 }
 
-int32_t BitmapHeaders::DibHeader::getWidthInPixels() const
+int32_t BitmapHeaders::DibHeader::widthInPixels() const
 {
-  return this->widthInPixels;
+  return this->_widthInPixels;
 }
 
-int32_t BitmapHeaders::DibHeader::getHeightInPixels() const
+int32_t BitmapHeaders::DibHeader::heightInPixels() const
 {
-  return this->heightInPixels;
+  return this->_heightInPixels;
 }
 
-uint16_t BitmapHeaders::DibHeader::getNumberOfColorPlanes() const
+uint16_t BitmapHeaders::DibHeader::numberOfColorPlanes() const
 {
-  return this->numberOfColorPlanes;
+  return this->_numberOfColorPlanes;
 }
 
-uint16_t BitmapHeaders::DibHeader::getColorDepth() const
+uint16_t BitmapHeaders::DibHeader::colorDepth() const
 {
-  return this->colorDepth;
+  return this->_colorDepth;
 }
 
-uint32_t BitmapHeaders::DibHeader::getCompressionMethod() const
+uint32_t BitmapHeaders::DibHeader::compressionMethod() const
 {
-  return this->compressionMethod;
+  return this->_compressionMethod;
 }
 
-uint32_t BitmapHeaders::DibHeader::getRawBitmapDataSize() const
+uint32_t BitmapHeaders::DibHeader::rawBitmapDataSize() const
 {
-  return this->rawBitmapDataSize;
+  return this->_rawBitmapDataSize;
 }
 
-int32_t BitmapHeaders::DibHeader::getHorizontalPixelsPerMetre() const
+int32_t BitmapHeaders::DibHeader::horizontalPixelsPerMetre() const
 {
-  return this->horizontalPixelsPerMetre;
+  return this->_horizontalPixelsPerMetre;
 }
 
-int32_t BitmapHeaders::DibHeader::getVerticalPixelsPerMetre() const
+int32_t BitmapHeaders::DibHeader::verticalPixelsPerMetre() const
 {
-  return this->verticalPixelsPerMetre;
+  return this->_verticalPixelsPerMetre;
 }
 
-uint32_t BitmapHeaders::DibHeader::getColorTableEntries() const
+uint32_t BitmapHeaders::DibHeader::colorTableEntries() const
 {
-  return this->colorTableEntries;
+  return this->_colorTableEntries;
 }
 
-uint32_t BitmapHeaders::DibHeader::getImportantColors() const
+uint32_t BitmapHeaders::DibHeader::importantColors() const
 {
-  return this->importantColors;
+  return this->_importantColors;
 }

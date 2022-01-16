@@ -11,6 +11,7 @@ struct PixelArrayReaderConfiguration
     BitmapHeaders::DibHeader& dibHeader
   );
 
+  enum {RGB, RGBA} pixelFormat;
   int startingByteIndex;
   int rowSizeInBytes;
   int rowPaddingInBytes;

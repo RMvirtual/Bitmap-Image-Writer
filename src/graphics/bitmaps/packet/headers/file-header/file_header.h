@@ -19,17 +19,17 @@ public:
   void setSizeOfBitmapFile(uint32_t sizeOfBitmapFile);
   void setReservedBytes(uint32_t reservedBytes);
   void setPixelDataOffset(uint32_t pixelDataOffsetInBytes);
-  std::string getSignatureBytes() const;
-  uint32_t getSizeOfBitmapFile() const;
-  uint32_t getReservedBytes() const;
-  uint32_t getPixelDataOffset() const;
-  int getPixelArraySizeInBytes() const;
+  std::string signatureBytes() const;
+  uint32_t sizeOfBitmapFile() const;
+  uint32_t reservedBytes() const;
+  uint32_t pixelDataOffset() const;
+  int pixelArraySizeInBytes() const;
 
 private:
-  char signatureBytes[2];
-  uint32_t sizeOfBitmapFile;
-  uint32_t reservedBytes;
-  uint32_t pixelDataOffset;
+  char signatureBytesValue[2];
+  uint32_t sizeOfBitmapFileInBytes;
+  uint32_t reservedBytesValue;
+  uint32_t pixelDataOffsetInBytes;
 
   void initialiseDefaultValues();
 };}

@@ -13,6 +13,7 @@ public:
   PixelArray(const Pixels::PixelArrayValues& values);
 
   void set(const Pixels::RGBPixel& pixel, int rowNo, int columnNo);
+  void set(const Pixels::RGBPixel& pixel, int indexNo);
   Pixels::RGBPixel at(int rowNo, int columnNo) const;
   Pixels::RGBPixel at(int indexNo) const;
   int sizeInPixels() const;

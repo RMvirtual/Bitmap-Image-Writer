@@ -13,6 +13,7 @@ class Matrix2D
 public:
   Matrix2D(int width, int height, const T& defaultValue);
   void set(const T& element, int rowNo, int columnNo);
+  void set(const T& element, int index);
   T at(int rowNo, int columnNo) const;
   T at(int index) const;
 
@@ -41,6 +42,14 @@ template <class T> void Common::Matrix2D<T>::set(
   const T& value, int rowNo, int columnNo)
 {
   this->rows.at(rowNo).set(value, columnNo);
+}
+
+template <class T> void Common::Matrix2D<T>::set(const T& value, int index)
+{
+  int rowNo = floor(index / this->width);
+  int columnNo = index % this->width;
+
+  this->set(value, rowNo, columnNo);
 }
 
 template <class T> T Common::Matrix2D<T>::at(int rowNo, int columnIndex) const

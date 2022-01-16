@@ -26,6 +26,11 @@ void Pixels::PixelArray::set(
   this->pixels.set(pixel, rowNo, columnNo);
 }
 
+void Pixels::PixelArray::set(const Pixels::RGBPixel& pixel, int indexNo)
+{
+  this->pixels.set(pixel, indexNo);
+}
+
 Pixels::RGBPixel Pixels::PixelArray::at(int rowNo, int columnNo) const
 {
   return this->pixels.at(rowNo, columnNo);

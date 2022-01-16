@@ -59,5 +59,5 @@ int ImageRendering::ImageRenderer::getFileSize()
 {
   BitmapHeaders::FileHeader fileHeader = this->bitmapImage.getFileHeader();
   
-  return fileHeader.getSizeOfBitmapFile();
+  return fileHeader.sizeOfBitmapFileInBytes();
 }
