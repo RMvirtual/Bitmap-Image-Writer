@@ -10,21 +10,28 @@
 namespace BitmapImageComparison
 {
   void compareBitmapFileHeaders(
-    BitmapHeaders::FileHeader& header1, BitmapHeaders::FileHeader& header2);
+    const BitmapHeaders::FileHeader& header1, 
+    const BitmapHeaders::FileHeader& header2);
 
   void compareBitmapDibHeaders(
-    BitmapHeaders::DibHeader& header1, BitmapHeaders::DibHeader& header2);
+    const BitmapHeaders::DibHeader& header1,
+    const BitmapHeaders::DibHeader& header2);
 
   void comparePixelArrayAttributes(
-      Pixels::PixelArray& pixelArray1, Pixels::PixelArray& pixelArray2);
+      const Pixels::PixelArray& pixelArray1,
+      const Pixels::PixelArray& pixelArray2);
 
   void comparePixelArrayContents(
-    Pixels::PixelArray& pixelArray1, Pixels::PixelArray& pixelArray2);
+    const Pixels::PixelArray& pixelArray1,
+    const Pixels::PixelArray& pixelArray2);
   
   void comparePixelArrays(
-    Pixels::PixelArray& pixelArray1, Pixels::PixelArray& pixelArray2);
+    const Pixels::PixelArray& pixelArray1,
+    const Pixels::PixelArray& pixelArray2);
   
-  void compareBitmapImages(BitmapImage& image1, BitmapImage& image2);
+  void compareBitmapImages(
+    const BitmapImage& image1,
+    const BitmapImage& image2);
 }
 
 #endif

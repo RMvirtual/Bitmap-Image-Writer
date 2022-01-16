@@ -8,37 +8,37 @@ template <class T>
 class MatrixRow
 {
 public:
-  MatrixRow(int maxColumns, T defaultValue);
+  MatrixRow(int maxColumns, const T& defaultValue);
 
-  void set(T value, int columnIndex);
-  T at(int columnIndex);
-  int size();
+  void set(const T& value, int columnIndex);
+  T at(int columnIndex) const;
+  int size() const;
 
 private:
   std::vector<T> columns;
 };}
 
 template <class T>
-Common::MatrixRow<T>::MatrixRow(int noOfColumns, T defaultValue)
+Common::MatrixRow<T>::MatrixRow(int noOfColumns, const T& defaultValue)
 {
   for (int columnNo = 0; columnNo < noOfColumns; columnNo++)
     this->columns.push_back(defaultValue);
 }
 
 template <class T>
-void Common::MatrixRow<T>::set(T value, int columnIndex)
+void Common::MatrixRow<T>::set(const T& value, int columnIndex)
 {
   this->columns.at(columnIndex) = value;
 }
 
 template <class T>
-T Common::MatrixRow<T>::at(int columnIndex)
+T Common::MatrixRow<T>::at(int columnIndex) const
 {
   return this->columns.at(columnIndex);
 }
 
 template <class T>
-int Common::MatrixRow<T>::size()
+int Common::MatrixRow<T>::size() const
 {
   return this->columns.size();
 }

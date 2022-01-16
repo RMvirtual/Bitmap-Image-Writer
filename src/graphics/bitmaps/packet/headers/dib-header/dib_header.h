@@ -22,17 +22,17 @@ public:
   void setVerticalPixelsPerMetre(int32_t horizontalPixelsPerMetre);
   void setColorTableEntries(uint32_t colorTableEntries);
   void setImportantColours(uint32_t importantColors);
-  int getHeaderSizeInBytes();
-  int32_t getWidthInPixels();
-  int32_t getHeightInPixels();
-  uint16_t getNumberOfColorPlanes();
-  uint16_t getColorDepth();
-  uint32_t getCompressionMethod();
-  uint32_t getRawBitmapDataSize();
-  int32_t getHorizontalPixelsPerMetre();
-  int32_t getVerticalPixelsPerMetre();
-  uint32_t getColorTableEntries();
-  uint32_t getImportantColors();
+  int getHeaderSizeInBytes() const;
+  int32_t getWidthInPixels() const;
+  int32_t getHeightInPixels() const;
+  uint16_t getNumberOfColorPlanes() const;
+  uint16_t getColorDepth() const;
+  uint32_t getCompressionMethod() const;
+  uint32_t getRawBitmapDataSize() const;
+  int32_t getHorizontalPixelsPerMetre() const;
+  int32_t getVerticalPixelsPerMetre() const;
+  uint32_t getColorTableEntries() const;
+  uint32_t getImportantColors() const;
 
 private:
   int32_t widthInPixels;

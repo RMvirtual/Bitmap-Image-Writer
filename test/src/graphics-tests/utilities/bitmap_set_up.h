@@ -16,6 +16,7 @@ namespace BitmapSetUp
   Pixels::RGBColours getWhiteColours();
   Pixels::RGBColours getGreenColours();
   Pixels::RGBColours getRedColours();
+  Pixels::RGBColours getBlueColours();
 }
 
 #endif

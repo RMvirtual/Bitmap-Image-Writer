@@ -10,12 +10,12 @@ class PixelArray
 {
 public:
   PixelArray();
-  PixelArray(Pixels::PixelArrayValues values);
+  PixelArray(const Pixels::PixelArrayValues& values);
 
-  void set(Pixels::RGBPixel pixel, int rowNo, int columnNo);
-  Pixels::RGBPixel at(int rowNo, int columnNo);
-  Pixels::RGBPixel at(int indexNo);
-  int sizeInPixels();
+  void set(const Pixels::RGBPixel& pixel, int rowNo, int columnNo);
+  Pixels::RGBPixel at(int rowNo, int columnNo) const;
+  Pixels::RGBPixel at(int indexNo) const;
+  int sizeInPixels() const;
 
 private:
   Common::Matrix2D<Pixels::RGBPixel> pixels {0, 0, {}};

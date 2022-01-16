@@ -35,8 +35,9 @@ TEST(BitmapReaderTests, ShouldReadPixelArrayFromFile)
   std::string imagePath = BitmapSetUp::getBlueImagePath();
   BitmapReader reader {};
   BitmapPacket packet = reader.readBitmapPacket(imagePath);
-  Pixels::PixelArray correctPixelArray = BitmapSetUp::setUpBluePixelArray();
   
+  Pixels::PixelArray correctPixelArray = BitmapSetUp::setUpBluePixelArray();
+
   BitmapImageComparison::comparePixelArrays(
     correctPixelArray, packet.pixelArray);
 }

@@ -67,12 +67,13 @@ TEST(PixelArrayTests, ShouldSetPixelInPixelArray)
 {
   Pixels::PixelArray pixelArray = getRedPixelArray();
   Pixels::RGBColours greenColours = getGreenColours();
+  Pixels::RGBPixel greenPixel {greenColours};
   
   for (int rowNo = 0; rowNo < 2; rowNo++)
     for (int columnNo = 0; columnNo < 2; columnNo++)
       isRedPixel(pixelArray.at(rowNo, columnNo));
 
-  pixelArray.set({greenColours}, 1, 0);
+  pixelArray.set(greenPixel, 1, 0);
 
   Pixels::RGBPixel modifiedPixel = pixelArray.at(1, 0);
   isGreenPixel(modifiedPixel);

@@ -70,7 +70,7 @@ void BitmapHeaders::FileHeader::setPixelDataOffset(
   this->pixelDataOffset = pixelDataOffsetInBytes;
 }
 
-std::string BitmapHeaders::FileHeader::getSignatureBytes()
+std::string BitmapHeaders::FileHeader::getSignatureBytes() const
 {
   std::string signatureBytes = "";
   signatureBytes += this->signatureBytes[0];
@@ -79,22 +79,22 @@ std::string BitmapHeaders::FileHeader::getSignatureBytes()
   return signatureBytes;
 }
 
-uint32_t BitmapHeaders::FileHeader::getSizeOfBitmapFile()
+uint32_t BitmapHeaders::FileHeader::getSizeOfBitmapFile() const
 {
   return this->sizeOfBitmapFile;
 }
 
-int BitmapHeaders::FileHeader::getPixelArraySizeInBytes()
+int BitmapHeaders::FileHeader::getPixelArraySizeInBytes() const
 {
   return this->sizeOfBitmapFile - this->pixelDataOffset;
 }
 
-uint32_t BitmapHeaders::FileHeader::getReservedBytes()
+uint32_t BitmapHeaders::FileHeader::getReservedBytes() const
 {
   return this->reservedBytes;
 }
 
-uint32_t BitmapHeaders::FileHeader::getPixelDataOffset()
+uint32_t BitmapHeaders::FileHeader::getPixelDataOffset() const
 {
   return this->pixelDataOffset;
 }

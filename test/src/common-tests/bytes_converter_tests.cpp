@@ -12,8 +12,8 @@ TEST(BytesConverterTest, ShouldExtract16BitIntegerFromByteArray)
   byteArrayBuilder.add(std::string {"crym3@river"});
   ByteArray byteArray = byteArrayBuilder.toByteArray();
 
-  uint32_t value = BytesConversion::get16BitInteger(byteArray, 3);
-  uint32_t correctValue = 13165;
+  uint16_t value = BytesConversion::get16BitInteger(byteArray, 3);
+  uint16_t correctValue = 13165;
 
   EXPECT_DOUBLE_EQ(correctValue, value);  
 }

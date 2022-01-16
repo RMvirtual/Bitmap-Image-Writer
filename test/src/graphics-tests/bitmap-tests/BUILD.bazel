@@ -1,7 +1,7 @@
 load("@rules_cc//cc:defs.bzl", "cc_test")
 
 cc_test(
-    name = "bitmap_image_tests",
+    name = "image_tests",
     size = "small",
     srcs = ["bitmap_image_tests.cpp"],
     deps = [
@@ -10,5 +10,44 @@ cc_test(
         "//test/src/graphics-tests/utilities:bitmap_image_comparators",
         "//test/src/graphics-tests/utilities:bitmap_set_up",
         "//src/graphics/shapes:shapes"
+    ]
+)
+
+cc_test(
+    name = "packet_tests",
+    size = "small",
+    srcs = [
+        "packet_tests.cpp"
+    ],
+    deps = [
+        "@com_google_googletest//:gtest_main",
+        "//src/graphics/bitmaps:bitmaps",
+    ]
+)
+
+cc_test(
+    name = "reader_tests",
+    size = "small",
+    srcs = [
+        "reader_tests.cpp"
+    ],
+    deps = [
+        "@com_google_googletest//:gtest_main",
+        "//src/graphics/bitmaps:bitmaps",
+        "//test/src/graphics-tests/utilities:bitmap_image_comparators",
+        "//test/src/graphics-tests/utilities:bitmap_set_up"
+    ]
+)
+
+cc_test(
+    name = "writer_tests",
+    size = "small",
+    srcs = ["writer_tests.cpp"],
+    deps = [
+        "@com_google_googletest//:gtest_main",
+        "//src/common:common",
+        "//src/graphics/bitmaps/writer:bitmap_writer",
+        "//test/src/graphics-tests/utilities:bitmap_image_comparators",
+        "//test/src/graphics-tests/utilities:bitmap_set_up"
     ]
 )

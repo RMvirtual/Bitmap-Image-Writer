@@ -19,11 +19,11 @@ public:
   void setSizeOfBitmapFile(uint32_t sizeOfBitmapFile);
   void setReservedBytes(uint32_t reservedBytes);
   void setPixelDataOffset(uint32_t pixelDataOffsetInBytes);
-  std::string getSignatureBytes();
-  uint32_t getSizeOfBitmapFile();
-  uint32_t getReservedBytes();
-  uint32_t getPixelDataOffset();
-  int getPixelArraySizeInBytes();
+  std::string getSignatureBytes() const;
+  uint32_t getSizeOfBitmapFile() const;
+  uint32_t getReservedBytes() const;
+  uint32_t getPixelDataOffset() const;
+  int getPixelArraySizeInBytes() const;
 
 private:
   char signatureBytes[2];

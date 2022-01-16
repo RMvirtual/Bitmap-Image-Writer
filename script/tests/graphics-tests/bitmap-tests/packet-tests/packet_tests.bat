@@ -1,1 +1,0 @@
-bazel test --test_output=all --test_summary=detailed //test/src/graphics-tests/bitmap-tests/packet-tests:bitmap_packet_tests

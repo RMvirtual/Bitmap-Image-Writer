@@ -27,6 +27,70 @@ void addValueToVector(std::vector<unsigned char>& vector, uint16_t value)
     vector.push_back(value >> (byteNo * 8));
 }
 
+ByteArray getEverySizeByteArray()
+{
+  ByteArrayBuilder byteArrayBuilder;
+
+  char charByte = 'a';
+  uint8_t unsigned8bit = 20;
+  uint16_t unsigned16bit = 21596;
+  uint32_t unsigned32bit = 8589429;
+  int8_t signed8bit = 425;
+  int16_t signed16bit = 529;
+  int32_t signed32bit = 51891897;
+  int8_t negativeSigned8bit = -425;
+  int16_t negativeSigned16bit = -529;
+  int32_t negativeSigned32bit = -51891897;
+  int normalInt = 44;
+  int normalNegativeInt = -44;
+
+  byteArrayBuilder.add(charByte);
+  byteArrayBuilder.add(unsigned8bit);
+  byteArrayBuilder.add(unsigned16bit);
+  byteArrayBuilder.add(unsigned32bit);
+  byteArrayBuilder.add(signed8bit);
+  byteArrayBuilder.add(signed16bit);
+  byteArrayBuilder.add(signed32bit);
+  byteArrayBuilder.add(negativeSigned8bit);
+  byteArrayBuilder.add(negativeSigned16bit);
+  byteArrayBuilder.add(negativeSigned32bit);
+  byteArrayBuilder.add(normalInt);
+
+  return byteArrayBuilder.toByteArray();
+}
+
+std::vector<unsigned char> getEverySizeCorrectValues()
+{
+  char charByte = 'a';
+  uint8_t unsigned8bit = 20;
+  uint16_t unsigned16bit = 21596;
+  uint32_t unsigned32bit = 8589429;
+  int8_t signed8bit = 425;
+  int16_t signed16bit = 529;
+  int32_t signed32bit = 51891897;
+  int8_t negativeSigned8bit = -425;
+  int16_t negativeSigned16bit = -529;
+  int32_t negativeSigned32bit = -51891897;
+  int normalInt = 44;
+  int normalNegativeInt = -44;
+  
+  std::vector<unsigned char> correctValues{};
+  
+  correctValues.push_back(charByte);
+  correctValues.push_back(unsigned8bit);
+  addValueToVector(correctValues, unsigned16bit);
+  addValueToVector(correctValues, unsigned32bit);
+  correctValues.push_back(signed8bit);
+  addValueToVector(correctValues, signed16bit);
+  addValueToVector(correctValues, signed32bit);
+  correctValues.push_back(negativeSigned8bit);
+  addValueToVector(correctValues, negativeSigned16bit);
+  addValueToVector(correctValues, negativeSigned32bit);
+  addValueToVector(correctValues, normalInt);
+
+  return correctValues;
+}
+
 TEST(ByteArrayTests, ShouldAddUint8ToArray)
 {
   uint8_t correctValue = 20;
@@ -132,49 +196,9 @@ TEST(ByteArrayTests, ShouldAddMultipleSizeUnsignedIntsToArray)
 
 TEST(ByteArrayTests, ShouldAddEverySizeIntToBitmapBuilder)
 {
-  ByteArrayBuilder byteArrayBuilder;
-
-  char charByte = 'a';
-  uint8_t unsigned8bit = 20;
-  uint16_t unsigned16bit = 21596;
-  uint32_t unsigned32bit = 8589429;
-  int8_t signed8bit = 425;
-  int16_t signed16bit = 529;
-  int32_t signed32bit = 51891897;
-  int8_t negativeSigned8bit = -425;
-  int16_t negativeSigned16bit = -529;
-  int32_t negativeSigned32bit = -51891897;
-  int normalInt = 44;
-  int normalNegativeInt = -44;
-
-  byteArrayBuilder.add(charByte);
-  byteArrayBuilder.add(unsigned8bit);
-  byteArrayBuilder.add(unsigned16bit);
-  byteArrayBuilder.add(unsigned32bit);
-  byteArrayBuilder.add(signed8bit);
-  byteArrayBuilder.add(signed16bit);
-  byteArrayBuilder.add(signed32bit);
-  byteArrayBuilder.add(negativeSigned8bit);
-  byteArrayBuilder.add(negativeSigned16bit);
-  byteArrayBuilder.add(negativeSigned32bit);
-  byteArrayBuilder.add(normalInt);
-
-  auto byteArray = byteArrayBuilder.toByteArray();
-  
-  std::vector<unsigned char> correctValues{};
-  
-  correctValues.push_back(charByte);
-  correctValues.push_back(unsigned8bit);
-  addValueToVector(correctValues, unsigned16bit);
-  addValueToVector(correctValues, unsigned32bit);
-  correctValues.push_back(signed8bit);
-  addValueToVector(correctValues, signed16bit);
-  addValueToVector(correctValues, signed32bit);
-  correctValues.push_back(negativeSigned8bit);
-  addValueToVector(correctValues, negativeSigned16bit);
-  addValueToVector(correctValues, negativeSigned32bit);
-  addValueToVector(correctValues, normalInt);
-
+  auto byteArray = getEverySizeByteArray();
+  std::vector<unsigned char> correctValues = getEverySizeCorrectValues();
+ 
   int correctNumberOfBytes = correctValues.size();
 
   for (int byteNo = 0; byteNo < correctNumberOfBytes; byteNo++)

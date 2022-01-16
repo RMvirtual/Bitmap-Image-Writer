@@ -48,7 +48,7 @@ void BitmapHeaders::DibHeader::initialiseDefaultValues()
   this->importantColors = 0; 
 }
 
-int BitmapHeaders::DibHeader::getHeaderSizeInBytes()
+int BitmapHeaders::DibHeader::getHeaderSizeInBytes() const
 {
   return 40;
 }
@@ -106,52 +106,52 @@ void BitmapHeaders::DibHeader::setImportantColours(uint32_t importantColors)
   this->importantColors = importantColors;
 }
 
-int32_t BitmapHeaders::DibHeader::getWidthInPixels()
+int32_t BitmapHeaders::DibHeader::getWidthInPixels() const
 {
   return this->widthInPixels;
 }
 
-int32_t BitmapHeaders::DibHeader::getHeightInPixels()
+int32_t BitmapHeaders::DibHeader::getHeightInPixels() const
 {
   return this->heightInPixels;
 }
 
-uint16_t BitmapHeaders::DibHeader::getNumberOfColorPlanes()
+uint16_t BitmapHeaders::DibHeader::getNumberOfColorPlanes() const
 {
   return this->numberOfColorPlanes;
 }
 
-uint16_t BitmapHeaders::DibHeader::getColorDepth()
+uint16_t BitmapHeaders::DibHeader::getColorDepth() const
 {
   return this->colorDepth;
 }
 
-uint32_t BitmapHeaders::DibHeader::getCompressionMethod()
+uint32_t BitmapHeaders::DibHeader::getCompressionMethod() const
 {
   return this->compressionMethod;
 }
 
-uint32_t BitmapHeaders::DibHeader::getRawBitmapDataSize()
+uint32_t BitmapHeaders::DibHeader::getRawBitmapDataSize() const
 {
   return this->rawBitmapDataSize;
 }
 
-int32_t BitmapHeaders::DibHeader::getHorizontalPixelsPerMetre()
+int32_t BitmapHeaders::DibHeader::getHorizontalPixelsPerMetre() const
 {
   return this->horizontalPixelsPerMetre;
 }
 
-int32_t BitmapHeaders::DibHeader::getVerticalPixelsPerMetre()
+int32_t BitmapHeaders::DibHeader::getVerticalPixelsPerMetre() const
 {
   return this->verticalPixelsPerMetre;
 }
 
-uint32_t BitmapHeaders::DibHeader::getColorTableEntries()
+uint32_t BitmapHeaders::DibHeader::getColorTableEntries() const
 {
   return this->colorTableEntries;
 }
 
-uint32_t BitmapHeaders::DibHeader::getImportantColors()
+uint32_t BitmapHeaders::DibHeader::getImportantColors() const
 {
   return this->importantColors;
 }

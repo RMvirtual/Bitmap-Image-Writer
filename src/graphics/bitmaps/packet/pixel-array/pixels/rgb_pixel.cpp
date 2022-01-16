@@ -6,12 +6,12 @@ Pixels::RGBPixel::RGBPixel()
   // Pass.
 }
 
-Pixels::RGBPixel::RGBPixel(Pixels::RGBColours colours)
+Pixels::RGBPixel::RGBPixel(const Pixels::RGBColours& colours)
 {
   this->colours = colours;
 }
 
-void Pixels::RGBPixel::setColours(Pixels::RGBColours colours) 
+void Pixels::RGBPixel::setColours(const Pixels::RGBColours& colours) 
 {
   this->colours = colours;
 }

@@ -6,7 +6,8 @@
 #include "test/src/graphics-tests/utilities/bitmap_image_comparators.h"
 
 void BitmapImageComparison::compareBitmapFileHeaders(
-  BitmapHeaders::FileHeader& header1, BitmapHeaders::FileHeader& header2)
+  const BitmapHeaders::FileHeader& header1,
+  const BitmapHeaders::FileHeader& header2)
 {
   EXPECT_EQ(header1.getSignatureBytes()[0], header2.getSignatureBytes()[0]);
   EXPECT_EQ(header1.getSignatureBytes()[1], header2.getSignatureBytes()[1]);
@@ -16,7 +17,8 @@ void BitmapImageComparison::compareBitmapFileHeaders(
 }
 
 void BitmapImageComparison::compareBitmapDibHeaders(
-  BitmapHeaders::DibHeader& header1, BitmapHeaders::DibHeader& header2)
+  const BitmapHeaders::DibHeader& header1,
+  const BitmapHeaders::DibHeader& header2)
 {
   EXPECT_EQ(
     header1.getHeaderSizeInBytes(), header2.getHeaderSizeInBytes());
@@ -29,6 +31,7 @@ void BitmapImageComparison::compareBitmapDibHeaders(
   EXPECT_EQ(header1.getColorDepth(), header2.getColorDepth());
   EXPECT_EQ(header1.getCompressionMethod(), header2.getCompressionMethod());
   EXPECT_EQ(header1.getRawBitmapDataSize(), header2.getRawBitmapDataSize());
+
   EXPECT_EQ(
     header1.getHorizontalPixelsPerMetre(),
     header2.getHorizontalPixelsPerMetre()
@@ -42,16 +45,19 @@ void BitmapImageComparison::compareBitmapDibHeaders(
 }
 
 void BitmapImageComparison::comparePixelArrays(
-  Pixels::PixelArray& pixelArray1, Pixels::PixelArray& pixelArray2)
+  const Pixels::PixelArray& pixelArray1,
+  const Pixels::PixelArray& pixelArray2)
 {  
   BitmapImageComparison::comparePixelArrayContents(pixelArray1, pixelArray2);
 }
 
 void BitmapImageComparison::comparePixelArrayContents(
-  Pixels::PixelArray& pixelArray1, Pixels::PixelArray& pixelArray2)
+  const Pixels::PixelArray& pixelArray1,
+  const Pixels::PixelArray& pixelArray2)
 {
   int numberOfPixels = pixelArray1.sizeInPixels();
-
+  
+  // Gets stuck here.
   for (int pixelNo = 0; pixelNo < numberOfPixels; pixelNo++) {
     auto pixel1Colours = pixelArray1.at(pixelNo).getColours();
     auto pixel2Colours = pixelArray2.at(pixelNo).getColours();

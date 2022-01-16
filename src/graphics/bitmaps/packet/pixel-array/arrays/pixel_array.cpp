@@ -11,30 +11,32 @@ Pixels::PixelArray::PixelArray()
   this->pixels = {this->widthInPixels, this->heightInPixels, {}};
 }
 
-Pixels::PixelArray::PixelArray(Pixels::PixelArrayValues values)
+Pixels::PixelArray::PixelArray(const Pixels::PixelArrayValues& values)
 {
   this->pixels = {
     values.widthInPixels, values.heightInPixels, values.defaultPixel};
+    
   this->widthInPixels = values.widthInPixels;
   this->heightInPixels = values.heightInPixels;
 }
 
-void Pixels::PixelArray::set(Pixels::RGBPixel pixel, int rowNo, int columnNo)
+void Pixels::PixelArray::set(
+  const Pixels::RGBPixel& pixel, int rowNo, int columnNo)
 {
   this->pixels.set(pixel, rowNo, columnNo);
 }
 
-Pixels::RGBPixel Pixels::PixelArray::at(int rowNo, int columnNo)
+Pixels::RGBPixel Pixels::PixelArray::at(int rowNo, int columnNo) const
 {
   return this->pixels.at(rowNo, columnNo);
 }
 
-Pixels::RGBPixel Pixels::PixelArray::at(int indexNo)
-{  
+Pixels::RGBPixel Pixels::PixelArray::at(int indexNo) const
+{
   return this->pixels.at(indexNo);
 }
 
-int Pixels::PixelArray::sizeInPixels()
+int Pixels::PixelArray::sizeInPixels() const
 {
   return this->widthInPixels * this->heightInPixels;
 }

@@ -8,9 +8,9 @@ class RGBPixel
 {
 public:
   RGBPixel();
-  RGBPixel(RGBColours colours);
+  RGBPixel(const RGBColours& colours);
   
-  void setColours(RGBColours colours);
+  void setColours(const RGBColours& colours);
   RGBColours getColours();
 
 private:

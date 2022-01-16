@@ -11,10 +11,10 @@ template <class T>
 class Matrix2D
 {
 public:
-  Matrix2D(int width, int height, T defaultValue);
-  void set(T element, int rowNo, int columnNo);
-  T at(int rowNo, int columnNo);
-  T at(int index);
+  Matrix2D(int width, int height, const T& defaultValue);
+  void set(const T& element, int rowNo, int columnNo);
+  T at(int rowNo, int columnNo) const;
+  T at(int index) const;
 
 private:
   int width;
@@ -26,7 +26,7 @@ private:
 };}
 
 template <class T> Common::Matrix2D<T>::Matrix2D(
-  int width, int height, T defaultValue)
+  int width, int height, const T& defaultValue)
 {
   for (int rowNo = 0; rowNo < height; rowNo++) {
     auto newRow = MatrixRow<T> {width, defaultValue};
@@ -38,23 +38,22 @@ template <class T> Common::Matrix2D<T>::Matrix2D(
 }
 
 template <class T> void Common::Matrix2D<T>::set(
-  T value, int rowNo, int columnNo)
+  const T& value, int rowNo, int columnNo)
 {
   this->rows.at(rowNo).set(value, columnNo);
 }
 
-template <class T> T Common::Matrix2D<T>::at(int rowNo, int columnIndex)
+template <class T> T Common::Matrix2D<T>::at(int rowNo, int columnIndex) const
 {
   return this->rows.at(rowNo).at(columnIndex);
 }
 
-template <class T> T Common::Matrix2D<T>::at(int indexNo)
+template <class T> T Common::Matrix2D<T>::at(int indexNo) const
 {
   int rowNo = floor(indexNo / this->width);
   int columnNo = indexNo % this->width;
 
   return this->at(rowNo, columnNo);
 }
-
 
 #endif

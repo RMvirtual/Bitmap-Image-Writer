@@ -49,19 +49,22 @@ BitmapHeaders::DibHeader BitmapSetUp::setUpBluePixelDibHeader()
   return dibHeader;
 }
 
+Pixels::RGBColours BitmapSetUp::getBlueColours()
+{
+  Pixels::RGBColours colours;
+  colours.setRed(100);
+  colours.setGreen(255);
+  colours.setBlue(255);
+
+  return colours;
+}
+
 Pixels::PixelArray BitmapSetUp::setUpBluePixelArray()
 {
-  std::vector<Pixels::RGBPixel> pixels;
-
-  Pixels::RGBColours blueColours;
-  blueColours.setRed(100);
-  blueColours.setGreen(255);
-  blueColours.setBlue(255);
-
   Pixels::PixelArrayValues values {};
   values.widthInPixels = 512;
   values.heightInPixels = 512;
-  values.defaultPixel = {blueColours};
+  values.defaultPixel = {getBlueColours()};
 
   return Pixels::PixelArray {values};
 }

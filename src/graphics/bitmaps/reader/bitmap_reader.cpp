@@ -33,14 +33,14 @@ void BitmapReader::processIntoPacket(ByteArray& bytes)
 
 void BitmapReader::processIntoFileHeader(ByteArray& bytes)
 {
-  ByteArray headerBytes = bytes.slice(0, 13);
+  ByteArray headerBytes = bytes.slice(0, 14);
   FileHeaderReader reader {};
   this->packet.fileHeader = reader.convertBytes(headerBytes);
 }
 
 void BitmapReader::processIntoDibHeader(ByteArray& bytes)
 {
-  ByteArray headerBytes = bytes.slice(14, 53);
+  ByteArray headerBytes = bytes.slice(14, 54);
   DibHeaderReader reader {};
   this->packet.dibHeader = reader.convertBytes(headerBytes);
 }
@@ -52,6 +52,6 @@ void BitmapReader::processIntoPixelArray(ByteArray& bytes)
 
   PixelArrayReader reader {config};
  
-  auto pixelArrayBytes = bytes.slice(54, bytes.size()); 
+  auto pixelArrayBytes = bytes.slice(54, bytes.size());
   this->packet.pixelArray = reader.convertBytes(pixelArrayBytes); 
 }
