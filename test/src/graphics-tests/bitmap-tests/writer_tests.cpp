@@ -4,40 +4,26 @@
 #include "src/graphics/bitmaps/writer/writer.h"
 #include "src/common/byte-array/byte_conversion.h"
 
+void testFourBytesAgainstValue(uint32_t intValue, ByteArray bytes)
+{
+  uint32_t bytesValue = ByteConversion::convertTo32BitInt(bytes);
+  EXPECT_EQ(intValue, bytesValue);
+}
+
+void testTwoBytesAgainstTwoChars(std::string chars, ByteArray bytes)
+{
+  EXPECT_EQ(chars[0], bytes[0].value);
+  EXPECT_EQ(chars[1], bytes[1].value);
+}
+
 TEST(BitmapWriterTests, ShouldConvertFileHeaderToBytes)
 {
-  auto fileHeader = BitmapSetUp::setUpBluePixelFileHeader();
-  
   BitmapWriter::ImageWriter writer {};
+  auto fileHeader = BitmapSetUp::setUpBluePixelFileHeader();
   auto bytes = writer.convertToBytes(fileHeader);
 
-  // Compare signature bytes.
-  auto correctSignatureBytes = fileHeader.signatureBytes();
-  auto signatureBytes = bytes.slice(0, 2);
-  std::string returnedSignatureBytes = {};
-  returnedSignatureBytes += signatureBytes[0].value;
-  returnedSignatureBytes += signatureBytes[1].value;
-
-  EXPECT_EQ(correctSignatureBytes, returnedSignatureBytes);
-
-  // Compare size of bitmap file.
-  auto correctFileSize = fileHeader.sizeOfBitmapFile();
-  uint32_t fileSize = ByteConversion::convertTo32BitInt(bytes.slice(2,6));
-    
-  EXPECT_EQ(correctFileSize, fileSize);
-
-  // Compare reserved bytes.
-  auto correctReservedBytes = fileHeader.reservedBytes();
-
-  uint32_t reservedBytes = ByteConversion::convertTo32BitInt(
-    bytes.slice(6,10));
-
-  EXPECT_EQ(correctReservedBytes, reservedBytes);
-
-  // Compare pixel array offset.
-  auto correctPixelArrayOffset = fileHeader.pixelDataOffset();
-  uint32_t pixelArrayOffset = ByteConversion::convertTo32BitInt(
-    bytes.slice(10,14));
-
-  EXPECT_EQ(correctPixelArrayOffset, pixelArrayOffset);
+  testTwoBytesAgainstTwoChars(fileHeader.signatureBytes(), bytes.slice(0,2));
+  testFourBytesAgainstValue(fileHeader.sizeOfBitmapFile(), bytes.slice(2,6));  
+  testFourBytesAgainstValue(fileHeader.reservedBytes(), bytes.slice(6,10));
+  testFourBytesAgainstValue(fileHeader.pixelDataOffset(), bytes.slice(10,14));
 }
