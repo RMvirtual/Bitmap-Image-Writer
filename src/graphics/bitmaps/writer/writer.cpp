@@ -11,7 +11,22 @@ BitmapWriter::ImageWriter::ImageWriter()
   // pass.
 }
 
-ByteArray BitmapWriter::ImageWriter::writeFileHeader(BitmapHeaders::FileHeader header)
+ByteArray BitmapWriter::ImageWriter::convertToBytes(BitmapPacket packet)
+{
+  auto fileHeaderBytes = this->convertToBytes(packet.fileHeader);
+  auto dibHeaderBytes = this->convertToBytes(packet.dibHeader);
+  auto pixelArrayBytes = this->convertToBytes(packet.pixelArray);
+
+  ByteArray allBytes {};
+
+  allBytes.add(fileHeaderBytes);
+  allBytes.add(dibHeaderBytes);
+  allBytes.add(pixelArrayBytes);
+
+  return allBytes;
+}
+
+ByteArray BitmapWriter::ImageWriter::convertToBytes(BitmapHeaders::FileHeader header)
 {
   ByteArray byteArray {};
   auto signatureBytes = header.signatureBytes();
@@ -25,7 +40,7 @@ ByteArray BitmapWriter::ImageWriter::writeFileHeader(BitmapHeaders::FileHeader h
   return byteArray;
 }
 
-ByteArray BitmapWriter::ImageWriter::writeDibHeader(BitmapHeaders::DibHeader header)
+ByteArray BitmapWriter::ImageWriter::convertToBytes(BitmapHeaders::DibHeader header)
 {
   ByteArray byteArray {};
 
@@ -44,7 +59,7 @@ ByteArray BitmapWriter::ImageWriter::writeDibHeader(BitmapHeaders::DibHeader hea
   return byteArray;
 }
 
-ByteArray BitmapWriter::ImageWriter::writePixelArray(Pixels::PixelArray pixelArray)
+ByteArray BitmapWriter::ImageWriter::convertToBytes(Pixels::PixelArray pixelArray)
 {
   ByteArray byteArray {};
   int numberOfPixels = pixelArray.sizeInPixels();
@@ -52,7 +67,7 @@ ByteArray BitmapWriter::ImageWriter::writePixelArray(Pixels::PixelArray pixelArr
   // No accounting for row stride yet.
   for (int pixelNo = 0; pixelNo < numberOfPixels; pixelNo++) {
     auto pixel = pixelArray.at(pixelNo);
-    auto pixelBytes = this->writePixel(pixel);
+    auto pixelBytes = this->convertToBytes(pixel);
 
     byteArray.add(pixelBytes);
   }
@@ -60,7 +75,7 @@ ByteArray BitmapWriter::ImageWriter::writePixelArray(Pixels::PixelArray pixelArr
   return byteArray;
 }
 
-ByteArray BitmapWriter::ImageWriter::writePixel(Pixels::RGBPixel pixel)
+ByteArray BitmapWriter::ImageWriter::convertToBytes(Pixels::RGBPixel pixel)
 {
   ByteArray byteArray {};
   auto colours = pixel.colours();
