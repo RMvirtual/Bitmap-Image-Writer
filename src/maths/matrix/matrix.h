@@ -15,26 +15,26 @@ namespace Maths
       Matrix();
 
       // Returns a matrix populated with one column of values.
-      Matrix(std::vector<double> columnValues);
+      Matrix(const std::vector<double>& columnValues);
       
       /**
        * Returns a matrix populated with multiple columns of values.
        * All rows in the vector must be the same size or an arithmetic
        * error with throw.
        */
-      Matrix(std::vector<std::vector<double>> columns);
+      Matrix(const std::vector<std::vector<double>>& columns);
 
       // Returns the width (number of columns) of the matrix.
-      int width();
+      int width() const;
 
       // Returns the height (number of rows) of the matrix.
-      int height();
+      int height() const;
 
       // Returns an stl vector containing the values of a specific row.
-      std::vector<double> getRow(int index);
+      std::vector<double> getRow(int index) const;
 
       // Returns an stl vector containing the values of a specific column.
-      std::vector<double> getColumn(int index);
+      std::vector<double> getColumn(int index) const;
 
       /**
        * Returns a 2D stl vector containing single vectors all the
@@ -42,7 +42,7 @@ namespace Maths
        * each vector contains the values found in all the rows of a
        * single column).
        */
-      std::vector<std::vector<double>> getColumns();
+      std::vector<std::vector<double>> getColumns() const;
       
       /**
        * Returns a 2D stl vector containing single vectors of all the
@@ -50,20 +50,20 @@ namespace Maths
        * (i.e. each vector contains the values found in all the columns
        * of single row).
        */
-      std::vector<std::vector<double>> getRows();
+      std::vector<std::vector<double>> getRows() const;
 
       /**
        * Returns a Column Proxy object that extends an stl vector
        * representing a column of values (can be indexed again using
        * the subscript operator to get the actual row value.
        */
-      Maths::Column operator [] (int columnIndex);
+      Maths::Column operator [] (int columnIndex) const;
 
       // Multiplies the matrix by a vector.
-      Maths::Vector operator * (Maths::Vector vectorRhs);
+      Maths::Vector operator * (const Maths::Vector& vectorRhs) const;
 
       // Multiplies the matrix by another matrix.
-      Matrix operator * (Matrix matrixRhs);
+      Matrix operator * (const Matrix& matrixRhs) const;
 
       /**
        * Returns all the values of this matrix formatted as a string.
@@ -73,22 +73,23 @@ namespace Maths
        * | 2 5 8 |
        * | 3 6 9 |
        */
-      std::string toString();
+      std::string toString() const;
 
     private:
       std::vector<Column> columns;
 
       // Multiplies a vector against this matrix.
-      Maths::Vector multiplyVector(Maths::Vector vector);
+      Maths::Vector multiplyVector(const Maths::Vector& vector) const;
       
       /**
        * Returns an stl vector of the values required to instantiate a
        * Maths::Vector class object.
        */
-      std::vector<double> getMultipliedVectorValues(Maths::Vector vector);
+      std::vector<double> getMultipliedVectorValues(
+        const Maths::Vector& vector) const;
       
       // Multiplies another matrix against this matrix.
-      Matrix multiplyMatrix(Matrix matrix);
+      Matrix multiplyMatrix(const Matrix& matrix) const; 
       
       /**
        * Returns a 2D stl vector of the values required to populate
@@ -96,52 +97,56 @@ namespace Maths
        * the multiplication of two other matrices.
        */
       std::vector<std::vector<double>> getValuesFromMultiplication(
-        Matrix matrix);
+        const Matrix& matrix) const;
 
       /**
        * Calculates the product of all row values against the values
        * found in an stl vector representing a column of values.
        */
-      std::vector<double> getProductAgainstAllRows(std::vector<double> column);
+      std::vector<double> getProductAgainstAllRows(
+        const std::vector<double>& column) const;
 
       // Calculates the product between two vectors.
       double calculateProduct(
-        std::vector<double> vector1, std::vector<double> vector2);
+        const std::vector<double>& vector1,
+        const std::vector<double>& vector2) const;
 
       // Calculates the product between two vectors.
       double calculateProduct(
-        std::vector<double> vector1, Maths::Vector vector2);
+        const std::vector<double>& vector1,
+        const Maths::Vector& vector2) const;
       
       // Calculates the product between two vectors.
       double calculateProduct(
-        Maths::Vector vector1, std::vector<double> vector2);
+        const Maths::Vector& vector1,
+        const std::vector<double>& vector2) const;
 
       /**
        * Calculates the product between two items found at the same
        * index in two different vectors.
        */
       double calculateProduct(
-        std::vector<double> vector1, std::vector<double> vector2,
-        int commonIndex
-      );
+        const std::vector<double>& vector1,
+        const std::vector<double>& vector2,
+        int commonIndex) const;
 
       /**
        * Calculates the product between two items found at the same
        * index in two different vectors.
        */
       double calculateProduct(
-        std::vector<double> vector1, Maths::Vector vector2,
-        int commonIndex
-      );
+        const std::vector<double>& vector1,
+        const Maths::Vector& vector2,
+        int commonIndex) const;
 
       /**
        * Calculates the product between two items found at the same
        * index in two different vectors.
        */
       double calculateProduct(
-        Maths::Vector vector1, std::vector<double> vector2,
+        const Maths::Vector& vector1, const std::vector<double>& vector2,
         int commonIndex
-      );
+      ) const;
 
       /**
        * Takes a 2D stl vector and converts it into the matrix's
@@ -149,40 +154,31 @@ namespace Maths
        * columns, and the inner vectors to represent columns containing
        * the actual row values.
        */
-      void from2DVector(std::vector<std::vector<double>> vector);
+      void from2DVector(const std::vector<std::vector<double>>& vector);
       
       /**
        * Checks that a 2D stl vector follows the valid width and
        * height dimensions required to be processed into the matrix's
        * contents.
        */
-      bool isVectorValidSize(std::vector<std::vector<double>> vector);
+      bool isVectorValidSize(
+        const std::vector<std::vector<double>>& vector) const;
 
       /**
        * Checks whether a Maths::Vector object has the correct
        * dimensions to be used in a multiplication operation against
        * this matrix.
        */
-      bool isVectorMultipliable(Maths::Vector vector);
+      bool isVectorMultipliable(const Maths::Vector& vector) const;
       
       /**
        * Checks whether another Matrix object has the correct
        * dimensions to be used in a multiplication operation against
        * this matrix.
        */
-      bool isMatrixMultipliable(Matrix matrix);
-      
-      bool isColumnIndexInRange(int columnIndex);
-
-      /**
-       * Returns all the values of this matrix formatted as a string.
-       * Follows the format:
-       * 
-       * | 1 4 7 |
-       * | 2 5 8 |
-       * | 3 6 9 |
-       */
-      std::string getAllValuesAsString();
+      bool isMatrixMultipliable(const Matrix& matrix) const;
+    
+      bool isColumnIndexInRange(int columnIndex) const;
 
       /**
        * Returns a vector of values formatted as a string representing
@@ -190,11 +186,13 @@ namespace Maths
        * 
        * | 1 4 7 |
        */
-      std::string transposeToMatrixRow(std::vector<double> vector);
+      std::string transposeToMatrixRow(
+        const std::vector<double>& vector) const;
   };
 }
 
 // Multiplies the matrix by a vector.
-Maths::Vector operator * (Maths::Vector vectorLhs, Maths::Matrix matrixRhs);
+Maths::Vector operator * (
+  const Maths::Vector& vectorLhs, const Maths::Matrix& matrixRhs);
 
 #endif

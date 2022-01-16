@@ -1,7 +1,16 @@
 cc_library(
+    name = "binary_ops",
+    hdrs = ["binary_ops/binary_ops.h"],
+    srcs = ["binary_ops/binary_ops.cpp"],
+    visibility = ["//visibility:public"]
+)
+
+cc_library(
     name = "vectors",
     hdrs = ["vector/vector.h"],
-    srcs = ["vector/vector.cpp"],
+    srcs = [
+        "vector/vector.cpp"
+    ],
     visibility = ["//visibility:public"],
     deps = ["//src/maths:binary_ops"]
 )
@@ -12,11 +21,4 @@ cc_library(
     srcs = ["matrix/matrix.cpp", "matrix/column.cpp"],
     visibility = ["//visibility:public"],
     deps = ["//src/maths:vectors"]
-)
-
-cc_library(
-    name = "binary_ops",
-    hdrs = ["binary_ops/binary_ops.h"],
-    srcs = ["binary_ops/binary_ops.cpp"],
-    visibility = ["//visibility:public"]
 )

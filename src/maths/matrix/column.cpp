@@ -8,7 +8,7 @@ Maths::Column::Column(std::vector<double> vector)
   this->values = vector;
 }
 
-double Maths::Column::operator [] (int rowIndex)
+double Maths::Column::operator [](int rowIndex) const
 {
   int indexRange = this->size() - 1;
   bool outOfRange = (rowIndex < 0 || rowIndex > indexRange);
@@ -19,7 +19,7 @@ double Maths::Column::operator [] (int rowIndex)
   return (*this).values[rowIndex];
 }
 
-int Maths::Column::size()
+int Maths::Column::size() const
 {
   return this->values.size();
 }

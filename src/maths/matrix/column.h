@@ -15,10 +15,10 @@ namespace Maths
     Column(std::vector<double> vector);
 
     // Returns a value from a column row.
-    double operator[](int index);
+    double operator [](int index) const;
 
     // Returns the number of rows in the column.
-    int size();
+    int size() const;
 
     // Returns an iterator at the start of the column's values.
     std::vector<double>::iterator begin();

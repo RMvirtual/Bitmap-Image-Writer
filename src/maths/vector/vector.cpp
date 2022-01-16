@@ -6,7 +6,8 @@
 #include <string>
 #include <vector>
 
-#include "vector.h"
+#include "src/maths/vector/vector.h"
+#include "src/maths/binary_ops/binary_ops.h"
 
 Maths::Vector::Vector()
 {
@@ -89,26 +90,6 @@ double Maths::Vector::get(int index) const
   return this->values[index];
 }
 
-double Maths::Vector::operator [](int index) const
-{
-  return this->get(index);
-}
-
-Maths::Vector Maths::Vector::operator + (const Maths::Vector& rhsVector) const
-{
-  return this->performBinaryOperation<Addition>(rhsVector);
-}
-
-Maths::Vector Maths::Vector::operator - (const Maths::Vector& rhsVector) const
-{
-  return this->performBinaryOperation<Subtraction>(rhsVector);
-}
-
-double Maths::Vector::operator * (const Maths::Vector& rhsVector) const
-{
-  return this->dotProduct(rhsVector);
-}
-
 std::vector<double> Maths::Vector::multiplyElements(
   const Maths::Vector& vector) const
 {
@@ -121,26 +102,29 @@ std::vector<double> Maths::Vector::multiplyElements(
   return newElements;
 }
 
-Maths::Vector Maths::Vector::operator * (double scalar) const
+std::string Maths::Vector::getAllPointsAsString() const
 {
-  return this->performBinaryOperation<Multiplication>(scalar);
+  std::string pointsString = "";
+  int noOfPoints = this->length();
+
+  for (int pointNo = 0; pointNo < noOfPoints; pointNo++) {
+    pointsString += this->getPointAsString(pointNo);
+    bool morePointsRemaining = (pointNo < noOfPoints - 1);
+
+    if (morePointsRemaining)
+      pointsString += ", ";
+  }
+
+  return pointsString;
 }
 
-Maths::Vector Maths::Vector::operator / (double scalar) const
+std::string Maths::Vector::getPointAsString(int pointIndex) const
 {
-  return this->performBinaryOperation<Division>(scalar);
-}
+  std::string pointIndexString = std::to_string(pointIndex);
+  std::string pointValue = std::to_string(this->get(pointIndex));
 
-Maths::Vector operator * (double scalarLHS, const Maths::Vector& vectorRHS)
-{
-  return vectorRHS * scalarLHS;
+  return pointIndexString + ": " + pointValue;
 }
-
-std::ostream &operator << (std::ostream& outstream, const Maths::Vector& vector)
-{
-  return outstream << vector.toString();
-}
-
 
 template<class BinaryOperation>
 Maths::Vector Maths::Vector::performBinaryOperation(
@@ -170,6 +154,46 @@ Maths::Vector Maths::Vector::performBinaryOperation(double scalar) const
   return Maths::Vector(newElements);
 }
 
+double Maths::Vector::operator [](int index) const
+{
+  return this->get(index);
+}
+
+Maths::Vector Maths::Vector::operator + (const Maths::Vector& rhsVector) const
+{
+  return this->performBinaryOperation<Addition>(rhsVector);
+}
+
+Maths::Vector Maths::Vector::operator - (const Maths::Vector& rhsVector) const
+{
+  return this->performBinaryOperation<Subtraction>(rhsVector);
+}
+
+double Maths::Vector::operator * (const Maths::Vector& rhsVector) const
+{
+  return this->dotProduct(rhsVector);
+}
+
+Maths::Vector Maths::Vector::operator * (double scalar) const
+{
+  return this->performBinaryOperation<Multiplication>(scalar);
+}
+
+Maths::Vector Maths::Vector::operator / (double scalar) const
+{
+  return this->performBinaryOperation<Division>(scalar);
+}
+
+Maths::Vector operator * (double scalarLHS, const Maths::Vector& vectorRHS)
+{
+  return vectorRHS * scalarLHS;
+}
+
+std::ostream &operator << (std::ostream& outstream, const Maths::Vector& vector)
+{
+  return outstream << vector.toString();
+}
+
 std::vector<double>::iterator Maths::Vector::begin()
 {
   return this->values.begin();
@@ -193,28 +217,4 @@ std::vector<double>::const_iterator Maths::Vector::end() const
 std::string Maths::Vector::toString() const
 {
   return "[" + this->getAllPointsAsString() + "]";
-}
-
-std::string Maths::Vector::getAllPointsAsString() const
-{
-  std::string pointsString = "";
-  int noOfPoints = this->length();
-
-  for (int pointNo = 0; pointNo < noOfPoints; pointNo++) {
-    pointsString += this->getPointAsString(pointNo);
-    bool morePointsRemaining = (pointNo < noOfPoints - 1);
-
-    if (morePointsRemaining)
-      pointsString += ", ";
-  }
-
-  return pointsString;
-}
-
-std::string Maths::Vector::getPointAsString(int pointIndex) const
-{
-  std::string pointIndexString = std::to_string(pointIndex);
-  std::string pointValue = std::to_string(this->get(pointIndex));
-
-  return pointIndexString + ": " + pointValue;
 }
