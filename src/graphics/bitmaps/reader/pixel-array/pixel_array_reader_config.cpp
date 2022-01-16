@@ -9,7 +9,7 @@ BitmapReader::PixelArrayReaderConfig::fromHeaders(
 {
   BitmapReader::PixelArrayReaderConfig config {};
 
-  config.startingByteIndex = fileHeader.pixelDataOffset();
+  config.startingByteIndex = fileHeader.pixelArrayOffsetInBytes();
   config.rowPaddingInBytes = 1;
   config.rowSizeInBytes = 1;
   config.heightInPixels = dibHeader.heightInPixels();

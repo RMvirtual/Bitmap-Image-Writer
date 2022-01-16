@@ -28,7 +28,7 @@ void BitmapReader::FileHeaderReader::parseSizeOfBitmapFile(
   const ByteArray& bytes)
 {
   uint32_t sizeOfBitmapFile = ByteConversion::convertTo32BitInt(bytes, 2);
-  this->fileHeader.setSizeOfBitmapFile(sizeOfBitmapFile);
+  this->fileHeader.setFileSizeInBytes(sizeOfBitmapFile);
 }
 
 void BitmapReader::FileHeaderReader::parseReservedBytes(
@@ -42,5 +42,5 @@ void BitmapReader::FileHeaderReader::parsePixelDataOffset(
   const ByteArray& bytes)
 {
   uint32_t pixelDataOffset = ByteConversion::convertTo32BitInt(bytes, 10);
-  this->fileHeader.setPixelDataOffset(pixelDataOffset);
+  this->fileHeader.setPixelArrayOffsetInBytes(pixelDataOffset);
 }

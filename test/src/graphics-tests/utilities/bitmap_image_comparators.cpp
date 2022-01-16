@@ -9,9 +9,9 @@ void BitmapImageComparison::compareBitmapFileHeaders(
   const BitmapHeaders::FileHeader& header2)
 {
   EXPECT_EQ(header1.signatureBytes(), header2.signatureBytes());
-  EXPECT_EQ(header1.sizeOfBitmapFile(), header2.sizeOfBitmapFile());
+  EXPECT_EQ(header1.fileSizeInBytes(), header2.fileSizeInBytes());
   EXPECT_EQ(header1.reservedBytes(), header2.reservedBytes());
-  EXPECT_EQ(header2.pixelDataOffset(), header2.pixelDataOffset());
+  EXPECT_EQ(header2.pixelArrayOffsetInBytes(), header2.pixelArrayOffsetInBytes());
 }
 
 void BitmapImageComparison::compareBitmapDibHeaders(

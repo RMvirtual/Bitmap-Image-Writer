@@ -19,11 +19,21 @@ void testTwoBytesAgainstTwoChars(std::string chars, ByteArray bytes)
 TEST(BitmapWriterTests, ShouldConvertFileHeaderToBytes)
 {
   BitmapWriter::ImageWriter writer {};
-  auto fileHeader = BitmapSetUp::setUpBluePixelFileHeader();
-  auto bytes = writer.convertToBytes(fileHeader);
+  auto header = BitmapSetUp::setUpBluePixelFileHeader();
+  auto bytes = writer.convertToBytes(header);
 
-  testTwoBytesAgainstTwoChars(fileHeader.signatureBytes(), bytes.slice(0,2));
-  testFourBytesAgainstValue(fileHeader.sizeOfBitmapFile(), bytes.slice(2,6));  
-  testFourBytesAgainstValue(fileHeader.reservedBytes(), bytes.slice(6,10));
-  testFourBytesAgainstValue(fileHeader.pixelDataOffset(), bytes.slice(10,14));
+  testTwoBytesAgainstTwoChars(header.signatureBytes(), bytes.slice(0,2));
+  testFourBytesAgainstValue(header.fileSizeInBytes(), bytes.slice(2,6));  
+  testFourBytesAgainstValue(header.reservedBytes(), bytes.slice(6,10));
+  testFourBytesAgainstValue(header.pixelArrayOffsetInBytes(), bytes.slice(10,14));
+}
+
+TEST(BitmapWriterTests, ShouldConvertDibHeaderToBytes)
+{
+  BitmapWriter::ImageWriter writer {};
+  auto header = BitmapSetUp::setUpBluePixelDibHeader();
+  auto bytes = writer.convertToBytes(header);
+
+  testFourBytesAgainstValue(header.headerSizeInBytes(), bytes.slice(0,4));
+  
 }

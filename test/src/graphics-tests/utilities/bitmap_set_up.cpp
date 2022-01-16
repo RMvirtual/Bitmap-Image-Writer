@@ -29,9 +29,9 @@ BitmapHeaders::FileHeader BitmapSetUp::setUpBluePixelFileHeader()
   BitmapHeaders::FileHeader fileHeader;
 
   fileHeader.setSignatureBytes("BM");
-  fileHeader.setSizeOfBitmapFile(786486);
+  fileHeader.setFileSizeInBytes(786486);
   fileHeader.setReservedBytes(0);
-  fileHeader.setPixelDataOffset(54);
+  fileHeader.setPixelArrayOffsetInBytes(54);
 
   return fileHeader;
 }

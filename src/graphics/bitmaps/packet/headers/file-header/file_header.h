@@ -16,20 +16,20 @@ public:
 
   void setSignatureBytes(std::string bytesSignature);
   void setSignatureBytes(char firstSignatureByte, char secondSignatureByte);
-  void setSizeOfBitmapFile(uint32_t sizeOfBitmapFile);
+  void setFileSizeInBytes(uint32_t sizeOfBitmapFile);
   void setReservedBytes(uint32_t reservedBytes);
-  void setPixelDataOffset(uint32_t pixelDataOffsetInBytes);
+  void setPixelArrayOffsetInBytes(uint32_t pixelDataOffsetInBytes);
   std::string signatureBytes() const;
-  uint32_t sizeOfBitmapFile() const;
+  uint32_t fileSizeInBytes() const;
   uint32_t reservedBytes() const;
-  uint32_t pixelDataOffset() const;
+  uint32_t pixelArrayOffsetInBytes() const;
   int pixelArraySizeInBytes() const;
 
 private:
-  char signatureBytesValue[2];
-  uint32_t sizeOfBitmapFileInBytes;
-  uint32_t reservedBytesValue;
-  uint32_t pixelDataOffsetInBytes;
+  char _signatureBytes[2];
+  uint32_t _fileSizeInBytes;
+  uint32_t _reservedBytes;
+  uint32_t _pixelArrayOffsetInBytes;
 
   void initialiseDefaultValues();
 };}

@@ -27,16 +27,16 @@ ByteArray BitmapWriter::ImageWriter::convertToBytes(const BitmapPacket& packet)
 }
 
 ByteArray BitmapWriter::ImageWriter::convertToBytes(
-const BitmapHeaders::FileHeader& header)
+  const BitmapHeaders::FileHeader& header)
 {
   ByteArray byteArray {};
   auto signatureBytes = header.signatureBytes();
   
   byteArray.add(signatureBytes[0]);
   byteArray.add(signatureBytes[1]);
-  byteArray.add(header.sizeOfBitmapFile()); 
+  byteArray.add(header.fileSizeInBytes()); 
   byteArray.add(header.reservedBytes()); 
-  byteArray.add(header.pixelDataOffset());
+  byteArray.add(header.pixelArrayOffsetInBytes());
 
   return byteArray;
 }
