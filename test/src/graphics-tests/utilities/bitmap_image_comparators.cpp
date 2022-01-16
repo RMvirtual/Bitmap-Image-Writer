@@ -11,7 +11,8 @@ void BitmapImageComparison::compareBitmapFileHeaders(
   EXPECT_EQ(header1.signatureBytes(), header2.signatureBytes());
   EXPECT_EQ(header1.fileSizeInBytes(), header2.fileSizeInBytes());
   EXPECT_EQ(header1.reservedBytes(), header2.reservedBytes());
-  EXPECT_EQ(header2.pixelArrayOffsetInBytes(), header2.pixelArrayOffsetInBytes());
+  EXPECT_EQ(
+    header2.pixelArrayOffsetInBytes(), header2.pixelArrayOffsetInBytes());
 }
 
 void BitmapImageComparison::compareBitmapDibHeaders(
@@ -25,13 +26,8 @@ void BitmapImageComparison::compareBitmapDibHeaders(
   EXPECT_EQ(header1.colorDepth(), header2.colorDepth());
   EXPECT_EQ(header1.compressionMethod(), header2.compressionMethod());
   EXPECT_EQ(header1.rawBitmapDataSize(), header2.rawBitmapDataSize());
-
-  EXPECT_EQ(
-    header1.horizontalPixelsPerMetre(),header2.horizontalPixelsPerMetre());
-
-  EXPECT_EQ(
-    header1.verticalPixelsPerMetre(), header2.verticalPixelsPerMetre());
-
+  EXPECT_EQ(header1.horizontalResolution(),header2.horizontalResolution());
+  EXPECT_EQ(header1.verticalResolution(), header2.verticalResolution());
   EXPECT_EQ(header1.colorTableEntries(), header2.colorTableEntries());
   EXPECT_EQ(header1.importantColors(), header2.importantColors());
 }

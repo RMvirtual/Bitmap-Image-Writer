@@ -20,8 +20,8 @@ private:
   void parseColourDepth(const ByteArray& bytes);
   void parseCompressionMethod(const ByteArray& bytes);
   void parseRawBitmapDataSize(const ByteArray& bytes);
-  void parseHorizontalPixelsPerMetre(const ByteArray& bytes);
-  void parseVerticalPixelsPerMetre(const ByteArray& bytes);
+  void parseHorizontalResolution(const ByteArray& bytes);
+  void parseVerticalResolution(const ByteArray& bytes);
   void parseColourTableEntries(const ByteArray& bytes);
   void parseImportantColours(const ByteArray& bytes);
 };}
