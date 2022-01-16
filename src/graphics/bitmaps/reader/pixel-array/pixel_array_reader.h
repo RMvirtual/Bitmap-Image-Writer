@@ -5,15 +5,16 @@
 #include "src/graphics/bitmaps/packet/pixel-array/arrays/pixel_array.h"
 #include "src/common/byte-array/byte_array.h"
 
+namespace BitmapReader {
 class PixelArrayReader
 {
 public:
-  PixelArrayReader(PixelArrayReaderConfiguration config);
-  Pixels::PixelArray convertBytes(ByteArray& bytes);
+  PixelArrayReader(const PixelArrayReaderConfig& config);
+  Pixels::PixelArray convertBytes(const ByteArray& bytes);
 
 private:
   Pixels::PixelArray pixelArray;
-  PixelArrayReaderConfiguration config;
-};
+  PixelArrayReaderConfig config;
+};}
 
 #endif

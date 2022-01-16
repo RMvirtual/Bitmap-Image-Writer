@@ -5,7 +5,7 @@
 #include "src/common/byte-array/byte_array_builder.h"
 #include "src/common/byte-array/byte_array.h"
 
-std::string Filesystem::convertFileToString(std::string filePath)
+std::string Filesystem::convertFileToString(const std::string& filePath)
 {
   std::ifstream file(filePath);
 
@@ -19,7 +19,7 @@ std::string Filesystem::convertFileToString(std::string filePath)
   return bytes;   
 }
 
-ByteArray Filesystem::convertFileToByteArray(std::string filePath)
+ByteArray Filesystem::convertFileToByteArray(const std::string& filePath)
 {
   std::string fileContents = Filesystem::convertFileToString(filePath);
 
@@ -29,7 +29,7 @@ ByteArray Filesystem::convertFileToByteArray(std::string filePath)
   return byteArrayBuilder.toByteArray();
 }
 
-int Filesystem::getSizeOfFile(std::string filePath)
+int Filesystem::getSizeOfFile(const std::string& filePath)
 {
   std::filesystem::path pathToFile {filePath};
 

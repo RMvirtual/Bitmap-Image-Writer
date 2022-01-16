@@ -11,10 +11,10 @@ public:
   RGBPixel(const RGBColours& colours);
   
   void setColours(const RGBColours& colours);
-  RGBColours getColours();
+  RGBColours colours();
 
 private:
-  RGBColours colours;
+  RGBColours _colours;
 };}
 
 #endif

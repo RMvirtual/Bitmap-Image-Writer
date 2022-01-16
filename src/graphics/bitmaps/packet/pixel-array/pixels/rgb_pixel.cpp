@@ -8,15 +8,15 @@ Pixels::RGBPixel::RGBPixel()
 
 Pixels::RGBPixel::RGBPixel(const Pixels::RGBColours& colours)
 {
-  this->colours = colours;
+  this->_colours = colours;
 }
 
 void Pixels::RGBPixel::setColours(const Pixels::RGBColours& colours) 
 {
-  this->colours = colours;
+  this->_colours = colours;
 }
 
-Pixels::RGBColours Pixels::RGBPixel::getColours()
+Pixels::RGBColours Pixels::RGBPixel::colours()
 {
-  return this->colours;
+  return this->_colours;
 }

@@ -21,13 +21,10 @@ private:
   int width;
   int height;
   std::vector<MatrixRow<T>> rows;
-
-  int convertToIndex(int rowNo, int columnNo);
-  bool isIndexOutOfBounds(int index);
 };}
 
-template <class T> Common::Matrix2D<T>::Matrix2D(
-  int width, int height, const T& defaultValue)
+template <class T>
+Common::Matrix2D<T>::Matrix2D(int width, int height, const T& defaultValue)
 {
   for (int rowNo = 0; rowNo < height; rowNo++) {
     auto newRow = MatrixRow<T> {width, defaultValue};
@@ -38,13 +35,14 @@ template <class T> Common::Matrix2D<T>::Matrix2D(
   this->height = height;  
 }
 
-template <class T> void Common::Matrix2D<T>::set(
-  const T& value, int rowNo, int columnNo)
+template <class T>
+void Common::Matrix2D<T>::set(const T& value, int rowNo, int columnNo)
 {
   this->rows.at(rowNo).set(value, columnNo);
 }
 
-template <class T> void Common::Matrix2D<T>::set(const T& value, int index)
+template <class T>
+void Common::Matrix2D<T>::set(const T& value, int index)
 {
   int rowNo = floor(index / this->width);
   int columnNo = index % this->width;
@@ -52,12 +50,14 @@ template <class T> void Common::Matrix2D<T>::set(const T& value, int index)
   this->set(value, rowNo, columnNo);
 }
 
-template <class T> T Common::Matrix2D<T>::at(int rowNo, int columnIndex) const
+template <class T>
+T Common::Matrix2D<T>::at(int rowNo, int columnIndex) const
 {
   return this->rows.at(rowNo).at(columnIndex);
 }
 
-template <class T> T Common::Matrix2D<T>::at(int indexNo) const
+template <class T>
+T Common::Matrix2D<T>::at(int indexNo) const
 {
   int rowNo = floor(indexNo / this->width);
   int columnNo = indexNo % this->width;

@@ -4,25 +4,26 @@
 #include "src/graphics/bitmaps/packet/headers/dib-header/dib_header.h"
 #include "src/common/byte-array/byte_array.h"
 
+namespace BitmapReader {
 class DibHeaderReader
 {
 public:
   DibHeaderReader();
-  BitmapHeaders::DibHeader convertBytes(ByteArray& bytes);
+  BitmapHeaders::DibHeader convertBytes(const ByteArray& bytes);
 
 private:
   BitmapHeaders::DibHeader header;
   
-  void parseWidthInPixels(ByteArray& bytes);
-  void parseHeightInPixels(ByteArray& bytes);
-  void parseNumberOfColourPlanes(ByteArray& bytes);
-  void parseColourDepth(ByteArray& bytes);
-  void parseCompressionMethod(ByteArray& bytes);
-  void parseRawBitmapDataSize(ByteArray& bytes);
-  void parseHorizontalPixelsPerMetre(ByteArray& bytes);
-  void parseVerticalPixelsPerMetre(ByteArray& bytes);
-  void parseColourTableEntries(ByteArray& bytes);
-  void parseImportantColours(ByteArray& bytes);
-};
+  void parseWidthInPixels(const ByteArray& bytes);
+  void parseHeightInPixels(const ByteArray& bytes);
+  void parseNumberOfColourPlanes(const ByteArray& bytes);
+  void parseColourDepth(const ByteArray& bytes);
+  void parseCompressionMethod(const ByteArray& bytes);
+  void parseRawBitmapDataSize(const ByteArray& bytes);
+  void parseHorizontalPixelsPerMetre(const ByteArray& bytes);
+  void parseVerticalPixelsPerMetre(const ByteArray& bytes);
+  void parseColourTableEntries(const ByteArray& bytes);
+  void parseImportantColours(const ByteArray& bytes);
+};}
 
 #endif

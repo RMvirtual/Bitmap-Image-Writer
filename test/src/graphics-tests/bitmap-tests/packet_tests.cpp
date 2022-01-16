@@ -37,7 +37,7 @@ Pixels::RGBColours getWhiteColours()
 
 void isGreenPixel(Pixels::RGBPixel pixel)
 {
-  Pixels::RGBColours colours = pixel.getColours();
+  Pixels::RGBColours colours = pixel.colours();
 
   EXPECT_EQ(colours.getGreen(), 255);
   EXPECT_EQ(colours.getBlue(), 0);
@@ -46,7 +46,7 @@ void isGreenPixel(Pixels::RGBPixel pixel)
 
 void isRedPixel(Pixels::RGBPixel pixel)
 {
-  Pixels::RGBColours colours = pixel.getColours();
+  Pixels::RGBColours colours = pixel.colours();
 
   EXPECT_EQ(colours.getGreen(), 0);
   EXPECT_EQ(colours.getBlue(), 0);

@@ -212,7 +212,7 @@ TEST(BitmapWriterTests, ShouldWritePixelArrayToByteArray)
   // Only testing first 12 bytes for testing speed.
   for (int byteNo = 0; byteNo < 12; byteNo += 3) {
     Pixels::RGBPixel pixel = pixelArray.at(byteNo / 3);
-    Pixels::RGBColours colours = pixel.getColours();
+    Pixels::RGBColours colours = pixel.colours();
 
     EXPECT_EQ(colours.getBlue(), bytes[byteNo].value);
     EXPECT_EQ(colours.getGreen(), bytes[byteNo+1].value);

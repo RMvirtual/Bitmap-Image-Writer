@@ -8,20 +8,21 @@
 #include "src/graphics/bitmaps/packet/headers/dib-header/dib_header.h"
 #include "src/common/byte-array/byte_array.h"
 
-class BitmapReader
+namespace BitmapReader {
+class ImageReader
 {
 public:
-  BitmapReader();
-  BitmapPacket readBitmapPacket(std::string filePath);
+  ImageReader();
+  BitmapPacket readBitmapPacket(const std::string& filePath);
 
 private:
   BitmapPacket packet;
 
-  void processIntoPacket(std::string filePath);
-  void processIntoPacket(ByteArray& bytes);
-  void processIntoFileHeader(ByteArray& bytes);
-  void processIntoDibHeader(ByteArray& bytes);
-  void processIntoPixelArray(ByteArray& bytes);
-};
+  void processIntoPacket(const std::string& filePath);
+  void processIntoPacket(const ByteArray& bytes);
+  void processIntoFileHeader(const ByteArray& bytes);
+  void processIntoDibHeader(const ByteArray& bytes);
+  void processIntoPixelArray(const ByteArray& bytes);
+};}
 
 #endif

@@ -4,19 +4,20 @@
 #include "src/graphics/bitmaps/packet/headers/file-header/file_header.h"
 #include "src/common/byte-array/byte_array.h"
 
+namespace BitmapReader {
 class FileHeaderReader
 {
 public:
   FileHeaderReader();
-  BitmapHeaders::FileHeader convertBytes(ByteArray& bytes);
+  BitmapHeaders::FileHeader convertBytes(const ByteArray& bytes);
 
 private:
   BitmapHeaders::FileHeader fileHeader;
   
-  void parseSignatureBytes(ByteArray& bytes);
-  void parseSizeOfBitmapFile(ByteArray& bytes);
-  void parseReservedBytes(ByteArray& bytes);
-  void parsePixelDataOffset(ByteArray& bytes);
-};
+  void parseSignatureBytes(const ByteArray& bytes);
+  void parseSizeOfBitmapFile(const ByteArray& bytes);
+  void parseReservedBytes(const ByteArray& bytes);
+  void parsePixelDataOffset(const ByteArray& bytes);
+};}
 
 #endif

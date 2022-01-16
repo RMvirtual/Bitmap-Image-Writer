@@ -6,9 +6,9 @@
 
 namespace Filesystem
 {
-  std::string convertFileToString(std::string filePath);
-  ByteArray convertFileToByteArray(std::string filePath);
-  int getSizeOfFile(std::string filePath);
+  std::string convertFileToString(const std::string& filePath);
+  ByteArray convertFileToByteArray(const std::string& filePath);
+  int getSizeOfFile(const std::string& filePath);
 };
 
 #endif

@@ -64,7 +64,7 @@ ByteArray BitmapWriter::writePixelArray(Pixels::PixelArray pixelArray)
 ByteArray BitmapWriter::writePixel(Pixels::RGBPixel pixel)
 {
   ByteArrayBuilder byteArrayBuilder {};
-  auto colours = pixel.getColours();
+  auto colours = pixel.colours();
 
   byteArrayBuilder.add(colours.getBlue());
   byteArrayBuilder.add(colours.getGreen());

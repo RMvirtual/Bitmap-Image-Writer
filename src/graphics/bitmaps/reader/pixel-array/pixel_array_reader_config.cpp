@@ -2,18 +2,19 @@
 #include "src/graphics/bitmaps/packet/headers/file-header/file_header.h"
 #include "src/graphics/bitmaps/packet/headers/dib-header/dib_header.h"
 
-
-PixelArrayReaderConfiguration PixelArrayReaderConfiguration::fromHeaders(
-  BitmapHeaders::FileHeader& fileHeader, BitmapHeaders::DibHeader& dibHeader)
+BitmapReader::PixelArrayReaderConfig
+BitmapReader::PixelArrayReaderConfig::fromHeaders(
+  const BitmapHeaders::FileHeader& fileHeader,
+  const BitmapHeaders::DibHeader& dibHeader)
 {
-  PixelArrayReaderConfiguration config {};
+  BitmapReader::PixelArrayReaderConfig config {};
 
   config.startingByteIndex = fileHeader.pixelDataOffset();
   config.rowPaddingInBytes = 1;
   config.rowSizeInBytes = 1;
   config.heightInPixels = dibHeader.heightInPixels();
   config.widthInPixels = dibHeader.widthInPixels();
-  config.pixelFormat = PixelArrayReaderConfiguration::RGB;
+  config.pixelFormat = BitmapReader::PixelArrayReaderConfig::RGB;
 
   return config;
 }

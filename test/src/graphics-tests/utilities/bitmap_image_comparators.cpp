@@ -52,8 +52,8 @@ void BitmapImageComparison::comparePixelArrayContents(
 
   // Gets stuck here.
   for (int pixelNo = 0; pixelNo < 2; pixelNo++) {
-    auto pixel1Colours = pixelArray1.at(pixelNo).getColours();
-    auto pixel2Colours = pixelArray2.at(pixelNo).getColours();
+    auto pixel1Colours = pixelArray1.at(pixelNo).colours();
+    auto pixel2Colours = pixelArray2.at(pixelNo).colours();
 
     EXPECT_EQ(pixel1Colours.getBlue(), pixel2Colours.getBlue());
     EXPECT_EQ(pixel1Colours.getGreen(), pixel2Colours.getGreen());

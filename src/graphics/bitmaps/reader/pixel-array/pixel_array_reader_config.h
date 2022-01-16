@@ -4,11 +4,12 @@
 #include "src/graphics/bitmaps/packet/headers/file-header/file_header.h"
 #include "src/graphics/bitmaps/packet/headers/dib-header/dib_header.h"
 
-struct PixelArrayReaderConfiguration
+namespace BitmapReader {
+struct PixelArrayReaderConfig
 {
-  static PixelArrayReaderConfiguration fromHeaders(
-    BitmapHeaders::FileHeader& fileHeader,
-    BitmapHeaders::DibHeader& dibHeader
+  static PixelArrayReaderConfig fromHeaders(
+    const BitmapHeaders::FileHeader& fileHeader,
+    const BitmapHeaders::DibHeader& dibHeader
   );
 
   enum {RGB, RGBA} pixelFormat;
@@ -17,6 +18,6 @@ struct PixelArrayReaderConfiguration
   int rowPaddingInBytes;
   int widthInPixels;
   int heightInPixels;
-};
+};}
 
 #endif

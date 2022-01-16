@@ -6,48 +6,49 @@
 #include "src/graphics/bitmaps/reader/headers/dib_header_reader.h"
 #include "src/graphics/bitmaps/reader/pixel-array/pixel_array_reader.h"
 
-BitmapReader::BitmapReader()
+BitmapReader::ImageReader::ImageReader()
 {
   // pass.
 }
 
-BitmapPacket BitmapReader::readBitmapPacket(std::string filePath)
+BitmapPacket BitmapReader::ImageReader::readBitmapPacket(
+  const std::string& filePath)
 {
   this->processIntoPacket(filePath);
 
   return this->packet;
 }
 
-void BitmapReader::processIntoPacket(std::string filePath)
+void BitmapReader::ImageReader::processIntoPacket(const std::string& filePath)
 {
   ByteArray bytes = Filesystem::convertFileToByteArray(filePath);
   this->processIntoPacket(bytes);
 }
 
-void BitmapReader::processIntoPacket(ByteArray& bytes)
+void BitmapReader::ImageReader::processIntoPacket(const ByteArray& bytes)
 {
   this->processIntoFileHeader(bytes);
   this->processIntoDibHeader(bytes);
   this->processIntoPixelArray(bytes);
 }
 
-void BitmapReader::processIntoFileHeader(ByteArray& bytes)
+void BitmapReader::ImageReader::processIntoFileHeader(const ByteArray& bytes)
 {
   ByteArray headerBytes = bytes.slice(0, 14);
   FileHeaderReader reader {};
   this->packet.fileHeader = reader.convertBytes(headerBytes);
 }
 
-void BitmapReader::processIntoDibHeader(ByteArray& bytes)
+void BitmapReader::ImageReader::processIntoDibHeader(const ByteArray& bytes)
 {
   ByteArray headerBytes = bytes.slice(14, 54);
   DibHeaderReader reader {};
   this->packet.dibHeader = reader.convertBytes(headerBytes);
 }
 
-void BitmapReader::processIntoPixelArray(ByteArray& bytes)
+void BitmapReader::ImageReader::processIntoPixelArray(const ByteArray& bytes)
 {
-  auto config = PixelArrayReaderConfiguration::fromHeaders(
+  auto config = BitmapReader::PixelArrayReaderConfig::fromHeaders(
     this->packet.fileHeader, this->packet.dibHeader);
 
   PixelArrayReader reader {config};

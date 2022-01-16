@@ -3,12 +3,14 @@
 #include "src/common/byte-array/byte_array.h"
 #include "src/graphics/bitmaps/packet/pixel-array/arrays/pixel_array_values.h"
 
-PixelArrayReader::PixelArrayReader(PixelArrayReaderConfiguration config)
+BitmapReader::PixelArrayReader::PixelArrayReader(
+  const BitmapReader::PixelArrayReaderConfig& config)
 {
   this->config = config;
 }
 
-Pixels::PixelArray PixelArrayReader::convertBytes(ByteArray& bytes)
+Pixels::PixelArray BitmapReader::PixelArrayReader::convertBytes(
+  const ByteArray& bytes)
 {
   Pixels::PixelArrayValues values {};
   values.heightInPixels = this->config.heightInPixels;
