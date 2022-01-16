@@ -4,7 +4,7 @@ cc_library(
     srcs = ["bitmap_image_comparators.cpp"],
     deps = [
         "@com_google_googletest//:gtest_main",
-        "//src/graphics/bitmaps:bitmaps"
+        "//src/graphics/bitmaps/packet:bitmap_packet",
     ],
     visibility = ["//visibility:public"]
 )
@@ -15,7 +15,7 @@ cc_library(
     srcs = ["bitmap_set_up.cpp"],
     deps = [
         "@com_google_googletest//:gtest_main",
-        "//src/graphics/bitmaps:bitmaps",
+        "//src/graphics/bitmaps/packet:bitmap_packet",
         "//test/src/graphics-tests/utilities:bitmap_image_comparators"
     ],
     visibility = ["//visibility:public"]

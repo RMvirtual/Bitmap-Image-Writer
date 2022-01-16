@@ -7,12 +7,12 @@
 #include "src/graphics/bitmaps/packet/pixel-array/pixels/rgb_pixel.h"
 #include "src/graphics/bitmaps/packet/bitmap_packet.h"
 
-BitmapWriter::BitmapWriter()
+BitmapWriter::ImageWriter::ImageWriter()
 {
   // pass.
 }
 
-ByteArray BitmapWriter::writeFileHeader(BitmapHeaders::FileHeader header)
+ByteArray BitmapWriter::ImageWriter::writeFileHeader(BitmapHeaders::FileHeader header)
 {
   ByteArrayBuilder byteArrayBuilder {};
   auto signatureBytes = header.signatureBytes();
@@ -26,7 +26,7 @@ ByteArray BitmapWriter::writeFileHeader(BitmapHeaders::FileHeader header)
   return byteArrayBuilder.toByteArray();
 }
 
-ByteArray BitmapWriter::writeDibHeader(BitmapHeaders::DibHeader header)
+ByteArray BitmapWriter::ImageWriter::writeDibHeader(BitmapHeaders::DibHeader header)
 {
   ByteArrayBuilder byteArrayBuilder {};
 
@@ -45,7 +45,7 @@ ByteArray BitmapWriter::writeDibHeader(BitmapHeaders::DibHeader header)
   return byteArrayBuilder.toByteArray();
 }
 
-ByteArray BitmapWriter::writePixelArray(Pixels::PixelArray pixelArray)
+ByteArray BitmapWriter::ImageWriter::writePixelArray(Pixels::PixelArray pixelArray)
 {
   ByteArrayBuilder byteArrayBuilder {};
   int numberOfPixels = pixelArray.sizeInPixels();
@@ -61,7 +61,7 @@ ByteArray BitmapWriter::writePixelArray(Pixels::PixelArray pixelArray)
   return byteArrayBuilder.toByteArray();
 }
 
-ByteArray BitmapWriter::writePixel(Pixels::RGBPixel pixel)
+ByteArray BitmapWriter::ImageWriter::writePixel(Pixels::RGBPixel pixel)
 {
   ByteArrayBuilder byteArrayBuilder {};
   auto colours = pixel.colours();

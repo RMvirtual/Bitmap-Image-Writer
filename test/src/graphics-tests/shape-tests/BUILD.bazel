@@ -6,10 +6,9 @@ cc_test(
     srcs = ["straight_line_tests.cpp"],
     deps = [
         "@com_google_googletest//:gtest_main",
-        "//src/graphics/bitmaps:bitmaps",
+        "//src/graphics/bitmaps/packet:bitmap_packet",
         "//test/src/graphics-tests/utilities:bitmap_image_comparators",
         "//test/src/graphics-tests/utilities:bitmap_set_up",
-        "//src/graphics/shapes:shapes",
-        "//src/graphics/image-rendering:image_renderer"
+        "//src/graphics/shapes:shapes"
     ]
 )
