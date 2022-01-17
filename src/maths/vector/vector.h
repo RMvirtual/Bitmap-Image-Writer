@@ -1,6 +1,7 @@
 #ifndef VECTOR_H
 #define VECTOR_H
 
+#include <array>
 #include <cstdarg>
 #include <iostream>
 #include <string>
@@ -22,19 +23,11 @@ namespace Maths
      * manually as second parameter due to the array C++ primitive
      * not knowing its length once passed to a function.
      */
-    Vector(double array[], int noOfArrayElements);
-
-    // Creates a new vector using the parameters as vector points.
+    Vector(double array[], int noOfValues);
     Vector(double a, double b);
-
-    // Creates a new vector using the parameters as vector points.
     Vector(double a, double b, double c);
-
-    // Creates a new vector using the parameters as vector points.
     Vector(double a, double b, double c, double d);
-
-    // Creates a new vector using the STL vector as a parameter.
-    Vector(const std::vector<double>& stlVector);
+    Vector(const std::vector<double>& values);
 
     /**
      * Returns the scalar/dot product from this vector with another

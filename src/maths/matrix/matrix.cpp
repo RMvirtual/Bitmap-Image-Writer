@@ -11,12 +11,12 @@
 
 Maths::Matrix::Matrix()
 {
-  this->columns = {};
+  this->_columns = {};
 }
 
 Maths::Matrix::Matrix(const std::vector<double>& column)
 {
-  this->columns = {Maths::Column(column)};
+  this->_columns = {Maths::Column(column)};
 }
 
 Maths::Matrix::Matrix(const std::vector<std::vector<double>>& matrixColumns)
@@ -32,17 +32,17 @@ void Maths::Matrix::from2DVector(
   const std::vector<std::vector<double>>& vector2D)
 {
   for (auto vector : vector2D)
-    this->columns.push_back(Maths::Column(vector));
+    this->_columns.push_back(Maths::Column(vector));
 }
 
 int Maths::Matrix::width() const
 {
-  return this->columns.size();
+  return this->_columns.size();
 }
 
 int Maths::Matrix::height() const
 {
-  return this->columns.size() ? this->columns.front().size() : 0;
+  return this->_columns.size() ? this->_columns.front().size() : 0;
 }
 
 bool Maths::Matrix::isVectorValidSize(
@@ -74,7 +74,7 @@ bool Maths::Matrix::isMatrixMultipliable(const Maths::Matrix& matrix) const
   return (this->width() == matrix.height());
 }
 
-std::vector<double> Maths::Matrix::getColumn(int index) const
+std::vector<double> Maths::Matrix::column(int index) const
 {
   std::vector<double> columnValues = {};
   Maths::Column column = (*this)[index];
@@ -85,32 +85,32 @@ std::vector<double> Maths::Matrix::getColumn(int index) const
   return columnValues;
 }
 
-std::vector<double> Maths::Matrix::getRow(int index) const
+std::vector<double> Maths::Matrix::row(int index) const
 {
   std::vector<double> rowValues = {};
 
-  for (auto column : this->columns)
+  for (auto column : this->_columns)
     rowValues.push_back(column[index]);
 
   return rowValues;
 }
 
-std::vector<std::vector<double>> Maths::Matrix::getColumns() const
+std::vector<std::vector<double>> Maths::Matrix::columns() const
 {
   std::vector<std::vector<double>> columns = {};
 
   for (int columnNo = 0; columnNo < this->width(); columnNo++)
-    columns.push_back(this->getColumn(columnNo));
+    columns.push_back(this->column(columnNo));
 
   return columns;
 }
 
-std::vector<std::vector<double>> Maths::Matrix::getRows() const
+std::vector<std::vector<double>> Maths::Matrix::rows() const
 {
   std::vector<std::vector<double>> rows = {};
 
   for (int rowNo = 0; rowNo < this->height(); rowNo++)
-    rows.push_back(this->getRow(rowNo));
+    rows.push_back(this->row(rowNo));
 
   return rows;
 }
@@ -134,8 +134,8 @@ std::vector<double> Maths::Matrix::getMultipliedVectorValues(
 {
   std::vector<double> newVectorValues = {};
 
-  for (auto row : this->getRows())
-    newVectorValues.push_back(this->calculateProduct(row, vector));
+  for (auto row : this->rows())
+    newVectorValues.push_back(this->product(row, vector));
 
   return newVectorValues;
 }
@@ -160,7 +160,7 @@ std::vector<std::vector<double>> Maths::Matrix::getValuesFromMultiplication(
 {
   std::vector<std::vector<double>> newMatrixValues = {};
   
-  for (auto column : matrixToMultiply.getColumns())
+  for (auto column : matrixToMultiply.columns())
     newMatrixValues.push_back(this->getProductAgainstAllRows(column));
 
   return newMatrixValues;
@@ -171,66 +171,67 @@ std::vector<double> Maths::Matrix::getProductAgainstAllRows(
 {
   std::vector<double> newColumn = {};
 
-  for (auto row : this->getRows())
-    newColumn.push_back(this->calculateProduct(row, column));
+  for (auto row : this->rows())
+    newColumn.push_back(this->product(row, column));
 
   return newColumn; 
 }
 
-double Maths::Matrix::calculateProduct(
+double Maths::Matrix::product(
   const std::vector<double>& vector1, const std::vector<double>& vector2) const
 {
   double totalProduct = 0;
   int noOfValues = vector1.size();
 
   for (int commonIndex = 0; commonIndex < noOfValues; commonIndex++)
-    totalProduct += this->calculateProduct(vector1, vector2, commonIndex);
+    totalProduct += this->product(vector1, vector2, commonIndex);
 
   return totalProduct;
 }
 
-double Maths::Matrix::calculateProduct(
+double Maths::Matrix::product(
   const std::vector<double>& vector1, const Maths::Vector& vector2) const
 {
   double totalProduct = 0;
   int noOfValues = vector1.size();
 
   for (int commonIndex = 0; commonIndex < noOfValues; commonIndex++)
-    totalProduct += this->calculateProduct(vector1, vector2, commonIndex);
+    totalProduct += this->product(vector1, vector2, commonIndex);
 
   return totalProduct;
 }
 
-double Maths::Matrix::calculateProduct(
+double Maths::Matrix::product(
   const Maths::Vector& vector1, const std::vector<double>& vector2) const
 {
-  return this->calculateProduct(vector2, vector1);
+  return this->product(vector2, vector1);
 }
 
-double Maths::Matrix::calculateProduct(
+double Maths::Matrix::product(
   const std::vector<double>& vector1, const std::vector<double>& vector2,
   int commonIndex) const
 {
   return vector1[commonIndex] * vector2[commonIndex];
 }
 
-double Maths::Matrix::calculateProduct(
+double Maths::Matrix::product(
   const std::vector<double>& vector1, const Maths::Vector& vector2,
   int commonIndex) const
 {
   return vector1[commonIndex] * vector2[commonIndex];
 }
 
-double Maths::Matrix::calculateProduct(
+double Maths::Matrix::product(
   const Maths::Vector& vector1, const std::vector<double>& vector2,
   int commonIndex) const
 {
-  return this->calculateProduct(vector2, vector1, commonIndex);
+  return this->product(vector2, vector1, commonIndex);
 }
 
 Maths::Column Maths::Matrix::operator [] (int columnIndex) const
 {
-  return this->isColumnIndexInRange(columnIndex) ? this->columns[columnIndex] :
+  return this->isColumnIndexInRange(columnIndex) ?
+    this->_columns[columnIndex] :
     throw std::out_of_range("Column index is out of range.");
 }
 
@@ -249,11 +250,11 @@ std::string Maths::Matrix::toString() const
 {
   std::string allValues = "";
 
-  std::vector<std::vector<double>> rows = this->getRows();
+  auto rows = this->rows();
   int noOfRows = rows.size();
 
   for (int rowNo = 0; rowNo < noOfRows; rowNo++) {
-    std::vector<double> row = rows[rowNo];
+    auto row = rows[rowNo];
     std::string rowOfValues = this->transposeToMatrixRow(row);
 
     bool moreRowsRemaining = (rowNo < noOfRows - 1);

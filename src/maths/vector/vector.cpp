@@ -41,7 +41,7 @@ Maths::Vector::Vector(double array[], int arrayLength)
 
 double Maths::Vector::dotProduct(const Maths::Vector& vector) const
 {
-  std::vector<double> multiples = this->multiplyElements(vector);
+  auto multiples = this->multiplyElements(vector);
   
   return std::accumulate(multiples.begin(), multiples.end(), 0.0);
 }
@@ -120,8 +120,8 @@ std::string Maths::Vector::getAllPointsAsString() const
 
 std::string Maths::Vector::getPointAsString(int pointIndex) const
 {
-  std::string pointIndexString = std::to_string(pointIndex);
-  std::string pointValue = std::to_string(this->get(pointIndex));
+  auto pointIndexString = std::to_string(pointIndex);
+  auto pointValue = std::to_string(this->get(pointIndex));
 
   return pointIndexString + ": " + pointValue;
 }

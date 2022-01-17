@@ -81,7 +81,7 @@ TEST(MatrixTests, ShouldGetColumn)
 
   Maths::Matrix matrix = Maths::Matrix(vector2D);
 
-  std::vector<double> column = matrix.getColumn(0);
+  std::vector<double> column = matrix.column(0);
   std::vector<double> correctValues = {1, 2, 3, 4};
 
   for (int rowNo = 0; rowNo < column.size(); rowNo++)
@@ -93,7 +93,7 @@ TEST(MatrixTests, ShouldGetRow)
   std::vector<std::vector<double>> vector2D = setup2DVector();
   Maths::Matrix matrix = Maths::Matrix(vector2D);
 
-  std::vector<double> row = matrix.getRow(0);
+  std::vector<double> row = matrix.row(0);
   std::vector<double> correctValues = {1, 5};
 
   for (int valueNo = 0; valueNo < row.size(); valueNo++)
