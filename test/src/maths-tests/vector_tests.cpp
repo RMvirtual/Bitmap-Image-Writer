@@ -47,13 +47,7 @@ TEST(VectorTests, ShouldCreateVectorWithStlVector)
   EXPECT_EQ(3, vector[2]);
 }
 
-TEST(VectorTests, LengthShouldBeTwo)
-{
-  Maths::Vector vector = {1, 2};
-  EXPECT_EQ(2, vector.length());
-}
-
-TEST(VectorTests, LengthShouldBeFive)
+TEST(VectorTests, ShouldCalculateLength)
 {
   Maths::Vector vector({1, 2, 3, 4, 5});
   EXPECT_EQ(5, vector.length());
@@ -72,7 +66,7 @@ TEST(VectorTests, ShouldCalculateMagnitudeWithTwoElements)
   EXPECT_DOUBLE_EQ(sqrt(5), magnitude);
 }
 
-TEST(VectorTests, ShouldCalculateMagnitudeOfThreeElementVectors)
+TEST(VectorTests, ShouldCalculateMagnitudeOfThreeElementVector)
 {
   Maths::Vector vector1 = Maths::Vector(1, 1, 2);
   Maths::Vector vector2 = Maths::Vector(-4, -8, 6);

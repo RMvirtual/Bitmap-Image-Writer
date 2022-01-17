@@ -16,7 +16,7 @@ BitmapHeaders::DibHeader::DibHeader(int widthInPixels, int heightInPixels)
 }
 
 BitmapHeaders::DibHeader BitmapHeaders::DibHeader::fromValues(
-  BitmapHeaders::DibHeaderValues values)
+  const BitmapHeaders::DibHeaderValues& values)
 {
   BitmapHeaders::DibHeader header {};
 

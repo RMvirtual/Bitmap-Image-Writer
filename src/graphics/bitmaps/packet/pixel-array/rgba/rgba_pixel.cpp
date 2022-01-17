@@ -1,5 +1,5 @@
-#include "src/graphics/bitmaps/packet/pixel-array/pixels/rgba_pixel.h"
-#include "src/graphics/bitmaps/packet/pixel-array/pixels/colours/rgba_colours.h"
+#include "src/graphics/bitmaps/packet/pixel-array/rgba/rgba_pixel.h"
+#include "src/graphics/bitmaps/packet/pixel-array/rgba/rgba_colours.h"
 
 Pixels::RGBAPixel::RGBAPixel(Pixels::RGBAColours colours)
 {

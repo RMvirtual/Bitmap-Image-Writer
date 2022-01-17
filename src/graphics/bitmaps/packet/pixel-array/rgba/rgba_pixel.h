@@ -1,7 +1,7 @@
 #ifndef RGBA_PIXEL_H
 #define RGBA_PIXEL_H
 
-#include "src/graphics/bitmaps/packet/pixel-array/pixels/colours/rgba_colours.h"
+#include "src/graphics/bitmaps/packet/pixel-array/rgba/rgba_colours.h"
 
 namespace Pixels {
 class RGBAPixel

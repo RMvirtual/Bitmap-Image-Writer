@@ -1,9 +1,9 @@
 #include <gtest/gtest.h>
 
-#include "src/graphics/bitmaps/packet/pixel-array/arrays/pixel_array.h"
-#include "src/graphics/bitmaps/packet/pixel-array/pixels/rgb_pixel.h"
-#include "src/graphics/bitmaps/packet/pixel-array/arrays/pixel_array_size_calculator.h"
-#include "src/graphics/bitmaps/packet/pixel-array/arrays/pixel_array_values.h"
+#include "src/graphics/bitmaps/packet/pixel-array/rgb/rgb_pixel_array.h"
+#include "src/graphics/bitmaps/packet/pixel-array/rgb/rgb_pixel.h"
+#include "src/graphics/bitmaps/packet/pixel-array/size-calculator/pixel_array_size_calculator.h"
+#include "src/graphics/bitmaps/packet/pixel-array/rgb/rgb_pixel_array_values.h"
 
 Pixels::RGBColours getRedColours()
 {

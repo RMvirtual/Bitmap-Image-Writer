@@ -1,7 +1,7 @@
 #include <cstdint>
 #include <stdexcept>
 
-#include "src/graphics/bitmaps/packet/pixel-array/pixels/colours/rgb_colours.h"
+#include "src/graphics/bitmaps/packet/pixel-array/rgb/rgb_colours.h"
 
 Pixels::RGBColours::RGBColours()
 {

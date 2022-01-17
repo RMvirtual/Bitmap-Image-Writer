@@ -1,21 +1,21 @@
 cc_library(
     name = "bitmap_packet_pixel_array",
     hdrs = [
-        "pixels/rgb_pixel.h",
-        "pixels/rgba_pixel.h",
-        "pixels/colours/rgb_colours.h",
-        "pixels/colours/rgba_colours.h",
-        "arrays/pixel_array.h",
-        "arrays/pixel_array_size_calculator.h",
-        "arrays/pixel_array_values.h"
+        "rgb/rgb_pixel_array.h",
+        "rgb/rgb_pixel_array_values.h",
+        "rgb/rgb_pixel.h",
+        "rgb/rgb_colours.h",
+        "rgba/rgba_pixel.h",
+        "rgba/rgba_colours.h",
+        "size-calculator/pixel_array_size_calculator.h"
     ],
     srcs = [
-        "pixels/rgb_pixel.cpp",
-        "pixels/rgba_pixel.cpp",
-        "pixels/colours/rgb_colours.cpp",
-        "pixels/colours/rgba_colours.cpp",
-        "arrays/pixel_array.cpp",
-        "arrays/pixel_array_size_calculator.cpp"
+        "rgb/rgb_pixel_array.cpp",
+        "rgb/rgb_pixel.cpp",
+        "rgb/rgb_colours.cpp",
+        "rgba/rgba_pixel.cpp",
+        "rgba/rgba_colours.cpp",
+        "size-calculator/pixel_array_size_calculator.cpp"
     ],
     deps = ["//src/common:common"],
     visibility = ["//visibility:public"],

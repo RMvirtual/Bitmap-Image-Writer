@@ -10,7 +10,7 @@ class DibHeader
 public:
   DibHeader();
   DibHeader(int widthInPixels, int heightInPixels);
-  static DibHeader fromValues(DibHeaderValues values);
+  static DibHeader fromValues(const DibHeaderValues& values);
 
   void setWidthInPixels(int32_t widthInPixels);
   void setHeightInPixels(int32_t heightInPixels);

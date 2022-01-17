@@ -1,7 +1,7 @@
 #include <gtest/gtest.h>
 
-#include "src/graphics/bitmaps/packet/pixel-array/pixels/rgb_pixel.h"
-#include "src/graphics/bitmaps/packet/pixel-array/arrays/pixel_array.h"
+#include "src/graphics/bitmaps/packet/pixel-array/rgb/rgb_pixel.h"
+#include "src/graphics/bitmaps/packet/pixel-array/rgb/rgb_pixel_array.h"
 #include "test/src/graphics-tests/utilities/bitmap_image_comparators.h"
 
 void BitmapImageComparison::compareBitmapFileHeaders(

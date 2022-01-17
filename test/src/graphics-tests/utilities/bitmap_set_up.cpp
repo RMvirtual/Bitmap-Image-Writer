@@ -1,10 +1,10 @@
 #include "src/graphics/bitmaps/packet/bitmap_packet.h"
-#include "src/graphics/bitmaps/packet/pixel-array/pixels/rgb_pixel.h"
-#include "src/graphics/bitmaps/packet/pixel-array/arrays/pixel_array.h"
+#include "src/graphics/bitmaps/packet/pixel-array/rgb/rgb_pixel.h"
+#include "src/graphics/bitmaps/packet/pixel-array/rgb/rgb_pixel_array.h"
 #include "test/src/graphics-tests/utilities/bitmap_image_comparators.h"
 #include "test/src/graphics-tests/utilities/bitmap_set_up.h"
-#include "src/graphics/bitmaps/packet/pixel-array/pixels/colours/rgb_colours.h"
-#include "src/graphics/bitmaps/packet/pixel-array/arrays/pixel_array_values.h"
+#include "src/graphics/bitmaps/packet/pixel-array/rgb/rgb_colours.h"
+#include "src/graphics/bitmaps/packet/pixel-array/rgb/rgb_pixel_array_values.h"
 
 std::string BitmapSetUp::getBlueImagePath()
 {
