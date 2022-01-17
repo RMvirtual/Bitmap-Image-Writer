@@ -8,11 +8,11 @@ struct DibHeaderValues
   int widthInPixels;
   int heightInPixels;
   int numberOfColorPlanes;
-  int colorDepth;
+  int bitsPerPixel;
   int compressionMethod;
-  int rawBitmapDataSize;
-  int horizontalPixelsPerMetre;
-  int verticalPixelsPerMetre;
+  int pixelArraySizeInBytes;
+  int horizontalResolution;
+  int verticalResolution;
   int colorTableEntries;
   int importantColors;
 };}

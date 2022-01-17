@@ -23,9 +23,9 @@ void BitmapImageComparison::compareBitmapDibHeaders(
   EXPECT_EQ(header1.widthInPixels(), header2.widthInPixels());
   EXPECT_EQ(header1.heightInPixels(), header2.heightInPixels());
   EXPECT_EQ(header1.numberOfColorPlanes(), header2.numberOfColorPlanes());
-  EXPECT_EQ(header1.colorDepth(), header2.colorDepth());
+  EXPECT_EQ(header1.bitsPerPixel(), header2.bitsPerPixel());
   EXPECT_EQ(header1.compressionMethod(), header2.compressionMethod());
-  EXPECT_EQ(header1.rawBitmapDataSize(), header2.rawBitmapDataSize());
+  EXPECT_EQ(header1.sizeOfPixelArray(), header2.sizeOfPixelArray());
   EXPECT_EQ(header1.horizontalResolution(),header2.horizontalResolution());
   EXPECT_EQ(header1.verticalResolution(), header2.verticalResolution());
   EXPECT_EQ(header1.colorTableEntries(), header2.colorTableEntries());
@@ -33,15 +33,15 @@ void BitmapImageComparison::compareBitmapDibHeaders(
 }
 
 void BitmapImageComparison::comparePixelArrays(
-  const Pixels::PixelArray& pixelArray1,
-  const Pixels::PixelArray& pixelArray2)
+  const Pixels::RGBPixelArray& pixelArray1,
+  const Pixels::RGBPixelArray& pixelArray2)
 {  
   BitmapImageComparison::comparePixelArrayContents(pixelArray1, pixelArray2);
 }
 
 void BitmapImageComparison::comparePixelArrayContents(
-  const Pixels::PixelArray& pixelArray1,
-  const Pixels::PixelArray& pixelArray2)
+  const Pixels::RGBPixelArray& pixelArray1,
+  const Pixels::RGBPixelArray& pixelArray2)
 {
   int numberOfPixels = pixelArray1.sizeInPixels();
 

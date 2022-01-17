@@ -47,7 +47,7 @@ void BitmapReader::DibHeaderReader::parseColourDepth(
   const ByteArray& bytes)
 {
   uint16_t colourDepth = ByteConversion::convertTo16BitInt(bytes, 14);
-  this->header.setColorDepth(colourDepth);
+  this->header.setBitsPerPixel(colourDepth);
 }
 
 void BitmapReader::DibHeaderReader::parseCompressionMethod(
@@ -61,7 +61,7 @@ void BitmapReader::DibHeaderReader::parseRawBitmapDataSize(
   const ByteArray& bytes)
 {
   uint32_t rawBitmapDataSize = ByteConversion::convertTo32BitInt(bytes, 20);
-  this->header.setRawBitmapDataSize(rawBitmapDataSize);
+  this->header.setSizeOfPixelArray(rawBitmapDataSize);
 }
 
 void BitmapReader::DibHeaderReader::parseHorizontalResolution(

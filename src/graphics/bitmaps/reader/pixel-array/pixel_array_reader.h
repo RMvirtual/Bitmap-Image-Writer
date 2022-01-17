@@ -10,10 +10,10 @@ class PixelArrayReader
 {
 public:
   PixelArrayReader(const PixelArrayReaderConfig& config);
-  Pixels::PixelArray convertBytes(const ByteArray& bytes);
+  Pixels::RGBPixelArray convertBytes(const ByteArray& bytes);
 
 private:
-  Pixels::PixelArray pixelArray;
+  Pixels::RGBPixelArray pixelArray;
   PixelArrayReaderConfig config;
 };}
 

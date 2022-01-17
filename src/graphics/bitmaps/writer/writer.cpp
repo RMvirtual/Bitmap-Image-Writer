@@ -4,14 +4,14 @@
 #include "src/graphics/bitmaps/packet/headers/dib-header/dib_header.h"
 #include "src/graphics/bitmaps/packet/pixel-array/rgb/rgb_pixel_array.h"
 #include "src/graphics/bitmaps/packet/pixel-array/rgb/rgb_pixel.h"
-#include "src/graphics/bitmaps/packet/bitmap_packet.h"
+#include "src/graphics/bitmaps/packet/rgb_bitmap_packet.h"
 
 BitmapWriter::ImageWriter::ImageWriter()
 {
   // pass.
 }
 
-ByteArray BitmapWriter::ImageWriter::convertToBytes(const BitmapPacket& packet)
+ByteArray BitmapWriter::ImageWriter::convertToBytes(const RGBBitmapPacket& packet)
 {
   ByteArray allBytes {};
 
@@ -43,9 +43,9 @@ ByteArray BitmapWriter::ImageWriter::convertToBytes(
   byteArray.add(header.widthInPixels());
   byteArray.add(header.heightInPixels());
   byteArray.add(header.numberOfColorPlanes());
-  byteArray.add(header.colorDepth());
+  byteArray.add(header.bitsPerPixel());
   byteArray.add(header.compressionMethod());
-  byteArray.add(header.rawBitmapDataSize());
+  byteArray.add(header.sizeOfPixelArray());
   byteArray.add(header.horizontalResolution());
   byteArray.add(header.verticalResolution());
   byteArray.add(header.colorTableEntries());
@@ -55,7 +55,7 @@ ByteArray BitmapWriter::ImageWriter::convertToBytes(
 }
 
 ByteArray BitmapWriter::ImageWriter::convertToBytes(
-  const Pixels::PixelArray& pixelArray)
+  const Pixels::RGBPixelArray& pixelArray)
 {
   ByteArray byteArray {};
   int numberOfPixels = pixelArray.sizeInPixels();

@@ -4,7 +4,7 @@
 #include "src/graphics/bitmaps/packet/pixel-array/rgb/rgb_pixel.h"
 
 namespace Pixels {
-struct PixelArrayValues
+struct RGBPixelArrayValues
 {
   int widthInPixels;
   int heightInPixels;

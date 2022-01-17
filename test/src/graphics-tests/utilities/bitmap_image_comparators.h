@@ -17,16 +17,16 @@ namespace BitmapImageComparison
     const BitmapHeaders::DibHeader& header2);
 
   void comparePixelArrayAttributes(
-      const Pixels::PixelArray& pixelArray1,
-      const Pixels::PixelArray& pixelArray2);
+      const Pixels::RGBPixelArray& pixelArray1,
+      const Pixels::RGBPixelArray& pixelArray2);
 
   void comparePixelArrayContents(
-    const Pixels::PixelArray& pixelArray1,
-    const Pixels::PixelArray& pixelArray2);
+    const Pixels::RGBPixelArray& pixelArray1,
+    const Pixels::RGBPixelArray& pixelArray2);
   
   void comparePixelArrays(
-    const Pixels::PixelArray& pixelArray1,
-    const Pixels::PixelArray& pixelArray2);
+    const Pixels::RGBPixelArray& pixelArray1,
+    const Pixels::RGBPixelArray& pixelArray2);
 }
 
 #endif

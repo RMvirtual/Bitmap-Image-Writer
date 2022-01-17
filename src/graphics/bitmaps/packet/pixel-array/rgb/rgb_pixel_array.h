@@ -6,11 +6,11 @@
 #include "src/graphics/bitmaps/packet/pixel-array/rgb/rgb_pixel_array_values.h"
 
 namespace Pixels {
-class PixelArray
+class RGBPixelArray
 {
 public:
-  PixelArray();
-  PixelArray(const Pixels::PixelArrayValues& values);
+  RGBPixelArray();
+  RGBPixelArray(const Pixels::RGBPixelArrayValues& values);
 
   void set(const Pixels::RGBPixel& pixel, int rowNo, int columnNo);
   void set(const Pixels::RGBPixel& pixel, int indexNo);

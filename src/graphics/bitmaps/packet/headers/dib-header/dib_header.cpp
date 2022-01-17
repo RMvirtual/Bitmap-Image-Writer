@@ -23,11 +23,11 @@ BitmapHeaders::DibHeader BitmapHeaders::DibHeader::fromValues(
   header.setWidthInPixels(values.widthInPixels);
   header.setHeightInPixels(values.heightInPixels);
   header.setNumberOfColourPlanes(values.numberOfColorPlanes);
-  header.setColorDepth(values.colorDepth);
+  header.setBitsPerPixel(values.bitsPerPixel);
   header.setCompressionMethod(values.compressionMethod);
-  header.setRawBitmapDataSize(values.rawBitmapDataSize);
-  header.setHorizontalResolution(values.horizontalPixelsPerMetre);
-  header.setVerticalResolution(values.verticalPixelsPerMetre);
+  header.setSizeOfPixelArray(values.pixelArraySizeInBytes);
+  header.setHorizontalResolution(values.horizontalResolution);
+  header.setVerticalResolution(values.verticalResolution);
   header.setColorTableEntries(values.colorTableEntries);
   header.setImportantColours(values.importantColors);
 
@@ -39,9 +39,9 @@ void BitmapHeaders::DibHeader::initialiseDefaultValues()
   this->_widthInPixels = 0;
   this->_heightInPixels = 0;
   this->_numberOfColorPlanes = 1; 
-  this->_colorDepth = 24; 
+  this->_bitsPerPixel = 24; 
   this->_compressionMethod = 0;  
-  this->_rawBitmapDataSize = 0;
+  this->_sizeOfPixelArray = 0;
   this->_horizontalResolution = 0;
   this->_verticalResolution = 0; 
   this->_colorTableEntries = 0;
@@ -69,9 +69,9 @@ void BitmapHeaders::DibHeader::setNumberOfColourPlanes(
   this->_numberOfColorPlanes = numberOfColorPlanes;
 }
 
-void BitmapHeaders::DibHeader::setColorDepth(uint16_t colorDepth)
+void BitmapHeaders::DibHeader::setBitsPerPixel(uint16_t bitsPerPixel)
 {
-  this->_colorDepth = colorDepth;
+  this->_bitsPerPixel = bitsPerPixel;
 }
 
 void BitmapHeaders::DibHeader::setCompressionMethod(uint32_t compressionMethod)
@@ -79,9 +79,9 @@ void BitmapHeaders::DibHeader::setCompressionMethod(uint32_t compressionMethod)
   this->_compressionMethod = compressionMethod;
 }
 
-void BitmapHeaders::DibHeader::setRawBitmapDataSize(uint32_t rawBitmapDataSize)
+void BitmapHeaders::DibHeader::setSizeOfPixelArray(uint32_t pixelArraySize)
 {
-  this->_rawBitmapDataSize = rawBitmapDataSize;
+  this->_sizeOfPixelArray = pixelArraySize;
 }
 
 void BitmapHeaders::DibHeader::setHorizontalResolution(int32_t pixelsPerMetre)
@@ -119,9 +119,9 @@ uint16_t BitmapHeaders::DibHeader::numberOfColorPlanes() const
   return this->_numberOfColorPlanes;
 }
 
-uint16_t BitmapHeaders::DibHeader::colorDepth() const
+uint16_t BitmapHeaders::DibHeader::bitsPerPixel() const
 {
-  return this->_colorDepth;
+  return this->_bitsPerPixel;
 }
 
 uint32_t BitmapHeaders::DibHeader::compressionMethod() const
@@ -129,9 +129,9 @@ uint32_t BitmapHeaders::DibHeader::compressionMethod() const
   return this->_compressionMethod;
 }
 
-uint32_t BitmapHeaders::DibHeader::rawBitmapDataSize() const
+uint32_t BitmapHeaders::DibHeader::sizeOfPixelArray() const
 {
-  return this->_rawBitmapDataSize;
+  return this->_sizeOfPixelArray;
 }
 
 int32_t BitmapHeaders::DibHeader::horizontalResolution() const

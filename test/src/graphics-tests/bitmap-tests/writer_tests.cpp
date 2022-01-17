@@ -44,9 +44,9 @@ TEST(BitmapWriterTests, ShouldConvertDibHeaderToBytes)
   testFourBytesAgainstValue(header.widthInPixels(), bytes.slice(4,8));
   testFourBytesAgainstValue(header.heightInPixels(), bytes.slice(8,12));
   testTwoBytesAgainstValue(header.numberOfColorPlanes(), bytes.slice(12,14));
-  testTwoBytesAgainstValue(header.colorDepth(), bytes.slice(14,16));
+  testTwoBytesAgainstValue(header.bitsPerPixel(), bytes.slice(14,16));
   testFourBytesAgainstValue(header.compressionMethod(), bytes.slice(16,20));
-  testFourBytesAgainstValue(header.rawBitmapDataSize(), bytes.slice(20,24));
+  testFourBytesAgainstValue(header.sizeOfPixelArray(), bytes.slice(20,24));
   testFourBytesAgainstValue(header.horizontalResolution(), bytes.slice(24,28));
   testFourBytesAgainstValue(header.verticalResolution(), bytes.slice(28,32));
   testFourBytesAgainstValue(header.colorTableEntries(), bytes.slice(32,36));

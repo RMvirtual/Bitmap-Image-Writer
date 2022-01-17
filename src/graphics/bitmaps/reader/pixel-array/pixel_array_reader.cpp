@@ -9,17 +9,17 @@ BitmapReader::PixelArrayReader::PixelArrayReader(
   this->config = config;
 }
 
-Pixels::PixelArray BitmapReader::PixelArrayReader::convertBytes(
+Pixels::RGBPixelArray BitmapReader::PixelArrayReader::convertBytes(
   const ByteArray& bytes)
 {
-  Pixels::PixelArrayValues values {};
+  Pixels::RGBPixelArrayValues values {};
   values.heightInPixels = this->config.heightInPixels;
   values.widthInPixels = this->config.widthInPixels;
 
   if (this->config.pixelFormat == this->config.RGB)
     values.defaultPixel = Pixels::RGBPixel {};
 
-  this->pixelArray = Pixels::PixelArray {values};
+  this->pixelArray = Pixels::RGBPixelArray {values};
   
   int noOfBytes = bytes.size();
   int sizeOfPixel = 3;

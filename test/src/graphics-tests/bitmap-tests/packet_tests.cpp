@@ -53,9 +53,9 @@ void isRedPixel(Pixels::RGBPixel pixel)
   EXPECT_EQ(colours.red(), 255);
 }
 
-Pixels::PixelArray getRedPixelArray()
+Pixels::RGBPixelArray getRedPixelArray()
 {
-  Pixels::PixelArrayValues values;
+  Pixels::RGBPixelArrayValues values;
   values.widthInPixels = 2;
   values.heightInPixels = 2;
   values.defaultPixel = {getRedColours()};
@@ -65,7 +65,7 @@ Pixels::PixelArray getRedPixelArray()
 
 TEST(PixelArrayTests, ShouldSetPixelInPixelArray)
 {
-  Pixels::PixelArray pixelArray = getRedPixelArray();
+  Pixels::RGBPixelArray pixelArray = getRedPixelArray();
   Pixels::RGBColours greenColours = getGreenColours();
   Pixels::RGBPixel greenPixel {greenColours};
   
@@ -81,7 +81,7 @@ TEST(PixelArrayTests, ShouldSetPixelInPixelArray)
 
 TEST(PixelArrayTests, ShouldGetNumberOfPixelsInPixelArray)
 {
-  Pixels::PixelArray pixelArray = getRedPixelArray();
+  Pixels::RGBPixelArray pixelArray = getRedPixelArray();
 
   int correctNumberOfPixels = 4;
   int actualNumberOfPixels = pixelArray.sizeInPixels();
