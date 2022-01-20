@@ -4,6 +4,7 @@
 #include "src/graphics/bitmaps/packet/pixel-array/rgb/rgb_pixel.h"
 #include "src/graphics/bitmaps/packet/pixel-array/size-calculator/pixel_array_size_calculator.h"
 #include "src/graphics/bitmaps/packet/pixel-array/rgb/rgb_pixel_array_values.h"
+#include "src/graphics/bitmaps/packet/pixel-array/pixel_array.h"
 
 Pixels::RGBColours getRedColours()
 {
@@ -61,6 +62,12 @@ Pixels::RGBPixelArray getRedPixelArray()
   values.defaultPixel = {getRedColours()};
 
   return {values};
+}
+
+TEST(PixelArrayTests, ShouldCreateNewPixelArray)
+{
+  Pixels::PixelArray<Pixels::PixelTypes::RGB> rgbPixelArray;
+  
 }
 
 TEST(PixelArrayTests, ShouldSetPixelInPixelArray)
