@@ -54,5 +54,5 @@ void BitmapReader::ImageReader::processIntoPixelArray(const ByteArray& bytes)
   PixelArrayReader reader {config};
  
   auto pixelArrayBytes = bytes.slice(54, bytes.size());
-  this->packet.pixelArray = reader.convertBytes(pixelArrayBytes); 
+  this->packet.pixelArray = reader.convertBytesToRGBPixels(pixelArrayBytes); 
 }

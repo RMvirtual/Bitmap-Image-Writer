@@ -9,7 +9,7 @@ BitmapReader::PixelArrayReader::PixelArrayReader(
   this->config = config;
 }
 
-Pixels::RGBPixelArray BitmapReader::PixelArrayReader::convertBytes(
+Pixels::RGBPixelArray BitmapReader::PixelArrayReader::convertBytesToRGBPixels(
   const ByteArray& bytes)
 {
   Pixels::RGBPixelArrayValues values {};

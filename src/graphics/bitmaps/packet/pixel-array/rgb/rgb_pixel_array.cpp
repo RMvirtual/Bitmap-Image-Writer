@@ -6,18 +6,13 @@
 
 Pixels::RGBPixelArray::RGBPixelArray()
 {
-  this->widthInPixels = 0;
-  this->heightInPixels = 0;
-  this->pixels = {this->widthInPixels, this->heightInPixels, {}};
+  // pass.
 }
 
 Pixels::RGBPixelArray::RGBPixelArray(const Pixels::RGBPixelArrayValues& values)
 {
   this->pixels = {
     values.widthInPixels, values.heightInPixels, values.defaultPixel};
-    
-  this->widthInPixels = values.widthInPixels;
-  this->heightInPixels = values.heightInPixels;
 }
 
 void Pixels::RGBPixelArray::set(
@@ -43,5 +38,5 @@ Pixels::RGBPixel Pixels::RGBPixelArray::at(int indexNo) const
 
 int Pixels::RGBPixelArray::sizeInPixels() const
 {
-  return this->widthInPixels * this->heightInPixels;
+  return this->pixels.width() * this->pixels.height();
 }

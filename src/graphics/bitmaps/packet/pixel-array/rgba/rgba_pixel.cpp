@@ -1,6 +1,12 @@
 #include "src/graphics/bitmaps/packet/pixel-array/rgba/rgba_pixel.h"
 #include "src/graphics/bitmaps/packet/pixel-array/rgba/rgba_colours.h"
 
+Pixels::RGBAPixel::RGBAPixel()
+{
+  // pass.
+}
+
+
 Pixels::RGBAPixel::RGBAPixel(Pixels::RGBAColours colours)
 {
   this->_colours = colours;

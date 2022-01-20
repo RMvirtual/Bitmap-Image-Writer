@@ -5,6 +5,8 @@ cc_library(
         "rgb/rgb_pixel_array_values.h",
         "rgb/rgb_pixel.h",
         "rgb/rgb_colours.h",
+        "rgba/rgba_pixel_array.h",
+        "rgba/rgba_pixel_array_values.h",
         "rgba/rgba_pixel.h",
         "rgba/rgba_colours.h",
         "size-calculator/pixel_array_size_calculator.h"
@@ -13,6 +15,7 @@ cc_library(
         "rgb/rgb_pixel_array.cpp",
         "rgb/rgb_pixel.cpp",
         "rgb/rgb_colours.cpp",
+        "rgba/rgba_pixel_array.cpp",
         "rgba/rgba_pixel.cpp",
         "rgba/rgba_colours.cpp",
         "size-calculator/pixel_array_size_calculator.cpp"

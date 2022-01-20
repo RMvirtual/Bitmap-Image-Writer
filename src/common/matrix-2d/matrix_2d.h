@@ -18,10 +18,12 @@ public:
   T at(const Index& index) const;
   T at(int rowNo, int columnNo) const;
   T at(int index) const;
+  int width() const;
+  int height() const;
 
 private:
-  int width;
-  int height;
+  int _width;
+  int _height;
   std::vector<MatrixRow<T>> rows;
 
   Index matrixIndex(int absoluteIndex) const;
@@ -36,8 +38,8 @@ Common::Matrix2D<T>::Matrix2D(int width, int height, const T& defaultValue)
     this->rows.push_back(newRow);
   }
 
-  this->width = width;
-  this->height = height;  
+  this->_width = width;
+  this->_height = height;  
 }
 
 template <class T>
@@ -49,8 +51,8 @@ void Common::Matrix2D<T>::set(const T& value, int rowNo, int columnNo)
 template <class T>
 void Common::Matrix2D<T>::set(const T& value, int index)
 {
-  int rowNo = floor(index / this->width);
-  int columnNo = index % this->width;
+  int rowNo = floor(index / this->_width);
+  int columnNo = index % this->_width;
 
   this->set(value, rowNo, columnNo);
 }
@@ -76,11 +78,23 @@ T Common::Matrix2D<T>::at(const Common::Index& index) const
 }
 
 template <class T>
+int Common::Matrix2D<T>::height() const
+{
+  return this->_height;
+}
+
+template <class T>
+int Common::Matrix2D<T>::width() const
+{
+  return this->_width;
+}
+
+template <class T>
 Common::Index Common::Matrix2D<T>::matrixIndex(int absoluteIndex) const
 {
   Common::Index index {};
-  index.row = floor(absoluteIndex / this->width);
-  index.column = absoluteIndex % this->width;
+  index.row = floor(absoluteIndex / this->_width);
+  index.column = absoluteIndex % this->_width;
 
   return index;
 }
@@ -88,7 +102,7 @@ Common::Index Common::Matrix2D<T>::matrixIndex(int absoluteIndex) const
 template <class T>
 int Common::Matrix2D<T>::absoluteIndex(const Common::Index& matrixIndex) const
 {
-  return ((matrixIndex.row * this->width) + matrixIndex.column);
+  return ((matrixIndex.row * this->_width) + matrixIndex.column);
 }
 
 #endif

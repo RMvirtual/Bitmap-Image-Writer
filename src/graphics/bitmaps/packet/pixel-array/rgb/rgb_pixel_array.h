@@ -1,5 +1,5 @@
-#ifndef PIXEL_ARRAY_H
-#define PIXEL_ARRAY_H
+#ifndef RGB_PIXEL_ARRAY_H
+#define RGB_PIXEL_ARRAY_H
 
 #include "src/common/matrix-2D/matrix_2d.h"
 #include "src/graphics/bitmaps/packet/pixel-array/rgb/rgb_pixel.h"
@@ -20,8 +20,6 @@ public:
 
 private:
   Common::Matrix2D<Pixels::RGBPixel> pixels {0, 0, {}};
-  int widthInPixels;
-  int heightInPixels;  
 };}
 
 #endif

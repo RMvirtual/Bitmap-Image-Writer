@@ -7,6 +7,7 @@ namespace Pixels {
 class RGBAPixel
 {
 public:
+  RGBAPixel();
   RGBAPixel(RGBAColours colours);
 
   RGBAColours colours() const;

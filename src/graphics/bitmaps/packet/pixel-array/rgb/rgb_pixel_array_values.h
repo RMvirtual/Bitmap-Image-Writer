@@ -1,5 +1,5 @@
-#ifndef PIXEL_ARRAY_VALUES_H
-#define PIXEL_ARRAY_VALUES_H
+#ifndef RGB_PIXEL_ARRAY_VALUES_H
+#define RGB_PIXEL_ARRAY_VALUES_H
 
 #include "src/graphics/bitmaps/packet/pixel-array/rgb/rgb_pixel.h"
 
