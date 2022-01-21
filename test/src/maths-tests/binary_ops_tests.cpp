@@ -4,7 +4,7 @@
 
 TEST(BinaryOpsTests, ShouldAddTwoDoubles)
 {
-  Maths::Addition additionOp = Maths::Addition();
+  Maths::Addition additionOp {};
   double number = additionOp.perform(1, 1);
   double correctNumber = 2;
 
@@ -13,7 +13,7 @@ TEST(BinaryOpsTests, ShouldAddTwoDoubles)
 
 TEST(BinaryOpsTests, ShouldAddTwoNegativeDoubles)
 {
-  Maths::Addition additionOp = Maths::Addition();
+  Maths::Addition additionOp {};
   double number = additionOp.perform(-5, -5);
   double correctNumber = -10;
 
@@ -22,7 +22,7 @@ TEST(BinaryOpsTests, ShouldAddTwoNegativeDoubles)
 
 TEST(BinaryOpsTests, ShouldAddNegativeAndPositiveDoubles)
 {
-  Maths::Addition additionOp = Maths::Addition();
+  Maths::Addition additionOp {};
   double number = additionOp.perform(5, -10);
   double correctNumber = -5;
 
@@ -31,7 +31,7 @@ TEST(BinaryOpsTests, ShouldAddNegativeAndPositiveDoubles)
 
 TEST(BinaryOpsTests, ShouldSubtractTwoDoubles)
 {
-  Maths::Subtraction subtractionOp = Maths::Subtraction();
+  Maths::Subtraction subtractionOp {};
   double number = subtractionOp.perform(30, 7);
   double correctNumber = 23;
 
@@ -40,7 +40,7 @@ TEST(BinaryOpsTests, ShouldSubtractTwoDoubles)
 
 TEST(BinaryOpsTests, ShouldSubtractTwoNegativeDoubles)
 {
-  Maths::Subtraction subtractionOp = Maths::Subtraction();
+  Maths::Subtraction subtractionOp {};
   double number = subtractionOp.perform(-30, -7);
   double correctNumber = -23;
 
@@ -49,7 +49,7 @@ TEST(BinaryOpsTests, ShouldSubtractTwoNegativeDoubles)
 
 TEST(BinaryOpsTests, ShouldMultiplyTwoDoubles)
 {
-  Maths::Multiplication multiplicationOp = Maths::Multiplication();
+  Maths::Multiplication multiplicationOp {};
   double number = multiplicationOp.perform(6, 3);
   double correctNumber = 18;
 
@@ -58,7 +58,7 @@ TEST(BinaryOpsTests, ShouldMultiplyTwoDoubles)
 
 TEST(BinaryOpsTests, ShouldMultiplyTwoNegativeDoubles)
 {
-  Maths::Multiplication multiplicationOp = Maths::Multiplication();
+  Maths::Multiplication multiplicationOp {};
   double number = multiplicationOp.perform(-6, -3);
   double correctNumber = 18;
 
@@ -67,7 +67,7 @@ TEST(BinaryOpsTests, ShouldMultiplyTwoNegativeDoubles)
 
 TEST(BinaryOpsTests, ShouldDivideTwoDoubles)
 {
-  Maths::Division divisionOp = Maths::Division();
+  Maths::Division divisionOp {};
   double number = divisionOp.perform(100, 5);
   double correctNumber = 20;
 
@@ -76,7 +76,7 @@ TEST(BinaryOpsTests, ShouldDivideTwoDoubles)
 
 TEST(BinaryOpsTests, ShouldDivideTwoNegativeDoubles)
 {
-  Maths::Division divisionOp = Maths::Division();
+  Maths::Division divisionOp {};
   double number = divisionOp.perform(-100, -5);
   double correctNumber = 20;
 

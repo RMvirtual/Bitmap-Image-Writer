@@ -76,8 +76,8 @@ bool Maths::Matrix::isMatrixMultipliable(const Maths::Matrix& matrix) const
 
 std::vector<double> Maths::Matrix::column(int index) const
 {
-  std::vector<double> columnValues = {};
-  Maths::Column column = (*this)[index];
+  auto column = this->_columns[index];
+  std::vector<double> columnValues {};
 
   for (auto value : column)
     columnValues.push_back(value);
@@ -87,7 +87,7 @@ std::vector<double> Maths::Matrix::column(int index) const
 
 std::vector<double> Maths::Matrix::row(int index) const
 {
-  std::vector<double> rowValues = {};
+  std::vector<double> rowValues {};
 
   for (auto column : this->_columns)
     rowValues.push_back(column[index]);
@@ -97,9 +97,10 @@ std::vector<double> Maths::Matrix::row(int index) const
 
 std::vector<std::vector<double>> Maths::Matrix::columns() const
 {
-  std::vector<std::vector<double>> columns = {};
+  std::vector<std::vector<double>> columns {};
+  int noOfColumns = this->width();
 
-  for (int columnNo = 0; columnNo < this->width(); columnNo++)
+  for (int columnNo = 0; columnNo < noOfColumns; columnNo++)
     columns.push_back(this->column(columnNo));
 
   return columns;
@@ -107,9 +108,10 @@ std::vector<std::vector<double>> Maths::Matrix::columns() const
 
 std::vector<std::vector<double>> Maths::Matrix::rows() const
 {
-  std::vector<std::vector<double>> rows = {};
+  std::vector<std::vector<double>> rows {};
+  int noOfRows = this->height();
 
-  for (int rowNo = 0; rowNo < this->height(); rowNo++)
+  for (int rowNo = 0; rowNo < noOfRows; rowNo++)
     rows.push_back(this->row(rowNo));
 
   return rows;
@@ -117,22 +119,24 @@ std::vector<std::vector<double>> Maths::Matrix::rows() const
 
 Maths::Vector Maths::Matrix::operator * (const Maths::Vector& vector) const
 {
-  return this->isVectorMultipliable(vector) ? this->multiplyVector(vector) :
+  if (!this->isVectorMultipliable(vector))
     throw std::length_error(
-      "Arithmetic error: Vector is incongruent size to the " \
+      "Arithmetic error: Vector is incongruent size " \
       "to the Matrix it is being multiplied against."
     );
+
+  return this->multiplyVector(vector); 
 }
 
 Maths::Vector Maths::Matrix::multiplyVector(const Maths::Vector& vector) const
 { 
-  return Maths::Vector(this->getMultipliedVectorValues(vector));
+  return {this->getMultipliedVectorValues(vector)};
 }
 
 std::vector<double> Maths::Matrix::getMultipliedVectorValues(
   const Maths::Vector& vector) const
 {
-  std::vector<double> newVectorValues = {};
+  std::vector<double> newVectorValues {};
 
   for (auto row : this->rows())
     newVectorValues.push_back(this->product(row, vector));
@@ -142,23 +146,25 @@ std::vector<double> Maths::Matrix::getMultipliedVectorValues(
 
 Maths::Matrix Maths::Matrix::operator * (const Maths::Matrix& matrixRhs) const
 {
-  return this->isMatrixMultipliable(matrixRhs) ?
-    multiplyMatrix(matrixRhs) : throw std::length_error(
-      "Arithmetic error: Matrix has incongruent dimensions to the " \
+  if (!this->isMatrixMultipliable(matrixRhs)) 
+    throw std::length_error(
+      "Arithmetic error: Matrix has incongruent dimensions " \
       "to the Matrix it is being multiplied against."
     );
+
+  return multiplyMatrix(matrixRhs);
 }
 
 Maths::Matrix Maths::Matrix::multiplyMatrix(
   const Maths::Matrix& matrixToMultiply) const
 {
-  return Maths::Matrix(this->getValuesFromMultiplication(matrixToMultiply));
+  return {this->getValuesFromMultiplication(matrixToMultiply)};
 }
 
 std::vector<std::vector<double>> Maths::Matrix::getValuesFromMultiplication(
   const Maths::Matrix& matrixToMultiply) const
 {
-  std::vector<std::vector<double>> newMatrixValues = {};
+  std::vector<std::vector<double>> newMatrixValues {};
   
   for (auto column : matrixToMultiply.columns())
     newMatrixValues.push_back(this->getProductAgainstAllRows(column));
@@ -169,7 +175,7 @@ std::vector<std::vector<double>> Maths::Matrix::getValuesFromMultiplication(
 std::vector<double> Maths::Matrix::getProductAgainstAllRows(
   const std::vector<double>& column) const
 {
-  std::vector<double> newColumn = {};
+  std::vector<double> newColumn {};
 
   for (auto row : this->rows())
     newColumn.push_back(this->product(row, column));
@@ -230,9 +236,10 @@ double Maths::Matrix::product(
 
 Maths::Column Maths::Matrix::operator [] (int columnIndex) const
 {
-  return this->isColumnIndexInRange(columnIndex) ?
-    this->_columns[columnIndex] :
+  if (!this->isColumnIndexInRange(columnIndex))
     throw std::out_of_range("Column index is out of range.");
+
+  return this->_columns[columnIndex];
 }
 
 bool Maths::Matrix::isColumnIndexInRange(int index) const
@@ -255,7 +262,7 @@ std::string Maths::Matrix::toString() const
 
   for (int rowNo = 0; rowNo < noOfRows; rowNo++) {
     auto row = rows[rowNo];
-    std::string rowOfValues = this->transposeToMatrixRow(row);
+    auto rowOfValues = this->transposeToMatrixRow(row);
 
     bool moreRowsRemaining = (rowNo < noOfRows - 1);
     
