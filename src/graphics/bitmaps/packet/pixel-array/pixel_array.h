@@ -6,7 +6,6 @@
 #include "src/graphics/bitmaps/packet/pixel-array/rgba/rgba_pixel_array_values.h"
 #include "src/graphics/bitmaps/packet/pixel-array/rgb/rgb_pixel_array_values.h"
 #include "src/graphics/bitmaps/packet/pixel-array/rgb/rgb_pixel.h"
-#include "src/graphics/bitmaps/packet/pixel-array/pixel_array_types.h"
 #include "src/graphics/bitmaps/packet/pixel-array/pixel_array_values.h"
 
 namespace Pixels
@@ -50,8 +49,7 @@ void Pixels::PixelArray <PixelType> ::set(
 }
 
 template <class PixelType>
-void Pixels::PixelArray <PixelType> ::set(
-  const PixelType& pixel, int indexNo)
+void Pixels::PixelArray <PixelType> ::set(const PixelType& pixel, int indexNo)
 {
   this->pixels.set(pixel, indexNo);
 }
