@@ -1,6 +1,7 @@
 #include "src/graphics/bitmaps/packet/pixel-array/size-calculator/pixel_array_size_calculator.h"
 
-int Pixels::calculatePixelArraySizeInBytes(int widthInPixels, int heightInPixels)
+int Pixels::calculatePixelArraySizeInBytes(
+  int widthInPixels, int heightInPixels)
 {
   const int rowSizeInBytes = Pixels::calculateRowSizeInBytes(widthInPixels);
   

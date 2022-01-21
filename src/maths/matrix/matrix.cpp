@@ -21,18 +21,20 @@ Maths::Matrix::Matrix(const std::vector<double>& column)
 
 Maths::Matrix::Matrix(const std::vector<std::vector<double>>& matrixColumns)
 {
-  this->isVectorValidSize(matrixColumns) ?
-    this->from2DVector(matrixColumns) : throw std::runtime_error(
+  if (!this->isVectorValidSize(matrixColumns))
+    throw std::runtime_error(
       "Arithmetic error: Vector is not a congruent size to be used to " \
       "populate a matrix."
     );
+  
+  this->from2DVector(matrixColumns);
 }
 
 void Maths::Matrix::from2DVector(
   const std::vector<std::vector<double>>& vector2D)
 {
   for (auto vector : vector2D)
-    this->_columns.push_back(Maths::Column(vector));
+    this->_columns.push_back({vector});
 }
 
 int Maths::Matrix::width() const
@@ -42,7 +44,7 @@ int Maths::Matrix::width() const
 
 int Maths::Matrix::height() const
 {
-  return this->_columns.size() ? this->_columns.front().size() : 0;
+  return this->_columns.empty() ? 0 : this->_columns.front().size();
 }
 
 bool Maths::Matrix::isVectorValidSize(

@@ -2,7 +2,7 @@
 #define RGBA_COLOURS_H
 
 #include <cstdint>
-#include "src/graphics/bitmaps/packet/pixel-array/colours/rgb_colours.h"
+#include "src/graphics/bitmaps/packet/pixel-array/colours/rgb.h"
 
 namespace Pixels {
 class RGBAColours : public RGBColours

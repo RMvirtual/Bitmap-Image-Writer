@@ -4,13 +4,13 @@ cc_library(
         "pixel.h",
         "pixel_array_values.h",
         "pixel_array.h",
-        "colours/rgb_colours.h",
-        "colours/rgba_colours.h",
+        "colours/rgb.h",
+        "colours/rgba.h",
         "size-calculator/pixel_array_size_calculator.h"
     ],
     srcs = [
-        "colours/rgb_colours.cpp",
-        "colours/rgba_colours.cpp",
+        "colours/rgb.cpp",
+        "colours/rgba.cpp",
         "size-calculator/pixel_array_size_calculator.cpp"
     ],
     deps = ["//src/common:common"],

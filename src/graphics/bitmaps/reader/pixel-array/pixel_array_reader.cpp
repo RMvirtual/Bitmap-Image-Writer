@@ -2,7 +2,7 @@
 #include "src/graphics/bitmaps/reader/pixel-array/pixel_array_reader_config.h"
 #include "src/common/byte-array/byte_array.h"
 #include "src/graphics/bitmaps/packet/pixel-array/pixel_array_values.h"
-#include "src/graphics/bitmaps/packet/pixel-array/colours/rgb_colours.h"
+#include "src/graphics/bitmaps/packet/pixel-array/colours/rgb.h"
 #include "src/graphics/bitmaps/packet/pixel-array/pixel.h"
 
 BitmapReader::PixelArrayReader::PixelArrayReader(
