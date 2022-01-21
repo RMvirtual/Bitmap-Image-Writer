@@ -1,7 +1,9 @@
 #include "src/graphics/bitmaps/reader/pixel-array/pixel_array_reader.h"
 #include "src/graphics/bitmaps/reader/pixel-array/pixel_array_reader_config.h"
 #include "src/common/byte-array/byte_array.h"
-#include "src/graphics/bitmaps/packet/pixel-array/rgb/rgb_pixel_array_values.h"
+#include "src/graphics/bitmaps/packet/pixel-array/pixel_array_values.h"
+#include "src/graphics/bitmaps/packet/pixel-array/colours/rgb_colours.h"
+#include "src/graphics/bitmaps/packet/pixel-array/pixel.h"
 
 BitmapReader::PixelArrayReader::PixelArrayReader(
   const BitmapReader::PixelArrayReaderConfig& config)
@@ -9,17 +11,14 @@ BitmapReader::PixelArrayReader::PixelArrayReader(
   this->config = config;
 }
 
-Pixels::RGBPixelArray BitmapReader::PixelArrayReader::convertBytesToRGBPixels(
-  const ByteArray& bytes)
+Pixels::PixelArray <Pixels::Pixel<Pixels::RGBColours>>
+BitmapReader::PixelArrayReader::bytesToRGBPixels(const ByteArray& bytes)
 {
-  Pixels::RGBPixelArrayValues values {};
+  Pixels::PixelArrayValues<Pixels::Pixel<Pixels::RGBColours>> values {};
   values.heightInPixels = this->config.heightInPixels;
   values.widthInPixels = this->config.widthInPixels;
 
-  if (this->config.pixelFormat == this->config.RGB)
-    values.defaultPixel = Pixels::RGBPixel {};
-
-  this->pixelArray = Pixels::RGBPixelArray {values};
+  this->pixelArray = {values};
   
   int noOfBytes = bytes.size();
   int sizeOfPixel = 3;
@@ -33,7 +32,7 @@ Pixels::RGBPixelArray BitmapReader::PixelArrayReader::convertBytesToRGBPixels(
     colours.setGreen(pixelBytes[1]);
     colours.setRed(pixelBytes[2]);
 
-    Pixels::RGBPixel pixel {colours};
+    Pixels::Pixel pixel {colours};
 
     int pixelNo = byteNo / sizeOfPixel;
     this->pixelArray.set(pixel, pixelNo);

@@ -2,9 +2,10 @@
 #include "src/common/byte-array/byte_array.h"
 #include "src/graphics/bitmaps/packet/headers/file-header/file_header.h"
 #include "src/graphics/bitmaps/packet/headers/dib-header/dib_header.h"
-#include "src/graphics/bitmaps/packet/pixel-array/rgb/rgb_pixel_array.h"
-#include "src/graphics/bitmaps/packet/pixel-array/rgb/rgb_pixel.h"
-#include "src/graphics/bitmaps/packet/rgb_bitmap_packet.h"
+#include "src/graphics/bitmaps/packet/pixel-array/pixel_array.h"
+#include "src/graphics/bitmaps/packet/pixel-array/pixel.h"
+#include "src/graphics/bitmaps/packet/bitmap_packet.h"
+#include "src/graphics/bitmaps/packet/pixel-array/colours/rgb_colours.h"
 
 BitmapWriter::ImageWriter::ImageWriter()
 {
@@ -55,7 +56,7 @@ ByteArray BitmapWriter::ImageWriter::convertToBytes(
 }
 
 ByteArray BitmapWriter::ImageWriter::convertToBytes(
-  const Pixels::RGBPixelArray& pixelArray)
+  const Pixels::PixelArray <Pixels::Pixel<Pixels::RGBColours>>& pixelArray)
 {
   ByteArray byteArray {};
   int numberOfPixels = pixelArray.sizeInPixels();
@@ -72,7 +73,7 @@ ByteArray BitmapWriter::ImageWriter::convertToBytes(
 }
 
 ByteArray BitmapWriter::ImageWriter::convertToBytes(
-  const Pixels::RGBPixel& pixel)
+  const Pixels::Pixel <Pixels::RGBColours>& pixel)
 {
   auto colours = pixel.colours();
   ByteArray byteArray {};

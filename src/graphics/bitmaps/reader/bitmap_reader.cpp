@@ -1,6 +1,6 @@
 #include "src/common/byte-array/byte_array.h"
 #include "src/common/filesystem/filesystem.h"
-#include "src/graphics/bitmaps/packet/rgb_bitmap_packet.h"
+#include "src/graphics/bitmaps/packet/bitmap_packet.h"
 #include "src/graphics/bitmaps/reader/bitmap_reader.h"
 #include "src/graphics/bitmaps/reader/headers/file_header_reader.h"
 #include "src/graphics/bitmaps/reader/headers/dib_header_reader.h"
@@ -54,5 +54,5 @@ void BitmapReader::ImageReader::processIntoPixelArray(const ByteArray& bytes)
   PixelArrayReader reader {config};
  
   auto pixelArrayBytes = bytes.slice(54, bytes.size());
-  this->packet.pixelArray = reader.convertBytesToRGBPixels(pixelArrayBytes); 
+  this->packet.pixelArray = reader.bytesToRGBPixels(pixelArrayBytes); 
 }

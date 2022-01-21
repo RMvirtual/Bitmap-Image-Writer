@@ -1,5 +1,5 @@
 #include <cstdint>
-#include "src/graphics/bitmaps/packet/pixel-array/rgba/rgba_colours.h"
+#include "src/graphics/bitmaps/packet/pixel-array/colours/rgba_colours.h"
 
 Pixels::RGBAColours::RGBAColours()
 {

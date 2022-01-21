@@ -4,7 +4,7 @@
 #include "src/graphics/bitmaps/packet/pixel-array/pixel_array.h"
 #include "test/src/graphics-tests/utilities/bitmap_set_up.h"
 #include "test/src/graphics-tests/utilities/bitmap_image_comparators.h"
-#include "src/graphics/bitmaps/packet/pixel-array/rgb/rgb_colours.h"
+#include "src/graphics/bitmaps/packet/pixel-array/colours/rgb_colours.h"
 #include "src/graphics/bitmaps/packet/pixel-array/pixel.h"
 
 TEST(PixelArrayTests, ShouldCreateRGBTemplatePixelArray)
