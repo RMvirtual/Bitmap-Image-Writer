@@ -1,13 +1,12 @@
 #include <string>
 
 #include "test/src/graphics-tests/utilities/bitmap_set_up.h"
-#include "src/graphics/bitmaps/packet/rgb_bitmap_packet.h"
-#include "src/graphics/bitmaps/packet/pixel-array/rgb/rgb_pixel.h"
-#include "src/graphics/bitmaps/packet/pixel-array/rgb/rgb_pixel_array.h"
 #include "test/src/graphics-tests/utilities/bitmap_image_comparators.h"
+#include "src/graphics/bitmaps/packet/rgb_bitmap_packet.h"
 #include "src/graphics/bitmaps/packet/pixel-array/rgb/rgb_colours.h"
-#include "src/graphics/bitmaps/packet/pixel-array/rgb/rgb_pixel_array_values.h"
 #include "src/graphics/bitmaps/packet/pixel-array/pixel_array.h"
+#include "src/graphics/bitmaps/packet/pixel-array/pixel.h"
+#include "src/graphics/bitmaps/packet/pixel-array/pixel_array_values.h"
 
 std::string BitmapSetUp::blueImagePath()
 {
@@ -17,9 +16,9 @@ std::string BitmapSetUp::blueImagePath()
   );
 }
 
-RGBBitmapPacket BitmapSetUp::blueBitmapPacket()
+BitmapPacket BitmapSetUp::blueBitmapPacket()
 {
-  RGBBitmapPacket packet;
+  BitmapPacket packet;
   packet.fileHeader = bluePixelFileHeader();
   packet.dibHeader = bluePixelDibHeader();
   packet.pixelArray = bluePixelArray();
@@ -60,17 +59,17 @@ Pixels::RGBColours BitmapSetUp::blueColours()
   return colours;
 }
 
-Pixels::RGBPixelArray BitmapSetUp::bluePixelArray()
+Pixels::PixelArray <Pixels::Pixel<Pixels::RGBColours>> BitmapSetUp::bluePixelArray()
 {
-  Pixels::RGBPixelArrayValues values {};
+  Pixels::PixelArrayValues<Pixels::Pixel<Pixels::RGBColours>> values {};
   values.widthInPixels = 512;
   values.heightInPixels = 512;
   values.defaultPixel = {blueColours()};
 
-  return Pixels::RGBPixelArray {values};
+  return Pixels::PixelArray <Pixels::Pixel<Pixels::RGBColours>> {values};
 }
 
-Pixels::RGBPixel BitmapSetUp::greenRGBPixel()
+Pixels::Pixel<Pixels::RGBColours> BitmapSetUp::greenRGBPixel()
 {
   auto greenColours = BitmapSetUp::greenColours();
 
@@ -107,9 +106,9 @@ Pixels::RGBColours BitmapSetUp::whiteColours()
   return colours;
 }
 
-Pixels::PixelArray <Pixels::RGBPixel> BitmapSetUp::redPixelArray()
+Pixels::PixelArray<Pixels::Pixel<Pixels::RGBColours>> BitmapSetUp::redPixelArray()
 {
-  Pixels::PixelArrayValues<Pixels::RGBPixel> values;
+  Pixels::PixelArrayValues<Pixels::Pixel<Pixels::RGBColours>> values {};
   values.widthInPixels = 2;
   values.heightInPixels = 2;
   values.defaultPixel = {BitmapSetUp::redColours()};

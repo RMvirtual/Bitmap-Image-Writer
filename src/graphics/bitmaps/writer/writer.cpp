@@ -11,7 +11,7 @@ BitmapWriter::ImageWriter::ImageWriter()
   // pass.
 }
 
-ByteArray BitmapWriter::ImageWriter::convertToBytes(const RGBBitmapPacket& packet)
+ByteArray BitmapWriter::ImageWriter::convertToBytes(const BitmapPacket& packet)
 {
   ByteArray allBytes {};
 

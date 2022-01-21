@@ -11,7 +11,7 @@ BitmapReader::ImageReader::ImageReader()
   // pass.
 }
 
-RGBBitmapPacket BitmapReader::ImageReader::readBitmapPacket(
+BitmapPacket BitmapReader::ImageReader::readBitmapPacket(
   const std::string& filePath)
 {
   this->processIntoPacket(filePath);

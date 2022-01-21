@@ -2,10 +2,6 @@
 #define PIXEL_ARRAY_H
 
 #include "src/common/matrix-2D/matrix_2d.h"
-#include "src/graphics/bitmaps/packet/pixel-array/rgba/rgba_pixel.h"
-#include "src/graphics/bitmaps/packet/pixel-array/rgba/rgba_pixel_array_values.h"
-#include "src/graphics/bitmaps/packet/pixel-array/rgb/rgb_pixel_array_values.h"
-#include "src/graphics/bitmaps/packet/pixel-array/rgb/rgb_pixel.h"
 #include "src/graphics/bitmaps/packet/pixel-array/pixel_array_values.h"
 
 namespace Pixels

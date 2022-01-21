@@ -17,27 +17,27 @@ private:
 };}
 
 template <class Colours>
-Pixels::Pixel::Pixel()
+Pixels::Pixel<Colours>::Pixel()
 {
   // pass.
 }
 
 template <class Colours>
-Pixels::Pixel::Pixel(const Colours& colours)
+Pixels::Pixel<Colours>::Pixel(const Colours& colours)
 {
   this->_colours = colours;
 }
 
 template <class Colours>
-void Pixels::Pixel::setColours(const Colours& colours);
+void Pixels::Pixel<Colours>::setColours(const Colours& colours)
 {
   this->_colours = colours;
 }
 
 template <class Colours>
-Colours Pixels::Pixel::colours() const;
+Colours Pixels::Pixel<Colours>::colours() const
 {
-  return this->colours;
+  return this->_colours;
 }
 
 #endif
