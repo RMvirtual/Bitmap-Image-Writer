@@ -18,16 +18,9 @@ TEST(PixelArrayTests, ShouldCreateRGBPixelArray)
 
   Pixels::PixelArray<> pixelArray {values};
   
-  auto pixel1 = pixelArray.at(0);
-  auto pixel2 = pixelArray.at(1);
-  auto pixel3 = pixelArray.at(2);
-  auto pixel4 = pixelArray.at(3);
-
-  std::vector<Pixels::RGBPixel> pixelsToTest {
-    pixel1, pixel2, pixel3, pixel4};
-
-  for (auto pixel : pixelsToTest)
-    BitmapImageComparison::comparePixels(pixel, values.defaultPixel);
+  for (int pixelNo = 0; pixelNo < 4; pixelNo++)
+    BitmapImageComparison::comparePixels(
+      pixelArray.at(pixelNo), values.defaultPixel);
 }
 
 TEST(PixelArrayTests, ShouldSetPixelInRGBPixelArray)
