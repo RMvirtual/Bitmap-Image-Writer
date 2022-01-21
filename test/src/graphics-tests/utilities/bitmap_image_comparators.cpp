@@ -55,3 +55,21 @@ void BitmapImageComparison::comparePixelArrayContents(
     EXPECT_EQ(pixel1Colours.red(), pixel2Colours.red());
   }
 }
+
+void BitmapImageComparison::isGreenPixel(Pixels::RGBPixel pixel)
+{
+  Pixels::RGBColours colours = pixel.colours();
+
+  EXPECT_EQ(colours.green(), 255);
+  EXPECT_EQ(colours.blue(), 0);
+  EXPECT_EQ(colours.red(), 0);
+}
+
+void BitmapImageComparison::isRedPixel(Pixels::RGBPixel pixel)
+{
+  Pixels::RGBColours colours = pixel.colours();
+
+  EXPECT_EQ(colours.green(), 0);
+  EXPECT_EQ(colours.blue(), 0);
+  EXPECT_EQ(colours.red(), 255);
+}

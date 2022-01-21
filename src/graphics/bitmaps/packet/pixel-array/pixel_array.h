@@ -10,7 +10,7 @@
 
 namespace Pixels
 {
-  template<PixelTypes T>
+  template <PixelTypes T = PixelTypes::RGB>
   class PixelArray
   {
   public:
@@ -46,27 +46,27 @@ namespace Pixels
 }
 
 template <Pixels::PixelTypes T>
-Pixels::PixelArray<T>::PixelArray()
+Pixels::PixelArray <T> ::PixelArray()
 {
   // pass.
 }
 
 template <Pixels::PixelTypes T>
-Pixels::PixelArray<T>::PixelArray(const Pixels::RGBPixelArrayValues& values)
+Pixels::PixelArray <T> ::PixelArray(const Pixels::RGBPixelArrayValues& values)
 {
   this->pixels = {
     values.widthInPixels, values.heightInPixels, values.defaultPixel};
 }
 
 template <Pixels::PixelTypes T>
-void Pixels::PixelArray<T>::set(
+void Pixels::PixelArray <T> ::set(
   const Pixels::RGBPixel& pixel, int rowNo, int columnNo)
 {
   this->pixels.set(pixel, rowNo, columnNo);
 }
 
 template <Pixels::PixelTypes T>
-void Pixels::PixelArray<T>::set(const Pixels::RGBPixel& pixel, int indexNo)
+void Pixels::PixelArray <T> ::set(const Pixels::RGBPixel& pixel, int indexNo)
 {
   this->pixels.set(pixel, indexNo);
 }
@@ -94,26 +94,26 @@ Pixels::PixelArray <Pixels::PixelTypes::RGBA> ::PixelArray()
   // pass.
 }
 
-Pixels::PixelArray<Pixels::PixelTypes::RGBA>::PixelArray(
+Pixels::PixelArray <Pixels::PixelTypes::RGBA> ::PixelArray(
   const Pixels::RGBAPixelArrayValues& values)
 {
   this->pixels = {
     values.widthInPixels, values.heightInPixels, values.defaultPixel};
 }
 
-void Pixels::PixelArray<Pixels::PixelTypes::RGBA>::set(
+void Pixels::PixelArray <Pixels::PixelTypes::RGBA> ::set(
   const Pixels::RGBAPixel& pixel, int rowNo, int columnNo)
 {
   this->pixels.set(pixel, rowNo, columnNo);
 }
 
-void Pixels::PixelArray<Pixels::PixelTypes::RGBA>::set(
+void Pixels::PixelArray <Pixels::PixelTypes::RGBA> ::set(
   const Pixels::RGBAPixel& pixel, int indexNo)
 {
   this->pixels.set(pixel, indexNo);
 }
 
-Pixels::RGBAPixel Pixels::PixelArray<Pixels::PixelTypes::RGBA>::at(
+Pixels::RGBAPixel Pixels::PixelArray <Pixels::PixelTypes::RGBA> ::at(
   int rowNo, int columnNo) const
 {
   return this->pixels.at(rowNo, columnNo);

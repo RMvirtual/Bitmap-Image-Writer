@@ -8,7 +8,7 @@
 #include "src/graphics/bitmaps/packet/pixel-array/rgb/rgb_colours.h"
 #include "src/graphics/bitmaps/packet/pixel-array/rgb/rgb_pixel_array_values.h"
 
-std::string BitmapSetUp::getBlueImagePath()
+std::string BitmapSetUp::blueImagePath()
 {
   return (
     "C:\\Users\\rmvir\\Desktop\\scc300-Win3D\\test\\resources\\"
@@ -16,17 +16,17 @@ std::string BitmapSetUp::getBlueImagePath()
   );
 }
 
-RGBBitmapPacket BitmapSetUp::setUpBlueBitmapPacket()
+RGBBitmapPacket BitmapSetUp::blueBitmapPacket()
 {
   RGBBitmapPacket packet;
-  packet.fileHeader = setUpBluePixelFileHeader();
-  packet.dibHeader = setUpBluePixelDibHeader();
-  packet.pixelArray = setUpBluePixelArray();
+  packet.fileHeader = bluePixelFileHeader();
+  packet.dibHeader = bluePixelDibHeader();
+  packet.pixelArray = bluePixelArray();
 
   return packet;
 }
 
-BitmapHeaders::FileHeader BitmapSetUp::setUpBluePixelFileHeader()
+BitmapHeaders::FileHeader BitmapSetUp::bluePixelFileHeader()
 {
   BitmapHeaders::FileHeader fileHeader;
 
@@ -38,7 +38,7 @@ BitmapHeaders::FileHeader BitmapSetUp::setUpBluePixelFileHeader()
   return fileHeader;
 }
 
-BitmapHeaders::DibHeader BitmapSetUp::setUpBluePixelDibHeader()
+BitmapHeaders::DibHeader BitmapSetUp::bluePixelDibHeader()
 {
   BitmapHeaders::DibHeader dibHeader {};
 
@@ -49,7 +49,7 @@ BitmapHeaders::DibHeader BitmapSetUp::setUpBluePixelDibHeader()
   return dibHeader;
 }
 
-Pixels::RGBColours BitmapSetUp::getBlueColours()
+Pixels::RGBColours BitmapSetUp::blueColours()
 {
   Pixels::RGBColours colours;
   colours.setRed(100);
@@ -59,12 +59,52 @@ Pixels::RGBColours BitmapSetUp::getBlueColours()
   return colours;
 }
 
-Pixels::RGBPixelArray BitmapSetUp::setUpBluePixelArray()
+Pixels::RGBPixelArray BitmapSetUp::bluePixelArray()
 {
   Pixels::RGBPixelArrayValues values {};
   values.widthInPixels = 512;
   values.heightInPixels = 512;
-  values.defaultPixel = {getBlueColours()};
+  values.defaultPixel = {blueColours()};
 
   return Pixels::RGBPixelArray {values};
+}
+
+Pixels::RGBColours BitmapSetUp::redColours()
+{
+  Pixels::RGBColours colours;
+  colours.setRed(255);
+  colours.setGreen(0);
+  colours.setBlue(0);
+
+  return colours;
+}
+
+Pixels::RGBColours BitmapSetUp::greenColours()
+{
+  Pixels::RGBColours colours;
+  colours.setRed(0);
+  colours.setGreen(255);
+  colours.setBlue(0);
+
+  return colours;
+}
+
+Pixels::RGBColours BitmapSetUp::whiteColours()
+{
+  Pixels::RGBColours colours;
+  colours.setRed(255);
+  colours.setGreen(255);
+  colours.setBlue(255);
+
+  return colours;
+}
+
+Pixels::RGBPixelArray BitmapSetUp::redPixelArray()
+{
+  Pixels::RGBPixelArrayValues values;
+  values.widthInPixels = 2;
+  values.heightInPixels = 2;
+  values.defaultPixel = {BitmapSetUp::redColours()};
+
+  return {values};
 }

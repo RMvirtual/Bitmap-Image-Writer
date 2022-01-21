@@ -11,15 +11,16 @@
 
 namespace BitmapSetUp
 {
-  RGBBitmapPacket setUpBlueBitmapPacket();
-  BitmapHeaders::FileHeader setUpBluePixelFileHeader();
-  BitmapHeaders::DibHeader setUpBluePixelDibHeader();
-  Pixels::RGBPixelArray setUpBluePixelArray();
-  std::string getBlueImagePath();
-  Pixels::RGBColours getWhiteColours();
-  Pixels::RGBColours getGreenColours();
-  Pixels::RGBColours getRedColours();
-  Pixels::RGBColours getBlueColours();
+  std::string blueImagePath();
+  RGBBitmapPacket blueBitmapPacket();
+  BitmapHeaders::FileHeader bluePixelFileHeader();
+  BitmapHeaders::DibHeader bluePixelDibHeader();
+  Pixels::RGBPixelArray bluePixelArray();
+  Pixels::RGBPixelArray redPixelArray();
+  Pixels::RGBColours whiteColours();
+  Pixels::RGBColours greenColours();
+  Pixels::RGBColours redColours();
+  Pixels::RGBColours blueColours();
 }
 
 #endif

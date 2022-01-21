@@ -5,90 +5,53 @@
 #include "src/graphics/bitmaps/packet/pixel-array/size-calculator/pixel_array_size_calculator.h"
 #include "src/graphics/bitmaps/packet/pixel-array/rgb/rgb_pixel_array_values.h"
 #include "src/graphics/bitmaps/packet/pixel-array/pixel_array.h"
+#include "test/src/graphics-tests/utilities/bitmap_set_up.h"
+#include "test/src/graphics-tests/utilities/bitmap_image_comparators.h"
 
-Pixels::RGBColours getRedColours()
-{
-  Pixels::RGBColours colours;
-  colours.setRed(255);
-  colours.setGreen(0);
-  colours.setBlue(0);
-
-  return colours;
-}
-
-Pixels::RGBColours getGreenColours()
-{
-  Pixels::RGBColours colours;
-  colours.setRed(0);
-  colours.setGreen(255);
-  colours.setBlue(0);
-
-  return colours;
-}
-
-Pixels::RGBColours getWhiteColours()
-{
-  Pixels::RGBColours colours;
-  colours.setRed(255);
-  colours.setGreen(255);
-  colours.setBlue(255);
-
-  return colours;
-}
-
-void isGreenPixel(Pixels::RGBPixel pixel)
-{
-  Pixels::RGBColours colours = pixel.colours();
-
-  EXPECT_EQ(colours.green(), 255);
-  EXPECT_EQ(colours.blue(), 0);
-  EXPECT_EQ(colours.red(), 0);
-}
-
-void isRedPixel(Pixels::RGBPixel pixel)
-{
-  Pixels::RGBColours colours = pixel.colours();
-
-  EXPECT_EQ(colours.green(), 0);
-  EXPECT_EQ(colours.blue(), 0);
-  EXPECT_EQ(colours.red(), 255);
-}
-
-Pixels::RGBPixelArray getRedPixelArray()
+TEST(PixelArrayTests, ShouldCreateRGBPixelArray)
 {
   Pixels::RGBPixelArrayValues values;
+
   values.widthInPixels = 2;
   values.heightInPixels = 2;
-  values.defaultPixel = {getRedColours()};
+  values.defaultPixel = BitmapSetUp::redColours();
 
-  return {values};
-}
-
-TEST(PixelArrayTests, ShouldCreateNewPixelArray)
-{
-  Pixels::PixelArray<Pixels::PixelTypes::RGB> rgbPixelArray;
+  Pixels::PixelArray<> pixelArray {values};
   
+  auto pixel1 = pixelArray.at(0);
+  auto pixel2 = pixelArray.at(1);
+  auto pixel3 = pixelArray.at(2);
+  auto pixel4 = pixelArray.at(3);
+
+  std::vector<Pixels::RGBPixel> pixelsToTest {
+    pixel1, pixel2, pixel3, pixel4};
+
+  for (auto pixel : pixelsToTest) {
+    EXPECT_EQ(values.defaultPixel.colours().blue(), pixel.colours().blue());
+    EXPECT_EQ(values.defaultPixel.colours().red(), pixel.colours().red());
+    EXPECT_EQ(values.defaultPixel.colours().green(), pixel.colours().green());
+  }
 }
 
 TEST(PixelArrayTests, ShouldSetPixelInPixelArray)
 {
-  Pixels::RGBPixelArray pixelArray = getRedPixelArray();
-  Pixels::RGBColours greenColours = getGreenColours();
+  Pixels::RGBPixelArray pixelArray = BitmapSetUp::redPixelArray();
+  Pixels::RGBColours greenColours = BitmapSetUp::greenColours();
   Pixels::RGBPixel greenPixel {greenColours};
   
   for (int rowNo = 0; rowNo < 2; rowNo++)
     for (int columnNo = 0; columnNo < 2; columnNo++)
-      isRedPixel(pixelArray.at(rowNo, columnNo));
+      BitmapImageComparison::isRedPixel(pixelArray.at(rowNo, columnNo));
 
   pixelArray.set(greenPixel, 1, 0);
 
   Pixels::RGBPixel modifiedPixel = pixelArray.at(1, 0);
-  isGreenPixel(modifiedPixel);
+  BitmapImageComparison::isGreenPixel(modifiedPixel);
 }
 
 TEST(PixelArrayTests, ShouldGetNumberOfPixelsInPixelArray)
 {
-  Pixels::RGBPixelArray pixelArray = getRedPixelArray();
+  Pixels::RGBPixelArray pixelArray = BitmapSetUp::redPixelArray();
 
   int correctNumberOfPixels = 4;
   int actualNumberOfPixels = pixelArray.sizeInPixels();
