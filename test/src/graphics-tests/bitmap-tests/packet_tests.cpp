@@ -8,10 +8,9 @@
 #include "test/src/graphics-tests/utilities/bitmap_set_up.h"
 #include "test/src/graphics-tests/utilities/bitmap_image_comparators.h"
 
-TEST(PixelArrayTests, ShouldCreateRGBPixelArray)
+TEST(PixelArrayTests, ShouldCreateRGBTemplatePixelArray)
 {
   Pixels::RGBPixelArrayValues values;
-
   values.widthInPixels = 2;
   values.heightInPixels = 2;
   values.defaultPixel = {BitmapSetUp::redColours()};
@@ -23,20 +22,13 @@ TEST(PixelArrayTests, ShouldCreateRGBPixelArray)
       pixelArray.at(pixelNo), values.defaultPixel);
 }
 
-TEST(PixelArrayTests, ShouldSetPixelInRGBPixelArray)
+TEST(PixelArrayTests, ShouldSetPixelInRGBTemplatePixelArray)
 {
   Pixels::RGBPixelArray pixelArray = BitmapSetUp::redPixelArray();
-  Pixels::RGBColours greenColours = BitmapSetUp::greenColours();
-  Pixels::RGBPixel greenPixel {greenColours};
-  
-  for (int rowNo = 0; rowNo < 2; rowNo++)
-    for (int columnNo = 0; columnNo < 2; columnNo++)
-      BitmapImageComparison::isRedPixel(pixelArray.at(rowNo, columnNo));
-
+  Pixels::RGBPixel greenPixel = BitmapSetUp::greenRGBPixel();  
   pixelArray.set(greenPixel, 1, 0);
-
-  Pixels::RGBPixel modifiedPixel = pixelArray.at(1, 0);
-  BitmapImageComparison::isGreenPixel(modifiedPixel);
+  
+  BitmapImageComparison::comparePixels(greenPixel, pixelArray.at(1, 0));
 }
 
 TEST(PixelArrayTests, ShouldSetPixelInPixelArray)

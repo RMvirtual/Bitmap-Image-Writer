@@ -17,6 +17,7 @@ namespace BitmapSetUp
   BitmapHeaders::DibHeader bluePixelDibHeader();
   Pixels::RGBPixelArray bluePixelArray();
   Pixels::RGBPixelArray redPixelArray();
+  Pixels::RGBPixel greenRGBPixel();
   Pixels::RGBColours whiteColours();
   Pixels::RGBColours greenColours();
   Pixels::RGBColours redColours();

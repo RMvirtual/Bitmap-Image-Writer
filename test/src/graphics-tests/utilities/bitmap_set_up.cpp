@@ -69,6 +69,13 @@ Pixels::RGBPixelArray BitmapSetUp::bluePixelArray()
   return Pixels::RGBPixelArray {values};
 }
 
+Pixels::RGBPixel BitmapSetUp::greenRGBPixel()
+{
+  auto greenColours = BitmapSetUp::greenColours();
+  
+  return {greenColours};
+}
+
 Pixels::RGBColours BitmapSetUp::redColours()
 {
   Pixels::RGBColours colours;
