@@ -28,6 +28,14 @@ namespace BitmapImageComparison
     const Pixels::RGBPixelArray& pixelArray1,
     const Pixels::RGBPixelArray& pixelArray2);
 
+  void comparePixels(
+    const Pixels::RGBPixel& pixel1,
+    const Pixels::RGBPixel& pixel2);
+
+  void compareColours(
+    const Pixels::RGBColours& colours1,
+    const Pixels::RGBColours& colours2);
+
   void isGreenPixel(Pixels::RGBPixel pixel);
   void isRedPixel(Pixels::RGBPixel pixel);
 }

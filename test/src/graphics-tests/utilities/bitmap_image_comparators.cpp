@@ -56,6 +56,20 @@ void BitmapImageComparison::comparePixelArrayContents(
   }
 }
 
+void BitmapImageComparison::comparePixels(
+  const Pixels::RGBPixel& pixel1, const Pixels::RGBPixel& pixel2)
+{
+  BitmapImageComparison::compareColours(pixel1.colours(), pixel2.colours());
+}
+
+void BitmapImageComparison::compareColours(
+  const Pixels::RGBColours& colours1, const Pixels::RGBColours& colours2)
+{
+  EXPECT_EQ(colours1.blue(), colours2.blue());
+  EXPECT_EQ(colours1.red(), colours2.red());
+  EXPECT_EQ(colours1.green(), colours2.green());
+}
+
 void BitmapImageComparison::isGreenPixel(Pixels::RGBPixel pixel)
 {
   Pixels::RGBColours colours = pixel.colours();

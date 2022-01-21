@@ -14,7 +14,7 @@ TEST(PixelArrayTests, ShouldCreateRGBPixelArray)
 
   values.widthInPixels = 2;
   values.heightInPixels = 2;
-  values.defaultPixel = BitmapSetUp::redColours();
+  values.defaultPixel = {BitmapSetUp::redColours()};
 
   Pixels::PixelArray<> pixelArray {values};
   
@@ -26,11 +26,24 @@ TEST(PixelArrayTests, ShouldCreateRGBPixelArray)
   std::vector<Pixels::RGBPixel> pixelsToTest {
     pixel1, pixel2, pixel3, pixel4};
 
-  for (auto pixel : pixelsToTest) {
-    EXPECT_EQ(values.defaultPixel.colours().blue(), pixel.colours().blue());
-    EXPECT_EQ(values.defaultPixel.colours().red(), pixel.colours().red());
-    EXPECT_EQ(values.defaultPixel.colours().green(), pixel.colours().green());
-  }
+  for (auto pixel : pixelsToTest)
+    BitmapImageComparison::comparePixels(pixel, values.defaultPixel);
+}
+
+TEST(PixelArrayTests, ShouldSetPixelInRGBPixelArray)
+{
+  Pixels::RGBPixelArray pixelArray = BitmapSetUp::redPixelArray();
+  Pixels::RGBColours greenColours = BitmapSetUp::greenColours();
+  Pixels::RGBPixel greenPixel {greenColours};
+  
+  for (int rowNo = 0; rowNo < 2; rowNo++)
+    for (int columnNo = 0; columnNo < 2; columnNo++)
+      BitmapImageComparison::isRedPixel(pixelArray.at(rowNo, columnNo));
+
+  pixelArray.set(greenPixel, 1, 0);
+
+  Pixels::RGBPixel modifiedPixel = pixelArray.at(1, 0);
+  BitmapImageComparison::isGreenPixel(modifiedPixel);
 }
 
 TEST(PixelArrayTests, ShouldSetPixelInPixelArray)
