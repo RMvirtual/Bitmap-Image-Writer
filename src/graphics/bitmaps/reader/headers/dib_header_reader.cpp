@@ -26,68 +26,68 @@ BitmapHeaders::DibHeader BitmapReader::DibHeaderReader::convertBytes(
 
 void BitmapReader::DibHeaderReader::parseWidthInPixels(const ByteArray& bytes)
 {
-  uint32_t widthInPixels = ByteConversion::convertTo32BitInt(bytes, 4);
+  uint32_t widthInPixels = ByteConversion::to32BitInt(bytes, 4);
   this->header.setWidthInPixels(widthInPixels);
 }
 
 void BitmapReader::DibHeaderReader::parseHeightInPixels(const ByteArray& bytes)
 {
-  int32_t heightInPixels = ByteConversion::convertTo32BitInt(bytes, 8);
+  int32_t heightInPixels = ByteConversion::to32BitInt(bytes, 8);
   this->header.setHeightInPixels(heightInPixels);
 }
 
 void BitmapReader::DibHeaderReader::parseNumberOfColourPlanes(
   const ByteArray& bytes)
 {
-  uint16_t numberOfColorPlanes = ByteConversion::convertTo16BitInt(bytes, 12);
+  uint16_t numberOfColorPlanes = ByteConversion::to16BitInt(bytes, 12);
   this->header.setNumberOfColourPlanes(numberOfColorPlanes);
 }
 
 void BitmapReader::DibHeaderReader::parseColourDepth(
   const ByteArray& bytes)
 {
-  uint16_t colourDepth = ByteConversion::convertTo16BitInt(bytes, 14);
+  uint16_t colourDepth = ByteConversion::to16BitInt(bytes, 14);
   this->header.setBitsPerPixel(colourDepth);
 }
 
 void BitmapReader::DibHeaderReader::parseCompressionMethod(
   const ByteArray& bytes)
 {
-  uint32_t compressionMethod = ByteConversion::convertTo32BitInt(bytes, 16);
+  uint32_t compressionMethod = ByteConversion::to32BitInt(bytes, 16);
   this->header.setCompressionMethod(compressionMethod);
 }
 
 void BitmapReader::DibHeaderReader::parseRawBitmapDataSize(
   const ByteArray& bytes)
 {
-  uint32_t rawBitmapDataSize = ByteConversion::convertTo32BitInt(bytes, 20);
+  uint32_t rawBitmapDataSize = ByteConversion::to32BitInt(bytes, 20);
   this->header.setSizeOfPixelArray(rawBitmapDataSize);
 }
 
 void BitmapReader::DibHeaderReader::parseHorizontalResolution(
   const ByteArray& bytes)
 {
-  int32_t resolution = ByteConversion::convertTo32BitInt(bytes, 24);
+  int32_t resolution = ByteConversion::to32BitInt(bytes, 24);
   this->header.setHorizontalResolution(resolution);
 }
 
 void BitmapReader::DibHeaderReader::parseVerticalResolution(
   const ByteArray& bytes)
 {
-  int32_t resolution = ByteConversion::convertTo32BitInt(bytes, 28);
+  int32_t resolution = ByteConversion::to32BitInt(bytes, 28);
   this->header.setVerticalResolution(resolution);
 }
 
 void BitmapReader::DibHeaderReader::parseColourTableEntries(
   const ByteArray& bytes)
 {
-  uint32_t colourTableEntries = ByteConversion::convertTo32BitInt(bytes, 32);
+  uint32_t colourTableEntries = ByteConversion::to32BitInt(bytes, 32);
   this->header.setColorTableEntries(colourTableEntries);
 }
 
 void BitmapReader::DibHeaderReader::parseImportantColours(
   const ByteArray& bytes)
 {
-  uint32_t importantColors = ByteConversion::convertTo32BitInt(bytes, 36);
+  uint32_t importantColors = ByteConversion::to32BitInt(bytes, 36);
   this->header.setImportantColours(importantColors);
 }

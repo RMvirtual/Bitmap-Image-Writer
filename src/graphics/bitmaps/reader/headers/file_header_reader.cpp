@@ -27,20 +27,20 @@ void BitmapReader::FileHeaderReader::parseSignatureBytes(
 void BitmapReader::FileHeaderReader::parseSizeOfBitmapFile(
   const ByteArray& bytes)
 {
-  uint32_t sizeOfBitmapFile = ByteConversion::convertTo32BitInt(bytes, 2);
+  uint32_t sizeOfBitmapFile = ByteConversion::to32BitInt(bytes, 2);
   this->fileHeader.setFileSizeInBytes(sizeOfBitmapFile);
 }
 
 void BitmapReader::FileHeaderReader::parseReservedBytes(
   const ByteArray& bytes)
 {
-  uint32_t reservedBytes = ByteConversion::convertTo32BitInt(bytes, 6);
+  uint32_t reservedBytes = ByteConversion::to32BitInt(bytes, 6);
   this->fileHeader.setReservedBytes(reservedBytes);
 }
 
 void BitmapReader::FileHeaderReader::parsePixelDataOffset(
   const ByteArray& bytes)
 {
-  uint32_t pixelDataOffset = ByteConversion::convertTo32BitInt(bytes, 10);
+  uint32_t pixelDataOffset = ByteConversion::to32BitInt(bytes, 10);
   this->fileHeader.setPixelArrayOffsetInBytes(pixelDataOffset);
 }

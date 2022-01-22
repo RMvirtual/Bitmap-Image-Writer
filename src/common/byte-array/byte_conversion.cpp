@@ -1,7 +1,7 @@
 #include "src/common/byte-array/byte_conversion.h"
 #include "src/common/byte-array/byte_array.h"
 
-ByteArray ByteConversion::convertToBytes(unsigned int value, int lengthInBytes)
+ByteArray ByteConversion::toBytes(unsigned int value, int lengthInBytes)
 {
   ByteArray bytes {};
 
@@ -14,7 +14,7 @@ ByteArray ByteConversion::convertToBytes(unsigned int value, int lengthInBytes)
   return bytes;
 }
 
-uint16_t ByteConversion::convertTo16BitInt(const ByteArray& bytes)
+uint16_t ByteConversion::to16BitInt(const ByteArray& bytes)
 {
   ByteConversion::ValueUnion values {};
 
@@ -24,15 +24,15 @@ uint16_t ByteConversion::convertTo16BitInt(const ByteArray& bytes)
   return values.twoByteValue;
 }
 
-uint16_t ByteConversion::convertTo16BitInt(
+uint16_t ByteConversion::to16BitInt(
   const ByteArray& bytes, int startingIndex)
 {
   auto twoBytes = bytes.slice(startingIndex, startingIndex + 2);
   
-  return ByteConversion::convertTo16BitInt(twoBytes);
+  return ByteConversion::to16BitInt(twoBytes);
 }
 
-uint32_t ByteConversion::convertTo32BitInt(const ByteArray& bytes)
+uint32_t ByteConversion::to32BitInt(const ByteArray& bytes)
 {
   ByteConversion::ValueUnion valueConverter {};
 
@@ -42,10 +42,9 @@ uint32_t ByteConversion::convertTo32BitInt(const ByteArray& bytes)
   return valueConverter.fourByteValue;
 }
 
-uint32_t ByteConversion::convertTo32BitInt(
-  const ByteArray& bytes, int startingIndex)
+uint32_t ByteConversion::to32BitInt(const ByteArray& bytes, int startingIndex)
 {
   auto fourBytes = bytes.slice(startingIndex, startingIndex + 4);
    
-  return ByteConversion::convertTo32BitInt(fourBytes);
+  return ByteConversion::to32BitInt(fourBytes);
 }

@@ -6,11 +6,11 @@
 
 namespace ByteConversion
 {
-  ByteArray convertToBytes(unsigned int value, int lengthInBytes);
-  uint32_t convertTo32BitInt(const ByteArray& bytes, int startingIndex);
-  uint16_t convertTo16BitInt(const ByteArray& bytes, int startingIndex);
-  uint32_t convertTo32BitInt(const ByteArray& bytes);
-  uint16_t convertTo16BitInt(const ByteArray& bytes);
+  ByteArray toBytes(unsigned int value, int lengthInBytes);
+  uint32_t to32BitInt(const ByteArray& bytes, int startingIndex);
+  uint16_t to16BitInt(const ByteArray& bytes, int startingIndex);
+  uint32_t to32BitInt(const ByteArray& bytes);
+  uint16_t to16BitInt(const ByteArray& bytes);
   
   union ValueUnion {
     uint32_t fourByteValue;

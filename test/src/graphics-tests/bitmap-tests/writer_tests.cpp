@@ -6,13 +6,13 @@
 
 void testFourBytesAgainstValue(uint32_t intValue, ByteArray bytes)
 {
-  uint32_t bytesValue = ByteConversion::convertTo32BitInt(bytes);
+  uint32_t bytesValue = ByteConversion::to32BitInt(bytes);
   EXPECT_EQ(intValue, bytesValue);
 }
 
 void testTwoBytesAgainstValue(uint16_t intValue, ByteArray bytes)
 {
-  uint16_t bytesValue = ByteConversion::convertTo16BitInt(bytes);
+  uint16_t bytesValue = ByteConversion::to16BitInt(bytes);
   EXPECT_EQ(intValue, bytesValue);
 }
 

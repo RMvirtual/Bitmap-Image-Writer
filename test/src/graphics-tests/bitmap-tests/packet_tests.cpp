@@ -17,7 +17,6 @@ TEST(PixelArrayTests, ShouldCreateRGBTemplatePixelArray)
   for (int pixelNo = 0; pixelNo < 4; pixelNo++)
     BitmapImageComparison::comparePixels(
       pixelArray.at(pixelNo), correctPixel);
-
 }
 
 TEST(PixelArrayTests, ShouldSetPixelInRGBTemplatePixelArray)

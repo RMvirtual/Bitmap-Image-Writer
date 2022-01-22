@@ -5,7 +5,7 @@
 
 ByteArray::ByteArray()
 {
-  this->bytes = {};
+  // pass.
 }
 
 void ByteArray::add(unsigned char value)
@@ -21,37 +21,37 @@ void ByteArray::add(const unsigned char* values, int numberOfBytes)
 
 void ByteArray::add(uint16_t value)
 { 
-  auto newBytes = ByteConversion::convertToBytes(value, 2);
+  auto newBytes = ByteConversion::toBytes(value, 2);
   this->add(newBytes);
 }
 
 void ByteArray::add(uint32_t value)
 {
-  auto newBytes = ByteConversion::convertToBytes(value, 4);
+  auto newBytes = ByteConversion::toBytes(value, 4);
   this->add(newBytes);
 }
 
 void ByteArray::add(char value)
 {
-  auto newBytes = ByteConversion::convertToBytes(value, 1);
+  auto newBytes = ByteConversion::toBytes(value, 1);
   this->add(newBytes);
 }
 
 void ByteArray::add(int8_t value)
 {
-  auto newBytes = ByteConversion::convertToBytes(value, 1);
+  auto newBytes = ByteConversion::toBytes(value, 1);
   this->add(newBytes);
 }
 
 void ByteArray::add(int16_t value)
 {
-  auto newBytes = ByteConversion::convertToBytes(value, 2);
+  auto newBytes = ByteConversion::toBytes(value, 2);
   this->add(newBytes);
 }
 
 void ByteArray::add(int32_t value)
 {
-  auto newBytes = ByteConversion::convertToBytes(value, 4);
+  auto newBytes = ByteConversion::toBytes(value, 4);
   this->add(newBytes);
 }
 
@@ -78,7 +78,7 @@ void ByteArray::add(const std::vector<uint8_t>& bytes)
     this->bytes.push_back(byte);
 }
 
-uint8_t ByteArray::operator [](int index) const
+uint8_t ByteArray::operator [] (int index) const
 {
   return this->bytes[index];
 }
