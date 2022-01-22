@@ -5,9 +5,10 @@
 #include "src/graphics/bitmaps/packet/bitmap_packet.h"
 #include "src/graphics/bitmaps/packet/headers/file-header/file_header.h"
 #include "src/graphics/bitmaps/packet/headers/dib-header/dib_header.h"
-#include "src/graphics/bitmaps/packet/pixel-array/colours/rgb.h"
+#include "src/graphics/bitmaps/packet/pixel-array/rgb/colours.h"
 #include "test/src/graphics-tests/utilities/bitmap_image_comparators.h"
-#include "src/graphics/bitmaps/packet/pixel-array/pixel_array.h"
+#include "src/graphics/bitmaps/packet/pixel-array/rgb/pixel_array.h"
+#include "src/graphics/bitmaps/packet/pixel-array/rgb/pixel.h"
 
 namespace BitmapSetUp
 {
@@ -15,9 +16,9 @@ namespace BitmapSetUp
   BitmapPacket blueBitmapPacket();
   BitmapHeaders::FileHeader bluePixelFileHeader();
   BitmapHeaders::DibHeader bluePixelDibHeader();
-  Pixels::PixelArray<Pixels::Pixel<Pixels::RGBColours>> bluePixelArray();
-  Pixels::PixelArray <Pixels::Pixel<Pixels::RGBColours>> redPixelArray();
-  Pixels::Pixel<Pixels::RGBColours> greenRGBPixel();
+  Pixels::RGBPixelArray bluePixelArray();
+  Pixels::RGBPixelArray redPixelArray();
+  Pixels::RGBPixel greenRGBPixel();
   Pixels::RGBColours whiteColours();
   Pixels::RGBColours greenColours();
   Pixels::RGBColours redColours();

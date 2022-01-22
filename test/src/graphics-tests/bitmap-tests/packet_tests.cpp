@@ -4,21 +4,20 @@
 #include "src/graphics/bitmaps/packet/pixel-array/pixel_array.h"
 #include "test/src/graphics-tests/utilities/bitmap_set_up.h"
 #include "test/src/graphics-tests/utilities/bitmap_image_comparators.h"
-#include "src/graphics/bitmaps/packet/pixel-array/colours/rgb.h"
-#include "src/graphics/bitmaps/packet/pixel-array/pixel.h"
+#include "src/graphics/bitmaps/packet/pixel-array/rgb/colours.h"
+#include "src/graphics/bitmaps/packet/pixel-array/rgb/pixel.h"
+#include "src/graphics/bitmaps/packet/pixel-array/pixel_array_factory.h"
 
 TEST(PixelArrayTests, ShouldCreateRGBTemplatePixelArray)
 {
-  Pixels::PixelArrayValues<Pixels::Pixel<Pixels::RGBColours>> values;
-  values.widthInPixels = 2;
-  values.heightInPixels = 2;
-  values.defaultPixel = {BitmapSetUp::redColours()};
+  auto pixelArray = BitmapSetUp::redPixelArray();
 
-  Pixels::PixelArray<Pixels::Pixel<Pixels::RGBColours>> pixelArray {values};
+  Pixels::PixelArrayFactory factory {};
+  auto correctPixel = factory.rgbPixel(BitmapSetUp::redColours());
   
   for (int pixelNo = 0; pixelNo < 4; pixelNo++)
     BitmapImageComparison::comparePixels(
-      pixelArray.at(pixelNo), values.defaultPixel);
+      pixelArray.at(pixelNo), correctPixel);
 }
 
 TEST(PixelArrayTests, ShouldSetPixelInRGBTemplatePixelArray)

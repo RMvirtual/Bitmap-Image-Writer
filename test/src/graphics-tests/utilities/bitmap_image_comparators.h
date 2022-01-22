@@ -4,9 +4,9 @@
 #include <gtest/gtest.h>
 #include "src/graphics/bitmaps/packet/headers/file-header/file_header.h"
 #include "src/graphics/bitmaps/packet/headers/dib-header/dib_header.h"
-#include "src/graphics/bitmaps/packet/pixel-array/pixel_array.h"
-#include "src/graphics/bitmaps/packet/pixel-array/pixel.h"
-#include "src/graphics/bitmaps/packet/pixel-array/colours/rgb.h"
+#include "src/graphics/bitmaps/packet/pixel-array/rgb/pixel_array.h"
+#include "src/graphics/bitmaps/packet/pixel-array/rgb/pixel.h"
+#include "src/graphics/bitmaps/packet/pixel-array/rgb/colours.h"
 
 namespace BitmapImageComparison
 {
@@ -21,13 +21,13 @@ namespace BitmapImageComparison
   );
   
   void comparePixelArrays(
-    const Pixels::PixelArray <Pixels::Pixel<Pixels::RGBColours>>& pixelArray1,
-    const Pixels::PixelArray <Pixels::Pixel<Pixels::RGBColours>>& pixelArray2
+    const Pixels::RGBPixelArray& pixelArray1,
+    const Pixels::RGBPixelArray& pixelArray2
   );
 
   void comparePixels(
-    const Pixels::Pixel<Pixels::RGBColours>& pixel1,
-    const Pixels::Pixel<Pixels::RGBColours>& pixel2
+    const Pixels::RGBPixel& pixel1,
+    const Pixels::RGBPixel& pixel2
   );
 
   void compareColours(
@@ -35,8 +35,8 @@ namespace BitmapImageComparison
     const Pixels::RGBColours& colours2
   );
 
-  void isGreenPixel(Pixels::Pixel<Pixels::RGBColours>& pixel);
-  void isRedPixel(Pixels::Pixel<Pixels::RGBColours>& pixel);
+  void isGreenPixel(const Pixels::RGBPixel& pixel);
+  void isRedPixel(const Pixels::RGBPixel& pixel);
 }
 
 #endif
