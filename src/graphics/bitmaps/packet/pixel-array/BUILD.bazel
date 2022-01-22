@@ -1,9 +1,9 @@
 cc_library(
     name = "bitmap_packet_pixel_array",
     hdrs = [
-        "pixel.h",
-        "pixel_array_values.h",
-        "pixel_array.h",
+        "templates/pixel.h",
+        "templates/pixel_array_values.h",
+        "templates/pixel_array.h",
         "rgb/pixel_array.h",
         "rgb/pixel_array_values.h",
         "rgb/pixel.h",

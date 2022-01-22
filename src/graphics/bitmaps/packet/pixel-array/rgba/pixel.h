@@ -1,7 +1,7 @@
 #ifndef RGBA_PIXEL_H
 #define RGBA_PIXEL_H
 
-#include "src/graphics/bitmaps/packet/pixel-array/pixel.h"
+#include "src/graphics/bitmaps/packet/pixel-array/templates/pixel.h"
 #include "src/graphics/bitmaps/packet/pixel-array/rgba/colours.h"
 
 namespace Pixels {
