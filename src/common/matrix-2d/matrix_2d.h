@@ -33,10 +33,8 @@ private:
 template <class T>
 Common::Matrix2D<T>::Matrix2D(int width, int height, const T& defaultValue)
 {
-  for (int rowNo = 0; rowNo < height; rowNo++) {
-    auto newRow = MatrixRow<T> {width, defaultValue};
-    this->rows.push_back(newRow);
-  }
+  for (int rowNo = 0; rowNo < height; rowNo++)
+    this->rows.push_back({width, defaultValue});
 
   this->_width = width;
   this->_height = height;  
