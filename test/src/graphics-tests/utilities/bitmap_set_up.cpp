@@ -7,7 +7,6 @@
 #include "src/graphics/bitmaps/packet/pixel-array/rgb/pixel_array.h"
 #include "src/graphics/bitmaps/packet/pixel-array/rgb/pixel.h"
 #include "src/graphics/bitmaps/packet/pixel-array/rgb/pixel_array_values.h"
-#include "src/graphics/bitmaps/packet/pixel-array/pixel_array_factory.h"
 
 std::string BitmapSetUp::blueImagePath()
 {
@@ -52,33 +51,27 @@ BitmapHeaders::DibHeader BitmapSetUp::bluePixelDibHeader()
 
 Pixels::RGBPixelArray BitmapSetUp::bluePixelArray()
 {
-  Pixels::PixelArrayFactory factory {};
+  Pixels::RGBPixelArrayValues values;
+  values.widthInPixels = 512;
+  values.heightInPixels = 512;
+  values.defaultPixel = {BitmapSetUp::blueColours()};
 
-  return factory.rgbPixelArray(512, 512, BitmapSetUp::blueColours());
+  return {values};
 }
 
 Pixels::RGBPixelArray BitmapSetUp::redPixelArray()
 {
-  Pixels::PixelArrayFactory factory {};
+  Pixels::RGBPixelArrayValues values;
+  values.widthInPixels = 2;
+  values.heightInPixels = 2;
+  values.defaultPixel = {BitmapSetUp::redColours()};
 
-  return factory.rgbPixelArray(2, 2, BitmapSetUp::redColours());
-}
-
-Pixels::RGBColours BitmapSetUp::blueColours()
-{
-  Pixels::RGBColours colours;
-  colours.red = 100;
-  colours.green = 255;
-  colours.blue = 255;
-
-  return colours;
+  return {values};
 }
 
 Pixels::RGBPixel BitmapSetUp::greenRGBPixel()
 {
-  auto greenColours = BitmapSetUp::greenColours();
-
-  return {greenColours};
+  return {BitmapSetUp::greenColours()};
 }
 
 Pixels::RGBColours BitmapSetUp::redColours()
@@ -97,6 +90,16 @@ Pixels::RGBColours BitmapSetUp::greenColours()
   colours.red = 0;
   colours.green = 255;
   colours.blue = 0;
+
+  return colours;
+}
+
+Pixels::RGBColours BitmapSetUp::blueColours()
+{
+  Pixels::RGBColours colours;
+  colours.red = 100;
+  colours.green = 255;
+  colours.blue = 255;
 
   return colours;
 }

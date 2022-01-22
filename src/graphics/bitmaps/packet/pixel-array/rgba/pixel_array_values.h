@@ -7,7 +7,7 @@
 
 namespace Pixels
 {
-  struct RGBAPixelArrayValues : public Pixel<RGBAPixel>
+  struct RGBAPixelArrayValues : public PixelArrayValues<RGBAPixel>
   {
     
   };

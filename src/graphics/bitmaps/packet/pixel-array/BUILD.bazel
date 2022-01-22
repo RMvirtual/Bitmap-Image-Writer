@@ -4,7 +4,6 @@ cc_library(
         "pixel.h",
         "pixel_array_values.h",
         "pixel_array.h",
-        "pixel_array_factory.h",
         "rgb/pixel_array.h",
         "rgb/pixel_array_values.h",
         "rgb/pixel.h",
@@ -20,8 +19,7 @@ cc_library(
         "rgb/pixel.cpp",
         "rgba/pixel_array.cpp",
         "rgba/pixel.cpp",
-        "size-calculator/pixel_array_size_calculator.cpp",
-        "pixel_array_factory.cpp"
+        "size-calculator/pixel_array_size_calculator.cpp"
     ],
     deps = ["//src/common:common"],
     visibility = ["//visibility:public"],

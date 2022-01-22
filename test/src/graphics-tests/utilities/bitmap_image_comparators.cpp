@@ -1,4 +1,5 @@
 #include <gtest/gtest.h>
+#include <iostream>
 
 #include "test/src/graphics-tests/utilities/bitmap_image_comparators.h"
 #include "src/graphics/bitmaps/packet/pixel-array/rgb/colours.h"
