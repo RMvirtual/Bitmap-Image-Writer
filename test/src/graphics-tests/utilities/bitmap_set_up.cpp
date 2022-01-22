@@ -45,6 +45,7 @@ BitmapHeaders::DibHeader BitmapSetUp::bluePixelDibHeader()
   dibHeader.setWidthInPixels(512);
   dibHeader.setHeightInPixels(512);
   dibHeader.setNumberOfColourPlanes(1);
+  dibHeader.setBitsPerPixel(24);
 
   return dibHeader;
 }

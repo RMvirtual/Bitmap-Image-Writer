@@ -39,7 +39,7 @@ void BitmapHeaders::DibHeader::initialiseDefaultValues()
   this->_widthInPixels = 0;
   this->_heightInPixels = 0;
   this->_numberOfColorPlanes = 1; 
-  this->_bitsPerPixel = 24; 
+  this->_bitsPerPixel = 32; 
   this->_compressionMethod = 0;  
   this->_sizeOfPixelArray = 0;
   this->_horizontalResolution = 0;
