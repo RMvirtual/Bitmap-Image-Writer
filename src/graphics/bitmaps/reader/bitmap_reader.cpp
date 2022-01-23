@@ -5,6 +5,7 @@
 #include "src/graphics/bitmaps/reader/headers/file_header_reader.h"
 #include "src/graphics/bitmaps/reader/headers/dib_header_reader.h"
 #include "src/graphics/bitmaps/reader/pixel-array/pixel_array_reader.h"
+#include "src/graphics/bitmaps/packet/headers/bitmap_headers.h"
 
 BitmapReader::ImageReader::ImageReader()
 {
@@ -48,11 +49,31 @@ void BitmapReader::ImageReader::processIntoDibHeader(const ByteArray& bytes)
 
 void BitmapReader::ImageReader::processIntoPixelArray(const ByteArray& bytes)
 {
-  auto config = BitmapReader::PixelArrayReaderConfig::fromHeaders(
-    this->packet.fileHeader, this->packet.dibHeader);
-
-  PixelArrayReader reader {config};
- 
   auto pixelArrayBytes = bytes.slice(54, bytes.size());
-  this->packet.pixelArray = reader.bytesToRGBPixels(pixelArrayBytes); 
+  auto reader = this->pixelArrayReader();
+  
+  this->packet.pixelArray = reader.toRGBPixelArray(pixelArrayBytes); 
 }
+
+BitmapReader::PixelArrayReader BitmapReader::ImageReader::pixelArrayReader()
+{
+  return {this->pixelArrayConfig()};  
+}
+
+BitmapHeaders::Headers BitmapReader::ImageReader::packetToHeaders()
+{
+  BitmapHeaders::Headers headers {};
+  headers.fileHeader = this->packet.fileHeader;
+  headers.dibHeader = this->packet.dibHeader;
+
+  return headers;
+}
+
+BitmapReader::PixelArrayReaderConfig
+BitmapReader::ImageReader::pixelArrayConfig()
+{
+  auto headers = this->packetToHeaders();
+  
+  return BitmapReader::PixelArrayReaderConfig::fromHeaders(headers);
+}
+

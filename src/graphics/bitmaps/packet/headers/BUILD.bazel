@@ -4,7 +4,8 @@ cc_library(
         "file-header/file_header.h",
         "file-header/file_header_values.h",
         "dib-header/dib_header.h",
-        "dib-header/dib_header_values.h"
+        "dib-header/dib_header_values.h",
+        "bitmap_headers.h"
     ],
     srcs = [
         "file-header/file_header.cpp",

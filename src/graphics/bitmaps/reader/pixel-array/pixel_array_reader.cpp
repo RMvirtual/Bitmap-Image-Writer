@@ -12,7 +12,7 @@ BitmapReader::PixelArrayReader::PixelArrayReader(
   this->config = config;
 }
 
-Pixels::RGBPixelArray BitmapReader::PixelArrayReader::bytesToRGBPixels(
+Pixels::RGBPixelArray BitmapReader::PixelArrayReader::toRGBPixelArray(
   const ByteArray& bytes)
 {
   Pixels::RGBPixelArrayValues values {};
@@ -33,10 +33,8 @@ Pixels::RGBPixelArray BitmapReader::PixelArrayReader::bytesToRGBPixels(
     colours.green = pixelBytes[1];
     colours.red = pixelBytes[2];
 
-    Pixels::RGBPixel pixel {colours};
-
     int pixelNo = byteNo / sizeOfPixel;
-    this->pixelArray.set(pixel, pixelNo);
+    this->pixelArray.set({colours}, pixelNo);
   }
 
   return this->pixelArray;

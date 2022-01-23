@@ -9,11 +9,13 @@
 #include "test/src/graphics-tests/utilities/bitmap_image_comparators.h"
 #include "src/graphics/bitmaps/packet/pixel-array/rgb/pixel_array.h"
 #include "src/graphics/bitmaps/packet/pixel-array/rgb/pixel.h"
+#include "src/graphics/bitmaps/packet/headers/bitmap_headers.h"
 
 namespace BitmapSetUp
 {
   std::string blueImagePath();
   BitmapPacket blueBitmapPacket();
+  BitmapHeaders::Headers bluePixelHeaders();
   BitmapHeaders::FileHeader bluePixelFileHeader();
   BitmapHeaders::DibHeader bluePixelDibHeader();
   Pixels::RGBPixelArray bluePixelArray();

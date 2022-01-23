@@ -5,13 +5,11 @@
 
 TEST(BitmapReaderTests, ShouldReadFileHeaderFromFile)
 {
-  std::string imagePath = BitmapSetUp::blueImagePath();
+  auto imagePath = BitmapSetUp::blueImagePath();
 
   BitmapReader::ImageReader reader {};
-  BitmapPacket packet = reader.readBitmapPacket(imagePath);
-  
-  BitmapHeaders::FileHeader correctHeader = 
-    BitmapSetUp::bluePixelFileHeader();
+  auto packet = reader.readBitmapPacket(imagePath);
+  auto correctHeader = BitmapSetUp::bluePixelFileHeader();
   
   BitmapImageComparison::compareBitmapFileHeaders(
     correctHeader, packet.fileHeader);
@@ -19,12 +17,11 @@ TEST(BitmapReaderTests, ShouldReadFileHeaderFromFile)
 
 TEST(BitmapReaderTests, ShouldReadDibHeaderFromFile)
 {
-  std::string imagePath = BitmapSetUp::blueImagePath();
+  auto imagePath = BitmapSetUp::blueImagePath();
   BitmapReader::ImageReader reader {};
-  BitmapPacket packet = reader.readBitmapPacket(imagePath);
+  auto packet = reader.readBitmapPacket(imagePath);
   
-  BitmapHeaders::DibHeader correctHeader = 
-  BitmapSetUp::bluePixelDibHeader();
+  auto correctHeader = BitmapSetUp::bluePixelDibHeader();
   
   BitmapImageComparison::compareBitmapDibHeaders(
     correctHeader, packet.dibHeader);
@@ -32,7 +29,7 @@ TEST(BitmapReaderTests, ShouldReadDibHeaderFromFile)
 
 TEST(BitmapReaderTests, ShouldReadPixelArrayFromFile)
 {
-  std::string imagePath = BitmapSetUp::blueImagePath();
+  auto imagePath = BitmapSetUp::blueImagePath();
   BitmapReader::ImageReader reader {};
   auto packet = reader.readBitmapPacket(imagePath);
   auto correctPixelArray= BitmapSetUp::bluePixelArray();

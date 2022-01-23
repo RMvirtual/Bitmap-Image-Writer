@@ -26,6 +26,15 @@ BitmapPacket BitmapSetUp::blueBitmapPacket()
   return packet;
 }
 
+BitmapHeaders::Headers BitmapSetUp::bluePixelHeaders()
+{
+  BitmapHeaders::Headers headers {};
+  headers.fileHeader = bluePixelFileHeader();
+  headers.dibHeader = bluePixelDibHeader();
+
+  return headers;
+}
+
 BitmapHeaders::FileHeader BitmapSetUp::bluePixelFileHeader()
 {
   BitmapHeaders::FileHeader fileHeader;
