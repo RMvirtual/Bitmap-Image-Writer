@@ -6,14 +6,14 @@
 #include "src/common/byte-array/byte_array.h"
 
 namespace BitmapReader {
+template <class PixelArrayType>
 class PixelArrayReader
 {
 public:
   PixelArrayReader(const PixelArrayReaderConfig& config);
-  Pixels::RGBPixelArray toRGBPixelArray(const ByteArray& bytes);
+  PixelArrayType toPixelArray(const ByteArray& bytes);
 
 private:
-  Pixels::RGBPixelArray pixelArray;
   BitmapReader::PixelArrayReaderConfig config;
 };}
 

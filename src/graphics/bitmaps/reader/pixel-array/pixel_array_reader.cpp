@@ -6,29 +6,31 @@
 #include "src/graphics/bitmaps/packet/pixel-array/rgb/pixel.h"
 #include "src/graphics/bitmaps/packet/pixel-array/rgb/pixel_array.h"
 
-BitmapReader::PixelArrayReader::PixelArrayReader(
-  const BitmapReader::PixelArrayReaderConfig& config)
+template <class PixelArrayType>
+BitmapReader::PixelArrayReader <class PixelArrayType>
+::PixelArrayReader(const BitmapReader::PixelArrayReaderConfig& config)
 {
   this->config = config;
 }
 
-Pixels::RGBPixelArray BitmapReader::PixelArrayReader::toRGBPixelArray(
-  const ByteArray& bytes)
+template <class PixelArrayType>
+PixelArrayType BitmapReader::PixelArrayReader <class PixelArrayType>
+::toPixelArray(const ByteArray& bytes)
 {
   Pixels::RGBPixelArrayValues values {};
   values.heightInPixels = this->config.heightInPixels;
   values.widthInPixels = this->config.widthInPixels;
 
-  this->pixelArray = {values};
+  PixelArrayType pixelArray = {values};
   
   int noOfBytes = bytes.size();
-  int sizeOfPixel = 3;
+  int sizeOfPixel = this->config.pixelSizeInBytes;
 
   for (int byteNo = 0; byteNo < noOfBytes; byteNo += sizeOfPixel) {
     int endOfPixelByteNo = byteNo + sizeOfPixel;
     ByteArray pixelBytes = bytes.slice(byteNo, endOfPixelByteNo);
     
-    Pixels::RGBColours colours {};
+    Pixels::RGBAColours colours {};
     colours.blue = pixelBytes[0];
     colours.green = pixelBytes[1];
     colours.red = pixelBytes[2];
