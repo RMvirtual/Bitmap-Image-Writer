@@ -2,7 +2,8 @@
 
 #include "test/src/graphics-tests/utilities/bitmap_set_up.h"
 #include "test/src/graphics-tests/utilities/bitmap_image_comparators.h"
-#include "src/graphics/bitmaps/packet/bitmap_packet.h"
+#include "src/graphics/bitmaps/packet/rgb_bitmap_packet.h"
+#include "src/graphics/bitmaps/packet/rgba_bitmap_packet.h"
 #include "src/graphics/bitmaps/packet/pixel-array/rgb/colours.h"
 #include "src/graphics/bitmaps/packet/pixel-array/rgb/pixel_array.h"
 #include "src/graphics/bitmaps/packet/pixel-array/rgb/pixel.h"
@@ -16,9 +17,9 @@ std::string BitmapSetUp::blueImagePath()
   );
 }
 
-BitmapPacket BitmapSetUp::blueBitmapPacket()
+RGBBitmapPacket BitmapSetUp::blueRGBBitmapPacket()
 {
-  BitmapPacket packet;
+  RGBBitmapPacket packet;
   packet.fileHeader = bluePixelFileHeader();
   packet.dibHeader = bluePixelDibHeader();
   packet.pixelArray = bluePixelArray();

@@ -3,7 +3,7 @@
 
 #include <string>
 
-#include "src/graphics/bitmaps/packet/bitmap_packet.h"
+#include "src/graphics/bitmaps/packet/rgb_bitmap_packet.h"
 #include "src/graphics/bitmaps/packet/headers/file-header/file_header.h"
 #include "src/graphics/bitmaps/packet/headers/dib-header/dib_header.h"
 #include "src/common/byte-array/byte_array.h"
@@ -15,10 +15,10 @@ class ImageReader
 {
 public:
   ImageReader();
-  BitmapPacket readBitmapPacket(const std::string& filePath);
+  RGBBitmapPacket readBitmapPacket(const std::string& filePath);
 
 private:
-  BitmapPacket packet;
+  RGBBitmapPacket packet;
 
   void processIntoPacket(const std::string& filePath);
   void processIntoPacket(const ByteArray& bytes);

@@ -1,7 +1,8 @@
 cc_library(
     name = "bitmap_packet",
     hdrs = [
-        "bitmap_packet.h",
+        "rgb_bitmap_packet.h",
+        "rgba_bitmap_packet.h"
     ],
     srcs = [],
     deps = [

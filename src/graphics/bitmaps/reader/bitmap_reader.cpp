@@ -1,6 +1,6 @@
 #include "src/common/byte-array/byte_array.h"
 #include "src/common/filesystem/filesystem.h"
-#include "src/graphics/bitmaps/packet/bitmap_packet.h"
+#include "src/graphics/bitmaps/packet/rgb_bitmap_packet.h"
 #include "src/graphics/bitmaps/reader/bitmap_reader.h"
 #include "src/graphics/bitmaps/reader/headers/file_header_reader.h"
 #include "src/graphics/bitmaps/reader/headers/dib_header_reader.h"
@@ -12,7 +12,7 @@ BitmapReader::ImageReader::ImageReader()
   // pass.
 }
 
-BitmapPacket BitmapReader::ImageReader::readBitmapPacket(
+RGBBitmapPacket BitmapReader::ImageReader::readBitmapPacket(
   const std::string& filePath)
 {
   this->processIntoPacket(filePath);
