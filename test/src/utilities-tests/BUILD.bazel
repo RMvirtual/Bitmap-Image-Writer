@@ -1,0 +1,11 @@
+load("@rules_cc//cc:defs.bzl", "cc_test")
+
+cc_test(
+    name = "json_reader_tests",
+    size = "small",
+    srcs = ["json_reader_tests.cpp"],
+    deps = [
+        "@com_google_googletest//:gtest_main",
+        "//src/utilities:json_reader"
+    ],
+)

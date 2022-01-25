@@ -1,0 +1,7 @@
+cc_library(
+    name = "json_reader",
+    hdrs = glob(["*.cc"]),
+    srcs = glob(["*.h"]),
+    visibility = ["//visibility:public"],
+    deps = ["//lib:json"]
+)
