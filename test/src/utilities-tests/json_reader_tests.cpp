@@ -3,7 +3,7 @@
 
 TEST(JSONReaderTests, ShouldInitialiseJSONReader)
 {
-  
+  Utilities::JSONReader reader {};
 
   EXPECT_TRUE(false);
 }

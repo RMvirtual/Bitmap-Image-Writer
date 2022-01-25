@@ -1,0 +1,10 @@
+{
+  "RGBA" : {
+    "bitsPerPixel" : 32,
+    "colours" : ["alpha", "blue", "green", "red"]
+  },
+  "RGB" : {
+    "bitsPerPixel" : 24,
+    "colours" : ["blue", "green", "red"]
+  }
+}
