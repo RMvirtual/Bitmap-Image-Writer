@@ -7,12 +7,19 @@
 
 Utilities::JSONReader::JSONReader()
 {
+}
+
+std::string Utilities::JSONReader::getFormatName(int index)
+{
+  using json = nlohmann::json;
+
   std::ifstream fileInput {"C://Users/rmvir/Desktop/scc300-Win3D/resources/pixel_formats.json"};
+  auto jsonReading = json::parse(fileInput);
 
-  std::string donkeh;
-
-  while (std::getline(fileInput, donkeh))
-    std::cout << donkeh; 
-  
   fileInput.close();
+
+  auto object = jsonReading.at(0);
+  auto value = object.at("shortName");
+
+  return value;
 }
