@@ -3,18 +3,22 @@
 
 #include "lib/nlohmann/json.hpp"
 #include <string>
+#include <vector>
 
 namespace Utilities {
 class JSONReader
 {
 public:
   JSONReader();
+  void read(std::string filePath);
+
   std::string getFormatName(int index);
   int getBitsPerPixel(int index);
-
-  std::string pixelFormatsFilePath;
+  std::vector<std::string> getColours(int index);
 
 private:
+  nlohmann::json json;
+
   nlohmann::json readJsonFromFile(std::string filePath);
 };}
 
