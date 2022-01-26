@@ -8,3 +8,11 @@ TEST(JSONReaderTests, ShouldGetFormatNameFromFirstEntry)
 
   EXPECT_EQ(formatName, "RGBA");
 }
+
+TEST(JSONReaderTests, ShouldGetBitsPerPixelFromSecondEntry)
+{
+  Utilities::JSONReader reader {};
+  auto formatName = reader.getBitsPerPixel(1);
+
+  EXPECT_EQ(formatName, 24);
+}

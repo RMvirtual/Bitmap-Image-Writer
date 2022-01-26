@@ -7,18 +7,24 @@
 
 Utilities::JSONReader::JSONReader()
 {
-  // pass.
+  this->pixelFormatsFilePath = {
+    "C://Users/rmvir/Desktop/scc300-Win3D/resources/pixel_formats.json"};
 }
 
 std::string Utilities::JSONReader::getFormatName(int index)
-{
-  std::string filePath {
-    "C://Users/rmvir/Desktop/scc300-Win3D/resources/pixel_formats.json"};
-  
-  auto json = this->readJsonFromFile(filePath);
+{  
+  auto json = this->readJsonFromFile(this->pixelFormatsFilePath);
   auto object = json.at(index);
   
   return object.at("shortName");
+}
+
+int Utilities::JSONReader::getBitsPerPixel(int index)
+{
+  auto json = this->readJsonFromFile(this->pixelFormatsFilePath);
+  auto object = json.at(index);
+  
+  return object.at("bitsPerPixel");
 }
 
 nlohmann::json Utilities::JSONReader::readJsonFromFile(std::string filePath)
