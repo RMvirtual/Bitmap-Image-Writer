@@ -7,19 +7,26 @@
 
 Utilities::JSONReader::JSONReader()
 {
+  // pass.
 }
 
 std::string Utilities::JSONReader::getFormatName(int index)
 {
-  using json = nlohmann::json;
+  std::string filePath {
+    "C://Users/rmvir/Desktop/scc300-Win3D/resources/pixel_formats.json"};
+  
+  auto json = this->readJsonFromFile(filePath);
+  auto object = json.at(index);
+  
+  return object.at("shortName");
+}
 
-  std::ifstream fileInput {"C://Users/rmvir/Desktop/scc300-Win3D/resources/pixel_formats.json"};
-  auto jsonReading = json::parse(fileInput);
+nlohmann::json Utilities::JSONReader::readJsonFromFile(std::string filePath)
+{
+  std::ifstream fileStream {filePath};
+  auto json = nlohmann::json::parse(fileStream);
 
-  fileInput.close();
+  fileStream.close();
 
-  auto object = jsonReading.at(0);
-  auto value = object.at("shortName");
-
-  return value;
+  return json;
 }
