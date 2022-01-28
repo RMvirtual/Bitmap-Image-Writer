@@ -19,7 +19,7 @@ std::string Utilities::JSONReader::getFormatName(int index)
 {  
   auto object = this->json.at(index);
   
-  return object.at("shortName");
+  return object.at("name");
 }
 
 int Utilities::JSONReader::getBitsPerPixel(int index)

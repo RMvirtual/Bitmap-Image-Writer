@@ -1,12 +1,11 @@
 #include "src/common/byte-array/byte_array.h"
 #include "src/common/filesystem/filesystem.h"
-#include "src/graphics/bitmaps/packet/rgb_bitmap_packet.h"
-#include "src/graphics/bitmaps/packet/rgba_bitmap_packet.h"
+#include "src/graphics/bitmaps/packet/packet.h"
 #include "src/graphics/bitmaps/reader/bitmap_reader.h"
 #include "src/graphics/bitmaps/reader/headers/file_header_reader.h"
 #include "src/graphics/bitmaps/reader/headers/dib_header_reader.h"
 #include "src/graphics/bitmaps/reader/pixel-array/pixel_array_reader.h"
-#include "src/graphics/bitmaps/packet/headers/bitmap_headers.h"
+#include "src/graphics/bitmaps/packet/headers/headers.h"
 
 BitmapReader::ImageReader::ImageReader()
 {

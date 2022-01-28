@@ -1,7 +1,7 @@
 #ifndef BITMAP_FILE_HEADER_READER_H
 #define BITMAP_FILE_HEADER_READER_H
 
-#include "src/graphics/bitmaps/packet/headers/file-header/file_header.h"
+#include "src/graphics/bitmaps/packet/headers/file-header/header.h"
 #include "src/common/byte-array/byte_array.h"
 
 namespace BitmapReader {

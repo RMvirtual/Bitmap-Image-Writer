@@ -1,7 +1,7 @@
 #include <cstdint>
 
-#include "src/graphics/bitmaps/packet/headers/dib-header/dib_header.h"
-#include "src/graphics/bitmaps/packet/headers/dib-header/dib_header_values.h"
+#include "src/graphics/bitmaps/packet/headers/dib-header/header.h"
+#include "src/graphics/bitmaps/packet/headers/dib-header/values.h"
 
 BitmapHeaders::DibHeader::DibHeader()
 {

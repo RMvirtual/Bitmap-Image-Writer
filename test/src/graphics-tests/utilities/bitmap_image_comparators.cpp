@@ -2,13 +2,13 @@
 #include <iostream>
 
 #include "test/src/graphics-tests/utilities/bitmap_image_comparators.h"
-#include "src/graphics/bitmaps/packet/pixel-array/rgb/colours.h"
-#include "src/graphics/bitmaps/packet/pixel-array/rgb/pixel_array.h"
-#include "src/graphics/bitmaps/packet/pixel-array/rgb/pixel.h"
-#include "src/graphics/bitmaps/packet/pixel-array/rgb/pixel_array_values.h"
+#include "src/graphics/bitmaps/packet/pixel-array/pixel/format.h"
+#include "src/graphics/bitmaps/packet/pixel-array/array/array.h"
+#include "src/graphics/bitmaps/packet/pixel-array/pixel/pixel.h"
+#include "src/graphics/bitmaps/packet/pixel-array/array/values.h"
 
 void BitmapImageComparison::compareBitmapFileHeaders(
-  const BitmapHeaders::FileHeader& header1,
+  const BitmapHeaders::FileHeader& header1, 
   const BitmapHeaders::FileHeader& header2)
 {
   EXPECT_EQ(header1.signatureBytes(), header2.signatureBytes());
@@ -36,8 +36,7 @@ void BitmapImageComparison::compareBitmapDibHeaders(
 }
 
 void BitmapImageComparison::comparePixelArrays(
-    const Pixels::RGBPixelArray& pixelArray1,
-    const Pixels::RGBPixelArray& pixelArray2)
+  const Pixels::Array& pixelArray1, const Pixels::Array& pixelArray2)
 {
   ASSERT_EQ(pixelArray1.sizeInPixels(), pixelArray2.sizeInPixels());
 
@@ -51,35 +50,34 @@ void BitmapImageComparison::comparePixelArrays(
 }
 
 void BitmapImageComparison::comparePixels(
-    const Pixels::RGBPixel& pixel1,
-    const Pixels::RGBPixel& pixel2)
+  const Pixels::Pixel& pixel1, const Pixels::Pixel& pixel2)
 {
   BitmapImageComparison::compareColours(pixel1.colours(), pixel2.colours());
 }
 
 void BitmapImageComparison::compareColours(
-    const Pixels::RGBColours& colours1,
-    const Pixels::RGBColours& colours2)
+  Pixels::Colours& colours1, Pixels::Colours& colours2)
 {
-  EXPECT_EQ(colours1.blue, colours2.blue);
-  EXPECT_EQ(colours1.red, colours2.red);
-  EXPECT_EQ(colours1.green, colours2.green);
+
+  EXPECT_EQ(colours1["blue"], colours2["blue"]);
+  EXPECT_EQ(colours1["red"], colours2["red"]);
+  EXPECT_EQ(colours1["green"], colours2["green"]);
 }
 
-void BitmapImageComparison::isGreenPixel(const Pixels::RGBPixel& pixel)
+void BitmapImageComparison::isGreenPixel(const Pixels::Pixel& pixel)
 {
-  Pixels::RGBColours colours = pixel.colours();
+  Pixels::Colours colours = pixel.colours();
 
-  EXPECT_EQ(colours.green, 255);
-  EXPECT_EQ(colours.blue, 0);
-  EXPECT_EQ(colours.red, 0);
+  EXPECT_EQ(colours["green"], 255);
+  EXPECT_EQ(colours["blue"], 0);
+  EXPECT_EQ(colours["red"], 0);
 }
 
-void BitmapImageComparison::isRedPixel(const Pixels::RGBPixel& pixel)
+void BitmapImageComparison::isRedPixel(const Pixels::Pixel& pixel)
 {
-  Pixels::RGBColours colours = pixel.colours();
+  Pixels::Colours colours = pixel.colours();
 
-  EXPECT_EQ(colours.green, 0);
-  EXPECT_EQ(colours.blue, 0);
-  EXPECT_EQ(colours.red, 255);
+  EXPECT_EQ(colours["green"], 0);
+  EXPECT_EQ(colours["blue"], 0);
+  EXPECT_EQ(colours["red"], 255);
 }

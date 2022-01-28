@@ -4,7 +4,7 @@
 #include <cstdint>
 #include <string>
 
-#include "src/graphics/bitmaps/packet/headers/file-header/file_header_values.h"
+#include "src/graphics/bitmaps/packet/headers/file-header/values.h"
 
 namespace BitmapHeaders {
 class FileHeader

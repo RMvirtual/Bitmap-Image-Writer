@@ -1,15 +1,15 @@
 cc_library(
     name = "bitmap_packet_headers",
     hdrs = [
-        "file-header/file_header.h",
-        "file-header/file_header_values.h",
-        "dib-header/dib_header.h",
-        "dib-header/dib_header_values.h",
-        "bitmap_headers.h"
+        "file-header/header.h",
+        "file-header/values.h",
+        "dib-header/header.h",
+        "dib-header/values.h",
+        "headers.h"
     ],
     srcs = [
-        "file-header/file_header.cpp",
-        "dib-header/dib_header.cpp"
+        "file-header/header.cpp",
+        "dib-header/header.cpp"
     ],
     deps = [
         "//src/common:common",

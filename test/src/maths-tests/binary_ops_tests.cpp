@@ -1,5 +1,4 @@
 #include <gtest/gtest.h>
-#include <iostream>
 #include "src/maths/binary_ops/binary_ops.h"
 
 TEST(BinaryOpsTests, ShouldAddTwoDoubles)

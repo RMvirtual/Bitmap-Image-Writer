@@ -1,10 +1,10 @@
 #include <gtest/gtest.h>
 
-#include "src/graphics/bitmaps/packet/pixel-array/size-calculator/pixel_array_size_calculator.h"
+#include "src/graphics/bitmaps/packet/pixel-array/array/size_calculator.h"
 #include "test/src/graphics-tests/utilities/bitmap_set_up.h"
 #include "test/src/graphics-tests/utilities/bitmap_image_comparators.h"
-#include "src/graphics/bitmaps/packet/pixel-array/rgb/colours.h"
-#include "src/graphics/bitmaps/packet/pixel-array/rgb/pixel.h"
+#include "src/graphics/bitmaps/packet/pixel-array/pixel/format.h"
+#include "src/graphics/bitmaps/packet/pixel-array/pixel/pixel.h"
 
 #include <iostream>
 
@@ -12,8 +12,14 @@ TEST(PixelArrayTests, ShouldCreateRGBTemplatePixelArray)
 {
   auto pixelArray = BitmapSetUp::redPixelArray();
 
-  Pixels::RGBPixel correctPixel {BitmapSetUp::redColours()};
-  
+  Pixels::Format format;
+  format.name = "RGB";
+  format.bitsPerPixel = 24;
+  format.colourNames = {"red", "green", "blue"};
+
+  Pixels::Pixel correctPixel {format};
+  correctPixel.setColours(BitmapSetUp::redColours());
+
   for (int pixelNo = 0; pixelNo < 4; pixelNo++)
     BitmapImageComparison::comparePixels(
       pixelArray.at(pixelNo), correctPixel);
@@ -22,7 +28,7 @@ TEST(PixelArrayTests, ShouldCreateRGBTemplatePixelArray)
 TEST(PixelArrayTests, ShouldSetPixelInRGBTemplatePixelArray)
 {
   auto pixelArray = BitmapSetUp::redPixelArray();
-  auto greenPixel = BitmapSetUp::greenRGBPixel();  
+  auto greenPixel = BitmapSetUp::greenPixel();  
   pixelArray.set(greenPixel, 1, 0);
 
   BitmapImageComparison::comparePixels(greenPixel, pixelArray.at(1, 0));

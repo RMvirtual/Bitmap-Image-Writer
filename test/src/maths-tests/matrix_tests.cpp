@@ -14,7 +14,9 @@ TEST(MatrixTests, ShouldCreateMatrixFrom2DVector)
   Maths::Matrix matrix {vector2D};
 
   std::vector<std::vector<double>> correctElements {
-    {1, 2, 3, 4}, {5, 6, 7, 8}};
+    {1, 2, 3, 4},
+    {5, 6, 7, 8}
+  };
 
   for (int columnNo = 0; columnNo < correctElements.size(); columnNo++)
     for (int rowNo = 0; rowNo < correctElements[columnNo].size(); rowNo++) {

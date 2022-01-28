@@ -2,12 +2,11 @@
 
 #include "test/src/graphics-tests/utilities/bitmap_set_up.h"
 #include "test/src/graphics-tests/utilities/bitmap_image_comparators.h"
-#include "src/graphics/bitmaps/packet/rgb_bitmap_packet.h"
-#include "src/graphics/bitmaps/packet/rgba_bitmap_packet.h"
-#include "src/graphics/bitmaps/packet/pixel-array/rgb/colours.h"
-#include "src/graphics/bitmaps/packet/pixel-array/rgb/pixel_array.h"
-#include "src/graphics/bitmaps/packet/pixel-array/rgb/pixel.h"
-#include "src/graphics/bitmaps/packet/pixel-array/rgb/pixel_array_values.h"
+#include "src/graphics/bitmaps/packet/packet.h"
+#include "src/graphics/bitmaps/packet/pixel-array/pixel/format.h"
+#include "src/graphics/bitmaps/packet/pixel-array/array/array.h"
+#include "src/graphics/bitmaps/packet/pixel-array/pixel/pixel.h"
+#include "src/graphics/bitmaps/packet/pixel-array/array/values.h"
 
 std::string BitmapSetUp::blueImagePath()
 {
@@ -17,9 +16,9 @@ std::string BitmapSetUp::blueImagePath()
   );
 }
 
-RGBBitmapPacket BitmapSetUp::blueRGBBitmapPacket()
+BitmapPacket BitmapSetUp::blueBitmapPacket()
 {
-  RGBBitmapPacket packet;
+  BitmapPacket packet;
   packet.fileHeader = bluePixelFileHeader();
   packet.dibHeader = bluePixelDibHeader();
   packet.pixelArray = bluePixelArray();
@@ -60,67 +59,85 @@ BitmapHeaders::DibHeader BitmapSetUp::bluePixelDibHeader()
   return dibHeader;
 }
 
-Pixels::RGBPixelArray BitmapSetUp::bluePixelArray()
+Pixels::Array BitmapSetUp::bluePixelArray()
 {
-  Pixels::RGBPixelArrayValues values;
+  Pixels::ArrayValues values;
   values.widthInPixels = 512;
   values.heightInPixels = 512;
-  values.defaultPixel = {BitmapSetUp::blueColours()};
+  values.pixelFormat.name = "RGB";
+  values.pixelFormat.bitsPerPixel = 24;
+  values.pixelFormat.colourNames = {"red", "blue", "green"};
 
-  return {values};
+  Pixels::Array pixelArray {values};
+  pixelArray.fill(BitmapSetUp::blueColours());
+
+  return pixelArray;
 }
 
-Pixels::RGBPixelArray BitmapSetUp::redPixelArray()
+Pixels::Array BitmapSetUp::redPixelArray()
 {
-  Pixels::RGBPixelArrayValues values;
+  Pixels::ArrayValues values;
   values.widthInPixels = 2;
   values.heightInPixels = 2;
-  values.defaultPixel = {BitmapSetUp::redColours()};
+  values.pixelFormat.name = "RGB";
+  values.pixelFormat.bitsPerPixel = 24;
+  values.pixelFormat.colourNames = {"red", "blue", "green"};
 
-  return {values};
+  Pixels::Array pixelArray {values};
+  pixelArray.fill(BitmapSetUp::redColours());
+
+  return pixelArray;
 }
 
-Pixels::RGBPixel BitmapSetUp::greenRGBPixel()
+Pixels::Pixel BitmapSetUp::greenPixel()
 {
-  return {BitmapSetUp::greenColours()};
+  Pixels::Format format;
+  format.name = "RGB";
+  format.bitsPerPixel = 24;
+  format.colourNames = {"red", "blue", "green"};
+
+  Pixels::Pixel pixel {format};
+  pixel.setColours(BitmapSetUp::greenColours());
+
+  return pixel;
 }
 
-Pixels::RGBColours BitmapSetUp::redColours()
+Pixels::Colours BitmapSetUp::redColours()
 {
-  Pixels::RGBColours colours;
-  colours.red = 255;
-  colours.green = 0;
-  colours.blue = 0;
+  Pixels::Colours colours;
+  colours["red"] = 255;
+  colours["green"] = 0;
+  colours["blue"] = 0;
 
   return colours;
 }
 
-Pixels::RGBColours BitmapSetUp::greenColours()
+Pixels::Colours BitmapSetUp::greenColours()
 {
-  Pixels::RGBColours colours;
-  colours.red = 0;
-  colours.green = 255;
-  colours.blue = 0;
+  Pixels::Colours colours;
+  colours["red"] = 0;
+  colours["green"] = 255;
+  colours["blue"] = 0;
 
   return colours;
 }
 
-Pixels::RGBColours BitmapSetUp::blueColours()
+Pixels::Colours BitmapSetUp::blueColours()
 {
-  Pixels::RGBColours colours;
-  colours.red = 100;
-  colours.green = 255;
-  colours.blue = 255;
+  Pixels::Colours colours;
+  colours["red"] = 100;
+  colours["green"] = 255;
+  colours["blue"] = 255;
 
   return colours;
 }
 
-Pixels::RGBColours BitmapSetUp::whiteColours()
+Pixels::Colours BitmapSetUp::whiteColours()
 {
-  Pixels::RGBColours colours;
-  colours.red = 255;
-  colours.green = 255;
-  colours.blue = 255;
+  Pixels::Colours colours;
+  colours["red"] = 255;
+  colours["green"] = 255;
+  colours["blue"] = 255;
 
   return colours;
 }

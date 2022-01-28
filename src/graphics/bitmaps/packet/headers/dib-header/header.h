@@ -2,7 +2,7 @@
 #define BITMAP_INFO_HEADER_H
 
 #include <cstdint>
-#include "src/graphics/bitmaps/packet/headers/dib-header/dib_header_values.h"
+#include "src/graphics/bitmaps/packet/headers/dib-header/values.h"
 
 namespace BitmapHeaders {
 class DibHeader

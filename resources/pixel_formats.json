@@ -1,11 +1,11 @@
 [
   {
-    "shortName" : "RGBA",
+    "name" : "RGBA",
     "bitsPerPixel" : 32,
     "colours" : ["alpha", "blue", "green", "red"]
   },
   {
-    "shortName" : "RGB",
+    "name" : "RGB",
     "bitsPerPixel" : 24,
     "colours" : ["blue", "green", "red"]
   }

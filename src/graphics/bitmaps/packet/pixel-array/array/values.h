@@ -1,14 +1,15 @@
 #ifndef PIXEL_ARRAY_VALUES_H
 #define PIXEL_ARRAY_VALUES_H
 
+#include "src/graphics/bitmaps/packet/pixel-array/pixel/format.h"
+
 namespace Pixels
 {
-  template <class PixelType>
-  struct PixelArrayValues
+  struct ArrayValues
   {
     int widthInPixels;
     int heightInPixels;
-    PixelType defaultPixel;
+    Format pixelFormat;
   };
 }
 
