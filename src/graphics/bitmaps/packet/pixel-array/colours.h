@@ -1,10 +1,10 @@
 #ifndef PIXEL_COLOURS_H
 #define PIXEL_COLOURS_H
 
-#include <vector>
 #include <initializer_list>
 #include <string>
 #include <unordered_map>
+#include <vector>
 
 namespace Pixels {
 class Colours

@@ -18,7 +18,6 @@ public:
 
 private:
   nlohmann::json json;
-
   nlohmann::json readJsonFromFile(std::string filePath);
 };}
 

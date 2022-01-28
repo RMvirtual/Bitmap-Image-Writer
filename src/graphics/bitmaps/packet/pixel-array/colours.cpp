@@ -1,7 +1,7 @@
 #include <initializer_list>
-#include "src/graphics/bitmaps/packet/pixel-array/colours.h"
-
 #include <string>
+
+#include "src/graphics/bitmaps/packet/pixel-array/colours.h"
 
 Pixels::Colours::Colours()
 {
