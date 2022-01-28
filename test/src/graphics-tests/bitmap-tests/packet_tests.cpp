@@ -25,10 +25,10 @@ TEST(PixelArrayTests, ShouldCreatePixelArray)
 TEST(PixelArrayTests, ShouldSetPixelInPixelArray)
 {
   auto pixelArray = BitmapSetUp::redPixelArray();
-  auto greenPixel = BitmapSetUp::greenColours();  
-  pixelArray.set(greenPixel, 1, 0);
+  auto greenColours = BitmapSetUp::greenColours();
+  pixelArray.set(greenColours, 1, 0);
 
-  BitmapImageComparison::compare(greenPixel, pixelArray.at(1, 0));
+  BitmapImageComparison::compare(greenColours, pixelArray.at(1, 0));
 }
 
 TEST(PixelArrayTests, ShouldGetNumberOfPixelsInPixelArray)

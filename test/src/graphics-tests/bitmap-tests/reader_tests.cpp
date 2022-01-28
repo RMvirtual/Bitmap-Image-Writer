@@ -1,37 +1,37 @@
 #include <gtest/gtest.h>
 
+#include "src/graphics/bitmaps/packet/packet.h"
 #include "src/graphics/bitmaps/reader/bitmap_reader.h"
 #include "test/src/graphics-tests/utilities/bitmap_set_up.h"
 
-TEST(BitmapReaderTests, ShouldReadFileHeaderFromFile)
+BitmapPacket getBitmapPacket()
 {
   auto imagePath = BitmapSetUp::blueImagePath();
-
   BitmapReader::ImageReader reader {};
-  auto packet = reader.readBitmapPacket(imagePath);
+
+  return reader.readBitmapPacket(imagePath);
+}
+
+TEST(BitmapReaderTests, ShouldReadFileHeader)
+{
+  auto header = getBitmapPacket().fileHeader;
   auto correctHeader = BitmapSetUp::bluePixelFileHeader();
   
-  BitmapImageComparison::compare(correctHeader, packet.fileHeader);
+  BitmapImageComparison::compare(correctHeader, header);
 }
 
-TEST(BitmapReaderTests, ShouldReadDibHeaderFromFile)
+TEST(BitmapReaderTests, ShouldReadDibHeader)
 {
-  auto imagePath = BitmapSetUp::blueImagePath();
-  
-  BitmapReader::ImageReader reader {};
-  auto packet = reader.readBitmapPacket(imagePath);
+  auto header = getBitmapPacket().dibHeader;
   auto correctHeader = BitmapSetUp::bluePixelDibHeader();
 
-  BitmapImageComparison::compare(correctHeader, packet.dibHeader);
+  BitmapImageComparison::compare(correctHeader, header);
 }
 
-TEST(BitmapReaderTests, ShouldReadPixelArrayFromFile)
+TEST(BitmapReaderTests, ShouldReadPixelArray)
 {
-  auto imagePath = BitmapSetUp::blueImagePath();
-  
-  BitmapReader::ImageReader reader {};
-  auto packet = reader.readBitmapPacket(imagePath);
-  auto correctPixelArray= BitmapSetUp::bluePixelArray();
+  auto pixelArray = getBitmapPacket().pixelArray;
+  auto correctPixelArray = BitmapSetUp::bluePixelArray();
 
-  BitmapImageComparison::compare(correctPixelArray, packet.pixelArray);
+  BitmapImageComparison::compare(correctPixelArray, pixelArray);
 }
