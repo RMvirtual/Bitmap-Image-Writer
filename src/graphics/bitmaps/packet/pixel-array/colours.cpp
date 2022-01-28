@@ -1,6 +1,8 @@
 #include <initializer_list>
 #include "src/graphics/bitmaps/packet/pixel-array/colours.h"
 
+#include <string>
+
 Pixels::Colours::Colours()
 {
 
@@ -16,6 +18,16 @@ Pixels::Colours::Colours(std::vector<std::string> colourNames)
 {
   for (auto name : colourNames)
     this->_colours[name] = 0;
+}
+
+std::vector<std::string> Pixels::Colours::names()
+{
+  std::vector<std::string> names {};
+
+  for (auto coloursAndValues : this->_colours)
+    names.push_back(coloursAndValues.first);
+
+  return names;
 }
 
 int& Pixels::Colours::operator [](std::string value)

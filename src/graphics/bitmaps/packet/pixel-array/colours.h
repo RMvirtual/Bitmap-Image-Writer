@@ -14,6 +14,7 @@ public:
   Colours(std::initializer_list<std::string> colourNames);
   Colours(std::vector<std::string> colourNames);
 
+  std::vector<std::string> names();
   int& operator [](std::string value);
 
 private:

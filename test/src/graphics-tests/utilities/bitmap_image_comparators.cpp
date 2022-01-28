@@ -42,18 +42,17 @@ void BitmapImageComparison::compare(
 
   for (int pixelNo = 0; pixelNo < numberOfPixels; pixelNo++)
     BitmapImageComparison::compare(
-      pixelArray1.at(pixelNo), 
-      pixelArray2.at(pixelNo)
-    );
+      pixelArray1.at(pixelNo), pixelArray2.at(pixelNo));
 }
 
 void BitmapImageComparison::compare(
   Pixels::Colours& colours1, Pixels::Colours& colours2)
 {
+  auto colourNames = colours1.names();
+  ASSERT_TRUE(colourNames.size() == colours2.names().size());
 
-  EXPECT_EQ(colours1["blue"], colours2["blue"]);
-  EXPECT_EQ(colours1["red"], colours2["red"]);
-  EXPECT_EQ(colours1["green"], colours2["green"]);
+  for (auto colourName : colourNames)
+    EXPECT_EQ(colours1[colourName], colours2[colourName]);
 }
 
 void BitmapImageComparison::isGreen(Pixels::Colours& colours)
