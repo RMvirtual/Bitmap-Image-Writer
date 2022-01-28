@@ -4,24 +4,27 @@
 #include "src/common/matrix-2D/matrix_2d.h"
 #include "src/graphics/bitmaps/packet/pixel-array/array/values.h"
 #include "src/graphics/bitmaps/packet/pixel-array/pixel/pixel.h"
+#include "src/graphics/bitmaps/packet/pixel-array/pixel/format.h"
 
-namespace Pixels
+namespace Pixels {
+class Array
 {
-  class Array
-  {
-  public:
-    Array();
-    Array(const ArrayValues& values);
+public:
+  Array();
+  Array(const ArrayValues& values);
 
-    void set(const Pixel& pixel, int rowNo, int columnNo);
-    void set(const Pixel& pixel, int indexNo);
-    void fill(const Colours& colours);
-    Pixel at(int rowNo, int columnNo) const;
-    Pixel at(int indexNo) const;
-    int sizeInPixels() const;
+  void set(const Pixel& pixel, int rowNo, int columnNo);
+  void set(const Pixel& pixel, int indexNo);
+  void fill(const Colours& colours);
+  Pixel at(int rowNo, int columnNo) const;
+  Pixel at(int indexNo) const;
+  int sizeInPixels() const;
+  Format format() const;
+  void setFormat(const Format& format);
 
-  private:
-    Common::Matrix2D<Pixel> pixels {0, 0, {}};
+private:
+  Common::Matrix2D<Pixel> pixels {0, 0, {}};
+  Format _format;
 };}
 
 #endif

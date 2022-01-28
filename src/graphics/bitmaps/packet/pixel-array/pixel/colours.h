@@ -1,6 +1,9 @@
 #ifndef PIXEL_COLOURS_H
 #define PIXEL_COLOURS_H
 
+#include <vector>
+#include <initializer_list>
+#include <string>
 #include <unordered_map>
 
 namespace Pixels {
@@ -8,6 +11,9 @@ class Colours
 {
 public:
   Colours();
+  Colours(std::initializer_list<std::string> colourNames);
+  Colours(std::vector<std::string> colourNames);
+
   int& operator [](std::string value);
 
 private:

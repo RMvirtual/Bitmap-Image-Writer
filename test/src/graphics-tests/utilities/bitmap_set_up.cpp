@@ -96,7 +96,7 @@ Pixels::Pixel BitmapSetUp::greenPixel()
   format.bitsPerPixel = 24;
   format.colourNames = {"red", "blue", "green"};
 
-  Pixels::Pixel pixel {format};
+  Pixels::Pixel pixel {format.colourNames};
   pixel.setColours(BitmapSetUp::greenColours());
 
   return pixel;

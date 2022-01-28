@@ -2,22 +2,12 @@
 
 Pixels::Pixel::Pixel()
 {
-
-}
-
-Pixels::Pixel::Pixel(const Format& format)
-{
-  this->setFormat(format);
-}
   
-void Pixels::Pixel::setFormat(const Format& format)
-{
-  this->_format = format;
 }
 
-Pixels::Format Pixels::Pixel::format() const
+Pixels::Pixel::Pixel(const Pixels::Colours& colours)
 {
-  return this->_format;
+  this->setColours(colours);
 }
 
 Pixels::Colours Pixels::Pixel::colours() const

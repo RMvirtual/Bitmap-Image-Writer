@@ -9,8 +9,11 @@ Pixels::Array::Array()
 
 Pixels::Array::Array(const Pixels::ArrayValues& values)
 {
+  this->_format = values.pixelFormat;
+  Pixels::Colours defaultColours = {this->_format.colourNames};
+
   this->pixels = {
-    values.widthInPixels, values.heightInPixels, values.pixelFormat};
+    values.widthInPixels, values.heightInPixels, defaultColours};
 }
 
 void Pixels::Array::set(const Pixels::Pixel& pixel, int rowNo, int columnNo)
@@ -41,4 +44,14 @@ Pixels::Pixel Pixels::Array::at(int indexNo) const
 int Pixels::Array::sizeInPixels() const
 {
   return this->pixels.width() * this->pixels.height();
+}
+
+void Pixels::Array::setFormat(const Pixels::Format& format)
+{
+  this->_format = format;
+}
+
+Pixels::Format Pixels::Array::format() const
+{
+  return this->_format;
 }
