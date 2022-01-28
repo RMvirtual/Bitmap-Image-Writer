@@ -5,11 +5,10 @@
 #include "src/graphics/bitmaps/packet/packet.h"
 #include "src/graphics/bitmaps/packet/headers/file-header/header.h"
 #include "src/graphics/bitmaps/packet/headers/dib-header/header.h"
-#include "src/graphics/bitmaps/packet/pixel-array/pixel/format.h"
 #include "test/src/graphics-tests/utilities/bitmap_image_comparators.h"
-#include "src/graphics/bitmaps/packet/pixel-array/array/array.h"
-#include "src/graphics/bitmaps/packet/pixel-array/pixel/pixel.h"
+#include "src/graphics/bitmaps/packet/pixel-array/array.h"
 #include "src/graphics/bitmaps/packet/headers/headers.h"
+#include "src/graphics/bitmaps/packet/pixel-array/colours.h"
 
 namespace BitmapSetUp
 {
@@ -20,7 +19,6 @@ namespace BitmapSetUp
   BitmapHeaders::DibHeader bluePixelDibHeader();
   Pixels::Array bluePixelArray();
   Pixels::Array redPixelArray();
-  Pixels::Pixel greenPixel();
   Pixels::Colours whiteColours();
   Pixels::Colours greenColours();
   Pixels::Colours redColours();

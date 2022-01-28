@@ -12,14 +12,7 @@ BitmapReader::ImageReader::ImageReader()
   // pass.
 }
 
-RGBABitmapPacket BitmapImageReader::ImageReader::readRGBABitmapPacket(
-  const std::string& filePath)
-{
-  RGBABitmapPacket packet {};
-  packet.fileHeader =   
-}
-
-RGBBitmapPacket BitmapReader::ImageReader::readBitmapPacket(
+BitmapPacket BitmapReader::ImageReader::readBitmapPacket(
   const std::string& filePath)
 {
   this->processIntoPacket(filePath);
@@ -59,7 +52,7 @@ void BitmapReader::ImageReader::processIntoPixelArray(const ByteArray& bytes)
   auto pixelArrayBytes = bytes.slice(54, bytes.size());
   auto reader = this->pixelArrayReader();
   
-  this->packet.pixelArray = reader.toRGBPixelArray(pixelArrayBytes); 
+  this->packet.pixelArray = reader.toPixelArray(pixelArrayBytes); 
 }
 
 BitmapReader::PixelArrayReader BitmapReader::ImageReader::pixelArrayReader()

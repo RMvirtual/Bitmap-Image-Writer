@@ -11,29 +11,27 @@ TEST(BitmapReaderTests, ShouldReadFileHeaderFromFile)
   auto packet = reader.readBitmapPacket(imagePath);
   auto correctHeader = BitmapSetUp::bluePixelFileHeader();
   
-  BitmapImageComparison::compareBitmapFileHeaders(
-    correctHeader, packet.fileHeader);
+  BitmapImageComparison::compare(correctHeader, packet.fileHeader);
 }
 
 TEST(BitmapReaderTests, ShouldReadDibHeaderFromFile)
 {
   auto imagePath = BitmapSetUp::blueImagePath();
+  
   BitmapReader::ImageReader reader {};
   auto packet = reader.readBitmapPacket(imagePath);
-  
   auto correctHeader = BitmapSetUp::bluePixelDibHeader();
-  
-  BitmapImageComparison::compareBitmapDibHeaders(
-    correctHeader, packet.dibHeader);
+
+  BitmapImageComparison::compare(correctHeader, packet.dibHeader);
 }
 
 TEST(BitmapReaderTests, ShouldReadPixelArrayFromFile)
 {
   auto imagePath = BitmapSetUp::blueImagePath();
+  
   BitmapReader::ImageReader reader {};
   auto packet = reader.readBitmapPacket(imagePath);
   auto correctPixelArray= BitmapSetUp::bluePixelArray();
 
-  BitmapImageComparison::comparePixelArrays(
-    correctPixelArray, packet.pixelArray);
+  BitmapImageComparison::compare(correctPixelArray, packet.pixelArray);
 }

@@ -1,12 +1,11 @@
 #include <string>
 
+#include "src/graphics/bitmaps/packet/packet.h"
+#include "src/graphics/bitmaps/packet/pixel-array/format.h"
+#include "src/graphics/bitmaps/packet/pixel-array/array.h"
+#include "src/graphics/bitmaps/packet/pixel-array/colours.h"
 #include "test/src/graphics-tests/utilities/bitmap_set_up.h"
 #include "test/src/graphics-tests/utilities/bitmap_image_comparators.h"
-#include "src/graphics/bitmaps/packet/packet.h"
-#include "src/graphics/bitmaps/packet/pixel-array/pixel/format.h"
-#include "src/graphics/bitmaps/packet/pixel-array/array/array.h"
-#include "src/graphics/bitmaps/packet/pixel-array/pixel/pixel.h"
-#include "src/graphics/bitmaps/packet/pixel-array/array/values.h"
 
 std::string BitmapSetUp::blueImagePath()
 {
@@ -61,14 +60,14 @@ BitmapHeaders::DibHeader BitmapSetUp::bluePixelDibHeader()
 
 Pixels::Array BitmapSetUp::bluePixelArray()
 {
-  Pixels::ArrayValues values;
-  values.widthInPixels = 512;
-  values.heightInPixels = 512;
-  values.pixelFormat.name = "RGB";
-  values.pixelFormat.bitsPerPixel = 24;
-  values.pixelFormat.colourNames = {"red", "blue", "green"};
+  Pixels::Format format;
+  format.widthInPixels = 512;
+  format.heightInPixels = 512;
+  format.name = "RGB";
+  format.bitsPerPixel = 24;
+  format.colourNames = {"red", "blue", "green"};
 
-  Pixels::Array pixelArray {values};
+  Pixels::Array pixelArray {format};
   pixelArray.fill(BitmapSetUp::blueColours());
 
   return pixelArray;
@@ -76,30 +75,17 @@ Pixels::Array BitmapSetUp::bluePixelArray()
 
 Pixels::Array BitmapSetUp::redPixelArray()
 {
-  Pixels::ArrayValues values;
-  values.widthInPixels = 2;
-  values.heightInPixels = 2;
-  values.pixelFormat.name = "RGB";
-  values.pixelFormat.bitsPerPixel = 24;
-  values.pixelFormat.colourNames = {"red", "blue", "green"};
-
-  Pixels::Array pixelArray {values};
-  pixelArray.fill(BitmapSetUp::redColours());
-
-  return pixelArray;
-}
-
-Pixels::Pixel BitmapSetUp::greenPixel()
-{
   Pixels::Format format;
+  format.widthInPixels = 2;
+  format.heightInPixels = 2;
   format.name = "RGB";
   format.bitsPerPixel = 24;
   format.colourNames = {"red", "blue", "green"};
 
-  Pixels::Pixel pixel {format.colourNames};
-  pixel.setColours(BitmapSetUp::greenColours());
+  Pixels::Array pixelArray {format};
+  pixelArray.fill(BitmapSetUp::redColours());
 
-  return pixel;
+  return pixelArray;
 }
 
 Pixels::Colours BitmapSetUp::redColours()

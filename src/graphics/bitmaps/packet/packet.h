@@ -3,7 +3,7 @@
 
 #include "src/graphics/bitmaps/packet/headers/file-header/header.h"
 #include "src/graphics/bitmaps/packet/headers/dib-header/header.h"
-#include "src/graphics/bitmaps/packet/pixel-array/array/array.h"
+#include "src/graphics/bitmaps/packet/pixel-array/array.h"
 
 struct BitmapPacket
 {

@@ -4,7 +4,6 @@ cc_library(
         "bitmap_reader.h",
         "headers/file_header_reader.h",
         "headers/dib_header_reader.h",
-        "pixel-array/pixel_reader.h",
         "pixel-array/pixel_array_reader.h",
         "pixel-array/pixel_array_reader_config.h"
     ],
@@ -12,7 +11,6 @@ cc_library(
         "bitmap_reader.cpp",
         "headers/file_header_reader.cpp",
         "headers/dib_header_reader.cpp",
-        "pixel-array/pixel_reader.cpp",
         "pixel-array/pixel_array_reader.cpp",
         "pixel-array/pixel_array_reader_config.cpp"
     ],

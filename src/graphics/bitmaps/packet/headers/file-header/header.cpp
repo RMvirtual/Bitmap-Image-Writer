@@ -1,7 +1,7 @@
 #include <cstdint>
 
 #include "src/graphics/bitmaps/packet/headers/file-header/header.h"
-#include "src/graphics/bitmaps/packet/pixel-array/array/size_calculator.h"
+#include "src/graphics/bitmaps/packet/pixel-array/size_calculator.h"
 
 BitmapHeaders::FileHeader::FileHeader()
 {

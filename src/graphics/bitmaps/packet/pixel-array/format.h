@@ -3,7 +3,7 @@
 
 #include <vector>
 #include <string>
-#include <src/graphics/bitmaps/packet/pixel-array/pixel/colours.h>
+#include <src/graphics/bitmaps/packet/pixel-array/colours.h>
 
 namespace Pixels {
 struct Format
@@ -11,6 +11,8 @@ struct Format
   std::string name;
   int bitsPerPixel;
   std::vector<std::string> colourNames;
+  int widthInPixels;
+  int heightInPixels;
 };}
 
 #endif

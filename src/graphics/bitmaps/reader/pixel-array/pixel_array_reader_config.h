@@ -2,7 +2,6 @@
 #define PIXEL_ARRAY_READER_CONFIG_H
 
 #include "src/graphics/bitmaps/packet/headers/headers.h"
-#include <hash_map>
 
 namespace BitmapReader {
 struct PixelArrayReaderConfig
