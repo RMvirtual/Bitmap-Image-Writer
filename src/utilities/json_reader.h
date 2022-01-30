@@ -12,9 +12,6 @@ public:
   JSONReader();
   void read(std::string filePath);
 
-  std::string getFormatName(int index);
-  int getBitsPerPixel(int index);
-  std::vector<std::string> getColours(int index);
   std::vector<std::string> fieldNames();
   std::string value(std::string fieldName);
 

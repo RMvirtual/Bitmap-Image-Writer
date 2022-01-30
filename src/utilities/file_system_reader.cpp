@@ -9,6 +9,6 @@ Utilities::FileSystemReader::FileSystemReader()
 
 std::string Utilities::FileSystemReader::filePath(std::string fileNameAlias)
 {
-  return "Fail";
+  return this->value(fileNameAlias);
 }
 

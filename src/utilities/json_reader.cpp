@@ -15,27 +15,6 @@ void Utilities::JSONReader::read(std::string filePath)
   this->json = this->readJsonFromFile(filePath);
 }
 
-std::string Utilities::JSONReader::getFormatName(int index)
-{  
-  auto object = this->json.at(index);
-  
-  return object.at("name");
-}
-
-int Utilities::JSONReader::getBitsPerPixel(int index)
-{
-  auto object = this->json.at(index);
-  
-  return object.at("bitsPerPixel");
-}
-
-std::vector<std::string> Utilities::JSONReader::getColours(int index)
-{
-  auto object = this->json.at(index);
-
-  return object.at("colours"); 
-}
-
 std::vector<std::string> Utilities::JSONReader::fieldNames()
 {
   std::vector<std::string> fields {};

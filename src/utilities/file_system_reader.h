@@ -11,6 +11,9 @@ public:
   FileSystemReader();
 
   std::string filePath(std::string fileNameAlias);
+  std::string getFormatName(int index);
+  int getBitsPerPixel(int index);
+  std::vector<std::string> getColours(int index);
 
 private:
   
