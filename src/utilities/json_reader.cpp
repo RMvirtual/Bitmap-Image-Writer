@@ -36,15 +36,16 @@ std::vector<std::string> Utilities::JSONReader::getColours(int index)
   return object.at("colours"); 
 }
 
-std::vector<std::string> Utilities::JSONReader::listOfObjects()
+std::vector<std::string> Utilities::JSONReader::fieldNames()
 {
-  std::vector<std::string> objects {};
+  std::vector<std::string> fields {};
+  auto array = this->json.get<nlohmann::json::array_t>();
 
-  for (auto object : this->json) {
-    objects.push_back(object.type_name());
-  }
+  for (auto object : array)
+    for (auto keyAndValue : object.items())
+      fields.push_back(keyAndValue.key());
 
-  return objects;
+  return fields;
 }
 
 nlohmann::json Utilities::JSONReader::readJsonFromFile(std::string filePath)

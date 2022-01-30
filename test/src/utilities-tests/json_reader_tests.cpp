@@ -54,12 +54,10 @@ TEST(JSONReaderTests, ShouldGetColours)
     EXPECT_EQ(colours[valueNo], correctColours[valueNo]);
 }
 
-TEST(JSONReaderTests, ShouldGetListOfObjects)
+TEST(JSONReaderTests, ShouldGetFieldNames)
 {
   auto reader = configurateFileReader();
-  auto objectNames = reader.listOfObjects();
+  auto objectNames = reader.fieldNames();
 
-  for (auto name : objectNames) {
-    std::cout << name << "\n";
-  }
+  EXPECT_EQ(objectNames[0], "pixel_formats");
 }

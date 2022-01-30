@@ -15,8 +15,7 @@ public:
   std::string getFormatName(int index);
   int getBitsPerPixel(int index);
   std::vector<std::string> getColours(int index);
-
-  std::vector<std::string> listOfObjects();
+  std::vector<std::string> fieldNames();
 
 protected:
   nlohmann::json json;
