@@ -4,6 +4,15 @@
 #include <vector>
 #include <string>
 
+Utilities::JSONReader configurateFileReader()
+{
+  Utilities::JSONReader reader {};
+  reader.read(
+    "C://Users/rmvir/Desktop/scc300-Win3D/resources/filesystem.json");
+
+  return reader;
+}
+
 Utilities::JSONReader getPixelFormatLoadedReader()
 {
   std::string pixelFormatsFilePath = {
@@ -43,4 +52,14 @@ TEST(JSONReaderTests, ShouldGetColours)
 
   for (int valueNo = 0; valueNo < noOfColours; valueNo++)
     EXPECT_EQ(colours[valueNo], correctColours[valueNo]);
+}
+
+TEST(JSONReaderTests, ShouldGetListOfObjects)
+{
+  auto reader = configurateFileReader();
+  auto objectNames = reader.listOfObjects();
+
+  for (auto name : objectNames) {
+    std::cout << name << "\n";
+  }
 }

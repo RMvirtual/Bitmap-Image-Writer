@@ -16,8 +16,12 @@ public:
   int getBitsPerPixel(int index);
   std::vector<std::string> getColours(int index);
 
-private:
+  std::vector<std::string> listOfObjects();
+
+protected:
   nlohmann::json json;
+
+private:
   nlohmann::json readJsonFromFile(std::string filePath);
 };}
 
