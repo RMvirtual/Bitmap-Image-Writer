@@ -15,7 +15,7 @@ Utilities::JSONReader configurateFileReader()
 
 Utilities::JSONReader getPixelFormatLoadedReader()
 {
-  std::string pixelFormatsFilePath = {
+  std::string pixelFormatsFilePath {
     "C://Users/rmvir/Desktop/scc300-Win3D/resources/pixel_formats.json"};
 
   Utilities::JSONReader reader {};
@@ -57,7 +57,17 @@ TEST(JSONReaderTests, ShouldGetColours)
 TEST(JSONReaderTests, ShouldGetFieldNames)
 {
   auto reader = configurateFileReader();
-  auto objectNames = reader.fieldNames();
+  auto fieldNames = reader.fieldNames();
 
-  EXPECT_EQ(objectNames[0], "pixel_formats");
+  std::string correctFieldName {"pixel_formats"};
+
+  EXPECT_EQ(fieldNames[0], correctFieldName);
+}
+
+TEST(JSONReaderTests, ShouldGetValueFromField)
+{
+  auto reader = configurateFileReader();
+  std::string correctValue {"resources/pixel_formats.json"};
+
+  EXPECT_EQ(correctValue, reader.value("pixel_formats"));
 }

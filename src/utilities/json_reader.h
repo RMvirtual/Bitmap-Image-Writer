@@ -16,6 +16,7 @@ public:
   int getBitsPerPixel(int index);
   std::vector<std::string> getColours(int index);
   std::vector<std::string> fieldNames();
+  std::string value(std::string fieldName);
 
 protected:
   nlohmann::json json;

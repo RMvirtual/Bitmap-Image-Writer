@@ -48,6 +48,13 @@ std::vector<std::string> Utilities::JSONReader::fieldNames()
   return fields;
 }
 
+std::string Utilities::JSONReader::value(std::string fieldName)
+{
+  auto object = this->json.at(0);
+  
+  return object.at(fieldName);
+}
+
 nlohmann::json Utilities::JSONReader::readJsonFromFile(std::string filePath)
 {
   std::ifstream fileStream {filePath};
