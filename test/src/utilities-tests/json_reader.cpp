@@ -1,7 +1,6 @@
 #include <gtest/gtest.h>
 #include "src/utilities/json_reader.h"
 
-#include <vector>
 #include <string>
 
 Utilities::JSONReader getJsonReader()

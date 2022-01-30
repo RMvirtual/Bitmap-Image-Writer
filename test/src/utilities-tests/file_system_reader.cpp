@@ -1,7 +1,6 @@
 #include <gtest/gtest.h>
 #include "src/utilities/file_system_reader.h"
 
-#include <vector>
 #include <string>
 
 TEST(FileSystemReaderTests, ShouldGetFileSystemNames)
