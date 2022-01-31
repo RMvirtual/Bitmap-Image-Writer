@@ -60,8 +60,7 @@ void Bitmaps::FileHeader::setReservedBytes(uint32_t reservedBytes)
   this->_reservedBytes = reservedBytes;
 }
 
-void Bitmaps::FileHeader::setPixelArrayOffsetInBytes
-(uint32_t offsetInBytes)
+void Bitmaps::FileHeader::setPixelArrayOffsetInBytes(uint32_t offsetInBytes)
 {
   this->_pixelArrayOffsetInBytes = offsetInBytes;
 }

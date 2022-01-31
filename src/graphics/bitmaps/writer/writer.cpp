@@ -12,8 +12,7 @@ Bitmaps::ImageWriter::ImageWriter()
   // pass.
 }
 
-ByteArray Bitmaps::ImageWriter::convertToBytes(
-  const Bitmaps::Packet& packet)
+ByteArray Bitmaps::ImageWriter::convertToBytes(const Bitmaps::Packet& packet)
 {
   ByteArray allBytes {};
 
@@ -74,8 +73,7 @@ ByteArray Bitmaps::ImageWriter::convertToBytes(
   return byteArray;
 }
 
-ByteArray Bitmaps::ImageWriter::convertToBytes(
-  const Bitmaps::Colours& colours)
+ByteArray Bitmaps::ImageWriter::convertToBytes(const Bitmaps::Colours& colours)
 {
   ByteArray byteArray {};
 
