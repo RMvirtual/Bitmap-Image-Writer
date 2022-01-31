@@ -1,7 +1,7 @@
 [
   {
     "name" : "RGBA",
-    "bitsPerPixel" : 32,
+    "bitsPerPixel": 32,
     "colours" : ["alpha", "blue", "green", "red"]
   },
   {

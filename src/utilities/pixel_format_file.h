@@ -13,6 +13,7 @@ public:
   PixelFormatFile();
 
   int indexOf(std::string formatName);
+  int indexOf(int bitsPerPixel);
   std::string formatName(int index);
   int bitsPerPixel(int index);
   std::vector<std::string> colours(int index);

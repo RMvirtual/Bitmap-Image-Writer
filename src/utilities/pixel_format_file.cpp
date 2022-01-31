@@ -16,14 +16,27 @@ Utilities::PixelFormatFile::PixelFormatFile()
 
 int Utilities::PixelFormatFile::indexOf(std::string formatName)
 {
-  int index = 0;
-  int numberOfObjects = this->reader.numberOfObjects();
+  int noOfFormats = this->reader.numberOfObjects();
 
-  for (int i = 0; i < numberOfObjects; i++) {
-    auto name = this->formatName(i);
+  for (int formatNo = 0; formatNo < noOfFormats; formatNo++) {
+    auto name = this->formatName(formatNo);
 
     if (name == formatName)
-      return index;
+      return formatNo;
+  }
+
+  return -1;
+}
+
+int Utilities::PixelFormatFile::indexOf(int bitsPerPixel)
+{
+  int noOfFormats = this->reader.numberOfObjects();
+
+  for (int formatNo = 0; formatNo < noOfFormats; formatNo++) {
+    auto currentBitsPerPixel = this->bitsPerPixel(formatNo);
+
+    if (currentBitsPerPixel == bitsPerPixel)
+      return formatNo;
   }
 
   return -1;

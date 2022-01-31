@@ -7,8 +7,20 @@ namespace Pixels {
 Pixels::Format format(std::string formatName)
 {
   Utilities::PixelFormatFile reader {};
-  
   int index = reader.indexOf(formatName);
+
+  Pixels::Format format {};
+  format.name = reader.formatName(index);
+  format.colourNames = reader.colours(index);
+  format.bitsPerPixel = reader.bitsPerPixel(index);
+
+  return format;
+}
+
+Pixels::Format format(int bitsPerPixel)
+{
+  Utilities::PixelFormatFile reader {};
+  int index = reader.indexOf(bitsPerPixel);
 
   Pixels::Format format {};
   format.name = reader.formatName(index);

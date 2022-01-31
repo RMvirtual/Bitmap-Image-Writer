@@ -1,8 +1,7 @@
 #include "src/graphics/bitmaps/reader/pixel-array/config.h"
 #include "src/graphics/bitmaps/packet/headers/headers.h"
-#include "src/graphics/bitmaps/packet/headers/file-header/header.h"
-#include "src/graphics/bitmaps/packet/headers/dib-header/header.h"
 #include "src/graphics/bitmaps/packet/pixel-array/size_calculator.h"
+#include "src/graphics/bitmaps/packet/formats/formats.h"
 
 BitmapReader::PixelArrayConfig
 BitmapReader::PixelArrayConfig::fromHeaders(
@@ -25,10 +24,7 @@ BitmapReader::PixelArrayConfig::fromHeaders(
 Pixels::Format BitmapReader::PixelArrayConfig::formatFromHeaders(
   const BitmapHeaders::Headers& headers)
 {
-  Pixels::Format format {};
-  format.name = "lol";
-  format.bitsPerPixel = 32;
-  format.colourNames = {"none here."};
+  Pixels::Format format = Pixels::format(headers.dibHeader.bitsPerPixel());
   format.widthInPixels = headers.dibHeader.widthInPixels();
   format.heightInPixels = headers.dibHeader.heightInPixels();
 

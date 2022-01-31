@@ -1,15 +1,28 @@
 #include <gtest/gtest.h>
 #include <src/graphics/bitmaps/packet/formats/formats.h>
 
-TEST(PixelFormats, ShouldGetRGBAFormat)
+Pixels::Format rgbaFormat()
 {
-  auto format = Pixels::format("RGBA");
+  Pixels::Format format {};
+  format.name = "RGBA";
+  format.bitsPerPixel = 32;
+  format.colourNames = {"alpha", "blue", "green", "red"};
 
-  Pixels::Format correctFormat {};
-  correctFormat.name = "RGBA";
-  correctFormat.bitsPerPixel = 32;
-  correctFormat.colourNames = {"alpha", "blue", "green", "red"};
+  return format;
+}
 
+Pixels::Format rgbFormat()
+{
+  Pixels::Format format {};
+  format.name = "RGB";
+  format.bitsPerPixel = 24;
+  format.colourNames = {"blue", "green", "red"};
+
+  return format;
+}
+
+void comparePixelFormats(Pixels::Format& correctFormat, Pixels::Format& format)
+{
   EXPECT_EQ(correctFormat.name, format.name);
   EXPECT_EQ(correctFormat.bitsPerPixel, format.bitsPerPixel);
   EXPECT_EQ(correctFormat.colourNames.size(), format.colourNames.size());
@@ -18,3 +31,26 @@ TEST(PixelFormats, ShouldGetRGBAFormat)
     EXPECT_EQ(correctFormat.colourNames[colour], format.colourNames[colour]);
 }
 
+TEST(PixelFormats, ShouldGetRGBAFormat)
+{
+  auto format = Pixels::format("RGBA");
+  auto correctFormat = rgbaFormat();
+
+  comparePixelFormats(correctFormat, format);
+}
+
+TEST(PixelFormats, ShouldGet32BitPerPixelFormat)
+{
+  auto format = Pixels::format(32);
+  auto correctFormat = rgbaFormat();
+
+  comparePixelFormats(correctFormat, format);
+}
+
+TEST(PixelFormats, ShouldGet24BitPerPixelFormat)
+{
+  auto format = Pixels::format(24);
+  auto correctFormat = rgbFormat();
+
+  comparePixelFormats(correctFormat, format);
+}
