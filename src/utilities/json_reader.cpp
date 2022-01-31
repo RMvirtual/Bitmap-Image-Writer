@@ -4,6 +4,7 @@
 #include <iostream>
 #include <fstream>
 #include <string>
+#include <vector>
 
 Utilities::JSONReader::JSONReader()
 {
@@ -25,13 +26,6 @@ std::vector<std::string> Utilities::JSONReader::fieldNames()
       fields.push_back(keyAndValue.key());
 
   return fields;
-}
-
-std::string Utilities::JSONReader::value(std::string fieldName)
-{
-  auto object = this->json.at(0);
-  
-  return object.at(fieldName);
 }
 
 nlohmann::json Utilities::JSONReader::readJsonFromFile(std::string filePath)

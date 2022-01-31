@@ -29,5 +29,5 @@ TEST(JSONReaderTests, ShouldGetValueFromField)
   auto reader = getJsonReader();
   std::string correctValue {"resources/pixel_formats.json"};
 
-  EXPECT_EQ(correctValue, reader.value("pixel_formats"));
+  EXPECT_EQ(correctValue, reader.value<std::string>("pixel_formats"));
 }
