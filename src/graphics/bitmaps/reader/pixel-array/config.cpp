@@ -16,7 +16,8 @@ BitmapReader::PixelArrayConfig::fromHeaders(
   config.rowPaddingInBytes = Pixels::calculateRowPadding(widthInPixels);
   config.rowSizeInBytes = Pixels::calculateRowSizeInBytes(widthInPixels);
   
-  config.pixelSizeInBytes = config.format.bitsPerPixel / 8;
+  config.pixelSizeInBytes = Pixels::calculatePixelSizeInBytes(
+    config.format.bitsPerPixel);
   
   return config;
 }

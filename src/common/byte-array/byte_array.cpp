@@ -78,6 +78,11 @@ void ByteArray::add(const std::vector<uint8_t>& bytes)
     this->bytes.push_back(byte);
 }
 
+uint8_t& ByteArray::operator [] (int index)
+{
+  return this->bytes[index];
+}
+
 uint8_t ByteArray::operator [] (int index) const
 {
   return this->bytes[index];

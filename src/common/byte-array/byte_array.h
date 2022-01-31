@@ -22,6 +22,7 @@ class ByteArray
     void add(const std::string& values);
     void add(const std::vector<uint8_t>& bytes);
 
+    uint8_t& operator [](int index);
     uint8_t operator [](int index) const;
     ByteArray slice(int startIndex, int endIndex) const;
     int size() const;

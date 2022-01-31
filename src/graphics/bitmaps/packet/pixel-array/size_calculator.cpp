@@ -30,3 +30,8 @@ int Pixels::calculateUnpaddedRowSize(int widthInPixels)
   
   return widthInPixels * sizeOfPixelsInBytes;
 }
+
+int Pixels::calculatePixelSizeInBytes(int bitsPerPixel)
+{  
+  return bitsPerPixel / 8;
+}

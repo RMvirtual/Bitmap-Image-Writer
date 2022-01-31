@@ -20,7 +20,7 @@ Pixels::Array BitmapReader::PixelArrayReader::toPixelArray(
   int noOfBytes = bytes.size();
   int sizeOfPixel = this->config.pixelSizeInBytes;
 
-  for (int byteNo = 0; byteNo < noOfBytes; byteNo += sizeOfPixel) {    
+  for (int byteNo = 0; byteNo < noOfBytes; byteNo += sizeOfPixel) {
     int endOfPixelByteNo = byteNo + sizeOfPixel;
     ByteArray pixelBytes = bytes.slice(byteNo, endOfPixelByteNo);
 

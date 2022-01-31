@@ -30,6 +30,16 @@ void Pixels::Array::fill(const Pixels::Colours& colours)
   // Need matrix traversal fixing to complete this method.
 }
 
+Pixels::Colours& Pixels::Array::at(int rowNo, int columnNo)
+{
+  return this->pixels.at(rowNo, columnNo);
+}
+
+Pixels::Colours& Pixels::Array::at(int indexNo)
+{
+  return this->pixels.at(indexNo);
+}
+
 Pixels::Colours Pixels::Array::at(int rowNo, int columnNo) const
 {
   return this->pixels.at(rowNo, columnNo);

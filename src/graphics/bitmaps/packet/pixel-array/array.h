@@ -15,6 +15,8 @@ public:
   void set(const Colours& colours, int rowNo, int columnNo);
   void set(const Colours& colours, int indexNo);
   void fill(const Colours& colours);
+  Colours& at(int rowNo, int columnNo);
+  Colours& at(int indexNo);
   Colours at(int rowNo, int columnNo) const;
   Colours at(int indexNo) const;
   int sizeInPixels() const;

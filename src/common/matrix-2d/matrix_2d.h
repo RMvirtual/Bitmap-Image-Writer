@@ -18,6 +18,10 @@ public:
   T at(const Index& index) const;
   T at(int rowNo, int columnNo) const;
   T at(int index) const;
+  T& at(const Index& index);
+  T& at(int rowNo, int columnNo);
+  T& at(int index);
+
   int width() const;
   int height() const;
 
@@ -71,6 +75,26 @@ T Common::Matrix2D<T>::at(int absoluteIndex) const
 
 template <class T>
 T Common::Matrix2D<T>::at(const Common::Index& index) const
+{
+  return this->at(index.row, index.column);
+}
+
+template <class T>
+T& Common::Matrix2D<T>::at(int rowNo, int columnIndex)
+{
+  return this->rows.at(rowNo).at(columnIndex);
+}
+
+template <class T>
+T& Common::Matrix2D<T>::at(int absoluteIndex)
+{
+  auto index = this->matrixIndex(absoluteIndex);
+
+  return this->at(index);
+}
+
+template <class T>
+T& Common::Matrix2D<T>::at(const Common::Index& index)
 {
   return this->at(index.row, index.column);
 }

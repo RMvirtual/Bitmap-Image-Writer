@@ -12,7 +12,9 @@ public:
 
   void set(const T& value, int columnIndex);
   T at(int columnIndex) const;
+  T& at(int columnIndex);
   T operator [](int index) const;
+  T& operator [](int index);
   int size() const;
 
 private:
@@ -39,7 +41,19 @@ T Common::MatrixRow<T>::at(int columnIndex) const
 }
 
 template <class T>
+T& Common::MatrixRow<T>::at(int columnIndex)
+{
+  return this->columns.at(columnIndex);
+}
+
+template <class T>
 T Common::MatrixRow<T>::operator[](int index) const
+{
+  return this->at(index);
+}
+
+template <class T>
+T& Common::MatrixRow<T>::operator[](int index)
 {
   return this->at(index);
 }
