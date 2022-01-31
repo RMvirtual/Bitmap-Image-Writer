@@ -20,7 +20,7 @@ namespace BitmapImageComparison
     const BitmapHeaders::DibHeader& header2
   );
   
-  void compare(const Pixels::Array& array1, const Pixels::Array& array2);
+  void compare(Pixels::Array& array1, Pixels::Array& array2);
   void compare(Pixels::Colours& colours1, Pixels::Colours& colours2);
   void isGreen(Pixels::Colours& pixel);
   void isRed(Pixels::Colours& pixel);

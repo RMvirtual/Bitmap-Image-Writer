@@ -4,8 +4,6 @@
 #include "src/graphics/bitmaps/packet/formats/format.h"
 #include "src/graphics/bitmaps/packet/pixel-array/array.h"
 
-#include <iostream>
-
 BitmapReader::PixelArrayReader::PixelArrayReader(
   const BitmapReader::PixelArrayConfig& config)
 {
@@ -22,8 +20,9 @@ Pixels::Array BitmapReader::PixelArrayReader::toPixelArray(
 
   for (int byteNo = 0; byteNo < noOfBytes; byteNo += sizeOfPixel) {
     int endOfPixelByteNo = byteNo + sizeOfPixel;
-    ByteArray pixelBytes = bytes.slice(byteNo, endOfPixelByteNo);
 
+    ByteArray pixelBytes = bytes.slice(byteNo, endOfPixelByteNo);
+    
     Pixels::Colours colours {this->config.format.colourNames};
 
     for (int colourNo = 0; colourNo < sizeOfPixel; colourNo++)

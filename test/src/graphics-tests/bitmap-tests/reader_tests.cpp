@@ -1,5 +1,4 @@
 #include <gtest/gtest.h>
-#include <iostream>
 
 #include "src/graphics/bitmaps/packet/packet.h"
 #include "src/graphics/bitmaps/reader/bitmap_reader.h"
