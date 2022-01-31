@@ -1,0 +1,7 @@
+cc_library(
+    name = "matrix_2d",
+    hdrs = glob(["*.h"]),
+    srcs = glob(["*.cpp"]),
+    visibility = ["//visibility:public"],
+    copts = ["/std:c++17"]
+)

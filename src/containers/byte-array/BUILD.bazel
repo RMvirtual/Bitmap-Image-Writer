@@ -1,0 +1,7 @@
+cc_library(
+    name = "byte_array",
+    hdrs = glob(["*.h"]),
+    srcs = glob(["*.cpp"]),
+    visibility = ["//visibility:public"],
+    copts = ["/std:c++17"]
+)

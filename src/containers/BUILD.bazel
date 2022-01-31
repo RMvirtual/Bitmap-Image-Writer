@@ -1,16 +1,11 @@
 cc_library(
     name = "containers",
-    hdrs = [
-        "byte-array/byte_array.h",
-        "byte-array/byte_conversion.h",
-        "matrix-2d/matrix_2d.h",
-        "matrix-2d/matrix_row.h",
-        "index.h"
-    ],
-    srcs = [
-        "byte-array/byte_array.cpp",
-        "byte-array/byte_conversion.cpp",
-    ],
+    hdrs = ["index.h"],
+    srcs = [],
     visibility = ["//visibility:public"],
-    copts = ["/std:c++17"]
+    copts = ["/std:c++17"],
+    deps = [
+        "//src/containers/byte-array:byte_array",
+        "//src/containers/matrix-2d:matrix_2d"
+    ]
 )
