@@ -65,7 +65,7 @@ void Common::Matrix2D<T>::set(const T& value, int index)
 template <class T>
 void Common::Matrix2D<T>::fill(const T& value)
 {
-  for (auto row : this->rows)
+  for (Common::MatrixRow<T>& row : this->rows)
     row.fill(value);
 }
 
