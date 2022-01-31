@@ -6,7 +6,7 @@
 #include "test/src/graphics-tests/utilities/bitmap_image_comparators.h"
 #include "test/src/graphics-tests/utilities/bitmap_set_up.h"
 
-TEST(PixelArrayTests, ShouldCreatePixelArray)
+TEST(PixelArray, ShouldCreatePixelArray)
 {
   Pixels::Format format;
   format.name = "RGB";
@@ -22,7 +22,7 @@ TEST(PixelArrayTests, ShouldCreatePixelArray)
     BitmapImageComparison::compare(correctColours, pixelArray.at(pixelNo));
 }
 
-TEST(PixelArrayTests, ShouldSetPixelInPixelArray)
+TEST(PixelArray, ShouldSetPixelInPixelArray)
 {
   auto pixelArray = BitmapSetUp::redPixelArray();
   auto greenColours = BitmapSetUp::greenColours();
@@ -31,7 +31,7 @@ TEST(PixelArrayTests, ShouldSetPixelInPixelArray)
   BitmapImageComparison::compare(greenColours, pixelArray.at(1, 0));
 }
 
-TEST(PixelArrayTests, ShouldGetNumberOfPixelsInPixelArray)
+TEST(PixelArray, ShouldGetNumberOfPixelsInPixelArray)
 {
   auto pixelArray = BitmapSetUp::redPixelArray();
 
@@ -41,7 +41,7 @@ TEST(PixelArrayTests, ShouldGetNumberOfPixelsInPixelArray)
   EXPECT_EQ(correctNumberOfPixels, actualNumberOfPixels);
 }
 
-TEST(PixelArrayTests, ShouldCalculatePixelArrayRowPadding)
+TEST(PixelArray, ShouldCalculatePixelArrayRowPadding)
 {
   int correctPadding = 2;
   int actualPadding = Pixels::calculateRowPadding(6);
@@ -49,7 +49,7 @@ TEST(PixelArrayTests, ShouldCalculatePixelArrayRowPadding)
   EXPECT_EQ(correctPadding, actualPadding);
 }
 
-TEST(PixelArrayTests, ShouldCalculatePixelArrayRowSizeInBytes)
+TEST(PixelArray, ShouldCalculatePixelArrayRowSizeInBytes)
 {
   int correctSize = 20;
   int actualSize = Pixels::calculateRowSizeInBytes(6);

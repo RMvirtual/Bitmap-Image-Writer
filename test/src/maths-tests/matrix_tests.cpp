@@ -8,7 +8,7 @@ std::vector<std::vector<double>> setup2DVector()
   return {{1, 2, 3, 4}, {5, 6, 7, 8}};
 }
 
-TEST(MatrixTests, ShouldCreateMatrixFrom2DVector)
+TEST(MathsMatrix, ShouldCreateMatrixFrom2DVector)
 {
   auto vector2D = setup2DVector();
   Maths::Matrix matrix {vector2D};
@@ -27,7 +27,7 @@ TEST(MatrixTests, ShouldCreateMatrixFrom2DVector)
     }
 }
 
-TEST(MatrixTests, ShouldReturnWidthAsTwo)
+TEST(MathsMatrix, ShouldReturnWidthAsTwo)
 {
   auto vector2D = setup2DVector();
   Maths::Matrix matrix {vector2D};
@@ -38,7 +38,7 @@ TEST(MatrixTests, ShouldReturnWidthAsTwo)
   EXPECT_EQ(width, correctWidth);
 }
 
-TEST(MatrixTests, ShouldReturnWidthAsZero)
+TEST(MathsMatrix, ShouldReturnWidthAsZero)
 {
   std::vector<std::vector<double>> vector2D {};
   Maths::Matrix matrix {};
@@ -49,7 +49,7 @@ TEST(MatrixTests, ShouldReturnWidthAsZero)
   EXPECT_EQ(correctWidth, width);
 }
 
-TEST(MatrixTests, ShouldReturnHeightAsFour)
+TEST(MathsMatrix, ShouldReturnHeightAsFour)
 {
   auto vector2D = setup2DVector();
   Maths::Matrix matrix {vector2D};
@@ -60,7 +60,7 @@ TEST(MatrixTests, ShouldReturnHeightAsFour)
   EXPECT_EQ(correctHeight, height);
 }
 
-TEST(MatrixTests, ShouldReturnHeightAsZero)
+TEST(MathsMatrix, ShouldReturnHeightAsZero)
 {
   std::vector<std::vector<double>> vector2D {};
   Maths::Matrix matrix {};
@@ -68,7 +68,7 @@ TEST(MatrixTests, ShouldReturnHeightAsZero)
   EXPECT_EQ(matrix.height(), 0);
 }
 
-TEST(MatrixTests, ShouldGetColumn)
+TEST(MathsMatrix, ShouldGetColumn)
 {
   auto vector2D = setup2DVector();
   Maths::Matrix matrix {vector2D};
@@ -80,7 +80,7 @@ TEST(MatrixTests, ShouldGetColumn)
     EXPECT_EQ(column[rowNo], correctValues[rowNo]);
 }
 
-TEST(MatrixTests, ShouldGetRow)
+TEST(MathsMatrix, ShouldGetRow)
 {
   auto vector2D = setup2DVector();
   Maths::Matrix matrix {vector2D};
@@ -92,7 +92,7 @@ TEST(MatrixTests, ShouldGetRow)
     EXPECT_EQ(row[valueNo], correctValues[valueNo]);
 }
 
-TEST(MatrixTests, ShouldMultiplyMatrixByA2DVector)
+TEST(MathsMatrix, ShouldMultiplyMatrixByA2DVector)
 {
   std::vector<std::vector<double>> vector2D {{1, 2}, {3, 4}};
   Maths::Matrix matrix {vector2D};
@@ -105,7 +105,7 @@ TEST(MatrixTests, ShouldMultiplyMatrixByA2DVector)
     EXPECT_DOUBLE_EQ(multipledResult[i], correctVector[i]);
 }
 
-TEST(MatrixTests, ShouldMultiplyMatrixByA3DVector)
+TEST(MathsMatrix, ShouldMultiplyMatrixByA3DVector)
 {
   std::vector<std::vector<double>> vector2D = {
     {1, 2, 3},
@@ -123,7 +123,7 @@ TEST(MatrixTests, ShouldMultiplyMatrixByA3DVector)
     EXPECT_DOUBLE_EQ(multipledResult[i], correctResult[i]);
 }
 
-TEST(MatrixTests, ShouldMultiplyMatrixByAnotherMatrix)
+TEST(MathsMatrix, ShouldMultiplyMatrixByAnotherMatrix)
 {
   std::vector<std::vector<double>> vector1 {
     {1, 2, 3},
@@ -158,7 +158,7 @@ TEST(MatrixTests, ShouldMultiplyMatrixByAnotherMatrix)
       );
 }
 
-TEST(MatrixTests, ShouldMultiplyMatrixByAMatrixWithDifferentHeight)
+TEST(MathsMatrix, ShouldMultiplyMatrixByAMatrixWithDifferentHeight)
 {
   std::vector<std::vector<double>> vector1 {
     {1, 2},
@@ -193,7 +193,7 @@ TEST(MatrixTests, ShouldMultiplyMatrixByAMatrixWithDifferentHeight)
       );
 }
 
-TEST(MatrixTests, ShouldPrintMatrixAsString)
+TEST(MathsMatrix, ShouldPrintMatrixAsString)
 {
   std::vector<std::vector<double>> values {{1, 2, 3}, {4, 5, 6}};
   Maths::Matrix matrix {values};
@@ -207,7 +207,7 @@ TEST(MatrixTests, ShouldPrintMatrixAsString)
   EXPECT_EQ(correctString, matrix.toString());
 }
 
-TEST(MatrixTests, ColumnShouldBeIterable)
+TEST(MathsMatrix, ColumnShouldBeIterable)
 {
   std::vector<double> correctValues {1, 2, 3, 4};
   Maths::Column column {correctValues};

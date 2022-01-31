@@ -5,7 +5,7 @@
 #include "src/common/byte-array/byte_conversion.h"
 #include "src/common/byte-array/byte_array.h"
 
-TEST(BytesConverterTest, ShouldConvertByteArrayTo16BitInt)
+TEST(ByteConversion, ShouldConvertByteArrayTo16BitInt)
 {
   ByteArray byteArray {};
   byteArray.add(std::string {"crym3@river"});
@@ -16,7 +16,7 @@ TEST(BytesConverterTest, ShouldConvertByteArrayTo16BitInt)
   EXPECT_DOUBLE_EQ(correctValue, value);  
 }
 
-TEST(BytesConverterTest, ShouldConvertByteArrayTo32BitInt)
+TEST(ByteConversion, ShouldConvertByteArrayTo32BitInt)
 {
   ByteArray byteArray {};
   byteArray.add(std::string {"crym3@river"});

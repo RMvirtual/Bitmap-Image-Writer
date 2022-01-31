@@ -1,7 +1,7 @@
 #include <gtest/gtest.h>
 #include "src/maths/binary_ops/binary_ops.h"
 
-TEST(BinaryOpsTests, ShouldAddTwoDoubles)
+TEST(BinaryOperations, ShouldAddTwoDoubles)
 {
   Maths::Addition additionOp {};
   double number = additionOp.perform(1, 1);
@@ -10,7 +10,7 @@ TEST(BinaryOpsTests, ShouldAddTwoDoubles)
   EXPECT_DOUBLE_EQ(number, correctNumber);
 }
 
-TEST(BinaryOpsTests, ShouldAddTwoNegativeDoubles)
+TEST(BinaryOperations, ShouldAddTwoNegativeDoubles)
 {
   Maths::Addition additionOp {};
   double number = additionOp.perform(-5, -5);
@@ -19,7 +19,7 @@ TEST(BinaryOpsTests, ShouldAddTwoNegativeDoubles)
   EXPECT_DOUBLE_EQ(number, correctNumber);
 }
 
-TEST(BinaryOpsTests, ShouldAddNegativeAndPositiveDoubles)
+TEST(BinaryOperations, ShouldAddNegativeAndPositiveDoubles)
 {
   Maths::Addition additionOp {};
   double number = additionOp.perform(5, -10);
@@ -28,7 +28,7 @@ TEST(BinaryOpsTests, ShouldAddNegativeAndPositiveDoubles)
   EXPECT_DOUBLE_EQ(number, correctNumber);
 }
 
-TEST(BinaryOpsTests, ShouldSubtractTwoDoubles)
+TEST(BinaryOperations, ShouldSubtractTwoDoubles)
 {
   Maths::Subtraction subtractionOp {};
   double number = subtractionOp.perform(30, 7);
@@ -37,7 +37,7 @@ TEST(BinaryOpsTests, ShouldSubtractTwoDoubles)
   EXPECT_DOUBLE_EQ(number, correctNumber);
 }
 
-TEST(BinaryOpsTests, ShouldSubtractTwoNegativeDoubles)
+TEST(BinaryOperations, ShouldSubtractTwoNegativeDoubles)
 {
   Maths::Subtraction subtractionOp {};
   double number = subtractionOp.perform(-30, -7);
@@ -46,7 +46,7 @@ TEST(BinaryOpsTests, ShouldSubtractTwoNegativeDoubles)
   EXPECT_DOUBLE_EQ(number, correctNumber);
 }
 
-TEST(BinaryOpsTests, ShouldMultiplyTwoDoubles)
+TEST(BinaryOperations, ShouldMultiplyTwoDoubles)
 {
   Maths::Multiplication multiplicationOp {};
   double number = multiplicationOp.perform(6, 3);
@@ -55,7 +55,7 @@ TEST(BinaryOpsTests, ShouldMultiplyTwoDoubles)
   EXPECT_DOUBLE_EQ(number, correctNumber);
 }
 
-TEST(BinaryOpsTests, ShouldMultiplyTwoNegativeDoubles)
+TEST(BinaryOperations, ShouldMultiplyTwoNegativeDoubles)
 {
   Maths::Multiplication multiplicationOp {};
   double number = multiplicationOp.perform(-6, -3);
@@ -64,7 +64,7 @@ TEST(BinaryOpsTests, ShouldMultiplyTwoNegativeDoubles)
   EXPECT_DOUBLE_EQ(number, correctNumber);
 }
 
-TEST(BinaryOpsTests, ShouldDivideTwoDoubles)
+TEST(BinaryOperations, ShouldDivideTwoDoubles)
 {
   Maths::Division divisionOp {};
   double number = divisionOp.perform(100, 5);
@@ -73,7 +73,7 @@ TEST(BinaryOpsTests, ShouldDivideTwoDoubles)
   EXPECT_DOUBLE_EQ(number, correctNumber);
 }
 
-TEST(BinaryOpsTests, ShouldDivideTwoNegativeDoubles)
+TEST(BinaryOperations, ShouldDivideTwoNegativeDoubles)
 {
   Maths::Division divisionOp {};
   double number = divisionOp.perform(-100, -5);

@@ -4,7 +4,7 @@
 
 #include "src/common/filesystem/filesystem.h"
 
-TEST(FilesystemTests, ShouldGetSizeOfFile)
+TEST(Filesystem, ShouldGetSizeOfFile)
 { 
   char* bitmapFile = (
     "C:\\Users\\rmvir\\Desktop\\scc300-Win3D\\test\\resources\\" \

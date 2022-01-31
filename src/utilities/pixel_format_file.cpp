@@ -14,13 +14,13 @@ Utilities::PixelFormatFile::PixelFormatFile()
   this->reader.read(systemPath + filePath);
 }
 
-int Utilities::PixelFormatFile::indexByName(std::string formatName)
+int Utilities::PixelFormatFile::indexOf(std::string formatName)
 {
   int index = 0;
   int numberOfObjects = this->reader.numberOfObjects();
 
   for (int i = 0; i < numberOfObjects; i++) {
-    auto name = this->getFormatName(i);
+    auto name = this->formatName(i);
 
     if (name == formatName)
       return index;
@@ -29,19 +29,19 @@ int Utilities::PixelFormatFile::indexByName(std::string formatName)
   return -1;
 }
 
-std::string Utilities::PixelFormatFile::getFormatName(int index)
+std::string Utilities::PixelFormatFile::formatName(int index)
 {
   return this->reader.value<std::string>(index, "name");
 }
 
-int Utilities::PixelFormatFile::getBitsPerPixel(int index)
+int Utilities::PixelFormatFile::bitsPerPixel(int index)
 {
   std::string name {"bitsPerPixel"};
   
   return this->reader.value<int>(index, name);
 }
 
-std::vector<std::string> Utilities::PixelFormatFile::getColours(int index)
+std::vector<std::string> Utilities::PixelFormatFile::colours(int index)
 {
   return this->reader.value<std::vector<std::string>>(index, "colours");
 }

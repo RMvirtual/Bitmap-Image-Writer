@@ -91,7 +91,7 @@ std::vector<unsigned char> getEverySizeCorrectValues()
   return correctValues;
 }
 
-TEST(ByteArrayTests, ShouldAddUint8ToArray)
+TEST(ByteArray, ShouldAddUint8ToArray)
 {
   uint8_t correctValue = 20;
 
@@ -101,7 +101,7 @@ TEST(ByteArrayTests, ShouldAddUint8ToArray)
   ASSERT_EQ(byteArray[0], correctValue);
 }
 
-TEST(ByteArrayTests, ShouldAddUint16ToArray)
+TEST(ByteArray, ShouldAddUint16ToArray)
 {
   uint16_t correctValue = 20;
 
@@ -113,7 +113,7 @@ TEST(ByteArrayTests, ShouldAddUint16ToArray)
     ASSERT_EQ(byteArray[byteNo], correctValue >> (byteNo * 8));
 }
 
-TEST(ByteArrayTests, ShouldAddUint32ToArray)
+TEST(ByteArray, ShouldAddUint32ToArray)
 {
   uint32_t correctValue = 20500;
   
@@ -129,7 +129,7 @@ TEST(ByteArrayTests, ShouldAddUint32ToArray)
   }
 }
 
-TEST(ByteArrayTests, ShouldAddMultiple32bitUnsignedIntsToArray)
+TEST(ByteArray, ShouldAddMultiple32bitUnsignedIntsToArray)
 {
   ByteArray byteArray;
   std::vector<unsigned char> correctValues;
@@ -146,7 +146,7 @@ TEST(ByteArrayTests, ShouldAddMultiple32bitUnsignedIntsToArray)
     EXPECT_EQ(correctValues[byteNo], byteArray[byteNo]);
 }
 
-TEST(ByteArrayTests, ShouldAddCharArrayToArray)
+TEST(ByteArray, ShouldAddCharArrayToArray)
 {
   int noOfBytes = 4;
   unsigned char* correctValues = new unsigned char[noOfBytes];
@@ -162,7 +162,7 @@ TEST(ByteArrayTests, ShouldAddCharArrayToArray)
     EXPECT_EQ(correctValues[byteNo], byteArray[byteNo]);
 }
 
-TEST(ByteArrayTests, ShouldAddMultipleSizeUnsignedIntsToArray)
+TEST(ByteArray, ShouldAddMultipleSizeUnsignedIntsToArray)
 {
   ByteArray byteArray;
   
@@ -185,7 +185,7 @@ TEST(ByteArrayTests, ShouldAddMultipleSizeUnsignedIntsToArray)
     EXPECT_EQ(correctValues[byteNo], byteArray[byteNo]);
 }
 
-TEST(ByteArrayTests, ShouldAddEverySizeIntToBitmapBuilder)
+TEST(ByteArray, ShouldAddEverySizeIntToBitmapBuilder)
 {
   auto byteArray = getEverySizeByteArray();
   auto correctValues = getEverySizeCorrectValues();

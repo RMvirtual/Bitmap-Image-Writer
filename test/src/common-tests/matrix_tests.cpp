@@ -4,7 +4,7 @@
 #include "src/common/matrix-2d/matrix_row.h"
 #include "src/common/matrix-2d/matrix_2d.h"
 
-TEST(Matrix2DTests, ShouldGetValuesFrom2DMatrixRow)
+TEST(Matrix2D, ShouldGetValuesFrom2DMatrixRow)
 {
   int width = 2;
   Common::MatrixRow<std::string> matrixRow {width, "0"};
@@ -18,7 +18,7 @@ TEST(Matrix2DTests, ShouldGetValuesFrom2DMatrixRow)
   EXPECT_EQ(matrixRow.at(1), value2);
 }
 
-TEST(Matrix2DTests, ShouldGetValuesFrom2DMatrix)
+TEST(Matrix2D, ShouldGetValuesFrom2DMatrix)
 {
   int width = 2;
   int height = 2;
@@ -34,7 +34,7 @@ TEST(Matrix2DTests, ShouldGetValuesFrom2DMatrix)
   EXPECT_EQ(matrix.at(1, 1), value2);
 }
 
-TEST(Matrix2DTests, ShouldGetElementWithAbsoluteIndex)
+TEST(Matrix2D, ShouldGetElementWithAbsoluteIndex)
 {
   int width = 2;
   int height = 2;

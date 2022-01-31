@@ -12,10 +12,10 @@ class PixelFormatFile
 public:
   PixelFormatFile();
 
-  int indexByName(std::string formatName);
-  std::string getFormatName(int index);
-  int getBitsPerPixel(int index);
-  std::vector<std::string> getColours(int index);
+  int indexOf(std::string formatName);
+  std::string formatName(int index);
+  int bitsPerPixel(int index);
+  std::vector<std::string> colours(int index);
 
 private:
   JSONReader reader;

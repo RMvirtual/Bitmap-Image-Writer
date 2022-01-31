@@ -12,7 +12,7 @@ BitmapPacket getBitmapPacket()
   return reader.readBitmapPacket(imagePath);
 }
 
-TEST(BitmapReaderTests, ShouldReadFileHeader)
+TEST(BitmapReader, ShouldReadFileHeader)
 {
   auto header = getBitmapPacket().fileHeader;
   auto correctHeader = BitmapSetUp::bluePixelFileHeader();
@@ -20,7 +20,7 @@ TEST(BitmapReaderTests, ShouldReadFileHeader)
   BitmapImageComparison::compare(correctHeader, header);
 }
 
-TEST(BitmapReaderTests, ShouldReadDibHeader)
+TEST(BitmapReader, ShouldReadDibHeader)
 {
   auto header = getBitmapPacket().dibHeader;
   auto correctHeader = BitmapSetUp::bluePixelDibHeader();
@@ -28,7 +28,7 @@ TEST(BitmapReaderTests, ShouldReadDibHeader)
   BitmapImageComparison::compare(correctHeader, header);
 }
 
-TEST(BitmapReaderTests, ShouldReadPixelArray)
+TEST(BitmapReader, ShouldReadPixelArray)
 {
   auto pixelArray = getBitmapPacket().pixelArray;
   auto correctPixelArray = BitmapSetUp::bluePixelArray();
