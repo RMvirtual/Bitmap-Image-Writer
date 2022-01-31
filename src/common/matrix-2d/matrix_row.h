@@ -8,9 +8,10 @@ template <class T>
 class MatrixRow
 {
 public:
-  MatrixRow(int maxColumns, const T& defaultValue);
+  MatrixRow(int noOfColumns, const T& defaultValue);
 
   void set(const T& value, int columnIndex);
+  void fill(const T& value);
   T at(int columnIndex) const;
   T& at(int columnIndex);
   T operator [](int index) const;
@@ -24,14 +25,19 @@ private:
 template <class T>
 Common::MatrixRow<T>::MatrixRow(int noOfColumns, const T& defaultValue)
 {
-  for (int columnNo = 0; columnNo < noOfColumns; columnNo++)
-    this->columns.push_back(defaultValue);
+  this->columns = std::vector<T>(noOfColumns, defaultValue);
 }
 
 template <class T>
 void Common::MatrixRow<T>::set(const T& value, int columnIndex)
 {
   this->columns.at(columnIndex) = value;
+}
+
+template <class T>
+void Common::MatrixRow<T>::fill(const T& value)
+{
+  std::fill(this->columns.begin(), this->columns.end(), value);
 }
 
 template <class T>

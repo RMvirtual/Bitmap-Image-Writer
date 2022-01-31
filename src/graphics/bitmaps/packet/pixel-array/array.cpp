@@ -27,7 +27,7 @@ void Pixels::Array::set(const Pixels::Colours& colours, int indexNo)
 
 void Pixels::Array::fill(const Pixels::Colours& colours)
 {
-  // Need matrix traversal fixing to complete this method.
+  this->pixels.fill(colours);
 }
 
 Pixels::Colours& Pixels::Array::at(int rowNo, int columnNo)
