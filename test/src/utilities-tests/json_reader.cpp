@@ -14,7 +14,7 @@ Utilities::JSONReader getJsonReader()
   return reader;
 }
 
-TEST(JSONReaderTests, ShouldGetFieldNames)
+TEST(JSONReader, ShouldGetFieldNames)
 {
   auto reader = getJsonReader();
   auto fieldNames = reader.fieldNames();
@@ -24,10 +24,17 @@ TEST(JSONReaderTests, ShouldGetFieldNames)
   EXPECT_EQ(fieldNames[0], correctFieldName);
 }
 
-TEST(JSONReaderTests, ShouldGetValueFromField)
+TEST(JSONReader, ShouldGetValueFromField)
 {
   auto reader = getJsonReader();
   std::string correctValue {"resources/pixel_formats.json"};
 
   EXPECT_EQ(correctValue, reader.value<std::string>("pixel_formats"));
+}
+
+TEST(JSONReader, ShouldGetNumberOfObjects)
+{
+  auto reader = getJsonReader();
+
+  EXPECT_EQ(1, reader.numberOfObjects());
 }

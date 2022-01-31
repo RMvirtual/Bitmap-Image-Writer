@@ -12,10 +12,11 @@ class JSONReader
 {
 public:
   JSONReader();
-  void read(std::string filePath);
 
+  void read(std::string filePath);
   std::vector<std::string> fieldNames();
-  
+  int numberOfObjects();
+    
   template <class T>
   T value(std::string fieldName)
   {

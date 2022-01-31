@@ -32,3 +32,10 @@ nlohmann::json Utilities::JSONReader::readJsonFromFile(std::string filePath)
 
   return json;
 }
+
+int Utilities::JSONReader::numberOfObjects()
+{
+  auto array = this->json.get<nlohmann::json::array_t>();
+  
+  return array.size();
+}
