@@ -8,7 +8,7 @@
 void BitmapImageComparison::compare(
   const BitmapHeaders::FileHeader& header1, 
   const BitmapHeaders::FileHeader& header2)
-{
+{  
   EXPECT_EQ(header1.signatureBytes(), header2.signatureBytes());
   EXPECT_EQ(header1.fileSizeInBytes(), header2.fileSizeInBytes());
   EXPECT_EQ(header1.reservedBytes(), header2.reservedBytes());

@@ -1,4 +1,5 @@
 #include <gtest/gtest.h>
+#include <iostream>
 
 #include "src/graphics/bitmaps/packet/packet.h"
 #include "src/graphics/bitmaps/reader/bitmap_reader.h"
@@ -16,7 +17,7 @@ TEST(BitmapReader, ShouldReadFileHeader)
 {
   auto header = getBitmapPacket().fileHeader;
   auto correctHeader = BitmapSetUp::bluePixelFileHeader();
-  
+ 
   BitmapImageComparison::compare(correctHeader, header);
 }
 
