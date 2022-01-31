@@ -7,8 +7,9 @@
 #include "src/graphics/bitmaps/packet/headers/file-header/header.h"
 #include "src/graphics/bitmaps/packet/headers/dib-header/header.h"
 #include "src/common/byte-array/byte_array.h"
-#include "src/graphics/bitmaps/reader/pixel-array/pixel_array_reader_config.h"
-#include "src/graphics/bitmaps/reader/pixel-array/pixel_array_reader.h"
+#include "src/graphics/bitmaps/reader/pixel-array/config.h"
+#include "src/graphics/bitmaps/reader/pixel-array/reader.h"
+#include "src/graphics/bitmaps/packet/formats/format.h"
 
 namespace BitmapReader {
 class ImageReader
@@ -26,8 +27,9 @@ private:
   void processIntoDibHeader(const ByteArray& bytes);
   void processIntoPixelArray(const ByteArray& bytes);
   BitmapHeaders::Headers packetToHeaders();
-  BitmapReader::PixelArrayReaderConfig pixelArrayConfig();
-  BitmapReader::PixelArrayReader pixelArrayReader();  
+  BitmapReader::PixelArrayConfig pixelArrayConfig();
+  BitmapReader::PixelArrayReader pixelArrayReader();
+
 };}
 
 #endif

@@ -2,14 +2,15 @@
 #define PIXEL_ARRAY_READER_CONFIG_H
 
 #include "src/graphics/bitmaps/packet/headers/headers.h"
+#include "src/graphics/bitmaps/packet/formats/format.h"
 
 namespace BitmapReader {
-struct PixelArrayReaderConfig
+struct PixelArrayConfig
 {
-  static PixelArrayReaderConfig fromHeaders(
+  static PixelArrayConfig fromHeaders(
     const BitmapHeaders::Headers& headers);
 
-  enum {RGB, RGBA} pixelFormats;
+  Pixels::Format format;
   int startingByteIndex;
   int rowSizeInBytes;
   int rowPaddingInBytes;

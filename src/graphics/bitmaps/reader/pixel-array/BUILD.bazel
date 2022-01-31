@@ -1,0 +1,11 @@
+cc_library(
+    name = "pixel_array_reader",
+    hdrs = glob(["*.h"]),
+    srcs = glob(["*.cpp"]),
+    deps = [
+        "//src/common:common",
+        "//src/graphics/bitmaps/packet:bitmap_packet"
+    ],
+    visibility = ["//visibility:public"],
+    copts = ["/std:c++17"]
+)

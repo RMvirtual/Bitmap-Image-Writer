@@ -16,6 +16,7 @@ public:
 
   std::vector<std::string> names();
   int& operator [](std::string value);
+  
 
 private:
   std::unordered_map<std::string, int> _colours;

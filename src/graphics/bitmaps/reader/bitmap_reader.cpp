@@ -4,7 +4,7 @@
 #include "src/graphics/bitmaps/reader/bitmap_reader.h"
 #include "src/graphics/bitmaps/reader/headers/file_header_reader.h"
 #include "src/graphics/bitmaps/reader/headers/dib_header_reader.h"
-#include "src/graphics/bitmaps/reader/pixel-array/pixel_array_reader.h"
+#include "src/graphics/bitmaps/reader/pixel-array/reader.h"
 #include "src/graphics/bitmaps/packet/headers/headers.h"
 
 BitmapReader::ImageReader::ImageReader()
@@ -57,7 +57,7 @@ void BitmapReader::ImageReader::processIntoPixelArray(const ByteArray& bytes)
 
 BitmapReader::PixelArrayReader BitmapReader::ImageReader::pixelArrayReader()
 {
-  return {this->pixelArrayConfig()};  
+  return {this->pixelArrayConfig()};
 }
 
 BitmapHeaders::Headers BitmapReader::ImageReader::packetToHeaders()
@@ -69,10 +69,10 @@ BitmapHeaders::Headers BitmapReader::ImageReader::packetToHeaders()
   return headers;
 }
 
-BitmapReader::PixelArrayReaderConfig
+BitmapReader::PixelArrayConfig
 BitmapReader::ImageReader::pixelArrayConfig()
 {
   auto headers = this->packetToHeaders();
   
-  return BitmapReader::PixelArrayReaderConfig::fromHeaders(headers);
+  return BitmapReader::PixelArrayConfig::fromHeaders(headers);
 }
