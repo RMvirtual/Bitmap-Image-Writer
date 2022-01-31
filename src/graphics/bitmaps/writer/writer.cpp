@@ -12,7 +12,8 @@ BitmapWriter::ImageWriter::ImageWriter()
   // pass.
 }
 
-ByteArray BitmapWriter::ImageWriter::convertToBytes(const BitmapPacket& packet)
+ByteArray BitmapWriter::ImageWriter::convertToBytes(
+  const Bitmaps::Packet& packet)
 {
   ByteArray allBytes {};
 
@@ -24,7 +25,7 @@ ByteArray BitmapWriter::ImageWriter::convertToBytes(const BitmapPacket& packet)
 }
 
 ByteArray BitmapWriter::ImageWriter::convertToBytes(
-  const BitmapHeaders::FileHeader& header)
+  const Bitmaps::FileHeader& header)
 {
   ByteArray byteArray {};
   byteArray.add(header.signatureBytes());
@@ -36,7 +37,7 @@ ByteArray BitmapWriter::ImageWriter::convertToBytes(
 }
 
 ByteArray BitmapWriter::ImageWriter::convertToBytes(
-  const BitmapHeaders::DibHeader& header)
+  const Bitmaps::DibHeader& header)
 {
   ByteArray byteArray {};
 
@@ -56,7 +57,7 @@ ByteArray BitmapWriter::ImageWriter::convertToBytes(
 }
 
 ByteArray BitmapWriter::ImageWriter::convertToBytes(
-  const Pixels::Array& pixelArray)
+  const Bitmaps::PixelArray& pixelArray)
 {
   ByteArray byteArray {};
   int numberOfPixels = pixelArray.sizeInPixels();
@@ -74,7 +75,7 @@ ByteArray BitmapWriter::ImageWriter::convertToBytes(
 }
 
 ByteArray BitmapWriter::ImageWriter::convertToBytes(
-  const Pixels::Colours& colours)
+  const Bitmaps::Colours& colours)
 {
   ByteArray byteArray {};
 

@@ -6,8 +6,8 @@
 #include "test/src/graphics-tests/utilities/bitmap_image_comparators.h"
 
 void BitmapImageComparison::compare(
-  const BitmapHeaders::FileHeader& header1, 
-  const BitmapHeaders::FileHeader& header2)
+  const Bitmaps::FileHeader& header1, 
+  const Bitmaps::FileHeader& header2)
 {  
   EXPECT_EQ(header1.signatureBytes(), header2.signatureBytes());
   EXPECT_EQ(header1.fileSizeInBytes(), header2.fileSizeInBytes());
@@ -17,8 +17,8 @@ void BitmapImageComparison::compare(
 }
 
 void BitmapImageComparison::compare(
-  const BitmapHeaders::DibHeader& header1,
-  const BitmapHeaders::DibHeader& header2)
+  const Bitmaps::DibHeader& header1,
+  const Bitmaps::DibHeader& header2)
 {
   EXPECT_EQ(header1.headerSizeInBytes(), header2.headerSizeInBytes());
   EXPECT_EQ(header1.widthInPixels(), header2.widthInPixels());
@@ -34,7 +34,7 @@ void BitmapImageComparison::compare(
 }
 
 void BitmapImageComparison::compare(
-  Pixels::Array& pixelArray1, Pixels::Array& pixelArray2)
+  Bitmaps::PixelArray& pixelArray1, Bitmaps::PixelArray& pixelArray2)
 {
   ASSERT_EQ(pixelArray1.sizeInPixels(), pixelArray2.sizeInPixels());
 
@@ -47,7 +47,7 @@ void BitmapImageComparison::compare(
 }
 
 void BitmapImageComparison::compare(
-  Pixels::Colours& correctColours, Pixels::Colours& colours)
+  Bitmaps::Colours& correctColours, Bitmaps::Colours& colours)
 {
   ASSERT_EQ(correctColours.names().size(), colours.names().size());
 
@@ -55,14 +55,14 @@ void BitmapImageComparison::compare(
     EXPECT_EQ(correctColours[name], colours[name]);
 }
 
-void BitmapImageComparison::isGreen(Pixels::Colours& colours)
+void BitmapImageComparison::isGreen(Bitmaps::Colours& colours)
 {
   EXPECT_EQ(colours["green"], 255);
   EXPECT_EQ(colours["blue"], 0);
   EXPECT_EQ(colours["red"], 0);
 }
 
-void BitmapImageComparison::isRed(Pixels::Colours& colours)
+void BitmapImageComparison::isRed(Bitmaps::Colours& colours)
 {
   EXPECT_EQ(colours["green"], 0);
   EXPECT_EQ(colours["blue"], 0);

@@ -9,11 +9,11 @@ namespace BitmapReader {
 class PixelArrayReader
 {
 public:
-  PixelArrayReader(const Pixels::Format& format);
-  Pixels::Array toPixelArray(const ByteArray& bytes);
+  PixelArrayReader(const Bitmaps::Format& format);
+  Bitmaps::PixelArray toPixelArray(const ByteArray& bytes);
 
 private:
-  Pixels::Format format;
+  Bitmaps::Format format;
 };}
 
 #endif

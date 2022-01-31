@@ -5,7 +5,7 @@
 #include "test/src/graphics-tests/utilities/bitmap_set_up.h"
 #include "src/graphics/bitmaps/formats/formats.h"
 
-BitmapPacket getBitmapPacket()
+Bitmaps::Packet getBitmapPacket()
 {
   auto imagePath = BitmapSetUp::blueImagePath();
   BitmapReader::ImageReader reader {};
@@ -40,7 +40,7 @@ TEST(BitmapReader, ShouldReadPixelArray)
 TEST(BitmapReader, ShouldGetPixelArrayFormatFromHeaders)
 {
   auto headers = BitmapSetUp::bluePixelHeaders();
-  auto format = Pixels::format(headers);
+  auto format = Bitmaps::format(headers);
 
   EXPECT_EQ("RGB", format.name());
   EXPECT_EQ(24, format.bitsPerPixel());

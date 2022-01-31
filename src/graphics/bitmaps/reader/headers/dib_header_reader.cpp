@@ -7,7 +7,7 @@ BitmapReader::DibHeaderReader::DibHeaderReader()
   // pass.
 }
 
-BitmapHeaders::DibHeader BitmapReader::DibHeaderReader::convertBytes(
+Bitmaps::DibHeader BitmapReader::DibHeaderReader::convertBytes(
   const ByteArray& bytes)
 {
   this->parseWidthInPixels(bytes);

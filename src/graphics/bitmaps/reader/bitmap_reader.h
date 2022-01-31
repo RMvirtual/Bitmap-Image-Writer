@@ -14,18 +14,18 @@ class ImageReader
 {
 public:
   ImageReader();
-  BitmapPacket read(const std::string& filePath);
+  Bitmaps::Packet read(const std::string& filePath);
 
 private:
-  BitmapPacket packet;
+  Bitmaps::Packet packet;
 
   void processIntoPacket(const std::string& filePath);
   void processIntoPacket(const ByteArray& bytes);
   void processIntoFileHeader(const ByteArray& bytes);
   void processIntoDibHeader(const ByteArray& bytes);
   void processIntoPixelArray(const ByteArray& bytes);
-  BitmapHeaders::Headers headers();
-  Pixels::Format pixelArrayFormat();
+  Bitmaps::Headers headers();
+  Bitmaps::Format pixelArrayFormat();
   BitmapReader::PixelArrayReader pixelArrayReader();
 };}
 

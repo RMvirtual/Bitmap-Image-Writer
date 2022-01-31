@@ -1,9 +1,9 @@
 #include <gtest/gtest.h>
 #include <src/graphics/bitmaps/formats/formats.h>
 
-Pixels::Format rgbaFormat()
+Bitmaps::Format rgbaFormat()
 {
-  Pixels::Format format {};
+  Bitmaps::Format format {};
   format.setName("RGBA");
   format.setBitsPerPixel(32);
   format.setColourNames({"alpha", "blue", "green", "red"});
@@ -11,9 +11,9 @@ Pixels::Format rgbaFormat()
   return format;
 }
 
-Pixels::Format rgbFormat()
+Bitmaps::Format rgbFormat()
 {
-  Pixels::Format format {};
+  Bitmaps::Format format {};
   format.setName("RGB");
   format.setBitsPerPixel(24);
   format.setColourNames({"blue", "green", "red"});
@@ -21,7 +21,7 @@ Pixels::Format rgbFormat()
   return format;
 }
 
-void comparePixelFormats(Pixels::Format& correctFormat, Pixels::Format& format)
+void comparePixelFormats(Bitmaps::Format& correctFormat, Bitmaps::Format& format)
 {
   EXPECT_EQ(correctFormat.name(), format.name());
   EXPECT_EQ(correctFormat.bitsPerPixel(), format.bitsPerPixel());
@@ -34,7 +34,7 @@ void comparePixelFormats(Pixels::Format& correctFormat, Pixels::Format& format)
 
 TEST(PixelFormats, ShouldGetRGBAFormat)
 {
-  auto format = Pixels::format("RGBA");
+  auto format = Bitmaps::format("RGBA");
   auto correctFormat = rgbaFormat();
 
   comparePixelFormats(correctFormat, format);
@@ -42,7 +42,7 @@ TEST(PixelFormats, ShouldGetRGBAFormat)
 
 TEST(PixelFormats, ShouldGetRGBFormat)
 {
-  auto format = Pixels::format("RGB");
+  auto format = Bitmaps::format("RGB");
   auto correctFormat = rgbaFormat();
 
   comparePixelFormats(correctFormat, format);
@@ -50,7 +50,7 @@ TEST(PixelFormats, ShouldGetRGBFormat)
 
 TEST(PixelFormats, ShouldGet32BitPerPixelFormat)
 {
-  auto format = Pixels::format(32);
+  auto format = Bitmaps::format(32);
   auto correctFormat = rgbaFormat();
 
   comparePixelFormats(correctFormat, format);
@@ -58,7 +58,7 @@ TEST(PixelFormats, ShouldGet32BitPerPixelFormat)
 
 TEST(PixelFormats, ShouldGet24BitPerPixelFormat)
 {
-  auto format = Pixels::format(24);
+  auto format = Bitmaps::format(24);
   auto correctFormat = rgbFormat();
 
   comparePixelFormats(correctFormat, format);
@@ -66,7 +66,7 @@ TEST(PixelFormats, ShouldGet24BitPerPixelFormat)
 
 TEST(PixelFormats, ShouldCalculatePixelArrayRowPadding)
 {
-  auto format = Pixels::format(24);
+  auto format = Bitmaps::format(24);
   format.setWidthInPixels(2);
   format.setHeightInPixels(1);
   int actualPadding = format.rowPaddingInBytes();
@@ -77,7 +77,7 @@ TEST(PixelFormats, ShouldCalculatePixelArrayRowPadding)
 
 TEST(PixelFormats, ShouldCalculatePixelArrayRowSizeInBytes)
 {
-  auto format = Pixels::format(24);
+  auto format = Bitmaps::format(24);
   format.setWidthInPixels(6);
   format.setHeightInPixels(1);
 

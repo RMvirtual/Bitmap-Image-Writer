@@ -9,10 +9,10 @@ class DibHeaderReader
 {
 public:
   DibHeaderReader();
-  BitmapHeaders::DibHeader convertBytes(const ByteArray& bytes);
+  Bitmaps::DibHeader convertBytes(const ByteArray& bytes);
 
 private:
-  BitmapHeaders::DibHeader header;
+  Bitmaps::DibHeader header;
   
   void parseWidthInPixels(const ByteArray& bytes);
   void parseHeightInPixels(const ByteArray& bytes);

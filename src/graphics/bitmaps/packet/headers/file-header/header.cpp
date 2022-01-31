@@ -2,12 +2,12 @@
 
 #include "src/graphics/bitmaps/packet/headers/file-header/header.h"
 
-BitmapHeaders::FileHeader::FileHeader()
+Bitmaps::FileHeader::FileHeader()
 {
   this->initialiseDefaultValues();
 }
 
-BitmapHeaders::FileHeader::FileHeader(int pixelArraySizeInBytes)
+Bitmaps::FileHeader::FileHeader(int pixelArraySizeInBytes)
 {
   this->initialiseDefaultValues();
 
@@ -15,10 +15,10 @@ BitmapHeaders::FileHeader::FileHeader(int pixelArraySizeInBytes)
     this->_pixelArrayOffsetInBytes + pixelArraySizeInBytes);
 }
 
-BitmapHeaders::FileHeader BitmapHeaders::FileHeader::fromValues(
-  BitmapHeaders::FileHeaderValues values)
+Bitmaps::FileHeader Bitmaps::FileHeader::fromValues(
+  Bitmaps::FileHeaderValues values)
 {
-  BitmapHeaders::FileHeader header {};
+  Bitmaps::FileHeader header {};
 
   header.setSignatureBytes(values.signatureBytes);
   header.setFileSizeInBytes(values.fileSize);
@@ -28,7 +28,7 @@ BitmapHeaders::FileHeader BitmapHeaders::FileHeader::fromValues(
   return header;
 }
 
-void BitmapHeaders::FileHeader::initialiseDefaultValues()
+void Bitmaps::FileHeader::initialiseDefaultValues()
 {
   this->setSignatureBytes('B', 'M');
 
@@ -37,36 +37,36 @@ void BitmapHeaders::FileHeader::initialiseDefaultValues()
   this->_pixelArrayOffsetInBytes = 54;
 }
 
-void BitmapHeaders::FileHeader::setSignatureBytes(std::string bytesSignature)
+void Bitmaps::FileHeader::setSignatureBytes(std::string bytesSignature)
 {
   this->_signatureBytes[0] = bytesSignature[0];
   this->_signatureBytes[1] = bytesSignature[1];
 }
 
-void BitmapHeaders::FileHeader::setSignatureBytes(
+void Bitmaps::FileHeader::setSignatureBytes(
   char firstByte, char secondByte)
 {
   this->_signatureBytes[0] = firstByte;
   this->_signatureBytes[1] = secondByte;
 }
 
-void BitmapHeaders::FileHeader::setFileSizeInBytes(uint32_t sizeOfBitmapFile)
+void Bitmaps::FileHeader::setFileSizeInBytes(uint32_t sizeOfBitmapFile)
 {
   this->_fileSizeInBytes = sizeOfBitmapFile;
 }
 
-void BitmapHeaders::FileHeader::setReservedBytes(uint32_t reservedBytes)
+void Bitmaps::FileHeader::setReservedBytes(uint32_t reservedBytes)
 {
   this->_reservedBytes = reservedBytes;
 }
 
-void BitmapHeaders::FileHeader::setPixelArrayOffsetInBytes
+void Bitmaps::FileHeader::setPixelArrayOffsetInBytes
 (uint32_t offsetInBytes)
 {
   this->_pixelArrayOffsetInBytes = offsetInBytes;
 }
 
-std::string BitmapHeaders::FileHeader::signatureBytes() const
+std::string Bitmaps::FileHeader::signatureBytes() const
 {
   std::string signatureBytes = "";
   signatureBytes += this->_signatureBytes[0];
@@ -75,22 +75,22 @@ std::string BitmapHeaders::FileHeader::signatureBytes() const
   return signatureBytes;
 }
 
-uint32_t BitmapHeaders::FileHeader::fileSizeInBytes() const
+uint32_t Bitmaps::FileHeader::fileSizeInBytes() const
 {
   return this->_fileSizeInBytes;
 }
 
-int BitmapHeaders::FileHeader::pixelArraySizeInBytes() const
+int Bitmaps::FileHeader::pixelArraySizeInBytes() const
 {
   return this->_fileSizeInBytes - this->_pixelArrayOffsetInBytes;
 }
 
-uint32_t BitmapHeaders::FileHeader::reservedBytes() const
+uint32_t Bitmaps::FileHeader::reservedBytes() const
 {
   return this->_reservedBytes;
 }
 
-uint32_t BitmapHeaders::FileHeader::pixelArrayOffsetInBytes() const
+uint32_t Bitmaps::FileHeader::pixelArrayOffsetInBytes() const
 {
   return this->_pixelArrayOffsetInBytes;
 }

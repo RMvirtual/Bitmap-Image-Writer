@@ -5,11 +5,12 @@
 #include "src/graphics/bitmaps/packet/headers/dib-header/header.h"
 #include "src/graphics/bitmaps/packet/pixel-array/array.h"
 
-struct BitmapPacket
+namespace Bitmaps {
+struct Packet
 {
-  BitmapHeaders::FileHeader fileHeader;
-  BitmapHeaders::DibHeader dibHeader;
-  Pixels::Array pixelArray;
-};
+  FileHeader fileHeader;
+  DibHeader dibHeader;
+  PixelArray pixelArray;
+};}
 
 #endif

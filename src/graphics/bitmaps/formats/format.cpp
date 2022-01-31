@@ -1,85 +1,85 @@
 #include <string>
 #include "src/graphics/bitmaps/formats/format.h"
 
-Pixels::Format::Format()
+Bitmaps::Format::Format()
 {
   // pass.
 }
 
-std::string Pixels::Format::name() const
+std::string Bitmaps::Format::name() const
 {
   return this->_name;
 }
 
-int Pixels::Format::bitsPerPixel() const
+int Bitmaps::Format::bitsPerPixel() const
 {
   return this->_bitsPerPixel;
 }
 
-int Pixels::Format::pixelSizeInBytes() const
+int Bitmaps::Format::pixelSizeInBytes() const
 {
   return this->_pixelSizeInBytes;
 }
 
-std::vector<std::string> Pixels::Format::colourNames() const
+std::vector<std::string> Bitmaps::Format::colourNames() const
 {
   return this->_colourNames;
 }
 
-int Pixels::Format::widthInPixels() const
+int Bitmaps::Format::widthInPixels() const
 {
   return this->_widthInPixels;
 }
 
-int Pixels::Format::heightInPixels() const
+int Bitmaps::Format::heightInPixels() const
 {
   return this->_heightInPixels;
 }
 
-int Pixels::Format::arraySizeInBytes() const
+int Bitmaps::Format::arraySizeInBytes() const
 {  
   return this->_rowSizeInBytes * this->_heightInPixels;
 }
 
-int Pixels::Format::rowPaddingInBytes() const
+int Bitmaps::Format::rowPaddingInBytes() const
 {
   return this->_rowPaddingInBytes;
 }
 
-int Pixels::Format::rowSizeInBytes() const
+int Bitmaps::Format::rowSizeInBytes() const
 {
   return this->_rowSizeInBytes;
 }
 
-void Pixels::Format::setName(std::string name)
+void Bitmaps::Format::setName(std::string name)
 {
   this->_name = name;
 }
 
-void Pixels::Format::setBitsPerPixel(int bitsPerPixel)
+void Bitmaps::Format::setBitsPerPixel(int bitsPerPixel)
 {
   this->_bitsPerPixel = bitsPerPixel;
   this->processPixelSizeInBytes();
 }
 
-void Pixels::Format::setColourNames(std::vector<std::string> colourNames)
+void Bitmaps::Format::setColourNames(std::vector<std::string> colourNames)
 {
   this->_colourNames = colourNames;
 }
 
-void Pixels::Format::setWidthInPixels(int width)
+void Bitmaps::Format::setWidthInPixels(int width)
 {
   this->_widthInPixels = width;
   this->processRowPaddingInBytes();
   this->processRowSizeInBytes();
 }
 
-void Pixels::Format::setHeightInPixels(int height)
+void Bitmaps::Format::setHeightInPixels(int height)
 {
   this->_heightInPixels = height;
 }
 
-void Pixels::Format::processRowPaddingInBytes()
+void Bitmaps::Format::processRowPaddingInBytes()
 {
   int differenceInAlignment = this->unpaddedRowSize() % 4;
 
@@ -87,18 +87,18 @@ void Pixels::Format::processRowPaddingInBytes()
     this->_rowPaddingInBytes = 4 - differenceInAlignment;
 }
 
-int Pixels::Format::unpaddedRowSize() const
+int Bitmaps::Format::unpaddedRowSize() const
 {  
   return this->_widthInPixels * this->_pixelSizeInBytes;
 }
 
-void Pixels::Format::processRowSizeInBytes()
+void Bitmaps::Format::processRowSizeInBytes()
 {  
   this->_rowSizeInBytes = (
     this->_widthInPixels * this->_pixelSizeInBytes + this->_rowPaddingInBytes);
 }
 
-void Pixels::Format::processPixelSizeInBytes()
+void Bitmaps::Format::processPixelSizeInBytes()
 {
   this->_pixelSizeInBytes = this->_bitsPerPixel / 8;
 }

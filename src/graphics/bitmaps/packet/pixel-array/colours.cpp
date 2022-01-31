@@ -3,24 +3,24 @@
 
 #include "src/graphics/bitmaps/packet/pixel-array/colours.h"
 
-Pixels::Colours::Colours()
+Bitmaps::Colours::Colours()
 {
 
 }
 
-Pixels::Colours::Colours(std::initializer_list<std::string> colourNames)
-{
-  for (auto name : colourNames)
-    this->_colours[name] = 0;
-}
-
-Pixels::Colours::Colours(std::vector<std::string> colourNames)
+Bitmaps::Colours::Colours(std::initializer_list<std::string> colourNames)
 {
   for (auto name : colourNames)
     this->_colours[name] = 0;
 }
 
-std::vector<std::string> Pixels::Colours::names()
+Bitmaps::Colours::Colours(std::vector<std::string> colourNames)
+{
+  for (auto name : colourNames)
+    this->_colours[name] = 0;
+}
+
+std::vector<std::string> Bitmaps::Colours::names()
 {
   std::vector<std::string> names {};
 
@@ -30,39 +30,39 @@ std::vector<std::string> Pixels::Colours::names()
   return names;
 }
 
-int Pixels::Colours::size()
+int Bitmaps::Colours::size()
 {
   return this->_colours.size();
 }
 
-int Pixels::Colours::operator [](std::string colourName) const
+int Bitmaps::Colours::operator [](std::string colourName) const
 {
   return this->_colours.at(colourName);
 }
 
-int& Pixels::Colours::operator [](std::string colourName)
+int& Bitmaps::Colours::operator [](std::string colourName)
 {
   return this->_colours[colourName];
 }
 
-std::unordered_map<std::string, int>::iterator Pixels::Colours::begin()
+std::unordered_map<std::string, int>::iterator Bitmaps::Colours::begin()
 {
   return this->_colours.begin();
 }
 
-std::unordered_map<std::string, int>::iterator Pixels::Colours::end()
+std::unordered_map<std::string, int>::iterator Bitmaps::Colours::end()
 {
   return this->_colours.end();
 }
 
 std::unordered_map<std::string, int>::const_iterator
-Pixels::Colours::begin() const
+Bitmaps::Colours::begin() const
 {
   return this->_colours.begin();
 }
 
 std::unordered_map<std::string, int>::const_iterator
-Pixels::Colours::end() const
+Bitmaps::Colours::end() const
 {
   return this->_colours.end();
 }

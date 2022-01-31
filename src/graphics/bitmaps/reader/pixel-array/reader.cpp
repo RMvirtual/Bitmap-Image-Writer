@@ -3,15 +3,15 @@
 #include "src/graphics/bitmaps/packet/pixel-array/array.h"
 #include "src/graphics/bitmaps/reader/pixel-array/reader.h"
 
-BitmapReader::PixelArrayReader::PixelArrayReader(const Pixels::Format& format)
+BitmapReader::PixelArrayReader::PixelArrayReader(const Bitmaps::Format& format)
 {
   this->format = format;
 }
 
-Pixels::Array BitmapReader::PixelArrayReader::toPixelArray(
+Bitmaps::PixelArray BitmapReader::PixelArrayReader::toPixelArray(
   const ByteArray& bytes)
 {
-  Pixels::Array pixelArray {this->format};
+  Bitmaps::PixelArray pixelArray {this->format};
   
   int noOfBytes = bytes.size();
   int sizeOfPixel = this->format.pixelSizeInBytes();
@@ -21,7 +21,7 @@ Pixels::Array BitmapReader::PixelArrayReader::toPixelArray(
 
     auto pixelBytes = bytes.slice(byteNo, endOfPixelByteNo);
     auto colourNames = this->format.colourNames();
-    Pixels::Colours colours {colourNames};
+    Bitmaps::Colours colours {colourNames};
 
     for (int colourNo = 0; colourNo < sizeOfPixel; colourNo++)
       colours[colourNames[colourNo]] = pixelBytes[colourNo];

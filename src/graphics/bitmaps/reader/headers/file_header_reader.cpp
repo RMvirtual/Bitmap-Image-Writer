@@ -7,7 +7,7 @@ BitmapReader::FileHeaderReader::FileHeaderReader()
   // pass.
 }
 
-BitmapHeaders::FileHeader BitmapReader::FileHeaderReader::convertBytes(
+Bitmaps::FileHeader BitmapReader::FileHeaderReader::convertBytes(
   const ByteArray& bytes)
 {
   this->parseSignatureBytes(bytes);

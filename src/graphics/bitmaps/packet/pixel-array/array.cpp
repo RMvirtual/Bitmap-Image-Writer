@@ -2,57 +2,57 @@
 #include "src/graphics/bitmaps/packet/pixel-array/colours.h"
 #include "src/graphics/bitmaps/formats/format.h"
 
-Pixels::Array::Array()
+Bitmaps::PixelArray::PixelArray()
 {
   // pass.
 }
 
-Pixels::Array::Array(const Pixels::Format& format)
+Bitmaps::PixelArray::PixelArray(const Bitmaps::Format& format)
 {
   this->setFormat(format);
 }
 
-void Pixels::Array::set(const Pixels::Colours& colours, int row, int column)
+void Bitmaps::PixelArray::set(const Bitmaps::Colours& colours, int row, int column)
 {
   this->pixels.set(colours, row, column);
 }
 
-void Pixels::Array::set(const Pixels::Colours& colours, int index)
+void Bitmaps::PixelArray::set(const Bitmaps::Colours& colours, int index)
 {
   this->pixels.set(colours, index);
 }
 
-void Pixels::Array::fill(const Pixels::Colours& colours)
+void Bitmaps::PixelArray::fill(const Bitmaps::Colours& colours)
 {
   this->pixels.fill(colours);
 }
 
-Pixels::Colours& Pixels::Array::at(int row, int column)
+Bitmaps::Colours& Bitmaps::PixelArray::at(int row, int column)
 {
   return this->pixels.at(row, column);
 }
 
-Pixels::Colours& Pixels::Array::at(int index)
+Bitmaps::Colours& Bitmaps::PixelArray::at(int index)
 {
   return this->pixels.at(index);
 }
 
-Pixels::Colours Pixels::Array::at(int row, int column) const
+Bitmaps::Colours Bitmaps::PixelArray::at(int row, int column) const
 {
   return this->pixels.at(row, column);
 }
 
-Pixels::Colours Pixels::Array::at(int index) const
+Bitmaps::Colours Bitmaps::PixelArray::at(int index) const
 {
   return this->pixels.at(index);
 }
 
-int Pixels::Array::sizeInPixels() const
+int Bitmaps::PixelArray::sizeInPixels() const
 {
   return this->pixels.width() * this->pixels.height();
 }
 
-void Pixels::Array::setFormat(const Pixels::Format& format)
+void Bitmaps::PixelArray::setFormat(const Bitmaps::Format& format)
 {  
   this->pixels = {
     format.widthInPixels(), format.heightInPixels(), {format.colourNames()}};
@@ -60,7 +60,7 @@ void Pixels::Array::setFormat(const Pixels::Format& format)
   this->_format = format;
 }
 
-Pixels::Format Pixels::Array::format() const
+Bitmaps::Format Bitmaps::PixelArray::format() const
 {
   return this->_format;
 }

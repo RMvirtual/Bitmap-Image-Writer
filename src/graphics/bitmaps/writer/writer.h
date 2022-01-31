@@ -13,11 +13,11 @@ class ImageWriter
 {
 public:
   ImageWriter();
-  ByteArray convertToBytes(const BitmapPacket& packet);
-  ByteArray convertToBytes(const BitmapHeaders::FileHeader& header);
-  ByteArray convertToBytes(const BitmapHeaders::DibHeader& header);
-  ByteArray convertToBytes(const Pixels::Array& pixelArray);
-  ByteArray convertToBytes(const Pixels::Colours& pixelColours);
+  ByteArray convertToBytes(const Bitmaps::Packet& packet);
+  ByteArray convertToBytes(const Bitmaps::FileHeader& header);
+  ByteArray convertToBytes(const Bitmaps::DibHeader& header);
+  ByteArray convertToBytes(const Bitmaps::PixelArray& pixelArray);
+  ByteArray convertToBytes(const Bitmaps::Colours& pixelColours);
 
 private:
 

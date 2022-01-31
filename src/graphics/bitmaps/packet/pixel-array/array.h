@@ -5,12 +5,12 @@
 #include "src/graphics/bitmaps/formats/format.h"
 #include "src/graphics/bitmaps/packet/pixel-array/colours.h"
 
-namespace Pixels {
-class Array
+namespace Bitmaps {
+class PixelArray
 {
 public:
-  Array();
-  Array(const Format& format);
+  PixelArray();
+  PixelArray(const Format& format);
 
   void set(const Colours& colours, int row, int column);
   void set(const Colours& colours, int index);

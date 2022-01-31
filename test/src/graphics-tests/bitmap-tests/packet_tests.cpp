@@ -7,15 +7,15 @@
 
 TEST(PixelArray, ShouldCreatePixelArray)
 {
-  Pixels::Format format;
+  Bitmaps::Format format;
   format.setName("RGB");
   format.setBitsPerPixel(24);
   format.setColourNames({"red", "green", "blue"});
   format.setWidthInPixels(4);
   format.setHeightInPixels(1);
 
-  Pixels::Array pixelArray {format};
-  Pixels::Colours correctColours {format.colourNames()};
+  Bitmaps::PixelArray pixelArray {format};
+  Bitmaps::Colours correctColours {format.colourNames()};
 
   for (int pixelNo = 0; pixelNo < 4; pixelNo++)
     BitmapImageComparison::compare(correctColours, pixelArray.at(pixelNo));

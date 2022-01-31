@@ -3,22 +3,22 @@
 #include "src/graphics/bitmaps/packet/headers/dib-header/header.h"
 #include "src/graphics/bitmaps/packet/headers/dib-header/values.h"
 
-BitmapHeaders::DibHeader::DibHeader()
+Bitmaps::DibHeader::DibHeader()
 {
   this->initialiseDefaultValues();
 }
 
-BitmapHeaders::DibHeader::DibHeader(int widthInPixels, int heightInPixels)
+Bitmaps::DibHeader::DibHeader(int widthInPixels, int heightInPixels)
 {
   this->initialiseDefaultValues();
   this->setWidthInPixels(widthInPixels);
   this->setHeightInPixels(heightInPixels);  
 }
 
-BitmapHeaders::DibHeader BitmapHeaders::DibHeader::fromValues(
-  const BitmapHeaders::DibHeaderValues& values)
+Bitmaps::DibHeader Bitmaps::DibHeader::fromValues(
+  const Bitmaps::DibHeaderValues& values)
 {
-  BitmapHeaders::DibHeader header {};
+  Bitmaps::DibHeader header {};
 
   header.setWidthInPixels(values.widthInPixels);
   header.setHeightInPixels(values.heightInPixels);
@@ -34,7 +34,7 @@ BitmapHeaders::DibHeader BitmapHeaders::DibHeader::fromValues(
   return header;
 }
 
-void BitmapHeaders::DibHeader::initialiseDefaultValues()
+void Bitmaps::DibHeader::initialiseDefaultValues()
 {
   this->_widthInPixels = 0;
   this->_heightInPixels = 0;
@@ -48,108 +48,108 @@ void BitmapHeaders::DibHeader::initialiseDefaultValues()
   this->_importantColors = 0; 
 }
 
-int BitmapHeaders::DibHeader::headerSizeInBytes() const
+int Bitmaps::DibHeader::headerSizeInBytes() const
 {
   return 40;
 }
 
-void BitmapHeaders::DibHeader::setWidthInPixels(int32_t widthInPixels)
+void Bitmaps::DibHeader::setWidthInPixels(int32_t widthInPixels)
 {
   this->_widthInPixels = widthInPixels;
 }
 
-void BitmapHeaders::DibHeader::setHeightInPixels(int32_t heightInPixels)
+void Bitmaps::DibHeader::setHeightInPixels(int32_t heightInPixels)
 {
   this->_heightInPixels = heightInPixels;
 }
 
-void BitmapHeaders::DibHeader::setNumberOfColourPlanes(
+void Bitmaps::DibHeader::setNumberOfColourPlanes(
   uint16_t numberOfColorPlanes)
 {
   this->_numberOfColorPlanes = numberOfColorPlanes;
 }
 
-void BitmapHeaders::DibHeader::setBitsPerPixel(uint16_t bitsPerPixel)
+void Bitmaps::DibHeader::setBitsPerPixel(uint16_t bitsPerPixel)
 {
   this->_bitsPerPixel = bitsPerPixel;
 }
 
-void BitmapHeaders::DibHeader::setCompressionMethod(uint32_t compressionMethod)
+void Bitmaps::DibHeader::setCompressionMethod(uint32_t compressionMethod)
 {
   this->_compressionMethod = compressionMethod;
 }
 
-void BitmapHeaders::DibHeader::setSizeOfPixelArray(uint32_t pixelArraySize)
+void Bitmaps::DibHeader::setSizeOfPixelArray(uint32_t pixelArraySize)
 {
   this->_sizeOfPixelArray = pixelArraySize;
 }
 
-void BitmapHeaders::DibHeader::setHorizontalResolution(int32_t pixelsPerMetre)
+void Bitmaps::DibHeader::setHorizontalResolution(int32_t pixelsPerMetre)
 {
   this->_horizontalResolution = pixelsPerMetre;
 }
 
-void BitmapHeaders::DibHeader::setVerticalResolution(int32_t pixelsPerMetre)
+void Bitmaps::DibHeader::setVerticalResolution(int32_t pixelsPerMetre)
 {
   this->_verticalResolution = pixelsPerMetre;
 }
 
-void BitmapHeaders::DibHeader::setColorTableEntries(uint32_t colorTableEntries)
+void Bitmaps::DibHeader::setColorTableEntries(uint32_t colorTableEntries)
 {
   this->_colorTableEntries = colorTableEntries;
 }
 
-void BitmapHeaders::DibHeader::setImportantColours(uint32_t importantColors)
+void Bitmaps::DibHeader::setImportantColours(uint32_t importantColors)
 {
   this->_importantColors = importantColors;
 }
 
-int32_t BitmapHeaders::DibHeader::widthInPixels() const
+int32_t Bitmaps::DibHeader::widthInPixels() const
 {
   return this->_widthInPixels;
 }
 
-int32_t BitmapHeaders::DibHeader::heightInPixels() const
+int32_t Bitmaps::DibHeader::heightInPixels() const
 {
   return this->_heightInPixels;
 }
 
-uint16_t BitmapHeaders::DibHeader::numberOfColorPlanes() const
+uint16_t Bitmaps::DibHeader::numberOfColorPlanes() const
 {
   return this->_numberOfColorPlanes;
 }
 
-uint16_t BitmapHeaders::DibHeader::bitsPerPixel() const
+uint16_t Bitmaps::DibHeader::bitsPerPixel() const
 {
   return this->_bitsPerPixel;
 }
 
-uint32_t BitmapHeaders::DibHeader::compressionMethod() const
+uint32_t Bitmaps::DibHeader::compressionMethod() const
 {
   return this->_compressionMethod;
 }
 
-uint32_t BitmapHeaders::DibHeader::sizeOfPixelArray() const
+uint32_t Bitmaps::DibHeader::sizeOfPixelArray() const
 {
   return this->_sizeOfPixelArray;
 }
 
-int32_t BitmapHeaders::DibHeader::horizontalResolution() const
+int32_t Bitmaps::DibHeader::horizontalResolution() const
 {
   return this->_horizontalResolution;
 }
 
-int32_t BitmapHeaders::DibHeader::verticalResolution() const
+int32_t Bitmaps::DibHeader::verticalResolution() const
 {
   return this->_verticalResolution;
 }
 
-uint32_t BitmapHeaders::DibHeader::colorTableEntries() const
+uint32_t Bitmaps::DibHeader::colorTableEntries() const
 {
   return this->_colorTableEntries;
 }
 
-uint32_t BitmapHeaders::DibHeader::importantColors() const
+uint32_t Bitmaps::DibHeader::importantColors() const
 {
   return this->_importantColors;
 }

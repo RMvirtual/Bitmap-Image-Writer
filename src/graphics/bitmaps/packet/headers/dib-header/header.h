@@ -4,7 +4,7 @@
 #include <cstdint>
 #include "src/graphics/bitmaps/packet/headers/dib-header/values.h"
 
-namespace BitmapHeaders {
+namespace Bitmaps {
 class DibHeader
 {
 public:

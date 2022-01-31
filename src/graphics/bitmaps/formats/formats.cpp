@@ -5,43 +5,43 @@
 #include "src/graphics/bitmaps/formats/formats.h"
 #include "src/graphics/bitmaps/packet/headers/headers.h"
 
-Pixels::Format Pixels::format(BitmapHeaders::Headers headers)
+Bitmaps::Format Bitmaps::format(Bitmaps::Headers headers)
 {
-  return Pixels::format(headers.dibHeader);
+  return Bitmaps::format(headers.dibHeader);
 }
 
-Pixels::Format Pixels::format(BitmapHeaders::DibHeader header)
+Bitmaps::Format Bitmaps::format(Bitmaps::DibHeader header)
 {
   int bitsPerPixel = header.bitsPerPixel();
 
-  auto format = Pixels::format(bitsPerPixel);
+  auto format = Bitmaps::format(bitsPerPixel);
   format.setWidthInPixels(header.widthInPixels());
   format.setHeightInPixels(header.heightInPixels());
 
   return format;
 }
 
-Pixels::Format Pixels::format(std::string formatName)
+Bitmaps::Format Bitmaps::format(std::string formatName)
 {
   Files::PixelFormats formatsFile {};
   int index = formatsFile.indexOf(formatName);
 
-  return Pixels::formatByIndex(index);
+  return Bitmaps::formatByIndex(index);
 }
 
-Pixels::Format Pixels::format(int bitsPerPixel)
+Bitmaps::Format Bitmaps::format(int bitsPerPixel)
 {
   Files::PixelFormats formatsFile {};
   int index = formatsFile.indexOf(bitsPerPixel);
 
-  return Pixels::formatByIndex(index);
+  return Bitmaps::formatByIndex(index);
 }
 
-Pixels::Format Pixels::formatByIndex(int index)
+Bitmaps::Format Bitmaps::formatByIndex(int index)
 {
   Files::PixelFormats formatsFile {};
 
-  Pixels::Format format {};
+  Bitmaps::Format format {};
   format.setName(formatsFile.formatName(index));
   format.setColourNames(formatsFile.colours(index));
   format.setBitsPerPixel(formatsFile.bitsPerPixel(index));

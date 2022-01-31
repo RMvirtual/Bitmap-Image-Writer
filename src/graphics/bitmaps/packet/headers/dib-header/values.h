@@ -1,7 +1,7 @@
 #ifndef BITMAP_DIB_HEADER_VALUES_H
 #define BITMAP_DIB_HEADER_VALUES_H
 
-namespace BitmapHeaders {
+namespace Bitmaps {
 struct DibHeaderValues
 {
   int headerSizeInBytes;

@@ -5,13 +5,13 @@
 #include "src/graphics/bitmaps/formats/format.h"
 #include "src/graphics/bitmaps/packet/headers/headers.h"
 
-namespace Pixels
+namespace Bitmaps
 {
-  Pixels::Format format(BitmapHeaders::Headers headers);
-  Pixels::Format format(BitmapHeaders::DibHeader headers);
-  Pixels::Format format(std::string formatName);
-  Pixels::Format format(int bitsPerPixel);
-  Pixels::Format formatByIndex(int index);
+  Bitmaps::Format format(Bitmaps::Headers headers);
+  Bitmaps::Format format(Bitmaps::DibHeader headers);
+  Bitmaps::Format format(std::string formatName);
+  Bitmaps::Format format(int bitsPerPixel);
+  Bitmaps::Format formatByIndex(int index);
 }
 
 #endif

@@ -9,10 +9,10 @@ class FileHeaderReader
 {
 public:
   FileHeaderReader();
-  BitmapHeaders::FileHeader convertBytes(const ByteArray& bytes);
+  Bitmaps::FileHeader convertBytes(const ByteArray& bytes);
 
 private:
-  BitmapHeaders::FileHeader fileHeader;
+  Bitmaps::FileHeader fileHeader;
   
   void parseSignatureBytes(const ByteArray& bytes);
   void parseSizeOfBitmapFile(const ByteArray& bytes);

@@ -11,19 +11,19 @@
 namespace BitmapImageComparison
 {
   void compare(
-    const BitmapHeaders::FileHeader& header1, 
-    const BitmapHeaders::FileHeader& header2
+    const Bitmaps::FileHeader& header1, 
+    const Bitmaps::FileHeader& header2
   );
 
   void compare(
-    const BitmapHeaders::DibHeader& header1,
-    const BitmapHeaders::DibHeader& header2
+    const Bitmaps::DibHeader& header1,
+    const Bitmaps::DibHeader& header2
   );
   
-  void compare(Pixels::Array& array1, Pixels::Array& array2);
-  void compare(Pixels::Colours& colours1, Pixels::Colours& colours2);
-  void isGreen(Pixels::Colours& pixel);
-  void isRed(Pixels::Colours& pixel);
+  void compare(Bitmaps::PixelArray& array1, Bitmaps::PixelArray& array2);
+  void compare(Bitmaps::Colours& colours1, Bitmaps::Colours& colours2);
+  void isGreen(Bitmaps::Colours& pixel);
+  void isRed(Bitmaps::Colours& pixel);
 }
 
 #endif

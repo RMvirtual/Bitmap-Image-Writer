@@ -15,9 +15,9 @@ std::string BitmapSetUp::blueImagePath()
   );
 }
 
-BitmapPacket BitmapSetUp::blueBitmapPacket()
+Bitmaps::Packet BitmapSetUp::blueBitmapPacket()
 {
-  BitmapPacket packet;
+  Bitmaps::Packet packet;
   packet.fileHeader = bluePixelFileHeader();
   packet.dibHeader = bluePixelDibHeader();
   packet.pixelArray = bluePixelArray();
@@ -25,18 +25,18 @@ BitmapPacket BitmapSetUp::blueBitmapPacket()
   return packet;
 }
 
-BitmapHeaders::Headers BitmapSetUp::bluePixelHeaders()
+Bitmaps::Headers BitmapSetUp::bluePixelHeaders()
 {
-  BitmapHeaders::Headers headers {};
+  Bitmaps::Headers headers {};
   headers.fileHeader = bluePixelFileHeader();
   headers.dibHeader = bluePixelDibHeader();
 
   return headers;
 }
 
-BitmapHeaders::FileHeader BitmapSetUp::bluePixelFileHeader()
+Bitmaps::FileHeader BitmapSetUp::bluePixelFileHeader()
 {
-  BitmapHeaders::FileHeader fileHeader;
+  Bitmaps::FileHeader fileHeader;
 
   fileHeader.setSignatureBytes("BM");
   fileHeader.setFileSizeInBytes(786486);
@@ -46,9 +46,9 @@ BitmapHeaders::FileHeader BitmapSetUp::bluePixelFileHeader()
   return fileHeader;
 }
 
-BitmapHeaders::DibHeader BitmapSetUp::bluePixelDibHeader()
+Bitmaps::DibHeader BitmapSetUp::bluePixelDibHeader()
 {
-  BitmapHeaders::DibHeader dibHeader {};
+  Bitmaps::DibHeader dibHeader {};
 
   dibHeader.setWidthInPixels(512);
   dibHeader.setHeightInPixels(512);
@@ -58,39 +58,39 @@ BitmapHeaders::DibHeader BitmapSetUp::bluePixelDibHeader()
   return dibHeader;
 }
 
-Pixels::Array BitmapSetUp::bluePixelArray()
+Bitmaps::PixelArray BitmapSetUp::bluePixelArray()
 {
-  Pixels::Format format;
+  Bitmaps::Format format;
   format.setWidthInPixels(512);
   format.setHeightInPixels(512);
   format.setName("RGB");
   format.setBitsPerPixel(24);
   format.setColourNames({"red", "blue", "green"});
 
-  Pixels::Array pixelArray {format};
+  Bitmaps::PixelArray pixelArray {format};
   pixelArray.fill(BitmapSetUp::blueColours());
 
   return pixelArray;
 }
 
-Pixels::Array BitmapSetUp::redPixelArray()
+Bitmaps::PixelArray BitmapSetUp::redPixelArray()
 {
-  Pixels::Format format;
+  Bitmaps::Format format;
   format.setWidthInPixels(2);
   format.setHeightInPixels(2);
   format.setName("RGB");
   format.setBitsPerPixel(24);
   format.setColourNames({"red", "blue", "green"});
 
-  Pixels::Array pixelArray {format};
+  Bitmaps::PixelArray pixelArray {format};
   pixelArray.fill(BitmapSetUp::redColours());
 
   return pixelArray;
 }
 
-Pixels::Colours BitmapSetUp::redColours()
+Bitmaps::Colours BitmapSetUp::redColours()
 {
-  Pixels::Colours colours;
+  Bitmaps::Colours colours;
   colours["red"] = 255;
   colours["green"] = 0;
   colours["blue"] = 0;
@@ -98,9 +98,9 @@ Pixels::Colours BitmapSetUp::redColours()
   return colours;
 }
 
-Pixels::Colours BitmapSetUp::greenColours()
+Bitmaps::Colours BitmapSetUp::greenColours()
 {
-  Pixels::Colours colours;
+  Bitmaps::Colours colours;
   colours["red"] = 0;
   colours["green"] = 255;
   colours["blue"] = 0;
@@ -108,9 +108,9 @@ Pixels::Colours BitmapSetUp::greenColours()
   return colours;
 }
 
-Pixels::Colours BitmapSetUp::blueColours()
+Bitmaps::Colours BitmapSetUp::blueColours()
 {
-  Pixels::Colours colours;
+  Bitmaps::Colours colours;
   colours["red"] = 100;
   colours["green"] = 255;
   colours["blue"] = 255;
@@ -118,9 +118,9 @@ Pixels::Colours BitmapSetUp::blueColours()
   return colours;
 }
 
-Pixels::Colours BitmapSetUp::whiteColours()
+Bitmaps::Colours BitmapSetUp::whiteColours()
 {
-  Pixels::Colours colours;
+  Bitmaps::Colours colours;
   colours["red"] = 255;
   colours["green"] = 255;
   colours["blue"] = 255;

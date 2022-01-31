@@ -3,7 +3,7 @@
 
 #include <string>
 
-namespace BitmapHeaders {
+namespace Bitmaps {
 struct FileHeaderValues
 {
   std::string signatureBytes;

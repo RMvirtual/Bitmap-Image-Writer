@@ -4,7 +4,7 @@
 #include <string>
 #include <vector>
 
-namespace Pixels {
+namespace Bitmaps {
 class Format
 {
 public:

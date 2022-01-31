@@ -4,7 +4,7 @@
 #include "src/graphics/bitmaps/packet/headers/file-header/header.h"
 #include "src/graphics/bitmaps/packet/headers/dib-header/header.h"
 
-namespace BitmapHeaders {
+namespace Bitmaps {
 struct Headers
 {
   FileHeader fileHeader;
