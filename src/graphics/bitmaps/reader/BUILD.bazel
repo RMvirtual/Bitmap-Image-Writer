@@ -4,6 +4,7 @@ cc_library(
     srcs = glob(["*.cpp"]),
     deps = [
         "//src/containers:containers",
+        "//src/graphics/bitmaps/formats:bitmap_formats",
         "//src/graphics/bitmaps/packet:bitmap_packet",
         "//src/graphics/bitmaps/reader/headers:bitmap_header_readers",
         "//src/graphics/bitmaps/reader/pixel-array:bitmap_pixel_array_reader",

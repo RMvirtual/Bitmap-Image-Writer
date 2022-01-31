@@ -11,7 +11,7 @@ class FileHeader
 {
 public:
   FileHeader();
-  FileHeader(int widthInPixels, int heightInPixels);
+  FileHeader(int pixelArraySizeInBytes);
   static FileHeader fromValues(FileHeaderValues values);
 
   void setSignatureBytes(std::string bytesSignature);

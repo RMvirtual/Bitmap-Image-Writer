@@ -2,7 +2,7 @@
 
 #include "src/graphics/bitmaps/packet/pixel-array/array.h"
 #include "src/graphics/bitmaps/packet/pixel-array/colours.h"
-#include "src/graphics/bitmaps/packet/formats/format.h"
+#include "src/graphics/bitmaps/formats/format.h"
 #include "test/src/graphics-tests/utilities/bitmap_image_comparators.h"
 
 void BitmapImageComparison::compare(

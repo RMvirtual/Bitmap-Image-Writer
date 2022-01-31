@@ -15,9 +15,14 @@ public:
   Colours(std::vector<std::string> colourNames);
 
   std::vector<std::string> names();
+  int size();
   int& operator [](std::string value);
   int operator [](std::string value) const;
-  
+  std::unordered_map<std::string, int>::iterator begin();
+  std::unordered_map<std::string, int>::iterator end();
+  std::unordered_map<std::string, int>::const_iterator begin() const;
+  std::unordered_map<std::string, int>::const_iterator end() const;
+
 private:
   std::unordered_map<std::string, int> _colours;
 };}

@@ -1,7 +1,8 @@
 #include <gtest/gtest.h>
-#include "src/files/pixel_formats.h"
 #include <string>
 #include <vector>
+
+#include "src/files/pixel_formats.h"
 
 TEST(PixelFormatFile, ShouldGetFormatNameFromFirstEntry)
 {

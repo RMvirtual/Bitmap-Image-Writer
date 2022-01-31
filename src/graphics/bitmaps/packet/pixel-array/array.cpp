@@ -1,6 +1,6 @@
 #include "src/graphics/bitmaps/packet/pixel-array/array.h"
 #include "src/graphics/bitmaps/packet/pixel-array/colours.h"
-#include "src/graphics/bitmaps/packet/formats/format.h"
+#include "src/graphics/bitmaps/formats/format.h"
 
 Pixels::Array::Array()
 {
@@ -9,20 +9,17 @@ Pixels::Array::Array()
 
 Pixels::Array::Array(const Pixels::Format& format)
 {
-  Pixels::Colours defaultColours {format.colourNames};
-  this->pixels = {format.widthInPixels, format.heightInPixels, defaultColours};
-  this->_format = format;
+  this->setFormat(format);
 }
 
-void Pixels::Array::set(
-  const Pixels::Colours& colours, int rowNo, int columnNo)
+void Pixels::Array::set(const Pixels::Colours& colours, int row, int column)
 {
-  this->pixels.set(colours, rowNo, columnNo);
+  this->pixels.set(colours, row, column);
 }
 
-void Pixels::Array::set(const Pixels::Colours& colours, int indexNo)
+void Pixels::Array::set(const Pixels::Colours& colours, int index)
 {
-  this->pixels.set(colours, indexNo);
+  this->pixels.set(colours, index);
 }
 
 void Pixels::Array::fill(const Pixels::Colours& colours)
@@ -30,24 +27,24 @@ void Pixels::Array::fill(const Pixels::Colours& colours)
   this->pixels.fill(colours);
 }
 
-Pixels::Colours& Pixels::Array::at(int rowNo, int columnNo)
+Pixels::Colours& Pixels::Array::at(int row, int column)
 {
-  return this->pixels.at(rowNo, columnNo);
+  return this->pixels.at(row, column);
 }
 
-Pixels::Colours& Pixels::Array::at(int indexNo)
+Pixels::Colours& Pixels::Array::at(int index)
 {
-  return this->pixels.at(indexNo);
+  return this->pixels.at(index);
 }
 
-Pixels::Colours Pixels::Array::at(int rowNo, int columnNo) const
+Pixels::Colours Pixels::Array::at(int row, int column) const
 {
-  return this->pixels.at(rowNo, columnNo);
+  return this->pixels.at(row, column);
 }
 
-Pixels::Colours Pixels::Array::at(int indexNo) const
+Pixels::Colours Pixels::Array::at(int index) const
 {
-  return this->pixels.at(indexNo);
+  return this->pixels.at(index);
 }
 
 int Pixels::Array::sizeInPixels() const
@@ -56,7 +53,10 @@ int Pixels::Array::sizeInPixels() const
 }
 
 void Pixels::Array::setFormat(const Pixels::Format& format)
-{
+{  
+  this->pixels = {
+    format.widthInPixels(), format.heightInPixels(), {format.colourNames()}};
+  
   this->_format = format;
 }
 

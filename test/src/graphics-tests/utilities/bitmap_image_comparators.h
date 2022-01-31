@@ -6,7 +6,7 @@
 #include "src/graphics/bitmaps/packet/headers/dib-header/header.h"
 #include "src/graphics/bitmaps/packet/pixel-array/array.h"
 #include "src/graphics/bitmaps/packet/pixel-array/colours.h"
-#include "src/graphics/bitmaps/packet/formats/format.h"
+#include "src/graphics/bitmaps/formats/format.h"
 
 namespace BitmapImageComparison
 {

@@ -5,7 +5,7 @@
 #include "src/graphics/bitmaps/packet/pixel-array/array.h"
 #include "src/graphics/bitmaps/packet/pixel-array/colours.h"
 #include "src/graphics/bitmaps/packet/packet.h"
-#include "src/graphics/bitmaps/packet/formats/format.h"
+#include "src/graphics/bitmaps/formats/format.h"
 
 BitmapWriter::ImageWriter::ImageWriter()
 {
@@ -61,12 +61,13 @@ ByteArray BitmapWriter::ImageWriter::convertToBytes(
   ByteArray byteArray {};
   int numberOfPixels = pixelArray.sizeInPixels();
 
-  // No accounting for row stride yet.
+  auto format = pixelArray.format();
+  
   for (int pixelNo = 0; pixelNo < numberOfPixels; pixelNo++) {
-    auto pixel = pixelArray.at(pixelNo);
-    auto pixelBytes = this->convertToBytes(pixel);
+    auto colours = pixelArray.at(pixelNo);
+    auto colourBytes = this->convertToBytes(colours);
 
-    byteArray.add(pixelBytes);
+    byteArray.add(colourBytes);
   }
 
   return byteArray;
@@ -77,9 +78,8 @@ ByteArray BitmapWriter::ImageWriter::convertToBytes(
 {
   ByteArray byteArray {};
 
-  byteArray.add(colours["blue"]);
-  byteArray.add(colours["green"]);
-  byteArray.add(colours["red"]);
+  for (auto colourAndValue : colours)
+    byteArray.add(colourAndValue.second);
 
   return byteArray;
 }

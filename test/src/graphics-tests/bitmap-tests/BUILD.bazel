@@ -21,7 +21,7 @@ cc_test(
     ],
     deps = [
         "@com_google_googletest//:gtest_main",
-        "//src/graphics/bitmaps/packet:bitmap_packet",
+        "//src/graphics/bitmaps/formats:bitmap_formats",
         "//src/files:files",
         "//test/src/graphics-tests/utilities:bitmap_image_comparators",
         "//test/src/graphics-tests/utilities:bitmap_set_up"

@@ -1,12 +1,12 @@
 #include <gtest/gtest.h>
-#include <src/graphics/bitmaps/packet/formats/formats.h>
+#include <src/graphics/bitmaps/formats/formats.h>
 
 Pixels::Format rgbaFormat()
 {
   Pixels::Format format {};
-  format.name = "RGBA";
-  format.bitsPerPixel = 32;
-  format.colourNames = {"alpha", "blue", "green", "red"};
+  format.setName("RGBA");
+  format.setBitsPerPixel(32);
+  format.setColourNames({"alpha", "blue", "green", "red"});
 
   return format;
 }
@@ -14,26 +14,35 @@ Pixels::Format rgbaFormat()
 Pixels::Format rgbFormat()
 {
   Pixels::Format format {};
-  format.name = "RGB";
-  format.bitsPerPixel = 24;
-  format.colourNames = {"blue", "green", "red"};
+  format.setName("RGB");
+  format.setBitsPerPixel(24);
+  format.setColourNames({"blue", "green", "red"});
 
   return format;
 }
 
 void comparePixelFormats(Pixels::Format& correctFormat, Pixels::Format& format)
 {
-  EXPECT_EQ(correctFormat.name, format.name);
-  EXPECT_EQ(correctFormat.bitsPerPixel, format.bitsPerPixel);
-  EXPECT_EQ(correctFormat.colourNames.size(), format.colourNames.size());
+  EXPECT_EQ(correctFormat.name(), format.name());
+  EXPECT_EQ(correctFormat.bitsPerPixel(), format.bitsPerPixel());
+  EXPECT_EQ(correctFormat.colourNames().size(), format.colourNames().size());
 
-  for (int colour = 0; colour < correctFormat.colourNames.size(); colour++)
-    EXPECT_EQ(correctFormat.colourNames[colour], format.colourNames[colour]);
+  for (int colour = 0; colour < correctFormat.colourNames().size(); colour++)
+    EXPECT_EQ(
+      correctFormat.colourNames()[colour], format.colourNames()[colour]);
 }
 
 TEST(PixelFormats, ShouldGetRGBAFormat)
 {
   auto format = Pixels::format("RGBA");
+  auto correctFormat = rgbaFormat();
+
+  comparePixelFormats(correctFormat, format);
+}
+
+TEST(PixelFormats, ShouldGetRGBFormat)
+{
+  auto format = Pixels::format("RGB");
   auto correctFormat = rgbaFormat();
 
   comparePixelFormats(correctFormat, format);
@@ -53,4 +62,27 @@ TEST(PixelFormats, ShouldGet24BitPerPixelFormat)
   auto correctFormat = rgbFormat();
 
   comparePixelFormats(correctFormat, format);
+}
+
+TEST(PixelFormats, ShouldCalculatePixelArrayRowPadding)
+{
+  auto format = Pixels::format(24);
+  format.setWidthInPixels(2);
+  format.setHeightInPixels(1);
+  int actualPadding = format.rowPaddingInBytes();
+  int correctPadding = 2;
+
+  EXPECT_EQ(correctPadding, actualPadding);
+}
+
+TEST(PixelFormats, ShouldCalculatePixelArrayRowSizeInBytes)
+{
+  auto format = Pixels::format(24);
+  format.setWidthInPixels(6);
+  format.setHeightInPixels(1);
+
+  int correctSize = 20;
+  int actualSize = format.rowSizeInBytes();
+  
+  EXPECT_EQ(correctSize, actualSize);
 }

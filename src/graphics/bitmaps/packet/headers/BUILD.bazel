@@ -1,5 +1,5 @@
 cc_library(
-    name = "bitmap_packet_headers",
+    name = "bitmap_headers",
     hdrs = [
         "file-header/header.h",
         "file-header/values.h",
@@ -11,10 +11,7 @@ cc_library(
         "file-header/header.cpp",
         "dib-header/header.cpp"
     ],
-    deps = [
-        "//src/containers:containers",
-        "//src/graphics/bitmaps/packet/pixel-array:bitmap_packet_pixel_array"
-    ],
+    deps = ["//src/containers:containers"],
     visibility = ["//visibility:public"],
     copts = ["/std:c++17"]
 )

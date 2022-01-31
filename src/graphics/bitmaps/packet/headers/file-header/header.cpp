@@ -1,21 +1,18 @@
 #include <cstdint>
 
 #include "src/graphics/bitmaps/packet/headers/file-header/header.h"
-#include "src/graphics/bitmaps/packet/pixel-array/size_calculator.h"
 
 BitmapHeaders::FileHeader::FileHeader()
 {
   this->initialiseDefaultValues();
 }
 
-BitmapHeaders::FileHeader::FileHeader(int widthInPixels, int heightInPixels)
+BitmapHeaders::FileHeader::FileHeader(int pixelArraySizeInBytes)
 {
   this->initialiseDefaultValues();
 
-  int pixelArraySize = Pixels::calculatePixelArraySizeInBytes(
-    widthInPixels, heightInPixels);
-
-  this->_fileSizeInBytes = this->_pixelArrayOffsetInBytes + pixelArraySize;
+  this->_fileSizeInBytes = (
+    this->_pixelArrayOffsetInBytes + pixelArraySizeInBytes);
 }
 
 BitmapHeaders::FileHeader BitmapHeaders::FileHeader::fromValues(
@@ -63,7 +60,8 @@ void BitmapHeaders::FileHeader::setReservedBytes(uint32_t reservedBytes)
   this->_reservedBytes = reservedBytes;
 }
 
-void BitmapHeaders::FileHeader::setPixelArrayOffsetInBytes(uint32_t offsetInBytes)
+void BitmapHeaders::FileHeader::setPixelArrayOffsetInBytes
+(uint32_t offsetInBytes)
 {
   this->_pixelArrayOffsetInBytes = offsetInBytes;
 }

@@ -2,8 +2,8 @@
 #define PIXEL_ARRAY_H
 
 #include "src/containers/matrix-2D/matrix_2d.h"
+#include "src/graphics/bitmaps/formats/format.h"
 #include "src/graphics/bitmaps/packet/pixel-array/colours.h"
-#include "src/graphics/bitmaps/packet/formats/format.h"
 
 namespace Pixels {
 class Array
@@ -12,13 +12,13 @@ public:
   Array();
   Array(const Format& format);
 
-  void set(const Colours& colours, int rowNo, int columnNo);
-  void set(const Colours& colours, int indexNo);
+  void set(const Colours& colours, int row, int column);
+  void set(const Colours& colours, int index);
   void fill(const Colours& colours);
-  Colours& at(int rowNo, int columnNo);
-  Colours& at(int indexNo);
-  Colours at(int rowNo, int columnNo) const;
-  Colours at(int indexNo) const;
+  Colours& at(int row, int column);
+  Colours& at(int index);
+  Colours at(int row, int column) const;
+  Colours at(int index) const;
   int sizeInPixels() const;
   Format format() const;
   void setFormat(const Format& format);

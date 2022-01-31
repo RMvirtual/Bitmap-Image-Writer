@@ -3,13 +3,14 @@
 #include "src/graphics/bitmaps/packet/packet.h"
 #include "src/graphics/bitmaps/reader/bitmap_reader.h"
 #include "test/src/graphics-tests/utilities/bitmap_set_up.h"
+#include "src/graphics/bitmaps/formats/formats.h"
 
 BitmapPacket getBitmapPacket()
 {
   auto imagePath = BitmapSetUp::blueImagePath();
   BitmapReader::ImageReader reader {};
 
-  return reader.readBitmapPacket(imagePath);
+  return reader.read(imagePath);
 }
 
 TEST(BitmapReader, ShouldReadFileHeader)
@@ -36,18 +37,18 @@ TEST(BitmapReader, ShouldReadPixelArray)
   BitmapImageComparison::compare(correctPixelArray, pixelArray);
 }
 
-TEST(BitmapReader, ShouldGetPixelArrayConfigFromHeaders)
+TEST(BitmapReader, ShouldGetPixelArrayFormatFromHeaders)
 {
   auto headers = BitmapSetUp::bluePixelHeaders();
-  auto config = BitmapReader::PixelArrayConfig::fromHeaders(headers);
+  auto format = Pixels::format(headers);
 
-  EXPECT_EQ("RGB", config.format.name);
-  EXPECT_EQ(24, config.format.bitsPerPixel);
+  EXPECT_EQ("RGB", format.name());
+  EXPECT_EQ(24, format.bitsPerPixel());
   
   std::vector<std::string> correctColours {"blue", "green", "red"};
 
-  EXPECT_EQ(correctColours.size(), config.format.colourNames.size());
+  EXPECT_EQ(correctColours.size(), format.colourNames().size());
 
   for (int colourNo = 0; colourNo < correctColours.size(); colourNo++)
-    EXPECT_EQ(correctColours[colourNo], config.format.colourNames[colourNo]);
+    EXPECT_EQ(correctColours[colourNo], format.colourNames()[colourNo]);
 }

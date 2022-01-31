@@ -6,13 +6,14 @@
 #include "src/graphics/bitmaps/reader/pixel-array/reader.h"
 #include "src/graphics/bitmaps/packet/headers/headers.h"
 #include "src/utilities/filesystem.h"
+#include "src/graphics/bitmaps/formats/formats.h"
 
 BitmapReader::ImageReader::ImageReader()
 {
   // pass.
 }
 
-BitmapPacket BitmapReader::ImageReader::readBitmapPacket(
+BitmapPacket BitmapReader::ImageReader::read(
   const std::string& filePath)
 {
   this->processIntoPacket(filePath);
@@ -57,10 +58,10 @@ void BitmapReader::ImageReader::processIntoPixelArray(const ByteArray& bytes)
 
 BitmapReader::PixelArrayReader BitmapReader::ImageReader::pixelArrayReader()
 {
-  return {this->pixelArrayConfig()};
+  return {this->pixelArrayFormat()};
 }
 
-BitmapHeaders::Headers BitmapReader::ImageReader::packetToHeaders()
+BitmapHeaders::Headers BitmapReader::ImageReader::headers()
 {
   BitmapHeaders::Headers headers {};
   headers.fileHeader = this->packet.fileHeader;
@@ -69,10 +70,7 @@ BitmapHeaders::Headers BitmapReader::ImageReader::packetToHeaders()
   return headers;
 }
 
-BitmapReader::PixelArrayConfig
-BitmapReader::ImageReader::pixelArrayConfig()
-{
-  auto headers = this->packetToHeaders();
-  
-  return BitmapReader::PixelArrayConfig::fromHeaders(headers);
+Pixels::Format BitmapReader::ImageReader::pixelArrayFormat()
+{  
+  return Pixels::format(this->headers());
 }

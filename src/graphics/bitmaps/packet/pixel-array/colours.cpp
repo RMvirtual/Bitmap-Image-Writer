@@ -30,6 +30,11 @@ std::vector<std::string> Pixels::Colours::names()
   return names;
 }
 
+int Pixels::Colours::size()
+{
+  return this->_colours.size();
+}
+
 int Pixels::Colours::operator [](std::string colourName) const
 {
   return this->_colours.at(colourName);
@@ -38,4 +43,26 @@ int Pixels::Colours::operator [](std::string colourName) const
 int& Pixels::Colours::operator [](std::string colourName)
 {
   return this->_colours[colourName];
+}
+
+std::unordered_map<std::string, int>::iterator Pixels::Colours::begin()
+{
+  return this->_colours.begin();
+}
+
+std::unordered_map<std::string, int>::iterator Pixels::Colours::end()
+{
+  return this->_colours.end();
+}
+
+std::unordered_map<std::string, int>::const_iterator
+Pixels::Colours::begin() const
+{
+  return this->_colours.begin();
+}
+
+std::unordered_map<std::string, int>::const_iterator
+Pixels::Colours::end() const
+{
+  return this->_colours.end();
 }

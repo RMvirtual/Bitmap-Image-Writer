@@ -1,7 +1,7 @@
 #include <string>
 
 #include "src/graphics/bitmaps/packet/packet.h"
-#include "src/graphics/bitmaps/packet/formats/format.h"
+#include "src/graphics/bitmaps/formats/format.h"
 #include "src/graphics/bitmaps/packet/pixel-array/array.h"
 #include "src/graphics/bitmaps/packet/pixel-array/colours.h"
 #include "test/src/graphics-tests/utilities/bitmap_set_up.h"
@@ -61,11 +61,11 @@ BitmapHeaders::DibHeader BitmapSetUp::bluePixelDibHeader()
 Pixels::Array BitmapSetUp::bluePixelArray()
 {
   Pixels::Format format;
-  format.widthInPixels = 512;
-  format.heightInPixels = 512;
-  format.name = "RGB";
-  format.bitsPerPixel = 24;
-  format.colourNames = {"red", "blue", "green"};
+  format.setWidthInPixels(512);
+  format.setHeightInPixels(512);
+  format.setName("RGB");
+  format.setBitsPerPixel(24);
+  format.setColourNames({"red", "blue", "green"});
 
   Pixels::Array pixelArray {format};
   pixelArray.fill(BitmapSetUp::blueColours());
@@ -76,11 +76,11 @@ Pixels::Array BitmapSetUp::bluePixelArray()
 Pixels::Array BitmapSetUp::redPixelArray()
 {
   Pixels::Format format;
-  format.widthInPixels = 2;
-  format.heightInPixels = 2;
-  format.name = "RGB";
-  format.bitsPerPixel = 24;
-  format.colourNames = {"red", "blue", "green"};
+  format.setWidthInPixels(2);
+  format.setHeightInPixels(2);
+  format.setName("RGB");
+  format.setBitsPerPixel(24);
+  format.setColourNames({"red", "blue", "green"});
 
   Pixels::Array pixelArray {format};
   pixelArray.fill(BitmapSetUp::redColours());
