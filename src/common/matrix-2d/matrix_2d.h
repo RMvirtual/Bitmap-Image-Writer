@@ -1,11 +1,11 @@
 #ifndef MATRIX_2D_H
 #define MATRIX_2D_H
 
-#include <vector>
 #include <cmath>
+#include <vector>
 
-#include "src/common/matrix-2d/matrix_row.h"
 #include "src/common/index.h"
+#include "src/common/matrix-2d/matrix_row.h"
 
 namespace Common {
 template <class T>
@@ -24,8 +24,7 @@ public:
   T at(int rowNo, int columnNo) const;
   T& at(int index);
   T at(int index) const;
-
-
+  MatrixRow<T> operator [](int rowNo);
   int width() const;
   int height() const;
 
@@ -108,6 +107,12 @@ template <class T>
 T& Common::Matrix2D<T>::at(const Common::Index& index)
 {
   return this->at(index.row, index.column);
+}
+
+template <class T>
+Common::MatrixRow<T> Common::Matrix2D<T>::operator [](int rowNo)
+{
+  return this->rows[rowNo]; 
 }
 
 template <class T>

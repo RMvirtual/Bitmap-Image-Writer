@@ -55,13 +55,13 @@ T& Common::MatrixRow<T>::at(int columnIndex)
 template <class T>
 T Common::MatrixRow<T>::operator[](int index) const
 {
-  return this->at(index);
+  return this->columns[index];
 }
 
 template <class T>
 T& Common::MatrixRow<T>::operator[](int index)
 {
-  return this->at(index);
+  return this->columns[index];
 }
 
 template <class T>
