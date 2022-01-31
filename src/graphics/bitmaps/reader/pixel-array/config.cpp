@@ -10,14 +10,27 @@ BitmapReader::PixelArrayConfig::fromHeaders(
 {
   BitmapReader::PixelArrayConfig config {};
 
-  int widthInPixels = headers.dibHeader.widthInPixels();
-
+  config.format = config.formatFromHeaders(headers); 
   config.startingByteIndex = headers.fileHeader.pixelArrayOffsetInBytes();
-  config.format.widthInPixels = widthInPixels;
-  config.format.heightInPixels = headers.dibHeader.heightInPixels();
+
+  int widthInPixels = headers.dibHeader.widthInPixels();
   config.rowPaddingInBytes = Pixels::calculateRowPadding(widthInPixels);
   config.rowSizeInBytes = Pixels::calculateRowSizeInBytes(widthInPixels);
+  
   config.pixelSizeInBytes = config.format.bitsPerPixel / 4;
   
   return config;
+}
+
+Pixels::Format BitmapReader::PixelArrayConfig::formatFromHeaders(
+  const BitmapHeaders::Headers& headers)
+{
+  Pixels::Format format {};
+  format.name = "lol";
+  format.bitsPerPixel = 32;
+  format.colourNames = {"none here."};
+  format.widthInPixels = headers.dibHeader.widthInPixels();
+  format.heightInPixels = headers.dibHeader.heightInPixels();
+
+  return format;
 }

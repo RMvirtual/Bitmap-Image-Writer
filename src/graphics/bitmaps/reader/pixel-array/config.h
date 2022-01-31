@@ -17,6 +17,10 @@ struct PixelArrayConfig
   int widthInPixels;
   int heightInPixels;
   int pixelSizeInBytes;
+
+private:
+  Pixels::Format formatFromHeaders(const BitmapHeaders::Headers& headers);
+  
 };}
 
 #endif
