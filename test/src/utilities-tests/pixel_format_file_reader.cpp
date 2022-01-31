@@ -6,38 +6,36 @@
 
 TEST(PixelFormatFile, ShouldGetFormatNameFromFirstEntry)
 {
-  Utilities::PixelFormatFile reader {};
-  auto formatName = reader.getFormatName(0);
+  Utilities::PixelFormatFile formatFile {};
+  auto formatName = formatFile.getFormatName(0);
 
   EXPECT_EQ(formatName, "RGBA");
 }
 
 TEST(PixelFormatFile, ShouldGetBitsPerPixelFromSecondEntry)
 {
-  Utilities::PixelFormatFile reader {};
-  auto formatName = reader.getBitsPerPixel(1);
+  Utilities::PixelFormatFile formatFile {};
+  auto formatName = formatFile.getBitsPerPixel(1);
 
   EXPECT_EQ(formatName, 24);
 }
 
 TEST(PixelFormatFile, ShouldGetColours)
 {
-  Utilities::PixelFormatFile reader {};
-  auto colours = reader.getColours(0);
+  Utilities::PixelFormatFile formatFile {};
+  auto colours = formatFile.getColours(0);
 
-  std::vector<std::string> correctColours = {
-    "alpha", "blue", "green", "red"};
-
+  std::vector<std::string> correctColours {"alpha", "blue", "green", "red"};
   int noOfColours = correctColours.size();
 
   for (int valueNo = 0; valueNo < noOfColours; valueNo++)
-    EXPECT_EQ(colours[valueNo], correctColours[valueNo]);
+    EXPECT_EQ(correctColours[valueNo], colours[valueNo]);
 }
 
 TEST(PixelFormatFile, ShouldGetIndexOfFirstName)
 {
-  Utilities::PixelFormatFile file {};
-  int index = file.indexByName("RGBA");
+  Utilities::PixelFormatFile formatFile {};
+  int index = formatFile.indexByName("RGBA");
   int correctIndex = 0;
 
   EXPECT_EQ(correctIndex, index);

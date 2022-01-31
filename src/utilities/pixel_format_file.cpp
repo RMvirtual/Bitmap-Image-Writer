@@ -17,12 +17,13 @@ Utilities::PixelFormatFile::PixelFormatFile()
 int Utilities::PixelFormatFile::indexByName(std::string formatName)
 {
   int index = 0;
+  int numberOfObjects = this->reader.numberOfObjects();
 
-  for (auto name : this->reader.fieldNames()) {
+  for (int i = 0; i < numberOfObjects; i++) {
+    auto name = this->getFormatName(i);
+
     if (name == formatName)
       return index;
-
-    index++;
   }
 
   return -1;
