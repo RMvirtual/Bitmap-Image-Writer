@@ -1,6 +1,6 @@
 #include "src/graphics/bitmaps/packet/pixel-array/array.h"
 #include "src/graphics/bitmaps/packet/pixel-array/colours.h"
-#include "src/graphics/bitmaps/packet/pixel-array/format.h"
+#include "src/graphics/bitmaps/packet/formats/format.h"
 
 Pixels::Array::Array()
 {

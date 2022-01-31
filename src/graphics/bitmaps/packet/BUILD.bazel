@@ -8,6 +8,7 @@ cc_library(
         "//src/common:common",
         "//src/graphics/bitmaps/packet/headers:bitmap_packet_headers",
         "//src/graphics/bitmaps/packet/pixel-array:bitmap_packet_pixel_array",
+        "//src/graphics/bitmaps/packet/formats:bitmap_formats"
     ],
     visibility = ["//visibility:public"],
     copts = ["/std:c++17"]

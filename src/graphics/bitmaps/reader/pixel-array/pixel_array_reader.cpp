@@ -1,7 +1,7 @@
 #include "src/graphics/bitmaps/reader/pixel-array/pixel_array_reader.h"
 #include "src/graphics/bitmaps/reader/pixel-array/pixel_array_reader_config.h"
 #include "src/common/byte-array/byte_array.h"
-#include "src/graphics/bitmaps/packet/pixel-array/format.h"
+#include "src/graphics/bitmaps/packet/formats/format.h"
 #include "src/graphics/bitmaps/packet/pixel-array/array.h"
 
 BitmapReader::PixelArrayReader::PixelArrayReader(

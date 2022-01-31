@@ -1,8 +1,0 @@
-cc_library(
-    name = "bitmap_format_parser",
-    hdrs = ["format_parser.h"],
-    srcs = ["format_parser.cpp"],
-    deps = ["//src/utilities:json_reader"],
-    visibility = ["//visibility:public"],
-    copts = ["/std:c++17"]
-)

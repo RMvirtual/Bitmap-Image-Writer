@@ -2,7 +2,10 @@ cc_library(
     name = "bitmap_packet_pixel_array",
     hdrs = glob(["*.h",]),
     srcs = glob(["*.cpp"]),
-    deps = ["//src/common:common"],
+    deps = [
+        "//src/common:common",
+        "//src/graphics/bitmaps/packet/formats:bitmap_formats"
+    ],
     visibility = ["//visibility:public"],
     copts = ["/std:c++17"]
 )

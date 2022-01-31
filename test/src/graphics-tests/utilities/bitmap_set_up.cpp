@@ -1,7 +1,7 @@
 #include <string>
 
 #include "src/graphics/bitmaps/packet/packet.h"
-#include "src/graphics/bitmaps/packet/pixel-array/format.h"
+#include "src/graphics/bitmaps/packet/formats/format.h"
 #include "src/graphics/bitmaps/packet/pixel-array/array.h"
 #include "src/graphics/bitmaps/packet/pixel-array/colours.h"
 #include "test/src/graphics-tests/utilities/bitmap_set_up.h"

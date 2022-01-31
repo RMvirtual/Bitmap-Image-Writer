@@ -1,0 +1,8 @@
+cc_library(
+    name = "bitmap_formats",
+    hdrs = glob(["*.h",]),
+    srcs = glob(["*.cpp"]),
+    deps = ["//src/common:common", "//src/utilities:json_reader"],
+    visibility = ["//visibility:public"],
+    copts = ["/std:c++17"]
+)

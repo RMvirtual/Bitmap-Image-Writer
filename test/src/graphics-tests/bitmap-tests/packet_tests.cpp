@@ -1,7 +1,7 @@
 #include <gtest/gtest.h>
 
 #include "src/graphics/bitmaps/packet/pixel-array/colours.h"
-#include "src/graphics/bitmaps/packet/pixel-array/format.h"
+#include "src/graphics/bitmaps/packet/formats/format.h"
 #include "src/graphics/bitmaps/packet/pixel-array/size_calculator.h"
 #include "test/src/graphics-tests/utilities/bitmap_image_comparators.h"
 #include "test/src/graphics-tests/utilities/bitmap_set_up.h"

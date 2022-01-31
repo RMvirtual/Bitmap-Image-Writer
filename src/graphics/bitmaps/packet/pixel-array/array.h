@@ -3,7 +3,7 @@
 
 #include "src/common/matrix-2D/matrix_2d.h"
 #include "src/graphics/bitmaps/packet/pixel-array/colours.h"
-#include "src/graphics/bitmaps/packet/pixel-array/format.h"
+#include "src/graphics/bitmaps/packet/formats/format.h"
 
 namespace Pixels {
 class Array
