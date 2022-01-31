@@ -2,7 +2,7 @@
 
 #include "test/src/graphics-tests/utilities/bitmap_set_up.h"
 #include "src/graphics/bitmaps/writer/writer.h"
-#include "src/common/byte-array/byte_conversion.h"
+#include "src/containers/byte-array/byte_conversion.h"
 
 void testFourBytesAgainstValue(uint32_t intValue, ByteArray bytes)
 {

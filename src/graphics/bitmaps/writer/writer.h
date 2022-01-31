@@ -1,7 +1,7 @@
 #ifndef BITMAP_WRITER_H
 #define BITMAP_WRITER_H
 
-#include "src/common/byte-array/byte_array.h"
+#include "src/containers/byte-array/byte_array.h"
 #include "src/graphics/bitmaps/packet/packet.h"
 #include "src/graphics/bitmaps/packet/headers/file-header/header.h"
 #include "src/graphics/bitmaps/packet/headers/dib-header/header.h"

@@ -1,7 +1,7 @@
 #include <gtest/gtest.h>
 #include <vector>
 
-#include "src/common/byte-array/byte_array.h"
+#include "src/containers/byte-array/byte_array.h"
 
 void addValueToVector(std::vector<unsigned char>& vector, int32_t value)
 {

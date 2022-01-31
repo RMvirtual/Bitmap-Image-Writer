@@ -3,7 +3,7 @@
 
 #include "src/graphics/bitmaps/reader/pixel-array/config.h"
 #include "src/graphics/bitmaps/packet/pixel-array/array.h"
-#include "src/common/byte-array/byte_array.h"
+#include "src/containers/byte-array/byte_array.h"
 
 namespace BitmapReader {
 class PixelArrayReader

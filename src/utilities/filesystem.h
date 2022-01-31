@@ -2,9 +2,9 @@
 #define FILE_OPENER_H
 
 #include <string>
-#include "src/common/byte-array/byte_array.h"
+#include "src/containers/byte-array/byte_array.h"
 
-namespace Filesystem
+namespace Utilities
 {
   std::string convertFileToString(const std::string& filePath);
   ByteArray convertFileToByteArray(const std::string& filePath);

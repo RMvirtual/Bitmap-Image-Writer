@@ -1,5 +1,5 @@
 #include "src/graphics/bitmaps/writer/writer.h"
-#include "src/common/byte-array/byte_array.h"
+#include "src/containers/byte-array/byte_array.h"
 #include "src/graphics/bitmaps/packet/headers/file-header/header.h"
 #include "src/graphics/bitmaps/packet/headers/dib-header/header.h"
 #include "src/graphics/bitmaps/packet/pixel-array/array.h"

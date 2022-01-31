@@ -12,7 +12,7 @@ cc_library(
         "dib-header/header.cpp"
     ],
     deps = [
-        "//src/common:common",
+        "//src/containers:containers",
         "//src/graphics/bitmaps/packet/pixel-array:bitmap_packet_pixel_array"
     ],
     visibility = ["//visibility:public"],

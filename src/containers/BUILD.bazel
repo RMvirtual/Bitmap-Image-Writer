@@ -1,9 +1,8 @@
 cc_library(
-    name = "common",
+    name = "containers",
     hdrs = [
         "byte-array/byte_array.h",
         "byte-array/byte_conversion.h",
-        "filesystem/filesystem.h",
         "matrix-2d/matrix_2d.h",
         "matrix-2d/matrix_row.h",
         "index.h"
@@ -11,7 +10,6 @@ cc_library(
     srcs = [
         "byte-array/byte_array.cpp",
         "byte-array/byte_conversion.cpp",
-        "filesystem/filesystem.cpp"
     ],
     visibility = ["//visibility:public"],
     copts = ["/std:c++17"]

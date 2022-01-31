@@ -1,5 +1,5 @@
-#include "src/common/byte-array/byte_array.h"
-#include "src/common/filesystem/filesystem.h"
+#include "src/containers/byte-array/byte_array.h"
+#include "src/utilities/filesystem.h"
 #include "src/graphics/bitmaps/packet/packet.h"
 #include "src/graphics/bitmaps/reader/bitmap_reader.h"
 #include "src/graphics/bitmaps/reader/headers/file_header_reader.h"
@@ -22,7 +22,7 @@ BitmapPacket BitmapReader::ImageReader::readBitmapPacket(
 
 void BitmapReader::ImageReader::processIntoPacket(const std::string& filePath)
 {
-  ByteArray bytes = Filesystem::convertFileToByteArray(filePath);
+  ByteArray bytes = Utilities::convertFileToByteArray(filePath);
   this->processIntoPacket(bytes);
 }
 

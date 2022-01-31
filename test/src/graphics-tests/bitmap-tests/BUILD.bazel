@@ -22,6 +22,7 @@ cc_test(
     deps = [
         "@com_google_googletest//:gtest_main",
         "//src/graphics/bitmaps/packet:bitmap_packet",
+        "//src/files:files",
         "//test/src/graphics-tests/utilities:bitmap_image_comparators",
         "//test/src/graphics-tests/utilities:bitmap_set_up"
     ]
@@ -62,7 +63,7 @@ cc_test(
     srcs = ["writer_tests.cpp"],
     deps = [
         "@com_google_googletest//:gtest_main",
-        "//src/common:common",
+        "//src/containers:containers",
         "//src/graphics/bitmaps/packet:bitmap_packet",
         "//src/graphics/bitmaps/writer:bitmap_writer",
         "//test/src/graphics-tests/utilities:bitmap_image_comparators",

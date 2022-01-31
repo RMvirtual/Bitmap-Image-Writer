@@ -1,5 +1,5 @@
-#include "src/common/byte-array/byte_conversion.h"
-#include "src/common/byte-array/byte_array.h"
+#include "src/containers/byte-array/byte_conversion.h"
+#include "src/containers/byte-array/byte_array.h"
 
 ByteArray ByteConversion::toBytes(unsigned int value, int lengthInBytes)
 {

@@ -3,7 +3,7 @@ cc_library(
     hdrs = glob(["*.h",]),
     srcs = glob(["*.cpp"]),
     deps = [
-        "//src/common:common",
+        "//src/containers:containers",
         "//src/graphics/bitmaps/packet/formats:bitmap_formats"
     ],
     visibility = ["//visibility:public"],

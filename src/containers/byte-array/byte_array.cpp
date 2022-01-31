@@ -1,7 +1,7 @@
 #include <cstdint>
 
-#include "src/common/byte-array/byte_array.h"
-#include "src/common/byte-array/byte_conversion.h"
+#include "src/containers/byte-array/byte_array.h"
+#include "src/containers/byte-array/byte_conversion.h"
 
 ByteArray::ByteArray()
 {

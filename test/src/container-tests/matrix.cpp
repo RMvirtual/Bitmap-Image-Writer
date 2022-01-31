@@ -1,13 +1,13 @@
 #include <gtest/gtest.h>
 #include <string>
 
-#include "src/common/matrix-2d/matrix_row.h"
-#include "src/common/matrix-2d/matrix_2d.h"
+#include "src/containers/matrix-2d/matrix_row.h"
+#include "src/containers/matrix-2d/matrix_2d.h"
 
 TEST(Matrix2D, ShouldGetValuesFrom2DMatrixRow)
 {
   int width = 2;
-  Common::MatrixRow<std::string> matrixRow {width, "0"};
+  MatrixRow<std::string> matrixRow {width, "0"};
 
   auto value1 = "1";
   auto value2 = "2";
@@ -26,7 +26,7 @@ TEST(Matrix2D, ShouldGetValuesFrom2DMatrix)
   std::string value1 = "0, 1";
   std::string value2 = "1, 1";
 
-  Common::Matrix2D<std::string> matrix {width, height, "0"};
+  Matrix2D<std::string> matrix {width, height, "0"};
   matrix.set(value1, 0, 1);
   matrix.set(value2, 1, 1);
 
@@ -42,7 +42,7 @@ TEST(Matrix2D, ShouldGetElementWithAbsoluteIndex)
   std::string value1 = "0, 1";
   std::string value2 = "1, 1";
   
-  Common::Matrix2D<std::string> matrix {width, height, "0"};
+  Matrix2D<std::string> matrix {width, height, "0"};
   matrix.set(value1, 0, 1);
   matrix.set(value2, 1, 1);
 
@@ -58,7 +58,7 @@ TEST(Matrix2D, ShouldGetElementWithDoubleSubscriptOperator)
   std::string value1 = "0, 1";
   std::string value2 = "1, 1";
   
-  Common::Matrix2D<std::string> matrix {width, height, "0"};
+  Matrix2D<std::string> matrix {width, height, "0"};
   matrix.set(value1, 0, 1);
   matrix.set(value2, 1, 1);
 
@@ -72,7 +72,7 @@ TEST(Matrix2D, ShouldFillMatrix)
   int width = 2;
   int height = 2;
 
-  Common::Matrix2D<std::string> matrix {width, height, "0"};
+  Matrix2D<std::string> matrix {width, height, "0"};
 
   std::string correctValue = "0, 1";
   matrix.fill(correctValue);
@@ -85,7 +85,7 @@ TEST(Matrix2D, ShouldFillMatrixRow)
 {
   int columns = 2;
 
-  Common::MatrixRow<std::string> row {columns, "0"};
+  MatrixRow<std::string> row {columns, "0"};
 
   std::string correctValue = "0, 1";
   row.fill(correctValue);

@@ -1,1 +1,1 @@
-bazel test --test_output=all --test_summary=terse //test/src/common-tests:matrix_2d_tests
+bazel test --test_output=all --test_summary=terse //test/src/container-tests:matrix_2d

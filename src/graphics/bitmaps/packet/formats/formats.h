@@ -1,31 +1,31 @@
 #include <string>
 
 #include "src/graphics/bitmaps/packet/formats/format.h"
-#include "src/utilities/pixel_format_file.h"
+#include "src/files/pixel_formats.h"
 
 namespace Pixels {
 Pixels::Format format(std::string formatName)
 {
-  Utilities::PixelFormatFile reader {};
-  int index = reader.indexOf(formatName);
+  Files::PixelFormats formatsFile {};
+  int index = formatsFile.indexOf(formatName);
 
   Pixels::Format format {};
-  format.name = reader.formatName(index);
-  format.colourNames = reader.colours(index);
-  format.bitsPerPixel = reader.bitsPerPixel(index);
+  format.name = formatsFile.formatName(index);
+  format.colourNames = formatsFile.colours(index);
+  format.bitsPerPixel = formatsFile.bitsPerPixel(index);
 
   return format;
 }
 
 Pixels::Format format(int bitsPerPixel)
 {
-  Utilities::PixelFormatFile reader {};
-  int index = reader.indexOf(bitsPerPixel);
+  Files::PixelFormats formatsFile {};
+  int index = formatsFile.indexOf(bitsPerPixel);
 
   Pixels::Format format {};
-  format.name = reader.formatName(index);
-  format.colourNames = reader.colours(index);
-  format.bitsPerPixel = reader.bitsPerPixel(index);
+  format.name = formatsFile.formatName(index);
+  format.colourNames = formatsFile.colours(index);
+  format.bitsPerPixel = formatsFile.bitsPerPixel(index);
 
   return format;
 };}

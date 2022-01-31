@@ -1,20 +1,20 @@
-#include "src/utilities/pixel_format_file.h"
-#include "src/utilities/file_paths_file.h"
+#include "src/files/pixel_formats.h"
+#include "src/files/file_paths.h"
 #include "src/utilities/json_reader.h"
 
-Utilities::PixelFormatFile::PixelFormatFile()
+Files::PixelFormats::PixelFormats()
 {
   // Hardcoding system path here till a reader is developed.
   std::string systemPath {"C://Users/rmvir/Desktop/scc300-Win3D/"};
 
-  Utilities::FilePathsFile files {};
+  Files::FilePaths files {};
   auto filePath = files.filePath("pixel_formats");
 
   this->reader = {};
   this->reader.read(systemPath + filePath);
 }
 
-int Utilities::PixelFormatFile::indexOf(std::string formatName)
+int Files::PixelFormats::indexOf(std::string formatName)
 {
   int noOfFormats = this->reader.numberOfObjects();
 
@@ -28,7 +28,7 @@ int Utilities::PixelFormatFile::indexOf(std::string formatName)
   return -1;
 }
 
-int Utilities::PixelFormatFile::indexOf(int bitsPerPixel)
+int Files::PixelFormats::indexOf(int bitsPerPixel)
 {
   int noOfFormats = this->reader.numberOfObjects();
 
@@ -42,19 +42,19 @@ int Utilities::PixelFormatFile::indexOf(int bitsPerPixel)
   return -1;
 }
 
-std::string Utilities::PixelFormatFile::formatName(int index)
+std::string Files::PixelFormats::formatName(int index)
 {
   return this->reader.value<std::string>(index, "name");
 }
 
-int Utilities::PixelFormatFile::bitsPerPixel(int index)
+int Files::PixelFormats::bitsPerPixel(int index)
 {
   std::string name {"bitsPerPixel"};
   
   return this->reader.value<int>(index, name);
 }
 
-std::vector<std::string> Utilities::PixelFormatFile::colours(int index)
+std::vector<std::string> Files::PixelFormats::colours(int index)
 {
   return this->reader.value<std::vector<std::string>>(index, "colours");
 }

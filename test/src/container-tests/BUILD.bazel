@@ -1,0 +1,21 @@
+load("@rules_cc//cc:defs.bzl", "cc_test")
+
+cc_test(
+    name = "byte_array",
+    size = "small",
+    srcs = ["byte_array.cpp", "byte_conversion.cpp"],
+    deps = [
+        "@com_google_googletest//:gtest_main",
+        "//src/containers:containers"
+    ],
+)
+
+cc_test(
+    name = "matrix_2d",
+    size = "small",
+    srcs = ["matrix.cpp"],
+    deps = [
+        "@com_google_googletest//:gtest_main",
+        "//src/containers:containers"
+    ],
+)

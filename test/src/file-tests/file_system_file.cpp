@@ -1,12 +1,12 @@
 #include <gtest/gtest.h>
 #include <string>
 
-#include "src/utilities/file_paths_file.h"
+#include "src/files/file_paths.h"
 
 TEST(FileSystemFile, ShouldGetFilePath)
 {
-  Utilities::FilePathsFile reader {};
+  Files::FilePaths file {};
   std::string correctValue {"resources/pixel_formats.json"};
 
-  EXPECT_EQ(correctValue, reader.filePath("pixel_formats"));
+  EXPECT_EQ(correctValue, file.filePath("pixel_formats"));
 }

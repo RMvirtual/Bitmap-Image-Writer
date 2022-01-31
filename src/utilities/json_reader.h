@@ -1,11 +1,12 @@
 #ifndef JSON_READER_H
 #define JSON_READER_H
 
-#include "lib/nlohmann/json.hpp"
 #include <string>
 #include <vector>
 #include <iostream>
 #include <fstream>
+
+#include "lib/nlohmann/json.hpp"
 
 namespace Utilities {
 class JSONReader

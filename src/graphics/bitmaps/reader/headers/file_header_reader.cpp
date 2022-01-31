@@ -1,5 +1,5 @@
-#include "src/common/filesystem/filesystem.h"
-#include "src/common/byte-array/byte_conversion.h"
+#include "src/utilities/filesystem.h"
+#include "src/containers/byte-array/byte_conversion.h"
 #include "src/graphics/bitmaps/reader/headers/file_header_reader.h"
 
 BitmapReader::FileHeaderReader::FileHeaderReader()

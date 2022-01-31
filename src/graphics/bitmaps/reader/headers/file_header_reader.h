@@ -2,7 +2,7 @@
 #define BITMAP_FILE_HEADER_READER_H
 
 #include "src/graphics/bitmaps/packet/headers/file-header/header.h"
-#include "src/common/byte-array/byte_array.h"
+#include "src/containers/byte-array/byte_array.h"
 
 namespace BitmapReader {
 class FileHeaderReader

@@ -6,11 +6,11 @@
 
 #include "src/utilities/json_reader.h"
 
-namespace Utilities {
-class PixelFormatFile
+namespace Files {
+class PixelFormats
 {
 public:
-  PixelFormatFile();
+  PixelFormats();
 
   int indexOf(std::string formatName);
   int indexOf(int bitsPerPixel);
@@ -19,7 +19,7 @@ public:
   std::vector<std::string> colours(int index);
 
 private:
-  JSONReader reader;
+  Utilities::JSONReader reader;
 };}
 
 #endif

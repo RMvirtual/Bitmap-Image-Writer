@@ -1,8 +1,7 @@
 cc_library(
-    name = "utilities",
+    name = "files",
     hdrs = glob(["*.h"]),
     srcs = glob(["*.cpp"]),
     visibility = ["//visibility:public"],
-    deps = ["//lib:json", "//src/containers:containers"],
-    copts = ["/std:c++17"]
+    deps = ["//src/utilities:utilities"]
 )
