@@ -73,7 +73,7 @@ ByteArray BitmapWriter::ImageWriter::convertToBytes(
 }
 
 ByteArray BitmapWriter::ImageWriter::convertToBytes(
-  Pixels::Colours& colours)
+  const Pixels::Colours& colours)
 {
   ByteArray byteArray {};
 

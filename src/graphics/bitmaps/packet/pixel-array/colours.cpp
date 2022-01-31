@@ -30,7 +30,12 @@ std::vector<std::string> Pixels::Colours::names()
   return names;
 }
 
-int& Pixels::Colours::operator [](std::string value)
+int Pixels::Colours::operator [](std::string colourName) const
 {
-  return this->_colours[value];
+  return this->_colours.at(colourName);
+}
+
+int& Pixels::Colours::operator [](std::string colourName)
+{
+  return this->_colours[colourName];
 }
