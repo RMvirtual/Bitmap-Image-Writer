@@ -35,3 +35,19 @@ TEST(BitmapReader, ShouldReadPixelArray)
 
   BitmapImageComparison::compare(correctPixelArray, pixelArray);
 }
+
+TEST(BitmapReader, ShouldGetPixelArrayConfigFromHeaders)
+{
+  auto headers = BitmapSetUp::bluePixelHeaders();
+  auto config = BitmapReader::PixelArrayConfig::fromHeaders(headers);
+
+  EXPECT_EQ("RGB", config.format.name);
+  EXPECT_EQ(24, config.format.bitsPerPixel);
+  
+  std::vector<std::string> correctColours = {"blue", "green", "red"};
+
+  EXPECT_EQ(correctColours.size(), config.format.colourNames.size());
+
+  for (int colourNo = 0; colourNo < correctColours.size(); colourNo++)
+    EXPECT_EQ(correctColours[colourNo], config.format.colourNames[colourNo]);
+}
