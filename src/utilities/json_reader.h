@@ -4,6 +4,8 @@
 #include "lib/nlohmann/json.hpp"
 #include <string>
 #include <vector>
+#include <iostream>
+#include <fstream>
 
 namespace Utilities {
 class JSONReader
@@ -15,10 +17,20 @@ public:
   std::vector<std::string> fieldNames();
   
   template <class T>
-  T value(std::string fieldName);
-  
+  T value(std::string fieldName)
+  {
+    auto object = this->json.at(0);
+
+    return object.at(fieldName);
+  }
+
   template <class T>
-  T value(int index, std::string fieldName);
+  T value(int index, std::string fieldName)
+  {
+    auto object = this->json.at(index);
+    
+    return object.at(fieldName);
+  }
  
 protected:
   nlohmann::json json;
@@ -26,21 +38,5 @@ protected:
 private:
   nlohmann::json readJsonFromFile(std::string filePath);
 };}
-
-template <class T>
-T Utilities::JSONReader::value(std::string fieldName)
-{
-  auto object = this->json.at(0);
-  
-  return object.at(fieldName);
-}
-
-template <class T>
-T Utilities::JSONReader::value(int index, std::string fieldName)
-{
-  auto object = this->json.at(index);
-  
-  return object.at(fieldName);
-}
 
 #endif
