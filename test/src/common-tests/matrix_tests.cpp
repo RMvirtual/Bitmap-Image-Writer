@@ -49,3 +49,17 @@ TEST(Matrix2D, ShouldGetElementWithAbsoluteIndex)
   EXPECT_EQ(matrix.at(1), value1);
   EXPECT_EQ(matrix.at(3), value2);
 }
+
+TEST(Matrix2D, ShouldFillMatrix)
+{
+  int width = 2;
+  int height = 2;
+
+  Common::Matrix2D<std::string> matrix {width, height, "0"};
+
+  std::string correctValue = "0, 1";
+  matrix.fill(correctValue);
+
+  for (int i = 0; i < 4; i++)
+    EXPECT_EQ(matrix.at(i), correctValue);
+}
