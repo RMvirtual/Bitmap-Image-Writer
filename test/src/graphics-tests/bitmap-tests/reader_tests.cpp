@@ -44,7 +44,7 @@ TEST(BitmapReader, ShouldGetPixelArrayConfigFromHeaders)
   EXPECT_EQ("RGB", config.format.name);
   EXPECT_EQ(24, config.format.bitsPerPixel);
   
-  std::vector<std::string> correctColours = {"blue", "green", "red"};
+  std::vector<std::string> correctColours {"blue", "green", "red"};
 
   EXPECT_EQ(correctColours.size(), config.format.colourNames.size());
 
