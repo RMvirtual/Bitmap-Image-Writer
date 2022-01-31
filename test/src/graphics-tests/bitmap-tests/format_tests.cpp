@@ -43,7 +43,7 @@ TEST(PixelFormats, ShouldGetRGBAFormat)
 TEST(PixelFormats, ShouldGetRGBFormat)
 {
   auto format = Bitmaps::format("RGB");
-  auto correctFormat = rgbaFormat();
+  auto correctFormat = rgbFormat();
 
   comparePixelFormats(correctFormat, format);
 }
