@@ -7,7 +7,7 @@
 #include <vector>
 
 #include "src/maths/vector/vector.h"
-#include "src/maths/binary_ops/binary_ops.h"
+#include "src/maths/binary-ops/binary_ops.h"
 
 Maths::Vector::Vector()
 {
