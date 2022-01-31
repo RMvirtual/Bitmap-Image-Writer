@@ -2,12 +2,12 @@
 #include "src/containers/byte-array/byte_conversion.h"
 #include "src/graphics/bitmaps/reader/headers/file_header_reader.h"
 
-BitmapReader::FileHeaderReader::FileHeaderReader()
+Bitmaps::FileHeaderReader::FileHeaderReader()
 {
   // pass.
 }
 
-Bitmaps::FileHeader BitmapReader::FileHeaderReader::convertBytes(
+Bitmaps::FileHeader Bitmaps::FileHeaderReader::convertBytes(
   const ByteArray& bytes)
 {
   this->parseSignatureBytes(bytes);
@@ -18,27 +18,27 @@ Bitmaps::FileHeader BitmapReader::FileHeaderReader::convertBytes(
   return this->fileHeader;
 }
 
-void BitmapReader::FileHeaderReader::parseSignatureBytes(
+void Bitmaps::FileHeaderReader::parseSignatureBytes(
   const ByteArray& bytes)
 {
   this->fileHeader.setSignatureBytes(bytes[0], bytes[1]);
 }
 
-void BitmapReader::FileHeaderReader::parseSizeOfBitmapFile(
+void Bitmaps::FileHeaderReader::parseSizeOfBitmapFile(
   const ByteArray& bytes)
 {
   uint32_t sizeOfBitmapFile = ByteConversion::to32BitInt(bytes, 2);
   this->fileHeader.setFileSizeInBytes(sizeOfBitmapFile);
 }
 
-void BitmapReader::FileHeaderReader::parseReservedBytes(
+void Bitmaps::FileHeaderReader::parseReservedBytes(
   const ByteArray& bytes)
 {
   uint32_t reservedBytes = ByteConversion::to32BitInt(bytes, 6);
   this->fileHeader.setReservedBytes(reservedBytes);
 }
 
-void BitmapReader::FileHeaderReader::parsePixelDataOffset(
+void Bitmaps::FileHeaderReader::parsePixelDataOffset(
   const ByteArray& bytes)
 {
   uint32_t pixelDataOffset = ByteConversion::to32BitInt(bytes, 10);

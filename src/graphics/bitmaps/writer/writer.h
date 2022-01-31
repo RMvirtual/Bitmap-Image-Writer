@@ -8,7 +8,7 @@
 #include "src/graphics/bitmaps/packet/pixel-array/array.h"
 #include "src/graphics/bitmaps/packet/pixel-array/colours.h"
 
-namespace BitmapWriter {
+namespace Bitmaps {
 class ImageWriter
 {
 public:

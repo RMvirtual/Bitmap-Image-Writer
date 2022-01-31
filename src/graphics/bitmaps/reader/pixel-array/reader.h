@@ -5,7 +5,7 @@
 #include "src/graphics/bitmaps/formats/format.h"
 #include "src/graphics/bitmaps/packet/pixel-array/array.h"
 
-namespace BitmapReader {
+namespace Bitmaps {
 class PixelArrayReader
 {
 public:

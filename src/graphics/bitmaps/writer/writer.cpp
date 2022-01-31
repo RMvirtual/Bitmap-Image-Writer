@@ -7,12 +7,12 @@
 #include "src/graphics/bitmaps/packet/packet.h"
 #include "src/graphics/bitmaps/formats/format.h"
 
-BitmapWriter::ImageWriter::ImageWriter()
+Bitmaps::ImageWriter::ImageWriter()
 {
   // pass.
 }
 
-ByteArray BitmapWriter::ImageWriter::convertToBytes(
+ByteArray Bitmaps::ImageWriter::convertToBytes(
   const Bitmaps::Packet& packet)
 {
   ByteArray allBytes {};
@@ -24,7 +24,7 @@ ByteArray BitmapWriter::ImageWriter::convertToBytes(
   return allBytes;
 }
 
-ByteArray BitmapWriter::ImageWriter::convertToBytes(
+ByteArray Bitmaps::ImageWriter::convertToBytes(
   const Bitmaps::FileHeader& header)
 {
   ByteArray byteArray {};
@@ -36,7 +36,7 @@ ByteArray BitmapWriter::ImageWriter::convertToBytes(
   return byteArray;
 }
 
-ByteArray BitmapWriter::ImageWriter::convertToBytes(
+ByteArray Bitmaps::ImageWriter::convertToBytes(
   const Bitmaps::DibHeader& header)
 {
   ByteArray byteArray {};
@@ -56,7 +56,7 @@ ByteArray BitmapWriter::ImageWriter::convertToBytes(
   return byteArray;
 }
 
-ByteArray BitmapWriter::ImageWriter::convertToBytes(
+ByteArray Bitmaps::ImageWriter::convertToBytes(
   const Bitmaps::PixelArray& pixelArray)
 {
   ByteArray byteArray {};
@@ -74,7 +74,7 @@ ByteArray BitmapWriter::ImageWriter::convertToBytes(
   return byteArray;
 }
 
-ByteArray BitmapWriter::ImageWriter::convertToBytes(
+ByteArray Bitmaps::ImageWriter::convertToBytes(
   const Bitmaps::Colours& colours)
 {
   ByteArray byteArray {};

@@ -9,7 +9,7 @@
 #include "src/graphics/bitmaps/reader/pixel-array/reader.h"
 #include "src/graphics/bitmaps/formats/format.h"
 
-namespace BitmapReader {
+namespace Bitmaps {
 class ImageReader
 {
 public:
@@ -26,7 +26,7 @@ private:
   void processIntoPixelArray(const ByteArray& bytes);
   Bitmaps::Headers headers();
   Bitmaps::Format pixelArrayFormat();
-  BitmapReader::PixelArrayReader pixelArrayReader();
+  Bitmaps::PixelArrayReader pixelArrayReader();
 };}
 
 #endif

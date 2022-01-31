@@ -4,7 +4,7 @@
 #include "src/graphics/bitmaps/packet/headers/dib-header/header.h"
 #include "src/containers/byte-array/byte_array.h"
 
-namespace BitmapReader {
+namespace Bitmaps {
 class DibHeaderReader
 {
 public:

@@ -3,12 +3,12 @@
 #include "src/graphics/bitmaps/packet/pixel-array/array.h"
 #include "src/graphics/bitmaps/reader/pixel-array/reader.h"
 
-BitmapReader::PixelArrayReader::PixelArrayReader(const Bitmaps::Format& format)
+Bitmaps::PixelArrayReader::PixelArrayReader(const Bitmaps::Format& format)
 {
   this->format = format;
 }
 
-Bitmaps::PixelArray BitmapReader::PixelArrayReader::toPixelArray(
+Bitmaps::PixelArray Bitmaps::PixelArrayReader::toPixelArray(
   const ByteArray& bytes)
 {
   Bitmaps::PixelArray pixelArray {this->format};
