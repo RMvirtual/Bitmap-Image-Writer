@@ -14,6 +14,20 @@ cc_test(
 )
 
 cc_test(
+    name = "format_tests",
+    size = "small",
+    srcs = [
+        "format_tests.cpp"
+    ],
+    deps = [
+        "@com_google_googletest//:gtest_main",
+        "//src/graphics/bitmaps/packet:bitmap_packet",
+        "//test/src/graphics-tests/utilities:bitmap_image_comparators",
+        "//test/src/graphics-tests/utilities:bitmap_set_up"
+    ]
+)
+
+cc_test(
     name = "packet_tests",
     size = "small",
     srcs = [
