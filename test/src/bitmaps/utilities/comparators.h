@@ -1,5 +1,5 @@
-#ifndef BITMAP_IMAGE_COMPARATORS_H
-#define BITMAP_IMAGE_COMPARATORS_H
+#ifndef BITMAP_TEST_COMPARATORS_H
+#define BITMAP_TEST_COMPARATORS_H
 
 #include <gtest/gtest.h>
 #include "src/bitmaps/packet/headers/file-header/header.h"

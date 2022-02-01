@@ -2,7 +2,7 @@
 
 #include "src/bitmaps/packet/packet.h"
 #include "src/bitmaps/reader/bitmap_reader.h"
-#include "test/src/bitmaps/utilities/bitmap_set_up.h"
+#include "test/src/bitmaps/utilities/set_up.h"
 #include "src/bitmaps/formats/formats.h"
 
 Bitmaps::Packet getBitmapPacket()
