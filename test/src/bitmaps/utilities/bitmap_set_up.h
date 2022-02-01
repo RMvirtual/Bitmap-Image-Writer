@@ -5,7 +5,7 @@
 #include "src/bitmaps/packet/packet.h"
 #include "src/bitmaps/packet/headers/file-header/header.h"
 #include "src/bitmaps/packet/headers/dib-header/header.h"
-#include "test/src/graphics/utilities/bitmap_image_comparators.h"
+#include "test/src/bitmaps/utilities/bitmap_image_comparators.h"
 #include "src/bitmaps/packet/pixel-array/array.h"
 #include "src/bitmaps/packet/headers/headers.h"
 #include "src/bitmaps/packet/pixel-array/colours.h"

@@ -1,6 +1,6 @@
 #include <gtest/gtest.h>
 
-#include "test/src/graphics/utilities/bitmap_set_up.h"
+#include "test/src/bitmaps/utilities/bitmap_set_up.h"
 #include "src/bitmaps/writer/writer.h"
 #include "src/containers/byte-array/byte_conversion.h"
 
