@@ -22,7 +22,7 @@ void testTwoBytesAgainstTwoChars(std::string chars, ByteArray bytes)
   EXPECT_EQ(chars[1], bytes[1]);
 }
 
-TEST(Bitmaps, ShouldConvertFileHeaderToBytes)
+TEST(BitmapWriter, ShouldConvertFileHeaderToBytes)
 {
   Bitmaps::ImageWriter writer {};
   auto header = BitmapSetUp::bluePixelFileHeader();
@@ -36,7 +36,7 @@ TEST(Bitmaps, ShouldConvertFileHeaderToBytes)
     header.pixelArrayOffsetInBytes(), bytes.slice(10,14));
 }
 
-TEST(Bitmaps, ShouldConvertDibHeaderToBytes)
+TEST(BitmapWriter, ShouldConvertDibHeaderToBytes)
 {
   Bitmaps::ImageWriter writer {};
   auto header = BitmapSetUp::bluePixelDibHeader();
@@ -55,7 +55,7 @@ TEST(Bitmaps, ShouldConvertDibHeaderToBytes)
   testFourBytesAgainstValue(header.importantColors(), bytes.slice(36,40));
 }
 
-TEST(Bitmaps, ShouldConvertPixelArrayToBytes)
+TEST(BitmapWriter, ShouldConvertPixelArrayToBytes)
 {
   Bitmaps::ImageWriter writer {};
   auto pixelArray = BitmapSetUp::bluePixelArray();
