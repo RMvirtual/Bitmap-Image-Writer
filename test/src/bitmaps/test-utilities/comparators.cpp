@@ -38,7 +38,7 @@ void BitmapImageComparison::compare(
 {
   ASSERT_EQ(pixelArray1.sizeInPixels(), pixelArray2.sizeInPixels());
 
-  int numberOfPixels = 5; // hardcoded for now as big test image.
+  int numberOfPixels = 4; // hardcoded for now as big test image.
   // Need smaller one adding later.
 
   for (int pixelNo = 0; pixelNo < 5; pixelNo++)

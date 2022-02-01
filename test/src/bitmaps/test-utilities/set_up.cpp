@@ -73,6 +73,21 @@ Bitmaps::PixelArray BitmapSetUp::bluePixelArray()
   return pixelArray;
 }
 
+Bitmaps::PixelArray BitmapSetUp::bluePixelArray(int width, int height)
+{
+  Bitmaps::Format format;
+  format.setWidthInPixels(width);
+  format.setHeightInPixels(height);
+  format.setName("RGBA");
+  format.setBitsPerPixel(32);
+  format.setColourNames({"alpha", "blue", "green", "red"});
+
+  Bitmaps::PixelArray pixelArray {format};
+  pixelArray.fill(BitmapSetUp::blueColoursWithAlpha());
+
+  return pixelArray;
+}
+
 Bitmaps::PixelArray BitmapSetUp::redPixelArray()
 {
   Bitmaps::Format format;
@@ -111,6 +126,17 @@ Bitmaps::Colours BitmapSetUp::greenColours()
 Bitmaps::Colours BitmapSetUp::blueColours()
 {
   Bitmaps::Colours colours;
+  colours["red"] = 100;
+  colours["green"] = 255;
+  colours["blue"] = 255;
+
+  return colours;
+}
+
+Bitmaps::Colours BitmapSetUp::blueColoursWithAlpha()
+{
+  Bitmaps::Colours colours;
+  colours["alpha"] = 255;
   colours["red"] = 100;
   colours["green"] = 255;
   colours["blue"] = 255;

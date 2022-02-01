@@ -58,7 +58,7 @@ TEST(BitmapWriter, ShouldConvertDibHeaderToBytes)
 TEST(BitmapWriter, ShouldConvertPixelArrayToBytes)
 {
   Bitmaps::ImageWriter writer {};
-  auto pixelArray = BitmapSetUp::bluePixelArray();
+  auto pixelArray = BitmapSetUp::bluePixelArray(2, 2);
   auto bytes = writer.convertToBytes(pixelArray);
 
   EXPECT_TRUE(false);
