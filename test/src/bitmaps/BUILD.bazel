@@ -11,6 +11,6 @@ cc_test(
         "//src/bitmaps/packet:bitmap_packet",
         "//src/bitmaps/reader:bitmap_reader",
         "//src/bitmaps/writer:bitmap_writer",
-        "//test/src/bitmaps/utilities:bitmap_test_utilities",
+        "//test/src/bitmaps/test-utilities:bitmap_test_utilities",
     ]
 )

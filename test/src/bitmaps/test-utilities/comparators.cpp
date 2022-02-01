@@ -3,7 +3,7 @@
 #include "src/bitmaps/packet/pixel-array/array.h"
 #include "src/bitmaps/packet/pixel-array/colours.h"
 #include "src/bitmaps/formats/format.h"
-#include "test/src/bitmaps/utilities/comparators.h"
+#include "test/src/bitmaps/test-utilities/comparators.h"
 
 void BitmapImageComparison::compare(
   const Bitmaps::FileHeader& header1, 
