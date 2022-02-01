@@ -11,7 +11,7 @@ cc_test(
         "//src/bitmaps/packet:bitmap_packet",
         "//src/bitmaps/reader:bitmap_reader",
         "//src/bitmaps/writer:bitmap_writer",
-        "//test/src/graphics-tests/utilities:bitmap_image_comparators",
-        "//test/src/graphics-tests/utilities:bitmap_set_up",
+        "//test/src/graphics/utilities:bitmap_image_comparators",
+        "//test/src/graphics/utilities:bitmap_set_up",
     ]
 )

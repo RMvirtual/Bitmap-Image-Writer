@@ -16,7 +16,7 @@ cc_library(
     deps = [
         "@com_google_googletest//:gtest_main",
         "//src/bitmaps/packet:bitmap_packet",
-        "//test/src/graphics-tests/utilities:bitmap_image_comparators"
+        "//test/src/graphics/utilities:bitmap_image_comparators"
     ],
     visibility = ["//visibility:public"]
 )

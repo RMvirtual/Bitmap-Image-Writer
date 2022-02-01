@@ -4,8 +4,8 @@
 #include "src/bitmaps/formats/format.h"
 #include "src/bitmaps/packet/pixel-array/array.h"
 #include "src/bitmaps/packet/pixel-array/colours.h"
-#include "test/src/graphics-tests/utilities/bitmap_set_up.h"
-#include "test/src/graphics-tests/utilities/bitmap_image_comparators.h"
+#include "test/src/graphics/utilities/bitmap_set_up.h"
+#include "test/src/graphics/utilities/bitmap_image_comparators.h"
 
 std::string BitmapSetUp::blueImagePath()
 {
