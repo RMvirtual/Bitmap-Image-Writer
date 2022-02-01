@@ -1,0 +1,15 @@
+cc_library(
+    name = "bitmap_reader",
+    hdrs = glob(["*.h"]),
+    srcs = glob(["*.cpp"]),
+    deps = [
+        "//src/containers:containers",
+        "//src/bitmaps/formats:bitmap_formats",
+        "//src/bitmaps/packet:bitmap_packet",
+        "//src/bitmaps/reader/headers:bitmap_header_readers",
+        "//src/bitmaps/reader/pixel-array:bitmap_pixel_array_reader",
+        "//src/utilities:utilities"
+    ],
+    visibility = ["//visibility:public"],
+    copts = ["/std:c++17"]
+)

@@ -1,9 +1,9 @@
 #include <string>
 
-#include "src/graphics/bitmaps/packet/packet.h"
-#include "src/graphics/bitmaps/formats/format.h"
-#include "src/graphics/bitmaps/packet/pixel-array/array.h"
-#include "src/graphics/bitmaps/packet/pixel-array/colours.h"
+#include "src/bitmaps/packet/packet.h"
+#include "src/bitmaps/formats/format.h"
+#include "src/bitmaps/packet/pixel-array/array.h"
+#include "src/bitmaps/packet/pixel-array/colours.h"
 #include "test/src/graphics-tests/utilities/bitmap_set_up.h"
 #include "test/src/graphics-tests/utilities/bitmap_image_comparators.h"
 

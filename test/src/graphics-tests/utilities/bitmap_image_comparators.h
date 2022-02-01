@@ -2,11 +2,11 @@
 #define BITMAP_IMAGE_COMPARATORS_H
 
 #include <gtest/gtest.h>
-#include "src/graphics/bitmaps/packet/headers/file-header/header.h"
-#include "src/graphics/bitmaps/packet/headers/dib-header/header.h"
-#include "src/graphics/bitmaps/packet/pixel-array/array.h"
-#include "src/graphics/bitmaps/packet/pixel-array/colours.h"
-#include "src/graphics/bitmaps/formats/format.h"
+#include "src/bitmaps/packet/headers/file-header/header.h"
+#include "src/bitmaps/packet/headers/dib-header/header.h"
+#include "src/bitmaps/packet/pixel-array/array.h"
+#include "src/bitmaps/packet/pixel-array/colours.h"
+#include "src/bitmaps/formats/format.h"
 
 namespace BitmapImageComparison
 {
