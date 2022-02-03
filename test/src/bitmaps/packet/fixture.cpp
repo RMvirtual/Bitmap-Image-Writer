@@ -1,3 +1,5 @@
+#include <gtest/gtest.h>
+
 #include "src/bitmaps/packet/packet.h"
 #include "src/bitmaps/packet/headers/headers.h"
 #include "src/bitmaps/formats/format.h"
@@ -46,4 +48,11 @@ Bitmaps::Colours BitmapPacketTest::greenColours()
   colours["blue"] = 0;
 
   return colours;
+}
+
+void BitmapPacketTest::isGreen(Bitmaps::Colours& colour)
+{
+  EXPECT_EQ(colour["green"], 255);
+  EXPECT_EQ(colour["blue"], 0);
+  EXPECT_EQ(colour["red"], 0);
 }

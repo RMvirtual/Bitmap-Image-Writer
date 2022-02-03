@@ -8,7 +8,8 @@ TEST_F(BitmapPacketTest, ShouldSetPixelInPixelArray)
   auto greenColours = this->greenColours();
   this->pixelArray.set(greenColours, 1, 0);
 
-  this->compare(greenColours, this->pixelArray.at(1, 0));
+  auto amendedColours = this->pixelArray.at(1, 0); 
+  this->isGreen(amendedColours);
 }
 
 TEST_F(BitmapPacketTest, ShouldGetNumberOfPixelsInPixelArray)
