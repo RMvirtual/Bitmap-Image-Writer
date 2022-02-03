@@ -37,16 +37,23 @@ void BitmapFormatsTest::loadRGBFormat()
   this->format.setColourNames({"blue", "green", "red"});
 }
 
+void BitmapFormatsTest::loadRGBFormat(int width, int height)
+{
+  this->loadRGBFormat();
+  this->format.setWidthInPixels(width);
+  this->format.setHeightInPixels(height);
+}
+
 Bitmaps::Headers BitmapFormatsTest::rgbHeaders()
 {
   Bitmaps::Headers headers;
-  headers.fileHeader = this->fileHeader();
-  headers.dibHeader = this->dibHeader();
+  headers.fileHeader = this->rgbFileHeader();
+  headers.dibHeader = this->rgbDibHeader();
 
   return headers;
 }
 
-Bitmaps::FileHeader BitmapFormatsTest::fileHeader()
+Bitmaps::FileHeader BitmapFormatsTest::rgbFileHeader()
 {
   Bitmaps::FileHeader header;
 
@@ -58,7 +65,7 @@ Bitmaps::FileHeader BitmapFormatsTest::fileHeader()
   return header;
 }
 
-Bitmaps::DibHeader BitmapFormatsTest::dibHeader()
+Bitmaps::DibHeader BitmapFormatsTest::rgbDibHeader()
 {
   Bitmaps::DibHeader header;
 

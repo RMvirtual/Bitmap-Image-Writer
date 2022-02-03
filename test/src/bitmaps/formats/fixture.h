@@ -20,9 +20,10 @@ protected:
   void BitmapFormatsTest::compare(Bitmaps::Format& format);
   void loadRGBAFormat();
   void loadRGBFormat();
+  void loadRGBFormat(int width, int height);
   Bitmaps::Headers rgbHeaders();
-  Bitmaps::FileHeader fileHeader();
-  Bitmaps::DibHeader dibHeader();
+  Bitmaps::FileHeader rgbFileHeader();
+  Bitmaps::DibHeader rgbDibHeader();
 };
 
 #endif

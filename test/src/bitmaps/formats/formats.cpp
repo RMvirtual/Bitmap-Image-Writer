@@ -35,11 +35,8 @@ TEST_F(BitmapFormatsTest, ShouldGetBitmapFormatFromHeaders)
 
 TEST_F(BitmapFormatsTest, ShouldCalculatePixelArrayRowPadding)
 {
-  auto format = Bitmaps::format(24);
-  format.setWidthInPixels(2);
-  format.setHeightInPixels(1);
-
-  int actualPadding = format.rowPaddingInBytes();
+  this->loadRGBFormat(2, 1);
+  int actualPadding = this->format.rowPaddingInBytes();
   int correctPadding = 2;
 
   EXPECT_EQ(correctPadding, actualPadding);
@@ -47,11 +44,8 @@ TEST_F(BitmapFormatsTest, ShouldCalculatePixelArrayRowPadding)
 
 TEST_F(BitmapFormatsTest, ShouldCalculatePixelArrayRowSizeInBytes)
 {
-  auto format = Bitmaps::format(24);
-  format.setWidthInPixels(6);
-  format.setHeightInPixels(1);
-
-  int actualSize = format.rowSizeInBytes();
+  this->loadRGBFormat(6, 1);
+  int actualSize = this->format.rowSizeInBytes();
   int correctSize = 20;
   
   EXPECT_EQ(correctSize, actualSize);
