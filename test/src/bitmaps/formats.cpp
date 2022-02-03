@@ -1,88 +1,88 @@
 #include <gtest/gtest.h>
 #include <src/bitmaps/formats/formats.h>
 
-Bitmaps::Format rgbaFormat()
+class BitmapFormatsTest : public ::testing::Test
 {
-  Bitmaps::Format format {};
-  format.setName("RGBA");
-  format.setBitsPerPixel(32);
-  format.setColourNames({"alpha", "blue", "green", "red"});
+public:
+  BitmapFormatsTest()
+  {
+    this->initialiseRgbaFormat();
+    this->initialiseRgbFormat();
+  }
 
-  return format;
+  ~BitmapFormatsTest() {}
+
+protected:
+  Bitmaps::Format correctRGBAFormat;
+  Bitmaps::Format correctRGBFormat;
+
+  void compare(Bitmaps::Format& correctFormat, Bitmaps::Format& format)
+  {
+    EXPECT_EQ(correctFormat.name(), format.name());
+    EXPECT_EQ(correctFormat.bitsPerPixel(), format.bitsPerPixel());
+    EXPECT_EQ(correctFormat.colourNames().size(), format.colourNames().size());
+
+    for (int colour = 0; colour < correctFormat.colourNames().size(); colour++)
+      EXPECT_EQ(
+        correctFormat.colourNames()[colour], format.colourNames()[colour]);
+  }
+
+private:
+  void initialiseRgbaFormat()
+  {
+    this->correctRGBAFormat.setName("RGBA");
+    this->correctRGBAFormat.setBitsPerPixel(32);
+    this->correctRGBAFormat.setColourNames({"alpha", "blue", "green", "red"});
+  }
+
+  void initialiseRgbFormat()
+  {
+    this->correctRGBFormat.setName("RGB");
+    this->correctRGBFormat.setBitsPerPixel(24);
+    this->correctRGBFormat.setColourNames({"blue", "green", "red"});
+  }
+};
+
+TEST_F(BitmapFormatsTest, ShouldGetRGBAFormat)
+{
+  this->compare(this->correctRGBAFormat, Bitmaps::format("RGBA"));
 }
 
-Bitmaps::Format rgbFormat()
+TEST_F(BitmapFormatsTest, ShouldGetRGBFormat)
 {
-  Bitmaps::Format format {};
-  format.setName("RGB");
-  format.setBitsPerPixel(24);
-  format.setColourNames({"blue", "green", "red"});
-
-  return format;
+  compare(this->correctRGBFormat, Bitmaps::format("RGB"));
 }
 
-void comparePixelFormats(Bitmaps::Format& correctFormat, Bitmaps::Format& format)
+TEST_F(BitmapFormatsTest, ShouldGet32BitPerPixelFormat)
 {
-  EXPECT_EQ(correctFormat.name(), format.name());
-  EXPECT_EQ(correctFormat.bitsPerPixel(), format.bitsPerPixel());
-  EXPECT_EQ(correctFormat.colourNames().size(), format.colourNames().size());
-
-  for (int colour = 0; colour < correctFormat.colourNames().size(); colour++)
-    EXPECT_EQ(
-      correctFormat.colourNames()[colour], format.colourNames()[colour]);
+  compare(this->correctRGBAFormat, Bitmaps::format(32));
 }
 
-TEST(PixelFormats, ShouldGetRGBAFormat)
+TEST_F(BitmapFormatsTest, ShouldGet24BitPerPixelFormat)
 {
-  auto format = Bitmaps::format("RGBA");
-  auto correctFormat = rgbaFormat();
-
-  comparePixelFormats(correctFormat, format);
+  compare(this->correctRGBFormat, Bitmaps::format(24));
 }
 
-TEST(PixelFormats, ShouldGetRGBFormat)
-{
-  auto format = Bitmaps::format("RGB");
-  auto correctFormat = rgbFormat();
-
-  comparePixelFormats(correctFormat, format);
-}
-
-TEST(PixelFormats, ShouldGet32BitPerPixelFormat)
-{
-  auto format = Bitmaps::format(32);
-  auto correctFormat = rgbaFormat();
-
-  comparePixelFormats(correctFormat, format);
-}
-
-TEST(PixelFormats, ShouldGet24BitPerPixelFormat)
-{
-  auto format = Bitmaps::format(24);
-  auto correctFormat = rgbFormat();
-
-  comparePixelFormats(correctFormat, format);
-}
-
-TEST(PixelFormats, ShouldCalculatePixelArrayRowPadding)
+TEST_F(BitmapFormatsTest, ShouldCalculatePixelArrayRowPadding)
 {
   auto format = Bitmaps::format(24);
   format.setWidthInPixels(2);
   format.setHeightInPixels(1);
+
   int actualPadding = format.rowPaddingInBytes();
   int correctPadding = 2;
 
   EXPECT_EQ(correctPadding, actualPadding);
 }
 
-TEST(PixelFormats, ShouldCalculatePixelArrayRowSizeInBytes)
+TEST_F(BitmapFormatsTest, ShouldCalculatePixelArrayRowSizeInBytes)
 {
   auto format = Bitmaps::format(24);
   format.setWidthInPixels(6);
   format.setHeightInPixels(1);
 
-  int correctSize = 20;
   int actualSize = format.rowSizeInBytes();
+  int correctSize = 20;
   
   EXPECT_EQ(correctSize, actualSize);
 }
