@@ -4,4 +4,5 @@ http_archive(
   name = "com_google_googletest",
   urls = ["https://github.com/google/googletest/archive/refs/heads/main.zip"],
   strip_prefix = "googletest-main",
+  sha256 = "899fdce560ec636923e1b1d6d60df45fcdc5c1132db3389511d96db2cf0226ff",
 )
