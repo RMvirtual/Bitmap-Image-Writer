@@ -3,5 +3,7 @@ test_suite(
     tests = [
         "//test/src/bitmaps/formats:tests",
         "//test/src/bitmaps/packet:tests",
+        "//test/src/bitmaps/reader:tests",
+        "//test/src/bitmaps/writer:tests",
     ]
 )
