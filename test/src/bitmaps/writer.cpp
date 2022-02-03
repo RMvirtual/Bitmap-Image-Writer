@@ -7,15 +7,8 @@
 class BitmapWriterTest : public ::testing::Test
 {
 public:
-  BitmapWriterTest()
-  {
-
-  }
-
-  ~BitmapWriterTest()
-  {
-
-  }
+  BitmapWriterTest() {}
+  ~BitmapWriterTest() {}
 
 protected:
   Bitmaps::ImageWriter writer;
@@ -47,9 +40,7 @@ TEST_F(BitmapWriterTest, ShouldConvertFileHeaderToBytes)
   this->compare(header.signatureBytes(), bytes.slice(0,2));
   this->compare(header.fileSizeInBytes(), bytes.slice(2,6));  
   this->compare(header.reservedBytes(), bytes.slice(6,10));
-  
-  this->compare(
-    header.pixelArrayOffsetInBytes(), bytes.slice(10,14));
+  this->compare(header.pixelArrayOffsetInBytes(), bytes.slice(10,14));
 }
 
 TEST_F(BitmapWriterTest, ShouldConvertDibHeaderToBytes)
