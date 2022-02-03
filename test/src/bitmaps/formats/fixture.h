@@ -8,7 +8,7 @@
 #include "src/bitmaps/packet/headers/file-header/header.h"
 #include "src/bitmaps/packet/headers/dib-header/header.h"
 
-class BitmapFormatsTest : public ::testing::Test
+class BitmapFormatsTest : public testing::Test
 {
 public:
   BitmapFormatsTest();

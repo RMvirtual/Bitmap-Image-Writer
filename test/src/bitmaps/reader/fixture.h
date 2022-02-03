@@ -1,32 +1,29 @@
-#include "src/bitmaps/packet/packet.h"
-#include "src/bitmaps/reader/bitmap_reader.h"
-#include "test/src/bitmaps/fixtures/test.h"
+#include <gtest/gtest.h>
 
-class BitmapReaderTest : public BitmapTest
+#include "src/bitmaps/reader/bitmap_reader.h"
+
+class BitmapReaderTest : public testing::Test
 {
 public:
   BitmapReaderTest();
   ~BitmapReaderTest();
 
 private:
-  void initialiseFileHeader();
-  void initialiseDibHeader();
-  void initialisePixelArray();
-  void initialiseColours();
+  void initialiseCorrectPacket();
 
 protected:
+  Bitmaps::Packet packet;
   Bitmaps::ImageReader reader {};
 
-  Bitmaps::Packet readPacket();
+  void compare(const Bitmaps::FileHeader& header);
+  void compare(const Bitmaps::DibHeader& header);
+  void compare(Bitmaps::PixelArray& array);
+
+  Bitmaps::Packet readBlueFile();
   std::string blueImagePath();
-  Bitmaps::Packet blueBitmapPacket();
-  Bitmaps::Headers bluePixelHeaders();
-  void loadBluePixelFileHeader();
-  void loadBluePixelDibHeader();
-  void loadBluePixelArray();
-  void loadBluePixelArray(int width, int height);
+  void loadCorrectFileHeader();
+  void loadCorrectDibHeader();
+  void loadCorrectPixelArray();
   void loadBlueColours();
   void loadBlueColoursWithAlpha();
-  void loadWhiteColours();
-
 };

@@ -9,7 +9,7 @@
 #include "src/bitmaps/packet/pixel-array/array.h"
 #include "src/bitmaps/packet/pixel-array/colours.h"
 
-class BitmapPacketTest : public ::testing::Test
+class BitmapPacketTest : public testing::Test
 {
 public:
   BitmapPacketTest();
