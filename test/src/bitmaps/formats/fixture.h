@@ -17,7 +17,11 @@ public:
 protected:
   Bitmaps::Format format;
 
-  void BitmapFormatsTest::compare(Bitmaps::Format& format);
+  void compare(Bitmaps::Format& format);
+  void compareNames(Bitmaps::Format& format);
+  void compareBitsPerPixel(Bitmaps::Format& format);
+  void compareColours(Bitmaps::Format& format);
+  
   void loadRGBAFormat();
   void loadRGBFormat();
   void loadRGBFormat(int width, int height);
