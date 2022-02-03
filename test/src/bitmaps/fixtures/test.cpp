@@ -1,3 +1,5 @@
+#include <gtest/gtest.h>
+
 #include "test/src/bitmaps/fixtures/test.h"
 
 BitmapTest::BitmapTest()
@@ -60,16 +62,6 @@ void BitmapTest::compare(
 
   for (auto name : correctColours.names())
     EXPECT_EQ(correctColours[name], colours[name]);
-}
-
-void BitmapTest::compare(Bitmaps::Format& format)
-{
-  EXPECT_EQ(this->format.name(), format.name());
-  EXPECT_EQ(this->format.bitsPerPixel(), format.bitsPerPixel());
-  EXPECT_EQ(this->format.colourNames().size(), format.colourNames().size());
-
-  for (int col = 0; col < this->format.colourNames().size(); col++)
-    EXPECT_EQ(this->format.colourNames()[col], format.colourNames()[col]);
 }
 
 void BitmapTest::isGreen(Bitmaps::Colours& colour)

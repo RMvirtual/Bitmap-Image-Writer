@@ -12,6 +12,10 @@ public:
   BitmapWriterTest();
   ~BitmapWriterTest();
 
+  void loadBluePixelFileHeader();
+  void loadBluePixelDibHeader();
+  void loadBluePixelArray();
+
 protected:
   Bitmaps::ImageWriter writer;
 

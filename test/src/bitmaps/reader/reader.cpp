@@ -26,18 +26,3 @@ TEST_F(BitmapReaderTest, ShouldReadPixelArray)
   
   this->compare(pixelArray);
 }
-
-TEST_F(BitmapReaderTest, ShouldReadBitmapFormatFromHeaders)
-{
-  auto format = Bitmaps::format(this->bluePixelHeaders());
-
-  EXPECT_EQ("RGB", format.name());
-  EXPECT_EQ(24, format.bitsPerPixel());
-  
-  std::vector<std::string> correctColours {"blue", "green", "red"};
-
-  EXPECT_EQ(correctColours.size(), format.colourNames().size());
-
-  for (int colourNo = 0; colourNo < correctColours.size(); colourNo++)
-    EXPECT_EQ(correctColours[colourNo], format.colourNames()[colourNo]);
-}
