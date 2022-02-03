@@ -1,7 +1,7 @@
 load("@rules_cc//cc:defs.bzl", "cc_test")
 
 cc_library(
-    name = "formats_tests",
+    name = "fixtures",
     hdrs = glob(["*.h"]),
     srcs = glob(["*.cpp"]),
     deps = [
@@ -13,11 +13,11 @@ cc_library(
 )
 
 cc_test(
-    name = "bitmap_formats_tests",
+    name = "tests",
     size = "small",
-    srcs = ["formats.cpp"],
+    srcs = glob(["*.cpp"]),
     deps = [
         "@com_google_googletest//:gtest_main",
-        "//test/src/bitmaps/formats:formats_tests"
+        "//test/src/bitmaps/formats:fixtures"
     ]
 )

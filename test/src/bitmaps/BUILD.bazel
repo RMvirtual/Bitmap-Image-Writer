@@ -1,8 +1,7 @@
-load("@rules_cc//cc:defs.bzl", "cc_test")
-
 test_suite(
     name = "bitmap_tests",
     tests = [
-        "//test/src/bitmaps/formats:bitmap_formats_tests"
+        "//test/src/bitmaps/formats:tests",
+        "//test/src/bitmaps/packet:tests",
     ]
 )

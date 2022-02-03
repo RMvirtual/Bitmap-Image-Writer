@@ -5,7 +5,7 @@
 #include "src/bitmaps/formats/format.h"
 #include "src/bitmaps/packet/pixel-array/array.h"
 #include "src/bitmaps/packet/pixel-array/colours.h"
-#include "test/src/bitmaps/fixtures/packet.h"
+#include "test/src/bitmaps/packet/fixture.h"
 
 TEST_F(BitmapPacketTest, ShouldCreatePixelArray)
 {
