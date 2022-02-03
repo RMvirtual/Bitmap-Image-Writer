@@ -4,62 +4,97 @@
 #include "src/bitmaps/writer/writer.h"
 #include "src/containers/byte-array/byte_conversion.h"
 
-void testFourBytesAgainstValue(uint32_t intValue, ByteArray bytes)
+class BitmapWriterTest : public ::testing::Test
 {
-  uint32_t bytesValue = ByteConversion::to32BitInt(bytes);
-  EXPECT_EQ(intValue, bytesValue);
-}
+public:
+  BitmapWriterTest()
+  {
 
-void testTwoBytesAgainstValue(uint16_t intValue, ByteArray bytes)
-{
-  uint16_t bytesValue = ByteConversion::to16BitInt(bytes);
-  EXPECT_EQ(intValue, bytesValue);
-}
+  }
 
-void testTwoBytesAgainstTwoChars(std::string chars, ByteArray bytes)
-{
-  EXPECT_EQ(chars[0], bytes[0]);
-  EXPECT_EQ(chars[1], bytes[1]);
-}
+  ~BitmapWriterTest()
+  {
 
-TEST(BitmapWriter, ShouldConvertFileHeaderToBytes)
+  }
+
+protected:
+  Bitmaps::ImageWriter writer;
+
+  void testFourBytesAgainstValue(uint32_t intValue, ByteArray bytes)
+  {
+    uint32_t bytesValue = ByteConversion::to32BitInt(bytes);
+    EXPECT_EQ(intValue, bytesValue);
+  }
+
+  void testTwoBytesAgainstValue(uint16_t intValue, ByteArray bytes)
+  {
+    uint16_t bytesValue = ByteConversion::to16BitInt(bytes);
+    EXPECT_EQ(intValue, bytesValue);
+  }
+
+  void testTwoBytesAgainstTwoChars(std::string chars, ByteArray bytes)
+  {
+    EXPECT_EQ(chars[0], bytes[0]);
+    EXPECT_EQ(chars[1], bytes[1]);
+  }
+};
+
+TEST_F(BitmapWriterTest, ShouldConvertFileHeaderToBytes)
 {
-  Bitmaps::ImageWriter writer {};
   auto header = BitmapSetUp::bluePixelFileHeader();
-  auto bytes = writer.convertToBytes(header);
+  auto bytes = this->writer.convertToBytes(header);
 
-  testTwoBytesAgainstTwoChars(header.signatureBytes(), bytes.slice(0,2));
-  testFourBytesAgainstValue(header.fileSizeInBytes(), bytes.slice(2,6));  
-  testFourBytesAgainstValue(header.reservedBytes(), bytes.slice(6,10));
+  this->testTwoBytesAgainstTwoChars(header.signatureBytes(), bytes.slice(0,2));
+  this->testFourBytesAgainstValue(header.fileSizeInBytes(), bytes.slice(2,6));  
+  this->testFourBytesAgainstValue(header.reservedBytes(), bytes.slice(6,10));
   
-  testFourBytesAgainstValue(
+  this->testFourBytesAgainstValue(
     header.pixelArrayOffsetInBytes(), bytes.slice(10,14));
 }
 
-TEST(BitmapWriter, ShouldConvertDibHeaderToBytes)
+TEST_F(BitmapWriterTest, ShouldConvertDibHeaderToBytes)
 {
-  Bitmaps::ImageWriter writer {};
   auto header = BitmapSetUp::bluePixelDibHeader();
-  auto bytes = writer.convertToBytes(header);
+  auto bytes = this->writer.convertToBytes(header);
 
-  testFourBytesAgainstValue(header.headerSizeInBytes(), bytes.slice(0,4));
-  testFourBytesAgainstValue(header.widthInPixels(), bytes.slice(4,8));
-  testFourBytesAgainstValue(header.heightInPixels(), bytes.slice(8,12));
-  testTwoBytesAgainstValue(header.numberOfColorPlanes(), bytes.slice(12,14));
-  testTwoBytesAgainstValue(header.bitsPerPixel(), bytes.slice(14,16));
-  testFourBytesAgainstValue(header.compressionMethod(), bytes.slice(16,20));
-  testFourBytesAgainstValue(header.sizeOfPixelArray(), bytes.slice(20,24));
-  testFourBytesAgainstValue(header.horizontalResolution(), bytes.slice(24,28));
-  testFourBytesAgainstValue(header.verticalResolution(), bytes.slice(28,32));
-  testFourBytesAgainstValue(header.colorTableEntries(), bytes.slice(32,36));
-  testFourBytesAgainstValue(header.importantColors(), bytes.slice(36,40));
+  this->testFourBytesAgainstValue(
+    header.headerSizeInBytes(), bytes.slice(0,4));
+  
+  this->testFourBytesAgainstValue(
+    header.widthInPixels(), bytes.slice(4,8));
+  
+  this->testFourBytesAgainstValue(
+    header.heightInPixels(), bytes.slice(8,12));
+  
+  this->testTwoBytesAgainstValue(
+    header.numberOfColorPlanes(), bytes.slice(12,14));
+  
+  this->testTwoBytesAgainstValue(
+    header.bitsPerPixel(), bytes.slice(14,16));
+  
+  this->testFourBytesAgainstValue(
+    header.compressionMethod(), bytes.slice(16,20));
+  
+  this->testFourBytesAgainstValue(
+    header.sizeOfPixelArray(), bytes.slice(20,24));
+  
+  this->testFourBytesAgainstValue(
+    header.horizontalResolution(), bytes.slice(24,28));
+  
+  this->testFourBytesAgainstValue(
+    header.verticalResolution(), bytes.slice(28,32));
+  
+  this->testFourBytesAgainstValue(
+    header.colorTableEntries(), bytes.slice(32,36));
+ 
+  this->testFourBytesAgainstValue(
+    header.importantColors(), bytes.slice(36,40));
 }
 
-TEST(BitmapWriter, ShouldConvertPixelArrayToBytes)
+TEST_F(BitmapWriterTest, ShouldConvertPixelArrayToBytes)
 {
-  Bitmaps::ImageWriter writer {};
   auto pixelArray = BitmapSetUp::bluePixelArray(2, 2);
-  auto bytes = writer.convertToBytes(pixelArray);
+  auto bytes = this->writer.convertToBytes(pixelArray);
 
   EXPECT_TRUE(false);
 }
