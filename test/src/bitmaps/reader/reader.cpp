@@ -2,19 +2,19 @@
 
 #include "test/src/bitmaps/reader/fixture.h"
 
-TEST_F(BitmapReaderTest, ShouldReadFileHeader)
+TEST_F(BitmapReaderTest, ShouldReadFileHeaderFromFile)
 {
   auto packet = this->readBlueFile();
   this->compare(packet.fileHeader);
 }
 
-TEST_F(BitmapReaderTest, ShouldReadDibHeader)
+TEST_F(BitmapReaderTest, ShouldReadDibHeaderFromFile)
 {
   auto packet = this->readBlueFile();
   this->compare(packet.dibHeader);
 }
 
-TEST_F(BitmapReaderTest, ShouldReadPixelArray)
+TEST_F(BitmapReaderTest, ShouldReadPixelArrayFromFile)
 {
   auto packet = this->readBlueFile();
   this->compare(packet.pixelArray);
