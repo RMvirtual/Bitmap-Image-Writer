@@ -1,19 +1,11 @@
-load("@rules_cc//cc:defs.bzl", "cc_library", "cc_test")
-
-cc_library(
-    name = "fixtures",
-    hdrs = glob(["*.h"]),
-    srcs = glob(["*.cpp"]),
-    deps = [
-        "@com_google_googletest//:gtest_main",
-        "//src/bitmaps/formats:bitmap_formats",
-    ],
-    visibility = ["//visibility:public"],
-)
+load("@rules_cc//cc:defs.bzl", "cc_test")
 
 cc_test(
     name = "tests",
     size = "small",
-    srcs = glob(["*.cpp"]),
-    deps = ["//test/src/bitmaps/formats:fixtures"]
+    srcs = glob(["*.h", "*.cpp"]),
+    deps = [
+        "@com_google_googletest//:gtest_main",
+        "//src/bitmaps/formats:bitmap_formats"
+    ]
 )
