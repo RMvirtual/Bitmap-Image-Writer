@@ -6,7 +6,6 @@ cc_library(
     srcs = glob(["*.cpp"]),
     deps = [
         "@com_google_googletest//:gtest_main",
-        "//test/src/bitmaps/fixtures:test_fixtures",
         "//src/bitmaps/packet:bitmap_packet",
     ],
     visibility = ["//visibility:public"],
@@ -16,8 +15,5 @@ cc_test(
     name = "tests",
     size = "small",
     srcs = glob(["*.cpp"]),
-    deps = [
-        "@com_google_googletest//:gtest_main",
-        "//test/src/bitmaps/packet:fixtures"
-    ]
+    deps = ["//test/src/bitmaps/packet:fixtures"]
 )

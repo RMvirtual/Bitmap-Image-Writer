@@ -15,8 +15,5 @@ cc_test(
     name = "tests",
     size = "small",
     srcs = glob(["*.cpp"]),
-    deps = [
-        "@com_google_googletest//:gtest_main",
-        "//test/src/bitmaps/reader:fixtures"
-    ]
+    deps = ["//test/src/bitmaps/reader:fixtures"]
 )
