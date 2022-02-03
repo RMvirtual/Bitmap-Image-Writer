@@ -24,6 +24,5 @@ protected:
   void loadCorrectFileHeader();
   void loadCorrectDibHeader();
   void loadCorrectPixelArray();
-  void loadBlueColours();
-  void loadBlueColoursWithAlpha();
+  void loadColours();
 };

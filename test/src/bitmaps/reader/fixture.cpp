@@ -78,23 +78,12 @@ void BitmapReaderTest::loadCorrectPixelArray()
   format.setColourNames({"red", "blue", "green"});
 
   this->packet.pixelArray = {format};
-  this->loadBlueColours();
+  this->loadColours();
 }
 
-void BitmapReaderTest::loadBlueColours()
+void BitmapReaderTest::loadColours()
 {
   Bitmaps::Colours colours;
-  colours["red"] = 100;
-  colours["green"] = 255;
-  colours["blue"] = 255;
-
-  this->packet.pixelArray.fill(colours);
-}
-
-void BitmapReaderTest::loadBlueColoursWithAlpha()
-{
-  Bitmaps::Colours colours;
-  colours["alpha"] = 255;
   colours["red"] = 100;
   colours["green"] = 255;
   colours["blue"] = 255;

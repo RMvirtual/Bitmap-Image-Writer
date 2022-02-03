@@ -16,22 +16,43 @@ BitmapWriterTest::~BitmapWriterTest()
 
 }
 
-void BitmapWriterTest::compare(std::string twoChars, ByteArray bytes)
+void BitmapWriterTest::loadFileHeader()
 {
-  EXPECT_EQ(twoChars[0], bytes[0]);
-  EXPECT_EQ(twoChars[1], bytes[1]);
+  this->packet.fileHeader.setSignatureBytes("BM");
+  this->packet.fileHeader.setFileSizeInBytes(786486);
+  this->packet.fileHeader.setReservedBytes(0);
+  this->packet.fileHeader.setPixelArrayOffsetInBytes(54);
 }
 
-void BitmapWriterTest::compare(uint16_t integer, ByteArray bytes)
+void BitmapWriterTest::loadDibHeader()
 {
-  uint16_t bytesValue = ByteConversion::to16BitInt(bytes);
-  EXPECT_EQ(integer, bytesValue);
+  this->packet.dibHeader.setWidthInPixels(2);
+  this->packet.dibHeader.setHeightInPixels(2);
+  this->packet.dibHeader.setNumberOfColourPlanes(1);
+  this->packet.dibHeader.setBitsPerPixel(24);
 }
 
-void BitmapWriterTest::compare(uint32_t integer, ByteArray bytes)
+void BitmapWriterTest::loadPixelArray()
 {
-  uint32_t bytesValue = ByteConversion::to32BitInt(bytes);
-  EXPECT_EQ(integer, bytesValue);
+  Bitmaps::Format format;
+  format.setWidthInPixels(2);
+  format.setHeightInPixels(2);
+  format.setName("RGB");
+  format.setBitsPerPixel(24);
+  format.setColourNames({"red", "blue", "green"});
+
+  this->packet.pixelArray = {format};
+  this->loadColours();
+}
+
+void BitmapWriterTest::loadColours()
+{
+  Bitmaps::Colours colours;
+  colours["red"] = 100;
+  colours["green"] = 255;
+  colours["blue"] = 255;
+
+  this->packet.pixelArray.fill(colours);
 }
 
 void BitmapWriterTest::compareToFileHeader(ByteArray& bytes)
@@ -63,62 +84,28 @@ void BitmapWriterTest::compareToDibHeader(ByteArray& bytes)
 
 void BitmapWriterTest::compareToPixelArray(ByteArray& bytes)
 {
-  auto pixelArray = this->packet.pixelArray;
-
+  auto& pixelArray = this->packet.pixelArray;  
 }
 
+void BitmapWriterTest::compare(std::string twoChars, ByteArray bytes)
+{
+  EXPECT_EQ(twoChars[0], bytes[0]);
+  EXPECT_EQ(twoChars[1], bytes[1]);
+}
+
+void BitmapWriterTest::compare(uint16_t integer, ByteArray bytes)
+{
+  uint16_t bytesValue = ByteConversion::to16BitInt(bytes);
+  EXPECT_EQ(integer, bytesValue);
+}
+
+void BitmapWriterTest::compare(uint32_t integer, ByteArray bytes)
+{
+  uint32_t bytesValue = ByteConversion::to32BitInt(bytes);
+  EXPECT_EQ(integer, bytesValue);
+}
 
 ByteArray BitmapWriterTest::writeBlueFile()
 { 
   return this->writer.convertToBytes(this->packet);
-}
-
-void BitmapWriterTest::loadFileHeader()
-{
-  this->packet.fileHeader.setSignatureBytes("BM");
-  this->packet.fileHeader.setFileSizeInBytes(786486);
-  this->packet.fileHeader.setReservedBytes(0);
-  this->packet.fileHeader.setPixelArrayOffsetInBytes(54);
-}
-
-void BitmapWriterTest::loadDibHeader()
-{
-  this->packet.dibHeader.setWidthInPixels(512);
-  this->packet.dibHeader.setHeightInPixels(512);
-  this->packet.dibHeader.setNumberOfColourPlanes(1);
-  this->packet.dibHeader.setBitsPerPixel(24);
-}
-
-void BitmapWriterTest::loadPixelArray()
-{
-  Bitmaps::Format format;
-  format.setWidthInPixels(2);
-  format.setHeightInPixels(2);
-  format.setName("RGB");
-  format.setBitsPerPixel(24);
-  format.setColourNames({"red", "blue", "green"});
-
-  this->packet.pixelArray = {format};
-  this->loadColours();
-}
-
-void BitmapWriterTest::loadColours()
-{
-  Bitmaps::Colours colours;
-  colours["red"] = 100;
-  colours["green"] = 255;
-  colours["blue"] = 255;
-
-  this->packet.pixelArray.fill(colours);
-}
-
-void BitmapWriterTest::loadColoursWithAlpha()
-{
-  Bitmaps::Colours colours;
-  colours["alpha"] = 255;
-  colours["red"] = 100;
-  colours["green"] = 255;
-  colours["blue"] = 255;
-
-  this->packet.pixelArray.fill(colours);
 }

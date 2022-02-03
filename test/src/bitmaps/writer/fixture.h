@@ -28,7 +28,6 @@ protected:
   void loadDibHeader();
   void loadPixelArray();
   void loadColours();
-  void loadColoursWithAlpha();
 };
 
 #endif
