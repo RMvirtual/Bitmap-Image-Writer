@@ -1,18 +1,26 @@
-#ifndef BITMAP_TEST_SET_UP_H
-#define BITMAP_TEST_SET_UP_H
+#ifndef BITMAP_PACKET_TEST_H
+#define BITMAP_PACKET_TEST_H
 
-#include <string>
-
-#include "src/bitmaps/packet/headers/dib-header/header.h"
-#include "src/bitmaps/packet/headers/file-header/header.h"
-#include "src/bitmaps/packet/headers/headers.h"
 #include "src/bitmaps/packet/packet.h"
+#include "src/bitmaps/packet/headers/headers.h"
+#include "src/bitmaps/formats/format.h"
 #include "src/bitmaps/packet/pixel-array/array.h"
 #include "src/bitmaps/packet/pixel-array/colours.h"
-#include "test/src/bitmaps/test-utilities/comparators.h"
+#include "test/src/bitmaps/fixtures/test.h"
 
-namespace BitmapSetUp
+class BitmapPacketTest : public BitmapTest
 {
+public:
+  BitmapPacketTest();
+  ~BitmapPacketTest();
+
+private:
+  void initialiseFileHeader();
+  void initialiseDibHeader();
+  void initialisePixelArray();
+  void initialiseColours();
+
+protected:
   std::string blueImagePath();
   Bitmaps::Packet blueBitmapPacket();
   Bitmaps::Headers bluePixelHeaders();
@@ -20,13 +28,12 @@ namespace BitmapSetUp
   Bitmaps::DibHeader bluePixelDibHeader();
   Bitmaps::PixelArray bluePixelArray();
   Bitmaps::PixelArray bluePixelArray(int width, int height);
-  Bitmaps::PixelArray redPixelArray();
-  Bitmaps::Colours whiteColours();
-  Bitmaps::Colours greenColours();
+  void loadRedPixelArray();
   Bitmaps::Colours redColours();
+  Bitmaps::Colours greenColours();
   Bitmaps::Colours blueColours();
   Bitmaps::Colours blueColoursWithAlpha();
-
-}
+  Bitmaps::Colours whiteColours();
+};
 
 #endif

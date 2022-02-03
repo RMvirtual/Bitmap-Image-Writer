@@ -1,40 +1,10 @@
 #include <gtest/gtest.h>
 
-#include "test/src/bitmaps/test-utilities/set_up.h"
-#include "src/bitmaps/writer/writer.h"
-#include "src/containers/byte-array/byte_conversion.h"
-
-class BitmapWriterTest : public ::testing::Test
-{
-public:
-  BitmapWriterTest() {}
-  ~BitmapWriterTest() {}
-
-protected:
-  Bitmaps::ImageWriter writer;
-
-  void compare(std::string twoChars, ByteArray bytes)
-  {
-    EXPECT_EQ(twoChars[0], bytes[0]);
-    EXPECT_EQ(twoChars[1], bytes[1]);
-  }
-
-  void compare(uint16_t integer, ByteArray bytes)
-  {
-    uint16_t bytesValue = ByteConversion::to16BitInt(bytes);
-    EXPECT_EQ(integer, bytesValue);
-  }
-
-  void compare(uint32_t integer, ByteArray bytes)
-  {
-    uint32_t bytesValue = ByteConversion::to32BitInt(bytes);
-    EXPECT_EQ(integer, bytesValue);
-  }
-};
+#include "test/src/bitmaps/writer/fixture.h"
 
 TEST_F(BitmapWriterTest, ShouldConvertFileHeaderToBytes)
 {
-  auto header = BitmapSetUp::bluePixelFileHeader();
+  auto header = this->bluePixelFileHeader();
   auto bytes = this->writer.convertToBytes(header);
 
   this->compare(header.signatureBytes(), bytes.slice(0,2));
@@ -45,7 +15,7 @@ TEST_F(BitmapWriterTest, ShouldConvertFileHeaderToBytes)
 
 TEST_F(BitmapWriterTest, ShouldConvertDibHeaderToBytes)
 {
-  auto header = BitmapSetUp::bluePixelDibHeader();
+  auto header = this->bluePixelDibHeader();
   auto bytes = this->writer.convertToBytes(header);
 
   this->compare((uint32_t) header.headerSizeInBytes(), bytes.slice(0,4));
@@ -63,7 +33,7 @@ TEST_F(BitmapWriterTest, ShouldConvertDibHeaderToBytes)
 
 TEST_F(BitmapWriterTest, ShouldConvertPixelArrayToBytes)
 {
-  auto pixelArray = BitmapSetUp::bluePixelArray(2, 2);
+  auto pixelArray = this->bluePixelArray(2, 2);
   auto bytes = this->writer.convertToBytes(pixelArray);
 
   EXPECT_TRUE(false);

@@ -1,16 +1,8 @@
 load("@rules_cc//cc:defs.bzl", "cc_test")
 
-cc_test(
+test_suite(
     name = "bitmap_tests",
-    size = "small",
-    srcs = glob(["*.cpp"]),
-    deps = [
-        "@com_google_googletest//:gtest_main",
-        "//src/files:files",
-        "//src/bitmaps/formats:bitmap_formats",
-        "//src/bitmaps/packet:bitmap_packet",
-        "//src/bitmaps/reader:bitmap_reader",
-        "//src/bitmaps/writer:bitmap_writer",
-        "//test/src/bitmaps/test-utilities:bitmap_test_utilities",
+    tests = [
+        "//test/src/bitmaps/formats:bitmap_formats_tests"
     ]
 )

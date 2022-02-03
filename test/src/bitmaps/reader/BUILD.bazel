@@ -1,0 +1,17 @@
+load("@rules_cc//cc:defs.bzl", "cc_test")
+
+cc_test(
+    name = "bitmap_reader_tests",
+    size = "small",
+    hdrs = glob(["*.h"]),
+    srcs = glob(["*.cpp"]),
+    deps = [
+        "@com_google_googletest//:gtest_main",
+        "//test/src/bitmaps/fixtures:bitmap_test_fixtures",
+        "//src/files:files",
+        "//src/bitmaps/formats:bitmap_formats",
+        "//src/bitmaps/packet:bitmap_packet",
+        "//src/bitmaps/reader:bitmap_reader",
+        "//src/bitmaps/writer:bitmap_writer",
+    ]
+)
