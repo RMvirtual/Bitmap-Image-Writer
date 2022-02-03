@@ -2,8 +2,6 @@ cls
 
 @echo off
 
-for /R tests\ %%f in (*.bat) do (
-    call "%%f"
-)
+bazel test --test_output=all --test_summary=detailed //test/src:all_tests
 
 @echo on
