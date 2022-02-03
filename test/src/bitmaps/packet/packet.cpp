@@ -1,27 +1,6 @@
 #include <gtest/gtest.h>
 
-#include "src/bitmaps/packet/packet.h"
-#include "src/bitmaps/packet/headers/headers.h"
-#include "src/bitmaps/formats/format.h"
-#include "src/bitmaps/packet/pixel-array/array.h"
-#include "src/bitmaps/packet/pixel-array/colours.h"
 #include "test/src/bitmaps/packet/fixture.h"
-
-TEST_F(BitmapPacketTest, ShouldCreatePixelArray)
-{
-  Bitmaps::Format format;
-  format.setName("RGB");
-  format.setBitsPerPixel(24);
-  format.setColourNames({"red", "green", "blue"});
-  format.setWidthInPixels(4);
-  format.setHeightInPixels(1);
-
-  Bitmaps::PixelArray pixelArray {format};
-  Bitmaps::Colours correctColours {format.colourNames()};
-
-  for (int pixelNo = 0; pixelNo < 4; pixelNo++)
-    this->compare(correctColours, pixelArray.at(pixelNo));
-}
 
 TEST_F(BitmapPacketTest, ShouldSetPixelInPixelArray)
 {

@@ -1,34 +1,35 @@
 #include <gtest/gtest.h>
+
 #include "test/src/bitmaps/reader/fixture.h"
+#include "src/bitmaps/formats/formats.h"
 
 TEST_F(BitmapReaderTest, ShouldReadFileHeader)
 {
+  this->loadBluePixelFileHeader();
   auto header = this->readPacket().fileHeader;
-  auto correctHeader = this->bluePixelFileHeader();
  
-  this->compare(correctHeader, header);
+  this->compare(header);
 }
 
 TEST_F(BitmapReaderTest, ShouldReadDibHeader)
 {
-  auto header = getBitmapPacket().dibHeader;
-  auto correctHeader = this->bluePixelDibHeader();
+  this->loadBluePixelDibHeader();
+  auto header = this->readPacket().dibHeader;
 
-  this->compare(correctHeader, header);
+  this->compare(header);
 }
 
 TEST_F(BitmapReaderTest, ShouldReadPixelArray)
 {
-  auto pixelArray = getBitmapPacket().pixelArray;
-  auto correctPixelArray = this->bluePixelArray();
-
-  this->compare(correctPixelArray, pixelArray);
+  this->loadBluePixelArray();
+  auto pixelArray = this->readPacket().pixelArray;
+  
+  this->compare(pixelArray);
 }
 
-TEST_F(BitmapReaderTest, ShouldGetPixelArrayFormatFromHeaders)
+TEST_F(BitmapReaderTest, ShouldReadBitmapFormatFromHeaders)
 {
-  auto headers = this->bluePixelHeaders();
-  auto format = Bitmaps::format(headers);
+  auto format = Bitmaps::format(this->bluePixelHeaders());
 
   EXPECT_EQ("RGB", format.name());
   EXPECT_EQ(24, format.bitsPerPixel());
