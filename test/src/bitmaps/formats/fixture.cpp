@@ -5,7 +5,7 @@
 
 BitmapFormatsTest::BitmapFormatsTest()
 {
-  this->loadRGBAFormat();
+  
 }
 
 BitmapFormatsTest::~BitmapFormatsTest()
@@ -17,10 +17,15 @@ void BitmapFormatsTest::compare(Bitmaps::Format& format)
 {
   EXPECT_EQ(this->format.name(), format.name());
   EXPECT_EQ(this->format.bitsPerPixel(), format.bitsPerPixel());
-  EXPECT_EQ(this->format.colourNames().size(), format.colourNames().size());
 
-  for (int col = 0; col < this->format.colourNames().size(); col++)
-    EXPECT_EQ(this->format.colourNames()[col], format.colourNames()[col]);
+  auto correctColours = this->format.colourNames();
+  auto colours = format.colourNames();
+
+  int noOfColours = correctColours.size();
+  EXPECT_EQ(noOfColours, colours.size());
+
+  for (int colourNo = 0; colourNo < noOfColours; colourNo++)
+    EXPECT_EQ(correctColours[colourNo], colours[colourNo]);
 }
 
 void BitmapFormatsTest::loadRGBAFormat()
