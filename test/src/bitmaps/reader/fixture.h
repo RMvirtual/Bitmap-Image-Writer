@@ -18,9 +18,10 @@ private:
 protected:
   Bitmaps::Packet packet;
   Bitmaps::ImageReader reader {};
-
-  Bitmaps::Packet readBlueFile();
+  ByteArray fileContents;
+  
   std::string blueImagePath();
+
   void compare(const Bitmaps::FileHeader& header);
   void compare(const Bitmaps::DibHeader& header);
   void compare(Bitmaps::PixelArray& array);

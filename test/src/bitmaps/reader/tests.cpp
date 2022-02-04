@@ -1,21 +1,25 @@
 #include <gtest/gtest.h>
 
 #include "test/src/bitmaps/reader/fixture.h"
+#include "src/bitmaps/reader/headers/file_header_reader.h"
+#include "src/bitmaps/reader/headers/dib_header_reader.h"
+#include "src/bitmaps/reader/pixel-array/reader.h"
 
 TEST_F(BitmapReaderTest, ShouldReadFileHeaderFromFile)
 {
-  auto packet = this->readBlueFile();
-  this->compare(packet.fileHeader);
+  Bitmaps::FileHeaderReader reader {};
+  auto bytes = this->fileContents.slice(0, 14);
+  auto header = reader.convertBytes(bytes);
+
+  this->compare(header);
 }
 
 TEST_F(BitmapReaderTest, ShouldReadDibHeaderFromFile)
 {
-  auto packet = this->readBlueFile();
-  this->compare(packet.dibHeader);
+  EXPECT_TRUE(false);
 }
 
 TEST_F(BitmapReaderTest, ShouldReadPixelArrayFromFile)
 {
-  auto packet = this->readBlueFile();
-  this->compare(packet.pixelArray);
+  EXPECT_TRUE(false);
 }

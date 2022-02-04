@@ -1,4 +1,7 @@
 #include "test/src/bitmaps/reader/fixture.h"
+#include "src/bitmaps/reader/headers/file_header_reader.h"
+#include "src/bitmaps/reader/headers/dib_header_reader.h"
+#include "src/bitmaps/reader/pixel-array/reader.h"
 
 void BitmapReaderTest::compare(const Bitmaps::FileHeader& header)
 {

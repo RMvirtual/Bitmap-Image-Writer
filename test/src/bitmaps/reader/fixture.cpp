@@ -4,20 +4,17 @@
 #include "src/bitmaps/reader/bitmap_reader.h"
 #include "src/bitmaps/formats/formats.h"
 #include "test/src/bitmaps/reader/fixture.h"
+#include "src/utilities/filesystem.h"
 
 BitmapReaderTest::BitmapReaderTest()
 {
   this->setupCorrectPacket();
+  this->fileContents = Utilities::readFileToByteArray(this->blueImagePath());
 }
 
 BitmapReaderTest::~BitmapReaderTest()
 {
 
-}
-
-Bitmaps::Packet BitmapReaderTest::readBlueFile()
-{
-  return this->reader.read(this->blueImagePath());
 }
 
 std::string BitmapReaderTest::blueImagePath()
