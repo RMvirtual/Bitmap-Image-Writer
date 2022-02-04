@@ -65,7 +65,6 @@ int& Bitmaps::Colours::operator [](int index)
   return iterator->second;
 }
 
-
 std::map<std::string, int>::iterator Bitmaps::Colours::begin()
 {
   return this->_colours.begin();
