@@ -60,8 +60,6 @@ ByteArray Bitmaps::ImageWriter::convertToBytes(
 {
   ByteArray byteArray {};
   int numberOfPixels = pixelArray.sizeInPixels();
-
-  auto format = pixelArray.format();
   
   for (int pixelNo = 0; pixelNo < numberOfPixels; pixelNo++) {
     auto colours = pixelArray.at(pixelNo);

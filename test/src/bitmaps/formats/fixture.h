@@ -27,7 +27,6 @@ protected:
   void loadRGBAFormat();
   void loadRGBFormat();
   void loadRGBFormat(int width, int height);
-  void loadColours();
 
   Bitmaps::Headers rgbHeaders();
   Bitmaps::FileHeader rgbFileHeader();
