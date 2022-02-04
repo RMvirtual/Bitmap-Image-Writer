@@ -78,6 +78,26 @@ void ByteArray::add(const std::vector<uint8_t>& bytes)
     this->bytes.push_back(byte);
 }
 
+std::vector<uint8_t>::iterator ByteArray::begin()
+{
+  return this->bytes.begin();
+}
+
+std::vector<uint8_t>::iterator ByteArray::end()
+{
+  return this->bytes.end();
+}
+
+std::vector<uint8_t>::const_iterator ByteArray::begin() const
+{
+  return this->bytes.begin();
+}
+
+std::vector<uint8_t>::const_iterator ByteArray::end() const
+{
+  return this->bytes.end();
+}
+
 uint8_t& ByteArray::operator [] (int index)
 {
   return this->bytes[index];

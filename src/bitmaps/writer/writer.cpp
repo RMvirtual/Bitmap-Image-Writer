@@ -1,30 +1,37 @@
+#include "src/bitmaps/formats/colours.h"
+#include "src/bitmaps/formats/format.h"
+#include "src/bitmaps/packet/headers/dib-header/header.h"
+#include "src/bitmaps/packet/headers/file-header/header.h"
+#include "src/bitmaps/packet/packet.h"
+#include "src/bitmaps/packet/pixel-array/array.h"
 #include "src/bitmaps/writer/writer.h"
 #include "src/containers/byte-array/byte_array.h"
-#include "src/bitmaps/packet/headers/file-header/header.h"
-#include "src/bitmaps/packet/headers/dib-header/header.h"
-#include "src/bitmaps/packet/pixel-array/array.h"
-#include "src/bitmaps/formats/colours.h"
-#include "src/bitmaps/packet/packet.h"
-#include "src/bitmaps/formats/format.h"
+#include "src/utilities/filesystem.h"
 
-Bitmaps::ImageWriter::ImageWriter()
+Bitmaps::ByteWriter::ByteWriter()
 {
   // pass.
 }
 
-ByteArray Bitmaps::ImageWriter::convertToBytes(const Bitmaps::Packet& packet)
+void Bitmaps::ByteWriter::writeToFile(
+  std::string filePath, const Bitmaps::Packet& packet)
+{
+  auto bytes = this->write(packet);
+  Utilities::writeToFile(filePath, bytes);
+}
+
+ByteArray Bitmaps::ByteWriter::write(const Bitmaps::Packet& packet)
 {
   ByteArray allBytes {};
 
-  allBytes.add(this->convertToBytes(packet.fileHeader));
-  allBytes.add(this->convertToBytes(packet.dibHeader));
-  allBytes.add(this->convertToBytes(packet.pixelArray));
+  allBytes.add(this->write(packet.fileHeader));
+  allBytes.add(this->write(packet.dibHeader));
+  allBytes.add(this->write(packet.pixelArray));
 
   return allBytes;
 }
 
-ByteArray Bitmaps::ImageWriter::convertToBytes(
-  const Bitmaps::FileHeader& header)
+ByteArray Bitmaps::ByteWriter::write(const Bitmaps::FileHeader& header)
 {
   ByteArray byteArray {};
   byteArray.add(header.signatureBytes());
@@ -35,8 +42,7 @@ ByteArray Bitmaps::ImageWriter::convertToBytes(
   return byteArray;
 }
 
-ByteArray Bitmaps::ImageWriter::convertToBytes(
-  const Bitmaps::DibHeader& header)
+ByteArray Bitmaps::ByteWriter::write(const Bitmaps::DibHeader& header)
 {
   ByteArray byteArray {};
 
@@ -55,15 +61,14 @@ ByteArray Bitmaps::ImageWriter::convertToBytes(
   return byteArray;
 }
 
-ByteArray Bitmaps::ImageWriter::convertToBytes(
-  const Bitmaps::PixelArray& pixelArray)
+ByteArray Bitmaps::ByteWriter::write(const Bitmaps::PixelArray& pixelArray)
 {
   ByteArray byteArray {};
   int numberOfPixels = pixelArray.sizeInPixels();
   
   for (int pixelNo = 0; pixelNo < numberOfPixels; pixelNo++) {
     auto colours = pixelArray.at(pixelNo);
-    auto colourBytes = this->convertToBytes(colours);
+    auto colourBytes = this->write(colours);
 
     byteArray.add(colourBytes);
   }
@@ -71,7 +76,7 @@ ByteArray Bitmaps::ImageWriter::convertToBytes(
   return byteArray;
 }
 
-ByteArray Bitmaps::ImageWriter::convertToBytes(const Bitmaps::Colours& colours)
+ByteArray Bitmaps::ByteWriter::write(const Bitmaps::Colours& colours)
 {
   ByteArray byteArray {};
 

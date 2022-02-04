@@ -4,7 +4,7 @@
 #include "src/containers/byte-array/byte_array.h"
 #include "src/utilities/filesystem.h"
 
-std::string Utilities::convertFileToString(const std::string& filePath)
+std::string Utilities::readFileToString(const std::string& filePath)
 {
   std::ifstream file(filePath);
 
@@ -18,14 +18,24 @@ std::string Utilities::convertFileToString(const std::string& filePath)
   return bytes;
 }
 
-ByteArray Utilities::convertFileToByteArray(const std::string& filePath)
+ByteArray Utilities::readFileToByteArray(const std::string& filePath)
 {
-  std::string fileContents = Utilities::convertFileToString(filePath);
+  std::string fileContents = Utilities::readFileToString(filePath);
 
   ByteArray byteArray {};
   byteArray.add(fileContents);
 
   return byteArray;
+}
+
+void Utilities::writeToFile(std::string filePath, const ByteArray& byteArray)
+{
+  std::ofstream file(filePath);
+
+  for (auto byte : byteArray)
+    file << byte;
+
+  file.close();
 }
 
 int Utilities::getSizeOfFile(const std::string& filePath)

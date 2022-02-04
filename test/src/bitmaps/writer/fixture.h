@@ -20,7 +20,7 @@ private:
 
 protected:
   Bitmaps::Packet packet;
-  Bitmaps::ImageWriter writer;
+  Bitmaps::ByteWriter writer;
   Bitmaps::Colours colours;
 
   ByteArray writeBlueFile();

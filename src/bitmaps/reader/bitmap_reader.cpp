@@ -22,7 +22,7 @@ Bitmaps::Packet Bitmaps::ImageReader::read(const std::string& filePath)
 
 void Bitmaps::ImageReader::processIntoPacket(const std::string& filePath)
 {
-  ByteArray bytes = Utilities::convertFileToByteArray(filePath);
+  ByteArray bytes = Utilities::readFileToByteArray(filePath);
   this->processIntoPacket(bytes);
 }
 

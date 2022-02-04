@@ -29,5 +29,5 @@ void BitmapWriterTest::compare(uint32_t integer, ByteArray bytes)
 
 ByteArray BitmapWriterTest::writeBlueFile()
 { 
-  return this->writer.convertToBytes(this->packet);
+  return this->writer.write(this->packet);
 }
