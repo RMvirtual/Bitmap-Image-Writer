@@ -29,21 +29,23 @@ void Bitmaps::ImageReader::processIntoPacket(const std::string& filePath)
 void Bitmaps::ImageReader::processIntoPacket(const ByteArray& bytes)
 {
   this->processIntoFileHeader(bytes);
-  this->processIntoDibHeader(bytes);
+  this->processIntoDibHeader(bytes);  
   this->processIntoPixelArray(bytes);
 }
 
 void Bitmaps::ImageReader::processIntoFileHeader(const ByteArray& bytes)
 {
+  Bitmaps::FileHeaderReader reader {};
   ByteArray headerBytes = bytes.slice(0, 14);
-  FileHeaderReader reader {};
+  
   this->packet.fileHeader = reader.convertBytes(headerBytes);
 }
 
 void Bitmaps::ImageReader::processIntoDibHeader(const ByteArray& bytes)
 {
+  Bitmaps::DibHeaderReader reader {};
   ByteArray headerBytes = bytes.slice(14, 54);
-  DibHeaderReader reader {};
+
   this->packet.dibHeader = reader.convertBytes(headerBytes);
 }
 
@@ -52,7 +54,7 @@ void Bitmaps::ImageReader::processIntoPixelArray(const ByteArray& bytes)
   auto pixelArrayBytes = bytes.slice(54, bytes.size());
   auto reader = this->pixelArrayReader();
   
-  this->packet.pixelArray = reader.convertBytes(pixelArrayBytes); 
+  this->packet.pixelArray = reader.convertBytes(pixelArrayBytes);
 }
 
 Bitmaps::PixelArrayReader Bitmaps::ImageReader::pixelArrayReader()

@@ -1,4 +1,5 @@
 #include "test/src/bitmaps/reader/fixture.h"
+#include "src/bitmaps/formats/formats.h"
 
 void BitmapReaderTest::setupCorrectPacket()
 {
@@ -25,12 +26,9 @@ void BitmapReaderTest::setupDibHeader()
 
 void BitmapReaderTest::setupPixelArray()
 {
-  Bitmaps::Format format;
+  auto format = Bitmaps::format(24);
   format.setWidthInPixels(512);
   format.setHeightInPixels(512);
-  format.setName("RGB");
-  format.setBitsPerPixel(24);
-  format.setColourNames({"red", "blue", "green"});
 
   this->packet.pixelArray = {format};
   this->setupColours();
