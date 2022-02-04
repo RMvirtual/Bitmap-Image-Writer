@@ -3,6 +3,13 @@
 #include "src/bitmaps/reader/headers/dib_header_reader.h"
 #include "src/bitmaps/reader/pixel-array/reader.h"
 
+void BitmapReaderTest::compare(Bitmaps::Packet packet)
+{
+  this->compare(packet.fileHeader);
+  this->compare(packet.dibHeader);
+  this->compare(packet.pixelArray);
+}
+
 void BitmapReaderTest::compare(const Bitmaps::FileHeader& header)
 {
   auto& correctHeader = this->packet.fileHeader;

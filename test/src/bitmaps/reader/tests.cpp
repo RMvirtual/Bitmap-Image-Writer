@@ -5,9 +5,17 @@
 #include "src/bitmaps/reader/headers/dib_header_reader.h"
 #include "src/bitmaps/reader/pixel-array/reader.h"
 
+TEST_F(BitmapReaderTest, ShouldReadPacketFromFile)
+{
+  Bitmaps::ImageReader reader;
+  auto packet = reader.read(this->blueImagePath());
+  
+  this->compare(packet);
+}
+
 TEST_F(BitmapReaderTest, ShouldReadFileHeaderFromFile)
 {
-  Bitmaps::FileHeaderReader reader {};
+  Bitmaps::FileHeaderReader reader;
   auto bytes = this->fileContents.slice(0, 14);
   auto header = reader.convertBytes(bytes);
 
@@ -16,7 +24,7 @@ TEST_F(BitmapReaderTest, ShouldReadFileHeaderFromFile)
 
 TEST_F(BitmapReaderTest, ShouldReadDibHeaderFromFile)
 {
-  Bitmaps::DibHeaderReader reader {};
+  Bitmaps::DibHeaderReader reader;
 
   auto bytes = this->fileContents.slice(14, 54);
   auto header = reader.convertBytes(bytes);
