@@ -3,6 +3,7 @@
 
 #include <cstdint>
 #include "src/bitmaps/packet/headers/dib-header/values.h"
+#include "src/bitmaps/formats/format.h"
 
 namespace Bitmaps {
 class DibHeader
@@ -10,8 +11,10 @@ class DibHeader
 public:
   DibHeader();
   DibHeader(int widthInPixels, int heightInPixels);
-  static DibHeader fromValues(const DibHeaderValues& values);
+  DibHeader(Format format);
 
+  static DibHeader fromValues(const DibHeaderValues& values);
+  
   void setWidthInPixels(int32_t widthInPixels);
   void setHeightInPixels(int32_t heightInPixels);
   void setNumberOfColourPlanes(uint16_t numberOfColorPlanes);

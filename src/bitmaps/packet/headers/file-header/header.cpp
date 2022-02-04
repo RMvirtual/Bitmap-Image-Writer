@@ -31,7 +31,6 @@ Bitmaps::FileHeader Bitmaps::FileHeader::fromValues(
 void Bitmaps::FileHeader::initialiseDefaultValues()
 {
   this->setSignatureBytes('B', 'M');
-
   this->_fileSizeInBytes = 54;
   this->_reservedBytes = 0;
   this->_pixelArrayOffsetInBytes = 54;

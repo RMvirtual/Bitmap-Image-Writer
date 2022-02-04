@@ -15,6 +15,16 @@ Bitmaps::DibHeader::DibHeader(int widthInPixels, int heightInPixels)
   this->setHeightInPixels(heightInPixels);  
 }
 
+Bitmaps::DibHeader::DibHeader(Bitmaps::Format format)
+{
+  this->initialiseDefaultValues();
+  this->setWidthInPixels(format.widthInPixels());
+  this->setHeightInPixels(format.heightInPixels());
+  this->setBitsPerPixel(format.bitsPerPixel());
+  this->setSizeOfPixelArray(format.arraySizeInBytes());
+}
+
+
 Bitmaps::DibHeader Bitmaps::DibHeader::fromValues(
   const Bitmaps::DibHeaderValues& values)
 {

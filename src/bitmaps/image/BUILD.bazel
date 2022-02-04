@@ -1,11 +1,16 @@
 cc_library(
-    name = "bitmap_formats",
+    name = "bitmap_image",
     hdrs = glob(["*.h",]),
     srcs = glob(["*.cpp"]),
     deps = [
         "//src/containers:containers",
         "//src/files:files",
         "//src/utilities:utilities",
+        "//src/bitmaps/packet:bitmap_packet",
+        "//src/bitmaps/formats:bitmap_formats",
+        "//src/bitmaps/reader:bitmap_reader",
+        "//src/bitmaps/writer:bitmap_writer"
+
     ],
     visibility = ["//visibility:public"],
     copts = ["/std:c++17"]

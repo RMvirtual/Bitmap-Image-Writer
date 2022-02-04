@@ -29,12 +29,6 @@ TEST_F(BitmapFormatsTest, ShouldGet24BitPerPixelFormat)
   this->compare(Bitmaps::format(24));
 }
 
-TEST_F(BitmapFormatsTest, ShouldGetBitmapFormatFromHeaders)
-{
-  this->setupRGBFormat();
-  this->compare(Bitmaps::format(this->rgbHeaders()));
-}
-
 TEST_F(BitmapFormatsTest, ShouldCalculatePixelArrayRowPadding)
 {
   this->setupRGBFormat(2, 1);

@@ -11,7 +11,10 @@ cc_library(
         "file-header/header.cpp",
         "dib-header/header.cpp"
     ],
-    deps = ["//src/containers:containers"],
+    deps = [
+        "//src/bitmaps/formats:bitmap_formats",
+        "//src/containers:containers"
+    ],
     visibility = ["//visibility:public"],
     copts = ["/std:c++17"]
 )

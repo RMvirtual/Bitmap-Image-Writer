@@ -13,13 +13,6 @@ Bitmaps::ByteWriter::ByteWriter()
   // pass.
 }
 
-void Bitmaps::ByteWriter::writeToFile(
-  std::string filePath, const Bitmaps::Packet& packet)
-{
-  auto bytes = this->write(packet);
-  Utilities::writeToFile(filePath, bytes);
-}
-
 ByteArray Bitmaps::ByteWriter::write(const Bitmaps::Packet& packet)
 {
   ByteArray allBytes {};

@@ -22,7 +22,7 @@ BitmapWriterTest::~BitmapWriterTest()
 void BitmapWriterTest::setupFileHeader()
 {
   this->packet.fileHeader.setSignatureBytes("BM");
-  this->packet.fileHeader.setFileSizeInBytes(786486);
+  this->packet.fileHeader.setFileSizeInBytes(66);
   this->packet.fileHeader.setReservedBytes(0);
   this->packet.fileHeader.setPixelArrayOffsetInBytes(54);
 }
@@ -37,7 +37,8 @@ void BitmapWriterTest::setupDibHeader()
 
 void BitmapWriterTest::setupPixelArray()
 {
-  auto format = Bitmaps::format(this->packet.dibHeader);
+  int bitsPerPixel = this->packet.dibHeader.bitsPerPixel();
+  auto format = Bitmaps::format(bitsPerPixel);
   this->packet.pixelArray = {format};
   this->setupColours();
 }

@@ -13,7 +13,6 @@ class ByteWriter
 {
 public:
   ByteWriter();
-  void writeToFile(std::string filePath, const Bitmaps::Packet& packet);
   ByteArray write(const Bitmaps::Packet& packet);
   ByteArray write(const Bitmaps::FileHeader& header);
   ByteArray write(const Bitmaps::DibHeader& header);

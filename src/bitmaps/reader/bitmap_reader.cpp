@@ -71,5 +71,7 @@ Bitmaps::Headers Bitmaps::ImageReader::headers()
 
 Bitmaps::Format Bitmaps::ImageReader::pixelArrayFormat()
 {  
-  return Bitmaps::format(this->headers());
+  int bitsPerPixel = this->packet.dibHeader.bitsPerPixel();
+  
+  return Bitmaps::format(bitsPerPixel);
 }

@@ -30,13 +30,3 @@ TEST_F(BitmapWriterTest, ShouldConvertColoursToBytes)
   auto bytes = this->writer.write(this->colours);
   this->compareToColours(bytes);
 }
-
-TEST_F(BitmapWriterTest, ShouldWritePacketToFile)
-{
-  std::string filePath = (
-    "C:\\Users\\rmvir\\Desktop\\scc300-Win3D\\test\\resources\\"
-    "correct-resources\\blueImage2x2.bmp"
-  );
-
-  this->writer.writeToFile(filePath, this->packet);
-}

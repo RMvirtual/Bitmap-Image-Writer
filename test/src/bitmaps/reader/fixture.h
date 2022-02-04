@@ -9,20 +9,19 @@ public:
   ~BitmapReaderTest();
 
 private:
-  void initialiseCorrectPacket();
+  void setupCorrectPacket();
+  void setupFileHeader();
+  void setupDibHeader();
+  void setupPixelArray();
+  void setupColours();
 
 protected:
   Bitmaps::Packet packet;
   Bitmaps::ImageReader reader {};
 
+  Bitmaps::Packet readBlueFile();
+  std::string blueImagePath();
   void compare(const Bitmaps::FileHeader& header);
   void compare(const Bitmaps::DibHeader& header);
   void compare(Bitmaps::PixelArray& array);
-
-  Bitmaps::Packet readBlueFile();
-  std::string blueImagePath();
-  void loadCorrectFileHeader();
-  void loadCorrectDibHeader();
-  void loadCorrectPixelArray();
-  void loadColours();
 };
