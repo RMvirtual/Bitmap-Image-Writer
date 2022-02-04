@@ -46,8 +46,8 @@ void BitmapWriterTest::compareToPixelArray(ByteArray& bytes)
       auto correctColour = correctPixel[colourNames[colourNo]];
       auto testColour = pixelBytes[colourNo];
 
-      std::cout << "Correct Colour: " << correctColour << "\n";
-      std::cout << "Test Colour: " << testColour << "\n";
+      std::cout << "Correct Colour: " << (unsigned int) correctColour << "\n";
+      std::cout << "Test Colour: " << (unsigned int) testColour << "\n";
 
       EXPECT_EQ(correctColour, testColour);
     }

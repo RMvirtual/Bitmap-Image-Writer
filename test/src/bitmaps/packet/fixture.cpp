@@ -9,7 +9,7 @@
 
 BitmapPacketTest::BitmapPacketTest()
 {
-
+  this->setupRedPixelArray();
 }
 
 BitmapPacketTest::~BitmapPacketTest()
@@ -17,7 +17,7 @@ BitmapPacketTest::~BitmapPacketTest()
 
 }
 
-void BitmapPacketTest::loadRedPixelArray()
+void BitmapPacketTest::setupRedPixelArray()
 {
   Bitmaps::Format format;
   format.setWidthInPixels(2);

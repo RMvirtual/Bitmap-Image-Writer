@@ -3,9 +3,8 @@
 
 TEST_F(BitmapPacketTest, ShouldSetPixelInPixelArray)
 {
-  this->loadRedPixelArray();
-  auto greenColours = this->greenColours();
-  this->pixelArray.set(greenColours, 1, 0);
+  auto green = this->greenColours();
+  this->pixelArray.set(green, 1, 0);
 
   auto amendedColours = this->pixelArray.at(1, 0); 
   this->isGreen(amendedColours);
@@ -13,20 +12,15 @@ TEST_F(BitmapPacketTest, ShouldSetPixelInPixelArray)
 
 TEST_F(BitmapPacketTest, ShouldGetNumberOfPixelsInPixelArray)
 {
-  this->loadRedPixelArray();
+  int correctNoOfPixels = 4;
+  int actualNoOfPixels = this->pixelArray.sizeInPixels();
 
-  int correctNumberOfPixels = 4;
-  int actualNumberOfPixels = this->pixelArray.sizeInPixels();
-
-  EXPECT_EQ(correctNumberOfPixels, actualNumberOfPixels);
+  EXPECT_EQ(correctNoOfPixels, actualNoOfPixels);
 }
 
 TEST_F(BitmapPacketTest, ShouldFillPixelArray)
 {
-  this->loadRedPixelArray();
-  auto greenColours = this->greenColours();
-  this->pixelArray.fill(greenColours);
-
+  this->pixelArray.fill(this->greenColours());
   int noOfPixels = this->pixelArray.sizeInPixels();
 
   for (int i = 0; i < noOfPixels; i++) {

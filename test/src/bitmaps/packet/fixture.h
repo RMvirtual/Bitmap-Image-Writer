@@ -19,7 +19,7 @@ protected:
   Bitmaps::PixelArray pixelArray;
   
   void isGreen(Bitmaps::Colours& colour);
-  void loadRedPixelArray();
+  void setupRedPixelArray();
   Bitmaps::Colours redColours();
   Bitmaps::Colours greenColours();
 };
