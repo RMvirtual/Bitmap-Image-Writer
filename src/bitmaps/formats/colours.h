@@ -1,6 +1,7 @@
 #ifndef PIXEL_COLOURS_H
 #define PIXEL_COLOURS_H
 
+#include <cstdint>
 #include <initializer_list>
 #include <string>
 #include <map>
@@ -16,17 +17,17 @@ public:
 
   std::vector<std::string> names();
   int size();
-  int& operator [](std::string value);
-  int operator [](std::string value) const;
-  int& operator [](int index);
-  int operator [](int index) const;
-  std::map<std::string, int>::iterator begin();
-  std::map<std::string, int>::iterator end();
-  std::map<std::string, int>::const_iterator begin() const;
-  std::map<std::string, int>::const_iterator end() const;
+  uint8_t& operator [](std::string value);
+  uint8_t operator [](std::string value) const;
+  uint8_t& operator [](int index);
+  uint8_t operator [](int index) const;
+  std::map<std::string, uint8_t>::iterator begin();
+  std::map<std::string, uint8_t>::iterator end();
+  std::map<std::string, uint8_t>::const_iterator begin() const;
+  std::map<std::string, uint8_t>::const_iterator end() const;
 
 private:
-  std::map<std::string, int> _colours;
+  std::map<std::string, uint8_t> _colours;
 };}
 
 #endif

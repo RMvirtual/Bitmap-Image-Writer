@@ -35,17 +35,17 @@ int Bitmaps::Colours::size()
   return this->_colours.size();
 }
 
-int Bitmaps::Colours::operator [](std::string colourName) const
+uint8_t Bitmaps::Colours::operator [](std::string colourName) const
 {
   return this->_colours.at(colourName);
 }
 
-int& Bitmaps::Colours::operator [](std::string colourName)
+uint8_t& Bitmaps::Colours::operator [](std::string colourName)
 {
   return this->_colours[colourName];
 }
 
-int Bitmaps::Colours::operator [](int index) const
+uint8_t Bitmaps::Colours::operator [](int index) const
 {
   auto iterator = this->_colours.begin();
 
@@ -55,7 +55,7 @@ int Bitmaps::Colours::operator [](int index) const
   return iterator->second;
 }
 
-int& Bitmaps::Colours::operator [](int index)
+uint8_t& Bitmaps::Colours::operator [](int index)
 {
   auto iterator = this->_colours.begin();
 
@@ -65,22 +65,22 @@ int& Bitmaps::Colours::operator [](int index)
   return iterator->second;
 }
 
-std::map<std::string, int>::iterator Bitmaps::Colours::begin()
+std::map<std::string, uint8_t>::iterator Bitmaps::Colours::begin()
 {
   return this->_colours.begin();
 }
 
-std::map<std::string, int>::iterator Bitmaps::Colours::end()
+std::map<std::string, uint8_t>::iterator Bitmaps::Colours::end()
 {
   return this->_colours.end();
 }
 
-std::map<std::string, int>::const_iterator Bitmaps::Colours::begin() const
+std::map<std::string, uint8_t>::const_iterator Bitmaps::Colours::begin() const
 {
   return this->_colours.begin();
 }
 
-std::map<std::string, int>::const_iterator Bitmaps::Colours::end() const
+std::map<std::string, uint8_t>::const_iterator Bitmaps::Colours::end() const
 {
   return this->_colours.end();
 }

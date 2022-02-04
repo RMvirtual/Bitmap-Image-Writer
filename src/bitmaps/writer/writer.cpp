@@ -76,7 +76,7 @@ ByteArray Bitmaps::ImageWriter::convertToBytes(const Bitmaps::Colours& colours)
   ByteArray byteArray {};
 
   for (auto colourAndValue : colours)
-    byteArray.add((uint8_t) colourAndValue.second);
+    byteArray.add(colourAndValue.second);
 
   return byteArray;
 }
