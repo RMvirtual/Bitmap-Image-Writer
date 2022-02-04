@@ -24,5 +24,4 @@ TEST_F(BitmapWriterTest, ShouldConvertPixelArrayToBytes)
   auto bytes = this->writer.convertToBytes(pixelArray);
 
   this->compareToPixelArray(bytes);
-  EXPECT_TRUE(false);
 }

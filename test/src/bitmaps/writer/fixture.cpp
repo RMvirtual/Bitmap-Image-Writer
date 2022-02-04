@@ -53,6 +53,7 @@ void BitmapWriterTest::loadColours()
   colours["blue"] = 255;
 
   this->packet.pixelArray.fill(colours);
+  this->colours = colours;
 }
 
 void BitmapWriterTest::compareToFileHeader(ByteArray& bytes)
@@ -84,7 +85,22 @@ void BitmapWriterTest::compareToDibHeader(ByteArray& bytes)
 
 void BitmapWriterTest::compareToPixelArray(ByteArray& bytes)
 {
-  auto& pixelArray = this->packet.pixelArray;  
+  auto& pixelArray = this->packet.pixelArray;
+
+  // Hardcoded to 4 pixels x 3 bytes.
+  int noOfBytes = bytes.size();
+
+  for (int byteNo = 0; byteNo < noOfBytes; byteNo += 3) {
+    auto correctPixel = pixelArray.at(byteNo / 3);
+    int noOfColours = correctPixel.size();
+    auto colourNames = correctPixel.names();
+    
+    auto pixelBytes = bytes.slice(byteNo, byteNo + 3);
+
+    for (int colourNo = 0; colourNo < noOfColours; colourNo++) {
+      EXPECT_EQ(correctPixel[colourNames[colourNo]], pixelBytes[colourNo]);
+    }
+  }
 }
 
 void BitmapWriterTest::compare(std::string twoChars, ByteArray bytes)

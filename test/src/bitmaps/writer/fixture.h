@@ -15,7 +15,8 @@ public:
 protected:
   Bitmaps::Packet packet;
   Bitmaps::ImageWriter writer;
-
+  Bitmaps::Colours colours;
+  
   void compare(std::string twoChars, ByteArray bytes);
   void compare(uint16_t integer, ByteArray bytes);
   void compare(uint32_t integer, ByteArray bytes);
