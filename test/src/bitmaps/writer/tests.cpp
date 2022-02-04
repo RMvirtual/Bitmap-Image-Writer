@@ -1,21 +1,21 @@
 #include <gtest/gtest.h>
 #include "test/src/bitmaps/writer/fixture.h"
 
-#include <iostream>
+TEST_F(BitmapWriterTest, ShouldConvertPacketToBytes)
+{
+  auto bytes = this->writer.convertToBytes(this->packet);
+  this->compareToPacket(bytes);
+}
 
 TEST_F(BitmapWriterTest, ShouldConvertFileHeaderToBytes)
 {
-  auto header = this->packet.fileHeader;
-  auto bytes = this->writer.convertToBytes(header);
-
+  auto bytes = this->writer.convertToBytes(this->packet.fileHeader);
   this->compareToFileHeader(bytes);
 }
 
 TEST_F(BitmapWriterTest, ShouldConvertDibHeaderToBytes)
 {
-  auto header = this->packet.dibHeader;
-  auto bytes = this->writer.convertToBytes(header);
-  
+  auto bytes = this->writer.convertToBytes(this->packet.dibHeader); 
   this->compareToDibHeader(bytes);
 }
 
@@ -28,8 +28,5 @@ TEST_F(BitmapWriterTest, ShouldConvertPixelArrayToBytes)
 TEST_F(BitmapWriterTest, ShouldConvertColoursToBytes)
 {
   auto bytes = this->writer.convertToBytes(this->colours);
-
-  std::cout << "Bytes received: " << bytes.size() << "\n";
-
   this->compareToColours(bytes);
 }

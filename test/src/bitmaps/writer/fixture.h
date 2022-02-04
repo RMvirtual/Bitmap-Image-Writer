@@ -28,6 +28,7 @@ protected:
   void compare(std::string twoChars, ByteArray bytes);
   void compare(uint16_t integer, ByteArray bytes);
   void compare(uint32_t integer, ByteArray bytes);
+  void compareToPacket(ByteArray& bytes);
   void compareToFileHeader(ByteArray& bytes);
   void compareToDibHeader(ByteArray& bytes);
   void compareToPixelArray(ByteArray& bytes);

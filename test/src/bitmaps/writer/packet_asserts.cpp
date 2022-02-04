@@ -1,6 +1,18 @@
 #include <gtest/gtest.h>
 #include "test/src/bitmaps/writer/fixture.h"
 
+void BitmapWriterTest::compareToPacket(ByteArray& bytes)
+{
+  auto fileHeaderBytes = bytes.slice(0, 14);
+  this->compareToFileHeader(fileHeaderBytes);
+
+  auto dibHeaderBytes = bytes.slice(14, 54);
+  this->compareToDibHeader(dibHeaderBytes);
+
+  auto pixelArrayBytes = bytes.slice(54, bytes.size());
+  this->compareToPixelArray(pixelArrayBytes);
+}
+
 void BitmapWriterTest::compareToFileHeader(ByteArray& bytes)
 {
   auto& header = this->packet.fileHeader;
@@ -43,14 +55,10 @@ void BitmapWriterTest::compareToPixelArray(ByteArray& bytes)
     auto pixelBytes = bytes.slice(byteNo, byteNo + bytesPerPixel);
 
     for (int colourNo = 0; colourNo < noOfColours; colourNo++) {
-      auto correctColour = correctPixel[colourNames[colourNo]];
+      auto correctColour = correctPixel[colourNo];
       auto testColour = pixelBytes[colourNo];
 
-      std::cout << "Correct Colour: " << (unsigned int) correctColour << "\n";
-      std::cout << "Test Colour: " << (unsigned int) testColour << "\n";
-
-      EXPECT_EQ((unsigned int) correctColour, (unsigned int) testColour);
-      std::cout << "\n";
+      EXPECT_EQ(correctColour, testColour);
     }
   }
 }
