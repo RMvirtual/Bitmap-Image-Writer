@@ -5,7 +5,17 @@
 
 void BitmapReaderTest::compare(const Bitmaps::FileHeader& header)
 {
-  EXPECT_TRUE(false);  
+  EXPECT_EQ(this->packet.fileHeader.signatureBytes(), header.signatureBytes());
+  
+  EXPECT_EQ(
+    this->packet.fileHeader.fileSizeInBytes(), header.fileSizeInBytes());
+  
+  EXPECT_EQ(
+    this->packet.fileHeader.pixelArrayOffsetInBytes(),
+    header.pixelArrayOffsetInBytes()
+  );
+  
+  EXPECT_EQ(this->packet.fileHeader.reservedBytes(), header.reservedBytes());
 }
 
 void BitmapReaderTest::compare(const Bitmaps::DibHeader& header)
