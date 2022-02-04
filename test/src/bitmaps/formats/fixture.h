@@ -19,15 +19,16 @@ protected:
   Bitmaps::Format format;
   Bitmaps::Colours colours;
 
+  void setupRGBAFormat();
+  void setupRGBFormat();
+  void setupRGBFormat(int width, int height);
+  void setupRGBColours();
+
   void compare(Bitmaps::Format& format);
   void compareNames(Bitmaps::Format& format);
   void compareBitsPerPixel(Bitmaps::Format& format);
   void compareColours(Bitmaps::Format& format);
   
-  void loadRGBAFormat();
-  void loadRGBFormat();
-  void loadRGBFormat(int width, int height);
-
   Bitmaps::Headers rgbHeaders();
   Bitmaps::FileHeader rgbFileHeader();
   Bitmaps::DibHeader rgbDibHeader();

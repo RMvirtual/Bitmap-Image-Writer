@@ -31,7 +31,7 @@ protected:
   void compareToFileHeader(ByteArray& bytes);
   void compareToDibHeader(ByteArray& bytes);
   void compareToPixelArray(ByteArray& bytes);
-
+  void compareToColours(ByteArray& bytes);
 };
 
 #endif

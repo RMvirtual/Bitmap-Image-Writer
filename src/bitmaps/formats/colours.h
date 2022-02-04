@@ -18,6 +18,8 @@ public:
   int size();
   int& operator [](std::string value);
   int operator [](std::string value) const;
+  int& operator [](int index);
+  int operator [](int index) const;
   std::map<std::string, int>::iterator begin();
   std::map<std::string, int>::iterator end();
   std::map<std::string, int>::const_iterator begin() const;

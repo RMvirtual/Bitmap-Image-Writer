@@ -45,6 +45,27 @@ int& Bitmaps::Colours::operator [](std::string colourName)
   return this->_colours[colourName];
 }
 
+int Bitmaps::Colours::operator [](int index) const
+{
+  auto iterator = this->_colours.begin();
+
+  for (int i = 0; i < index; i++)
+    iterator++;
+  
+  return iterator->second;
+}
+
+int& Bitmaps::Colours::operator [](int index)
+{
+  auto iterator = this->_colours.begin();
+
+  for (int i = 0; i < index; i++)
+    iterator++;
+  
+  return iterator->second;
+}
+
+
 std::map<std::string, int>::iterator Bitmaps::Colours::begin()
 {
   return this->_colours.begin();

@@ -25,3 +25,11 @@ TEST_F(BitmapWriterTest, ShouldConvertPixelArrayToBytes)
 
   this->compareToPixelArray(bytes);
 }
+
+TEST_F(BitmapWriterTest, ShouldConvertColoursToBytes)
+{
+  auto colours = this->colours;
+  auto bytes = this->writer.convertToBytes(colours);
+
+  this->compareToColours(bytes);
+}

@@ -49,9 +49,19 @@ void BitmapWriterTest::compareToPixelArray(ByteArray& bytes)
       std::cout << "Correct Colour: " << (unsigned int) correctColour << "\n";
       std::cout << "Test Colour: " << (unsigned int) testColour << "\n";
 
-      EXPECT_EQ(correctColour, testColour) << "Colours not equal";
-
+      EXPECT_EQ((unsigned int) correctColour, (unsigned int) testColour);
       std::cout << "\n";
     }
   }
+}
+
+void BitmapWriterTest::compareToColours(ByteArray& bytes)
+{
+  int noOfBytes = bytes.size();
+  int noOfColours = colours.size();
+
+  ASSERT_EQ(noOfColours, noOfBytes);
+
+  for (int i = 0; i < noOfColours; i++)
+    EXPECT_EQ(this->colours[i], bytes[i]);
 }

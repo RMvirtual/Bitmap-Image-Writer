@@ -7,37 +7,37 @@
 
 TEST_F(BitmapFormatsTest, ShouldGetRGBAFormat)
 {
-  this->loadRGBAFormat();
+  this->setupRGBAFormat();
   this->compare(Bitmaps::format("RGBA"));
 }
 
 TEST_F(BitmapFormatsTest, ShouldGetRGBFormat)
 {
-  this->loadRGBFormat();
+  this->setupRGBFormat();
   this->compare(Bitmaps::format("RGB"));
 }
 
 TEST_F(BitmapFormatsTest, ShouldGet32BitPerPixelFormat)
 {
-  this->loadRGBAFormat();
+  this->setupRGBAFormat();
   this->compare(Bitmaps::format(32));
 }
 
 TEST_F(BitmapFormatsTest, ShouldGet24BitPerPixelFormat)
 {
-  this->loadRGBFormat();
+  this->setupRGBFormat();
   this->compare(Bitmaps::format(24));
 }
 
 TEST_F(BitmapFormatsTest, ShouldGetBitmapFormatFromHeaders)
 {
-  this->loadRGBFormat();
+  this->setupRGBFormat();
   this->compare(Bitmaps::format(this->rgbHeaders()));
 }
 
 TEST_F(BitmapFormatsTest, ShouldCalculatePixelArrayRowPadding)
 {
-  this->loadRGBFormat(2, 1);
+  this->setupRGBFormat(2, 1);
   int actualPadding = this->format.rowPaddingInBytes();
   int correctPadding = 2;
 
@@ -46,7 +46,7 @@ TEST_F(BitmapFormatsTest, ShouldCalculatePixelArrayRowPadding)
 
 TEST_F(BitmapFormatsTest, ShouldCalculatePixelArrayRowSizeInBytes)
 {
-  this->loadRGBFormat(6, 1);
+  this->setupRGBFormat(6, 1);
   int actualSize = this->format.rowSizeInBytes();
   int correctSize = 20;
   
@@ -55,10 +55,19 @@ TEST_F(BitmapFormatsTest, ShouldCalculatePixelArrayRowSizeInBytes)
 
 TEST_F(BitmapFormatsTest, ShouldIterateThroughColourNamesInOrder)
 {
-  this->loadRGBAFormat();
+  this->setupRGBAFormat();
   std::vector<std::string> correctNames {"alpha", "blue", "green", "red"};
   auto names = this->format.colourNames();
 
   for (int i = 0; i < 4; i++)
     EXPECT_EQ(correctNames[i], names[i]);
+}
+
+TEST_F(BitmapFormatsTest, ShouldGetColourValuesByNumericIndex)
+{
+  this->setupRGBColours();
+  std::vector<int> correctValues {1, 2, 3};
+  
+  for (int i = 0; i < correctValues.size(); i++)
+    EXPECT_EQ(correctValues[i], this->colours[i]);
 }
