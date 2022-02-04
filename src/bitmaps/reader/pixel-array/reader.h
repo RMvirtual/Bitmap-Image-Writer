@@ -10,7 +10,7 @@ class PixelArrayReader
 {
 public:
   PixelArrayReader(const Bitmaps::Format& format);
-  Bitmaps::PixelArray toPixelArray(const ByteArray& bytes);
+  Bitmaps::PixelArray convertBytes(const ByteArray& bytes);
 
 private:
   Bitmaps::Format format;

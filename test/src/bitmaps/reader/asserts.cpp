@@ -34,5 +34,19 @@ void BitmapReaderTest::compare(const Bitmaps::DibHeader& header)
 
 void BitmapReaderTest::compare(Bitmaps::PixelArray& array)
 {
-  EXPECT_TRUE(false);
+  auto& correctArray = this->packet.pixelArray;
+  int correctNoOfPixels = correctArray.sizeInPixels();
+  int noOfPixels = array.sizeInPixels();
+
+  ASSERT_EQ(correctNoOfPixels, noOfPixels);
+
+  for (int pixelNo = 0; pixelNo < noOfPixels; pixelNo++) {
+    auto correctColours = correctArray.at(pixelNo);
+    auto colours = correctArray.at(pixelNo);
+
+    int noOfColours = correctColours.size();
+
+    for (int colourNo = 0; colourNo < noOfColours; colourNo++)
+      EXPECT_EQ(correctColours[colourNo], colours[colourNo]);
+  }  
 }

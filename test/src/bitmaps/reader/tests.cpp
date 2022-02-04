@@ -26,5 +26,10 @@ TEST_F(BitmapReaderTest, ShouldReadDibHeaderFromFile)
 
 TEST_F(BitmapReaderTest, ShouldReadPixelArrayFromFile)
 {
-  EXPECT_TRUE(false);
+  Bitmaps::PixelArrayReader reader {this->packet.pixelArray.format()};
+
+  auto bytes = this->fileContents.slice(54, this->fileContents.size());
+  auto pixelArray = reader.convertBytes(bytes);
+
+  this->compare(pixelArray);
 }

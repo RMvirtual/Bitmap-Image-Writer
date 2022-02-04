@@ -8,7 +8,7 @@ Bitmaps::PixelArrayReader::PixelArrayReader(const Bitmaps::Format& format)
   this->format = format;
 }
 
-Bitmaps::PixelArray Bitmaps::PixelArrayReader::toPixelArray(
+Bitmaps::PixelArray Bitmaps::PixelArrayReader::convertBytes(
   const ByteArray& bytes)
 {
   Bitmaps::PixelArray pixelArray {this->format};
