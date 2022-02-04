@@ -49,7 +49,7 @@ void BitmapWriterTest::compareToPixelArray(ByteArray& bytes)
       std::cout << "Correct Colour: " << (unsigned int) correctColour << "\n";
       std::cout << "Test Colour: " << (unsigned int) testColour << "\n";
 
-      EXPECT_EQ(correctColour, testColour);
+      EXPECT_EQ(correctColour, testColour) << "Colours not equal";
 
       std::cout << "\n";
     }
