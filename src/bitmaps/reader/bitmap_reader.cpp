@@ -59,7 +59,9 @@ void Bitmaps::ImageReader::processIntoPixelArray(const ByteArray& bytes)
 
 Bitmaps::PixelArrayReader Bitmaps::ImageReader::pixelArrayReader()
 {
-  return {this->pixelArrayFormat()};
+  auto format = this->pixelArrayFormat();
+  
+  return {format};
 }
 
 Bitmaps::Headers Bitmaps::ImageReader::headers()
@@ -74,6 +76,10 @@ Bitmaps::Headers Bitmaps::ImageReader::headers()
 Bitmaps::Format Bitmaps::ImageReader::pixelArrayFormat()
 {  
   int bitsPerPixel = this->packet.dibHeader.bitsPerPixel();
-  
-  return Bitmaps::format(bitsPerPixel);
+  auto format = Bitmaps::format(bitsPerPixel);
+
+  format.setHeightInPixels(this->packet.dibHeader.heightInPixels());
+  format.setWidthInPixels(this->packet.dibHeader.widthInPixels());
+
+  return format;
 }
