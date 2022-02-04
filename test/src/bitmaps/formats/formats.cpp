@@ -1,4 +1,6 @@
 #include <gtest/gtest.h>
+#include <string>
+#include <vector>
 
 #include "src/bitmaps/formats/formats.h"
 #include "test/src/bitmaps/formats/fixture.h"
@@ -49,4 +51,14 @@ TEST_F(BitmapFormatsTest, ShouldCalculatePixelArrayRowSizeInBytes)
   int correctSize = 20;
   
   EXPECT_EQ(correctSize, actualSize);
+}
+
+TEST_F(BitmapFormatsTest, ShouldIterateThroughColourNamesInOrder)
+{
+  this->loadRGBAFormat();
+  std::vector<std::string> correctNames {"alpha", "blue", "green", "red"};
+  auto names = this->format.colourNames();
+
+  for (int i = 0; i < 4; i++)
+    EXPECT_EQ(correctNames[i], names[i]);
 }

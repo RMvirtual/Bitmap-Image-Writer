@@ -3,7 +3,7 @@
 
 #include <initializer_list>
 #include <string>
-#include <unordered_map>
+#include <map>
 #include <vector>
 
 namespace Bitmaps {
@@ -18,13 +18,13 @@ public:
   int size();
   int& operator [](std::string value);
   int operator [](std::string value) const;
-  std::unordered_map<std::string, int>::iterator begin();
-  std::unordered_map<std::string, int>::iterator end();
-  std::unordered_map<std::string, int>::const_iterator begin() const;
-  std::unordered_map<std::string, int>::const_iterator end() const;
+  std::map<std::string, int>::iterator begin();
+  std::map<std::string, int>::iterator end();
+  std::map<std::string, int>::const_iterator begin() const;
+  std::map<std::string, int>::const_iterator end() const;
 
 private:
-  std::unordered_map<std::string, int> _colours;
+  std::map<std::string, int> _colours;
 };}
 
 #endif

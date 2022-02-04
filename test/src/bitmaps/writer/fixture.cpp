@@ -39,7 +39,7 @@ void BitmapWriterTest::loadPixelArray()
   format.setHeightInPixels(2);
   format.setName("RGB");
   format.setBitsPerPixel(24);
-  format.setColourNames({"red", "blue", "green"});
+  format.setColourNames({"blue", "green", "red"});
 
   this->packet.pixelArray = {format};
   this->loadColours();
@@ -48,9 +48,9 @@ void BitmapWriterTest::loadPixelArray()
 void BitmapWriterTest::loadColours()
 {
   Bitmaps::Colours colours;
-  colours["red"] = 100;
-  colours["green"] = 255;
   colours["blue"] = 255;
+  colours["green"] = 255;
+  colours["red"] = 100;
 
   this->packet.pixelArray.fill(colours);
   this->colours = colours;
@@ -87,15 +87,15 @@ void BitmapWriterTest::compareToPixelArray(ByteArray& bytes)
 {
   auto& pixelArray = this->packet.pixelArray;
 
-  // Hardcoded to 4 pixels x 3 bytes.
+  int bytesPerPixel = pixelArray.format().pixelSizeInBytes();
   int noOfBytes = bytes.size();
-
-  for (int byteNo = 0; byteNo < noOfBytes; byteNo += 3) {
-    auto correctPixel = pixelArray.at(byteNo / 3);
+  
+  for (int byteNo = 0; byteNo < noOfBytes; byteNo += bytesPerPixel) {
+    auto correctPixel = pixelArray.at(byteNo / bytesPerPixel);
     int noOfColours = correctPixel.size();
     auto colourNames = correctPixel.names();
     
-    auto pixelBytes = bytes.slice(byteNo, byteNo + 3);
+    auto pixelBytes = bytes.slice(byteNo, byteNo + bytesPerPixel);
 
     for (int colourNo = 0; colourNo < noOfColours; colourNo++) {
       EXPECT_EQ(correctPixel[colourNames[colourNo]], pixelBytes[colourNo]);
@@ -103,10 +103,15 @@ void BitmapWriterTest::compareToPixelArray(ByteArray& bytes)
   }
 }
 
-void BitmapWriterTest::compare(std::string twoChars, ByteArray bytes)
+void BitmapWriterTest::compare(std::string chars, ByteArray bytes)
 {
-  EXPECT_EQ(twoChars[0], bytes[0]);
-  EXPECT_EQ(twoChars[1], bytes[1]);
+  int noOfCharacters = chars.size();
+  int noOfBytes = bytes.size();
+
+  ASSERT_EQ(noOfCharacters, noOfBytes);
+
+  for (int i = 0; i < noOfCharacters; i++)
+    EXPECT_EQ(chars[i], bytes[i]);
 }
 
 void BitmapWriterTest::compare(uint16_t integer, ByteArray bytes)

@@ -7,7 +7,7 @@
 #include "src/bitmaps/packet/headers/headers.h"
 #include "src/bitmaps/formats/format.h"
 #include "src/bitmaps/packet/pixel-array/array.h"
-#include "src/bitmaps/packet/pixel-array/colours.h"
+#include "src/bitmaps/formats/colours.h"
 
 class BitmapPacketTest : public testing::Test
 {

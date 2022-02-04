@@ -3,7 +3,7 @@
 #include "src/bitmaps/packet/headers/file-header/header.h"
 #include "src/bitmaps/packet/headers/dib-header/header.h"
 #include "src/bitmaps/packet/pixel-array/array.h"
-#include "src/bitmaps/packet/pixel-array/colours.h"
+#include "src/bitmaps/formats/colours.h"
 #include "src/bitmaps/packet/packet.h"
 #include "src/bitmaps/formats/format.h"
 

@@ -4,6 +4,8 @@
 #include <string>
 #include <vector>
 
+#include "src/bitmaps/formats/colours.h"
+
 namespace Bitmaps {
 class Format
 {
@@ -14,6 +16,7 @@ public:
   int bitsPerPixel() const;
   int pixelSizeInBytes() const;
   std::vector<std::string> colourNames() const;
+  Colours colours() const;
   int widthInPixels() const;
   int heightInPixels() const;
   int rowPaddingInBytes() const;
@@ -31,7 +34,7 @@ private:
   std::string _name;
   int _bitsPerPixel;
   int _pixelSizeInBytes;
-  std::vector<std::string> _colourNames;
+  Colours _colours;
   int _widthInPixels;
   int _heightInPixels;
   int _rowPaddingInBytes;

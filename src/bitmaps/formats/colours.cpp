@@ -1,7 +1,7 @@
 #include <initializer_list>
 #include <string>
 
-#include "src/bitmaps/packet/pixel-array/colours.h"
+#include "src/bitmaps/formats/colours.h"
 
 Bitmaps::Colours::Colours()
 {
@@ -45,24 +45,22 @@ int& Bitmaps::Colours::operator [](std::string colourName)
   return this->_colours[colourName];
 }
 
-std::unordered_map<std::string, int>::iterator Bitmaps::Colours::begin()
+std::map<std::string, int>::iterator Bitmaps::Colours::begin()
 {
   return this->_colours.begin();
 }
 
-std::unordered_map<std::string, int>::iterator Bitmaps::Colours::end()
+std::map<std::string, int>::iterator Bitmaps::Colours::end()
 {
   return this->_colours.end();
 }
 
-std::unordered_map<std::string, int>::const_iterator
-Bitmaps::Colours::begin() const
+std::map<std::string, int>::const_iterator Bitmaps::Colours::begin() const
 {
   return this->_colours.begin();
 }
 
-std::unordered_map<std::string, int>::const_iterator
-Bitmaps::Colours::end() const
+std::map<std::string, int>::const_iterator Bitmaps::Colours::end() const
 {
   return this->_colours.end();
 }

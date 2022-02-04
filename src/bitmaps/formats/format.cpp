@@ -21,9 +21,19 @@ int Bitmaps::Format::pixelSizeInBytes() const
   return this->_pixelSizeInBytes;
 }
 
+Bitmaps::Colours Bitmaps::Format::colours() const
+{
+  return this->_colours;
+}
+
 std::vector<std::string> Bitmaps::Format::colourNames() const
 {
-  return this->_colourNames;
+  std::vector<std::string> colourNames;
+
+  for (auto colour : this->_colours)
+    colourNames.push_back(colour.first);
+
+  return colourNames;
 }
 
 int Bitmaps::Format::widthInPixels() const
@@ -64,7 +74,7 @@ void Bitmaps::Format::setBitsPerPixel(int bitsPerPixel)
 
 void Bitmaps::Format::setColourNames(std::vector<std::string> colourNames)
 {
-  this->_colourNames = colourNames;
+  this->_colours = {colourNames};
 }
 
 void Bitmaps::Format::setWidthInPixels(int width)
