@@ -58,7 +58,7 @@ void BitmapWriterTest::compareToPixelArray(ByteArray& bytes)
 void BitmapWriterTest::compareToColours(ByteArray& bytes)
 {
   int noOfBytes = bytes.size();
-  int noOfColours = colours.size();
+  int noOfColours = this->colours.size();
 
   ASSERT_EQ(noOfColours, noOfBytes);
 

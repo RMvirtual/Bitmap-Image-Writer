@@ -18,9 +18,6 @@ public:
   ByteArray convertToBytes(const Bitmaps::DibHeader& header);
   ByteArray convertToBytes(const Bitmaps::PixelArray& pixelArray);
   ByteArray convertToBytes(const Bitmaps::Colours& pixelColours);
-
-private:
-
 };}
 
 #endif

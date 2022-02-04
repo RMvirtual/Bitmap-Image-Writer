@@ -59,7 +59,7 @@ TEST_F(BitmapFormatsTest, ShouldIterateThroughColourNamesInOrder)
   std::vector<std::string> correctNames {"alpha", "blue", "green", "red"};
   auto names = this->format.colourNames();
 
-  for (int i = 0; i < 4; i++)
+  for (int i = 0; i < correctNames.size(); i++)
     EXPECT_EQ(correctNames[i], names[i]);
 }
 
