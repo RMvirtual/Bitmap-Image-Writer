@@ -7,7 +7,7 @@
 #include "src/bitmaps/packet/headers/headers.h"
 #include "src/containers/byte-array/byte_array.h"
 #include "src/bitmaps/reader/pixel-array/reader.h"
-#include "src/bitmaps/formats/format.h"
+#include "src/bitmaps/formats/bitmap/format.h"
 
 namespace Bitmaps {
 class ImageReader

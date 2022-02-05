@@ -1,10 +1,11 @@
-#ifndef PIXEL_FORMAT_H
-#define PIXEL_FORMAT_H
+#ifndef BITMAP_FORMAT_H
+#define BITMAP_FORMAT_H
 
 #include <string>
 #include <vector>
 
-#include "src/bitmaps/formats/colours.h"
+#include "src/bitmaps/formats/colours/colours.h"
+#include "src/bitmaps/formats/pixel/format.h"
 
 namespace Bitmaps {
 class Format
@@ -32,9 +33,7 @@ public:
 
 private:
   std::string _name;
-  int _bitsPerPixel;
-  int _pixelSizeInBytes;
-  Colours _colours;
+  PixelFormat pixelFormat;
   int _widthInPixels;
   int _heightInPixels;
   int _rowPaddingInBytes;
@@ -42,7 +41,6 @@ private:
 
   void processRowPaddingInBytes();
   void processRowSizeInBytes();
-  void processPixelSizeInBytes();
 };}
 
 #endif

@@ -1,5 +1,5 @@
 #include <string>
-#include "src/bitmaps/formats/format.h"
+#include "src/bitmaps/formats/bitmap/format.h"
 
 Bitmaps::Format::Format()
 {
@@ -11,29 +11,14 @@ std::string Bitmaps::Format::name() const
   return this->_name;
 }
 
-int Bitmaps::Format::bitsPerPixel() const
-{
-  return this->_bitsPerPixel;
-}
-
-int Bitmaps::Format::pixelSizeInBytes() const
-{
-  return this->_pixelSizeInBytes;
-}
-
 Bitmaps::Colours Bitmaps::Format::colours() const
 {
-  return this->_colours;
+  return this->pixelFormat.colours();
 }
 
 std::vector<std::string> Bitmaps::Format::colourNames() const
 {
-  std::vector<std::string> colourNames;
-
-  for (auto colour : this->_colours)
-    colourNames.push_back(colour.first);
-
-  return colourNames;
+  return this->pixelFormat.colourNames();
 }
 
 int Bitmaps::Format::widthInPixels() const
@@ -44,6 +29,16 @@ int Bitmaps::Format::widthInPixels() const
 int Bitmaps::Format::heightInPixels() const
 {
   return this->_heightInPixels;
+}
+
+int Bitmaps::Format::bitsPerPixel() const
+{
+  return this->pixelFormat.bitsPerPixel();
+}
+
+int Bitmaps::Format::pixelSizeInBytes() const
+{
+  return this->pixelFormat.pixelSizeInBytes();
 }
 
 int Bitmaps::Format::arraySizeInBytes() const
@@ -61,6 +56,11 @@ int Bitmaps::Format::rowSizeInBytes() const
   return this->_rowSizeInBytes;
 }
 
+int Bitmaps::Format::unpaddedRowSizeInBytes() const
+{  
+  return this->_widthInPixels * this->pixelSizeInBytes();
+}
+
 void Bitmaps::Format::setName(std::string name)
 {
   this->_name = name;
@@ -68,13 +68,12 @@ void Bitmaps::Format::setName(std::string name)
 
 void Bitmaps::Format::setBitsPerPixel(int bitsPerPixel)
 {
-  this->_bitsPerPixel = bitsPerPixel;
-  this->processPixelSizeInBytes();
+  this->pixelFormat.setBitsPerPixel(bitsPerPixel);
 }
 
 void Bitmaps::Format::setColourNames(std::vector<std::string> colourNames)
 {
-  this->_colours = {colourNames};
+  this->pixelFormat.setColourNames(colourNames);
 }
 
 void Bitmaps::Format::setWidthInPixels(int width)
@@ -97,18 +96,8 @@ void Bitmaps::Format::processRowPaddingInBytes()
     differenceInAlignment ? 4 - differenceInAlignment : 0);
 }
 
-int Bitmaps::Format::unpaddedRowSizeInBytes() const
-{  
-  return this->_widthInPixels * this->_pixelSizeInBytes;
-}
-
 void Bitmaps::Format::processRowSizeInBytes()
 {  
   this->_rowSizeInBytes = (
-    this->_widthInPixels * this->_pixelSizeInBytes + this->_rowPaddingInBytes);
-}
-
-void Bitmaps::Format::processPixelSizeInBytes()
-{
-  this->_pixelSizeInBytes = this->_bitsPerPixel / 8;
+    this->unpaddedRowSizeInBytes() + this->_rowPaddingInBytes);
 }

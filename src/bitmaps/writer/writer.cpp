@@ -1,5 +1,5 @@
-#include "src/bitmaps/formats/colours.h"
-#include "src/bitmaps/formats/format.h"
+#include "src/bitmaps/formats/colours/colours.h"
+#include "src/bitmaps/formats/bitmap/format.h"
 #include "src/bitmaps/packet/headers/dib-header/header.h"
 #include "src/bitmaps/packet/headers/file-header/header.h"
 #include "src/bitmaps/packet/packet.h"

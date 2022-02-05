@@ -1,0 +1,8 @@
+cc_library(
+    name = "bitmap_colours",
+    hdrs = glob(["*.h",]),
+    srcs = glob(["*.cpp"]),
+    deps = [],
+    visibility = ["//visibility:public"],
+    copts = ["/std:c++17"]
+)

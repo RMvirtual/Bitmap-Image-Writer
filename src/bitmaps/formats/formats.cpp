@@ -1,7 +1,7 @@
 #include <string>
 
 #include "src/files/pixel_formats.h"
-#include "src/bitmaps/formats/format.h"
+#include "src/bitmaps/formats/bitmap/format.h"
 #include "src/bitmaps/formats/formats.h"
 
 Bitmaps::Format Bitmaps::format(std::string formatName)

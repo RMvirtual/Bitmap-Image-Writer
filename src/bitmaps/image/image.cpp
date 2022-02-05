@@ -1,5 +1,6 @@
 #include "src/bitmaps/image/image.h"
-#include "src/bitmaps/formats/format.h"
+#include "src/bitmaps/formats/bitmap/format.h"
+#include "src/bitmaps/formats/colours/colours.h"
 #include "src/bitmaps/packet/headers/headers.h"
 #include "src/utilities/filesystem.h"
 #include "src/bitmaps/writer/writer.h"

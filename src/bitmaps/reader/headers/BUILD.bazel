@@ -4,7 +4,7 @@ cc_library(
     srcs = glob(["*.cpp"]),
     deps = [
         "//src/containers:containers",
-        "//src/bitmaps/packet:bitmap_packet",        
+        "//src/bitmaps/packet:bitmap_packet",
         "//src/utilities:utilities"
     ],
     visibility = ["//visibility:public"],

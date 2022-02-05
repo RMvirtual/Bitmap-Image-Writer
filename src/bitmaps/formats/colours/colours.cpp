@@ -1,7 +1,4 @@
-#include <initializer_list>
-#include <string>
-
-#include "src/bitmaps/formats/colours.h"
+#include "src/bitmaps/formats/colours/colours.h"
 
 Bitmaps::Colours::Colours()
 {

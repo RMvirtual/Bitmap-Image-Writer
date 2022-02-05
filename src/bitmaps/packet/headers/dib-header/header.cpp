@@ -1,7 +1,6 @@
 #include <cstdint>
 
 #include "src/bitmaps/packet/headers/dib-header/header.h"
-#include "src/bitmaps/packet/headers/dib-header/values.h"
 
 Bitmaps::DibHeader::DibHeader()
 {

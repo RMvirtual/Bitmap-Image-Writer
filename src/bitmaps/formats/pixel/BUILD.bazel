@@ -1,9 +1,10 @@
 cc_library(
-    name = "bitmap_formats",
+    name = "bitmap_pixel_format",
     hdrs = glob(["*.h",]),
     srcs = glob(["*.cpp"]),
     deps = [
-        "//src/bitmaps/formats/bitmap:bitmap_file_format",
+        "//src/bitmaps/formats/colours:bitmap_colours",
+        "//src/containers:containers",
         "//src/files:files",
         "//src/utilities:utilities",
     ],

@@ -1,7 +1,6 @@
 #ifndef BITMAP_WRITER_H
 #define BITMAP_WRITER_H
 
-#include "src/bitmaps/formats/colours.h"
 #include "src/bitmaps/packet/headers/dib-header/header.h"
 #include "src/bitmaps/packet/headers/file-header/header.h"
 #include "src/bitmaps/packet/packet.h"
