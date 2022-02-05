@@ -58,7 +58,7 @@ TEST_F(BitmapFormatsTest, ShouldCalculatePixelArrayRowPaddingUnderFour)
 
 TEST_F(BitmapFormatsTest, ShouldCalculatePixelArrayRowSizeInBytes)
 {
-  this->setupRGBFormat(6, 1);
+  this->setupRGBFormat(6, 2);
   int actualSize = this->format.rowSizeInBytes();
   int correctSize = 20;
   
