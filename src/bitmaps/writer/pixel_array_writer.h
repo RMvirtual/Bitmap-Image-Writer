@@ -12,10 +12,11 @@ public:
   ByteArray write(const Bitmaps::PixelArray& pixelArray);
 
 private:
-  ByteArray byteAccumulator;
+  ByteArray bytes;
   Format format;
   PixelArray pixelArray;
 
+  void initialise(const Bitmaps::PixelArray& pixelArray);
   void writeRowOfPixels(int rowNo);
   void writePixels(int startIndex, int endIndex);
   void write(const Bitmaps::Colours& pixelColours);
