@@ -22,7 +22,7 @@ public:
   int rowPaddingInBytes() const;
   int rowSizeInBytes() const;
   int arraySizeInBytes() const;
-  int unpaddedRowSize() const;
+  int unpaddedRowSizeInBytes() const;
   
   void setName(std::string name);
   void setBitsPerPixel(int bitsPerPixel);

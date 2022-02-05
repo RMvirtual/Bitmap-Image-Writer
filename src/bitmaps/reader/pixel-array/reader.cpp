@@ -13,6 +13,8 @@ Bitmaps::PixelArray Bitmaps::PixelArrayReader::convertBytes(
 {
   Bitmaps::PixelArray pixelArray {this->format};
 
+  // Needs row stride accounting for.
+
   int noOfBytes = bytes.size();
   int bytesPerPixel = this->format.pixelSizeInBytes();
 

@@ -91,13 +91,13 @@ void Bitmaps::Format::setHeightInPixels(int height)
 
 void Bitmaps::Format::processRowPaddingInBytes()
 {
-  int differenceInAlignment = this->unpaddedRowSize() % 4;
+  int differenceInAlignment = this->unpaddedRowSizeInBytes() % 4;
 
   if (differenceInAlignment)
     this->_rowPaddingInBytes = 4 - differenceInAlignment;
 }
 
-int Bitmaps::Format::unpaddedRowSize() const
+int Bitmaps::Format::unpaddedRowSizeInBytes() const
 {  
   return this->_widthInPixels * this->_pixelSizeInBytes;
 }

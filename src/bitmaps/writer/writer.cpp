@@ -5,6 +5,8 @@
 #include "src/bitmaps/packet/packet.h"
 #include "src/bitmaps/packet/pixel-array/array.h"
 #include "src/bitmaps/writer/writer.h"
+#include "src/bitmaps/writer/pixel_array_writer.h"
+
 #include "src/containers/byte-array/byte_array.h"
 #include "src/utilities/filesystem.h"
 
@@ -56,25 +58,7 @@ ByteArray Bitmaps::ByteWriter::write(const Bitmaps::DibHeader& header)
 
 ByteArray Bitmaps::ByteWriter::write(const Bitmaps::PixelArray& pixelArray)
 {
-  ByteArray byteArray {};
-  int numberOfPixels = pixelArray.sizeInPixels();
-  
-  for (int pixelNo = 0; pixelNo < numberOfPixels; pixelNo++) {
-    auto colours = pixelArray.at(pixelNo);
-    auto colourBytes = this->write(colours);
+  Bitmaps::PixelArrayByteWriter writer {};
 
-    byteArray.add(colourBytes);
-  }
-
-  return byteArray;
-}
-
-ByteArray Bitmaps::ByteWriter::write(const Bitmaps::Colours& colours)
-{
-  ByteArray byteArray {};
-
-  for (auto colourAndValue : colours)
-    byteArray.add(colourAndValue.second);
-
-  return byteArray;
+  return writer.write(pixelArray);
 }

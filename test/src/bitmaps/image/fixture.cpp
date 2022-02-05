@@ -9,6 +9,11 @@ BitmapImageTest::BitmapImageTest()
   this->setupRGBFormat();
   this->image = {this->format};
   this->image.fill(this->getBlueColours());
+
+  this->filePath = {
+    "C:\\Users\\rmvir\\Desktop\\scc300-Win3D\\test\\resources\\"
+    "correct-resources\\blueImage10x10.bmp"
+  };
 }
 
 BitmapImageTest::~BitmapImageTest()
@@ -19,11 +24,8 @@ BitmapImageTest::~BitmapImageTest()
 void BitmapImageTest::setupRGBFormat()
 {
   this->format = Bitmaps::format("RGB");
-  this->format.setWidthInPixels(2);
-  this->format.setHeightInPixels(2);
-
-  auto colours = this->format.colours();
-  colours["blue"] = 255; 
+  this->format.setWidthInPixels(10);
+  this->format.setHeightInPixels(12);
 }
 
 Bitmaps::Colours BitmapImageTest::getBlueColours()

@@ -17,7 +17,9 @@ public:
   ByteArray write(const Bitmaps::FileHeader& header);
   ByteArray write(const Bitmaps::DibHeader& header);
   ByteArray write(const Bitmaps::PixelArray& pixelArray);
-  ByteArray write(const Bitmaps::Colours& pixelColours);
+
+private:
+  ByteArray byteAccumulator;
 };}
 
 #endif

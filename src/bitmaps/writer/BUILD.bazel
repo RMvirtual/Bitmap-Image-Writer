@@ -1,7 +1,7 @@
 cc_library(
     name = "bitmap_writer",
-    hdrs = ["writer.h"],
-    srcs = ["writer.cpp"],
+    hdrs = glob(["*.h"]),
+    srcs = glob(["*.cpp"]),
     deps = [
         "//src/containers:containers",
         "//src/bitmaps/packet:bitmap_packet"
