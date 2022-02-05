@@ -29,15 +29,6 @@ TEST_F(BitmapFormatsTest, ShouldGet24BitPerPixelFormat)
   this->compare(Bitmaps::format(24));
 }
 
-TEST_F(BitmapFormatsTest, ShouldCalculatePixelArrayRowPaddingUnderFour)
-{
-  this->setupRGBFormat(2, 1);
-  int actualPadding = this->format.rowPaddingInBytes();
-  int correctPadding = 2;
-
-  EXPECT_EQ(correctPadding, actualPadding);
-}
-
 TEST_F(BitmapFormatsTest, ShouldCalculatePixelArrayRowPaddingOverFour)
 {
   this->setupRGBFormat(5, 3);
@@ -56,6 +47,14 @@ TEST_F(BitmapFormatsTest, ShouldCalculatePixelArrayRowPaddingOnFour)
   EXPECT_EQ(correctPadding, actualPadding);
 }
 
+TEST_F(BitmapFormatsTest, ShouldCalculatePixelArrayRowPaddingUnderFour)
+{
+  this->setupRGBFormat(2, 1);
+  int actualPadding = this->format.rowPaddingInBytes();
+  int correctPadding = 2;
+
+  EXPECT_EQ(correctPadding, actualPadding);
+}
 
 TEST_F(BitmapFormatsTest, ShouldCalculatePixelArrayRowSizeInBytes)
 {
