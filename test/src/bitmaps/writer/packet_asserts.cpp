@@ -1,6 +1,8 @@
 #include <gtest/gtest.h>
 #include "test/src/bitmaps/writer/fixture.h"
 
+#include <iostream>
+
 void BitmapWriterTest::compareToPacket(ByteArray& bytes)
 {
   auto fileHeaderBytes = bytes.slice(0, 14);
@@ -55,10 +57,9 @@ void BitmapWriterTest::compareRowOfPixels(int rowNo, ByteArray& bytes)
   auto format = pixelArray.format();
 
   int bytesPerPixel = format.pixelSizeInBytes();
-  int rowSizeInBytes = format.rowSizeInBytes();
   int unpaddedRowSizeInBytes = format.unpaddedRowSizeInBytes();
 
-  int startByte = rowNo * rowSizeInBytes; 
+  int startByte = rowNo * format.rowSizeInBytes();
   int endByte = startByte + unpaddedRowSizeInBytes;
 
   for (int byteNo = startByte; byteNo < endByte; byteNo += bytesPerPixel) {
@@ -80,12 +81,14 @@ void BitmapWriterTest::compareRowOfPixels(int rowNo, ByteArray& bytes)
   int padding = format.rowPaddingInBytes();
 
   int startPadding = endByte;
+//  std::cout << "Start padding byte: " << startPadding << std::endl;
+  
   int endPadding = startPadding + padding;
+//  std::cout << "End padding byte: " << startPadding << std::endl;
 
-  for (int i = startPadding; i < endPadding; i++) {
+  for (int i = startPadding; i < endPadding; i++)
     EXPECT_EQ(0, bytes[i]);
-    std::cout << "Gets here\n";
-  }
+
 }
 
 void BitmapWriterTest::compareToColours(ByteArray& bytes)

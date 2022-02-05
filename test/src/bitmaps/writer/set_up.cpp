@@ -37,8 +37,12 @@ void BitmapWriterTest::setupDibHeader()
 
 void BitmapWriterTest::setupPixelArray()
 {
-  int bitsPerPixel = this->packet.dibHeader.bitsPerPixel();
-  auto format = Bitmaps::format(bitsPerPixel);
+  auto& header = this->packet.dibHeader;
+
+  auto format = Bitmaps::format(header.bitsPerPixel());
+  format.setWidthInPixels(header.widthInPixels());
+  format.setHeightInPixels(header.heightInPixels());
+
   this->packet.pixelArray = {format};
   this->setupColours();
 }
