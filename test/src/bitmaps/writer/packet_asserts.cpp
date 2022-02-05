@@ -42,12 +42,26 @@ void BitmapWriterTest::compareToDibHeader(ByteArray& bytes)
 
 void BitmapWriterTest::compareToPixelArray(ByteArray& bytes)
 {
-  auto& pixelArray = this->packet.pixelArray;
+  auto format = this->packet.pixelArray.format();
+  int noOfRows = format.heightInPixels();
 
-  int bytesPerPixel = pixelArray.format().pixelSizeInBytes();
-  int noOfBytes = bytes.size();
-  
-  for (int byteNo = 0; byteNo < noOfBytes; byteNo += bytesPerPixel) {
+  for (int rowNo = 0; rowNo < noOfRows; rowNo++)
+    this->compareRowOfPixels(rowNo, bytes);
+}
+
+void BitmapWriterTest::compareRowOfPixels(int rowNo, ByteArray& bytes)
+{
+  auto& pixelArray = this->packet.pixelArray;
+  auto format = pixelArray.format();
+
+  int bytesPerPixel = format.pixelSizeInBytes();
+  int rowSizeInBytes = format.rowSizeInBytes();
+  int unpaddedRowSizeInBytes = format.unpaddedRowSizeInBytes();
+
+  int startByte = rowNo * rowSizeInBytes; 
+  int endByte = startByte + unpaddedRowSizeInBytes;
+
+  for (int byteNo = startByte; byteNo < endByte; byteNo += bytesPerPixel) {
     auto correctPixel = pixelArray.at(byteNo / bytesPerPixel);
     int noOfColours = correctPixel.size();
     auto colourNames = correctPixel.names();
@@ -60,6 +74,17 @@ void BitmapWriterTest::compareToPixelArray(ByteArray& bytes)
 
       EXPECT_EQ(correctColour, testColour);
     }
+  }
+  
+  // Padding check.
+  int padding = format.rowPaddingInBytes();
+
+  int startPadding = endByte;
+  int endPadding = startPadding + padding;
+
+  for (int i = startPadding; i < endPadding; i++) {
+    EXPECT_EQ(0, bytes[i]);
+    std::cout << "Gets here\n";
   }
 }
 

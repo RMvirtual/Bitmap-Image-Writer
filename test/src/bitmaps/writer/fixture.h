@@ -32,6 +32,7 @@ protected:
   void compareToFileHeader(ByteArray& bytes);
   void compareToDibHeader(ByteArray& bytes);
   void compareToPixelArray(ByteArray& bytes);
+  void compareRowOfPixels(int rowNo, ByteArray& bytes);
   void compareToColours(ByteArray& bytes);
 };
 
