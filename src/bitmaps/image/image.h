@@ -18,6 +18,8 @@ public:
   void writeToFile(std::string filePath);
   void fill(Colours colours);
   Colours defaultColours();
+  int widthInPixels();
+  int heightInPixels();
 
 private:
   Packet packet;

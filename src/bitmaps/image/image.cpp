@@ -40,6 +40,16 @@ void Bitmaps::Image::fill(Bitmaps::Colours colours)
   this->packet.pixelArray.fill(colours);
 }
 
+int Bitmaps::Image::widthInPixels()
+{
+  return this->packet.dibHeader.widthInPixels();
+}
+
+int Bitmaps::Image::heightInPixels()
+{
+  return this->packet.dibHeader.heightInPixels();
+}
+
 Bitmaps::Colours Bitmaps::Image::defaultColours()
 {
   return this->format.colours();
