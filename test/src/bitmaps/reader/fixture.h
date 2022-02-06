@@ -1,3 +1,6 @@
+#ifndef BITMAP_READER_TESTS_H
+#define BITMAP_READER_TESTS_H
+
 #include <gtest/gtest.h>
 
 #include "src/bitmaps/image/image.h"
@@ -28,3 +31,5 @@ protected:
   void compare(const Bitmaps::DibHeader& header);
   void compare(Bitmaps::PixelArray& array);
 };
+
+#endif
