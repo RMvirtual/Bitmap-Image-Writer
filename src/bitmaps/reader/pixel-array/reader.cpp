@@ -54,12 +54,14 @@ void Bitmaps::PixelArrayReader::readPixels(
 Bitmaps::Colours Bitmaps::PixelArrayReader::readColours(int byteIndex)
 {
   int bytesPerPixel = this->format.bytesPerPixel();
-  int endIndex = byteIndex + bytesPerPixel;
+  int endOfPixel = byteIndex + bytesPerPixel;
 
   auto colours = this->format.colours();
   
-  for (int byteNo = byteIndex; byteNo < endIndex; byteNo++)
-    colours[byteNo - byteIndex] = byteNo;
+  for (int byteNo = byteIndex; byteNo < endOfPixel; byteNo++) {
+    int colourIndex = byteNo - byteIndex;
+    colours[colourIndex] = this->bytes[byteNo];
+  }
 
   return colours;
 }
