@@ -1,26 +1,26 @@
 #include <gtest/gtest.h>
 #include "test/src/bitmaps/writer/fixture.h"
 
-TEST_F(BitmapWriterTest, ShouldWritePacketToBytes)
+TEST_F(BitmapWriterTest, ShouldWrite2x2BlueImageToFile)
 {
-  auto bytes = this->writer.write(this->packet);
-  this->compareToPacket(bytes);
+  this->setup2x2Image();
+  this->writer.writeToFile(this->image, this->filePath);
+
+  this->compareWrittenFile();
 }
 
-TEST_F(BitmapWriterTest, ShouldWriteFileHeaderToBytes)
+TEST_F(BitmapWriterTest, ShouldWrite1x4BlueImageToFile)
 {
-  auto bytes = this->writer.write(this->packet.fileHeader);
-  this->compareToFileHeader(bytes);
+  this->setup1x4Image();
+  this->writer.writeToFile(this->image, this->filePath);
+
+  this->compareWrittenFile();
 }
 
-TEST_F(BitmapWriterTest, ShouldWriteDibHeaderToBytes)
+TEST_F(BitmapWriterTest, ShouldWrite3x5BlueImageToFile)
 {
-  auto bytes = this->writer.write(this->packet.dibHeader); 
-  this->compareToDibHeader(bytes);
-}
+  this->setup3x5Image();
+  this->writer.writeToFile(this->image, this->filePath);
 
-TEST_F(BitmapWriterTest, ShouldWritePixelArrayToBytes)
-{
-  auto bytes = this->writer.write(this->packet.pixelArray);
-  this->compareToPixelArray(bytes);
+  this->compareWrittenFile();
 }

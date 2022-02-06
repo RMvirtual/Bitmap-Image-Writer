@@ -1,59 +1,47 @@
 #include <gtest/gtest.h>
 
-#include "src/bitmaps/writer/writer.h"
-#include "src/containers/byte-array/byte_conversion.h"
-#include "test/src/bitmaps/writer/fixture.h"
 #include "src/bitmaps/formats/formats.h"
+#include "src/bitmaps/writer/image/writer.h"
+#include "test/src/bitmaps/writer/fixture.h"
 
-#include <iostream>
-
-BitmapWriterTest::BitmapWriterTest()
+void BitmapWriterTest::setup2x2Image()
 {
-  this->setupFileHeader();
-  this->setupDibHeader();
-  this->setupPixelArray();
+  this->setOutputFilePath("blueImage2x2Write.bmp");
+  this->setupBlueRGBImage(2, 2);
 }
 
-BitmapWriterTest::~BitmapWriterTest()
+void BitmapWriterTest::setup1x4Image()
 {
-
+  this->setOutputFilePath("blueImage1x4Write.bmp");
+  this->setupBlueRGBImage(1, 4);
 }
 
-void BitmapWriterTest::setupFileHeader()
+void BitmapWriterTest::setup3x5Image()
 {
-  this->packet.fileHeader.setSignatureBytes("BM");
-  this->packet.fileHeader.setFileSizeInBytes(70);
-  this->packet.fileHeader.setReservedBytes(0);
-  this->packet.fileHeader.setPixelArrayOffsetInBytes(54);
+  this->setOutputFilePath("blueImage3x5Write.bmp");
+  this->setupBlueRGBImage(3, 5);
 }
 
-void BitmapWriterTest::setupDibHeader()
+void BitmapWriterTest::setupBlueRGBImage(int widthInPixels, int heightInPixels)
 {
-  this->packet.dibHeader.setWidthInPixels(2);
-  this->packet.dibHeader.setHeightInPixels(2);
-  this->packet.dibHeader.setNumberOfColourPlanes(1);
-  this->packet.dibHeader.setBitsPerPixel(24);
-}
+  auto format = Bitmaps::format("RGB");
+  format.setWidthInPixels(widthInPixels);
+  format.setHeightInPixels(heightInPixels);
+  
+  this->image = {format};
 
-void BitmapWriterTest::setupPixelArray()
-{
-  auto& header = this->packet.dibHeader;
-
-  auto format = Bitmaps::format(header.bitsPerPixel());
-  format.setWidthInPixels(header.widthInPixels());
-  format.setHeightInPixels(header.heightInPixels());
-
-  this->packet.pixelArray = {format};
-  this->setupColours();
-}
-
-void BitmapWriterTest::setupColours()
-{
-  Bitmaps::Colours colours {"blue", "green", "red"};
+  auto colours = format.colours();
   colours["red"] = 100;
   colours["green"] = 255;
   colours["blue"] = 255;
 
-  this->packet.pixelArray.fill(colours);
-  this->colours = colours;
+  this->image.fill(colours);
+}
+
+void BitmapWriterTest::setOutputFilePath(std::string fileName)
+{
+  this->filePath = {
+    "C:\\Users\\rmvir\\Desktop\\scc300-Win3D\\test\\resources\\"
+    "correct-resources\\" + fileName
+  };
 }

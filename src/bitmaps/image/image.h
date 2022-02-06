@@ -15,14 +15,13 @@ public:
   Image(Format format);
   ~Image();
 
-  void writeToFile(std::string filePath);
   void fill(Colours colours);
-  int widthInPixels();
-  int heightInPixels();
-  Colours defaultColours();
-  FileHeader fileHeader();
-  DibHeader dibHeader();
-  PixelArray pixelArray();
+  int widthInPixels() const;
+  int heightInPixels() const;
+  Colours defaultColours() const;
+  FileHeader fileHeader() const;
+  DibHeader dibHeader() const;
+  PixelArray pixelArray() const;
 
 private:
   Packet packet;

@@ -1,0 +1,13 @@
+cc_library(
+    name = "bitmap_image_writer",
+    hdrs = glob(["*.h"]),
+    srcs = glob(["*.cpp"]),
+    deps = [
+        "//src/containers:containers",
+        "//src/bitmaps/image:bitmap_image",
+        "//src/bitmaps/writer/headers:bitmap_header_writers",
+        "//src/bitmaps/writer/pixel-array:bitmap_pixel_array_writer",
+    ],
+    visibility = ["//visibility:public"],
+    copts = ["/std:c++17"]
+)

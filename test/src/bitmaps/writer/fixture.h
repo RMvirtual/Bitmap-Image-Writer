@@ -2,8 +2,9 @@
 #define BITMAP_WRITER_TEST_H
 
 #include <gtest/gtest.h>
+#include <string>
 
-#include "src/bitmaps/writer/writer.h"
+#include "src/bitmaps/writer/image/writer.h"
 #include "src/containers/byte-array/byte_array.h"
 
 class BitmapWriterTest : public testing::Test
@@ -12,28 +13,25 @@ public:
   BitmapWriterTest();
   ~BitmapWriterTest();
 
-private:
-  void setupFileHeader();
-  void setupDibHeader();
-  void setupPixelArray();
-  void setupColours();
-
 protected:
-  Bitmaps::Packet packet;
-  Bitmaps::ByteWriter writer;
-  Bitmaps::Colours colours;
+  std::string filePath;
+  Bitmaps::Image image;
+  Bitmaps::ImageWriter writer;
 
-  ByteArray writeBlueFile();
+  void setup1x4Image();
+  void setup2x2Image();
+  void setup3x5Image();
+  void setupBlueRGBImage(int widthInPixels, int heightInPixels);
 
-  void compare(std::string twoChars, ByteArray bytes);
-  void compare(uint16_t integer, ByteArray bytes);
-  void compare(uint32_t integer, ByteArray bytes);
-  void compareToPacket(ByteArray& bytes);
-  void compareToFileHeader(ByteArray& bytes);
-  void compareToDibHeader(ByteArray& bytes);
-  void compareToPixelArray(ByteArray& bytes);
-  void compareRowOfPixels(int rowNo, ByteArray& bytes);
-  void compareToColours(ByteArray& bytes);
+  void compareWrittenFile();
+  void compare(const Bitmaps::FileHeader& header);
+  void compare(const Bitmaps::DibHeader& header);
+  void compare(const Bitmaps::PixelArray& pixelArray);
+  void compare(
+    const Bitmaps::Colours& correctColours, const Bitmaps::Colours& colours);  
+
+private:
+  void setOutputFilePath(std::string fileName);
 };
 
 #endif

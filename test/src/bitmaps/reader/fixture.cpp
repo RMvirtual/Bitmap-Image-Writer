@@ -1,14 +1,14 @@
 #include <gtest/gtest.h>
 
 #include "src/bitmaps/packet/packet.h"
-#include "src/bitmaps/reader/bitmap_reader.h"
+#include "src/bitmaps/reader/image/reader.h"
 #include "src/bitmaps/formats/formats.h"
 #include "test/src/bitmaps/reader/fixture.h"
 #include "src/utilities/filesystem.h"
 
 BitmapReaderTest::BitmapReaderTest()
 {
-  this->setupCorrectPacket();
+  this->setupCorrectImage();
   this->fileContents = Utilities::readFileToByteArray(this->blueImagePath());
 }
 

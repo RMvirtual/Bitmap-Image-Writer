@@ -10,6 +10,7 @@ void BitmapReaderTest::setupCorrectPacket()
 
 void BitmapReaderTest::setupFileHeader()
 {
+  
   this->packet.fileHeader.setSignatureBytes("BM");
   // 54 header bytes + 16 pixel bytes
   // Pixel bytes = (2row x 2column x 3pixelSize + (2row x 2 row padding bytes))

@@ -5,6 +5,5 @@ test_suite(
         "//test/src/bitmaps/packet:tests",
         "//test/src/bitmaps/reader:tests",
         "//test/src/bitmaps/writer:tests",
-        "//test/src/bitmaps/image:tests",
     ]
 )

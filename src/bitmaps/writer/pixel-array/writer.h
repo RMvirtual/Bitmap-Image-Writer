@@ -1,14 +1,14 @@
-#ifndef PIXEL_ARRAY_BYTE_WRITER_H
-#define PIXEL_ARRAY_BYTE_WRITER_H
+#ifndef BITMAP_PIXEL_ARRAY_WRITER_H
+#define BITMAP_PIXEL_ARRAY_WRITER_H
 
 #include "src/bitmaps/packet/pixel-array/array.h"
 #include "src/containers/byte-array/byte_array.h"
 
 namespace Bitmaps {
-class PixelArrayByteWriter
+class PixelArrayWriter
 {
 public:
-  PixelArrayByteWriter();
+  PixelArrayWriter();
   ByteArray write(const Bitmaps::PixelArray& pixelArray);
 
 private:

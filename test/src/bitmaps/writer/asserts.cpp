@@ -1,10 +1,8 @@
-#include "src/bitmaps/formats/colours/colours.h"
-#include "src/bitmaps/packet/packet.h"
-#include "src/bitmaps/packet/headers/headers.h"
-#include "src/bitmaps/reader/bitmap_reader.h"
-#include "test/src/bitmaps/image/fixture.h"
+#include <gtest/gtest.h>
+#include "test/src/bitmaps/writer/fixture.h"
+#include "src/bitmaps/reader/image/reader.h"
 
-void BitmapImageTest::compareWrittenFile()
+void BitmapWriterTest::compareWrittenFile()
 {
   Bitmaps::ImageReader reader {};
   auto packet = reader.read(this->filePath);
@@ -14,7 +12,7 @@ void BitmapImageTest::compareWrittenFile()
   this->compare(packet.pixelArray);
 }
 
-void BitmapImageTest::compare(const Bitmaps::FileHeader& header)
+void BitmapWriterTest::compare(const Bitmaps::FileHeader& header)
 {
   auto correctHeader = this->image.fileHeader();
 
@@ -26,7 +24,7 @@ void BitmapImageTest::compare(const Bitmaps::FileHeader& header)
     correctHeader.pixelArrayOffsetInBytes(), header.pixelArrayOffsetInBytes());
 }
 
-void BitmapImageTest::compare(const Bitmaps::DibHeader& header)
+void BitmapWriterTest::compare(const Bitmaps::DibHeader& header)
 {
   auto correctHeader = this->image.dibHeader();
 
@@ -46,7 +44,7 @@ void BitmapImageTest::compare(const Bitmaps::DibHeader& header)
   EXPECT_EQ(correctHeader.importantColors(), header.importantColors());
 }
 
-void BitmapImageTest::compare(const Bitmaps::PixelArray& pixelArray)
+void BitmapWriterTest::compare(const Bitmaps::PixelArray& pixelArray)
 {
   auto correctPixelArray = this->image.pixelArray();
 
@@ -63,7 +61,7 @@ void BitmapImageTest::compare(const Bitmaps::PixelArray& pixelArray)
   }
 }
 
-void BitmapImageTest::compare(
+void BitmapWriterTest::compare(
   const Bitmaps::Colours& correctColours, const Bitmaps::Colours& colours)
 {
   int correctNoOfColours = correctColours.size();

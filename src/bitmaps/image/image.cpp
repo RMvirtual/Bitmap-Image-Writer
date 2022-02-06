@@ -1,9 +1,8 @@
-#include "src/bitmaps/image/image.h"
 #include "src/bitmaps/formats/bitmap/format.h"
 #include "src/bitmaps/formats/colours/colours.h"
+#include "src/bitmaps/image/image.h"
 #include "src/bitmaps/packet/headers/headers.h"
 #include "src/utilities/filesystem.h"
-#include "src/bitmaps/writer/writer.h"
 
 Bitmaps::Image::Image()
 {
@@ -27,45 +26,37 @@ Bitmaps::Image::~Image()
 
 }
 
-void Bitmaps::Image::writeToFile(std::string filePath)
-{
-  Bitmaps::ByteWriter writer;
-  auto bytes = writer.write(this->packet);
-
-  Utilities::writeToFile(filePath, bytes);
-}
-
 void Bitmaps::Image::fill(Bitmaps::Colours colours)
 {
   this->packet.pixelArray.fill(colours);
 }
 
-int Bitmaps::Image::widthInPixels()
+int Bitmaps::Image::widthInPixels() const
 {
   return this->packet.dibHeader.widthInPixels();
 }
 
-int Bitmaps::Image::heightInPixels()
+int Bitmaps::Image::heightInPixels() const
 {
   return this->packet.dibHeader.heightInPixels();
 }
 
-Bitmaps::Colours Bitmaps::Image::defaultColours()
+Bitmaps::Colours Bitmaps::Image::defaultColours() const
 {
   return this->format.colours();
 }
 
-Bitmaps::FileHeader Bitmaps::Image::fileHeader()
+Bitmaps::FileHeader Bitmaps::Image::fileHeader() const
 {
   return this->packet.fileHeader;
 }
 
-Bitmaps::DibHeader Bitmaps::Image::dibHeader()
+Bitmaps::DibHeader Bitmaps::Image::dibHeader() const
 {
   return this->packet.dibHeader;
 }
 
-Bitmaps::PixelArray Bitmaps::Image::pixelArray()
+Bitmaps::PixelArray Bitmaps::Image::pixelArray() const
 {
   return this->packet.pixelArray;
 }

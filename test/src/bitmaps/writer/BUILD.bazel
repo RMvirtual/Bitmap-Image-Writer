@@ -7,5 +7,6 @@ cc_test(
     deps = [
         "@com_google_googletest//:gtest_main",
         "//src/bitmaps/writer:bitmap_writer",
+        "//src/bitmaps/reader:bitmap_reader",
     ]
 )

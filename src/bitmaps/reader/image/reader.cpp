@@ -1,7 +1,7 @@
 #include "src/containers/byte-array/byte_array.h"
 #include "src/bitmaps/formats/formats.h"
 #include "src/bitmaps/packet/packet.h"
-#include "src/bitmaps/reader/bitmap_reader.h"
+#include "src/bitmaps/reader/image/reader.h"
 #include "src/bitmaps/reader/headers/file_header_reader.h"
 #include "src/bitmaps/reader/headers/dib_header_reader.h"
 #include "src/bitmaps/reader/pixel-array/reader.h"

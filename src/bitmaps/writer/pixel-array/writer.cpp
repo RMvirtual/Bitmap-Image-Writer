@@ -1,14 +1,13 @@
-#include "src/bitmaps/writer/pixel_array_writer.h"
+#include "src/bitmaps/writer/pixel-array/writer.h"
 
-Bitmaps::PixelArrayByteWriter::PixelArrayByteWriter()
+Bitmaps::PixelArrayWriter::PixelArrayWriter()
 {
 
 }
 
-ByteArray Bitmaps::PixelArrayByteWriter::write(
-  const Bitmaps::PixelArray& pixelArray)
+ByteArray Bitmaps::PixelArrayWriter::write(const Bitmaps::PixelArray& array)
 {
-  this->initialise(pixelArray);
+  this->initialise(array);
   int noOfRows = this->format.heightInPixels();
 
   for (int rowNo = 0; rowNo < noOfRows; rowNo++)
@@ -17,15 +16,14 @@ ByteArray Bitmaps::PixelArrayByteWriter::write(
   return this->bytes;
 }
 
-void Bitmaps::PixelArrayByteWriter::initialise(
-  const Bitmaps::PixelArray& pixelArray)
+void Bitmaps::PixelArrayWriter::initialise(const Bitmaps::PixelArray& array)
 {
-  this->pixelArray = pixelArray;
+  this->pixelArray = array;
   this->format = this->pixelArray.format();
   this->bytes = {};
 }
 
-void Bitmaps::PixelArrayByteWriter::writeRowOfPixels(int rowNo)
+void Bitmaps::PixelArrayWriter::writeRowOfPixels(int rowNo)
 {
   auto pixelsPerRow = this->format.widthInPixels();
 
@@ -36,19 +34,19 @@ void Bitmaps::PixelArrayByteWriter::writeRowOfPixels(int rowNo)
   this->addRowPadding();
 }
 
-void Bitmaps::PixelArrayByteWriter::writePixels(int startIndex, int endIndex)
+void Bitmaps::PixelArrayWriter::writePixels(int startIndex, int endIndex)
 {
   for (int pixelNo = startIndex; pixelNo < endIndex; pixelNo++)
     this->write(this->pixelArray.at(pixelNo));
 }
 
-void Bitmaps::PixelArrayByteWriter::write(const Bitmaps::Colours& colours)
+void Bitmaps::PixelArrayWriter::write(const Bitmaps::Colours& colours)
 {
   for (auto colourAndValue : colours)
     this->bytes.add(colourAndValue.second);
 }
 
-void Bitmaps::PixelArrayByteWriter::addRowPadding()
+void Bitmaps::PixelArrayWriter::addRowPadding()
 {
   auto padding = this->format.bytesPaddingPerRow();
 
