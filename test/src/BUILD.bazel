@@ -1,10 +1,10 @@
 test_suite(
     name = "all_tests",
     tests = [
-        "//test/src/bitmaps:bitmap_tests",
-        "//test/src/containers:containers",
-        "//test/src/files:files",
-        "//test/src/maths:maths",
-        "//test/src/utilities:utilities",
+        "//test/src/bitmaps:tests",
+        "//test/src/containers:tests",
+        "//test/src/files:tests",
+        "//test/src/maths:tests",
+        "//test/src/utilities:tests",
     ]
 )

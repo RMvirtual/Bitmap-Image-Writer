@@ -1,12 +1,12 @@
 load("@rules_cc//cc:defs.bzl", "cc_test")
 
 cc_test(
-    name = "files",
+    name = "tests",
     size = "small",
     srcs = glob(["*.cpp"]),
     deps = [
         "@com_google_googletest//:gtest_main",
-        "//src/files:files",
-        "//src/utilities:utilities"
+        "//src/files:pkg",
+        "//src/utilities:pkg"
     ],
 )

@@ -1,7 +1,9 @@
 cc_library(
-    name = "files",
+    name = "pkg",
     hdrs = glob(["*.h"]),
     srcs = glob(["*.cpp"]),
     visibility = ["//visibility:public"],
-    deps = ["//src/utilities:utilities"]
+    deps = [
+        "//src/utilities:pkg"
+    ]
 )

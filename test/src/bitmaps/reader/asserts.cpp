@@ -1,9 +1,7 @@
+#include <gtest/gtest.h>
 #include "test/src/bitmaps/reader/fixture.h"
-#include "src/bitmaps/reader/headers/file_header_reader.h"
-#include "src/bitmaps/reader/headers/dib_header_reader.h"
-#include "src/bitmaps/reader/pixel-array/reader.h"
 
-void BitmapReaderTest::compare(Bitmaps::Image packet)
+void BitmapReaderTest::compare(const Bitmaps::Image& image)
 {
   this->compare(image.fileHeader());
   this->compare(image.dibHeader());
@@ -12,10 +10,13 @@ void BitmapReaderTest::compare(Bitmaps::Image packet)
 
 void BitmapReaderTest::compare(const Bitmaps::FileHeader& header)
 {
-  auto& correctHeader = this->packet.fileHeader;
+  auto& correctHeader = this->image.fileHeader();
 
   EXPECT_EQ(correctHeader.signatureBytes(), header.signatureBytes());
-  EXPECT_EQ(correctHeader.fileSizeInBytes(), header.fileSizeInBytes());
+
+  // 54 header bytes + 16 pixel bytes = 70 bytes.
+  // Pixel bytes = (2row x 2column x 3pixelSize + (2row x 2 row padding bytes))
+  EXPECT_EQ(70, header.fileSizeInBytes());
   EXPECT_EQ(correctHeader.reservedBytes(), header.reservedBytes());
 
   EXPECT_EQ(
@@ -24,7 +25,7 @@ void BitmapReaderTest::compare(const Bitmaps::FileHeader& header)
 
 void BitmapReaderTest::compare(const Bitmaps::DibHeader& header)
 {
-  auto& correctHeader = this->packet.dibHeader;
+  auto& correctHeader = this->image.dibHeader();
 
   EXPECT_EQ(correctHeader.headerSizeInBytes(), header.headerSizeInBytes());
   EXPECT_EQ(correctHeader.widthInPixels(), header.widthInPixels());
@@ -41,7 +42,7 @@ void BitmapReaderTest::compare(const Bitmaps::DibHeader& header)
 
 void BitmapReaderTest::compare(Bitmaps::PixelArray& array)
 {
-  auto& correctArray = this->packet.pixelArray;
+  auto& correctArray = this->image.pixelArray();
   int correctNoOfPixels = correctArray.sizeInPixels();
   int noOfPixels = array.sizeInPixels();
 

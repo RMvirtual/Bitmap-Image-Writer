@@ -1,8 +1,8 @@
 cc_library(
-    name = "bitmap_reader",
+    name = "pkg",
     hdrs = glob(["*.h"]),
     srcs = glob(["*.cpp"]),
-    deps = ["//src/bitmaps/reader/image:bitmap_image_reader"],
+    deps = ["//src/bitmaps/reader/image:pkg"],
     visibility = ["//visibility:public"],
     copts = ["/std:c++17"]
 )

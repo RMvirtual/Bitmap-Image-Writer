@@ -1,7 +1,9 @@
 cc_library(
-    name = "matrix",
+    name = "pkg",
     hdrs = glob(["*.h"]),
     srcs = glob(["*.cpp"]),
     visibility = ["//visibility:public"],
-    deps = ["//src/maths/vector:vector"]
+    deps = [
+        "//src/maths/vector:pkg"
+    ]
 )

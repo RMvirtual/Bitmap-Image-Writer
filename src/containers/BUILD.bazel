@@ -1,11 +1,11 @@
 cc_library(
-    name = "containers",
+    name = "pkg",
     hdrs = ["index.h"],
     srcs = [],
     visibility = ["//visibility:public"],
     copts = ["/std:c++17"],
     deps = [
-        "//src/containers/byte-array:byte_array",
-        "//src/containers/matrix-2d:matrix_2d"
+        "//src/containers/byte-array:pkg",
+        "//src/containers/matrix-2d:pkg"
     ]
 )

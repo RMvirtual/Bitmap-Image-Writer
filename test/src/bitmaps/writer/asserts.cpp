@@ -5,11 +5,11 @@
 void BitmapWriterTest::compareWrittenFile()
 {
   Bitmaps::ImageReader reader {};
-  auto packet = reader.read(this->filePath);
+  auto writtenImage = reader.read(this->filePath);
 
-  this->compare(packet.fileHeader);
-  this->compare(packet.dibHeader);
-  this->compare(packet.pixelArray);
+  this->compare(writtenImage.fileHeader());
+  this->compare(writtenImage.dibHeader());
+  this->compare(writtenImage.pixelArray());
 }
 
 void BitmapWriterTest::compare(const Bitmaps::FileHeader& header)

@@ -2,7 +2,7 @@
 #define BITMAP_FORMATS_H
 
 #include <string>
-#include "src/bitmaps/formats/bitmap/format.h"
+#include "src/bitmaps/formats/format/format.h"
 
 namespace Bitmaps
 {

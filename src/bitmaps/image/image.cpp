@@ -1,4 +1,5 @@
-#include "src/bitmaps/formats/bitmap/format.h"
+#include "src/bitmaps/formats/format/format.h"
+#include "src/bitmaps/formats/formats.h"
 #include "src/bitmaps/formats/colours/colours.h"
 #include "src/bitmaps/image/image.h"
 #include "src/bitmaps/packet/headers/headers.h"
@@ -19,6 +20,16 @@ Bitmaps::Image::Image(Bitmaps::Format format)
   this->packet.dibHeader = dibHeader;
   this->packet.pixelArray = pixelArray;
   this->format = format;
+}
+
+Bitmaps::Image::Image(Bitmaps::Packet packet)
+{
+  this->packet = packet;
+
+  int bitsPerPixel = this->packet.dibHeader.bitsPerPixel();
+  this->format = Bitmaps::format(bitsPerPixel);
+  this->format.setHeightInPixels(this->packet.dibHeader.heightInPixels());
+  this->format.setWidthInPixels(this->packet.dibHeader.widthInPixels());
 }
 
 Bitmaps::Image::~Image()

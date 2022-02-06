@@ -1,5 +1,5 @@
 cc_library(
-    name = "matrix_2d",
+    name = "pkg",
     hdrs = glob(["*.h"]),
     srcs = glob(["*.cpp"]),
     visibility = ["//visibility:public"],

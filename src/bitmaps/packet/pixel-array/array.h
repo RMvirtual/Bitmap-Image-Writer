@@ -2,7 +2,7 @@
 #define PIXEL_ARRAY_H
 
 #include "src/containers/matrix-2D/matrix_2d.h"
-#include "src/bitmaps/formats/bitmap/format.h"
+#include "src/bitmaps/formats/format/format.h"
 #include "src/bitmaps/formats/colours/colours.h"
 
 namespace Bitmaps {

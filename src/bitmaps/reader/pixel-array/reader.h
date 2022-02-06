@@ -2,7 +2,7 @@
 #define PIXEL_ARRAY_READER_H
 
 #include "src/containers/byte-array/byte_array.h"
-#include "src/bitmaps/formats/bitmap/format.h"
+#include "src/bitmaps/formats/format/format.h"
 #include "src/bitmaps/packet/pixel-array/array.h"
 
 namespace Bitmaps {

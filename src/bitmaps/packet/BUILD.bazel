@@ -1,14 +1,14 @@
 cc_library(
-    name = "bitmap_packet",
+    name = "pkg",
     hdrs = [
         "packet.h",
     ],
     srcs = [],
     deps = [
-        "//src/containers:containers",
-        "//src/bitmaps/packet/headers:bitmap_headers",
-        "//src/bitmaps/packet/pixel-array:bitmap_pixel_array",
-        "//src/bitmaps/formats:bitmap_formats"
+        "//src/containers:pkg",
+        "//src/bitmaps/packet/headers:pkg",
+        "//src/bitmaps/packet/pixel-array:pkg",
+        "//src/bitmaps/formats:pkg"
     ],
     visibility = ["//visibility:public"],
     copts = ["/std:c++17"]

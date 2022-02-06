@@ -1,5 +1,5 @@
 cc_library(
-    name = "binary_ops",
+    name = "pkg",
     hdrs = glob(["*.h"]),
     srcs = glob(["*.cpp"]),
     visibility = ["//visibility:public"]

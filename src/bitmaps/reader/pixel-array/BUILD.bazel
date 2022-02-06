@@ -1,11 +1,11 @@
 cc_library(
-    name = "bitmap_pixel_array_reader",
+    name = "pkg",
     hdrs = glob(["*.h"]),
     srcs = glob(["*.cpp"]),
     deps = [
-        "//src/containers:containers",
-        "//src/files:files",
-        "//src/bitmaps/packet:bitmap_packet"
+        "//src/containers:pkg",
+        "//src/files:pkg",
+        "//src/bitmaps/packet:pkg"
     ],
     visibility = ["//visibility:public"],
     copts = ["/std:c++17"]

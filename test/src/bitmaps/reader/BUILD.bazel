@@ -6,6 +6,6 @@ cc_test(
     srcs = glob(["*.h", "*.cpp"]),
     deps = [
         "@com_google_googletest//:gtest_main",
-        "//src/bitmaps/reader:bitmap_reader",
+        "//src/bitmaps/reader:pkg",
     ]
 )

@@ -23,7 +23,7 @@ protected:
   
   std::string blueImagePath();
 
-  void compare(const Bitmaps::Image image);
+  void compare(const Bitmaps::Image& image);
   void compare(const Bitmaps::FileHeader& header);
   void compare(const Bitmaps::DibHeader& header);
   void compare(Bitmaps::PixelArray& array);

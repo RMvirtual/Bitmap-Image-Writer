@@ -1,4 +1,3 @@
 cls
 
-bazel test --test_output=all --test_summary=terse ^
-  //test/src/containers:containers
+bazel test --test_output=all --test_summary=terse //test/src/containers:tests

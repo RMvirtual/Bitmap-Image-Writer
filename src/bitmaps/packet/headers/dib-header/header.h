@@ -3,7 +3,7 @@
 
 #include <cstdint>
 #include "src/bitmaps/packet/headers/dib-header/values.h"
-#include "src/bitmaps/formats/bitmap/format.h"
+#include "src/bitmaps/formats/format/format.h"
 
 namespace Bitmaps {
 class DibHeader

@@ -3,18 +3,19 @@
 
 #include <string>
 
+#include "src/bitmaps/formats/format/format.h"
+#include "src/bitmaps/image/image.h"
 #include "src/bitmaps/packet/packet.h"
 #include "src/bitmaps/packet/headers/headers.h"
-#include "src/containers/byte-array/byte_array.h"
 #include "src/bitmaps/reader/pixel-array/reader.h"
-#include "src/bitmaps/formats/bitmap/format.h"
+#include "src/containers/byte-array/byte_array.h"
 
 namespace Bitmaps {
 class ImageReader
 {
 public:
   ImageReader();
-  Bitmaps::Packet read(const std::string& filePath);
+  Bitmaps::Image read(const std::string& filePath);
 
 private:
   Bitmaps::Packet packet;

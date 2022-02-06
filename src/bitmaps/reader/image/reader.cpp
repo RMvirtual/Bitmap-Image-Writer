@@ -1,5 +1,6 @@
 #include "src/containers/byte-array/byte_array.h"
 #include "src/bitmaps/formats/formats.h"
+#include "src/bitmaps/image/image.h"
 #include "src/bitmaps/packet/packet.h"
 #include "src/bitmaps/reader/image/reader.h"
 #include "src/bitmaps/reader/headers/file_header_reader.h"
@@ -13,10 +14,10 @@ Bitmaps::ImageReader::ImageReader()
   // pass.
 }
 
-Bitmaps::Packet Bitmaps::ImageReader::read(const std::string& filePath)
+Bitmaps::Image Bitmaps::ImageReader::read(const std::string& filePath)
 {
   this->processIntoPacket(filePath);
-
+ 
   return this->packet;
 }
 
