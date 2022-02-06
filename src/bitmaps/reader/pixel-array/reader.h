@@ -10,10 +10,17 @@ class PixelArrayReader
 {
 public:
   PixelArrayReader(const Bitmaps::Format& format);
+
   Bitmaps::PixelArray convertBytes(const ByteArray& bytes);
+  void initialise(const ByteArray& bytes);
+  void readRowOfPixels(int rowNo);
+  void readPixels(int startIndex, int endIndex, int pixelRowNo);
+  Bitmaps::Colours readColours(int index);
 
 private:
   Bitmaps::Format format;
+  Bitmaps::PixelArray pixelArray;
+  ByteArray bytes;
 };}
 
 #endif

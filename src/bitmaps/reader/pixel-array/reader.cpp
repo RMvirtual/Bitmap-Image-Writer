@@ -11,25 +11,55 @@ Bitmaps::PixelArrayReader::PixelArrayReader(const Bitmaps::Format& format)
 Bitmaps::PixelArray Bitmaps::PixelArrayReader::convertBytes(
   const ByteArray& bytes)
 {
-  Bitmaps::PixelArray pixelArray {this->format};
+  this->initialise(bytes);
+  int noOfPixelRows = this->format.heightInPixels();
 
-  // Needs row stride accounting for.
+  for (int rowNo = 0; rowNo < noOfPixelRows; rowNo++)
+    this->readRowOfPixels(rowNo);
 
-  int noOfBytes = bytes.size();
+  return this->pixelArray;
+}
+
+void Bitmaps::PixelArrayReader::initialise(const ByteArray& bytes)
+{
+  this->pixelArray = {this->format};
+  this->bytes = bytes;
+}
+
+void Bitmaps::PixelArrayReader::readRowOfPixels(int rowNo)
+{
+  int bytesPerRow = this->format.rowSizeInBytes();
+  int unpaddedBytesPerRow = this->format.unpaddedRowSizeInBytes();
+
+  int rowStart = rowNo * bytesPerRow;
+  int rowEnd = rowStart + unpaddedBytesPerRow;
+
+  this->readPixels(rowStart, rowEnd, rowNo);
+}
+
+void Bitmaps::PixelArrayReader::readPixels(
+  int startIndex, int endIndex, int pixelRowNo)
+{
   int bytesPerPixel = this->format.pixelSizeInBytes();
+  int pixelsPerRow = this->format.widthInPixels();
 
-  for (int byteNo = 0; byteNo < noOfBytes; byteNo += bytesPerPixel) {
-    int endOfPixelByteNo = byteNo + bytesPerPixel;
+  for (int pixelNo = 0; pixelNo < pixelsPerRow; pixelNo++) {
+    int byteNo = startIndex + (pixelNo * bytesPerPixel);
+    auto colours = this->readColours(byteNo);
 
-    auto pixelBytes = bytes.slice(byteNo, endOfPixelByteNo);
-    auto colours = this->format.colours();
-
-    for (int colourNo = 0; colourNo < bytesPerPixel; colourNo++)
-      colours[colourNo] = pixelBytes[colourNo];
-
-    int pixelNo = byteNo / bytesPerPixel;
-    pixelArray.set(colours, pixelNo);
+    pixelArray.set(colours, pixelRowNo, pixelNo);
   }
+}
 
-  return pixelArray;
+Bitmaps::Colours Bitmaps::PixelArrayReader::readColours(int byteIndex)
+{
+  int bytesPerPixel = this->format.pixelSizeInBytes();
+  int endIndex = byteIndex + bytesPerPixel;
+
+  auto colours = this->format.colours();
+  
+  for (int byteNo = byteIndex; byteNo < endIndex; byteNo++)
+    colours[byteNo - byteIndex] = byteNo;
+
+  return colours;
 }
