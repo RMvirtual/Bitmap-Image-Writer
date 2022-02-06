@@ -27,7 +27,7 @@ std::vector<std::string> Bitmaps::Colours::names()
   return names;
 }
 
-int Bitmaps::Colours::size()
+int Bitmaps::Colours::size() const
 {
   return this->_colours.size();
 }

@@ -54,3 +54,18 @@ Bitmaps::Colours Bitmaps::Image::defaultColours()
 {
   return this->format.colours();
 }
+
+Bitmaps::FileHeader Bitmaps::Image::fileHeader()
+{
+  return this->packet.fileHeader;
+}
+
+Bitmaps::DibHeader Bitmaps::Image::dibHeader()
+{
+  return this->packet.dibHeader;
+}
+
+Bitmaps::PixelArray Bitmaps::Image::pixelArray()
+{
+  return this->packet.pixelArray;
+}

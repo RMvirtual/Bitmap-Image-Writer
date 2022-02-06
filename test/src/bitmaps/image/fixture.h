@@ -5,6 +5,7 @@
 #include <string>
 
 #include "src/bitmaps/image/image.h"
+#include "src/bitmaps/packet/packet.h"
 
 class BitmapImageTest : public testing::Test
 {
@@ -22,6 +23,13 @@ protected:
   void setup1x4Image();
   void setup3x5Image();
   Bitmaps::Colours getBlueColours();
+
+  void compareWrittenFile();
+  void compare(const Bitmaps::FileHeader& header);
+  void compare(const Bitmaps::DibHeader& header);
+  void compare(const Bitmaps::PixelArray& pixelArray);
+  void compare(
+    const Bitmaps::Colours& correctColours, const Bitmaps::Colours& colours);  
 };
 
 #endif

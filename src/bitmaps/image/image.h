@@ -17,9 +17,12 @@ public:
 
   void writeToFile(std::string filePath);
   void fill(Colours colours);
-  Colours defaultColours();
   int widthInPixels();
   int heightInPixels();
+  Colours defaultColours();
+  FileHeader fileHeader();
+  DibHeader dibHeader();
+  PixelArray pixelArray();
 
 private:
   Packet packet;

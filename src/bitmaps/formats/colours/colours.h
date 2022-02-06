@@ -16,7 +16,7 @@ public:
   Colours(std::vector<std::string> colourNames);
 
   std::vector<std::string> names();
-  int size();
+  int size() const;
   uint8_t& operator [](std::string value);
   uint8_t operator [](std::string value) const;
   uint8_t& operator [](int index);

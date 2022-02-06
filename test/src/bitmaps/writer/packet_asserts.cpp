@@ -1,8 +1,6 @@
 #include <gtest/gtest.h>
 #include "test/src/bitmaps/writer/fixture.h"
 
-#include <iostream>
-
 void BitmapWriterTest::compareToPacket(ByteArray& bytes)
 {
   auto fileHeaderBytes = bytes.slice(0, 14);
