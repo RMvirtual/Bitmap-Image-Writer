@@ -17,7 +17,10 @@ protected:
   Bitmaps::Format format;
   std::string filePath;
 
-  void setupRGBFormat();
+  void setupRGBFormat(int widthInPixels, int heightInPixels);
+  void setup2x2Image();
+  void setup1x4Image();
+  void setup3x5Image();
   Bitmaps::Colours getBlueColours();
 };
 

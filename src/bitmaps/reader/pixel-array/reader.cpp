@@ -29,10 +29,10 @@ void Bitmaps::PixelArrayReader::initialise(const ByteArray& bytes)
 void Bitmaps::PixelArrayReader::readRowOfPixels(int rowNo)
 {
   int bytesPerRow = this->format.bytesPerRow();
-  int unpaddedBytesPerRow = this->format.bytesPerUnpaddedRow();
+  int bytesPerUnpaddedRow = this->format.bytesPerUnpaddedRow();
 
   int rowStart = rowNo * bytesPerRow;
-  int rowEnd = rowStart + unpaddedBytesPerRow;
+  int rowEnd = rowStart + bytesPerUnpaddedRow;
 
   this->readPixels(rowStart, rowEnd, rowNo);
 }

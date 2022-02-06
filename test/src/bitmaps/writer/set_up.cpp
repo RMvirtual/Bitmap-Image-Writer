@@ -22,7 +22,7 @@ BitmapWriterTest::~BitmapWriterTest()
 void BitmapWriterTest::setupFileHeader()
 {
   this->packet.fileHeader.setSignatureBytes("BM");
-  this->packet.fileHeader.setFileSizeInBytes(66);
+  this->packet.fileHeader.setFileSizeInBytes(70);
   this->packet.fileHeader.setReservedBytes(0);
   this->packet.fileHeader.setPixelArrayOffsetInBytes(54);
 }
