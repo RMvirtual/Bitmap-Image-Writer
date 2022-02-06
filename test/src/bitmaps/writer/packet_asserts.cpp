@@ -80,15 +80,11 @@ void BitmapWriterTest::compareRowOfPixels(int rowNo, ByteArray& bytes)
   // Padding check.
   int padding = format.rowPaddingInBytes();
 
-  int startPadding = endByte;
-  std::cout << "Start padding byte: " << startPadding << std::endl;
-  
+  int startPadding = endByte;  
   int endPadding = startPadding + padding;
-  std::cout << "End padding byte: " << endPadding << std::endl;
 
   for (int i = startPadding; i < endPadding; i++)
     EXPECT_EQ(0, bytes[i]);
-
 }
 
 void BitmapWriterTest::compareToColours(ByteArray& bytes)

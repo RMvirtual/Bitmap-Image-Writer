@@ -50,9 +50,9 @@ void BitmapWriterTest::setupPixelArray()
 void BitmapWriterTest::setupColours()
 {
   Bitmaps::Colours colours {"blue", "green", "red"};
-  colours["blue"] = 255;
-  colours["green"] = 255;
   colours["red"] = 100;
+  colours["green"] = 255;
+  colours["blue"] = 255;
 
   this->packet.pixelArray.fill(colours);
   this->colours = colours;
