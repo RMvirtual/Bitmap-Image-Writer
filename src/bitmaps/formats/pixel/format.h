@@ -13,7 +13,7 @@ public:
   PixelFormat();
 
   int bitsPerPixel() const;
-  int pixelSizeInBytes() const;
+  int bytesPerPixel() const;
   std::vector<std::string> colourNames() const;
   Colours colours() const;
 
@@ -22,11 +22,10 @@ public:
 
 private:
   int _bitsPerPixel;
-  int _pixelSizeInBytes;
+  int _bytesPerPixel;
   Colours _colours;
 
-  void processPixelSizeInBytes();
-
+  void calculateBytesPerPixel();
 };}
 
 #endif

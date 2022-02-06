@@ -28,8 +28,8 @@ void Bitmaps::PixelArrayReader::initialise(const ByteArray& bytes)
 
 void Bitmaps::PixelArrayReader::readRowOfPixels(int rowNo)
 {
-  int bytesPerRow = this->format.rowSizeInBytes();
-  int unpaddedBytesPerRow = this->format.unpaddedRowSizeInBytes();
+  int bytesPerRow = this->format.bytesPerRow();
+  int unpaddedBytesPerRow = this->format.bytesPerUnpaddedRow();
 
   int rowStart = rowNo * bytesPerRow;
   int rowEnd = rowStart + unpaddedBytesPerRow;
@@ -40,7 +40,7 @@ void Bitmaps::PixelArrayReader::readRowOfPixels(int rowNo)
 void Bitmaps::PixelArrayReader::readPixels(
   int startIndex, int endIndex, int pixelRowNo)
 {
-  int bytesPerPixel = this->format.pixelSizeInBytes();
+  int bytesPerPixel = this->format.bytesPerPixel();
   int pixelsPerRow = this->format.widthInPixels();
 
   for (int pixelNo = 0; pixelNo < pixelsPerRow; pixelNo++) {
@@ -53,7 +53,7 @@ void Bitmaps::PixelArrayReader::readPixels(
 
 Bitmaps::Colours Bitmaps::PixelArrayReader::readColours(int byteIndex)
 {
-  int bytesPerPixel = this->format.pixelSizeInBytes();
+  int bytesPerPixel = this->format.bytesPerPixel();
   int endIndex = byteIndex + bytesPerPixel;
 
   auto colours = this->format.colours();

@@ -50,7 +50,7 @@ void Bitmaps::PixelArrayByteWriter::write(const Bitmaps::Colours& colours)
 
 void Bitmaps::PixelArrayByteWriter::addRowPadding()
 {
-  auto padding = this->format.rowPaddingInBytes();
+  auto padding = this->format.bytesPaddingPerRow();
 
   for (int byteNo = 0; byteNo < padding; byteNo++)
     this->bytes.add((uint8_t) 0);

@@ -25,9 +25,9 @@ int Bitmaps::PixelFormat::bitsPerPixel() const
   return this->_bitsPerPixel;
 }
 
-int Bitmaps::PixelFormat::pixelSizeInBytes() const
+int Bitmaps::PixelFormat::bytesPerPixel() const
 {
-  return this->_pixelSizeInBytes;
+  return this->_bytesPerPixel;
 }
 
 void Bitmaps::PixelFormat::setColourNames(std::vector<std::string> colourNames)
@@ -38,10 +38,10 @@ void Bitmaps::PixelFormat::setColourNames(std::vector<std::string> colourNames)
 void Bitmaps::PixelFormat::setBitsPerPixel(int bitsPerPixel)
 {
   this->_bitsPerPixel = bitsPerPixel;
-  this->processPixelSizeInBytes();
+  this->calculateBytesPerPixel();
 }
 
-void Bitmaps::PixelFormat::processPixelSizeInBytes()
+void Bitmaps::PixelFormat::calculateBytesPerPixel()
 {
-  this->_pixelSizeInBytes = this->_bitsPerPixel / 8;
+  this->_bytesPerPixel = this->_bitsPerPixel / 8;
 }

@@ -15,15 +15,15 @@ public:
 
   std::string name() const;
   int bitsPerPixel() const;
-  int pixelSizeInBytes() const;
+  int bytesPerPixel() const;
   std::vector<std::string> colourNames() const;
   Colours colours() const;
   int widthInPixels() const;
   int heightInPixels() const;
-  int rowPaddingInBytes() const;
-  int rowSizeInBytes() const;
+  int bytesPaddingPerRow() const;
+  int bytesPerRow() const;
   int arraySizeInBytes() const;
-  int unpaddedRowSizeInBytes() const;
+  int bytesPerUnpaddedRow() const;
   
   void setName(std::string name);
   void setBitsPerPixel(int bitsPerPixel);
@@ -36,11 +36,11 @@ private:
   PixelFormat pixelFormat;
   int _widthInPixels;
   int _heightInPixels;
-  int _rowPaddingInBytes;
-  int _rowSizeInBytes;
+  int _bytesPaddingPerRow;
+  int _bytesPerRow;
 
-  void processRowPaddingInBytes();
-  void processRowSizeInBytes();
+  void calculateRowPadding();
+  void calculateBytesPerRow();
 };}
 
 #endif

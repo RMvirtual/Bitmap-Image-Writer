@@ -32,7 +32,7 @@ TEST_F(BitmapFormatsTest, ShouldGet24BitPerPixelFormat)
 TEST_F(BitmapFormatsTest, ShouldCalculatePixelArrayRowPaddingOverFour)
 {
   this->setupRGBFormat(5, 3);
-  int actualPadding = this->format.rowPaddingInBytes();
+  int actualPadding = this->format.bytesPaddingPerRow();
   int correctPadding = 1;
 
   EXPECT_EQ(correctPadding, actualPadding);
@@ -41,7 +41,7 @@ TEST_F(BitmapFormatsTest, ShouldCalculatePixelArrayRowPaddingOverFour)
 TEST_F(BitmapFormatsTest, ShouldCalculatePixelArrayRowPaddingOnFour)
 {
   this->setupRGBFormat(4, 3);
-  int actualPadding = this->format.rowPaddingInBytes();
+  int actualPadding = this->format.bytesPaddingPerRow();
   int correctPadding = 0;
 
   EXPECT_EQ(correctPadding, actualPadding);
@@ -50,7 +50,7 @@ TEST_F(BitmapFormatsTest, ShouldCalculatePixelArrayRowPaddingOnFour)
 TEST_F(BitmapFormatsTest, ShouldCalculatePixelArrayRowPaddingUnderFour)
 {
   this->setupRGBFormat(2, 1);
-  int actualPadding = this->format.rowPaddingInBytes();
+  int actualPadding = this->format.bytesPaddingPerRow();
   int correctPadding = 2;
 
   EXPECT_EQ(correctPadding, actualPadding);
@@ -59,7 +59,7 @@ TEST_F(BitmapFormatsTest, ShouldCalculatePixelArrayRowPaddingUnderFour)
 TEST_F(BitmapFormatsTest, ShouldCalculatePixelArrayRowSizeInBytes)
 {
   this->setupRGBFormat(6, 2);
-  int actualSize = this->format.rowSizeInBytes();
+  int actualSize = this->format.bytesPerRow();
   int correctSize = 20;
   
   EXPECT_EQ(correctSize, actualSize);

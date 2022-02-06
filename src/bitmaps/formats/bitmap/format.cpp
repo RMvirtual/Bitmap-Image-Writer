@@ -36,29 +36,29 @@ int Bitmaps::Format::bitsPerPixel() const
   return this->pixelFormat.bitsPerPixel();
 }
 
-int Bitmaps::Format::pixelSizeInBytes() const
+int Bitmaps::Format::bytesPerPixel() const
 {
-  return this->pixelFormat.pixelSizeInBytes();
+  return this->pixelFormat.bytesPerPixel();
 }
 
 int Bitmaps::Format::arraySizeInBytes() const
 {  
-  return this->_rowSizeInBytes * this->_heightInPixels;
+  return this->_bytesPerRow * this->_heightInPixels;
 }
 
-int Bitmaps::Format::rowPaddingInBytes() const
+int Bitmaps::Format::bytesPaddingPerRow() const
 {
-  return this->_rowPaddingInBytes;
+  return this->_bytesPaddingPerRow;
 }
 
-int Bitmaps::Format::rowSizeInBytes() const
+int Bitmaps::Format::bytesPerRow() const
 {
-  return this->_rowSizeInBytes;
+  return this->_bytesPerRow;
 }
 
-int Bitmaps::Format::unpaddedRowSizeInBytes() const
+int Bitmaps::Format::bytesPerUnpaddedRow() const
 {  
-  return this->_widthInPixels * this->pixelSizeInBytes();
+  return this->_widthInPixels * this->bytesPerPixel();
 }
 
 void Bitmaps::Format::setName(std::string name)
@@ -79,8 +79,8 @@ void Bitmaps::Format::setColourNames(std::vector<std::string> colourNames)
 void Bitmaps::Format::setWidthInPixels(int width)
 {
   this->_widthInPixels = width;
-  this->processRowPaddingInBytes();
-  this->processRowSizeInBytes();
+  this->calculateRowPadding();
+  this->calculateBytesPerRow();
 }
 
 void Bitmaps::Format::setHeightInPixels(int height)
@@ -88,16 +88,15 @@ void Bitmaps::Format::setHeightInPixels(int height)
   this->_heightInPixels = height;
 }
 
-void Bitmaps::Format::processRowPaddingInBytes()
+void Bitmaps::Format::calculateRowPadding()
 {
-  int differenceInAlignment = this->unpaddedRowSizeInBytes() % 4;
+  int differenceInAlignment = this->bytesPerUnpaddedRow() % 4;
 
-  this->_rowPaddingInBytes = (
+  this->_bytesPaddingPerRow = (
     differenceInAlignment ? 4 - differenceInAlignment : 0);
 }
 
-void Bitmaps::Format::processRowSizeInBytes()
-{  
-  this->_rowSizeInBytes = (
-    this->unpaddedRowSizeInBytes() + this->_rowPaddingInBytes);
+void Bitmaps::Format::calculateBytesPerRow()
+{
+  this->_bytesPerRow = this->bytesPerUnpaddedRow() + this->_bytesPaddingPerRow;
 }

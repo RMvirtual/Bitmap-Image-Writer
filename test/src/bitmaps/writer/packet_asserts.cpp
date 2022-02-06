@@ -56,10 +56,10 @@ void BitmapWriterTest::compareRowOfPixels(int rowNo, ByteArray& bytes)
   auto& pixelArray = this->packet.pixelArray;
   auto format = pixelArray.format();
 
-  int bytesPerPixel = format.pixelSizeInBytes();
-  int unpaddedRowSizeInBytes = format.unpaddedRowSizeInBytes();
+  int bytesPerPixel = format.bytesPerPixel();
+  int unpaddedRowSizeInBytes = format.bytesPerUnpaddedRow();
 
-  int startByte = rowNo * format.rowSizeInBytes();
+  int startByte = rowNo * format.bytesPerRow();
   int endByte = startByte + unpaddedRowSizeInBytes;
 
   for (int byteNo = startByte; byteNo < endByte; byteNo += bytesPerPixel) {
@@ -78,7 +78,7 @@ void BitmapWriterTest::compareRowOfPixels(int rowNo, ByteArray& bytes)
   }
   
   // Padding check.
-  int padding = format.rowPaddingInBytes();
+  int padding = format.bytesPaddingPerRow();
 
   int startPadding = endByte;  
   int endPadding = startPadding + padding;
