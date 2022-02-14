@@ -5,7 +5,7 @@ cc_test(
     size = "small",
     srcs = glob(["*.h", "*.cpp"]),
     deps = [
-        "@com_google_googletest//:gtest_main",
+        "@googletest//:gtest_main",
         "//src/bitmaps/packet:pkg",
     ]
 )

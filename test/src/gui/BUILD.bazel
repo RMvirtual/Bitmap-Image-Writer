@@ -3,10 +3,9 @@ load("@rules_cc//cc:defs.bzl", "cc_test")
 cc_test(
     name = "tests",
     size = "small",
-    srcs = glob(["*.h", "*.cpp"]),
+    srcs = glob(["*.cpp"]),
     deps = [
         "@googletest//:gtest_main",
-        "//src/bitmaps/formats:pkg",
-        "//src/bitmaps/packet/headers:pkg"
-    ]
+        "@wx_widgets//:wx_widgets"
+    ],
 )
