@@ -1,3 +1,1 @@
-: Windows run script.
-
-..\bazel-bin\src\maths\run_me
+bazel run //src/app:main

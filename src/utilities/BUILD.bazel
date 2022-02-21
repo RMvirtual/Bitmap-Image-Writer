@@ -4,7 +4,7 @@ cc_library(
     srcs = glob(["*.cpp"]),
     visibility = ["//visibility:public"],
     deps = [
-        "//lib:json",
+        "//lib/nlohmann:json",
         "//src/containers:pkg"
     ],
     copts = ["/std:c++17"]

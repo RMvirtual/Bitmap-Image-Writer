@@ -14,9 +14,9 @@ cc_library(
     "include/msvc",
   ],
   srcs = glob([
-    "lib/vc_x64_lib/wxbase30u.lib",
-    "lib/vc_x64_lib/wxbase30u_*.lib",
-    "lib/vc_x64_lib/wxmsw30u_*.lib",
+    "lib/vc_x64_lib/wxbase31u.lib",
+    "lib/vc_x64_lib/wxbase31u_*.lib",
+    "lib/vc_x64_lib/wxmsw31u_*.lib",
     "lib/vc_x64_lib/wxexpat.lib",
     "lib/vc_x64_lib/wxjpeg.lib",
     "lib/vc_x64_lib/wxpng.lib",
@@ -26,23 +26,3 @@ cc_library(
     "lib/vc_x64_lib/wxzlib.lib",
   ]),
 )
-
-"""
-cc_library(
-  name = "wx_widgets",
-  srcs = glob(["src/**/*.h"]),
-  hdrs = glob(["include/**/*.h"]),
-  deps = [],
-  visibility = ["//visibility:public"],
-  copts = [
-    "-D__WXMSW__",
-    "-DwxUSE_GUI=1",
-    "-DUNICODE",
-    "-D_UNICODE",
-    "-DWIN32",
-    "-DWINDOWS",
-    "-DWINVER=0x0400",
-    "-D_CRT_SECURE_NO_DEPRECATE",
-    "-D_CRT_NONSTDC_NO_DEPRECATE",
-  ],
-)"""
