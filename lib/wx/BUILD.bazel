@@ -1,0 +1,28 @@
+load("@rules_cc//cc:defs.bzl", "cc_library")
+
+cc_library(
+  name = "wx",
+  visibility = ["//visibility:public"],
+  hdrs = glob([
+    "include/wx/*.h",
+    "include/wx/**/*.h",
+    "include/msvc/wx/*.h",
+    "lib/vc_x64_lib/**/*.h"
+  ]),
+  includes = [
+    "include",
+    "include/msvc",
+  ],
+  srcs = glob([
+    "lib/vc_x64_lib/wxbase31u.lib",
+    "lib/vc_x64_lib/wxbase31u_*.lib",
+    "lib/vc_x64_lib/wxmsw31u_*.lib",
+    "lib/vc_x64_lib/wxexpat.lib",
+    "lib/vc_x64_lib/wxjpeg.lib",
+    "lib/vc_x64_lib/wxpng.lib",
+    "lib/vc_x64_lib/wxregexu.lib",
+    "lib/vc_x64_lib/wxscintilla.lib",
+    "lib/vc_x64_lib/wxtiff.lib",
+    "lib/vc_x64_lib/wxzlib.lib",
+  ]),
+)

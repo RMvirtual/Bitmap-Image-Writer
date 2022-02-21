@@ -1,0 +1,5 @@
+﻿  regcomp.c
+  regerror.c
+  regexec.c
+  regfree.c
+  wx_wxregex.vcxproj -> C:\wxWidgets-3.0.5\lib\vc_dll\wxregexud.lib

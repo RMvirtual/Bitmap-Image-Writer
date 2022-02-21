@@ -1,0 +1,11 @@
+﻿  dummy.cpp
+  advprops.cpp
+  editors.cpp
+  manager.cpp
+  property.cpp
+  propgrid.cpp
+  propgridiface.cpp
+  propgridpagestate.cpp
+  props.cpp
+     Creating library ..\..\lib\vc_dll\wxmsw31u_propgrid.lib and object ..\..\lib\vc_dll\wxmsw31u_propgrid.exp
+  wx_propgrid.vcxproj -> C:\wxWidgets-3.0.5\lib\vc_dll\wxmsw315u_propgrid_vc_custom.dll

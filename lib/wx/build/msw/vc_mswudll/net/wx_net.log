@@ -1,0 +1,18 @@
+﻿  dummy.cpp
+  fs_inet.cpp
+  ftp.cpp
+  http.cpp
+  protocol.cpp
+  sckaddr.cpp
+  sckfile.cpp
+  sckipc.cpp
+  sckstrm.cpp
+  socket.cpp
+  url.cpp
+  sockmsw.cpp
+  urlmsw.cpp
+  webrequest.cpp
+  webrequest_winhttp.cpp
+  webrequest_curl.cpp
+     Creating library ..\..\lib\vc_dll\wxbase31u_net.lib and object ..\..\lib\vc_dll\wxbase31u_net.exp
+  wx_net.vcxproj -> C:\wxWidgets-3.0.5\lib\vc_dll\wxbase315u_net_vc_custom.dll

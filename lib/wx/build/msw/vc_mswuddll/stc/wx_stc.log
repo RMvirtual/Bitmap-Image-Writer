@@ -1,0 +1,6 @@
+﻿  dummy.cpp
+  PlatWX.cpp
+  ScintillaWX.cpp
+  stc.cpp
+     Creating library ..\..\lib\vc_dll\wxmsw31ud_stc.lib and object ..\..\lib\vc_dll\wxmsw31ud_stc.exp
+  wx_stc.vcxproj -> C:\wxWidgets-3.0.5\lib\vc_dll\wxmsw315ud_stc_vc_custom.dll

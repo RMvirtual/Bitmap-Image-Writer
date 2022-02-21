@@ -1,0 +1,14 @@
+﻿  dummy.cpp
+  art_aui.cpp
+  art_internal.cpp
+  art_msw.cpp
+  bar.cpp
+  buttonbar.cpp
+  control.cpp
+  gallery.cpp
+  page.cpp
+  panel.cpp
+  toolbar.cpp
+  xh_ribbon.cpp
+     Creating library ..\..\lib\vc_dll\wxmsw31ud_ribbon.lib and object ..\..\lib\vc_dll\wxmsw31ud_ribbon.exp
+  wx_ribbon.vcxproj -> C:\wxWidgets-3.0.5\lib\vc_dll\wxmsw315ud_ribbon_vc_custom.dll

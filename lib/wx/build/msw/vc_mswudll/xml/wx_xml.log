@@ -1,0 +1,5 @@
+﻿  dummy.cpp
+  xtixml.cpp
+  xml.cpp
+     Creating library ..\..\lib\vc_dll\wxbase31u_xml.lib and object ..\..\lib\vc_dll\wxbase31u_xml.exp
+  wx_xml.vcxproj -> C:\wxWidgets-3.0.5\lib\vc_dll\wxbase315u_xml_vc_custom.dll

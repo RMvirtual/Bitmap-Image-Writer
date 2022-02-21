@@ -1,0 +1,7 @@
+﻿  dummy.cpp
+  mediactrlcmn.cpp
+  mediactrl_am.cpp
+  mediactrl_qt.cpp
+  mediactrl_wmp10.cpp
+     Creating library ..\..\lib\vc_dll\wxmsw31u_media.lib and object ..\..\lib\vc_dll\wxmsw31u_media.exp
+  wx_media.vcxproj -> C:\wxWidgets-3.0.5\lib\vc_dll\wxmsw315u_media_vc_custom.dll

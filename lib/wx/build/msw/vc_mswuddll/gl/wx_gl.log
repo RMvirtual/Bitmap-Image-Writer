@@ -1,0 +1,5 @@
+﻿  dummy.cpp
+  glcmn.cpp
+  glcanvas.cpp
+     Creating library ..\..\lib\vc_dll\wxmsw31ud_gl.lib and object ..\..\lib\vc_dll\wxmsw31ud_gl.exp
+  wx_gl.vcxproj -> C:\wxWidgets-3.0.5\lib\vc_dll\wxmsw315ud_gl_vc_custom.dll

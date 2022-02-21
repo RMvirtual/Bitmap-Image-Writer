@@ -1,0 +1,5 @@
+﻿  dummy.cpp
+  debugrpt.cpp
+  dbgrptg.cpp
+     Creating library ..\..\lib\vc_dll\wxmsw31u_qa.lib and object ..\..\lib\vc_dll\wxmsw31u_qa.exp
+  wx_qa.vcxproj -> C:\wxWidgets-3.0.5\lib\vc_dll\wxmsw315u_qa_vc_custom.dll

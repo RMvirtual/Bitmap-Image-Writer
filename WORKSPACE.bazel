@@ -6,11 +6,3 @@ http_archive(
   strip_prefix = "googletest-main",
   sha256 = "899fdce560ec636923e1b1d6d60df45fcdc5c1132db3389511d96db2cf0226ff",
 )
-
-http_archive(
-  name = "wx_widgets",
-  urls = ["https://github.com/wxWidgets/wxWidgets/releases/download/v3.1.5/wxWidgets-3.1.5.zip"],
-  strip_prefix = "",
-  sha256 = "bc5b81a54208c8d7f11a19e9641ea12b870ae473ec5f5a99fd9df57c0558e4a3",
-  build_file = "//lib:wx_widgets.BUILD"
-)
