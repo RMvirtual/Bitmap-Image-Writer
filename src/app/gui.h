@@ -12,6 +12,4 @@ public:
 	~GUIApp();
 
 	virtual bool OnInit() override;
-
-	wxFrame* window;
 };

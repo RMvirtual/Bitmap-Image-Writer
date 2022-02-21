@@ -6,6 +6,6 @@
 TEST(GuiTest, ShouldGetWxWidget)
 {
   GUIApp app {};
-  app.OnInit();
+  bool me = app.OnInit();
   EXPECT_TRUE(true);
 }

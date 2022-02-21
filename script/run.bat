@@ -1,1 +1,1 @@
-bazel run //src/app:main
+bazel run //src/app:gui
