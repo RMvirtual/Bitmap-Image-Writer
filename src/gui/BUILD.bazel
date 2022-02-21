@@ -1,3 +1,6 @@
+load("@rules_cc//cc:defs.bzl", "cc_library")
+load("//build-config:wx_compiler.bzl", "WX_COMPILER_OPTIONS")
+
 cc_library(
     name = "pkg",
     hdrs = glob(["*.h"]),
@@ -6,15 +9,5 @@ cc_library(
     deps = [
         "//lib/wx:wx"
     ],
-    copts = [
-        "-D__WXMSW__",
-        "-DwxUSE_GUI=1",
-        "-DUNICODE",
-        "-D_UNICODE",
-        "-DWIN64",
-        "-DWINDOWS",
-        "-DWINVER=0x0500",
-        "-D_CRT_SECURE_NO_DEPRECATE",
-        "-D_CRT_NONSTDC_NO_DEPRECATE",
-    ],
+    copts = WX_COMPILER_OPTIONS
 )
