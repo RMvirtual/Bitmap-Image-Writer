@@ -1,1 +1,1 @@
-bazel build //src/app:gui
+bazel build //src/app:main

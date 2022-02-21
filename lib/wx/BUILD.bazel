@@ -1,4 +1,5 @@
 load("@rules_cc//cc:defs.bzl", "cc_library")
+load("//build-config:wx_compiler.bzl", "WX_COMPILER_OPTIONS")
 
 cc_library(
   name = "wx",
@@ -7,22 +8,23 @@ cc_library(
     "include/wx/*.h",
     "include/wx/**/*.h",
     "include/msvc/wx/*.h",
-    "lib/vc_x64_lib/**/*.h"
+    "lib/vc14x_x64_dll/**/*.h"
   ]),
   includes = [
     "include",
     "include/msvc",
   ],
   srcs = glob([
-    "lib/vc_x64_lib/wxbase31u.lib",
-    "lib/vc_x64_lib/wxbase31u_*.lib",
-    "lib/vc_x64_lib/wxmsw31u_*.lib",
-    "lib/vc_x64_lib/wxexpat.lib",
-    "lib/vc_x64_lib/wxjpeg.lib",
-    "lib/vc_x64_lib/wxpng.lib",
-    "lib/vc_x64_lib/wxregexu.lib",
-    "lib/vc_x64_lib/wxscintilla.lib",
-    "lib/vc_x64_lib/wxtiff.lib",
-    "lib/vc_x64_lib/wxzlib.lib",
+    "lib/vc14x_x64_dll/wxbase31u.lib",
+    "lib/vc14x_x64_dll/wxbase31u_*.lib",
+    "lib/vc14x_x64_dll/wxmsw31u_*.lib",
+    "lib/vc14x_x64_dll/wxexpat.lib",
+    "lib/vc14x_x64_dll/wxjpeg.lib",
+    "lib/vc14x_x64_dll/wxpng.lib",
+    "lib/vc14x_x64_dll/wxregexu.lib",
+    "lib/vc14x_x64_dll/wxscintilla.lib",
+    "lib/vc14x_x64_dll/wxtiff.lib",
+    "lib/vc14x_x64_dll/wxzlib.lib",
   ]),
+  copts = WX_COMPILER_OPTIONS
 )

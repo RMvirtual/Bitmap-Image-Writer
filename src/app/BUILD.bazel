@@ -8,11 +8,3 @@ cc_binary(
   visibility = ["//visibility:public"],
   copts = WX_COMPILER_OPTIONS
 )
-
-cc_binary(
-  name = "gui",
-  srcs = ["gui.cpp", "gui.h"],
-  deps = ["//lib/wx:wx"],
-  visibility = ["//visibility:public"],
-  copts = WX_COMPILER_OPTIONS
-)
