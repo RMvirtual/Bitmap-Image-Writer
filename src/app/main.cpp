@@ -5,7 +5,7 @@
 
 int main() {
     GUIApp app {};
-
+    app.OnInit();
     std::cout << "Hello World!";
     return 0;
 }
