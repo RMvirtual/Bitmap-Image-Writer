@@ -3,6 +3,17 @@ load("@rules_cc//cc:defs.bzl", "cc_binary")
 cc_binary(
   name = "main",
   srcs = ["main.cpp"],
-  deps = [],
+  deps = ["//src/gui:pkg"],
   visibility = ["//visibility:public"],
+  copts = [
+    "-D__WXMSW__",
+    "-DwxUSE_GUI=1",
+    "-DUNICODE",
+    "-D_UNICODE",
+    "-DWIN32",
+    "-DWINDOWS",
+    "-DWINVER=0x500",
+    "-D_CRT_SECURE_NO_DEPRECATE",
+    "-D_CRT_NONSTDC_NO_DEPRECATE",
+  ],
 )
