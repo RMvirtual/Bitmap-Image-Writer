@@ -8,6 +8,8 @@
 // Licence:     wxWindows licence
 /////////////////////////////////////////////////////////////////////////////
 
+#define wxMSVC_VERSION_ABI_COMPAT
+
 #ifndef _MSC_VER
     #error "This file should only be included when using Microsoft Visual C++"
 #endif
@@ -22,6 +24,7 @@
 // notice that wxSUFFIX_DEBUG is a string but wxSUFFIX itself must be an
 // identifier as string concatenation is not done inside #include where we
 // need it
+
 #ifdef _DEBUG
     #define wxSUFFIX_DEBUG "d"
     #ifdef _UNICODE
@@ -51,6 +54,7 @@
 // them, but this is not how wxMSVC_VERSION_AUTO behaves by default, so you
 // need to additionally define wxMSVC_VERSION_ABI_COMPAT to opt in into using
 // this "vc14x" prefix.
+
 #ifdef wxMSVC_VERSION
     #define wxCOMPILER_PREFIX wxCONCAT(vc, wxMSVC_VERSION)
 #elif defined(wxMSVC_VERSION_AUTO) || defined(wxMSVC_VERSION_ABI_COMPAT)
@@ -105,16 +109,14 @@
     #define wxCFG
 #endif
 
-#define WXUSINGDLL // MANUALLY ENFORCED THE DLL.
-
 // Construct the path for the subdirectory under /lib/ that the included setup.h
 // will be used from
 #ifdef WXUSINGDLL
     #define wxLIB_SUBDIR \
-           wxCONCAT4(vc14x, wxARCH_SUFFIX, _dll, wxCFG) // !Ryan edit here! wxCONCAT4(wxCOMPILER_PREFIX, wxARCH_SUFFIX, _dll, wxCFG)
+        wxCONCAT4(wxCOMPILER_PREFIX, wxARCH_SUFFIX, _dll, wxCFG)
 #else // !DLL
     #define wxLIB_SUBDIR \
-        wxCONCAT4(vc14x, wxARCH_SUFFIX, _dll, wxCFG) // !Ryan edit here! wxCONCAT4(wxCOMPILER_PREFIX, wxARCH_SUFFIX, _lib, wxCFG)
+        wxCONCAT4(wxCOMPILER_PREFIX, wxARCH_SUFFIX, _lib, wxCFG)
 #endif // DLL/!DLL
 
 // The user can predefine a different prefix if not using the default MSW port

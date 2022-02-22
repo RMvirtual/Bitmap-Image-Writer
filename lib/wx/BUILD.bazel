@@ -6,9 +6,10 @@ cc_library(
   visibility = ["//visibility:public"],
   hdrs = glob([
     "include/wx/*.h",
-    "include/wx/**/*.h",
+    "include/wx/**/*.h",    
     "include/msvc/wx/*.h",
-    "lib/vc14x_x64_dll/**/*.h"
+    "lib/vc14x_x64_dll/**/*.h",
+    "lib/vc14x_x64_dll/mswud/wx/setup.h",
   ]),
   includes = [
     "include",
