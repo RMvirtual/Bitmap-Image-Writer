@@ -15,16 +15,8 @@ cc_library(
     "include/msvc",
   ],
   srcs = glob([
-    "lib/vc14x_x64_dll/wxbase31u.lib",
-    "lib/vc14x_x64_dll/wxbase31u_*.lib",
-    "lib/vc14x_x64_dll/wxmsw31u_*.lib",
-    "lib/vc14x_x64_dll/wxexpat.lib",
-    "lib/vc14x_x64_dll/wxjpeg.lib",
-    "lib/vc14x_x64_dll/wxpng.lib",
-    "lib/vc14x_x64_dll/wxregexu.lib",
-    "lib/vc14x_x64_dll/wxscintilla.lib",
-    "lib/vc14x_x64_dll/wxtiff.lib",
-    "lib/vc14x_x64_dll/wxzlib.lib",
+    "lib/vc14x_x64_dll/*.dll",
+    "lib/vc14x_x64_dll/*.lib",    
   ]),
   copts = WX_COMPILER_OPTIONS
 )

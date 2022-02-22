@@ -105,14 +105,16 @@
     #define wxCFG
 #endif
 
+#define WXUSINGDLL // MANUALLY ENFORCED THE DLL.
+
 // Construct the path for the subdirectory under /lib/ that the included setup.h
 // will be used from
 #ifdef WXUSINGDLL
     #define wxLIB_SUBDIR \
-        wxCONCAT4(wxCOMPILER_PREFIX, wxARCH_SUFFIX, _dll, wxCFG)
+           wxCONCAT4(vc14x, wxARCH_SUFFIX, _dll, wxCFG) // !Ryan edit here! wxCONCAT4(wxCOMPILER_PREFIX, wxARCH_SUFFIX, _dll, wxCFG)
 #else // !DLL
     #define wxLIB_SUBDIR \
-        wxCONCAT4(wxCOMPILER_PREFIX, wxARCH_SUFFIX, _lib, wxCFG)
+        wxCONCAT4(vc14x, wxARCH_SUFFIX, _dll, wxCFG) // !Ryan edit here! wxCONCAT4(wxCOMPILER_PREFIX, wxARCH_SUFFIX, _lib, wxCFG)
 #endif // DLL/!DLL
 
 // The user can predefine a different prefix if not using the default MSW port
@@ -138,7 +140,6 @@
 #define wxSETUPH_PATH_STR wxSTRINGIZE(wxSETUPH_PATH)
 
 #include wxSETUPH_PATH_STR
-
 
 // the library names depend on the build, these macro builds the correct
 // library name for the given base name
