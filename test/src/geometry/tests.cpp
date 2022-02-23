@@ -12,3 +12,15 @@ TEST(GeometryTest, ShouldCalculateLineGradientAsOne)
 
   EXPECT_EQ(correctGradient, gradient);
 }
+
+TEST(GeometryTest, ShouldCalculateLineGradientAs0_6)
+{
+  Geometry::GradientCalculator calculator;
+  float x = 5;
+  float y = 3;
+
+  auto gradient = calculator.fromOrigin(x, y);
+  float correctGradient = 0.6;
+
+  EXPECT_EQ(correctGradient, gradient);
+}
