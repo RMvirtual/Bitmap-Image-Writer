@@ -1,4 +1,4 @@
-#include "src/main/cpp/maths/binary-ops/binary_ops.h";
+#include "src/main/cpp/maths/binary-ops/binary_ops.h"
 
 double Maths::Addition::perform(double left, double right)
 {

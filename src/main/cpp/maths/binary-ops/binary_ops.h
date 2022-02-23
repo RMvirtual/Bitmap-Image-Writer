@@ -1,12 +1,11 @@
-#ifndef BINARY_OPS_H
-#define BINARY_OPS_H
+#pragma once
 
 namespace Maths{
 class BinaryOperation
 {
   public:
     BinaryOperation();
-    virtual double perform(double left, double right) = 0;
+    virtual double perform(double left, double right)=0;
 };
 
 class Addition : public BinaryOperation
@@ -36,5 +35,3 @@ class Division : public BinaryOperation
     Division();
     double perform(double left, double right);
 };}
-
-#endif
