@@ -1,0 +1,7 @@
+cc_library(
+    name = "geometry",
+    hdrs = glob(["*.h"]),
+    srcs = glob(["*.cpp"]),
+    visibility = ["//visibility:public"],
+    deps = []
+)
