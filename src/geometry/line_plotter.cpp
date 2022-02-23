@@ -10,5 +10,5 @@ std::vector<std::pair<int,int>> Geometry::LinePlotter::plotPoints(
 {
   std::vector<std::pair<int,int>> plotPoints {};
 
-  
+  return {};
 }
