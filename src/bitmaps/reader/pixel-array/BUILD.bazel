@@ -1,11 +1,11 @@
 cc_library(
-    name = "pkg",
+    name = "pixel-array",
     hdrs = glob(["*.h"]),
     srcs = glob(["*.cpp"]),
     deps = [
-        "//src/containers:pkg",
-        "//src/files:pkg",
-        "//src/bitmaps/packet:pkg"
+        "//src/containers",
+        "//src/files",
+        "//src/bitmaps/packet"
     ],
     visibility = ["//visibility:public"],
     copts = ["/std:c++17"]

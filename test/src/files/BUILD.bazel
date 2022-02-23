@@ -6,7 +6,7 @@ cc_test(
     srcs = glob(["*.cpp"]),
     deps = [
         "@googletest//:gtest_main",
-        "//src/files:pkg",
-        "//src/utilities:pkg"
+        "//src/files",
+        "//src/utilities"
     ],
 )

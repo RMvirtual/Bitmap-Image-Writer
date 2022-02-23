@@ -1,11 +1,11 @@
 cc_library(
-    name = "pkg",
+    name = "utilities",
     hdrs = glob(["*.h"]),
     srcs = glob(["*.cpp"]),
     visibility = ["//visibility:public"],
     deps = [
         "//lib/nlohmann:json",
-        "//src/containers:pkg"
+        "//src/containers"
     ],
     copts = ["/std:c++17"]
 )

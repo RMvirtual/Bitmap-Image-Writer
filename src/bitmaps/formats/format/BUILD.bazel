@@ -1,9 +1,9 @@
 cc_library(
-    name = "pkg",
+    name = "format",
     hdrs = glob(["*.h",]),
     srcs = glob(["*.cpp"]),
     deps = [
-        "//src/bitmaps/formats/pixel:pkg"
+        "//src/bitmaps/formats/pixel"
     ],
     visibility = ["//visibility:public"],
     copts = ["/std:c++17"]

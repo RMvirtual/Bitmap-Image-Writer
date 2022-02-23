@@ -1,5 +1,5 @@
 cc_library(
-    name = "pkg",
+    name = "byte-array",
     hdrs = glob(["*.h"]),
     srcs = glob(["*.cpp"]),
     visibility = ["//visibility:public"],

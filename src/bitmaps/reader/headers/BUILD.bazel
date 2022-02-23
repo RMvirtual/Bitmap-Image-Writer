@@ -1,11 +1,11 @@
 cc_library(
-    name = "pkg",
+    name = "headers",
     hdrs = glob(["*.h"]),
     srcs = glob(["*.cpp"]),
     deps = [
-        "//src/containers:pkg",
-        "//src/bitmaps/packet:pkg",
-        "//src/utilities:pkg"
+        "//src/containers",
+        "//src/bitmaps/packet",
+        "//src/utilities"
     ],
     visibility = ["//visibility:public"],
     copts = ["/std:c++17"]

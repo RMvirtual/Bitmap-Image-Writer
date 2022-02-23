@@ -1,5 +1,5 @@
 cc_library(
-    name = "pkg",
+    name = "headers",
     hdrs = [
         "file-header/header.h",
         "file-header/values.h",
@@ -12,8 +12,8 @@ cc_library(
         "dib-header/header.cpp"
     ],
     deps = [
-        "//src/bitmaps/formats:pkg",
-        "//src/containers:pkg"
+        "//src/bitmaps/formats",
+        "//src/containers"
     ],
     visibility = ["//visibility:public"],
     copts = ["/std:c++17"]
