@@ -1,9 +1,0 @@
-cc_library(
-    name = "files",
-    hdrs = glob(["*.h"]),
-    srcs = glob(["*.cpp"]),
-    visibility = ["//visibility:public"],
-    deps = [
-        "//src/main/utilities"
-    ]
-)

@@ -1,0 +1,12 @@
+load("@rules_cc//cc:defs.bzl", "cc_test")
+
+cc_test(
+    name = "formats",
+    size = "small",
+    srcs = glob(["*.h", "*.cpp"]),
+    deps = [
+        "@googletest//:gtest_main",
+        "//src/main/cpp/bitmaps/formats",
+        "//src/main/cpp/bitmaps/packet/headers"
+    ]
+)

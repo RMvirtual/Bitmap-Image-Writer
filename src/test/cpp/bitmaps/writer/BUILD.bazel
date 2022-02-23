@@ -1,0 +1,12 @@
+load("@rules_cc//cc:defs.bzl", "cc_test")
+
+cc_test(
+    name = "writer",
+    size = "small",
+    srcs = glob(["*.h", "*.cpp"]),
+    deps = [
+        "@googletest//:gtest_main",
+        "//src/main/cpp/bitmaps/writer",
+        "//src/main/cpp/bitmaps/reader",
+    ]
+)

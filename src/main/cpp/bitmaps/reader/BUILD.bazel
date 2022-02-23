@@ -1,0 +1,8 @@
+cc_library(
+    name = "reader",
+    hdrs = glob(["*.h"]),
+    srcs = glob(["*.cpp"]),
+    deps = ["//src/main/cpp/bitmaps/reader/image"],
+    visibility = ["//visibility:public"],
+    copts = ["/std:c++17"]
+)

@@ -1,0 +1,11 @@
+cc_library(
+    name = "dib-header",
+    hdrs = glob(["*.h"]),
+    srcs = glob(["*.cpp"]),
+    deps = [
+        "//src/main/cpp/containers",
+        "//src/main/cpp/bitmaps/packet"
+    ],
+    visibility = ["//visibility:public"],
+    copts = ["/std:c++17"]
+)
