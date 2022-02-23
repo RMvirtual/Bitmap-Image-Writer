@@ -14,7 +14,7 @@ float Geometry::GradientCalculator::gradient(
   return yChange / xChange;
 }
 
-float Geometry::GradientCalculator::fromZero(double x, double y)
+float Geometry::GradientCalculator::fromOriginZero(double x, double y)
 {
   return y / x;
 }

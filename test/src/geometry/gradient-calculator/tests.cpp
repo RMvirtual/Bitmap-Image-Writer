@@ -1,7 +1,7 @@
 #include <utility>
 
 #include "gtest/gtest.h"
-#include "test/src/geometry/fixture.h"
+#include "test/src/geometry/gradient-calculator/fixture.h"
 
 TEST_F(GradientCalculatorTest,
   ShouldCalculateLineGradientFromZeroXEqualToY)
@@ -9,7 +9,7 @@ TEST_F(GradientCalculatorTest,
   float x = 5;
   float y = 5;
 
-  auto gradient = this->calculator.fromZero(x, y);
+  auto gradient = this->calculator.fromOriginZero(x, y);
   float correctGradient = 1;
 
   EXPECT_EQ(correctGradient, gradient);
@@ -21,7 +21,7 @@ TEST_F(
   float x = 5;
   float y = 3;
 
-  auto gradient = this->calculator.fromZero(x, y);
+  auto gradient = this->calculator.fromOriginZero(x, y);
   float correctGradient = 0.6;
 
   EXPECT_EQ(correctGradient, gradient);
@@ -33,7 +33,7 @@ TEST_F(
   float x = 5;
   float y = 8;
 
-  auto gradient = this->calculator.fromZero(x, y);
+  auto gradient = this->calculator.fromOriginZero(x, y);
   float correctGradient = 1.6;
 
   EXPECT_EQ(correctGradient, gradient);
