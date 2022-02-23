@@ -1,37 +1,34 @@
 #include "gtest/gtest.h"
-#include "src/geometry/line.h"
+#include "test/src/geometry/fixture.h"
 
-TEST(GeometryTest, ShouldCalculateLineGradientAsOne)
+TEST_F(GradientCalculatorTest, ShouldCalculateLineGradientAsOne)
 {
-  Geometry::GradientCalculator calculator;
   float x = 5;
   float y = 5;
 
-  auto gradient = calculator.fromOrigin(x, y);
+  auto gradient = this->calculator.fromOrigin(x, y);
   float correctGradient = 1;
 
   EXPECT_EQ(correctGradient, gradient);
 }
 
-TEST(GeometryTest, ShouldCalculateLineGradientAs0_6)
+TEST_F(GradientCalculatorTest, ShouldCalculateLineGradientAs0_6)
 {
-  Geometry::GradientCalculator calculator;
   float x = 5;
   float y = 3;
 
-  auto gradient = calculator.fromOrigin(x, y);
+  auto gradient = this->calculator.fromOrigin(x, y);
   float correctGradient = 0.6;
 
   EXPECT_EQ(correctGradient, gradient);
 }
 
-TEST(GeometryTest, ShouldCalculateLineGradientAs1_6)
+TEST_F(GradientCalculatorTest, ShouldCalculateLineGradientAs1_6)
 {
-  Geometry::GradientCalculator calculator;
   float x = 5;
   float y = 8;
 
-  auto gradient = calculator.fromOrigin(x, y);
+  auto gradient = this->calculator.fromOrigin(x, y);
   float correctGradient = 1.6;
 
   EXPECT_EQ(correctGradient, gradient);
