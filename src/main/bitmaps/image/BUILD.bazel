@@ -1,0 +1,14 @@
+cc_library(
+    name = "image",
+    hdrs = glob(["*.h",]),
+    srcs = glob(["*.cpp"]),
+    deps = [
+        "//src/main/containers",
+        "//src/main/files",
+        "//src/main/utilities",
+        "//src/main/bitmaps/packet",
+        "//src/main/bitmaps/formats",
+    ],
+    visibility = ["//visibility:public"],
+    copts = ["/std:c++17"]
+)

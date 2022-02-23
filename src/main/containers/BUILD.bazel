@@ -1,0 +1,11 @@
+cc_library(
+    name = "containers",
+    hdrs = ["index.h"],
+    srcs = [],
+    visibility = ["//visibility:public"],
+    copts = ["/std:c++17"],
+    deps = [
+        "//src/main/containers/byte-array",
+        "//src/main/containers/matrix-2d"
+    ]
+)

@@ -1,0 +1,11 @@
+cc_library(
+    name = "maths",
+    hdrs = [],
+    srcs = [],
+    visibility = ["//visibility:public"],
+    deps = [
+        "//src/main/maths/binary-ops",
+        "//src/main/maths/vector",
+        "//src/main/maths/matrix"
+    ]
+)

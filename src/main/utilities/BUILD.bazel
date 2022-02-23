@@ -1,0 +1,11 @@
+cc_library(
+    name = "utilities",
+    hdrs = glob(["*.h"]),
+    srcs = glob(["*.cpp"]),
+    visibility = ["//visibility:public"],
+    deps = [
+        "//lib/nlohmann:json",
+        "//src/main/containers"
+    ],
+    copts = ["/std:c++17"]
+)

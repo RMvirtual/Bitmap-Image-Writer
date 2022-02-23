@@ -1,0 +1,9 @@
+cc_library(
+    name = "vector",
+    hdrs = glob(["*.h"]),
+    srcs = glob(["*.cpp"]),
+    visibility = ["//visibility:public"],
+    deps = [
+        "//src/main/maths/binary-ops"
+    ]
+)
