@@ -1,7 +1,2 @@
-cd ..
-
-git add *
-git commit -m %1
+call commit_to_git.bat %1
 git push
-
-cd script
