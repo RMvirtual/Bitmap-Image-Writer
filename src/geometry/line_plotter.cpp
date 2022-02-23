@@ -23,10 +23,10 @@ std::vector<std::pair<int,int>> Geometry::LinePlotter::plotPoints(
   GradientCalculator gradientCalculator;
   auto run = gradientCalculator.run({0, 0}, destination);
   auto rise = gradientCalculator.rise({0, 0}, destination);
-  double yChange = 1;
+  double yIntercept = 1;
 
   if (rise < 0) {
-    yChange = -1;
+    yIntercept = -1;
     rise = std::abs(rise);
   }
 
@@ -40,7 +40,7 @@ std::vector<std::pair<int,int>> Geometry::LinePlotter::plotPoints(
     std::cout << "d: " << d << std::endl;
 
     if (d > 0) {
-      y += yChange;
+      y += yIntercept;
       d -= 2 * run;
     }
 
