@@ -6,3 +6,17 @@ http_archive(
   strip_prefix = "googletest-main",
   sha256 = "899fdce560ec636923e1b1d6d60df45fcdc5c1132db3389511d96db2cf0226ff",
 )
+
+http_archive(
+    name = "rules_python",
+    sha256 = "a30abdfc7126d497a7698c29c46ea9901c6392d6ed315171a6df5ce433aa4502",
+    strip_prefix = "rules_python-0.6.0",
+    url = "https://github.com/bazelbuild/rules_python/archive/0.6.0.tar.gz",
+)
+
+load("@rules_python//python:pip.bzl", "pip_install")
+
+pip_install(
+   name = "my_deps",
+   requirements = "//build-config:python_imports.txt",
+)
