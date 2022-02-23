@@ -1,9 +1,9 @@
 test_suite(
-    name = "tests",
+    name = "bitmaps",
     tests = [
-        "//test/src/bitmaps/formats:tests",
-        "//test/src/bitmaps/packet:tests",
-        "//test/src/bitmaps/reader:tests",
-        "//test/src/bitmaps/writer:tests",
+        "//test/src/bitmaps/formats",
+        "//test/src/bitmaps/packet",
+        "//test/src/bitmaps/reader",
+        "//test/src/bitmaps/writer",
     ]
 )

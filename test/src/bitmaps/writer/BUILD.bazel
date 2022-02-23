@@ -1,7 +1,7 @@
 load("@rules_cc//cc:defs.bzl", "cc_test")
 
 cc_test(
-    name = "tests",
+    name = "writer",
     size = "small",
     srcs = glob(["*.h", "*.cpp"]),
     deps = [
