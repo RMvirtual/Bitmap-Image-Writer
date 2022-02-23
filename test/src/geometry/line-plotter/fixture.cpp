@@ -2,7 +2,7 @@
 
 LinePlotterTest::LinePlotterTest()
 {
-
+  this->setupCorrectPlotPoints();
 }
 
 LinePlotterTest::~LinePlotterTest()

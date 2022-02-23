@@ -11,4 +11,8 @@ public:
 
 protected:
   Geometry::LinePlotter plotter;
+  std::vector<std::pair<int,int>> correctPlotPoints;
+
+  void setupCorrectPlotPoints();
+  void compare(std::vector<std::pair<int,int>> plotPoints);
 };

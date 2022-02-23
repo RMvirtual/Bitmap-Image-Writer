@@ -11,6 +11,4 @@ public:
 
   std::vector<std::pair<int,int>> plotPoints(
     std::pair<double,double> destination);
-  
-  
 };}

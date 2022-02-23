@@ -5,5 +5,7 @@
 
 TEST_F(LinePlotterTest, ShouldPlotLinePoints)
 {
-  EXPECT_TRUE(false);
+  std::pair<double, double> destination {11, 5};
+  auto plotPoints = this->plotter.plotPoints(destination);
+  this->compare(plotPoints);
 }
