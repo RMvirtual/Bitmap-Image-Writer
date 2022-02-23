@@ -8,8 +8,15 @@ class GradientCalculator
 public:
   GradientCalculator();
   
-  float gradient(
+  double gradient(
     std::pair<double,double> origin, std::pair<double,double> destination);
 
-  float fromOriginZero(double x, double y);
+  double fromOriginZero(double x, double y);
+
+  double rise(
+    std::pair<double,double> origin, std::pair<double,double> destination);
+
+  double run(
+    std::pair<double,double> origin, std::pair<double,double> destination);
+
 };}

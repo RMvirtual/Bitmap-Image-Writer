@@ -6,11 +6,11 @@
 TEST_F(GradientCalculatorTest,
   ShouldCalculateLineGradientFromZeroXEqualToY)
 {
-  float x = 5;
-  float y = 5;
+  double x = 5;
+  double y = 5;
 
   auto gradient = this->calculator.fromOriginZero(x, y);
-  float correctGradient = 1;
+  double correctGradient = 1;
 
   EXPECT_EQ(correctGradient, gradient);
 }
@@ -18,11 +18,11 @@ TEST_F(GradientCalculatorTest,
 TEST_F(
   GradientCalculatorTest, ShouldCalculateLineGradientFromZeroXGreaterThanY)
 {
-  float x = 5;
-  float y = 3;
+  double x = 5;
+  double y = 3;
 
   auto gradient = this->calculator.fromOriginZero(x, y);
-  float correctGradient = 0.6;
+  double correctGradient = 0.6;
 
   EXPECT_EQ(correctGradient, gradient);
 }
@@ -30,11 +30,11 @@ TEST_F(
 TEST_F(
   GradientCalculatorTest, ShouldCalculateLineGradientFromZeroXLessThanY)
 {
-  float x = 5;
-  float y = 8;
+  double x = 5;
+  double y = 8;
 
   auto gradient = this->calculator.fromOriginZero(x, y);
-  float correctGradient = 1.6;
+  double correctGradient = 1.6;
 
   EXPECT_EQ(correctGradient, gradient);
 }
@@ -46,7 +46,7 @@ TEST_F(
   std::pair<double,double> destination {4, 5};
 
   auto gradient = this->calculator.gradient(origin, destination);
-  float correctGradient = 1;
+  double correctGradient = 1;
 
   EXPECT_EQ(correctGradient, gradient);
 }
@@ -58,7 +58,7 @@ TEST_F(
   std::pair<double,double> destination {2, 5};
 
   auto gradient = this->calculator.gradient(origin, destination);
-  float correctGradient = 3;
+  double correctGradient = 3;
 
   EXPECT_EQ(correctGradient, gradient);
 }
@@ -71,7 +71,7 @@ TEST_F(
   std::pair<double,double> destination {5, 3};
 
   auto gradient = this->calculator.gradient(origin, destination);
-  float correctGradient = 0.25;
+  double correctGradient = 0.25;
 
   EXPECT_EQ(correctGradient, gradient);
 }

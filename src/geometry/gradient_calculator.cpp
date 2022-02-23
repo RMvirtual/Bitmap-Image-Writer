@@ -5,16 +5,30 @@ Geometry::GradientCalculator::GradientCalculator()
   // pass.
 }
 
-float Geometry::GradientCalculator::gradient(
+double Geometry::GradientCalculator::gradient(
   std::pair<double,double> origin, std::pair<double,double> destination)
 {
-  auto xChange = destination.first - origin.first;
-  auto yChange = destination.second - origin.second;
+  auto xChange = this->run(origin, destination);
+  auto yChange = this->rise(origin, destination);
 
-  return yChange / xChange;
+  bool hasZeroDivision = (xChange == 0);
+
+  return hasZeroDivision ? 1 : yChange / xChange;
 }
 
-float Geometry::GradientCalculator::fromOriginZero(double x, double y)
+double Geometry::GradientCalculator::fromOriginZero(double x, double y)
 {
-  return y / x;
+  return this->gradient({0, 0}, {x, y});
+}
+
+double Geometry::GradientCalculator::run(
+  std::pair<double,double> origin, std::pair<double,double> destination)
+{
+  return destination.first - origin.first; 
+}
+
+double Geometry::GradientCalculator::rise(
+  std::pair<double,double> origin, std::pair<double,double> destination)
+{
+  return destination.second - origin.second;
 }
