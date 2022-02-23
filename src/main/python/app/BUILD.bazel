@@ -5,6 +5,7 @@ py_binary(
   name = "gui",
   srcs = glob(["*.py"]),
   deps = [
-    requirement("wxPython")
+    requirement("wxPython"),
+    "//src/main/python/gui",
   ]
 )

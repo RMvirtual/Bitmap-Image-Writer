@@ -1,11 +1,13 @@
 import wx
+from src.main.python.gui.viewer import GUI
 
 def main():
-  app = wx.App()
+    app = wx.App()
 
-  frm = wx.Frame(None, title="Hello World")
-  frm.Show()
-  app.MainLoop()
+    gui = GUI()
+    gui.Show()
+    
+    app.MainLoop()
 
 if __name__ == "__main__":
-  main()
+    main()
