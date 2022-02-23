@@ -1,0 +1,10 @@
+load("@rules_python//python:defs.bzl", "py_binary")
+load("@my_deps//:requirements.bzl", "requirement")
+
+py_binary(
+  name = "gui",
+  srcs = glob(["*.py"]),
+  deps = [
+    requirement("wxPython")
+  ]
+)
