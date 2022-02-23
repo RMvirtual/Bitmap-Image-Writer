@@ -1,6 +1,11 @@
 #include "src/geometry/line.h"
 
-Geometry::Line::Line()
+Geometry::GradientCalculator::GradientCalculator()
 {
   // pass.
+}
+
+float Geometry::GradientCalculator::fromOrigin(float x, float y)
+{
+  return y / x;
 }

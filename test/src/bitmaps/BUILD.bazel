@@ -1,9 +1,0 @@
-test_suite(
-    name = "bitmaps",
-    tests = [
-        "//test/src/bitmaps/formats",
-        "//test/src/bitmaps/packet",
-        "//test/src/bitmaps/reader",
-        "//test/src/bitmaps/writer",
-    ]
-)

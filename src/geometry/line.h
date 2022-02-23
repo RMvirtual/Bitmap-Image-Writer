@@ -1,11 +1,9 @@
 #pragma once
 
 namespace Geometry {
-class Line
+class GradientCalculator
 {
 public:
-  Line();
-
-private:
-  
+  GradientCalculator();
+  float fromOrigin(float x, float y);  
 };}
