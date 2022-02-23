@@ -4,7 +4,7 @@
 TEST(Filesystem, ShouldGetSizeOfFile)
 { 
   char* bitmapFile = (
-    "C:\\Users\\rmvir\\Desktop\\scc300-Win3D\\src\\test\\resources\\" \
+    "C:\\Users\\rmvir\\Desktop\\scc300-Win3D\\resources\\test\\" \
     "correct-resources\\blueImage512x512.bmp"
   );
 

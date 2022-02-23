@@ -20,7 +20,7 @@ BitmapReaderTest::~BitmapReaderTest()
 std::string BitmapReaderTest::blueImagePath()
 {
   return (
-    "C:\\Users\\rmvir\\Desktop\\scc300-Win3D\\src\\test\\resources\\"
+    "C:\\Users\\rmvir\\Desktop\\scc300-Win3D\\resources\\test\\"
     "correct-resources\\blueImage2x2.bmp"
   );
 }

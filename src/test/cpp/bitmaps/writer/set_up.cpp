@@ -41,7 +41,7 @@ void BitmapWriterTest::setupBlueRGBImage(int widthInPixels, int heightInPixels)
 void BitmapWriterTest::setOutputFilePath(std::string fileName)
 {
   this->filePath = {
-    "C:\\Users\\rmvir\\Desktop\\scc300-Win3D\\src\\test\\resources\\"
-    "correct-resources\\" + fileName
+    "C:\\Users\\rmvir\\Desktop\\scc300-Win3D\\resources\\test\\"
+    "output\\" + fileName
   };
 }
