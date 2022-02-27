@@ -1,5 +1,7 @@
 import wx
 
+from src.main.python.gui.image_conversion import toBitmap, toImage
+
 class ImagePanel(wx.Panel):
     """The image panel of the gui viewer."""
 
@@ -14,15 +16,16 @@ class ImagePanel(wx.Panel):
     def __initialiseWidgets(self) -> None:
         """Initialises the panel's widgets."""
 
-        self.image = wx.Bitmap(width=500, height=500)
+        self.originalImage = wx.Image(width=500, height=500)
+        self.bitmap = wx.Bitmap(img=self.originalImage)
 
         self.bitmapCtrl = wx.StaticBitmap(
             parent=self,
             id=wx.ID_ANY,
-            bitmap=self.image
+            bitmap=self.bitmap
         )
 
-        self.instructLbl = wx.StaticText(
+        self.text = wx.StaticText(
             parent=self,
             label="Do stuff and things."
         )
@@ -34,7 +37,7 @@ class ImagePanel(wx.Panel):
 
         self.__addSizerDefinitions({
             self.bitmapCtrl: wx.SizerFlags().Expand().Border(wx.ALL, 10),
-            self.instructLbl: wx.SizerFlags().Border(wx.ALL, 10) 
+            self.text: wx.SizerFlags().Border(wx.ALL, 10) 
         })
 
         self.sizer.SetSizeHints(self)
@@ -52,24 +55,30 @@ class ImagePanel(wx.Panel):
                 flags = value
             )
 
-    def loadImage(self, bitmap: wx.Bitmap) -> None:
-        """Loads an bitmap image to the viewer control."""
+    def loadImageFromFile(self, filePath: str) -> None:
+        """Loads a bitmap image to the viewer control."""
 
-        scaledBitmap = self.scaleBitmapToWidget(bitmap)
-        self.bitmapCtrl.SetBitmap(scaledBitmap)
+        self.originalImage = toImage(filePath)
+        self.scaleBitmapToViewer()
 
-    def scaleBitmapToWidget(self, bitmap: wx.Bitmap):
-        """Scales the passed bitmap to the current size of the image
-        control.
+    def scaleBitmapToViewer(self) -> None:
+        """Scales the current image's bitmap output to the current size
+        of the image control.
         """
         width, height = self.bitmapCtrl.GetSize()
-
-        image = bitmap.ConvertToImage()
-        scaledImage = image.Scale(width, height, wx.IMAGE_QUALITY_HIGH)
         
-        return wx.Bitmap(img=scaledImage)
+        scaledImage = self.originalImage.Scale(
+            width=width, height=height, quality=wx.IMAGE_QUALITY_HIGH)
+        
+        self.bitmap = wx.Bitmap(img=scaledImage)
+        self.__refreshBitmapImage()
+
+    def __refreshBitmapImage(self) -> None:
+        """Repaints the bitmap image."""
+
+        self.bitmapCtrl.SetBitmap(self.bitmap)
 
     def setText(self, text: str) -> None:
-        """Sets the text underneat the image."""
+        """Sets the text underneath the image."""
 
-        self.instructLbl.SetLabel(text)
+        self.text.SetLabel(text)

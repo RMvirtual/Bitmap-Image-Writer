@@ -1,6 +1,5 @@
 import wx
 from src.main.python.gui.image_panel import ImagePanel
-from src.main.python.gui.image_conversion import toBitmap
 
 class GUI(wx.Frame):
     """Main GUI for the app."""
@@ -32,9 +31,7 @@ class GUI(wx.Frame):
     def loadImage(self, imagePath: str) -> None:
         """Loads an image onto the viewer."""
 
-        bitmap = toBitmap(imagePath)
-
-        self.imagePanel.loadImage(bitmap)
+        self.imagePanel.loadImageFromFile(imagePath)
 
     def setText(self, text: str) -> None:
         """Sets the text underneat the image."""
