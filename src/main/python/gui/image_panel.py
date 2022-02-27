@@ -7,10 +7,10 @@ class ImagePanel(wx.Panel):
         super().__init__(parent=parent)
 
         self.sizer = wx.BoxSizer(wx.VERTICAL)
-        self.startImage = wx.Bitmap(width=500, height=500)
+        self.image = wx.Bitmap(width=500, height=500)
 
         self.bitmapCtrl = wx.StaticBitmap(
-            self, wx.ID_ANY, self.startImage)
+            self, wx.ID_ANY, self.image)
 
         self.sizer.Add(
             window=self.bitmapCtrl,
@@ -47,3 +47,8 @@ class ImagePanel(wx.Panel):
         scaledImage = image.Scale(width, height, wx.IMAGE_QUALITY_HIGH)
         
         return wx.Bitmap(img=scaledImage)
+
+    def setText(self, text: str) -> None:
+        """Sets the text underneat the image."""
+
+        self.instructLbl.SetLabel(text)

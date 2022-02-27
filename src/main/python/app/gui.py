@@ -11,9 +11,9 @@ def main():
         "C:\\Users\\rmvir\\Desktop\\scc300-Win3D\\resources\\test\\"
         + "correct-resources\\redFill512x512.bmp"
     )
-    
-    gui.loadImage(imagePath)
 
+    gui.loadImage(imagePath)
+    gui.setText("Vodaphone are bumheads.")
     app.MainLoop()
 
 if __name__ == "__main__":

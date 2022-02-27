@@ -26,3 +26,8 @@ class GUI(wx.Frame):
         bitmap = wx.Bitmap(img=image)
 
         self.imagePanel.loadImage(bitmap)
+
+    def setText(self, text: str) -> None:
+        """Sets the text underneat the image."""
+
+        self.imagePanel.setText(text)
