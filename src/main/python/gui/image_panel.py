@@ -51,12 +51,13 @@ class ImagePanel(wx.Panel):
         """Loads a bitmap image to the viewer control."""
 
         self.__image.loadImage(filePath)
-        self.__image.resize()
+        self.__image.updateScaledImage()
 
     def __resize(self, event:wx.Event) -> None:
         """Event handler for resizing of the panel."""
         
-        self.__image.resize()
+        print(self.GetSize()) # Panel size changes but not the underlying widgets.
+        self.__image.updateScaledImage()
 
     def setText(self, text:str) -> None:
         """Sets the text underneath the image."""
