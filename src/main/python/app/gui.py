@@ -13,7 +13,7 @@ def main():
     )
 
     gui.loadImage(imagePath)
-    gui.setText("Vodaphone are bumheads.")
+    gui.setText(imagePath)
     app.MainLoop()
 
 if __name__ == "__main__":
