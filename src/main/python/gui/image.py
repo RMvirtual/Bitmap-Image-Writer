@@ -22,28 +22,36 @@ class Image(wx.StaticBitmap):
 
         self.__originalImage = wx.Image(width=500, height=500)
 
-        self.__calculateOriginalAspectRatio()
+        self.__initialiseOriginalAspectRatio()
         self.__bitmap = wx.Bitmap(img=self.__originalImage)
 
     def loadImage(self, filePath:str) -> None:
         """Loads a bitmap image from a file."""
 
         self.__originalImage = toImage(filePath)
-        self.__calculateOriginalAspectRatio()
+        self.__initialiseOriginalAspectRatio()
         self.updateScaledImage()
        
     def updateScaledImage(self) -> None:
         currentAspectRatio = self.__calculateCurrentAspectRatio()
 
-        width, height = self.GetParent().GetSize()
+        print("Current Aspect Ratio: ", currentAspectRatio)
+        print("Original Aspect Ratio: ", self.__originalAspectRatio)
 
-        # Adjust width according to height.
+        width, height = self.GetParent().GetSize()
+        print(self.GetParent().GetSize())
+
+        # If width greater than the original width, resize it as a
+        # proportion of the aspect ratio.
         if currentAspectRatio > self.__originalAspectRatio:
+            print("Current ratio > original ratio.")
             width = height * self.__originalAspectRatio
 
-        # Adjust height according to width.
+        # If width less than original width, recalculate height to
+        # correct aspect ratio.
         else:
-            height = width * self.__originalAspectRatio
+            print("Current ratio <= original ratio.")
+            height = width / self.__originalAspectRatio
 
         scaledImage = self.__originalImage.Scale(
             width=width, height=height, quality=wx.IMAGE_QUALITY_HIGH)
@@ -51,13 +59,13 @@ class Image(wx.StaticBitmap):
         self.__bitmap = wx.Bitmap(img=scaledImage)
         self.SetBitmap(self.__bitmap)
 
-    def __calculateOriginalAspectRatio(self) -> None:
+    def __initialiseOriginalAspectRatio(self) -> None:
         width = float(self.__originalImage.GetWidth())
         height = float(self.__originalImage.GetHeight())
 
-        self.__originalAspectRatio = height / width
+        self.__originalAspectRatio = width / height
 
     def __calculateCurrentAspectRatio(self) -> None:
-        width, height = self.GetSize()
+        width, height = self.GetParent().GetSize()
 
-        return float(height) / float(width)
+        return float(width) / float(height)

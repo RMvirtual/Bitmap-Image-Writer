@@ -56,7 +56,6 @@ class ImagePanel(wx.Panel):
     def __resize(self, event:wx.Event) -> None:
         """Event handler for resizing of the panel."""
         
-        print(self.GetSize()) # Panel size changes but not the underlying widgets.
         self.__image.updateScaledImage()
 
     def setText(self, text:str) -> None:
