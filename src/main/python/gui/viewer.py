@@ -6,12 +6,15 @@ class GUI(wx.Frame):
 
     def __init__(self):
         super(GUI, self).__init__(None)
-        # self.SetSize(width=500,height=500)
         self.SetTitle("Win3D")
 
         self.sizer = wx.BoxSizer(wx.VERTICAL)
+        self.imagePanel = ImagePanel(self)
+        
+        self.sizer.Add(
+            window=self.imagePanel,
+            flags=wx.SizerFlags().Expand()
+        )
 
-        self.imagePanel = ImagePanel(self)                
-        self.sizer.Add(self.imagePanel)
-
+        self.sizer.SetSizeHints(self)
         self.SetSizer(self.sizer)

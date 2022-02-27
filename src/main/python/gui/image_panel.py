@@ -8,14 +8,14 @@ class ImagePanel(wx.Panel):
 
         self.sizer = wx.BoxSizer(wx.VERTICAL)
 
-        self.startImage = wx.Bitmap(width=400, height=400)
+        self.startImage = wx.Bitmap(width=500, height=500)
 
         self.bitmapCtrl = wx.StaticBitmap(
             self, wx.ID_ANY, self.startImage)
 
         self.sizer.Add(
             window=self.bitmapCtrl,
-            flags=wx.SizerFlags(1).Expand().Border(wx.ALL, 10)
+            flags=wx.SizerFlags().Expand().Border(wx.ALL, 10)
         )
 
         self.instructLbl = wx.StaticText(
@@ -25,7 +25,9 @@ class ImagePanel(wx.Panel):
 
         self.sizer.Add(
             window=self.instructLbl,
-            flags=wx.SizerFlags(1).Expand().Border(wx.ALL, 10)
+            flags=wx.SizerFlags()
         )
+
+        self.sizer.SetSizeHints(self)
 
         self.SetSizer(self.sizer)
