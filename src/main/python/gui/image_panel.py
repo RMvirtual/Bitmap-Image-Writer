@@ -7,7 +7,6 @@ class ImagePanel(wx.Panel):
         super().__init__(parent=parent)
 
         self.sizer = wx.BoxSizer(wx.VERTICAL)
-
         self.startImage = wx.Bitmap(width=500, height=500)
 
         self.bitmapCtrl = wx.StaticBitmap(
@@ -33,4 +32,18 @@ class ImagePanel(wx.Panel):
         self.SetSizer(self.sizer)
 
     def loadImage(self, bitmap: wx.Bitmap) -> None:
-        self.bitmapCtrl.SetBitmap(bitmap)
+        """Loads an bitmap image to the viewer control."""
+
+        scaledBitmap = self.scaleBitmapToWidget(bitmap)
+        self.bitmapCtrl.SetBitmap(scaledBitmap)
+
+    def scaleBitmapToWidget(self, bitmap: wx.Bitmap):
+        """Scales the passed bitmap to the current size of the image
+        control.
+        """
+        width, height = self.bitmapCtrl.GetSize()
+
+        image = bitmap.ConvertToImage()
+        scaledImage = image.Scale(width, height, wx.IMAGE_QUALITY_HIGH)
+        
+        return wx.Bitmap(img=scaledImage)
