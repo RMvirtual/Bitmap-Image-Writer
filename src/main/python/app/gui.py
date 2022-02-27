@@ -7,6 +7,13 @@ def main():
     gui = GUI()
     gui.Show()
     
+    imagePath = (
+        "C:\\Users\\rmvir\\Desktop\\scc300-Win3D\\resources\\test\\"
+        + "correct-resources\\redFill512x512.bmp"
+    )
+    
+    gui.loadImage(imagePath)
+
     app.MainLoop()
 
 if __name__ == "__main__":

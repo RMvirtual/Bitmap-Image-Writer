@@ -31,3 +31,6 @@ class ImagePanel(wx.Panel):
         self.sizer.SetSizeHints(self)
 
         self.SetSizer(self.sizer)
+
+    def loadImage(self, bitmap: wx.Bitmap) -> None:
+        self.bitmapCtrl.SetBitmap(bitmap)

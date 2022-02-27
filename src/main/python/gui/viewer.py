@@ -18,3 +18,11 @@ class GUI(wx.Frame):
 
         self.sizer.SetSizeHints(self)
         self.SetSizer(self.sizer)
+
+    def loadImage(self, imagePath: str) -> None:
+        """Loads an image onto the viewer."""
+
+        image = wx.Image(name=imagePath)
+        bitmap = wx.Bitmap(img=image)
+
+        self.imagePanel.loadImage(bitmap)
