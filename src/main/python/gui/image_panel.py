@@ -5,33 +5,47 @@ class ImagePanel(wx.Panel):
 
     def __init__(self, parent: wx.Frame) -> None:
         """Creates an image panel."""
-        
+
         super().__init__(parent=parent)
 
-        self.sizer = wx.BoxSizer(wx.VERTICAL)
         self.image = wx.Bitmap(width=500, height=500)
 
         self.bitmapCtrl = wx.StaticBitmap(
             self, wx.ID_ANY, self.image)
-
-        self.sizer.Add(
-            window=self.bitmapCtrl,
-            flags=wx.SizerFlags().Expand().Border(wx.ALL, 10)
-        )
 
         self.instructLbl = wx.StaticText(
             parent=self, 
             label="Do stuff and things."
         )
 
-        self.sizer.Add(
-            window=self.instructLbl,
-            flags=wx.SizerFlags().Border(wx.ALL, 10)
-        )
+        self.__initialiseSizer()
+
+    def __initialiseSizer(self) -> None:
+        """Initialises the dynamic sizer for the panel."""
+
+        self.sizer = wx.BoxSizer(wx.VERTICAL)
+
+        sizerDefinitions = {
+            self.bitmapCtrl: wx.SizerFlags().Expand().Border(wx.ALL, 10),
+            self.instructLbl: wx.SizerFlags().Border(wx.ALL, 10) 
+        }
+
+        self.__addSizerDefinitions(sizerDefinitions)
 
         self.sizer.SetSizeHints(self)
-
         self.SetSizer(self.sizer)
+
+    def __addSizerDefinitions(
+            self, sizerDefinitions: dict[wx.Object, wx.SizerFlags]) -> None:
+        """Adds a dictionary of wx widgets (keys) and corresponding
+        sizer flags (values) to the panel's sizer.
+        """
+
+        for key, value in sizerDefinitions.items():
+            self.sizer.Add(
+                window = key,
+                flags = value
+            )
 
     def loadImage(self, bitmap: wx.Bitmap) -> None:
         """Loads an bitmap image to the viewer control."""
