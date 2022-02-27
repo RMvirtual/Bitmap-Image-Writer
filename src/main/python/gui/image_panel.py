@@ -49,11 +49,12 @@ class ImagePanel(wx.Panel):
         sizer flags (values) to the panel's sizer.
         """
 
+        definitionValues = sizerDefinitions.items()
+
         addToSizer = lambda window, flags : self.sizer.Add(
             window=window, flags=flags)
-
-        for window, flags in sizerDefinitions.items():
-            addToSizer(window, flags)
+        
+        [addToSizer(window, flags) for window, flags in definitionValues]
 
     def loadImageFromFile(self, filePath: str) -> None:
         """Loads a bitmap image to the viewer control."""
