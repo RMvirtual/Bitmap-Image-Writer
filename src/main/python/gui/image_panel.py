@@ -1,11 +1,12 @@
 import wx
 
 from src.main.python.gui.image_conversion import toBitmap, toImage
+from src.main.python.gui.image import Image
 
 class ImagePanel(wx.Panel):
     """The image panel of the gui viewer."""
 
-    def __init__(self, parent: wx.Frame) -> None:
+    def __init__(self, parent:wx.Frame) -> None:
         """Creates an image panel."""
 
         super().__init__(parent=parent)
@@ -16,32 +17,8 @@ class ImagePanel(wx.Panel):
     def __initialiseWidgets(self) -> None:
         """Initialises the panel's widgets."""
 
-        self.__initialiseEmptyImage()
-        self.__initialiseBitmapControl()
-        self.__initialiseText()
-
-    def __initialiseEmptyImage(self) -> None:
-        """Initialises an empty image."""
-
-        self.originalImage = wx.Image(width=500, height=100)
-        self.bitmap = wx.Bitmap(img=self.originalImage)
-
-    def __initialiseBitmapControl(self) -> None:
-        """Initialises the bitmap control object."""
-
-        self.bitmapCtrl = wx.StaticBitmap(
-            parent=self,
-            id=wx.ID_ANY,
-            bitmap=self.bitmap
-        )
-
-    def __initialiseText(self) -> None:
-        """Initialises the text."""
-
-        self.text = wx.StaticText(
-            parent=self,
-            label="Do stuff and things."
-        )
+        self.__image = Image(parent=self, imagePath=None)
+        self.__text = wx.StaticText(parent=self, label="Do stuff and things.")
 
     def __initialiseSizer(self) -> None:
         """Initialises the dynamic sizer for the panel."""
@@ -49,8 +26,8 @@ class ImagePanel(wx.Panel):
         self.sizer = wx.BoxSizer(wx.VERTICAL)
 
         self.__addSizerDefinitions({
-            self.bitmapCtrl: wx.SizerFlags().Expand().Border(wx.ALL, 10),
-            self.text: wx.SizerFlags().Border(wx.ALL, 10) 
+            self.__image: wx.SizerFlags().Expand().Border(wx.ALL, 10),
+            self.__text: wx.SizerFlags().Border(wx.ALL, 10)
         })
 
         self.sizer.SetSizeHints(self)
@@ -59,11 +36,10 @@ class ImagePanel(wx.Panel):
         self.Bind(wx.EVT_SIZE, self.__resize)
 
     def __addSizerDefinitions(
-            self, sizerDefinitions: dict[wx.Object, wx.SizerFlags]) -> None:
+            self, sizerDefinitions:dict[wx.Object, wx.SizerFlags]) -> None:
         """Adds a dictionary of wx widgets (keys) and corresponding
         sizer flags (values) to the panel's sizer.
         """
-
         definitionItems = sizerDefinitions.items()
 
         addToSizer = (
@@ -71,46 +47,24 @@ class ImagePanel(wx.Panel):
         
         [addToSizer(widget, flags) for widget, flags in definitionItems]
 
-    def loadImageFromFile(self, filePath: str) -> None:
+    def loadImageFromFile(self, filePath:str) -> None:
         """Loads a bitmap image to the viewer control."""
 
-        self.originalImage = toImage(filePath)
-        self.displayImage()
+        self.__image.loadImage(filePath)
+        self.__refreshBitmapImage
 
     def __resize(self, event:wx.Event) -> None:
         """Event handler for resizing of the panel."""
+        print(self.__image.GetSize())
 
-        self.displayImage()
-
-    def displayImage(self) -> None:
-        """Scales the current image's bitmap output to the current size
-        of the image control.
-        """
-        self.__updateBitmapImage()
         self.__refreshBitmapImage()
-
-    def __updateBitmapImage(self) -> None:
-        """Updates the current bitmap as a scaled version of the
-        original image based on the  current size of the image control.
-        """
-        scaledImage = self.__imageScaledToPanel()
-        self.bitmap = wx.Bitmap(img=scaledImage)
-
-    def __imageScaledToPanel(self) -> wx.Image:
-        """Returns a scaled image based on the current size of the
-        image control."""
-
-        width, height = self.bitmapCtrl.GetSize()
-        
-        return self.originalImage.Scale(
-            width=width, height=height, quality=wx.IMAGE_QUALITY_HIGH)
 
     def __refreshBitmapImage(self) -> None:
         """Repaints the bitmap image."""
 
-        self.bitmapCtrl.SetBitmap(self.bitmap)
+        self.Refresh()
 
-    def setText(self, text: str) -> None:
+    def setText(self, text:str) -> None:
         """Sets the text underneath the image."""
 
-        self.text.SetLabel(text)
+        self.__text.SetLabel(text)
