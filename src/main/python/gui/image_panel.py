@@ -25,12 +25,10 @@ class ImagePanel(wx.Panel):
 
         self.sizer = wx.BoxSizer(wx.VERTICAL)
 
-        sizerDefinitions = {
+        self.__addSizerDefinitions({
             self.bitmapCtrl: wx.SizerFlags().Expand().Border(wx.ALL, 10),
             self.instructLbl: wx.SizerFlags().Border(wx.ALL, 10) 
-        }
-
-        self.__addSizerDefinitions(sizerDefinitions)
+        })
 
         self.sizer.SetSizeHints(self)
         self.SetSizer(self.sizer)
