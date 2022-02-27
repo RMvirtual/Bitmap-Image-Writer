@@ -1,5 +1,6 @@
 import wx
 from src.main.python.gui.image_panel import ImagePanel
+from src.main.python.gui.image_conversion import toBitmap
 
 class GUI(wx.Frame):
     """Main GUI for the app."""
@@ -19,15 +20,19 @@ class GUI(wx.Frame):
         """Initialises the dynamic sizer for the overall GUI."""
 
         self.sizer = wx.BoxSizer(wx.VERTICAL)
-        self.sizer.Add(window=self.imagePanel, flags=wx.SizerFlags().Expand())
+        
+        self.sizer.Add(
+            window=self.imagePanel,
+            flags=wx.SizerFlags().Expand()
+        )
+        
         self.sizer.SetSizeHints(self)
         self.SetSizer(self.sizer)
         
     def loadImage(self, imagePath: str) -> None:
         """Loads an image onto the viewer."""
 
-        image = wx.Image(name=imagePath)
-        bitmap = wx.Bitmap(img=image)
+        bitmap = toBitmap(imagePath)
 
         self.imagePanel.loadImage(bitmap)
 
