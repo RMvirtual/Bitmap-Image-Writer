@@ -8,17 +8,24 @@ class ImagePanel(wx.Panel):
 
         super().__init__(parent=parent)
 
+        self.__initialiseWidgets()
+        self.__initialiseSizer()
+
+    def __initialiseWidgets(self) -> None:
+        """Initialises the panel's widgets."""
+
         self.image = wx.Bitmap(width=500, height=500)
 
         self.bitmapCtrl = wx.StaticBitmap(
-            self, wx.ID_ANY, self.image)
-
-        self.instructLbl = wx.StaticText(
-            parent=self, 
-            label="Do stuff and things."
+            parent=self,
+            id=wx.ID_ANY,
+            bitmap=self.image
         )
 
-        self.__initialiseSizer()
+        self.instructLbl = wx.StaticText(
+            parent=self,
+            label="Do stuff and things."
+        )
 
     def __initialiseSizer(self) -> None:
         """Initialises the dynamic sizer for the panel."""
