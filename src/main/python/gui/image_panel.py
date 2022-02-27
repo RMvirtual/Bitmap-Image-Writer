@@ -16,14 +16,27 @@ class ImagePanel(wx.Panel):
     def __initialiseWidgets(self) -> None:
         """Initialises the panel's widgets."""
 
-        self.originalImage = wx.Image(width=500, height=500)
+        self.__initialiseEmptyImage()
+        self.__initialiseBitmapControl()
+        self.__initialiseText()
+
+    def __initialiseEmptyImage(self) -> None:
+        """Initialises an empty image."""
+
+        self.originalImage = wx.Image(width=500, height=100)
         self.bitmap = wx.Bitmap(img=self.originalImage)
+
+    def __initialiseBitmapControl(self) -> None:
+        """Initialises the bitmap control object."""
 
         self.bitmapCtrl = wx.StaticBitmap(
             parent=self,
             id=wx.ID_ANY,
             bitmap=self.bitmap
         )
+
+    def __initialiseText(self) -> None:
+        """Initialises the text."""
 
         self.text = wx.StaticText(
             parent=self,
