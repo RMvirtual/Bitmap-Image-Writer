@@ -5,20 +5,24 @@ class GUI(wx.Frame):
     """Main GUI for the app."""
 
     def __init__(self):
+        """Creates a new GUI."""
+
         super(GUI, self).__init__(None)
+        self.__initialiseWidgets()
+        self.__initialiseSizer()
+
+    def __initialiseWidgets(self) -> None:
         self.SetTitle("Win3D")
+        self.imagePanel = ImagePanel(self)
+
+    def __initialiseSizer(self) -> None:
+        """Initialises the dynamic sizer for the overall GUI."""
 
         self.sizer = wx.BoxSizer(wx.VERTICAL)
-        self.imagePanel = ImagePanel(self)
-        
-        self.sizer.Add(
-            window=self.imagePanel,
-            flags=wx.SizerFlags().Expand()
-        )
-
+        self.sizer.Add(window=self.imagePanel, flags=wx.SizerFlags().Expand())
         self.sizer.SetSizeHints(self)
         self.SetSizer(self.sizer)
-
+        
     def loadImage(self, imagePath: str) -> None:
         """Loads an image onto the viewer."""
 

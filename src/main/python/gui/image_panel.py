@@ -4,6 +4,8 @@ class ImagePanel(wx.Panel):
     """The image panel of the gui viewer."""
 
     def __init__(self, parent: wx.Frame) -> None:
+        """Creates an image panel."""
+        
         super().__init__(parent=parent)
 
         self.sizer = wx.BoxSizer(wx.VERTICAL)
