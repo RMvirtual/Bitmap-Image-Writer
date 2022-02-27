@@ -25,7 +25,7 @@ class ImagePanel(wx.Panel):
 
         self.sizer.Add(
             window=self.instructLbl,
-            flags=wx.SizerFlags()
+            flags=wx.SizerFlags().Border(wx.ALL, 10)
         )
 
         self.sizer.SetSizeHints(self)
