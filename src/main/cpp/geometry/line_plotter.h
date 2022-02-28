@@ -12,6 +12,9 @@ public:
   std::vector<std::pair<int,int>> plotPoints(
     std::pair<double,double> destination);
 
+  std::vector<std::pair<int,int>> plotPoints(
+    std::pair<double,double> origin, std::pair<double,double> destination);
+
 private:
   double calculateYError(double x, double y);
 };}

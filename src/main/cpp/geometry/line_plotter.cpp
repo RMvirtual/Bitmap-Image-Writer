@@ -13,11 +13,16 @@ Geometry::LinePlotter::LinePlotter()
 std::vector<std::pair<int,int>> Geometry::LinePlotter::plotPoints(
   std::pair<double,double> destination)
 {
+  return this->plotPoints({0,0}, destination);
+}
+
+std::vector<std::pair<int,int>> Geometry::LinePlotter::plotPoints(
+    std::pair<double,double> origin, std::pair<double,double> destination)
+{
   std::vector<std::pair<int,int>> plotPoints {};
 
-  double x0 = 0;
-  double y0 = 0;
-  std::pair<double,double> origin {x0, y0};
+  double x0 = origin.first;
+  double y0 = origin.second;
 
   auto x1 = destination.first;
   auto y1 = destination.second;
@@ -27,8 +32,8 @@ std::vector<std::pair<int,int>> Geometry::LinePlotter::plotPoints(
   /* Both ends of the line start at halfway points rather than dot on
   an axis, so deduct one total from the run and rise distance
   variables.*/
-  auto dx = gradientCalculator.run(origin, destination) - 1;
-  auto dy = gradientCalculator.rise(origin, destination) - 1;
+  auto dx = gradientCalculator.run(origin, destination);
+  auto dy = gradientCalculator.rise(origin, destination);
   double yi = 1;
 
   if (dy < 0) {
@@ -43,7 +48,7 @@ std::vector<std::pair<int,int>> Geometry::LinePlotter::plotPoints(
 
   // 6, 3 errors up.
 
-  for (double x = x0; x < x1; x++) {
+  for (double x = x0; x <= x1; x++) {
     plotPoints.push_back({int(x), int(y)});
 
     if (D > 0) {
