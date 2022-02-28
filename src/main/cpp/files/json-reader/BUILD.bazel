@@ -1,13 +1,13 @@
 load("@rules_cc//cc:defs.bzl", "cc_library")
 
 cc_library(
-    name = "headers",
+    name = "json-reader",
     hdrs = glob(["*.h"]),
     srcs = glob(["*.cpp"]),
-    deps = [
-        "//src/main/cpp/containers",
-        "//src/main/cpp/bitmaps/packet",
-    ],
     visibility = ["//visibility:public"],
+    deps = [
+        "//lib/nlohmann:json",
+        "//src/main/cpp/containers"
+    ],
     copts = ["/std:c++17"]
 )

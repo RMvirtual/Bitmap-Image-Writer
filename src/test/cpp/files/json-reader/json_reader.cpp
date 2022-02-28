@@ -1,14 +1,14 @@
 #include <gtest/gtest.h>
 #include <string>
 
-#include "src/main/cpp/utilities/json_reader.h"
+#include "src/main/cpp/files/json-reader/json_reader.h"
 
-Utilities::JSONReader getJsonReader()
+Files::JSONReader getJsonReader()
 {
   std::string jsonFile {
     "C://Users/rmvir/Desktop/scc300-Win3D/resources/filesystem.json"};
 
-  Utilities::JSONReader reader {};
+  Files::JSONReader reader {};
   reader.read(jsonFile);
 
   return reader;

@@ -1,17 +1,17 @@
 #include "lib/nlohmann/json.hpp"
-#include "src/main/cpp/utilities/json_reader.h"
+#include "src/main/cpp/files/json-reader/json_reader.h"
 
-Utilities::JSONReader::JSONReader()
+Files::JSONReader::JSONReader()
 {
   // pass.
 }
 
-void Utilities::JSONReader::read(std::string filePath)
+void Files::JSONReader::read(std::string filePath)
 {
   this->json = this->readJsonFromFile(filePath);
 }
 
-std::vector<std::string> Utilities::JSONReader::fieldNames()
+std::vector<std::string> Files::JSONReader::fieldNames()
 {
   std::vector<std::string> fields {};
   auto array = this->json.get<nlohmann::json::array_t>();
@@ -23,7 +23,7 @@ std::vector<std::string> Utilities::JSONReader::fieldNames()
   return fields;
 }
 
-nlohmann::json Utilities::JSONReader::readJsonFromFile(std::string filePath)
+nlohmann::json Files::JSONReader::readJsonFromFile(std::string filePath)
 {
   std::ifstream fileStream {filePath};
   auto json = nlohmann::json::parse(fileStream);
@@ -33,7 +33,7 @@ nlohmann::json Utilities::JSONReader::readJsonFromFile(std::string filePath)
   return json;
 }
 
-int Utilities::JSONReader::numberOfObjects()
+int Files::JSONReader::numberOfObjects()
 {
   auto array = this->json.get<nlohmann::json::array_t>();
   

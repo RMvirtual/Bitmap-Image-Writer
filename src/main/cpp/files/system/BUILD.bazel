@@ -1,12 +1,11 @@
 load("@rules_cc//cc:defs.bzl", "cc_library")
 
 cc_library(
-    name = "utilities",
+    name = "system",
     hdrs = glob(["*.h"]),
     srcs = glob(["*.cpp"]),
     visibility = ["//visibility:public"],
     deps = [
-        "//lib/nlohmann:json",
         "//src/main/cpp/containers"
     ],
     copts = ["/std:c++17"]

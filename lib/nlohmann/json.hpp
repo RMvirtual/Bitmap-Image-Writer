@@ -3042,7 +3042,7 @@ using uncvref_t = typename std::remove_cv<typename std::remove_reference<T>::typ
 
 #ifdef JSON_HAS_CPP_14
 
-// the following utilities are natively available in C++14
+// the following Files are natively available in C++14
 using std::enable_if_t;
 using std::index_sequence;
 using std::make_index_sequence;

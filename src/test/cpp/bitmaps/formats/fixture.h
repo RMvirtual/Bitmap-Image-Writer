@@ -1,5 +1,4 @@
-#ifndef BITMAP_FORMATS_TEST_H
-#define BITMAP_FORMATS_TEST_H
+#pragma once
 
 #include <gtest/gtest.h>
 
@@ -33,5 +32,3 @@ protected:
   Bitmaps::FileHeader rgbFileHeader();
   Bitmaps::DibHeader rgbDibHeader();
 };
-
-#endif

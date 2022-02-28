@@ -1,8 +1,7 @@
-#ifndef FILE_PATHS_FILE_H
-#define FILE_PATHS_FILE_H
+#pragma once
 
 #include <string>
-#include "src/main/cpp/utilities/json_reader.h"
+#include "src/main/cpp/files/json-reader/json_reader.h"
 
 namespace Files {
 class FilePaths
@@ -13,8 +12,5 @@ public:
   std::string filePath(std::string fileNameAlias);
 
 private:
-  Utilities::JSONReader reader;
-  
+  Files::JSONReader reader;  
 };}
-
-#endif

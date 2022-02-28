@@ -1,4 +1,4 @@
-#include <gtest/gtest.h>
+#include "gtest/gtest.h"
 #include "src/test/cpp/bitmaps/reader/fixture.h"
 
 void BitmapReaderTest::compare(const Bitmaps::Image& image)

@@ -1,6 +1,6 @@
 #include <string>
 
-#include "src/main/cpp/files/pixel_formats.h"
+#include "src/main/cpp/files/pixel-formats/file.h"
 #include "src/main/cpp/bitmaps/formats/format/format.h"
 #include "src/main/cpp/bitmaps/formats/formats.h"
 

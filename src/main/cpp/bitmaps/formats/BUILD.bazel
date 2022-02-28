@@ -7,7 +7,6 @@ cc_library(
     deps = [
         "//src/main/cpp/bitmaps/formats/format",
         "//src/main/cpp/files",
-        "//src/main/cpp/utilities",
     ],
     visibility = ["//visibility:public"],
     copts = ["/std:c++17"]

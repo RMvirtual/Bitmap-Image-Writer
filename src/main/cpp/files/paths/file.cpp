@@ -1,7 +1,7 @@
 #include <string>
 
-#include "src/main/cpp/utilities/json_reader.h"
-#include "src/main/cpp/files/file_paths.h"
+#include "src/main/cpp/files/paths/file.h"
+#include "src/main/cpp/files/json-reader/json_reader.h"
 
 Files::FilePaths::FilePaths()
 {

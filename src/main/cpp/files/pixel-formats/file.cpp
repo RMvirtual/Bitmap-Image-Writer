@@ -1,6 +1,5 @@
-#include "src/main/cpp/files/pixel_formats.h"
-#include "src/main/cpp/files/file_paths.h"
-#include "src/main/cpp/utilities/json_reader.h"
+#include "src/main/cpp/files/pixel-formats/file.h"
+#include "src/main/cpp/files/paths/file.h"
 
 Files::PixelFormats::PixelFormats()
 {

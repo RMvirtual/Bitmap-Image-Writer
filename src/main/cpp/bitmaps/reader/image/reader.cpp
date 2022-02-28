@@ -7,7 +7,7 @@
 #include "src/main/cpp/bitmaps/reader/headers/dib_header_reader.h"
 #include "src/main/cpp/bitmaps/reader/pixel-array/reader.h"
 #include "src/main/cpp/bitmaps/packet/headers/headers.h"
-#include "src/main/cpp/utilities/filesystem.h"
+#include "src/main/cpp/files/system/filesystem.h"
 
 Bitmaps::ImageReader::ImageReader()
 {
@@ -23,7 +23,7 @@ Bitmaps::Image Bitmaps::ImageReader::read(const std::string& filePath)
 
 void Bitmaps::ImageReader::processIntoPacket(const std::string& filePath)
 {
-  ByteArray bytes = Utilities::readFileToByteArray(filePath);
+  ByteArray bytes = Files::readFileToByteArray(filePath);
   this->processIntoPacket(bytes);
 }
 

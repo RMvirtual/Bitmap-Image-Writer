@@ -5,7 +5,7 @@
 #include "src/main/cpp/bitmaps/writer/headers/dib-header/writer.h"
 #include "src/main/cpp/bitmaps/writer/pixel-array/writer.h"
 #include "src/main/cpp/containers/byte-array/byte_array.h"
-#include "src/main/cpp/utilities/filesystem.h"
+#include "src/main/cpp/files/system/filesystem.h"
 
 Bitmaps::ImageWriter::ImageWriter()
 {
@@ -32,5 +32,5 @@ void Bitmaps::ImageWriter::writeToFile(
   const Bitmaps::Image& image, std::string filePath)
 {
   auto bytes = this->write(image);
-  Utilities::writeToFile(filePath, bytes);
+  Files::writeToFile(filePath, bytes);
 }

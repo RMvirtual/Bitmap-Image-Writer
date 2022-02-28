@@ -1,14 +1,13 @@
-#ifndef JSON_READER_H
-#define JSON_READER_H
+#pragma once
 
+#include <fstream>
+#include <iostream>
 #include <string>
 #include <vector>
-#include <iostream>
-#include <fstream>
 
 #include "lib/nlohmann/json.hpp"
 
-namespace Utilities {
+namespace Files {
 class JSONReader
 {
 public:
@@ -40,5 +39,3 @@ protected:
 private:
   nlohmann::json readJsonFromFile(std::string filePath);
 };}
-
-#endif

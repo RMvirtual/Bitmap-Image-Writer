@@ -2,9 +2,9 @@
 #include <filesystem>
 
 #include "src/main/cpp/containers/byte-array/byte_array.h"
-#include "src/main/cpp/utilities/filesystem.h"
+#include "src/main/cpp/files/system/filesystem.h"
 
-std::string Utilities::readFileToString(const std::string& filePath)
+std::string Files::readFileToString(const std::string& filePath)
 {
   std::ifstream file(filePath);
 
@@ -18,9 +18,9 @@ std::string Utilities::readFileToString(const std::string& filePath)
   return bytes;
 }
 
-ByteArray Utilities::readFileToByteArray(const std::string& filePath)
+ByteArray Files::readFileToByteArray(const std::string& filePath)
 {
-  std::string fileContents = Utilities::readFileToString(filePath);
+  std::string fileContents = Files::readFileToString(filePath);
 
   ByteArray byteArray {};
   byteArray.add(fileContents);
@@ -28,7 +28,7 @@ ByteArray Utilities::readFileToByteArray(const std::string& filePath)
   return byteArray;
 }
 
-void Utilities::writeToFile(std::string filePath, const ByteArray& byteArray)
+void Files::writeToFile(std::string filePath, const ByteArray& byteArray)
 {
   std::ofstream file(filePath);
 
@@ -38,7 +38,7 @@ void Utilities::writeToFile(std::string filePath, const ByteArray& byteArray)
   file.close();
 }
 
-int Utilities::getSizeOfFile(const std::string& filePath)
+int Files::getSizeOfFile(const std::string& filePath)
 {
   std::filesystem::path pathToFile {filePath};
 

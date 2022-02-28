@@ -8,7 +8,6 @@ cc_library(
         "//src/main/cpp/bitmaps/formats/colours",
         "//src/main/cpp/containers",
         "//src/main/cpp/files",
-        "//src/main/cpp/utilities",
     ],
     visibility = ["//visibility:public"],
     copts = ["/std:c++17"]

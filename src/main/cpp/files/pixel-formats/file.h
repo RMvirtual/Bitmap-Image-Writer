@@ -1,10 +1,9 @@
-#ifndef PIXEL_FORMAT_FILE_H
-#define PIXEL_FORMAT_FILE_H
+#pragma once
 
 #include <string>
 #include <vector>
 
-#include "src/main/cpp/utilities/json_reader.h"
+#include "src/main/cpp/files/json-reader/json_reader.h"
 
 namespace Files {
 class PixelFormats
@@ -19,7 +18,5 @@ public:
   std::vector<std::string> colours(int index);
 
 private:
-  Utilities::JSONReader reader;
+  Files::JSONReader reader;
 };}
-
-#endif

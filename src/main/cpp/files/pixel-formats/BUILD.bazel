@@ -1,13 +1,12 @@
 load("@rules_cc//cc:defs.bzl", "cc_library")
 
 cc_library(
-    name = "headers",
+    name = "pixel-formats",
     hdrs = glob(["*.h"]),
     srcs = glob(["*.cpp"]),
-    deps = [
-        "//src/main/cpp/containers",
-        "//src/main/cpp/bitmaps/packet",
-    ],
     visibility = ["//visibility:public"],
-    copts = ["/std:c++17"]
+    deps = [
+        "//src/main/cpp/files/paths",
+        "//src/main/cpp/files/json-reader",
+    ]
 )

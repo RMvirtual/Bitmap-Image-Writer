@@ -1,5 +1,5 @@
 #include <gtest/gtest.h>
-#include "src/main/cpp/utilities/filesystem.h"
+#include "src/main/cpp/files/system/filesystem.h"
 
 TEST(Filesystem, ShouldGetSizeOfFile)
 { 
@@ -9,7 +9,7 @@ TEST(Filesystem, ShouldGetSizeOfFile)
   );
 
   int correctSize = 786486;
-  int fileSizeInBytes = Utilities::getSizeOfFile(bitmapFile);
+  int fileSizeInBytes = Files::getSizeOfFile(bitmapFile);
 
   EXPECT_EQ(correctSize, fileSizeInBytes);
 }
