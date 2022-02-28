@@ -1,12 +1,9 @@
 load("@rules_cc//cc:defs.bzl", "cc_library")
 
 cc_library(
-    name = "geometry",
+    name = "mesh",
     hdrs = glob(["*.h"]),
     srcs = glob(["*.cpp"]),
     visibility = ["//visibility:public"],
-    deps = [
-        "//src/main/cpp/geometry/triangle",
-        "//src/main/cpp/geometry/mesh",
-    ]
+    deps = ["//src/main/cpp/geometry/triangle"]
 )

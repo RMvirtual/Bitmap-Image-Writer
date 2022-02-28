@@ -3,6 +3,7 @@
 #include "src/main/cpp/geometry/line_plotter.h"
 #include "src/main/cpp/geometry/gradient_calculator.h"
 
+// Bresenham's Line Drawing Algorithm.
 /* TODO: THIS NEEDS TIDYING UP AND UNDERSTANDING BETTER */
 
 Geometry::LinePlotter::LinePlotter()
@@ -44,6 +45,7 @@ std::vector<std::pair<int,int>> Geometry::LinePlotter::plotPoints(
   return plotPoints;
 }
 
+/* Could merge this and plotLineHigh together using Axis as variable. */
 std::vector<std::pair<int,int>> Geometry::LinePlotter::plotLineLow(
   double x0, double y0, double x1, double y1)
 {
@@ -76,6 +78,7 @@ std::vector<std::pair<int,int>> Geometry::LinePlotter::plotLineLow(
   return plotPoints;
 }
 
+/* Could merge this and plotLineLow together using Axis as variable. */
 std::vector<std::pair<int,int>> Geometry::LinePlotter::plotLineHigh(
   double x0, double y0, double x1, double y1)
 {

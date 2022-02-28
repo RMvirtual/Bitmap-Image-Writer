@@ -17,8 +17,10 @@ public:
   ~Image();
 
   void fill(Colours colours);
+  void setPixel(int row, int column, Colours colours);
   int widthInPixels() const;
   int heightInPixels() const;
+
   Colours defaultColours() const;
   FileHeader fileHeader() const;
   DibHeader dibHeader() const;

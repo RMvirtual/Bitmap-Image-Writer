@@ -159,37 +159,37 @@ double Maths::Vector::operator [](int index) const
   return this->get(index);
 }
 
-Maths::Vector Maths::Vector::operator + (const Maths::Vector& rhsVector) const
+Maths::Vector Maths::Vector::operator +(const Maths::Vector& rhsVector) const
 {
   return this->performBinaryOperation<Addition>(rhsVector);
 }
 
-Maths::Vector Maths::Vector::operator - (const Maths::Vector& rhsVector) const
+Maths::Vector Maths::Vector::operator -(const Maths::Vector& rhsVector) const
 {
   return this->performBinaryOperation<Subtraction>(rhsVector);
 }
 
-double Maths::Vector::operator * (const Maths::Vector& rhsVector) const
+double Maths::Vector::operator *(const Maths::Vector& rhsVector) const
 {
   return this->dotProduct(rhsVector);
 }
 
-Maths::Vector Maths::Vector::operator * (double scalar) const
+Maths::Vector Maths::Vector::operator *(double scalar) const
 {
   return this->performBinaryOperation<Multiplication>(scalar);
 }
 
-Maths::Vector Maths::Vector::operator / (double scalar) const
+Maths::Vector Maths::Vector::operator /(double scalar) const
 {
   return this->performBinaryOperation<Division>(scalar);
 }
 
-Maths::Vector operator * (double scalarLHS, const Maths::Vector& vectorRHS)
+Maths::Vector operator *(double scalarLHS, const Maths::Vector& vectorRHS)
 {
   return vectorRHS * scalarLHS;
 }
 
-std::ostream &operator << (std::ostream& outstream, const Maths::Vector& vector)
+std::ostream &operator <<(std::ostream& outstream, const Maths::Vector& vector)
 {
   return outstream << vector.toString();
 }

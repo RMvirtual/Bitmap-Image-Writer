@@ -37,6 +37,11 @@ Bitmaps::Image::~Image()
 
 }
 
+void Bitmaps::Image::setPixel(int row, int column, Bitmaps::Colours colours)
+{
+  this->packet.pixelArray.set(colours, row, column);
+}
+
 void Bitmaps::Image::fill(Bitmaps::Colours colours)
 {
   this->packet.pixelArray.fill(colours);
