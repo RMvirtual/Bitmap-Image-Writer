@@ -3,7 +3,7 @@
 #include "src/main/cpp/bitmaps/reader/image/reader.h"
 #include "src/main/cpp/bitmaps/formats/formats.h"
 #include "src/test/cpp/bitmaps/reader/fixture.h"
-#include "src/main/cpp/files/system/filesystem.h"
+#include "src/main/cpp/files/stream/filestream.h"
 
 BitmapReaderTest::BitmapReaderTest()
 {

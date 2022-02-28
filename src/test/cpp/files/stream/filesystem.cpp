@@ -1,5 +1,5 @@
 #include <gtest/gtest.h>
-#include "src/main/cpp/files/system/filesystem.h"
+#include "src/main/cpp/files/stream/filestream.h"
 
 TEST(Filesystem, ShouldGetSizeOfFile)
 { 

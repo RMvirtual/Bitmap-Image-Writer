@@ -5,7 +5,7 @@
 #include "src/main/cpp/bitmaps/writer/headers/dib-header/writer.h"
 #include "src/main/cpp/bitmaps/writer/pixel-array/writer.h"
 #include "src/main/cpp/containers/byte-array/byte_array.h"
-#include "src/main/cpp/files/system/filesystem.h"
+#include "src/main/cpp/files/stream/filestream.h"
 
 Bitmaps::ImageWriter::ImageWriter()
 {

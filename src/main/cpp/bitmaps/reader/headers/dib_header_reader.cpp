@@ -1,4 +1,4 @@
-#include "src/main/cpp/files/system/filesystem.h"
+#include "src/main/cpp/files/stream/filestream.h"
 #include "src/main/cpp/containers/byte-array/byte_conversion.h"
 #include "src/main/cpp/bitmaps/reader/headers/dib_header_reader.h"
 

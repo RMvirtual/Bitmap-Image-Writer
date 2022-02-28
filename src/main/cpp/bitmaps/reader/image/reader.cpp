@@ -7,7 +7,7 @@
 #include "src/main/cpp/bitmaps/reader/headers/dib_header_reader.h"
 #include "src/main/cpp/bitmaps/reader/pixel-array/reader.h"
 #include "src/main/cpp/bitmaps/packet/headers/headers.h"
-#include "src/main/cpp/files/system/filesystem.h"
+#include "src/main/cpp/files/stream/filestream.h"
 
 Bitmaps::ImageReader::ImageReader()
 {

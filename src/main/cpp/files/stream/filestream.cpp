@@ -2,7 +2,7 @@
 #include <filesystem>
 
 #include "src/main/cpp/containers/byte-array/byte_array.h"
-#include "src/main/cpp/files/system/filesystem.h"
+#include "src/main/cpp/files/stream/filestream.h"
 
 std::string Files::readFileToString(const std::string& filePath)
 {

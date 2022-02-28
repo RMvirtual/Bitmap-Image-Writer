@@ -3,7 +3,7 @@
 #include "src/main/cpp/bitmaps/formats/colours/colours.h"
 #include "src/main/cpp/bitmaps/image/image.h"
 #include "src/main/cpp/bitmaps/packet/headers/headers.h"
-#include "src/main/cpp/files/system/filesystem.h"
+#include "src/main/cpp/files/stream/filestream.h"
 
 Bitmaps::Image::Image()
 {
