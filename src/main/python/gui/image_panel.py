@@ -1,6 +1,5 @@
 import wx
 
-from src.main.python.gui.image_conversion import toBitmap, toImage
 from src.main.python.gui.image import Image
 
 class ImagePanel(wx.Panel):
@@ -51,12 +50,11 @@ class ImagePanel(wx.Panel):
         """Loads a bitmap image to the viewer control."""
 
         self.__image.loadImage(filePath)
-        self.__image.updateScaledImage()
 
     def __resize(self, event:wx.Event) -> None:
         """Event handler for resizing of the panel."""
         
-        self.__image.updateScaledImage()
+        self.__image.refresh()
 
     def setText(self, text:str) -> None:
         """Sets the text underneath the image."""

@@ -1,5 +1,8 @@
 import wx
 
+from src.main.python.gui.aspect_ratios \
+    import aspectRatioFromImage, isAspectRatioPreserved
+
 def toBitmap(imagePath:str) -> wx.Bitmap:
     """Converts an image file to a wx Bitmap object."""
        
@@ -17,3 +20,27 @@ def toScaledImage(imagePath:str, width:int, height:int) -> wx.Image:
 
     return image.Scale(
         width=width, height=height, quality=wx.IMAGE_QUALITY_HIGH)
+
+def rescaleImagePreserveAspectRatio(image:wx.Image, width:int, height:int):
+    """Rescales the image as close to the new width/height as possible
+    while preserving the aspect ratio.
+    """
+    originalAspectRatio = aspectRatioFromImage(image)
+    reports = isAspectRatioPreserved(image, width, height)
+
+    newWidth = width
+    newHeight = height
+
+    if reports["too wide"]:
+        newWidth = height * originalAspectRatio
+
+    else:
+        newHeight = width / originalAspectRatio
+
+    scaledImage = image.Scale(
+        width=newWidth,
+        height=newHeight,
+        quality=wx.IMAGE_QUALITY_HIGH
+    )
+
+    return scaledImage
