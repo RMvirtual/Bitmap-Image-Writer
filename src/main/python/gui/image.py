@@ -1,7 +1,7 @@
 import wx
 
 from src.main.python.gui.image_conversion \
-    import toImage, rescaleImagePreserveAspectRatio
+    import toImage, scaleImagePreserveAspectRatio
 
 class Image(wx.StaticBitmap):
     """An image to be drawn on a panel."""
@@ -33,7 +33,7 @@ class Image(wx.StaticBitmap):
     def refresh(self) -> None:
         width, height = self.GetParent().GetSize()
 
-        scaledImage = rescaleImagePreserveAspectRatio(
+        scaledImage = scaleImagePreserveAspectRatio(
             self.__originalImage, width, height)
 
         self.__bitmap = wx.Bitmap(img=scaledImage)

@@ -13,11 +13,11 @@ def aspectRatio(width:int, height:int) -> float:
     return float(width) / float(height)
 
 def isAspectRatioPreserved(
-        image:wx.Image, newWidth:int, newHeight:int) -> dict[str,bool]:
+        originalRatio:float, newWidth:int, newHeight:int) -> dict[str,bool]:
     """Returns whether the new width and height dimensions provided
-    will match an image's original aspect ratio.
+    will match an aspect ratio.
     """
-    originalRatio, newRatio = __aspectRatios(image, newWidth, newHeight)
+    newRatio = aspectRatio(newWidth, newHeight)
 
     reports = {
         "preserved": newRatio == originalRatio,
@@ -27,13 +27,26 @@ def isAspectRatioPreserved(
 
     return reports
 
-def __aspectRatios(
-        image:wx.Image, newWidth:int, newHeight:int) -> tuple[float,float]:
-    """Returns an image's aspect ratio as well as an aspect ratio
-    formed from a potential new width and height.
+def newDimensionsFromRatio(
+        ratio:float, width:int, height:int) -> tuple[int,int]:
+    """Returns as close a width and height as can be achieved whilst
+    conforming to the provided ratio.
     """
+    reports = isAspectRatioPreserved(ratio, width, height)
 
-    originalRatio = aspectRatioFromImage(image)
-    newRatio = aspectRatio(newWidth, newHeight)
+    if reports["too wide"]:
+        width = height * ratio
 
-    return originalRatio, newRatio
+    else:
+        height = width / ratio
+
+    return width, height
+
+def scaleDimensionsToImageAspectRatio(
+        image:wx.Image, width:int, height:int) -> tuple[int,int]:
+    """Returns as close a width and height as can be achieved whilst
+    conforming to the image's aspect ratio.
+    """
+    aspectRatio = aspectRatioFromImage(image)
+    
+    return newDimensionsFromRatio(aspectRatio, width, height)
