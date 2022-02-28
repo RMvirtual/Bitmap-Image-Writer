@@ -28,18 +28,15 @@ def rescaleImagePreserveAspectRatio(image:wx.Image, width:int, height:int):
     originalAspectRatio = aspectRatioFromImage(image)
     reports = isAspectRatioPreserved(image, width, height)
 
-    newWidth = width
-    newHeight = height
-
     if reports["too wide"]:
-        newWidth = height * originalAspectRatio
+        width = height * originalAspectRatio
 
     else:
-        newHeight = width / originalAspectRatio
+        height = width / originalAspectRatio
 
     scaledImage = image.Scale(
-        width=newWidth,
-        height=newHeight,
+        width=width,
+        height=height,
         quality=wx.IMAGE_QUALITY_HIGH
     )
 
