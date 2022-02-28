@@ -16,13 +16,14 @@ std::vector<std::pair<int,int>> Geometry::LinePlotter::plotPoints(
 
   double x0 = 0;
   double y0 = 0;
+  std::pair<double,double> origin {x0, y0};
 
   auto x1 = destination.first;
   auto y1 = destination.second;
 
   GradientCalculator gradientCalculator;
-  auto dx = gradientCalculator.run({0, 0}, destination) -1;
-  auto dy = gradientCalculator.rise({0, 0}, destination) -1;
+  auto dx = gradientCalculator.run(origin, destination);
+  auto dy = gradientCalculator.rise(origin, destination) -1;
   double yi = 1;
 
   if (dy < 0) {
