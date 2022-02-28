@@ -10,13 +10,11 @@ void LinePlotterTest::compare(std::vector<std::pair<int,int>> plotPoints)
 
   ASSERT_EQ(correctNoOfPlotPoints, noOfPlotPoints);
 
-  for (int pointNo = 0; pointNo < noOfPlotPoints; pointNo++) {
-    std::cout << "PointNo: " << pointNo << "\n";
-    
+  for (int pointNo = 0; pointNo < noOfPlotPoints; pointNo++) {    
     auto point = plotPoints[pointNo];
     auto correctPoint = this->correctPlotPoints[pointNo];
 
     EXPECT_EQ(correctPoint.first, point.first);
-    EXPECT_EQ(correctPoint.second, point.second);
+    EXPECT_EQ(correctPoint.second, point.second) << "Failed X: " << pointNo;
   }
 }
