@@ -29,16 +29,16 @@ std::vector<std::pair<int,int>> Geometry::LinePlotter::plotPoints(
 
   if (abs(y1 - y0) < abs(x1 - x0)) {
     if (x0 > x1)
-      plotPoints = plotLineLow(x1, y1, x0, y0);
+      plotPoints = this->plotLineLow(x1, y1, x0, y0);
     else
-      plotPoints = plotLineLow(x0, y0, x1, y1);
+      plotPoints = this->plotLineLow(x0, y0, x1, y1);
   }
   
   else {
     if (y0 > y1)
-      plotPoints = plotLineHigh(x1, y1, x0, y0);
+      plotPoints = this->plotLineHigh(x1, y1, x0, y0);
     else
-      plotPoints = plotLineHigh(x0, y0, x1, y1);
+      plotPoints = this->plotLineHigh(x0, y0, x1, y1);
   }
 
   return plotPoints;
