@@ -22,8 +22,10 @@ std::vector<std::pair<int,int>> Geometry::LinePlotter::plotPoints(
   auto y1 = destination.second;
 
   GradientCalculator gradientCalculator;
-  auto dx = gradientCalculator.run(origin, destination);
-  auto dy = gradientCalculator.rise(origin, destination) -1;
+  /* Both ends of the line start at halfway points rather than dot on
+  an axis, so deduct one total.*/
+  auto dx = gradientCalculator.run(origin, destination) - 1;
+  auto dy = gradientCalculator.rise(origin, destination) - 1;
   double yi = 1;
 
   if (dy < 0) {
