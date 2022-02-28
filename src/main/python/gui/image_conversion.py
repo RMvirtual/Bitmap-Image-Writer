@@ -17,19 +17,18 @@ def toScaledImage(imagePath:str, width:int, height:int) -> wx.Image:
 
     image = toImage(imagePath)
 
-    return image.Scale(
-        width=width, height=height, quality=wx.IMAGE_QUALITY_HIGH)
+    return __scaledImage(image, width, height)
 
-def scaleImagePreserveAspectRatio(image:wx.Image, width:int, height:int):
+def toScaledImagePreserveAspectRatio(image:wx.Image, width:int, height:int):
     """Rescales the image as close to the new width/height as possible
     while preserving the aspect ratio.
     """
     width, height = scaleDimensionsToImageAspectRatio(image, width, height)
 
-    scaledImage = image.Scale(
-        width=width,
-        height=height,
-        quality=wx.IMAGE_QUALITY_HIGH
-    )
+    return __scaledImage(image, width, height)
 
-    return scaledImage
+def __scaledImage(image:wx.Image, width:int, height:int) -> wx.Image:
+    """Returns a scaled image to new width and height dimensions."""
+
+    return image.Scale(
+        width=width, height=height, quality=wx.IMAGE_QUALITY_HIGH)

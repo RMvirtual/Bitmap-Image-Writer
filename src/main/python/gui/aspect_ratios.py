@@ -5,9 +5,9 @@ def scaleDimensionsToRatio(
     """Returns as close a width and height as can be achieved whilst
     conforming to the provided ratio.
     """
-    reports = aspectRatioCorrectness(ratio, width, height)
+    correctness = aspectRatioCorrectness(ratio, width, height)
 
-    if reports["too wide"]:
+    if correctness["too wide"]:
         width = height * ratio
 
     else:
@@ -37,9 +37,9 @@ def aspectRatio(width:int, height:int) -> float:
     return float(width) / float(height)
 
 def aspectRatioCorrectness(
-        ratio:float, width:int, height:int) -> dict[str,bool]:
-    """Returns whether the new width and height dimensions provided
-    will match an aspect ratio.
+    ratio:float, width:int, height:int) -> dict[str,bool]:
+    """Returns a dictionary of reported concerning whether he new width
+    and height dimensions provided will match a provided aspect ratio.
     """
     newRatio = aspectRatio(width, height)
 
