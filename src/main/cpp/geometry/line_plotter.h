@@ -16,5 +16,9 @@ public:
     std::pair<double,double> origin, std::pair<double,double> destination);
 
 private:
-  double calculateYError(double x, double y);
+  std::vector<std::pair<int,int>> plotLineHigh(
+    double x0, double x1, double y0, double y1);
+
+  std::vector<std::pair<int,int>> plotLineLow(
+    double x0, double x1, double y0, double y1);
 };}

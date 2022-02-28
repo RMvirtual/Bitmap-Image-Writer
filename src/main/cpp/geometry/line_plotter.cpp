@@ -17,19 +17,38 @@ std::vector<std::pair<int,int>> Geometry::LinePlotter::plotPoints(
 }
 
 std::vector<std::pair<int,int>> Geometry::LinePlotter::plotPoints(
-    std::pair<double,double> origin, std::pair<double,double> destination)
+  std::pair<double,double> origin, std::pair<double,double> destination)
 {
-  std::vector<std::pair<int,int>> plotPoints {};
-
   double x0 = origin.first;
   double y0 = origin.second;
 
   auto x1 = destination.first;
   auto y1 = destination.second;
 
-  GradientCalculator gradientCalculator;
-  auto dx = gradientCalculator.run(origin, destination);
-  auto dy = gradientCalculator.rise(origin, destination);
+  std::vector<std::pair<int,int>> plotPoints;
+
+  if (abs(y1 - y0) < abs(x1 - x0)) {
+    if (x0 > x1)
+      plotPoints = plotLineLow(x1, y1, x0, y0);
+    else
+      plotPoints = plotLineLow(x0, y0, x1, y1);
+  }
+  
+  else {
+    if (y0 > y1)
+      plotPoints = plotLineHigh(x1, y1, x0, y0);
+    else
+      plotPoints = plotLineHigh(x0, y0, x1, y1);
+  }
+
+  return plotPoints;
+}
+
+std::vector<std::pair<int,int>> Geometry::LinePlotter::plotLineLow(
+  double x0, double y0, double x1, double y1)
+{
+  auto dx = x1 - x0;
+  auto dy = y1 - y0;
   double yi = 1;
 
   if (dy < 0) {
@@ -37,10 +56,10 @@ std::vector<std::pair<int,int>> Geometry::LinePlotter::plotPoints(
     dy = 0 - dy;
   }
 
-  auto gradient = gradientCalculator.fromOriginZero(x1, y1);
-
   double D = (2 * dy) - dx;
   double y = y0;
+
+  std::vector<std::pair<int,int>> plotPoints {};
 
   for (double x = x0; x <= x1; x++) {
     plotPoints.push_back({int(x), int(y)});
@@ -50,23 +69,41 @@ std::vector<std::pair<int,int>> Geometry::LinePlotter::plotPoints(
       D = D + (2 * (dy-dx));
     }
 
-    else {
+    else 
       D = D + 2*dy;
-    }
   }
 
   return plotPoints;
 }
 
-double Geometry::LinePlotter::calculateYError(double x, double y)
+std::vector<std::pair<int,int>> Geometry::LinePlotter::plotLineHigh(
+  double x0, double y0, double x1, double y1)
 {
-  if (x == 0 && y == 0)
-    return 0;
+  auto dx = x1 - x0;
+  auto dy = y1 - y0;
+  double xi = 1;
 
-  GradientCalculator gradientCalculator;
+  if (dx < 0) {
+    xi = -1;
+    dx = 0 - dx;
+  }
 
-  auto gradient = gradientCalculator.fromOriginZero(x, y);
-  double yError = y - x * gradient;
+  double D = (2 * dx) - dy;
+  double x = x0;
 
-  return std::abs(yError);
+  std::vector<std::pair<int,int>> plotPoints {};
+
+  for (double y = y0; y <= y1; y++) {
+    plotPoints.push_back({int(x), int(y)});
+
+    if (D > 0) {
+      x = x + xi;
+      D = D + (2 * (dx-dy));
+    }
+
+    else
+      D = D + 2*dx;
+  }
+
+  return plotPoints;
 }
