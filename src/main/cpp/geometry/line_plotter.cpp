@@ -21,8 +21,8 @@ std::vector<std::pair<int,int>> Geometry::LinePlotter::plotPoints(
   auto y1 = destination.second;
 
   GradientCalculator gradientCalculator;
-  auto dx = gradientCalculator.run({0, 0}, destination);
-  auto dy = gradientCalculator.rise({0, 0}, destination);
+  auto dx = gradientCalculator.run({0, 0}, destination) -1;
+  auto dy = gradientCalculator.rise({0, 0}, destination) -1;
   double yi = 1;
 
   if (dy < 0) {
@@ -30,8 +30,8 @@ std::vector<std::pair<int,int>> Geometry::LinePlotter::plotPoints(
     dy = 0 - dy;
   }
 
-  std::cout << "Starting points...\n";
-  std::cout << "DX: " << dx << " DY: " << dy << " yi: " << yi << std::endl;
+  std::cout << "Starting data...\n";
+  std::cout << "dx: " << dx << " dy: " << dy << " yi: " << yi << std::endl;
 
   auto gradient = gradientCalculator.fromOriginZero(x1, y1);
 
@@ -41,12 +41,13 @@ std::vector<std::pair<int,int>> Geometry::LinePlotter::plotPoints(
   // 6, 3 errors up.
 
   for (double x = x0; x < x1; x++) {
-    std::cout << "X: " << x;
-    std::cout << ", D: " << D << std::endl;
+    std::cout << "X: " << x << ", Y: " << y;
+    std::cout << ", D: " << D;
 
     plotPoints.push_back({int(x), int(y)});
 
     if (D > 0) {
+      std::cout << " ... Y should increase next.";
       y = y + yi;
       D = D + (2 * (dy-dx));
     }
@@ -55,6 +56,7 @@ std::vector<std::pair<int,int>> Geometry::LinePlotter::plotPoints(
       D = D + 2*dy;
     }
 
+    std::cout << std::endl;
   }
 
   return plotPoints;

@@ -75,3 +75,25 @@ TEST_F(
 
   EXPECT_EQ(correctGradient, gradient);
 }
+
+TEST_F(GradientCalculatorTest, ShouldCalculateRise)
+{
+  std::pair<double,double> origin {1, 2};
+  std::pair<double,double> destination {2, 5};
+
+  auto rise = this->calculator.rise(origin, destination);
+  double correctRise = 3;
+
+  EXPECT_EQ(correctRise, rise);
+}
+
+TEST_F(GradientCalculatorTest, ShouldCalculateRun)
+{
+  std::pair<double,double> origin {1, 2};
+  std::pair<double,double> destination {2, 5};
+
+  auto run = this->calculator.run(origin, destination);
+  double correctRun = 1;
+
+  EXPECT_EQ(correctRun, run);
+}
