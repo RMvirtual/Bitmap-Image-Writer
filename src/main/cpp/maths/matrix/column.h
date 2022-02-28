@@ -1,40 +1,35 @@
-#ifndef MATRIX_COLUMN_H
-#define MATRIX_COLUMN_H
+#pragma once
 
 #include <algorithm>
 #include <iterator>
 #include <vector>
 
-namespace Maths
+namespace Maths {
+// A class representing a vertical column of values in a Matrix.
+class Column
 {
-  // A class representing a vertical column of values in a Matrix.
-  class Column
-  {
-  public:
-    // Returns a new column of matrix values.
-    Column(std::vector<double> vector);
+public:
+  // Returns a new column of matrix values.
+  Column(std::vector<double> vector);
 
-    // Returns a value from a column row.
-    double operator [](int index) const;
+  // Returns a value from a column row.
+  double operator [](int index) const;
 
-    // Returns the number of rows in the column.
-    int size() const;
+  // Returns the number of rows in the column.
+  int size() const;
 
-    // Returns an iterator at the start of the column's values.
-    std::vector<double>::iterator begin();
+  // Returns an iterator at the start of the column's values.
+  std::vector<double>::iterator begin();
 
-    // Returns an iterator at the end of the column's values.
-    std::vector<double>::iterator end();
+  // Returns an iterator at the end of the column's values.
+  std::vector<double>::iterator end();
 
-    // Returns a constant iterator at the start of the column's values.
-    std::vector<double>::const_iterator begin() const;
-    
-    // Returns a constant iterator at the end of the column's values.
-    std::vector<double>::const_iterator end() const;
+  // Returns a constant iterator at the start of the column's values.
+  std::vector<double>::const_iterator begin() const;
+  
+  // Returns a constant iterator at the end of the column's values.
+  std::vector<double>::const_iterator end() const;
 
-  private:
-    std::vector<double> values;
-  };
-}
-
-#endif
+private:
+  std::vector<double> values;
+};}

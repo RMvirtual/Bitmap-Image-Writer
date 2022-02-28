@@ -1,5 +1,4 @@
-#ifndef MATRIX_ROW_H
-#define MATRIX_ROW_H
+#pragma once
 
 #include <vector>
 
@@ -68,5 +67,3 @@ int MatrixRow<T>::size() const
 {
   return this->columns.size();
 }
-
-#endif

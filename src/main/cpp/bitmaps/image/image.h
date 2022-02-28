@@ -1,5 +1,4 @@
-#ifndef BITMAP_IMAGE_H
-#define BITMAP_IMAGE_H
+#pragma once
 
 #include <string>
 
@@ -30,5 +29,3 @@ private:
   Packet packet;
   Format format;
 };}
-
-#endif

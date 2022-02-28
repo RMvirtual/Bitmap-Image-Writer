@@ -1,5 +1,4 @@
-#ifndef BITMAP_DIB_HEADER_VALUES_H
-#define BITMAP_DIB_HEADER_VALUES_H
+#pragma once
 
 namespace Bitmaps {
 struct DibHeaderValues
@@ -16,5 +15,3 @@ struct DibHeaderValues
   int colorTableEntries;
   int importantColors;
 };}
-
-#endif

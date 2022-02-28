@@ -1,5 +1,4 @@
-#ifndef BITMAP_INFO_HEADER_H
-#define BITMAP_INFO_HEADER_H
+#pragma once
 
 #include <cstdint>
 #include "src/main/cpp/bitmaps/packet/headers/dib-header/values.h"
@@ -51,5 +50,3 @@ private:
 
   void initialiseDefaultValues();
 };}
-
-#endif

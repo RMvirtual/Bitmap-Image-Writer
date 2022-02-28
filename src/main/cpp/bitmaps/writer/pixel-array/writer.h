@@ -1,5 +1,4 @@
-#ifndef BITMAP_PIXEL_ARRAY_WRITER_H
-#define BITMAP_PIXEL_ARRAY_WRITER_H
+#pragma once
 
 #include "src/main/cpp/bitmaps/packet/pixel-array/array.h"
 #include "src/main/cpp/containers/byte-array/byte_array.h"
@@ -22,5 +21,3 @@ private:
   void write(const Bitmaps::Colours& pixelColours);
   void addRowPadding();
 };}
-
-#endif

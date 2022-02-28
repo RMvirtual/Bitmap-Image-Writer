@@ -1,5 +1,4 @@
-#ifndef PIXEL_ARRAY_H
-#define PIXEL_ARRAY_H
+#pragma once
 
 #include "src/main/cpp/containers/matrix-2D/matrix_2d.h"
 #include "src/main/cpp/bitmaps/formats/format/format.h"
@@ -27,5 +26,3 @@ private:
   Format _format;
   Matrix2D<Colours> pixels {0, 0, {}};
 };}
-
-#endif

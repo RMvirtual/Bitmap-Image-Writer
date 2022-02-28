@@ -1,5 +1,4 @@
-#ifndef MATRIX_H
-#define MATRIX_H
+#pragma once
 
 #include <vector>
 
@@ -202,5 +201,3 @@ private:
  */
 Maths::Vector operator *(
   const Maths::Vector& vector, const Maths::Matrix& matrix);
-
-#endif

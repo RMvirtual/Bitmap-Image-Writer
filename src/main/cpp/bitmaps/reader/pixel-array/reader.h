@@ -1,5 +1,4 @@
-#ifndef PIXEL_ARRAY_READER_H
-#define PIXEL_ARRAY_READER_H
+#pragma once
 
 #include "src/main/cpp/containers/byte-array/byte_array.h"
 #include "src/main/cpp/bitmaps/formats/format/format.h"
@@ -22,5 +21,3 @@ private:
   Bitmaps::PixelArray pixelArray;
   ByteArray bytes;
 };}
-
-#endif

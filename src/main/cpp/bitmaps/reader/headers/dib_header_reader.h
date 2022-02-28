@@ -1,5 +1,4 @@
-#ifndef BITMAP_DIB_HEADER_READER_H
-#define BITMAP_DIB_HEADER_READER_H
+#pragma once
 
 #include "src/main/cpp/bitmaps/packet/headers/dib-header/header.h"
 #include "src/main/cpp/containers/byte-array/byte_array.h"
@@ -25,5 +24,3 @@ private:
   void parseColourTableEntries(const ByteArray& bytes);
   void parseImportantColours(const ByteArray& bytes);
 };}
-
-#endif

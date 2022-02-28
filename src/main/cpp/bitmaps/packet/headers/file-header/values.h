@@ -1,5 +1,4 @@
-#ifndef BITMAP_FILE_HEADER_VALUES_H
-#define BITMAP_FILE_HEADER_VALUES_H
+#pragma once
 
 #include <string>
 
@@ -11,5 +10,3 @@ struct FileHeaderValues
   int reservedBytes;
   int pixelDataOffsetInBytes;
 };}
-
-#endif

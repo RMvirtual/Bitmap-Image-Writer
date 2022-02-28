@@ -1,5 +1,4 @@
-#ifndef PIXEL_COLOURS_H
-#define PIXEL_COLOURS_H
+#pragma once
 
 #include <cstdint>
 #include <initializer_list>
@@ -29,5 +28,3 @@ public:
 private:
   std::map<std::string, uint8_t> _colours;
 };}
-
-#endif

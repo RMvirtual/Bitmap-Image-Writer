@@ -1,5 +1,4 @@
-#ifndef BYTE_CONVERTOR_H
-#define BYTE_CONVERTOR_H
+#pragma once
 
 #include <cstdint>
 #include "src/main/cpp/containers/byte-array/byte_array.h"
@@ -18,5 +17,3 @@ namespace ByteConversion
     uint8_t byteValues[4];
   };
 };
-
-#endif

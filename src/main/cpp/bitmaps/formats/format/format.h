@@ -1,5 +1,4 @@
-#ifndef BITMAP_FORMAT_H
-#define BITMAP_FORMAT_H
+#pragma once
 
 #include <string>
 #include <vector>
@@ -42,5 +41,3 @@ private:
   void calculateRowPadding();
   void calculateBytesPerRow();
 };}
-
-#endif

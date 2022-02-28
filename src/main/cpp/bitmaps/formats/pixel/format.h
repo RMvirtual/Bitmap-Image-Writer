@@ -1,5 +1,4 @@
-#ifndef PIXEL_FORMAT_H
-#define PIXEL_FORMAT_H
+#pragma once
 
 #include <string>
 #include <vector>
@@ -27,5 +26,3 @@ private:
 
   void calculateBytesPerPixel();
 };}
-
-#endif

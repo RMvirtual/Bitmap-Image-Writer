@@ -1,5 +1,4 @@
-#ifndef BITMAP_PACKET_H
-#define BITMAP_PACKET_H
+#pragma once
 
 #include "src/main/cpp/bitmaps/packet/headers/file-header/header.h"
 #include "src/main/cpp/bitmaps/packet/headers/dib-header/header.h"
@@ -12,5 +11,3 @@ struct Packet
   DibHeader dibHeader;
   PixelArray pixelArray;
 };}
-
-#endif

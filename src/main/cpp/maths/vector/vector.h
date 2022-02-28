@@ -1,5 +1,4 @@
-#ifndef VECTOR_H
-#define VECTOR_H
+#pragma once
 
 #include <array>
 #include <cstdarg>
@@ -146,5 +145,3 @@ Maths::Vector operator *(double scalarLhs, const Maths::Vector& vectorRhs);
 
 // Prints the vector's contents.
 std::ostream& operator <<(std::ostream &_stream, const Maths::Vector& vector);
-
-#endif

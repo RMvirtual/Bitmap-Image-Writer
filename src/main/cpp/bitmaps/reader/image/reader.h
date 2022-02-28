@@ -1,5 +1,4 @@
-#ifndef BITMAP_READER_H
-#define BITMAP_READER_H
+#pragma once
 
 #include <string>
 
@@ -29,5 +28,3 @@ private:
   Bitmaps::Format pixelArrayFormat();
   Bitmaps::PixelArrayReader pixelArrayReader();
 };}
-
-#endif

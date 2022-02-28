@@ -1,5 +1,4 @@
-#ifndef BYTE_ARRAY_H
-#define BYTE_ARRAY_H
+#pragma once
 
 #include <cstdint>
 #include <string>
@@ -34,5 +33,3 @@ class ByteArray
   private:
     std::vector<uint8_t> bytes;
 };
-
-#endif

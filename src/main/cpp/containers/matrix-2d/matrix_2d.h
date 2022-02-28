@@ -1,5 +1,4 @@
-#ifndef MATRIX_2D_H
-#define MATRIX_2D_H
+#pragma once
 
 #include <cmath>
 #include <vector>
@@ -141,5 +140,3 @@ int Matrix2D<T>::absoluteIndex(const Index& matrixIndex) const
 {
   return ((matrixIndex.row * this->_width) + matrixIndex.column);
 }
-
-#endif

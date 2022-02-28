@@ -1,8 +1,6 @@
-#ifndef BITMAP_IMAGE_WRITER_H
-#define BITMAP_IMAGE_WRITER_H
+#pragma once
 
 #include <string>
-
 #include "src/main/cpp/bitmaps/image/image.h"
 #include "src/main/cpp/containers/byte-array/byte_array.h"
 
@@ -17,5 +15,3 @@ public:
 private:
   ByteArray byteArray;
 };}
-
-#endif

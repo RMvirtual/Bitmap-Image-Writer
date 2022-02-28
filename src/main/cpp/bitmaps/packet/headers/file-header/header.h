@@ -1,5 +1,4 @@
-#ifndef BITMAP_FILE_HEADER_H
-#define BITMAP_FILE_HEADER_H
+#pragma once
 
 #include <cstdint>
 #include <string>
@@ -33,5 +32,3 @@ private:
 
   void initialiseDefaultValues();
 };}
-
-#endif

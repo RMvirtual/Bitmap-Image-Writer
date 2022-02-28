@@ -1,5 +1,4 @@
-#ifndef BITMAP_FILE_HEADER_WRITER_H
-#define BITMAP_FILE_HEADER_WRITER_H
+#pragma once
 
 #include "src/main/cpp/bitmaps/packet/headers/file-header/header.h"
 #include "src/main/cpp/containers/byte-array/byte_array.h"
@@ -14,5 +13,3 @@ public:
 private:
   ByteArray byteAccumulator;
 };}
-
-#endif

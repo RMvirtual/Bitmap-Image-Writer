@@ -1,5 +1,4 @@
-#ifndef BITMAP_FORMATS_H
-#define BITMAP_FORMATS_H
+#pragma once
 
 #include <string>
 #include "src/main/cpp/bitmaps/formats/format/format.h"
@@ -10,5 +9,3 @@ namespace Bitmaps
   Format format(int bitsPerPixel);
   Format formatByIndex(int index);
 }
-
-#endif
