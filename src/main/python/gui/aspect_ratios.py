@@ -1,38 +1,11 @@
 import wx
 
-def aspectRatioFromImage(image:wx.Image) -> float:
-    """Returns an image's aspect ratio (how many pixels wide for every
-    pixel in height).
-    """
-    return aspectRatio(image.GetWidth(), image.GetHeight())
-
-def aspectRatio(width:int, height:int) -> float:
-    """Returns a ratio of how many pixels wide for every pixel in
-    height.
-    """
-    return float(width) / float(height)
-
-def isAspectRatioPreserved(
-        originalRatio:float, newWidth:int, newHeight:int) -> dict[str,bool]:
-    """Returns whether the new width and height dimensions provided
-    will match an aspect ratio.
-    """
-    newRatio = aspectRatio(newWidth, newHeight)
-
-    reports = {
-        "preserved": newRatio == originalRatio,
-        "too wide": newRatio > originalRatio,
-        "too tall": newRatio < originalRatio
-    }
-
-    return reports
-
-def newDimensionsFromRatio(
+def scaleDimensionsToRatio(
         ratio:float, width:int, height:int) -> tuple[int,int]:
     """Returns as close a width and height as can be achieved whilst
     conforming to the provided ratio.
     """
-    reports = isAspectRatioPreserved(ratio, width, height)
+    reports = aspectRatioCorrectness(ratio, width, height)
 
     if reports["too wide"]:
         width = height * ratio
@@ -49,4 +22,31 @@ def scaleDimensionsToImageAspectRatio(
     """
     aspectRatio = aspectRatioFromImage(image)
     
-    return newDimensionsFromRatio(aspectRatio, width, height)
+    return scaleDimensionsToRatio(aspectRatio, width, height)
+
+def aspectRatioFromImage(image:wx.Image) -> float:
+    """Returns an image's aspect ratio (how many pixels wide for every
+    pixel in height).
+    """
+    return aspectRatio(image.GetWidth(), image.GetHeight())
+
+def aspectRatio(width:int, height:int) -> float:
+    """Returns a ratio of how many pixels wide for every pixel in
+    height.
+    """
+    return float(width) / float(height)
+
+def aspectRatioCorrectness(
+        ratio:float, width:int, height:int) -> dict[str,bool]:
+    """Returns whether the new width and height dimensions provided
+    will match an aspect ratio.
+    """
+    newRatio = aspectRatio(width, height)
+
+    reports = {
+        "preserved": newRatio == ratio,
+        "too wide": newRatio > ratio,
+        "too tall": newRatio < ratio
+    }
+
+    return reports
