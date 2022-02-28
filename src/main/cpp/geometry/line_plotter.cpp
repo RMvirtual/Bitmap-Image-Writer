@@ -1,8 +1,9 @@
 #include <cmath>
-#include <iostream>
 
 #include "src/main/cpp/geometry/line_plotter.h"
 #include "src/main/cpp/geometry/gradient_calculator.h"
+
+/* TODO: THIS NEEDS TIDYING UP AND UNDERSTANDING BETTER */
 
 Geometry::LinePlotter::LinePlotter()
 {
@@ -22,8 +23,10 @@ std::vector<std::pair<int,int>> Geometry::LinePlotter::plotPoints(
   auto y1 = destination.second;
 
   GradientCalculator gradientCalculator;
+
   /* Both ends of the line start at halfway points rather than dot on
-  an axis, so deduct one total.*/
+  an axis, so deduct one total from the run and rise distance
+  variables.*/
   auto dx = gradientCalculator.run(origin, destination) - 1;
   auto dy = gradientCalculator.rise(origin, destination) - 1;
   double yi = 1;
@@ -33,9 +36,6 @@ std::vector<std::pair<int,int>> Geometry::LinePlotter::plotPoints(
     dy = 0 - dy;
   }
 
-  std::cout << "Starting data...\n";
-  std::cout << "dx: " << dx << " dy: " << dy << " yi: " << yi << std::endl;
-
   auto gradient = gradientCalculator.fromOriginZero(x1, y1);
 
   double D = (2 * dy) - dx;
@@ -44,13 +44,9 @@ std::vector<std::pair<int,int>> Geometry::LinePlotter::plotPoints(
   // 6, 3 errors up.
 
   for (double x = x0; x < x1; x++) {
-    std::cout << "X: " << x << ", Y: " << y;
-    std::cout << ", D: " << D;
-
     plotPoints.push_back({int(x), int(y)});
 
     if (D > 0) {
-      std::cout << " ... Y should increase next.";
       y = y + yi;
       D = D + (2 * (dy-dx));
     }
@@ -58,8 +54,6 @@ std::vector<std::pair<int,int>> Geometry::LinePlotter::plotPoints(
     else {
       D = D + 2*dy;
     }
-
-    std::cout << std::endl;
   }
 
   return plotPoints;
