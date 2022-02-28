@@ -28,10 +28,6 @@ std::vector<std::pair<int,int>> Geometry::LinePlotter::plotPoints(
   auto y1 = destination.second;
 
   GradientCalculator gradientCalculator;
-
-  /* Both ends of the line start at halfway points rather than dot on
-  an axis, so deduct one total from the run and rise distance
-  variables.*/
   auto dx = gradientCalculator.run(origin, destination);
   auto dy = gradientCalculator.rise(origin, destination);
   double yi = 1;
@@ -45,8 +41,6 @@ std::vector<std::pair<int,int>> Geometry::LinePlotter::plotPoints(
 
   double D = (2 * dy) - dx;
   double y = y0;
-
-  // 6, 3 errors up.
 
   for (double x = x0; x <= x1; x++) {
     plotPoints.push_back({int(x), int(y)});
