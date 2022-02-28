@@ -1,8 +1,8 @@
-#include "src/main/cpp/geometry/line_plotter.h"
-#include "src/main/cpp/geometry/gradient_calculator.h"
-
 #include <cmath>
 #include <iostream>
+
+#include "src/main/cpp/geometry/line_plotter.h"
+#include "src/main/cpp/geometry/gradient_calculator.h"
 
 Geometry::LinePlotter::LinePlotter()
 {
@@ -21,30 +21,40 @@ std::vector<std::pair<int,int>> Geometry::LinePlotter::plotPoints(
   auto y1 = destination.second;
 
   GradientCalculator gradientCalculator;
-  auto run = gradientCalculator.run({0, 0}, destination);
-  auto rise = gradientCalculator.rise({0, 0}, destination);
-  double yIntercept = 1;
+  auto dx = gradientCalculator.run({0, 0}, destination);
+  auto dy = gradientCalculator.rise({0, 0}, destination);
+  double yi = 1;
 
-  if (rise < 0) {
-    yIntercept = -1;
-    rise = std::abs(rise);
+  if (dy < 0) {
+    yi = -1;
+    dy = 0 - dy;
   }
+
+  std::cout << "Starting points...\n";
+  std::cout << "DX: " << dx << " DY: " << dy << " yi: " << yi << std::endl;
 
   auto gradient = gradientCalculator.fromOriginZero(x1, y1);
 
-  double d = (2 * rise) - run;
+  double D = (2 * dy) - dx;
   double y = y0;
 
-  for (double x = x0; x < x1; x++) {
-    plotPoints.push_back({x, y});
-    std::cout << "d: " << d << std::endl;
+  // 6, 3 errors up.
 
-    if (d > 0) {
-      y += yIntercept;
-      d -= 2 * run;
+  for (double x = x0; x < x1; x++) {
+    std::cout << "X: " << x;
+    std::cout << ", D: " << D << std::endl;
+
+    plotPoints.push_back({int(x), int(y)});
+
+    if (D > 0) {
+      y = y + yi;
+      D = D + (2 * (dy-dx));
     }
 
-    d += 2 * rise;
+    else {
+      D = D + 2*dy;
+    }
+
   }
 
   return plotPoints;
