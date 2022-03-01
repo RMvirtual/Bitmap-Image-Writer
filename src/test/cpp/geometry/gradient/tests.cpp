@@ -1,7 +1,7 @@
 #include <utility>
 
 #include "gtest/gtest.h"
-#include "src/test/cpp/geometry/gradient-calculator/fixture.h"
+#include "src/test/cpp/geometry/gradient/fixture.h"
 
 TEST_F(GradientCalculatorTest,
   ShouldCalculateLineGradientFromZeroXEqualToY)

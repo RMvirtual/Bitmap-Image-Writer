@@ -1,4 +1,4 @@
-#include "src/test/cpp/geometry/gradient-calculator/fixture.h"
+#include "src/test/cpp/geometry/gradient/fixture.h"
 
 GradientCalculatorTest::GradientCalculatorTest()
 {

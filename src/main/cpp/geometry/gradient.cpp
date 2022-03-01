@@ -1,4 +1,4 @@
-#include "src/main/cpp/geometry/gradient_calculator.h"
+#include "src/main/cpp/geometry/gradient.h"
 
 Geometry::GradientCalculator::GradientCalculator()
 {
