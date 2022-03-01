@@ -45,12 +45,13 @@ std::vector<std::pair<int,int>> Geometry::LinePlotter::plotPoints(
   }
   
   else {
-    bool traversingBottomToTop = (y0 > y1);
+    bool traversingBottomToTop = (y0 < y1);
 
     if (traversingBottomToTop)
-      plotPoints = this->plotLineHigh(x1, y1, x0, y0);
-    else
       plotPoints = this->plotLineHigh(x0, y0, x1, y1);
+      
+    else
+      plotPoints = this->plotLineHigh(x1, y1, x0, y0);
   }
 
   return plotPoints;
