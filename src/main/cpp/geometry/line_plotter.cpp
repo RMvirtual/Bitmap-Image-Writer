@@ -20,13 +20,10 @@ std::vector<std::pair<int,int>> Geometry::LinePlotter::plotPoints(
 std::vector<std::pair<int,int>> Geometry::LinePlotter::plotPoints(
   std::pair<double,double> origin, std::pair<double,double> destination)
 {
-  std::vector<std::pair<int,int>> plotPoints;
-
   GradientCalculator gradient;
-  auto run = gradient.run(origin, destination);
-  auto rise = gradient.rise(origin, destination);
+  bool horizontallySloped = gradient.isHorizontallySloped(origin, destination);
 
-  bool horizontallySloped = (abs(rise) < abs(run));
+  std::vector<std::pair<int,int>> plotPoints;
 
   if (horizontallySloped)
     plotPoints = this->horizontalLinePlot(origin, destination);

@@ -32,3 +32,12 @@ double Geometry::GradientCalculator::rise(
 {
   return destination.second - origin.second;
 }
+
+bool Geometry::GradientCalculator::isHorizontallySloped(
+  std::pair<double,double> origin, std::pair<double,double> destination)
+{
+  auto run = this->run(origin, destination);
+  auto rise = this->rise(origin, destination);
+
+  return (abs(rise) < abs(run));
+}

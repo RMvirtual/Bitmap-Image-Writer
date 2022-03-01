@@ -19,4 +19,6 @@ public:
   double run(
     std::pair<double,double> origin, std::pair<double,double> destination);
 
+  bool isHorizontallySloped(
+    std::pair<double,double> origin, std::pair<double,double> destination);
 };}
