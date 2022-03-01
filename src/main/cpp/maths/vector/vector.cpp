@@ -5,7 +5,6 @@
 #include <numeric>
 #include <string>
 #include <vector>
-#include <functional>
 
 #include "src/main/cpp/maths/vector/vector.h"
 #include "src/main/cpp/maths/binary-ops/binary_ops.h"
