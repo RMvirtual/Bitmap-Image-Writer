@@ -90,7 +90,7 @@ double Maths::Vector::at(int index) const
 std::vector<double> Maths::Vector::multiplyElements(
   const Maths::Vector& vector) const
 {
-  std::vector<double> newElements (this->length());
+  auto newElements = this->emptyStlVector();
 
   std::transform(
     this->begin(), this->end(), vector.begin(),
@@ -107,7 +107,7 @@ double Maths::Vector::operator [](int index) const
 
 Maths::Vector Maths::Vector::operator +(const Maths::Vector& rhsVector) const
 {
-  std::vector<double> newElements (this->length());
+  auto newElements = this->emptyStlVector();
 
   std::transform(
     this->begin(), this->end(), rhsVector.begin(),
@@ -119,7 +119,7 @@ Maths::Vector Maths::Vector::operator +(const Maths::Vector& rhsVector) const
 
 Maths::Vector Maths::Vector::operator -(const Maths::Vector& rhsVector) const
 {
-  std::vector<double> newElements (this->length());
+  auto newElements = this->emptyStlVector();
 
   std::transform(
     this->begin(), this->end(), rhsVector.begin(),
@@ -137,8 +137,7 @@ double Maths::Vector::operator *(const Maths::Vector& rhsVector) const
 Maths::Vector Maths::Vector::operator *(double scalar) const
 {
   auto multiplyOp = [scalar](double value) { return scalar * value; };
-  std::vector<double> newElements(this->length());
-
+  auto newElements = this->emptyStlVector();
   std::transform(this->begin(), this->end(), newElements.begin(), multiplyOp);
 
   return {newElements};
@@ -152,7 +151,7 @@ Maths::Vector operator *(double scalar, const Maths::Vector& vector)
 Maths::Vector Maths::Vector::operator /(double scalar) const
 {
   auto divideOp = [scalar](double value) { return value / scalar; };
-  std::vector<double> newElements(this->length());
+  auto newElements = this->emptyStlVector();
 
   std::transform(this->begin(), this->end(), newElements.begin(), divideOp);
 
@@ -211,4 +210,9 @@ std::string Maths::Vector::pointToString(int pointIndex) const
 std::ostream& operator <<(std::ostream& outstream, const Maths::Vector& vector)
 {
   return outstream << vector.toString();
+}
+
+std::vector<double> Maths::Vector::emptyStlVector() const
+{
+  return std::vector<double> (this->length());
 }

@@ -118,6 +118,13 @@ private:
    * together by a comma and a space (excluding the last point).
    */
   std::string allPointsToString() const;
+
+  /**
+   * @brief Returns an empty STL vector with the size preallocated to
+   * match the number of values in the current vector.
+   * @return std::vector<double> 
+   */
+  std::vector<double> emptyStlVector() const;
 };}
 
 // Multiplies a scalar double on the LHS and a vector on the RHS.
