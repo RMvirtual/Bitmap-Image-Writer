@@ -1,4 +1,4 @@
-#include "src/main/cpp/geometry/gradient.h"
+#include "src/main/cpp/geometry/line/gradient.h"
 
 Geometry::Gradient::Gradient()
 {

@@ -1,11 +1,11 @@
 #include <cmath>
 
 #include "src/main/cpp/geometry/line_plotter.h"
-#include "src/main/cpp/geometry/gradient.h"
+#include "src/main/cpp/geometry/line/line.h"
+#include "src/main/cpp/geometry/line/gradient.h"
 
 // Bresenham's Line Drawing Algorithm.
 /* TODO: THIS NEEDS TIDYING UP AND UNDERSTANDING BETTER */
-
 Geometry::LinePlotter::LinePlotter()
 {
   // pass.

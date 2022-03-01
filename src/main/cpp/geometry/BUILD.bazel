@@ -8,5 +8,6 @@ cc_library(
     deps = [
         "//src/main/cpp/geometry/triangle",
         "//src/main/cpp/geometry/mesh",
+        "//src/main/cpp/geometry/line"
     ]
 )

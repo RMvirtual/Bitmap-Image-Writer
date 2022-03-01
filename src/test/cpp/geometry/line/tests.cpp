@@ -1,5 +1,5 @@
 #include "gtest/gtest.h"
-#include "src/test/cpp/geometry/gradient/fixture.h"
+#include "src/test/cpp/geometry/line/fixture.h"
 
 TEST_F(GradientTest, ShouldCalculateGradientFromZeroXEqualToY)
 {
