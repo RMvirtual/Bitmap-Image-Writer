@@ -85,7 +85,7 @@ double Maths::Vector::magnitude() const
   return sqrt(sum);
 }
 
-double Maths::Vector::get(int index) const
+double Maths::Vector::at(int index) const
 {
   return this->values[index];
 }
@@ -121,7 +121,7 @@ std::string Maths::Vector::getAllPointsAsString() const
 std::string Maths::Vector::getPointAsString(int pointIndex) const
 {
   auto pointIndexString = std::to_string(pointIndex);
-  auto pointValue = std::to_string(this->get(pointIndex));
+  auto pointValue = std::to_string(this->at(pointIndex));
 
   return pointIndexString + ": " + pointValue;
 }
@@ -159,7 +159,7 @@ Maths::Vector Maths::Vector::performBinaryOperation(double scalar) const
 
 double Maths::Vector::operator [](int index) const
 {
-  return this->get(index);
+  return this->at(index);
 }
 
 Maths::Vector Maths::Vector::operator +(const Maths::Vector& rhsVector) const
@@ -187,16 +187,6 @@ Maths::Vector Maths::Vector::operator /(double scalar) const
   return this->performBinaryOperation<Division>(scalar);
 }
 
-Maths::Vector operator *(double scalarLHS, const Maths::Vector& vectorRHS)
-{
-  return vectorRHS * scalarLHS;
-}
-
-std::ostream& operator <<(std::ostream& outstream, const Maths::Vector& vector)
-{
-  return outstream << vector.toString();
-}
-
 std::vector<double>::iterator Maths::Vector::begin()
 {
   return this->values.begin();
@@ -220,4 +210,14 @@ std::vector<double>::const_iterator Maths::Vector::end() const
 std::string Maths::Vector::toString() const
 {
   return "[" + this->getAllPointsAsString() + "]";
+}
+
+Maths::Vector operator *(double scalar, const Maths::Vector& vector)
+{
+  return vector * scalar;
+}
+
+std::ostream& operator <<(std::ostream& outstream, const Maths::Vector& vector)
+{
+  return outstream << vector.toString();
 }

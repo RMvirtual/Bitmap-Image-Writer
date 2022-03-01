@@ -50,7 +50,7 @@ public:
   double magnitude() const;
 
   // Gets the vector element by index position.
-  double get(int index) const;
+  double at(int index) const;
 
   // Indexes the elements contained within the vector.
   double operator [](int index) const;
