@@ -1,7 +1,7 @@
 #include "gtest/gtest.h"
 #include "src/test/cpp/geometry/gradient/fixture.h"
 
-TEST_F(GradientTest, ShouldCalculateLineGradientFromZeroXEqualToY)
+TEST_F(GradientTest, ShouldCalculateGradientFromZeroXEqualToY)
 {
   this->setupFromOriginZero(5, 5);
   double correctGradient = 1;
@@ -10,7 +10,7 @@ TEST_F(GradientTest, ShouldCalculateLineGradientFromZeroXEqualToY)
 }
 
 TEST_F(
-  GradientTest, ShouldCalculateLineGradientFromZeroXGreaterThanY)
+  GradientTest, ShouldCalculateGradientFromZeroXGreaterThanY)
 {
   this->setupFromOriginZero(5, 3);
   double correctGradient = 0.6;
@@ -18,7 +18,7 @@ TEST_F(
   EXPECT_EQ(correctGradient, this->gradient.gradient());
 }
 
-TEST_F(GradientTest, ShouldCalculateLineGradientFromZeroXLessThanY)
+TEST_F(GradientTest, ShouldCalculateGradientFromZeroXLessThanY)
 {
   this->setupFromOriginZero(5, 8);
   double correctGradient = 1.6;
@@ -26,7 +26,7 @@ TEST_F(GradientTest, ShouldCalculateLineGradientFromZeroXLessThanY)
   EXPECT_EQ(correctGradient, this->gradient.gradient());
 }
 
-TEST_F(GradientTest, ShouldCalculateLineGradientBetweenPointsXEqualToY)
+TEST_F(GradientTest, ShouldCalculateGradientBetweenPointsXEqualToY)
 {
   this->setup({1,2}, {4,5});
   double correctGradient = 1;
@@ -34,7 +34,7 @@ TEST_F(GradientTest, ShouldCalculateLineGradientBetweenPointsXEqualToY)
   EXPECT_EQ(correctGradient, this->gradient.gradient());
 }
 
-TEST_F(GradientTest, ShouldCalculateLineGradientBetweenPointsXLessThanY)
+TEST_F(GradientTest, ShouldCalculateGradientBetweenPointsXLessThanY)
 {
   this->setup({1,2}, {2,5});
   double correctGradient = 3;
@@ -42,7 +42,7 @@ TEST_F(GradientTest, ShouldCalculateLineGradientBetweenPointsXLessThanY)
   EXPECT_EQ(correctGradient, this->gradient.gradient());
 }
 
-TEST_F(GradientTest, ShouldCalculateLineGradientBetweenPointsXGreaterThanY)
+TEST_F(GradientTest, ShouldCalculateGradientBetweenPointsXGreaterThanY)
 {
   this->setup({1,2}, {5,3});
   double correctGradient = 0.25;

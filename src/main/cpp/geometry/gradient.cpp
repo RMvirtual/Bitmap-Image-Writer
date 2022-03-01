@@ -40,15 +40,12 @@ double Geometry::Gradient::rise()
 
 bool Geometry::Gradient::isHorizontallySloped()
 {
-  auto run = this->run();
-  auto rise = this->rise();
-
-  return (abs(rise) < abs(run));
+  return abs(this->rise()) < abs(this->run());
 }
 
 bool Geometry::Gradient::isTraversingUpwards()
 {
-  double y0 = origin.second;
+  auto y0 = origin.second;
   auto y1 = destination.second;
 
   return y0 < y1;
@@ -56,7 +53,7 @@ bool Geometry::Gradient::isTraversingUpwards()
 
 bool Geometry::Gradient::isTraversingLeftToRight()
 {
-  double x0 = origin.first;
+  auto x0 = origin.first;
   auto x1 = destination.first;
 
   return x0 < x1;
