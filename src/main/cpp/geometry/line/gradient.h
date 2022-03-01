@@ -23,5 +23,4 @@ public:
 private:
   std::pair<double,double> origin;
   std::pair<double,double> destination;
-
 };}
