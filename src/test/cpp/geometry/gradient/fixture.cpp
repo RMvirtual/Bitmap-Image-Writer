@@ -1,11 +1,11 @@
 #include "src/test/cpp/geometry/gradient/fixture.h"
 
-GradientCalculatorTest::GradientCalculatorTest()
+GradientTest::GradientTest()
 {
 
 }
 
-GradientCalculatorTest::~GradientCalculatorTest()
+GradientTest::~GradientTest()
 {
 
 }

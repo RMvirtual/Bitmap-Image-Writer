@@ -3,11 +3,11 @@
 #include "gtest/gtest.h"
 #include "src/main/cpp/geometry/gradient.h"
 
-class GradientCalculatorTest : public testing::Test
+class GradientTest : public testing::Test
 {
 public:
-  GradientCalculatorTest();
-  ~GradientCalculatorTest();
+  GradientTest();
+  ~GradientTest();
 
 protected:
   Geometry::GradientCalculator calculator;

@@ -3,8 +3,7 @@
 #include "gtest/gtest.h"
 #include "src/test/cpp/geometry/gradient/fixture.h"
 
-TEST_F(GradientCalculatorTest,
-  ShouldCalculateLineGradientFromZeroXEqualToY)
+TEST_F(GradientTest, ShouldCalculateLineGradientFromZeroXEqualToY)
 {
   double x = 5;
   double y = 5;
@@ -16,7 +15,7 @@ TEST_F(GradientCalculatorTest,
 }
 
 TEST_F(
-  GradientCalculatorTest, ShouldCalculateLineGradientFromZeroXGreaterThanY)
+  GradientTest, ShouldCalculateLineGradientFromZeroXGreaterThanY)
 {
   double x = 5;
   double y = 3;
@@ -28,7 +27,7 @@ TEST_F(
 }
 
 TEST_F(
-  GradientCalculatorTest, ShouldCalculateLineGradientFromZeroXLessThanY)
+  GradientTest, ShouldCalculateLineGradientFromZeroXLessThanY)
 {
   double x = 5;
   double y = 8;
@@ -40,7 +39,7 @@ TEST_F(
 }
 
 TEST_F(
-  GradientCalculatorTest, ShouldCalculateLineGradientBetweenPointsXEqualToY)
+  GradientTest, ShouldCalculateLineGradientBetweenPointsXEqualToY)
 {
   std::pair<double,double> origin {1, 2};
   std::pair<double,double> destination {4, 5};
@@ -52,7 +51,7 @@ TEST_F(
 }
 
 TEST_F(
-  GradientCalculatorTest, ShouldCalculateLineGradientBetweenPointsXLessThanY)
+  GradientTest, ShouldCalculateLineGradientBetweenPointsXLessThanY)
 {
   std::pair<double,double> origin {1, 2};
   std::pair<double,double> destination {2, 5};
@@ -64,7 +63,7 @@ TEST_F(
 }
 
 TEST_F(
-  GradientCalculatorTest,
+  GradientTest,
   ShouldCalculateLineGradientBetweenPointsXGreaterThanY)
 {
   std::pair<double,double> origin {1, 2};
@@ -76,7 +75,7 @@ TEST_F(
   EXPECT_EQ(correctGradient, gradient);
 }
 
-TEST_F(GradientCalculatorTest, ShouldCalculateRise)
+TEST_F(GradientTest, ShouldCalculateRise)
 {
   std::pair<double,double> origin {1, 2};
   std::pair<double,double> destination {2, 5};
@@ -87,7 +86,7 @@ TEST_F(GradientCalculatorTest, ShouldCalculateRise)
   EXPECT_EQ(correctRise, rise);
 }
 
-TEST_F(GradientCalculatorTest, ShouldCalculateRun)
+TEST_F(GradientTest, ShouldCalculateRun)
 {
   std::pair<double,double> origin {1, 2};
   std::pair<double,double> destination {2, 5};
