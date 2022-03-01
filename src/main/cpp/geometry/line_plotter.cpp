@@ -49,16 +49,17 @@ std::vector<std::pair<int,int>> Geometry::LinePlotter::plotPoints(
 std::vector<std::pair<int,int>> Geometry::LinePlotter::plotLineLow(
   double x0, double y0, double x1, double y1)
 {
-  auto dx = x1 - x0;
-  auto dy = y1 - y0;
+  GradientCalculator gradient;
+  auto run = gradient.run({x0,y0},{x1,y1});
+  auto rise = gradient.rise({x0,y0},{x1,y1});
   double yi = 1;
 
-  if (dy < 0) {
+  if (rise < 0) {
     yi = -1;
-    dy = 0 - dy;
+    rise = 0 - rise;
   }
 
-  double D = (2 * dy) - dx;
+  double D = (2 * rise) - run;
   double y = y0;
 
   std::vector<std::pair<int,int>> plotPoints {};
@@ -68,11 +69,11 @@ std::vector<std::pair<int,int>> Geometry::LinePlotter::plotLineLow(
 
     if (D > 0) {
       y = y + yi;
-      D = D + (2 * (dy-dx));
+      D = D + (2 * (rise-run));
     }
 
     else 
-      D = D + 2*dy;
+      D = D + 2*rise;
   }
 
   return plotPoints;
@@ -82,16 +83,17 @@ std::vector<std::pair<int,int>> Geometry::LinePlotter::plotLineLow(
 std::vector<std::pair<int,int>> Geometry::LinePlotter::plotLineHigh(
   double x0, double y0, double x1, double y1)
 {
-  auto dx = x1 - x0;
-  auto dy = y1 - y0;
+  GradientCalculator gradient;
+  auto run = gradient.run({x0,y0},{x1,y1});
+  auto rise = gradient.rise({x0,y0},{x1,y1});
   double xi = 1;
 
-  if (dx < 0) {
+  if (run < 0) {
     xi = -1;
-    dx = 0 - dx;
+    run = 0 - run;
   }
 
-  double D = (2 * dx) - dy;
+  double D = (2 * run) - rise;
   double x = x0;
 
   std::vector<std::pair<int,int>> plotPoints {};
@@ -101,11 +103,11 @@ std::vector<std::pair<int,int>> Geometry::LinePlotter::plotLineHigh(
 
     if (D > 0) {
       x = x + xi;
-      D = D + (2 * (dx-dy));
+      D = D + (2 * (run-rise));
     }
 
     else
-      D = D + 2*dx;
+      D = D + 2*run;
   }
 
   return plotPoints;

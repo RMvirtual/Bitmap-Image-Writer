@@ -182,7 +182,7 @@ std::vector<double> Maths::Matrix::getProductAgainstAllRows(
   for (auto row : this->rows())
     newColumn.push_back(this->product(row, column));
 
-  return newColumn; 
+  return newColumn;
 }
 
 double Maths::Matrix::product(
