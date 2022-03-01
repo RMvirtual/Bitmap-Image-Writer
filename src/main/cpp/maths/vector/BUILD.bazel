@@ -5,7 +5,5 @@ cc_library(
     hdrs = glob(["*.h"]),
     srcs = glob(["*.cpp"]),
     visibility = ["//visibility:public"],
-    deps = [
-        "//src/main/cpp/maths/binary-ops"
-    ]
+    deps = []
 )

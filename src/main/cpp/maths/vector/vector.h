@@ -1,13 +1,10 @@
 #pragma once
 
-#include <array>
 #include <cstdarg>
+#include <functional>
 #include <iostream>
 #include <string>
 #include <vector>
-#include <functional>
-
-#include "src/main/cpp/maths/binary-ops/binary_ops.h"
 
 namespace Maths {
 class Vector
