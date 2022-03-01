@@ -68,7 +68,7 @@ std::vector<std::pair<int,int>> Geometry::LinePlotter::plotLineLow(
     plotPoints.push_back({int(x), int(y)});
 
     if (D > 0) {
-      y = y + yi;
+      y += yi;
       D += 2*(rise - run);
     }
 
@@ -102,8 +102,8 @@ std::vector<std::pair<int,int>> Geometry::LinePlotter::plotLineHigh(
     plotPoints.push_back({int(x), int(y)});
 
     if (D > 0) {
-      x = x + xi;
-      D += (2 * (run-rise));
+      x += xi;
+      D += (2 * (run - rise));
     }
 
     else
