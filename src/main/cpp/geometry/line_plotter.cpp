@@ -29,14 +29,18 @@ std::vector<std::pair<int,int>> Geometry::LinePlotter::plotPoints(
   std::vector<std::pair<int,int>> plotPoints;
 
   if (abs(y1 - y0) < abs(x1 - x0)) {
-    if (x0 > x1)
+    bool traversingRightToLeft = (x0 > x1);
+
+    if (traversingRightToLeft)
       plotPoints = this->plotLineLow(x1, y1, x0, y0);
     else
       plotPoints = this->plotLineLow(x0, y0, x1, y1);
   }
   
   else {
-    if (y0 > y1)
+    bool traversingBottomToTop = (y0 > y1);
+
+    if (traversingBottomToTop)
       plotPoints = this->plotLineHigh(x1, y1, x0, y0);
     else
       plotPoints = this->plotLineHigh(x0, y0, x1, y1);
@@ -69,7 +73,7 @@ std::vector<std::pair<int,int>> Geometry::LinePlotter::plotLineLow(
 
     if (D > 0) {
       y += yi;
-      D += 2*(rise - run);
+      D += 2 * (rise - run);
     }
 
     else 
@@ -78,6 +82,7 @@ std::vector<std::pair<int,int>> Geometry::LinePlotter::plotLineLow(
 
   return plotPoints;
 }
+
 
 /* Could merge this and plotLineLow together using Axis as variable. */
 std::vector<std::pair<int,int>> Geometry::LinePlotter::plotLineHigh(
