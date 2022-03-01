@@ -28,13 +28,20 @@ std::vector<std::pair<int,int>> Geometry::LinePlotter::plotPoints(
 
   std::vector<std::pair<int,int>> plotPoints;
 
-  if (abs(y1 - y0) < abs(x1 - x0)) {
-    bool traversingRightToLeft = (x0 > x1);
+  GradientCalculator gradient;
+  auto run = gradient.run(origin, destination);
+  auto rise = gradient.rise(origin, destination);
 
-    if (traversingRightToLeft)
-      plotPoints = this->plotLineLow(x1, y1, x0, y0);
-    else
+  bool verticalSlopeIsGreatest = (abs(rise) < abs(run));
+
+  if (verticalSlopeIsGreatest) {
+    bool traversingLeftToRight = (x0 < x1);
+
+    if (traversingLeftToRight)
       plotPoints = this->plotLineLow(x0, y0, x1, y1);
+
+    else
+      plotPoints = this->plotLineLow(x1, y1, x0, y0);
   }
   
   else {
