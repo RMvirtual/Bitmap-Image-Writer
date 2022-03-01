@@ -99,6 +99,9 @@ private:
    */
   std::vector<double> multiplyElements(const Vector& vector) const;
 
+  template <class BinaryOperation>
+  Maths::Vector vectorOperation(Vector rhsVector) const;
+
   /**
   * Assigns an array pointer and its corresponding length against this
   * vector.

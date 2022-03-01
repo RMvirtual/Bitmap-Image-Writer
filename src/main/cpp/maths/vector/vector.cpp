@@ -99,6 +99,8 @@ std::vector<double> Maths::Vector::multiplyElements(const Maths::Vector& vector)
   return newElements;
 }
 
+
+
 double Maths::Vector::operator [](int index) const
 {
   return this->at(index);
@@ -106,11 +108,28 @@ double Maths::Vector::operator [](int index) const
 
 Maths::Vector Maths::Vector::operator +(const Maths::Vector& rhsVector) const
 {
+  /*
   auto newElements = this->emptyStlVector();
 
   std::transform(
     this->begin(), this->end(), rhsVector.begin(),
     newElements.begin(), std::plus<double>()
+  );
+
+  return {newElements};
+  */
+
+  return this->vectorOperation<std::plus<double>>(rhsVector);
+}
+
+template<class BinaryOperation>
+Maths::Vector Maths::Vector::vectorOperation(Maths::Vector rhsVector) const
+{
+  auto newElements = this->emptyStlVector();
+
+  std::transform(
+    this->begin(), this->end(), rhsVector.begin(),
+    newElements.begin(), BinaryOperation()
   );
 
   return {newElements};
@@ -137,6 +156,7 @@ Maths::Vector Maths::Vector::operator *(double scalar) const
 {
   auto multiplyOp = [scalar](double value) { return scalar * value; };
   auto newElements = this->emptyStlVector();
+
   std::transform(this->begin(), this->end(), newElements.begin(), multiplyOp);
 
   return {newElements};
