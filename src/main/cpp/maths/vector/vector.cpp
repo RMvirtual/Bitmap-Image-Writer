@@ -61,8 +61,9 @@ Maths::Vector Maths::Vector::vectorProduct(const Maths::Vector& vector)
 double Maths::Vector::angle(const Maths::Vector& vector) const
 {
   auto magnitudeProduct = this->magnitude() * vector.magnitude();
-
-  return acos(this->dotProduct(vector) / magnitudeProduct);
+  auto dotProduct = this->dotProduct(vector); 
+  
+  return acos(dotProduct / magnitudeProduct);
 }
 
 int Maths::Vector::length() const
@@ -73,8 +74,7 @@ int Maths::Vector::length() const
 double Maths::Vector::magnitude() const
 {
   auto squareAndSum = [](double sumAccumulator, double value) {
-    return sumAccumulator + pow(value, 2.0);
-  };
+    return sumAccumulator + pow(value, 2.0); };
 
   auto sum = std::accumulate(
     this->values.begin(), this->values.end(), 0.0, squareAndSum);
@@ -87,8 +87,7 @@ double Maths::Vector::at(int index) const
   return this->values[index];
 }
 
-std::vector<double> Maths::Vector::multiplyElements(
-  const Maths::Vector& vector) const
+std::vector<double> Maths::Vector::multiplyElements(const Maths::Vector& vector) const
 {
   auto newElements = this->emptyStlVector();
 
@@ -185,18 +184,22 @@ std::string Maths::Vector::toString() const
 
 std::string Maths::Vector::allPointsToString() const
 {
-  std::string pointsString = "";
   int noOfPoints = this->length();
 
-  for (int pointNo = 0; pointNo < noOfPoints; pointNo++) {
-    pointsString += this->pointToString(pointNo);
-    bool morePointsRemaining = (pointNo < noOfPoints - 1);
+  auto morePointsRemaining = [noOfPoints](int pointNo) {
+    return pointNo < noOfPoints - 1;
+  };
 
-    if (morePointsRemaining)
-      pointsString += ", ";
+  std::string points = "";
+
+  for (int pointNo = 0; pointNo < noOfPoints; pointNo++) {
+    points += this->pointToString(pointNo);
+
+    if (morePointsRemaining(pointNo))
+      points += ", ";
   }
 
-  return pointsString;
+  return points;
 }
 
 std::string Maths::Vector::pointToString(int pointIndex) const
