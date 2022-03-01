@@ -77,11 +77,13 @@ int Maths::Vector::length() const
 
 double Maths::Vector::magnitude() const
 {
-  double sum = 0;
+  auto sumSquareNumbers = [](double sumAccumulator, double value) {
+    return sumAccumulator + pow(value, 2.0);
+  };
 
-  for (auto value : this->values)
-    sum += pow(value, 2);
-
+  double sum = std::accumulate(
+    this->values.begin(), this->values.end(), 0.0, sumSquareNumbers);
+  
   return sqrt(sum);
 }
 
