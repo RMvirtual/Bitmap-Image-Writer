@@ -100,7 +100,10 @@ private:
   Vector multiply(const Vector& vector) const;
 
   template <class BinaryOperation>
-  Vector vectorOperation(Vector rhsVector) const;
+  Vector vectorOperation(Vector vector) const;
+
+  Vector scalarOperation(
+    double scalar, std::function<double (double)> function) const;
 
   /**
   * Assigns an array pointer and its corresponding length against this

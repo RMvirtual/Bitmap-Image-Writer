@@ -125,14 +125,22 @@ double Maths::Vector::operator *(const Maths::Vector& vector) const
   return this->dotProduct(vector);
 }
 
+Maths::Vector Maths::Vector::scalarOperation(
+  double scalar, std::function<double (double)> function) const
+{
+  auto newElements = this->emptyStlVector();
+  
+  std::transform(
+    this->begin(), this->end(), newElements.begin(), function);
+
+  return {newElements};
+}
+
 Maths::Vector Maths::Vector::operator *(double scalar) const
 {
   auto multiplyOp = [scalar](double value) { return scalar * value; };
-  auto newElements = this->emptyStlVector();
 
-  std::transform(this->begin(), this->end(), newElements.begin(), multiplyOp);
-
-  return {newElements};
+  return this->scalarOperation(scalar, multiplyOp);
 }
 
 Maths::Vector operator *(double scalar, const Maths::Vector& vector)
