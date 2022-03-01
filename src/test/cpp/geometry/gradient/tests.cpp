@@ -1,98 +1,67 @@
-#include <utility>
-
 #include "gtest/gtest.h"
 #include "src/test/cpp/geometry/gradient/fixture.h"
 
 TEST_F(GradientTest, ShouldCalculateLineGradientFromZeroXEqualToY)
 {
-  double x = 5;
-  double y = 5;
-
-  auto gradient = this->calculator.fromOriginZero(x, y);
+  this->setupFromOriginZero(5, 5);
   double correctGradient = 1;
 
-  EXPECT_EQ(correctGradient, gradient);
+  EXPECT_EQ(correctGradient, this->gradient.gradient());
 }
 
 TEST_F(
   GradientTest, ShouldCalculateLineGradientFromZeroXGreaterThanY)
 {
-  double x = 5;
-  double y = 3;
-
-  auto gradient = this->calculator.fromOriginZero(x, y);
+  this->setupFromOriginZero(5, 3);
   double correctGradient = 0.6;
 
-  EXPECT_EQ(correctGradient, gradient);
+  EXPECT_EQ(correctGradient, this->gradient.gradient());
 }
 
-TEST_F(
-  GradientTest, ShouldCalculateLineGradientFromZeroXLessThanY)
+TEST_F(GradientTest, ShouldCalculateLineGradientFromZeroXLessThanY)
 {
-  double x = 5;
-  double y = 8;
-
-  auto gradient = this->calculator.fromOriginZero(x, y);
+  this->setupFromOriginZero(5, 8);
   double correctGradient = 1.6;
 
-  EXPECT_EQ(correctGradient, gradient);
+  EXPECT_EQ(correctGradient, this->gradient.gradient());
 }
 
-TEST_F(
-  GradientTest, ShouldCalculateLineGradientBetweenPointsXEqualToY)
+TEST_F(GradientTest, ShouldCalculateLineGradientBetweenPointsXEqualToY)
 {
-  std::pair<double,double> origin {1, 2};
-  std::pair<double,double> destination {4, 5};
-
-  auto gradient = this->calculator.gradient(origin, destination);
+  this->setup({1,2}, {4,5});
   double correctGradient = 1;
 
-  EXPECT_EQ(correctGradient, gradient);
+  EXPECT_EQ(correctGradient, this->gradient.gradient());
 }
 
-TEST_F(
-  GradientTest, ShouldCalculateLineGradientBetweenPointsXLessThanY)
+TEST_F(GradientTest, ShouldCalculateLineGradientBetweenPointsXLessThanY)
 {
-  std::pair<double,double> origin {1, 2};
-  std::pair<double,double> destination {2, 5};
-
-  auto gradient = this->calculator.gradient(origin, destination);
+  this->setup({1,2}, {2,5});
   double correctGradient = 3;
 
-  EXPECT_EQ(correctGradient, gradient);
+  EXPECT_EQ(correctGradient, this->gradient.gradient());
 }
 
-TEST_F(
-  GradientTest,
-  ShouldCalculateLineGradientBetweenPointsXGreaterThanY)
+TEST_F(GradientTest, ShouldCalculateLineGradientBetweenPointsXGreaterThanY)
 {
-  std::pair<double,double> origin {1, 2};
-  std::pair<double,double> destination {5, 3};
-
-  auto gradient = this->calculator.gradient(origin, destination);
+  this->setup({1,2}, {5,3});
   double correctGradient = 0.25;
 
-  EXPECT_EQ(correctGradient, gradient);
+  EXPECT_EQ(correctGradient, this->gradient.gradient());
 }
 
 TEST_F(GradientTest, ShouldCalculateRise)
 {
-  std::pair<double,double> origin {1, 2};
-  std::pair<double,double> destination {2, 5};
-
-  auto rise = this->calculator.rise(origin, destination);
+  this->setup({1,2}, {2,5});
   double correctRise = 3;
 
-  EXPECT_EQ(correctRise, rise);
+  EXPECT_EQ(correctRise, this->gradient.rise());
 }
 
 TEST_F(GradientTest, ShouldCalculateRun)
 {
-  std::pair<double,double> origin {1, 2};
-  std::pair<double,double> destination {2, 5};
-
-  auto run = this->calculator.run(origin, destination);
+  this->setup({1,2}, {2,5});
   double correctRun = 1;
 
-  EXPECT_EQ(correctRun, run);
+  EXPECT_EQ(correctRun, this->gradient.run());
 }

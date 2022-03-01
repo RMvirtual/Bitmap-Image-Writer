@@ -1,49 +1,52 @@
 #include "src/main/cpp/geometry/gradient.h"
 
-Geometry::GradientCalculator::GradientCalculator()
+Geometry::Gradient::Gradient()
 {
-  // pass.
+  this->origin = {0,0};
+  this->destination = {0,0};
 }
 
-double Geometry::GradientCalculator::gradient(
+Geometry::Gradient::Gradient(
   std::pair<double,double> origin, std::pair<double,double> destination)
 {
-  auto xChange = this->run(origin, destination);
-  auto yChange = this->rise(origin, destination);
+  this->origin = origin;
+  this->destination = destination;
+}
+
+Geometry::Gradient Geometry::Gradient::fromOriginZero(double x, double y)
+{
+  return {{0, 0}, {x, y}};
+}
+
+double Geometry::Gradient::gradient()
+{
+  auto xChange = this->run();
+  auto yChange = this->rise();
 
   bool hasZeroDivision = (xChange == 0);
 
   return hasZeroDivision ? 1 : yChange / xChange;
 }
 
-double Geometry::GradientCalculator::fromOriginZero(double x, double y)
-{
-  return this->gradient({0, 0}, {x, y});
-}
-
-double Geometry::GradientCalculator::run(
-  std::pair<double,double> origin, std::pair<double,double> destination)
+double Geometry::Gradient::run()
 {
   return destination.first - origin.first; 
 }
 
-double Geometry::GradientCalculator::rise(
-  std::pair<double,double> origin, std::pair<double,double> destination)
+double Geometry::Gradient::rise()
 {
   return destination.second - origin.second;
 }
 
-bool Geometry::GradientCalculator::isHorizontallySloped(
-  std::pair<double,double> origin, std::pair<double,double> destination)
+bool Geometry::Gradient::isHorizontallySloped()
 {
-  auto run = this->run(origin, destination);
-  auto rise = this->rise(origin, destination);
+  auto run = this->run();
+  auto rise = this->rise();
 
   return (abs(rise) < abs(run));
 }
 
-bool Geometry::GradientCalculator::isTraversingUpwards(
-  std::pair<double,double> origin, std::pair<double,double> destination)
+bool Geometry::Gradient::isTraversingUpwards()
 {
   double y0 = origin.second;
   auto y1 = destination.second;
@@ -51,8 +54,7 @@ bool Geometry::GradientCalculator::isTraversingUpwards(
   return y0 < y1;
 }
 
-bool Geometry::GradientCalculator::isTraversingLeftToRight(
-  std::pair<double,double> origin, std::pair<double,double> destination)
+bool Geometry::Gradient::isTraversingLeftToRight()
 {
   double x0 = origin.first;
   auto x1 = destination.first;

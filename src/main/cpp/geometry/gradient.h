@@ -3,28 +3,25 @@
 #include <utility>
 
 namespace Geometry {
-class GradientCalculator
+class Gradient
 {
 public:
-  GradientCalculator();
+  Gradient();
   
-  double gradient(
+  Gradient(
     std::pair<double,double> origin, std::pair<double,double> destination);
+  
+  static Gradient fromOriginZero(double x, double y);
 
-  double fromOriginZero(double x, double y);
+  double gradient();
+  double rise();
+  double run();
+  bool isHorizontallySloped();
+  bool isTraversingUpwards();
+  bool isTraversingLeftToRight();
 
-  double rise(
-    std::pair<double,double> origin, std::pair<double,double> destination);
+private:
+  std::pair<double,double> origin;
+  std::pair<double,double> destination;
 
-  double run(
-    std::pair<double,double> origin, std::pair<double,double> destination);
-
-  bool isHorizontallySloped(
-    std::pair<double,double> origin, std::pair<double,double> destination);
-
-  bool isTraversingUpwards(
-    std::pair<double,double> origin, std::pair<double,double> destination);
-
-  bool isTraversingLeftToRight(
-    std::pair<double,double> origin, std::pair<double,double> destination);
 };}

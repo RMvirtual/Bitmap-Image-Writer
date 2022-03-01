@@ -10,5 +10,9 @@ public:
   ~GradientTest();
 
 protected:
-  Geometry::GradientCalculator calculator;
+  Geometry::Gradient gradient;
+
+  void setupFromOriginZero(double x, double y);
+  void setup(
+    std::pair<double,double> origin, std::pair<double,double> destination);
 };
