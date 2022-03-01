@@ -21,4 +21,10 @@ public:
 
   bool isHorizontallySloped(
     std::pair<double,double> origin, std::pair<double,double> destination);
+
+  bool isTraversingUpwards(
+    std::pair<double,double> origin, std::pair<double,double> destination);
+
+  bool isTraversingLeftToRight(
+    std::pair<double,double> origin, std::pair<double,double> destination);
 };}

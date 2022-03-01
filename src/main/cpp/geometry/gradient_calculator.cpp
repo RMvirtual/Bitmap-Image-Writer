@@ -41,3 +41,21 @@ bool Geometry::GradientCalculator::isHorizontallySloped(
 
   return (abs(rise) < abs(run));
 }
+
+bool Geometry::GradientCalculator::isTraversingUpwards(
+  std::pair<double,double> origin, std::pair<double,double> destination)
+{
+  double y0 = origin.second;
+  auto y1 = destination.second;
+
+  return y0 < y1;
+}
+
+bool Geometry::GradientCalculator::isTraversingLeftToRight(
+  std::pair<double,double> origin, std::pair<double,double> destination)
+{
+  double x0 = origin.first;
+  auto x1 = destination.first;
+
+  return x0 < x1;
+}

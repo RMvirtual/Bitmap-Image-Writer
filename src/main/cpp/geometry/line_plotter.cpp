@@ -118,12 +118,12 @@ std::vector<std::pair<int,int>> Geometry::LinePlotter::plotLineHigh(
 std::vector<std::pair<int,int>> Geometry::LinePlotter::horizontalLinePlot(
   std::pair<double,double> origin, std::pair<double,double> destination)
 {
+  GradientCalculator gradient;
+  
+  bool traversingLeftToRight = gradient.isTraversingLeftToRight(
+    origin, destination);
+
   std::vector<std::pair<int,int>> plotPoints;
-
-  double x0 = origin.first;
-  auto x1 = destination.first;
-
-  bool traversingLeftToRight = (x0 < x1);
 
   if (traversingLeftToRight)
     plotPoints = this->plotLineLow(origin, destination);
@@ -137,10 +137,10 @@ std::vector<std::pair<int,int>> Geometry::LinePlotter::horizontalLinePlot(
 std::vector<std::pair<int,int>> Geometry::LinePlotter::verticalLinePlot(
   std::pair<double,double> origin, std::pair<double,double> destination)
 {
-  double y0 = origin.second;
-  auto y1 = destination.second;
-
-  bool traversingBottomToTop = (y0 < y1);
+  GradientCalculator gradient;
+  
+  bool traversingBottomToTop = gradient.isTraversingUpwards(
+    origin, destination);
 
   std::vector<std::pair<int,int>> plotPoints;
 
