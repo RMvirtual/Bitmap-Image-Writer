@@ -115,6 +115,17 @@ Maths::Vector Maths::Vector::vectorOperation(Maths::Vector vector) const
   return {newElements};
 }
 
+Maths::Vector Maths::Vector::scalarOperation(
+  double scalar, std::function<double (double)> unaryOperation) const
+{
+  auto newElements = this->emptyStlVector();
+  
+  std::transform(
+    this->begin(), this->end(), newElements.begin(), unaryOperation);
+
+  return {newElements};
+}
+
 Maths::Vector Maths::Vector::operator -(const Maths::Vector& vector) const
 {
   return this->vectorOperation<std::minus<double>>(vector);
@@ -123,17 +134,6 @@ Maths::Vector Maths::Vector::operator -(const Maths::Vector& vector) const
 double Maths::Vector::operator *(const Maths::Vector& vector) const
 {
   return this->dotProduct(vector);
-}
-
-Maths::Vector Maths::Vector::scalarOperation(
-  double scalar, std::function<double (double)> function) const
-{
-  auto newElements = this->emptyStlVector();
-  
-  std::transform(
-    this->begin(), this->end(), newElements.begin(), function);
-
-  return {newElements};
 }
 
 Maths::Vector Maths::Vector::operator *(double scalar) const
@@ -151,11 +151,8 @@ Maths::Vector operator *(double scalar, const Maths::Vector& vector)
 Maths::Vector Maths::Vector::operator /(double scalar) const
 {
   auto divideOp = [scalar](double value) { return value / scalar; };
-  auto newElements = this->emptyStlVector();
-
-  std::transform(this->begin(), this->end(), newElements.begin(), divideOp);
-
-  return {newElements};
+  
+  return this->scalarOperation(scalar, divideOp);
 }
 
 std::vector<double>::iterator Maths::Vector::begin()
