@@ -5,6 +5,7 @@
 #include <iostream>
 #include <string>
 #include <vector>
+#include <functional>
 
 #include "src/main/cpp/maths/binary-ops/binary_ops.h"
 
@@ -93,20 +94,6 @@ public:
 
 private:
   std::vector<double> values;
-
-  /**
-   * Takes a binary operation and performs it with this vector against
-   * another vector.
-   */
-  template<class BinaryOperation>
-  Vector performBinaryOperation(const Vector& vector) const;
-
-  /**
-   * Takes a binary operation and performs it with this vector against
-   * a scalar quantity.
-   */
-  template<class BinaryOperation>
-  Vector performBinaryOperation(double scalar) const;
 
   /**
    * Multiplies the elements of two vectors together and returns an

@@ -5,9 +5,9 @@
 #include <numeric>
 #include <string>
 #include <vector>
+#include <functional>
 
 #include "src/main/cpp/maths/vector/vector.h"
-#include "src/main/cpp/maths/binary-ops/binary_ops.h"
 
 Maths::Vector::Vector()
 {
@@ -60,8 +60,9 @@ Maths::Vector Maths::Vector::vectorProduct(const Maths::Vector& vector)
 
 double Maths::Vector::angle(const Maths::Vector& vector) const
 {
-  return acos(
-    this->dotProduct(vector) / (this->magnitude() * vector.magnitude()));
+  auto magnitudeProduct = this->magnitude() * vector.magnitude();
+
+  return acos(this->dotProduct(vector) / magnitudeProduct);
 }
 
 int Maths::Vector::length() const
@@ -89,11 +90,12 @@ double Maths::Vector::at(int index) const
 std::vector<double> Maths::Vector::multiplyElements(
   const Maths::Vector& vector) const
 {
+  auto multiplyFunction = std::multiplies<double>();
   std::vector<double> newElements (this->length());
 
   std::transform(
-    this->begin(), this->end(), vector.begin(), newElements.begin(),
-    std::multiplies<double>()
+    this->begin(), this->end(), vector.begin(),
+    newElements.begin(), multiplyFunction
   );
 
   return newElements;
@@ -106,33 +108,15 @@ double Maths::Vector::operator [](int index) const
 
 Maths::Vector Maths::Vector::operator +(const Maths::Vector& rhsVector) const
 {
-  return this->performBinaryOperation<Addition>(rhsVector);
-}
+  std::vector<double> newElements (this->length());
 
-Maths::Vector Maths::Vector::operator -(const Maths::Vector& rhsVector) const
-{
-  return this->performBinaryOperation<Subtraction>(rhsVector);
-}
+  std::transform(
+    this->begin(), this->end(), rhsVector.begin(), newElements.begin(), std::plus<double>()
+  );
 
-double Maths::Vector::operator *(const Maths::Vector& rhsVector) const
-{
-  return this->dotProduct(rhsVector);
-}
+  return {newElements};
 
-Maths::Vector Maths::Vector::operator *(double scalar) const
-{
-  return this->performBinaryOperation<Multiplication>(scalar);
-}
-
-Maths::Vector Maths::Vector::operator /(double scalar) const
-{
-  return this->performBinaryOperation<Division>(scalar);
-}
-
-template<class BinaryOperation>
-Maths::Vector Maths::Vector::performBinaryOperation(
-  const Maths::Vector& vector) const
-{  
+  /* vector op.
   int numOfElements = this->length();
   BinaryOperation operation {};
   std::vector<double> newElements {};
@@ -144,19 +128,54 @@ Maths::Vector Maths::Vector::performBinaryOperation(
     newElements.push_back(result);
   }
   return Maths::Vector(newElements);
+  */
 }
 
-template<class BinaryOperation>
-Maths::Vector Maths::Vector::performBinaryOperation(double scalar) const
+Maths::Vector Maths::Vector::operator -(const Maths::Vector& rhsVector) const
 {
-  std::vector<double> newElements {};
-  int numOfElements = this->length();
-  BinaryOperation operation {};
+  auto multiplyFunction = std::minus<double>();
+  std::vector<double> newElements (this->length());
 
-  for (auto element : this->values)
-    newElements.push_back(operation.perform(element, scalar));
+  std::transform(
+    this->begin(), this->end(), rhsVector.begin(), newElements.begin(), multiplyFunction
+  );
 
-  return Maths::Vector(newElements);
+  return {newElements};
+}
+
+double Maths::Vector::operator *(const Maths::Vector& rhsVector) const
+{
+  return this->dotProduct(rhsVector);
+}
+
+Maths::Vector Maths::Vector::operator *(double scalar) const
+{
+  auto multiplyOperation = [scalar](double value) {
+    return scalar * value;
+  };
+
+  // scalar op.
+  std::vector<double> newElements(this->length());
+
+  std::transform(
+    this->begin(), this->end(), newElements.begin(), multiplyOperation);
+
+  return {newElements};
+}
+
+Maths::Vector Maths::Vector::operator /(double scalar) const
+{
+  auto multiplyOperation = [scalar](double value) {
+    return value / scalar;
+  };
+
+  // scalar op.
+  std::vector<double> newElements(this->length());
+
+  std::transform(
+    this->begin(), this->end(), newElements.begin(), multiplyOperation);
+
+  return {newElements};
 }
 
 std::vector<double>::iterator Maths::Vector::begin()
