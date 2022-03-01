@@ -11,23 +11,44 @@ Geometry::LinePlotter::LinePlotter()
   // pass.
 }
 
-std::vector<std::pair<int,int>> Geometry::LinePlotter::plotPoints(
-  std::pair<double,double> destination)
+std::vector<std::pair<int,int>> Geometry::LinePlotter::plot(
+  Geometry::Line line)
 {
-  return this->plotPoints({0,0}, destination);
-}
-
-std::vector<std::pair<int,int>> Geometry::LinePlotter::plotPoints(
-  std::pair<double,double> origin, std::pair<double,double> destination)
-{
-  Gradient gradient {origin, destination};
   std::vector<std::pair<int,int>> plotPoints;
 
-  if (gradient.isHorizontallySloped())
-    plotPoints = this->horizontalLinePlot(origin, destination);
+  if (line.gradient().isHorizontallySloped())
+    plotPoints = this->horizontalLinePlot(line);
   
   else
-    plotPoints = this->verticalLinePlot(origin, destination);
+    plotPoints = this->verticalLinePlot(line);
+
+  return plotPoints;
+}
+
+std::vector<std::pair<int,int>> Geometry::LinePlotter::horizontalLinePlot(
+  Line line)
+{
+  std::vector<std::pair<int,int>> plotPoints;
+
+  if (line.gradient().isTraversingLeftToRight())
+    plotPoints = this->plotLineLow(line.origin(), line.destination());
+
+  else
+    plotPoints = this->plotLineLow(line.destination(), line.origin());
+
+  return plotPoints;
+}
+
+std::vector<std::pair<int,int>> Geometry::LinePlotter::verticalLinePlot(
+  Line line)
+{
+ std::vector<std::pair<int,int>> plotPoints;
+
+  if (line.gradient().isTraversingUpwards())
+    plotPoints = this->plotLineHigh(line.origin(), line.destination());
+
+  else
+    plotPoints = this->plotLineHigh(line.destination(), line.origin());
 
   return plotPoints;
 }
@@ -108,36 +129,6 @@ std::vector<std::pair<int,int>> Geometry::LinePlotter::plotLineHigh(
     else
       D += 2 * run;
   }
-
-  return plotPoints;
-}
-
-std::vector<std::pair<int,int>> Geometry::LinePlotter::horizontalLinePlot(
-  std::pair<double,double> origin, std::pair<double,double> destination)
-{
-  Gradient gradient {origin, destination};
-  std::vector<std::pair<int,int>> plotPoints;
-
-  if (gradient.isTraversingLeftToRight())
-    plotPoints = this->plotLineLow(origin, destination);
-
-  else
-    plotPoints = this->plotLineLow(destination, origin);
-
-  return plotPoints;
-}
-
-std::vector<std::pair<int,int>> Geometry::LinePlotter::verticalLinePlot(
-  std::pair<double,double> origin, std::pair<double,double> destination)
-{
-  Gradient gradient {origin, destination};
-  std::vector<std::pair<int,int>> plotPoints;
-
-  if (gradient.isTraversingUpwards())
-    plotPoints = this->plotLineHigh(origin, destination);
-
-  else
-    plotPoints = this->plotLineHigh(destination, origin);
 
   return plotPoints;
 }

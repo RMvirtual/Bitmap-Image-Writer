@@ -2,11 +2,11 @@
 
 #include "gtest/gtest.h"
 #include "src/test/cpp/geometry/line-plotter/fixture.h"
+#include "src/main/cpp/geometry/line/line.h"
 
 TEST_F(LinePlotterTest, ShouldPlotLinePoints)
 {
-  std::pair<double,double> origin {1,1};
-  std::pair<double,double> destination {11, 5};
-  auto plotPoints = this->plotter.plotPoints(origin, destination);
+  Geometry::Line line {{1,1}, {11,5}};
+  auto plotPoints = this->plotter.plot(line);
   this->compare(plotPoints);
 }
