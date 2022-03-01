@@ -20,39 +20,19 @@ std::vector<std::pair<int,int>> Geometry::LinePlotter::plotPoints(
 std::vector<std::pair<int,int>> Geometry::LinePlotter::plotPoints(
   std::pair<double,double> origin, std::pair<double,double> destination)
 {
-  double x0 = origin.first;
-  double y0 = origin.second;
-
-  auto x1 = destination.first;
-  auto y1 = destination.second;
-
   std::vector<std::pair<int,int>> plotPoints;
 
   GradientCalculator gradient;
   auto run = gradient.run(origin, destination);
   auto rise = gradient.rise(origin, destination);
 
-  bool verticalSlopeIsGreatest = (abs(rise) < abs(run));
+  bool horizontallySloped = (abs(rise) < abs(run));
 
-  if (verticalSlopeIsGreatest) {
-    bool traversingLeftToRight = (x0 < x1);
-
-    if (traversingLeftToRight)
-      plotPoints = this->plotLineLow(x0, y0, x1, y1);
-
-    else
-      plotPoints = this->plotLineLow(x1, y1, x0, y0);
-  }
+  if (horizontallySloped)
+    plotPoints = this->horizontalLinePlot(origin, destination);
   
-  else {
-    bool traversingBottomToTop = (y0 < y1);
-
-    if (traversingBottomToTop)
-      plotPoints = this->plotLineHigh(x0, y0, x1, y1);
-      
-    else
-      plotPoints = this->plotLineHigh(x1, y1, x0, y0);
-  }
+  else
+    plotPoints = this->verticalLinePlot(origin, destination);
 
   return plotPoints;
 }
@@ -122,6 +102,50 @@ std::vector<std::pair<int,int>> Geometry::LinePlotter::plotLineHigh(
     else
       D += 2 * run;
   }
+
+  return plotPoints;
+}
+
+std::vector<std::pair<int,int>> Geometry::LinePlotter::horizontalLinePlot(
+  std::pair<double,double> origin, std::pair<double,double> destination)
+{
+  std::vector<std::pair<int,int>> plotPoints;
+
+  double x0 = origin.first;
+  double y0 = origin.second;
+
+  auto x1 = destination.first;
+  auto y1 = destination.second;
+
+  bool traversingLeftToRight = (x0 < x1);
+
+  if (traversingLeftToRight)
+    plotPoints = this->plotLineLow(x0, y0, x1, y1);
+
+  else
+    plotPoints = this->plotLineLow(x1, y1, x0, y0);
+
+  return plotPoints;
+}
+
+std::vector<std::pair<int,int>> Geometry::LinePlotter::verticalLinePlot(
+  std::pair<double,double> origin, std::pair<double,double> destination)
+{
+  std::vector<std::pair<int,int>> plotPoints;
+
+  double x0 = origin.first;
+  double y0 = origin.second;
+
+  auto x1 = destination.first;
+  auto y1 = destination.second;
+
+  bool traversingBottomToTop = (y0 < y1);
+
+  if (traversingBottomToTop)
+    plotPoints = this->plotLineHigh(x0, y0, x1, y1);
+
+  else
+    plotPoints = this->plotLineHigh(x1, y1, x0, y0);
 
   return plotPoints;
 }
