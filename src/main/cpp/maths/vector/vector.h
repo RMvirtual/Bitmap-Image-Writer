@@ -122,13 +122,6 @@ private:
   void createVectorFromArray(double *array, int length);
 
   /**
-   * Returns an STL vector containing the values found when performing
-   * the cross product of this vector with another vector. Only works
-   * for vectors of length 3.
-   */
-  std::vector<double> crossProductValues(const Vector& vector) const;
-
-  /**
    * Returns a string representation of a point.
    */
   std::string getPointAsString(int pointIndex) const;

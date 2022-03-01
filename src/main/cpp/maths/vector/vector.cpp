@@ -49,12 +49,6 @@ double Maths::Vector::dotProduct(const Maths::Vector& vector) const
 
 Maths::Vector Maths::Vector::vectorProduct(const Maths::Vector& vector)
 {
-  return {this->crossProductValues(vector)};
-}
-
-std::vector<double> Maths::Vector::crossProductValues(
-  const Maths::Vector& vector) const
-{
   Maths::Vector self = *this;
   const int x = 0, y = 1, z = 2;
 
@@ -82,7 +76,7 @@ double Maths::Vector::magnitude() const
     return sumAccumulator + pow(value, 2.0);
   };
 
-  double sum = std::accumulate(
+  auto sum = std::accumulate(
     this->values.begin(), this->values.end(), 0.0, sumSquareNumbers);
   
   return sqrt(sum);
