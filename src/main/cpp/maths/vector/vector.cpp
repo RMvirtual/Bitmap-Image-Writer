@@ -48,10 +48,10 @@ double Maths::Vector::dotProduct(const Maths::Vector& vector) const
 
 Maths::Vector Maths::Vector::vectorProduct(const Maths::Vector& vector)
 {
-  return Maths::Vector(this->calculateCrossProductValues(vector));
+  return {this->crossProductValues(vector)};
 }
 
-std::vector<double> Maths::Vector::calculateCrossProductValues(
+std::vector<double> Maths::Vector::crossProductValues(
   const Maths::Vector& vector) const
 {
   Maths::Vector self = *this;
@@ -61,7 +61,7 @@ std::vector<double> Maths::Vector::calculateCrossProductValues(
   double crossY = (self[z] * vector[x]) - (self[x] * vector[z]);
   double crossZ = (self[x] * vector[y]) - (self[y] * vector[x]);
 
-  return std::vector<double> {crossX, crossY, crossZ};
+  return {crossX, crossY, crossZ};
 }
 
 double Maths::Vector::angle(const Maths::Vector& vector) const
@@ -128,25 +128,28 @@ std::string Maths::Vector::getPointAsString(int pointIndex) const
 
 template<class BinaryOperation>
 Maths::Vector Maths::Vector::performBinaryOperation(
-  const Maths::Vector& rhsVector) const
+  const Maths::Vector& vector) const
 {
-  std::vector<double> newElements = {};
-  int numOfElements = this->length();
-  BinaryOperation operation = {};
   
-  for (int elementNo = 0; elementNo < numOfElements; elementNo++)
-    newElements.push_back(
-      operation.perform(this->values[elementNo], rhsVector[elementNo]));
+  int numOfElements = this->length();
+  BinaryOperation operation {};
+  std::vector<double> newElements {};
 
+  for (int elementNo = 0; elementNo < numOfElements; elementNo++) {
+    auto result = operation.perform(
+      this->values[elementNo], vector[elementNo]);
+    
+    newElements.push_back(result);
+  }
   return Maths::Vector(newElements);
 }
 
 template<class BinaryOperation>
 Maths::Vector Maths::Vector::performBinaryOperation(double scalar) const
 {
-  std::vector<double> newElements = {};
+  std::vector<double> newElements {};
   int numOfElements = this->length();
-  BinaryOperation operation = {};
+  BinaryOperation operation {};
 
   for (auto element : this->values)
     newElements.push_back(operation.perform(element, scalar));
@@ -189,7 +192,7 @@ Maths::Vector operator *(double scalarLHS, const Maths::Vector& vectorRHS)
   return vectorRHS * scalarLHS;
 }
 
-std::ostream &operator <<(std::ostream& outstream, const Maths::Vector& vector)
+std::ostream& operator <<(std::ostream& outstream, const Maths::Vector& vector)
 {
   return outstream << vector.toString();
 }

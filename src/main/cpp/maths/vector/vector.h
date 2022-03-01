@@ -126,7 +126,7 @@ private:
    * the cross product of this vector with another vector. Only works
    * for vectors of length 3.
    */
-  std::vector<double> calculateCrossProductValues(const Vector& vector) const;
+  std::vector<double> crossProductValues(const Vector& vector) const;
 
   /**
    * Returns a string representation of a point.

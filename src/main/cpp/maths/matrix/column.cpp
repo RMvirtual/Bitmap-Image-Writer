@@ -16,7 +16,7 @@ double Maths::Column::operator [](int rowIndex) const
   if (outOfRange)
     throw std::out_of_range("Row index is out of range.");
 
-  return (*this).values[rowIndex];
+  return this->values[rowIndex];
 }
 
 int Maths::Column::size() const

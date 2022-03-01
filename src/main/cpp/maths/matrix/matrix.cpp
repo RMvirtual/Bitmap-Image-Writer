@@ -119,7 +119,7 @@ std::vector<std::vector<double>> Maths::Matrix::rows() const
   return rows;
 }
 
-Maths::Vector Maths::Matrix::operator * (const Maths::Vector& vector) const
+Maths::Vector Maths::Matrix::operator *(const Maths::Vector& vector) const
 {
   if (!this->isVectorMultipliable(vector))
     throw std::length_error(
@@ -127,11 +127,11 @@ Maths::Vector Maths::Matrix::operator * (const Maths::Vector& vector) const
       "to the Matrix it is being multiplied against."
     );
 
-  return this->multiplyVector(vector); 
+  return this->multiplyVector(vector);
 }
 
 Maths::Vector Maths::Matrix::multiplyVector(const Maths::Vector& vector) const
-{ 
+{
   return {this->getMultipliedVectorValues(vector)};
 }
 
@@ -146,7 +146,7 @@ std::vector<double> Maths::Matrix::getMultipliedVectorValues(
   return newVectorValues;
 }
 
-Maths::Matrix Maths::Matrix::operator * (const Maths::Matrix& matrixRhs) const
+Maths::Matrix Maths::Matrix::operator *(const Maths::Matrix& matrixRhs) const
 {
   if (!this->isMatrixMultipliable(matrixRhs)) 
     throw std::length_error(
@@ -236,7 +236,7 @@ double Maths::Matrix::product(
   return this->product(vector2, vector1, commonIndex);
 }
 
-Maths::Column Maths::Matrix::operator [] (int columnIndex) const
+Maths::Column Maths::Matrix::operator [](int columnIndex) const
 {
   if (!this->isColumnIndexInRange(columnIndex))
     throw std::out_of_range("Column index is out of range.");
@@ -249,7 +249,7 @@ bool Maths::Matrix::isColumnIndexInRange(int index) const
   return (index >= 0 || index <= this->width() - 1);
 }
 
-Maths::Vector operator * (
+Maths::Vector operator *(
   const Maths::Vector& vectorLhs, const Maths::Matrix& matrixRhs)
 {
   return matrixRhs * vectorLhs;
