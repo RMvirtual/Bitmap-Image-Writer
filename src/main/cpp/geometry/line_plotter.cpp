@@ -17,44 +17,43 @@ std::vector<std::pair<int,int>> Geometry::LinePlotter::plot(
   std::vector<std::pair<int,int>> plotPoints;
 
   if (line.gradient().isHorizontallySloped())
-    plotPoints = this->horizontalLinePlot(line);
+    plotPoints = this->horizontalPlot(line);
   
   else
-    plotPoints = this->verticalLinePlot(line);
+    plotPoints = this->verticalPlot(line);
 
   return plotPoints;
 }
 
-std::vector<std::pair<int,int>> Geometry::LinePlotter::horizontalLinePlot(
+std::vector<std::pair<int,int>> Geometry::LinePlotter::horizontalPlot(
   Line line)
 {
   std::vector<std::pair<int,int>> plotPoints;
 
   if (line.gradient().isTraversingLeftToRight())
-    plotPoints = this->plotLineLow(line.origin(), line.destination());
+    plotPoints = this->plotLow(line.origin(), line.destination());
 
   else
-    plotPoints = this->plotLineLow(line.destination(), line.origin());
+    plotPoints = this->plotLow(line.destination(), line.origin());
 
   return plotPoints;
 }
 
-std::vector<std::pair<int,int>> Geometry::LinePlotter::verticalLinePlot(
-  Line line)
+std::vector<std::pair<int,int>> Geometry::LinePlotter::verticalPlot(Line line)
 {
  std::vector<std::pair<int,int>> plotPoints;
 
   if (line.gradient().isTraversingUpwards())
-    plotPoints = this->plotLineHigh(line.origin(), line.destination());
+    plotPoints = this->plotHigh(line.origin(), line.destination());
 
   else
-    plotPoints = this->plotLineHigh(line.destination(), line.origin());
+    plotPoints = this->plotHigh(line.destination(), line.origin());
 
   return plotPoints;
 }
 
 /* Could merge this and plotLineHigh together using Axis as variable. */
-std::vector<std::pair<int,int>> Geometry::LinePlotter::plotLineLow(
+std::vector<std::pair<int,int>> Geometry::LinePlotter::plotLow(
   std::pair<double,double> origin, std::pair<double,double> destination)
 {
   auto x0 = origin.first;
@@ -94,7 +93,7 @@ std::vector<std::pair<int,int>> Geometry::LinePlotter::plotLineLow(
 }
 
 /* Could merge this and plotLineLow together using Axis as variable. */
-std::vector<std::pair<int,int>> Geometry::LinePlotter::plotLineHigh(
+std::vector<std::pair<int,int>> Geometry::LinePlotter::plotHigh(
   std::pair<double,double> origin, std::pair<double,double> destination)
 {
   double x0 = origin.first;

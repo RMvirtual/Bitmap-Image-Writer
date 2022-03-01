@@ -14,14 +14,14 @@ public:
   std::vector<std::pair<int,int>> plot(Line line);
 
 private:
-  std::vector<std::pair<int,int>> plotLineHigh(
+  std::vector<std::pair<int,int>> plotHigh(
     std::pair<double,double> origin, std::pair<double,double> destination);
 
-  std::vector<std::pair<int,int>> plotLineLow(
+  std::vector<std::pair<int,int>> plotLow(
     std::pair<double,double> origin, std::pair<double,double> destination);
 
-  std::vector<std::pair<int,int>> horizontalLinePlot(Line line);
-  std::vector<std::pair<int,int>> verticalLinePlot(Line line);
+  std::vector<std::pair<int,int>> horizontalPlot(Line line);
+  std::vector<std::pair<int,int>> verticalPlot(Line line);
 
 
 };}
