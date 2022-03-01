@@ -5,6 +5,7 @@
 #include <numeric>
 #include <string>
 #include <vector>
+#include <functional>
 
 #include "src/main/cpp/maths/vector/vector.h"
 #include "src/main/cpp/maths/binary-ops/binary_ops.h"
@@ -95,11 +96,12 @@ double Maths::Vector::at(int index) const
 std::vector<double> Maths::Vector::multiplyElements(
   const Maths::Vector& vector) const
 {
-  std::vector<double> newElements;
-  int numOfElements = this->length();
-  
-  for (int elementNo = 0; elementNo < numOfElements; elementNo++)
-    newElements.push_back(this->values[elementNo] * vector[elementNo]);
+  std::vector<double> newElements (this->length());
+
+  std::transform(
+    this->begin(), this->end(), vector.begin(), newElements.begin(),
+    std::multiplies<double>()
+  );
 
   return newElements;
 }
@@ -131,8 +133,7 @@ std::string Maths::Vector::getPointAsString(int pointIndex) const
 template<class BinaryOperation>
 Maths::Vector Maths::Vector::performBinaryOperation(
   const Maths::Vector& vector) const
-{
-  
+{  
   int numOfElements = this->length();
   BinaryOperation operation {};
   std::vector<double> newElements {};
