@@ -99,28 +99,34 @@ std::vector<double> Maths::Vector::multiplyElements(
   return newElements;
 }
 
-std::string Maths::Vector::getAllPointsAsString() const
+double Maths::Vector::operator [](int index) const
 {
-  std::string pointsString = "";
-  int noOfPoints = this->length();
-
-  for (int pointNo = 0; pointNo < noOfPoints; pointNo++) {
-    pointsString += this->getPointAsString(pointNo);
-    bool morePointsRemaining = (pointNo < noOfPoints - 1);
-
-    if (morePointsRemaining)
-      pointsString += ", ";
-  }
-
-  return pointsString;
+  return this->at(index);
 }
 
-std::string Maths::Vector::getPointAsString(int pointIndex) const
+Maths::Vector Maths::Vector::operator +(const Maths::Vector& rhsVector) const
 {
-  auto pointIndexString = std::to_string(pointIndex);
-  auto pointValue = std::to_string(this->at(pointIndex));
+  return this->performBinaryOperation<Addition>(rhsVector);
+}
 
-  return pointIndexString + ": " + pointValue;
+Maths::Vector Maths::Vector::operator -(const Maths::Vector& rhsVector) const
+{
+  return this->performBinaryOperation<Subtraction>(rhsVector);
+}
+
+double Maths::Vector::operator *(const Maths::Vector& rhsVector) const
+{
+  return this->dotProduct(rhsVector);
+}
+
+Maths::Vector Maths::Vector::operator *(double scalar) const
+{
+  return this->performBinaryOperation<Multiplication>(scalar);
+}
+
+Maths::Vector Maths::Vector::operator /(double scalar) const
+{
+  return this->performBinaryOperation<Division>(scalar);
 }
 
 template<class BinaryOperation>
@@ -153,36 +159,6 @@ Maths::Vector Maths::Vector::performBinaryOperation(double scalar) const
   return Maths::Vector(newElements);
 }
 
-double Maths::Vector::operator [](int index) const
-{
-  return this->at(index);
-}
-
-Maths::Vector Maths::Vector::operator +(const Maths::Vector& rhsVector) const
-{
-  return this->performBinaryOperation<Addition>(rhsVector);
-}
-
-Maths::Vector Maths::Vector::operator -(const Maths::Vector& rhsVector) const
-{
-  return this->performBinaryOperation<Subtraction>(rhsVector);
-}
-
-double Maths::Vector::operator *(const Maths::Vector& rhsVector) const
-{
-  return this->dotProduct(rhsVector);
-}
-
-Maths::Vector Maths::Vector::operator *(double scalar) const
-{
-  return this->performBinaryOperation<Multiplication>(scalar);
-}
-
-Maths::Vector Maths::Vector::operator /(double scalar) const
-{
-  return this->performBinaryOperation<Division>(scalar);
-}
-
 std::vector<double>::iterator Maths::Vector::begin()
 {
   return this->values.begin();
@@ -205,7 +181,31 @@ std::vector<double>::const_iterator Maths::Vector::end() const
 
 std::string Maths::Vector::toString() const
 {
-  return "[" + this->getAllPointsAsString() + "]";
+  return "[" + this->allPointsToString() + "]";
+}
+
+std::string Maths::Vector::allPointsToString() const
+{
+  std::string pointsString = "";
+  int noOfPoints = this->length();
+
+  for (int pointNo = 0; pointNo < noOfPoints; pointNo++) {
+    pointsString += this->pointToString(pointNo);
+    bool morePointsRemaining = (pointNo < noOfPoints - 1);
+
+    if (morePointsRemaining)
+      pointsString += ", ";
+  }
+
+  return pointsString;
+}
+
+std::string Maths::Vector::pointToString(int pointIndex) const
+{
+  auto pointIndexString = std::to_string(pointIndex);
+  auto pointValue = std::to_string(this->at(pointIndex));
+
+  return pointIndexString + ": " + pointValue;
 }
 
 Maths::Vector operator *(double scalar, const Maths::Vector& vector)

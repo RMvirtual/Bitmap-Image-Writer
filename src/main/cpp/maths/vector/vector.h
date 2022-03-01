@@ -124,13 +124,13 @@ private:
   /**
    * Returns a string representation of a point.
    */
-  std::string getPointAsString(int pointIndex) const;
+  std::string pointToString(int pointIndex) const;
 
   /**
    * Returns each string representation of every point, concatenated
    * together by a comma and a space (excluding the last point).
    */
-  std::string getAllPointsAsString() const;
+  std::string allPointsToString() const;
 };}
 
 // Multiplies a scalar double on the LHS and a vector on the RHS.
