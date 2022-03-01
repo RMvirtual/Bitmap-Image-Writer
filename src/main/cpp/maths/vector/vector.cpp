@@ -72,12 +72,12 @@ int Maths::Vector::length() const
 
 double Maths::Vector::magnitude() const
 {
-  auto sumSquareNumbers = [](double sumAccumulator, double value) {
+  auto squareAndSum = [](double sumAccumulator, double value) {
     return sumAccumulator + pow(value, 2.0);
   };
 
   auto sum = std::accumulate(
-    this->values.begin(), this->values.end(), 0.0, sumSquareNumbers);
+    this->values.begin(), this->values.end(), 0.0, squareAndSum);
   
   return sqrt(sum);
 }
@@ -90,12 +90,11 @@ double Maths::Vector::at(int index) const
 std::vector<double> Maths::Vector::multiplyElements(
   const Maths::Vector& vector) const
 {
-  auto multiplyFunction = std::multiplies<double>();
   std::vector<double> newElements (this->length());
 
   std::transform(
     this->begin(), this->end(), vector.begin(),
-    newElements.begin(), multiplyFunction
+    newElements.begin(), std::multiplies<double>()
   );
 
   return newElements;
@@ -111,33 +110,20 @@ Maths::Vector Maths::Vector::operator +(const Maths::Vector& rhsVector) const
   std::vector<double> newElements (this->length());
 
   std::transform(
-    this->begin(), this->end(), rhsVector.begin(), newElements.begin(), std::plus<double>()
+    this->begin(), this->end(), rhsVector.begin(),
+    newElements.begin(), std::plus<double>()
   );
 
   return {newElements};
-
-  /* vector op.
-  int numOfElements = this->length();
-  BinaryOperation operation {};
-  std::vector<double> newElements {};
-
-  for (int elementNo = 0; elementNo < numOfElements; elementNo++) {
-    auto result = operation.perform(
-      this->values[elementNo], vector[elementNo]);
-    
-    newElements.push_back(result);
-  }
-  return Maths::Vector(newElements);
-  */
 }
 
 Maths::Vector Maths::Vector::operator -(const Maths::Vector& rhsVector) const
 {
-  auto multiplyFunction = std::minus<double>();
   std::vector<double> newElements (this->length());
 
   std::transform(
-    this->begin(), this->end(), rhsVector.begin(), newElements.begin(), multiplyFunction
+    this->begin(), this->end(), rhsVector.begin(),
+    newElements.begin(), std::minus<double>()
   );
 
   return {newElements};
@@ -150,30 +136,25 @@ double Maths::Vector::operator *(const Maths::Vector& rhsVector) const
 
 Maths::Vector Maths::Vector::operator *(double scalar) const
 {
-  auto multiplyOperation = [scalar](double value) {
-    return scalar * value;
-  };
-
-  // scalar op.
+  auto multiplyOp = [scalar](double value) { return scalar * value; };
   std::vector<double> newElements(this->length());
 
-  std::transform(
-    this->begin(), this->end(), newElements.begin(), multiplyOperation);
+  std::transform(this->begin(), this->end(), newElements.begin(), multiplyOp);
 
   return {newElements};
 }
 
+Maths::Vector operator *(double scalar, const Maths::Vector& vector)
+{
+  return vector * scalar;
+}
+
 Maths::Vector Maths::Vector::operator /(double scalar) const
 {
-  auto multiplyOperation = [scalar](double value) {
-    return value / scalar;
-  };
-
-  // scalar op.
+  auto divideOp = [scalar](double value) { return value / scalar; };
   std::vector<double> newElements(this->length());
 
-  std::transform(
-    this->begin(), this->end(), newElements.begin(), multiplyOperation);
+  std::transform(this->begin(), this->end(), newElements.begin(), divideOp);
 
   return {newElements};
 }
@@ -225,11 +206,6 @@ std::string Maths::Vector::pointToString(int pointIndex) const
   auto pointValue = std::to_string(this->at(pointIndex));
 
   return pointIndexString + ": " + pointValue;
-}
-
-Maths::Vector operator *(double scalar, const Maths::Vector& vector)
-{
-  return vector * scalar;
 }
 
 std::ostream& operator <<(std::ostream& outstream, const Maths::Vector& vector)
