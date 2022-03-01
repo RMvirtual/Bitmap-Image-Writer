@@ -97,10 +97,10 @@ private:
    * arraylist type so the length value of the array can be ascertained
    * if required.
    */
-  std::vector<double> multiplyElements(const Vector& vector) const;
+  Vector multiply(const Vector& vector) const;
 
   template <class BinaryOperation>
-  Maths::Vector vectorOperation(Vector rhsVector) const;
+  Vector vectorOperation(Vector rhsVector) const;
 
   /**
   * Assigns an array pointer and its corresponding length against this

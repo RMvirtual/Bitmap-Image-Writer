@@ -41,7 +41,7 @@ Maths::Vector::Vector(double array[], int arrayLength)
 
 double Maths::Vector::dotProduct(const Maths::Vector& vector) const
 {
-  auto multiples = this->multiplyElements(vector);
+  auto multiples = this->multiply(vector);
   
   return std::accumulate(multiples.begin(), multiples.end(), 0.0);
 }
@@ -87,69 +87,42 @@ double Maths::Vector::at(int index) const
   return this->values[index];
 }
 
-std::vector<double> Maths::Vector::multiplyElements(const Maths::Vector& vector) const
+Maths::Vector Maths::Vector::multiply(const Maths::Vector& vector) const
 {
-  auto newElements = this->emptyStlVector();
-
-  std::transform(
-    this->begin(), this->end(), vector.begin(),
-    newElements.begin(), std::multiplies<double>()
-  );
-
-  return newElements;
+  return this->vectorOperation<std::multiplies<double>>(vector);
 }
-
-
 
 double Maths::Vector::operator [](int index) const
 {
   return this->at(index);
 }
 
-Maths::Vector Maths::Vector::operator +(const Maths::Vector& rhsVector) const
+Maths::Vector Maths::Vector::operator +(const Maths::Vector& vector) const
 {
-  /*
-  auto newElements = this->emptyStlVector();
-
-  std::transform(
-    this->begin(), this->end(), rhsVector.begin(),
-    newElements.begin(), std::plus<double>()
-  );
-
-  return {newElements};
-  */
-
-  return this->vectorOperation<std::plus<double>>(rhsVector);
+  return this->vectorOperation<std::plus<double>>(vector);
 }
 
 template<class BinaryOperation>
-Maths::Vector Maths::Vector::vectorOperation(Maths::Vector rhsVector) const
+Maths::Vector Maths::Vector::vectorOperation(Maths::Vector vector) const
 {
   auto newElements = this->emptyStlVector();
 
   std::transform(
-    this->begin(), this->end(), rhsVector.begin(),
+    this->begin(), this->end(), vector.begin(),
     newElements.begin(), BinaryOperation()
   );
 
   return {newElements};
 }
 
-Maths::Vector Maths::Vector::operator -(const Maths::Vector& rhsVector) const
+Maths::Vector Maths::Vector::operator -(const Maths::Vector& vector) const
 {
-  auto newElements = this->emptyStlVector();
-
-  std::transform(
-    this->begin(), this->end(), rhsVector.begin(),
-    newElements.begin(), std::minus<double>()
-  );
-
-  return {newElements};
+  return this->vectorOperation<std::minus<double>>(vector);
 }
 
-double Maths::Vector::operator *(const Maths::Vector& rhsVector) const
+double Maths::Vector::operator *(const Maths::Vector& vector) const
 {
-  return this->dotProduct(rhsVector);
+  return this->dotProduct(vector);
 }
 
 Maths::Vector Maths::Vector::operator *(double scalar) const
