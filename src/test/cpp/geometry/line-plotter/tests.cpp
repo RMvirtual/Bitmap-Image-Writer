@@ -13,6 +13,7 @@ TEST_F(LinePlotterTest, ShouldPlotNorthEastLine)
   this->compare(plotPoints);
 }
 
+// Fails.
 TEST_F(LinePlotterTest, ShouldPlotNorthWestLine)
 {
   this->setupNorthWestPlotPoints();
@@ -23,6 +24,7 @@ TEST_F(LinePlotterTest, ShouldPlotNorthWestLine)
   this->compare(plotPoints);
 }
 
+// Fails.
 TEST_F(LinePlotterTest, ShouldPlotSouthEastLine)
 {
   this->setupSouthEastPlotPoints();
