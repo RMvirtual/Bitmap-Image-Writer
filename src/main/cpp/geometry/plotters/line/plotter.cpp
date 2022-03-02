@@ -22,21 +22,27 @@ std::vector<Maths::Vector> Geometry::LinePlotter::plot(Geometry::Line line)
 void Geometry::LinePlotter::createPlotPoints(Geometry::Line line)
 {
   this->axes = {line};
-  double D = (2 * this->axes.rise()) - this->axes.run();
+  auto rise = this->axes.rise();
+  auto run = this->axes.run();
+  auto xAxis = this->axes.xAxis();
+  auto yAxis = this->axes.yAxis();
+  auto yChangeAmount = this->axes.yChangeAmount();
 
-  auto x0 = line.origin()[this->axes.xAxis()];
-  auto x1 = line.destination()[this->axes.xAxis()];
-  auto y = line.origin()[this->axes.yAxis()];
+  double D = (2 * rise) - run;
+
+  auto x0 = line.origin()[xAxis];
+  auto x1 = line.destination()[xAxis];
+  auto y = line.origin()[yAxis];
 
   for (auto x = x0; x <= x1; x++) {
     this->plotPoints.push_back({x, y});
 
     if (D > 0) {
-      y += this->axes.yChangeAmount();
-      D += 2 * (this->axes.rise() - this->axes.run());
+      y += yChangeAmount;
+      D += 2 * (rise - run);
     }
 
     else 
-      D += 2 * axes.rise();
+      D += 2 * rise;
   }
 }
