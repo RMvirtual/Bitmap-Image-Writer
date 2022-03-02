@@ -57,14 +57,14 @@ double Geometry::Line::gradient()
   return hasZeroDivision ? 1 : yChange / xChange;
 }
 
-double Geometry::Line::rise()
-{
-  return this->_destination["y"] - this->_origin["y"];
-}
-
 double Geometry::Line::run()
 {
   return this->_destination["x"] - this->_origin["x"];
+}
+
+double Geometry::Line::rise()
+{
+  return this->_destination["y"] - this->_origin["y"];
 }
 
 bool Geometry::Line::isHorizontallySloped()
