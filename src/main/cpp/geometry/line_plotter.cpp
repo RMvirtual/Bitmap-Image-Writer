@@ -51,12 +51,7 @@ void Geometry::LinePlotter::determineAxes(Geometry::Line line)
   else
     this->setNormalAxes(line);
 
-  this->axes.yChangeAmount = 1;
-
-  if (this->axes.rise < 0) {
-    this->axes.yChangeAmount = -1;
-    this->axes.rise = 0 - axes.rise;
-  }
+  this->determineYChangeAmount();
 }
 
 void Geometry::LinePlotter::setNormalAxes(Geometry::Line line)
@@ -73,4 +68,14 @@ void Geometry::LinePlotter::setTiltedAxes(Geometry::Line line)
   this->axes.yAxis = "x";
   this->axes.run = line.rise();
   this->axes.rise = line.run();
+}
+
+void Geometry::LinePlotter::determineYChangeAmount()
+{
+  this->axes.yChangeAmount = 1;
+
+  if (this->axes.rise < 0) {
+    this->axes.yChangeAmount = -1;
+    this->axes.rise = 0 - axes.rise;
+  }
 }
