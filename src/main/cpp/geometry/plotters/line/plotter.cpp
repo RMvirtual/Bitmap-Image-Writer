@@ -29,10 +29,14 @@ void Geometry::LinePlotter::createPlotPoints(Geometry::Line line)
   auto tiltedX1 = line[this->axes["x1"]];
   auto y = line[this->axes["y0"]];
 
-  for (auto x = tiltedX0; x <= tiltedX1; x++) {
+  for (auto x = tiltedX0; x <= tiltedX1; x++)
+    this->processPoints(x, y);
+}
+
+void Geometry::LinePlotter::processPoints(double x, double&y)
+{
     this->plotPoints.push_back({x, y});
     this->updateY(y);
-  }
 }
 
 void Geometry::LinePlotter::updateY(double& y)
