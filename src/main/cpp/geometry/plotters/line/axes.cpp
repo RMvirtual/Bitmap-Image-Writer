@@ -20,47 +20,47 @@ void Geometry::Axes::determineAxes(Geometry::Line line)
   else
     this->setNormalAxes(line);
 
-  this->determineYAxisChange();
+  this->determineVerticalAxisChange();
 }
 
 void Geometry::Axes::setNormalAxes(Geometry::Line line)
 {
-  this->_xAxis = "x";
-  this->_yAxis = "y";
+  this->_horizontalAxis = "x";
+  this->_verticalAxis = "y";
   this->_run = line.run();
   this->_rise = line.rise();
 }
 
 void Geometry::Axes::setTiltedAxes(Geometry::Line line)
 {
-  this->_xAxis = "y";
-  this->_yAxis = "x";
+  this->_horizontalAxis = "y";
+  this->_verticalAxis = "x";
   this->_run = line.rise();
   this->_rise = line.run();
 }
 
-void Geometry::Axes::determineYAxisChange()
+void Geometry::Axes::determineVerticalAxisChange()
 {
-  this->_yChangeAmount = 1;
+  this->_verticalChangeAmount = 1;
 
   if (this->_rise < 0) {
-    this->_yChangeAmount = -1;
+    this->_verticalChangeAmount = -1;
     this->_rise = 0 - this->_rise;
   }
 }
 
-std::string Geometry::Axes::xAxis()
+std::string Geometry::Axes::horizontalAxis()
 {
-  return this->_xAxis;
+  return this->_horizontalAxis;
 }
-std::string Geometry::Axes::yAxis()
+std::string Geometry::Axes::verticalAxis()
 {
-  return this->_yAxis;
+  return this->_verticalAxis;
 }
 
-double Geometry::Axes::yChangeAmount()
+double Geometry::Axes::verticalChangeAmount()
 {
-  return this->_yChangeAmount;
+  return this->_verticalChangeAmount;
 }
 
 double Geometry::Axes::run()

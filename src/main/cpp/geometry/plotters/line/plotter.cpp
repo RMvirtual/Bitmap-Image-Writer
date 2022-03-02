@@ -24,9 +24,9 @@ void Geometry::LinePlotter::createPlotPoints(Geometry::Line line)
   this->axes = {line};
   auto rise = this->axes.rise();
   auto run = this->axes.run();
-  auto xAxis = this->axes.xAxis();
-  auto yAxis = this->axes.yAxis();
-  auto yChangeAmount = this->axes.yChangeAmount();
+  auto xAxis = this->axes.horizontalAxis();
+  auto yAxis = this->axes.verticalAxis();
+  auto yChangeAmount = this->axes.verticalChangeAmount();
 
   double D = (2 * rise) - run;
 
