@@ -79,19 +79,20 @@ bool Geometry::Line::isVerticallySloped()
 
 bool Geometry::Line::isTraversingNorth()
 {
-  return this->_origin["y"] < this->_destination["y"];
+  return this->rise() > 0;
+}
+
+bool Geometry::Line::isTraversingSouth()
+{
+  return this->rise() < 0;
 }
 
 bool Geometry::Line::isTraversingEast()
 {
-  return this->_origin["x"] < this->_destination["x"];
-}
-bool Geometry::Line::isTraversingSouth()
-{
-  return this->_origin["y"] > this->_destination["y"];
+  return this->run() > 0;
 }
 
 bool Geometry::Line::isTraversingWest()
 {
-  return this->_origin["x"] > this->_destination["x"];
+  return this->run() < 0;
 }
