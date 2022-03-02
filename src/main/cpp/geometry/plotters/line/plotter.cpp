@@ -37,14 +37,16 @@ void Geometry::LinePlotter::createPlotPoints(Geometry::Line line)
   for (auto x = x0; x <= x1; x++) {
     this->plotPoints.push_back({x, y});
 
-    if (this->yError > 0) {
+    if (this->shouldIncrementY())
       y += verticalChangeAmount;
-      this->yError += 2 * (rise - run);
-    }
 
-    else 
-      this->yError += 2 * rise;
+    this->updateYError();
   }
+}
+
+bool Geometry::LinePlotter::shouldIncrementY()
+{
+  return this->yError > 0;
 }
 
 void Geometry::LinePlotter::initialiseYError()
@@ -59,7 +61,7 @@ void Geometry::LinePlotter::updateYError()
 {
   auto yErrorChange = this->axes.rise();
 
-  if (this->yError > 0)
+  if (this->shouldIncrementY())
     yErrorChange -= this->axes.run();
 
   this->yError += 2 * yErrorChange;  

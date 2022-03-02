@@ -22,5 +22,6 @@ private:
   void createPlotPoints(Geometry::Line line);
   void initialiseYError();
   void updateYError();
-  
+  bool shouldIncrementY();
+
 };}
