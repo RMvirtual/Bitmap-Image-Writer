@@ -16,16 +16,19 @@ private:
   struct Axes {
     std::string xAxis;
     std::string yAxis;
-    double yAxisIncreaseAmount;
+    double yChangeAmount;
     double run;
     double rise;
   };
 
+
+
   std::vector<Maths::Vector> plotPoints;
+  Axes axes;
 
   void createPlotPoints(Geometry::Line line);
-  Axes axes(Geometry::Line line);
-  Axes normalAxis(Geometry::Line line);
-  Axes tiltedAxis(Geometry::Line line);
+  void determineAxes(Geometry::Line line);
+  void setNormalAxes(Geometry::Line line);
+  void setTiltedAxes(Geometry::Line line);
 
 };}

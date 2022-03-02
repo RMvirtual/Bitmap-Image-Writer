@@ -21,7 +21,7 @@ std::vector<Maths::Vector> Geometry::LinePlotter::plot(Geometry::Line line)
 
 void Geometry::LinePlotter::createPlotPoints(Geometry::Line line)
 {
-  auto axes = this->axes(line);
+  this->determineAxes(line);
   double D = (2 * axes.rise) - axes.run;
 
   auto x0 = line.origin()[axes.xAxis];
@@ -32,7 +32,7 @@ void Geometry::LinePlotter::createPlotPoints(Geometry::Line line)
     this->plotPoints.push_back({x, y});
 
     if (D > 0) {
-      y += axes.yAxisIncreaseAmount;
+      y += axes.yChangeAmount;
       D += 2 * (axes.rise - axes.run);
     }
 
@@ -41,50 +41,36 @@ void Geometry::LinePlotter::createPlotPoints(Geometry::Line line)
   }
 }
 
-Geometry::LinePlotter::Axes Geometry::LinePlotter::axes(Geometry::Line line)
-{
-  Geometry::LinePlotter::Axes axes;
-  
+void Geometry::LinePlotter::determineAxes(Geometry::Line line)
+{  
   bool shouldTiltAxis = line.isVerticallySloped();
 
   if (shouldTiltAxis)
-    axes = this->tiltedAxis(line);
+    this->setTiltedAxes(line);
 
   else
-    axes = this->normalAxis(line);
+    this->setNormalAxes(line);
 
-  axes.yAxisIncreaseAmount = 1;
+  this->axes.yChangeAmount = 1;
 
-  if (line.isTraversingSouth()) {
-    axes.yAxisIncreaseAmount = -1;
-    axes.rise = 0 - axes.rise;
+  if (this->axes.rise < 0) {
+    this->axes.yChangeAmount = -1;
+    this->axes.rise = 0 - axes.rise;
   }
-
-  return axes;
 }
 
-Geometry::LinePlotter::Axes Geometry::LinePlotter::normalAxis(
-  Geometry::Line line)
+void Geometry::LinePlotter::setNormalAxes(Geometry::Line line)
 {
-  Geometry::LinePlotter::Axes axes;
-
-  axes.xAxis = "x";
-  axes.yAxis = "y";
-  axes.run = line.run();
-  axes.rise = line.rise();
-
-  return axes;
+  this->axes.xAxis = "x";
+  this->axes.yAxis = "y";
+  this->axes.run = line.run();
+  this->axes.rise = line.rise();
 }
 
-Geometry::LinePlotter::Axes Geometry::LinePlotter::tiltedAxis(
-  Geometry::Line line)
+void Geometry::LinePlotter::setTiltedAxes(Geometry::Line line)
 {
-  Geometry::LinePlotter::Axes axes;
-
-  axes.xAxis = "y";
-  axes.yAxis = "x";
-  axes.run = line.rise();
-  axes.rise = line.run();
-
-  return axes;
+  this->axes.xAxis = "y";
+  this->axes.yAxis = "x";
+  this->axes.run = line.rise();
+  this->axes.rise = line.run();
 }
