@@ -16,6 +16,10 @@ public:
 private:
   std::vector<Maths::Vector> plotPoints;
   Geometry::Axes axes;
+  
+  double yChangeTracker;
 
   void createPlotPoints(Geometry::Line line);
+
+  
 };}

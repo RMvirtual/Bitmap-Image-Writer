@@ -24,25 +24,25 @@ void Geometry::LinePlotter::createPlotPoints(Geometry::Line line)
   this->axes = {line};
   auto rise = this->axes.rise();
   auto run = this->axes.run();
-  auto xAxis = this->axes.horizontalAxis();
-  auto yAxis = this->axes.verticalAxis();
-  auto yChangeAmount = this->axes.verticalChangeAmount();
+  auto horizontalAxis = this->axes.horizontalAxis();
+  auto verticalAxis = this->axes.verticalAxis();
+  auto verticalChangeAmount = this->axes.verticalChangeAmount();
 
-  double D = (2 * rise) - run;
+  this->yChangeTracker = (2 * rise) - run;
 
-  auto x0 = line[xAxis + "0"];
-  auto x1 = line[xAxis + "1"];
-  auto y = line[yAxis + "0"];
+  auto x0 = line[horizontalAxis + "0"];
+  auto x1 = line[horizontalAxis + "1"];
+  auto y = line[verticalAxis + "0"];
 
   for (auto x = x0; x <= x1; x++) {
     this->plotPoints.push_back({x, y});
 
-    if (D > 0) {
-      y += yChangeAmount;
-      D += 2 * (rise - run);
+    if (this->yChangeTracker > 0) {
+      y += verticalChangeAmount;
+      this->yChangeTracker += 2 * (rise - run);
     }
 
     else 
-      D += 2 * rise;
+      this->yChangeTracker += 2 * rise;
   }
 }
