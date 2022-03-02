@@ -12,52 +12,63 @@ Geometry::LinePlotter::LinePlotter()
 std::vector<Maths::Vector> Geometry::LinePlotter::plot(Geometry::Line line)
 {
   this->plotPoints.clear();
+
   line.normaliseEndpoints();
   this->createPlotPoints(line);
 
   return plotPoints;
 }
 
-void Geometry::LinePlotter::createPlotPoints(Geometry::Line line)
+Geometry::LinePlotter::PlottingAxes Geometry::LinePlotter::plottingAxes(
+  Geometry::Line line)
 {
-  std::string constantAxis = "x";
-  std::string variableAxis = "y";
-
-  auto run = line.run();
-  auto rise = line.rise();
-
+  Geometry::LinePlotter::PlottingAxes axes;
   bool shouldTiltAxis = line.isVerticallySloped();
 
   if (shouldTiltAxis) {
-    constantAxis = "y";
-    variableAxis = "x";
+    axes.xAxis = "y";
+    axes.yAxis = "x";
 
-    run = line.rise();
-    rise = line.run();
+    axes.run = line.rise();
+    axes.rise = line.run();
   }
 
-  double variableAxisIncrease = 1;
-
-  if (rise < 0) {
-    variableAxisIncrease = -1;
-    rise = 0 - rise;
+  else {
+    axes.xAxis = "x";
+    axes.yAxis = "y";
+    axes.run = line.run();
+    axes.rise = line.rise();
   }
 
-  double D = (2 * rise) - run;
+  axes.yAxisIncreaseAmount = 1;
 
-  double x = line.origin()[constantAxis];
-  auto x1 = line.destination()[constantAxis];
-  double y = line.origin()[variableAxis];
+  if (axes.rise < 0) {
+    axes.yAxisIncreaseAmount = -1;
+    axes.rise = 0 - axes.rise;
+  }
+
+  return axes;
+}
+
+void Geometry::LinePlotter::createPlotPoints(Geometry::Line line)
+{
+  auto axes = this->plottingAxes(line);
+
+  double D = (2 * axes.rise) - axes.run;
+
+  double x = line.origin()[axes.xAxis];
+  auto x1 = line.destination()[axes.xAxis];
+  double y = line.origin()[axes.yAxis];
 
   for (; x <= x1; x++) {
     this->plotPoints.push_back({x, y});
 
     if (D > 0) {
-      y += variableAxisIncrease;
-      D += 2 * (rise - run);
+      y += axes.yAxisIncreaseAmount;
+      D += 2 * (axes.rise - axes.run);
     }
 
     else 
-      D += 2 * rise;
+      D += 2 * axes.rise;
   }
 }
