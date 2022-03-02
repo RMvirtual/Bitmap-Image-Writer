@@ -1,7 +1,5 @@
 #include "src/main/cpp/geometry/line/gradient.h"
 
-#include <iostream>
-
 Geometry::Gradient::Gradient()
 {
   this->origin = {0,0};
@@ -32,11 +30,6 @@ double Geometry::Gradient::gradient()
 
 double Geometry::Gradient::run()
 {
-  std::cout << this->origin << std::endl;
-  // Origin[x] appears to error out when origin value is 0.
-  std::cout << this->origin["x"] << "\n";
-  std::cout << this->destination["x"] << "\n";
-
   return this->destination["x"] - this->origin["x"]; 
 }
 
