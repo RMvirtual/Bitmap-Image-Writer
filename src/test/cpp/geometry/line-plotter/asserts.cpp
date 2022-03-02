@@ -1,8 +1,6 @@
 #include "gtest/gtest.h"
 #include "src/test/cpp/geometry/line-plotter/fixture.h"
 
-#include <iostream>
-
 void LinePlotterTest::compare(std::vector<Maths::Vector> plotPoints)
 {
   int noOfPlotPoints = plotPoints.size();

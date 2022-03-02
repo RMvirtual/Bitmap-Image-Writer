@@ -1,8 +1,5 @@
-#include <utility>
-
 #include "gtest/gtest.h"
 #include "src/test/cpp/geometry/line-plotter/fixture.h"
-#include "src/main/cpp/geometry/line/line.h"
 
 TEST_F(LinePlotterTest, ShouldPlotNorthEastLine)
 {
