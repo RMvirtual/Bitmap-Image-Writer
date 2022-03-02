@@ -12,7 +12,6 @@ public:
   Line(Maths::Vector origin, Maths::Vector destination);
   Line(Maths::Vector destination);
 
-
   void setOrigin(Maths::Vector coordinates);
   void setDestination(Maths::Vector coordinates);  
   void setEndpoints(Maths::Vector origin, Maths::Vector destination);
@@ -20,7 +19,7 @@ public:
   Maths::Vector origin();
   Maths::Vector destination();
   Line reverse();
-  
+
   double gradient();
   double rise();
   double run();

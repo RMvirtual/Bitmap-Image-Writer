@@ -89,8 +89,6 @@ void Geometry::LinePlotter::plotHigh(Geometry::Line line)
   double x = line.origin()["x"];
   auto const y1 = line.destination()["y"];
   
-  std::vector<Maths::Vector> plotPoints {};
-
   for (double y = line.origin()["y"]; y <= y1; y++) {
     this->plotPoints.push_back({x, y});
 
