@@ -21,7 +21,7 @@ private:
 
   void initialise(Geometry::Line line);
   void createPlotPoints(Geometry::Line line);
-  void processPoints(double x, double&y);
+  void addPoint(double x, double&y);
   void initialiseYError();
   void updateY(double& y);
   void updateYError();
