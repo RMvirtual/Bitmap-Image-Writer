@@ -13,6 +13,10 @@ protected:
   Geometry::LinePlotter plotter;
   std::vector<Maths::Vector> correctPlotPoints;
 
-  void setupCorrectPlotPoints();
+  void setupNorthEastPlotPoints();
+  void setupNorthWestPlotPoints();
+  void setupSouthEastPlotPoints();
+  void setupSouthWestPlotPoints();
+
   void compare(std::vector<Maths::Vector> plotPoints);
 };
