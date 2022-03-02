@@ -3,7 +3,7 @@
 
 TEST_F(LineTest, ShouldCalculateGradientFromZeroXEqualToY)
 {
-  this->setupFromOriginZero({5, 5});
+  this->line = {{5, 5}};
   double correctGradient = 1;
 
   EXPECT_EQ(correctGradient, this->line.gradient());
@@ -11,7 +11,7 @@ TEST_F(LineTest, ShouldCalculateGradientFromZeroXEqualToY)
 
 TEST_F(LineTest, ShouldCalculateGradientFromZeroXGreaterThanY)
 {
-  this->setupFromOriginZero({5, 3});
+  this->line = {{5, 3}};
   double correctGradient = 0.6;
 
   EXPECT_EQ(correctGradient, this->line.gradient());
@@ -19,7 +19,7 @@ TEST_F(LineTest, ShouldCalculateGradientFromZeroXGreaterThanY)
 
 TEST_F(LineTest, ShouldCalculateGradientFromZeroXLessThanY)
 {
-  this->setupFromOriginZero({5, 8});
+  this->line = {{5, 8}};
   double correctGradient = 1.6;
 
   EXPECT_EQ(correctGradient, this->line.gradient());
@@ -27,7 +27,7 @@ TEST_F(LineTest, ShouldCalculateGradientFromZeroXLessThanY)
 
 TEST_F(LineTest, ShouldCalculateGradientBetweenPointsXEqualToY)
 {
-  this->setup({1,2}, {4,5});
+  this->line = {{1,2}, {4,5}};
   double correctGradient = 1;
 
   EXPECT_EQ(correctGradient, this->line.gradient());
@@ -35,7 +35,7 @@ TEST_F(LineTest, ShouldCalculateGradientBetweenPointsXEqualToY)
 
 TEST_F(LineTest, ShouldCalculateGradientBetweenPointsXLessThanY)
 {
-  this->setup({1,2}, {2,5});
+  this->line = {{1,2}, {2,5}};
   double correctGradient = 3;
 
   EXPECT_EQ(correctGradient, this->line.gradient());
@@ -43,7 +43,7 @@ TEST_F(LineTest, ShouldCalculateGradientBetweenPointsXLessThanY)
 
 TEST_F(LineTest, ShouldCalculateGradientBetweenPointsXGreaterThanY)
 {
-  this->setup({1,2}, {5,3});
+  this->line = {{1,2}, {5,3}};
   double correctGradient = 0.25;
 
   EXPECT_EQ(correctGradient, this->line.gradient());
@@ -51,7 +51,7 @@ TEST_F(LineTest, ShouldCalculateGradientBetweenPointsXGreaterThanY)
 
 TEST_F(LineTest, ShouldCalculateRise)
 {
-  this->setup({1,2}, {2,5});
+  this->line = {{1,2}, {2,5}};
   double correctRise = 3;
 
   EXPECT_EQ(correctRise, this->line.rise());
@@ -59,8 +59,44 @@ TEST_F(LineTest, ShouldCalculateRise)
 
 TEST_F(LineTest, ShouldCalculateRun)
 {
-  this->setup({1,2}, {2,5});
+  this->line = {{1,2}, {2,5}};
   double correctRun = 1;
 
   EXPECT_EQ(correctRun, this->line.run());
+}
+
+TEST_F(LineTest, ShouldDetectAsTraversingNorthEast)
+{
+  this->setupNorthEastLine();
+  EXPECT_TRUE(this->line.isTraversingNorth());
+  EXPECT_TRUE(this->line.isTraversingEast());
+  EXPECT_FALSE(this->line.isTraversingSouth());
+  EXPECT_FALSE(this->line.isTraversingWest());
+}
+
+TEST_F(LineTest, ShouldDetectAsTraversingNorthWest)
+{
+  this->setupNorthWestLine();
+  EXPECT_TRUE(this->line.isTraversingNorth());
+  EXPECT_TRUE(this->line.isTraversingWest());
+  EXPECT_FALSE(this->line.isTraversingSouth());
+  EXPECT_FALSE(this->line.isTraversingEast());  
+}
+
+TEST_F(LineTest, ShouldDetectAsTraversingSouthEast)
+{
+  this->setupSouthEastLine();
+  EXPECT_TRUE(this->line.isTraversingSouth());
+  EXPECT_TRUE(this->line.isTraversingEast());
+  EXPECT_FALSE(this->line.isTraversingNorth());
+  EXPECT_FALSE(this->line.isTraversingWest());
+}
+
+TEST_F(LineTest, ShouldDetectAsTraversingSouthWest)
+{
+  this->setupSouthWestLine();
+  EXPECT_TRUE(this->line.isTraversingSouth());
+  EXPECT_TRUE(this->line.isTraversingWest());
+  EXPECT_FALSE(this->line.isTraversingNorth());
+  EXPECT_FALSE(this->line.isTraversingEast());  
 }

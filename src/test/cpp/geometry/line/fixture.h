@@ -12,6 +12,8 @@ public:
 protected:
   Geometry::Line line;
 
-  void setupFromOriginZero(Maths::Vector destination);
-  void setup(Maths::Vector origin, Maths::Vector destination);
+  void setupNorthEastLine();
+  void setupNorthWestLine();
+  void setupSouthEastLine();
+  void setupSouthWestLine();
 };
