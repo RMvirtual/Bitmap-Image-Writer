@@ -26,7 +26,6 @@ void Geometry::LinePlotter::plotLineBySlope(Geometry::Line line)
   
   else
     this->plotHigh(line);
-
 }
 
 /* Could merge this and plotLineHigh together using Axis as variable. */
@@ -34,10 +33,10 @@ void Geometry::LinePlotter::plotLow(Geometry::Line line)
 {
   auto run = line.run();
   auto rise = line.rise();
-  double yi = 1;
+  double yIncrease = 1;
 
   if (rise < 0) {
-    yi = -1;
+    yIncrease = -1;
     rise = 0 - rise;
   }
 
@@ -50,7 +49,7 @@ void Geometry::LinePlotter::plotLow(Geometry::Line line)
     this->plotPoints.push_back({x, y});
 
     if (D > 0) {
-      y += yi;
+      y += yIncrease;
       D += 2 * (rise - run);
     }
 
@@ -64,10 +63,10 @@ void Geometry::LinePlotter::plotHigh(Geometry::Line line)
 {
   auto run = line.run();
   auto rise = line.rise();
-  double xi = 1;
+  double xIncrease = 1;
 
   if (run < 0) {
-    xi = -1;
+    xIncrease = -1;
     run = 0 - run;
   }
 
@@ -80,7 +79,7 @@ void Geometry::LinePlotter::plotHigh(Geometry::Line line)
     this->plotPoints.push_back({x, y});
 
     if (D > 0) {
-      x += xi;
+      x += xIncrease;
       D += (2 * (run - rise));
     }
 
