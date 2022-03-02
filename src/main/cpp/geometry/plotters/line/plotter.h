@@ -28,5 +28,5 @@ private:
   void determineAxes(Geometry::Line line);
   void setNormalAxes(Geometry::Line line);
   void setTiltedAxes(Geometry::Line line);
-  void determineYChangeAmount();
+  void determineYAxisChange();
 };}

@@ -1,6 +1,6 @@
 #include <cmath>
 
-#include "src/main/cpp/geometry/line_plotter.h"
+#include "src/main/cpp/geometry/plotters/line/plotter.h"
 
 // Bresenham's Line Drawing Algorithm.
 /* TODO: THIS NEEDS TIDYING UP AND UNDERSTANDING BETTER */
@@ -22,18 +22,18 @@ std::vector<Maths::Vector> Geometry::LinePlotter::plot(Geometry::Line line)
 void Geometry::LinePlotter::createPlotPoints(Geometry::Line line)
 {
   this->determineAxes(line);
-  double D = (2 * axes.rise) - axes.run;
+  double D = (2 * this->axes.rise) - this->axes.run;
 
-  auto x0 = line.origin()[axes.xAxis];
-  auto x1 = line.destination()[axes.xAxis];
-  auto y = line.origin()[axes.yAxis];
+  auto x0 = line.origin()[this->axes.xAxis];
+  auto x1 = line.destination()[this->axes.xAxis];
+  auto y = line.origin()[this->axes.yAxis];
 
   for (auto x = x0; x <= x1; x++) {
     this->plotPoints.push_back({x, y});
 
     if (D > 0) {
-      y += axes.yChangeAmount;
-      D += 2 * (axes.rise - axes.run);
+      y += this->axes.yChangeAmount;
+      D += 2 * (this->axes.rise - this->axes.run);
     }
 
     else 
@@ -51,7 +51,7 @@ void Geometry::LinePlotter::determineAxes(Geometry::Line line)
   else
     this->setNormalAxes(line);
 
-  this->determineYChangeAmount();
+  this->determineYAxisChange();
 }
 
 void Geometry::LinePlotter::setNormalAxes(Geometry::Line line)
@@ -70,7 +70,7 @@ void Geometry::LinePlotter::setTiltedAxes(Geometry::Line line)
   this->axes.rise = line.run();
 }
 
-void Geometry::LinePlotter::determineYChangeAmount()
+void Geometry::LinePlotter::determineYAxisChange()
 {
   this->axes.yChangeAmount = 1;
 
