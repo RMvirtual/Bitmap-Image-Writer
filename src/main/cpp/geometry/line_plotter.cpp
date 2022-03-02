@@ -22,20 +22,11 @@ void Geometry::LinePlotter::plotLineBySlope(Geometry::Line line)
   line.normaliseEndpoints();
 
   if (line.isHorizontallySloped()) 
-    this->horizontalPlot(line);
-    
+    this->plotLow(line);
+  
   else
-    this->verticalPlot(line);
-}
+    this->plotHigh(line);
 
-void Geometry::LinePlotter::horizontalPlot(Geometry::Line line)
-{
-  this->plotLow(line);
-}
-
-void Geometry::LinePlotter::verticalPlot(Geometry::Line line)
-{
-  this->plotHigh(line);
 }
 
 /* Could merge this and plotLineHigh together using Axis as variable. */
