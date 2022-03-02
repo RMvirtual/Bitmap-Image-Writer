@@ -2,28 +2,27 @@
 
 #include <utility>
 #include "src/main/cpp/geometry/line/gradient.h"
+#include "src/main/cpp/maths/vector/vector.h"
 
 namespace Geometry {
 class Line
 {
 public:
   Line();
-  Line(std::pair<double,double> origin, std::pair<double,double> destination);
-  Line(std::pair<double,double> destination);
+  Line(Maths::Vector origin, Maths::Vector destination);
+  Line(Maths::Vector destination);
 
   Gradient gradient();
-  void setOrigin(std::pair<double,double> coordinates);
-  void setDestination(std::pair<double,double> coordinates);
-  
-  void setEndpoints(
-    std::pair<double,double> origin, std::pair<double,double> destination);
+  void setOrigin(Maths::Vector coordinates);
+  void setDestination(Maths::Vector coordinates);  
+  void setEndpoints(Maths::Vector origin, Maths::Vector destination);
 
-  std::pair<double,double> origin();
-  std::pair<double,double> destination();
+  Maths::Vector origin();
+  Maths::Vector destination();
 
 private:
-  std::pair<double,double> _origin;
-  std::pair<double,double> _destination;
+  Maths::Vector _origin;
+  Maths::Vector _destination;
   Gradient _gradient;
 
   void updateGradient();

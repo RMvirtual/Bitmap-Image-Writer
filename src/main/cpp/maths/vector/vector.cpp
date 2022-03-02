@@ -5,6 +5,7 @@
 #include <iostream>
 #include <numeric>
 #include <string>
+#include <unordered_map>
 #include <vector>
 
 #include "src/main/cpp/maths/vector/vector.h"
@@ -96,6 +97,15 @@ double Maths::Vector::operator [](int index) const
 {
   return this->at(index);
 }
+
+double Maths::Vector::operator [](std::string name) const
+{
+  std::unordered_map<std::string, int> variableNotations {
+    {"x", 0}, {"y", 1}, {"z", 2}, {"w", 3}};
+
+  return this->at(variableNotations[name]);
+}
+
 
 Maths::Vector Maths::Vector::operator +(const Maths::Vector& vector) const
 {

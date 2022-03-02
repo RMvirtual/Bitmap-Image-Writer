@@ -1,6 +1,6 @@
 #pragma once
 
-#include <utility>
+#include "src/main/cpp/maths/vector/vector.h"
 
 namespace Geometry {
 class Gradient
@@ -8,10 +8,8 @@ class Gradient
 public:
   Gradient();
   
-  Gradient(
-    std::pair<double,double> origin, std::pair<double,double> destination);
-  
-  static Gradient fromOriginZero(double x, double y);
+  Gradient(Maths::Vector origin, Maths::Vector destination);
+  static Gradient fromOriginZero(Maths::Vector destination);
 
   double gradient();
   double rise();
@@ -21,6 +19,6 @@ public:
   bool isTraversingLeftToRight();
 
 private:
-  std::pair<double,double> origin;
-  std::pair<double,double> destination;
+  Maths::Vector origin;
+  Maths::Vector destination;
 };}

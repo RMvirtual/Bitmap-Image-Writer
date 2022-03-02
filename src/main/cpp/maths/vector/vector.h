@@ -50,8 +50,17 @@ public:
   // Gets the vector element by index position.
   double at(int index) const;
 
-  // Indexes the elements contained within the vector.
+  // Indexes the elements contained within the vector in order.
   double operator [](int index) const;
+
+  /**
+   * @brief Indexes the vector by traditional mathematical variable
+   * name (i.e. x, y, z or w).
+   * @param name A single character of either x (0th), y (1st), z (2nd)
+   * or w (3rd).
+   * @return double 
+   */
+  double operator [](std::string name) const;
 
   /**
    * Returns a new vector forming from the addition of this vector

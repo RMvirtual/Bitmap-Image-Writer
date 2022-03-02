@@ -251,3 +251,14 @@ TEST(MathsVector, ShouldIterateThroughVector)
   for (int i = 0; i < numberOfValues; i++)
     EXPECT_DOUBLE_EQ(correctValues[i], valuesFromIteration[i]);
 }
+
+TEST(MathsVector, ShouldIndexByVariableLetterSubscriptOperator)
+{
+  double x = 3, y = 4, z = 5, w = 6;
+  Maths::Vector vector {x, y, z, w};
+
+  EXPECT_EQ(x, vector["x"]);
+  EXPECT_EQ(y, vector["y"]);
+  EXPECT_EQ(z, vector["z"]);
+  EXPECT_EQ(w, vector["w"]);      
+}

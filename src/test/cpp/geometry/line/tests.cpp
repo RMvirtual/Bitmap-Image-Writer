@@ -3,16 +3,15 @@
 
 TEST_F(GradientTest, ShouldCalculateGradientFromZeroXEqualToY)
 {
-  this->setupFromOriginZero(5, 5);
+  this->setupFromOriginZero({5, 5});
   double correctGradient = 1;
 
   EXPECT_EQ(correctGradient, this->gradient.gradient());
 }
 
-TEST_F(
-  GradientTest, ShouldCalculateGradientFromZeroXGreaterThanY)
+TEST_F(GradientTest, ShouldCalculateGradientFromZeroXGreaterThanY)
 {
-  this->setupFromOriginZero(5, 3);
+  this->setupFromOriginZero({5, 3});
   double correctGradient = 0.6;
 
   EXPECT_EQ(correctGradient, this->gradient.gradient());
@@ -20,7 +19,7 @@ TEST_F(
 
 TEST_F(GradientTest, ShouldCalculateGradientFromZeroXLessThanY)
 {
-  this->setupFromOriginZero(5, 8);
+  this->setupFromOriginZero({5, 8});
   double correctGradient = 1.6;
 
   EXPECT_EQ(correctGradient, this->gradient.gradient());

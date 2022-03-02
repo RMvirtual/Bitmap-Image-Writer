@@ -3,7 +3,7 @@
 
 #include <iostream>
 
-void LinePlotterTest::compare(std::vector<std::pair<int,int>> plotPoints)
+void LinePlotterTest::compare(std::vector<Maths::Vector> plotPoints)
 {
   int noOfPlotPoints = plotPoints.size();
   int correctNoOfPlotPoints = this->correctPlotPoints.size();
@@ -14,7 +14,7 @@ void LinePlotterTest::compare(std::vector<std::pair<int,int>> plotPoints)
     auto point = plotPoints[pointNo];
     auto correctPoint = this->correctPlotPoints[pointNo];
 
-    EXPECT_EQ(correctPoint.first, point.first);
-    EXPECT_EQ(correctPoint.second, point.second) << "Failed X: " << pointNo;
+    EXPECT_EQ(correctPoint["x"], point["x"]);
+    EXPECT_EQ(correctPoint["y"], point["y"]) << "Failed X: " << pointNo;
   }
 }

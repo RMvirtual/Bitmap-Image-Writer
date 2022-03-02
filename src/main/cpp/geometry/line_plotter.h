@@ -1,9 +1,8 @@
 #pragma once
 
-#include <utility>
 #include <vector>
-
 #include "src/main/cpp/geometry/line/line.h"
+#include "src/main/cpp/maths/vector/vector.h"
 
 namespace Geometry {
 class LinePlotter
@@ -11,17 +10,16 @@ class LinePlotter
 public:
   LinePlotter();
 
-  std::vector<std::pair<int,int>> plot(Line line);
+  std::vector<Maths::Vector> plot(Line line);
 
 private:
-  std::vector<std::pair<int,int>> plotHigh(
-    std::pair<double,double> origin, std::pair<double,double> destination);
+  std::vector<Maths::Vector> horizontalPlot(Line line);
+  std::vector<Maths::Vector> verticalPlot(Line line);
 
-  std::vector<std::pair<int,int>> plotLow(
-    std::pair<double,double> origin, std::pair<double,double> destination);
+  std::vector<Maths::Vector> plotHigh(
+    Maths::Vector origin, Maths::Vector destination);
 
-  std::vector<std::pair<int,int>> horizontalPlot(Line line);
-  std::vector<std::pair<int,int>> verticalPlot(Line line);
-
+  std::vector<Maths::Vector> plotLow(
+    Maths::Vector origin, Maths::Vector destination);
 
 };}
