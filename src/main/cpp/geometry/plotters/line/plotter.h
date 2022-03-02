@@ -19,6 +19,7 @@ private:
   
   double yError;
 
+  void initialise(Geometry::Line line);
   void createPlotPoints(Geometry::Line line);
   void initialiseYError();
   void updateYError();

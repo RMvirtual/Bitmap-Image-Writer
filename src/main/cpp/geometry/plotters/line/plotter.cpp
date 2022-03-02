@@ -2,8 +2,6 @@
 
 #include "src/main/cpp/geometry/plotters/line/plotter.h"
 
-// Bresenham's Line Drawing Algorithm.
-/* TODO: THIS NEEDS TIDYING UP AND UNDERSTANDING BETTER */
 Geometry::LinePlotter::LinePlotter()
 {
   // pass.
@@ -11,24 +9,25 @@ Geometry::LinePlotter::LinePlotter()
 
 std::vector<Maths::Vector> Geometry::LinePlotter::plot(Geometry::Line line)
 {
-  this->plotPoints.clear();
-
   line.normaliseEndpoints();
+  this->initialise(line);
   this->createPlotPoints(line);
 
   return plotPoints;
 }
 
+void Geometry::LinePlotter::initialise(Geometry::Line line)
+{
+  this->plotPoints.clear();
+  this->axes = {line};
+  this->initialiseYError();
+}
+
 void Geometry::LinePlotter::createPlotPoints(Geometry::Line line)
 {
-  this->axes = {line};
-  auto rise = this->axes.rise();
-  auto run = this->axes.run();
   auto horizontalAxis = this->axes.horizontalAxis();
   auto verticalAxis = this->axes.verticalAxis();
   auto verticalChangeAmount = this->axes.verticalChangeAmount();
-
-  this->initialiseYError();
 
   auto x0 = line[horizontalAxis + "0"];
   auto x1 = line[horizontalAxis + "1"];
