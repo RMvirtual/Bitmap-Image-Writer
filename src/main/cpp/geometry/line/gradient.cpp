@@ -17,7 +17,7 @@ Geometry::Gradient::Gradient(Maths::Vector origin, Maths::Vector destination)
 Geometry::Gradient Geometry::Gradient::fromOriginZero(
   Maths::Vector destination)
 {
-  return {{0, 0}, destination};
+  return {{0.0, 0.0}, destination};
 }
 
 double Geometry::Gradient::gradient()
@@ -32,6 +32,8 @@ double Geometry::Gradient::gradient()
 
 double Geometry::Gradient::run()
 {
+  std::cout << this->origin << std::endl;
+  // Origin[x] appears to error out when origin value is 0.
   std::cout << this->origin["x"] << "\n";
   std::cout << this->destination["x"] << "\n";
 

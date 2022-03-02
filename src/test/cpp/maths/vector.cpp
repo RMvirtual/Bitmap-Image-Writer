@@ -262,3 +262,14 @@ TEST(MathsVector, ShouldIndexByVariableLetterSubscriptOperator)
   EXPECT_EQ(z, vector["z"]);
   EXPECT_EQ(w, vector["w"]);      
 }
+
+TEST(MathsVector, ShouldIndexZeroValueByVariableLetterSubscriptOperator)
+{
+  double x = 0, y = 0, z = 0, w = 0;
+  Maths::Vector vector {x, y, z, w};
+
+  EXPECT_EQ(x, vector["x"]);
+  EXPECT_EQ(y, vector["y"]);
+  EXPECT_EQ(z, vector["z"]);
+  EXPECT_EQ(w, vector["w"]);      
+}
