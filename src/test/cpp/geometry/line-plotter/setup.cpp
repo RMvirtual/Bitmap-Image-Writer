@@ -1,6 +1,30 @@
 #include "src/test/cpp/geometry/line-plotter/fixture.h"
 
-void LinePlotterTest::setupNorthEastPlotPoints()
+void LinePlotterTest::setupNorthEastLine()
+{
+  this->line = {{1,1}, {11,5}};
+  this->setupCorrectNorthEastSouthWestPoints();
+}
+
+void LinePlotterTest::setupNorthWestLine()
+{
+  this->line = {{11,1}, {1,5}};
+  this->setupCorrectNorthWestSouthEastPoints();
+}
+
+void LinePlotterTest::setupSouthEastLine()
+{
+  this->line = {{1,5}, {11,1}};
+  this->setupCorrectNorthWestSouthEastPoints();
+}
+
+void LinePlotterTest::setupSouthWestLine()
+{
+  this->line = {{11,5}, {1,1}};  
+  this->setupCorrectNorthEastSouthWestPoints();
+}
+
+void LinePlotterTest::setupCorrectNorthEastSouthWestPoints()
 {
   this->correctPlotPoints = {
     {1,1}, {2,1},
@@ -10,8 +34,7 @@ void LinePlotterTest::setupNorthEastPlotPoints()
     {10,5}, {11,5}
   };
 }
-
-void LinePlotterTest::setupNorthWestPlotPoints()
+void LinePlotterTest::setupCorrectNorthWestSouthEastPoints()
 {
   this->correctPlotPoints = {
     {1,5}, {2,5},
@@ -20,14 +43,4 @@ void LinePlotterTest::setupNorthWestPlotPoints()
     {8,2}, {9,2},
     {10,1}, {11,1}
   };
-}
-
-void LinePlotterTest::setupSouthEastPlotPoints()
-{
-  this->setupNorthWestPlotPoints();
-}
-
-void LinePlotterTest::setupSouthWestPlotPoints()
-{
-  this->setupNorthEastPlotPoints();
 }

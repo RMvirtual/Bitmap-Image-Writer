@@ -10,13 +10,15 @@ public:
   ~LinePlotterTest();
 
 protected:
-  Geometry::LinePlotter plotter;
   std::vector<Maths::Vector> correctPlotPoints;
+  Geometry::LinePlotter plotter;
+  Geometry::Line line;
 
-  void setupNorthEastPlotPoints();
-  void setupNorthWestPlotPoints();
-  void setupSouthEastPlotPoints();
-  void setupSouthWestPlotPoints();
-
+  void setupNorthEastLine();
+  void setupNorthWestLine();
+  void setupSouthEastLine();
+  void setupSouthWestLine();
+  void setupCorrectNorthWestSouthEastPoints();
+  void setupCorrectNorthEastSouthWestPoints();
   void compare(std::vector<Maths::Vector> plotPoints);
 };
