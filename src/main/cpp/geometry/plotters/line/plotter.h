@@ -17,10 +17,10 @@ private:
   std::vector<Maths::Vector> plotPoints;
   Geometry::Axes axes;
   
-  double yChangeTracker;
+  double yError;
 
   void createPlotPoints(Geometry::Line line);
-  void initialiseYChangeTracker();
-  void updateYChangeTracker();
+  void initialiseYError();
+  void updateYError();
   
 };}

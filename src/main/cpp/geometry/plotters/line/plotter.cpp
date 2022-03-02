@@ -28,7 +28,7 @@ void Geometry::LinePlotter::createPlotPoints(Geometry::Line line)
   auto verticalAxis = this->axes.verticalAxis();
   auto verticalChangeAmount = this->axes.verticalChangeAmount();
 
-  this->initialiseYChangeTracker();
+  this->initialiseYError();
 
   auto x0 = line[horizontalAxis + "0"];
   auto x1 = line[horizontalAxis + "1"];
@@ -37,30 +37,30 @@ void Geometry::LinePlotter::createPlotPoints(Geometry::Line line)
   for (auto x = x0; x <= x1; x++) {
     this->plotPoints.push_back({x, y});
 
-    if (this->yChangeTracker > 0) {
+    if (this->yError > 0) {
       y += verticalChangeAmount;
-      this->yChangeTracker += 2 * (rise - run);
+      this->yError += 2 * (rise - run);
     }
 
     else 
-      this->yChangeTracker += 2 * rise;
+      this->yError += 2 * rise;
   }
 }
 
-void Geometry::LinePlotter::initialiseYChangeTracker()
+void Geometry::LinePlotter::initialiseYError()
 {
   auto rise = this->axes.rise();
   auto run = this->axes.run();
 
-  this->yChangeTracker = (2 * rise) - run;
+  this->yError = (2 * rise) - run;
 }
 
-void Geometry::LinePlotter::updateYChangeTracker()
+void Geometry::LinePlotter::updateYError()
 {
-  double value = this->axes.rise();
+  auto yErrorChange = this->axes.rise();
 
-  if (this->yChangeTracker > 0)
-    value -= this->axes.run();
+  if (this->yError > 0)
+    yErrorChange -= this->axes.run();
 
-  this->yChangeTracker += 2 * value;  
+  this->yError += 2 * yErrorChange;  
 }
