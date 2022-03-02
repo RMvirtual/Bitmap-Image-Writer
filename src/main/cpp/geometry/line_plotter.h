@@ -15,8 +15,9 @@ public:
 private:
   std::vector<Maths::Vector> plotPoints;
 
-  void horizontalPlot(Line line);
-  void verticalPlot(Line line);
-  void plotHigh(Line line);
-  void plotLow(Line line);
+  void plotLineBySlope(Geometry::Line line);
+  void horizontalPlot(Geometry::Line line);
+  void verticalPlot(Geometry::Line line);
+  void plotHigh(Geometry::Line line);
+  void plotLow(Geometry::Line line);
 };}

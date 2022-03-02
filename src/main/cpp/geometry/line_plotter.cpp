@@ -12,32 +12,34 @@ Geometry::LinePlotter::LinePlotter()
 std::vector<Maths::Vector> Geometry::LinePlotter::plot(Geometry::Line line)
 {
   this->plotPoints.clear();
+  this->plotLineBySlope(line);
 
+  return plotPoints;
+}
+
+void Geometry::LinePlotter::plotLineBySlope(Geometry::Line line)
+{
   if (line.isHorizontallySloped()) 
     this->horizontalPlot(line);
     
   else
     this->verticalPlot(line);
-
-  return plotPoints;
 }
 
 void Geometry::LinePlotter::horizontalPlot(Geometry::Line line)
 {
-  if (line.isTraversingLeftToRight())
-    this->plotLow(line);
+  if (!line.isTraversingLeftToRight())
+    line = line.reverse();
 
-  else
-    this->plotLow(line.reverse());
+  this->plotLow(line);
 }
 
 void Geometry::LinePlotter::verticalPlot(Geometry::Line line)
 {
-  if (line.isTraversingUpwards())
-    this->plotHigh(line);
+  if (!line.isTraversingUpwards())
+    line = line.reverse();
 
-  else
-    this->plotHigh(line.reverse());
+  this->plotHigh(line);
 }
 
 /* Could merge this and plotLineHigh together using Axis as variable. */
