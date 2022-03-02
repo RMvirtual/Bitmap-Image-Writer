@@ -1,7 +1,5 @@
 #pragma once
 
-#include <utility>
-#include "src/main/cpp/geometry/line/gradient.h"
 #include "src/main/cpp/maths/vector/vector.h"
 
 namespace Geometry {
@@ -24,13 +22,12 @@ public:
   double rise();
   double run();
   bool isHorizontallySloped();
-  bool isTraversingUpwards();
-  bool isTraversingLeftToRight();
+  bool isTraversingNorth();
+  bool isTraversingEast();
+  bool isTraversingWest();
+  bool isTraversingSouth();
 
 private:
   Maths::Vector _origin;
   Maths::Vector _destination;
-  Gradient _gradient;
-
-  void updateGradient();
 };}

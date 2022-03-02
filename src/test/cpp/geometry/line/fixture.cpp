@@ -1,11 +1,11 @@
 #include "src/test/cpp/geometry/line/fixture.h"
 
-GradientTest::GradientTest()
+LineTest::LineTest()
 {
 
 }
 
-GradientTest::~GradientTest()
+LineTest::~LineTest()
 {
 
 }

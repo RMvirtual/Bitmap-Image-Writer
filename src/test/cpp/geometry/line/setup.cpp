@@ -1,11 +1,11 @@
 #include "src/test/cpp/geometry/line/fixture.h"
 
-void GradientTest::setupFromOriginZero(Maths::Vector destination)
+void LineTest::setupFromOriginZero(Maths::Vector destination)
 {
-  this->gradient = Geometry::Gradient::fromOriginZero(destination);
+  this->line = {destination};
 }
 
-void GradientTest::setup(Maths::Vector origin, Maths::Vector destination)
+void LineTest::setup(Maths::Vector origin, Maths::Vector destination)
 {
-  this->gradient = {origin, destination};
+  this->line = {origin, destination};
 }

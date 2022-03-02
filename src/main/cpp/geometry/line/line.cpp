@@ -2,7 +2,7 @@
 
 Geometry::Line::Line()
 {
-  this->setEndpoints({0,0}, {0,0});
+  this->setEndpoints({0.0,0.0}, {0.0,0.0});
 }
 
 Geometry::Line::Line(Maths::Vector origin, Maths::Vector destination)
@@ -12,7 +12,7 @@ Geometry::Line::Line(Maths::Vector origin, Maths::Vector destination)
 
 Geometry::Line::Line(Maths::Vector destination)
 {
-  this->setEndpoints({0,0}, destination);
+  this->setEndpoints({0.0,0.0}, destination);
 }
 
 Geometry::Line Geometry::Line::reverse()
@@ -23,13 +23,11 @@ Geometry::Line Geometry::Line::reverse()
 void Geometry::Line::setOrigin(Maths::Vector coordinates)
 {
   this->_origin = coordinates;
-  this->updateGradient();
 }
 
 void Geometry::Line::setDestination(Maths::Vector coordinates)
 {
   this->_destination = coordinates;
-  this->updateGradient();
 }
 
 void Geometry::Line::setEndpoints(
@@ -37,7 +35,6 @@ void Geometry::Line::setEndpoints(
 {
   this->_origin = origin;
   this->_destination = destination;
-  this->updateGradient();
 }
 
 Maths::Vector Geometry::Line::origin()
@@ -52,35 +49,44 @@ Maths::Vector Geometry::Line::destination()
 
 double Geometry::Line::gradient()
 {
-  return this->_gradient.gradient();
+  auto xChange = this->run();
+  auto yChange = this->rise();
+
+  bool hasZeroDivision = (xChange == 0);
+
+  return hasZeroDivision ? 1 : yChange / xChange;
 }
 
 double Geometry::Line::rise()
 {
-  return this->_gradient.rise();
+  return this->_destination["y"] - this->_origin["y"];
 }
 
 double Geometry::Line::run()
 {
-  return this->_gradient.run();
+  return this->_destination["x"] - this->_origin["x"];
 }
 
 bool Geometry::Line::isHorizontallySloped()
 {
-  return this->_gradient.isHorizontallySloped();
+  return abs(this->rise()) < abs(this->run());
 }
 
-bool Geometry::Line::isTraversingUpwards()
+bool Geometry::Line::isTraversingNorth()
 {
-  return this->_gradient.isTraversingUpwards();
+  return this->_origin["y"] < this->_destination["y"];
 }
 
-bool Geometry::Line::isTraversingLeftToRight()
+bool Geometry::Line::isTraversingEast()
 {
-  return this->_gradient.isTraversingLeftToRight();
+  return this->_origin["x"] < this->_destination["x"];
+}
+bool Geometry::Line::isTraversingSouth()
+{
+  return this->_origin["y"] > this->_destination["y"];
 }
 
-void Geometry::Line::updateGradient()
+bool Geometry::Line::isTraversingWest()
 {
-  this->_gradient = {this->_origin, this->_destination};
+  return this->_origin["x"] > this->_destination["x"];
 }

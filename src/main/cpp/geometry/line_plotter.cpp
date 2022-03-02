@@ -28,7 +28,7 @@ void Geometry::LinePlotter::plotLineBySlope(Geometry::Line line)
 
 void Geometry::LinePlotter::horizontalPlot(Geometry::Line line)
 {
-  if (!line.isTraversingLeftToRight())
+  if (!line.isTraversingEast())
     line = line.reverse();
 
   this->plotLow(line);
@@ -36,7 +36,7 @@ void Geometry::LinePlotter::horizontalPlot(Geometry::Line line)
 
 void Geometry::LinePlotter::verticalPlot(Geometry::Line line)
 {
-  if (!line.isTraversingUpwards())
+  if (!line.isTraversingNorth())
     line = line.reverse();
 
   this->plotHigh(line);
