@@ -71,7 +71,7 @@ std::string Geometry::Axes::verticalAxis()
   return this->_verticalAxis;
 }
 
-double Geometry::Axes::verticalChangeAmount()
+double Geometry::Axes::verticalIncrementDirection()
 {
   return this->_verticalChangeAmount;
 }

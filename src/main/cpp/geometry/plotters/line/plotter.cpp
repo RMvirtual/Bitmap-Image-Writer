@@ -25,20 +25,24 @@ void Geometry::LinePlotter::initialise(Geometry::Line line)
 
 void Geometry::LinePlotter::createPlotPoints(Geometry::Line line)
 {
-  auto verticalChangeAmount = this->axes.verticalChangeAmount();
-
   auto tiltedX0 = line[this->axes["x0"]];
   auto tiltedX1 = line[this->axes["x1"]];
   auto y = line[this->axes["y0"]];
 
   for (auto x = tiltedX0; x <= tiltedX1; x++) {
     this->plotPoints.push_back({x, y});
-
-    if (this->shouldIncrementY())
-      y += verticalChangeAmount;
-
-    this->updateYError();
+    this->updateY(y);
   }
+}
+
+void Geometry::LinePlotter::updateY(double& y)
+{
+  auto yDirection = this->axes.verticalIncrementDirection();
+
+  if (this->shouldIncrementY())
+    y += yDirection;
+
+  this->updateYError();
 }
 
 bool Geometry::LinePlotter::shouldIncrementY()
