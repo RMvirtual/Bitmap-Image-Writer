@@ -15,9 +15,13 @@ Geometry::Line::Line(Maths::Vector destination)
   this->setEndpoints({0.0, 0.0}, destination);
 }
 
-Geometry::Line Geometry::Line::reverse()
+void Geometry::Line::reverseEndpoints()
 {
-  return {this->_destination, this->_origin};
+  auto originalOrigin = this->_origin;
+  auto originalDestination = this->_destination;
+  
+  this->_destination = originalOrigin;
+  this->_origin = originalDestination;
 }
 
 void Geometry::Line::setOrigin(Maths::Vector coordinates)
@@ -45,6 +49,30 @@ Maths::Vector Geometry::Line::origin()
 Maths::Vector Geometry::Line::destination()
 {
   return this->_destination;
+}
+
+void Geometry::Line::normaliseEndpoints()
+{
+  if (this->hasReversedEndpoints())
+    this->reverseEndpoints();
+}
+
+bool Geometry::Line::hasReversedEndpoints()
+{    
+  return (
+    this->hasHorizontallyReversedEndpoints()
+    || this->hasVerticallyReversedEndpoints()
+  );
+}
+
+bool Geometry::Line::hasHorizontallyReversedEndpoints()
+{
+  return (this->isHorizontallySloped() && this->isTraversingWest());
+}
+
+bool Geometry::Line::hasVerticallyReversedEndpoints()
+{
+  return (this->isVerticallySloped() && this->isTraversingSouth());
 }
 
 double Geometry::Line::gradient()

@@ -13,10 +13,10 @@ public:
   void setOrigin(Maths::Vector coordinates);
   void setDestination(Maths::Vector coordinates);
   void setEndpoints(Maths::Vector origin, Maths::Vector destination);
+  void reverseEndpoints();
 
   Maths::Vector origin();
   Maths::Vector destination();
-  Line reverse();
 
   double gradient();
   double rise();
@@ -27,6 +27,11 @@ public:
   bool isTraversingEast();
   bool isTraversingWest();
   bool isTraversingSouth();
+
+  void normaliseEndpoints();
+  bool hasReversedEndpoints();
+  bool hasHorizontallyReversedEndpoints();
+  bool hasVerticallyReversedEndpoints();
 
 private:
   Maths::Vector _origin;

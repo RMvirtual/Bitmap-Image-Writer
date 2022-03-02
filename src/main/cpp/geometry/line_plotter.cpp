@@ -19,6 +19,8 @@ std::vector<Maths::Vector> Geometry::LinePlotter::plot(Geometry::Line line)
 
 void Geometry::LinePlotter::plotLineBySlope(Geometry::Line line)
 {
+  line.normaliseEndpoints();
+
   if (line.isHorizontallySloped()) 
     this->horizontalPlot(line);
     
@@ -28,17 +30,11 @@ void Geometry::LinePlotter::plotLineBySlope(Geometry::Line line)
 
 void Geometry::LinePlotter::horizontalPlot(Geometry::Line line)
 {
-  if (line.isTraversingWest())
-    line = line.reverse();
-
   this->plotLow(line);
 }
 
 void Geometry::LinePlotter::verticalPlot(Geometry::Line line)
 {
-  if (line.isTraversingSouth())
-    line = line.reverse();
-
   this->plotHigh(line);
 }
 
