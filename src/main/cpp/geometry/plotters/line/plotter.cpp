@@ -30,9 +30,9 @@ void Geometry::LinePlotter::createPlotPoints(Geometry::Line line)
 
   double D = (2 * rise) - run;
 
-  auto x0 = line.origin()[xAxis];
-  auto x1 = line.destination()[xAxis];
-  auto y = line.origin()[yAxis];
+  auto x0 = line[xAxis + "0"];
+  auto x1 = line[xAxis + "1"];
+  auto y = line[yAxis + "0"];
 
   for (auto x = x0; x <= x1; x++) {
     this->plotPoints.push_back({x, y});

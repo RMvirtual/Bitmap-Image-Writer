@@ -1,5 +1,6 @@
 #pragma once
 
+#include <string>
 #include "src/main/cpp/maths/vector/vector.h"
 
 namespace Geometry {
@@ -17,6 +18,7 @@ public:
 
   Maths::Vector origin();
   Maths::Vector destination();
+  double operator [](std::string vertex);
 
   double gradient();
   double rise();

@@ -1,3 +1,4 @@
+#include <unordered_map>
 #include "src/main/cpp/geometry/line/line.h"
 
 Geometry::Line::Line()
@@ -49,6 +50,18 @@ Maths::Vector Geometry::Line::origin()
 Maths::Vector Geometry::Line::destination()
 {
   return this->_destination;
+}
+
+double Geometry::Line::operator [](std::string vertex)
+{
+  std::unordered_map<std::string, double> vertices {
+    {"x0", this->_origin["x"]},
+    {"y0", this->_origin["y"]},
+    {"x1", this->_destination["x"]},
+    {"y1", this->_destination["y"]}
+  };
+
+  return vertices[vertex];
 }
 
 void Geometry::Line::normaliseEndpoints()
