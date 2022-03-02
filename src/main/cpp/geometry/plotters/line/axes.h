@@ -17,6 +17,7 @@ public:
   double verticalChangeAmount();
   double run();
   double rise();
+  std::string operator [](std::string vertex);
 
 private:
   std::string _horizontalAxis;

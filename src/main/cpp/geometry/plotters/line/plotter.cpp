@@ -29,9 +29,9 @@ void Geometry::LinePlotter::createPlotPoints(Geometry::Line line)
   auto verticalAxis = this->axes.verticalAxis();
   auto verticalChangeAmount = this->axes.verticalChangeAmount();
 
-  auto x0 = line[horizontalAxis + "0"];
-  auto x1 = line[horizontalAxis + "1"];
-  auto y = line[verticalAxis + "0"];
+  auto x0 = line[this->axes["x0"]];
+  auto x1 = line[this->axes["x1"]];
+  auto y = line[this->axes["y0"]];
 
   for (auto x = x0; x <= x1; x++) {
     this->plotPoints.push_back({x, y});

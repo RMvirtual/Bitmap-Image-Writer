@@ -1,3 +1,4 @@
+#include <unordered_map>
 #include "src/main/cpp/geometry/plotters/line/axes.h"
 
 Geometry::Axes::Axes()
@@ -8,6 +9,18 @@ Geometry::Axes::Axes()
 Geometry::Axes::Axes(Geometry::Line line)
 {
   this->determineAxes(line);
+}
+
+std::string Geometry::Axes::operator [](std::string vertex)
+{
+  std::unordered_map<std::string, std::string> vertices {
+    {"x0", this->_horizontalAxis + "0"},
+    {"y0", this->_verticalAxis + "0"},
+    {"x1", this->_horizontalAxis + "1"},
+    {"y1", this->_verticalAxis + "1"}
+  };
+
+  return vertices[vertex];
 }
 
 void Geometry::Axes::determineAxes(Geometry::Line line)
