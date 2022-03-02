@@ -20,6 +20,7 @@ private:
   double yChangeTracker;
 
   void createPlotPoints(Geometry::Line line);
-
+  void initialiseYChangeTracker();
+  void updateYChangeTracker();
   
 };}

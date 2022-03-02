@@ -28,7 +28,7 @@ void Geometry::LinePlotter::createPlotPoints(Geometry::Line line)
   auto verticalAxis = this->axes.verticalAxis();
   auto verticalChangeAmount = this->axes.verticalChangeAmount();
 
-  this->yChangeTracker = (2 * rise) - run;
+  this->initialiseYChangeTracker();
 
   auto x0 = line[horizontalAxis + "0"];
   auto x1 = line[horizontalAxis + "1"];
@@ -45,4 +45,22 @@ void Geometry::LinePlotter::createPlotPoints(Geometry::Line line)
     else 
       this->yChangeTracker += 2 * rise;
   }
+}
+
+void Geometry::LinePlotter::initialiseYChangeTracker()
+{
+  auto rise = this->axes.rise();
+  auto run = this->axes.run();
+
+  this->yChangeTracker = (2 * rise) - run;
+}
+
+void Geometry::LinePlotter::updateYChangeTracker()
+{
+  double value = this->axes.rise();
+
+  if (this->yChangeTracker > 0)
+    value -= this->axes.run();
+
+  this->yChangeTracker += 2 * value;  
 }
