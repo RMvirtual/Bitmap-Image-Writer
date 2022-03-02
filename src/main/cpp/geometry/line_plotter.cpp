@@ -2,7 +2,6 @@
 
 #include "src/main/cpp/geometry/line_plotter.h"
 #include "src/main/cpp/geometry/line/line.h"
-#include "src/main/cpp/geometry/line/gradient.h"
 
 // Bresenham's Line Drawing Algorithm.
 /* TODO: THIS NEEDS TIDYING UP AND UNDERSTANDING BETTER */
@@ -13,45 +12,37 @@ Geometry::LinePlotter::LinePlotter()
 
 std::vector<Maths::Vector> Geometry::LinePlotter::plot(Geometry::Line line)
 {
-  std::vector<Maths::Vector> plotPoints;
+  this->plotPoints.clear();
 
   if (line.gradient().isHorizontallySloped())
-    plotPoints = this->horizontalPlot(line);
+    this->horizontalPlot(line);
   
   else
-    plotPoints = this->verticalPlot(line);
+    this->verticalPlot(line);
 
   return plotPoints;
 }
 
-std::vector<Maths::Vector> Geometry::LinePlotter::horizontalPlot(Line line)
+void Geometry::LinePlotter::horizontalPlot(Line line)
 {
-  std::vector<Maths::Vector> plotPoints;
-
   if (line.gradient().isTraversingLeftToRight())
-    plotPoints = this->plotLow(line.origin(), line.destination());
+    this->plotLow(line.origin(), line.destination());
 
   else
-    plotPoints = this->plotLow(line.destination(), line.origin());
-
-  return plotPoints;
+    this->plotLow(line.destination(), line.origin());
 }
 
-std::vector<Maths::Vector> Geometry::LinePlotter::verticalPlot(Line line)
+void Geometry::LinePlotter::verticalPlot(Line line)
 {
-  std::vector<Maths::Vector> plotPoints;
-
   if (line.gradient().isTraversingUpwards())
-    plotPoints = this->plotHigh(line.origin(), line.destination());
+    this->plotHigh(line.origin(), line.destination());
 
   else
-    plotPoints = this->plotHigh(line.destination(), line.origin());
-
-  return plotPoints;
+    this->plotHigh(line.destination(), line.origin());
 }
 
 /* Could merge this and plotLineHigh together using Axis as variable. */
-std::vector<Maths::Vector> Geometry::LinePlotter::plotLow(
+void Geometry::LinePlotter::plotLow(
   Maths::Vector origin, Maths::Vector destination)
 {
   auto x0 = origin["x"];
@@ -73,10 +64,8 @@ std::vector<Maths::Vector> Geometry::LinePlotter::plotLow(
   double D = (2 * rise) - run;
   double y = y0;
 
-  std::vector<Maths::Vector> plotPoints {};
-
   for (double x = x0; x <= x1; x++) {
-    plotPoints.push_back({x, y});
+    this->plotPoints.push_back({x, y});
 
     if (D > 0) {
       y += yi;
@@ -86,20 +75,12 @@ std::vector<Maths::Vector> Geometry::LinePlotter::plotLow(
     else 
       D += 2 * rise;
   }
-
-  return plotPoints;
 }
 
 /* Could merge this and plotLineLow together using Axis as variable. */
-std::vector<Maths::Vector> Geometry::LinePlotter::plotHigh(
+void Geometry::LinePlotter::plotHigh(
   Maths::Vector origin, Maths::Vector destination)
 {
-  auto x0 = origin["x"];
-  auto y0 = origin["y"];
-
-  auto x1 = destination["x"];
-  auto y1 = destination["y"];
-
   Gradient gradient {origin, destination};
   auto run = gradient.run();
   auto rise = gradient.rise();
@@ -111,12 +92,14 @@ std::vector<Maths::Vector> Geometry::LinePlotter::plotHigh(
   }
 
   double D = (2 * run) - rise;
-  double x = x0;
 
+  double x = origin["x"];
+  auto const y1 = destination["y"];
+  
   std::vector<Maths::Vector> plotPoints {};
 
-  for (double y = y0; y <= y1; y++) {
-    plotPoints.push_back({x, y});
+  for (double y = origin["y"]; y <= y1; y++) {
+    this->plotPoints.push_back({x, y});
 
     if (D > 0) {
       x += xi;
@@ -126,6 +109,4 @@ std::vector<Maths::Vector> Geometry::LinePlotter::plotHigh(
     else
       D += 2 * run;
   }
-
-  return plotPoints;
 }

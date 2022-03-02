@@ -13,13 +13,11 @@ public:
   std::vector<Maths::Vector> plot(Line line);
 
 private:
-  std::vector<Maths::Vector> horizontalPlot(Line line);
-  std::vector<Maths::Vector> verticalPlot(Line line);
+  std::vector<Maths::Vector> plotPoints;
 
-  std::vector<Maths::Vector> plotHigh(
-    Maths::Vector origin, Maths::Vector destination);
-
-  std::vector<Maths::Vector> plotLow(
-    Maths::Vector origin, Maths::Vector destination);
+  void horizontalPlot(Line line);
+  void verticalPlot(Line line);
+  void plotHigh(Maths::Vector origin, Maths::Vector destination);
+  void plotLow(Maths::Vector origin, Maths::Vector destination);
 
 };}
