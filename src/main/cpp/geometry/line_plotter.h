@@ -18,4 +18,5 @@ private:
   void plotLineBySlope(Geometry::Line line);
   void plotHigh(Geometry::Line line);
   void plotLow(Geometry::Line line);
+  void plotGeneric(Geometry::Line line);
 };}

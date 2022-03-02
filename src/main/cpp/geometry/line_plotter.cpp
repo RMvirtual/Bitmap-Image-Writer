@@ -20,15 +20,22 @@ std::vector<Maths::Vector> Geometry::LinePlotter::plot(Geometry::Line line)
 void Geometry::LinePlotter::plotLineBySlope(Geometry::Line line)
 {
   line.normaliseEndpoints();
+  this->plotGeneric(line);
 
+  /*
   if (line.isHorizontallySloped()) 
     this->plotLow(line);
   
   else
     this->plotHigh(line);
+  */
 }
 
-/* Could merge this and plotLineHigh together using Axis as variable. */
+/**
+ * @brief Uses the x axis as its basis and intermittently increases y.
+ * 
+ * @param line 
+ */
 void Geometry::LinePlotter::plotLow(Geometry::Line line)
 {
   auto run = line.run();
@@ -58,7 +65,11 @@ void Geometry::LinePlotter::plotLow(Geometry::Line line)
   }
 }
 
-/* Could merge this and plotLineLow together using Axis as variable. */
+/**
+ * @brief Uses the y axis as its basis and intermittently increases x.
+ * 
+ * @param line 
+ */
 void Geometry::LinePlotter::plotHigh(Geometry::Line line)
 {
   auto run = line.run();
@@ -85,5 +96,49 @@ void Geometry::LinePlotter::plotHigh(Geometry::Line line)
 
     else
       D += 2 * run;
+  }
+}
+
+void Geometry::LinePlotter::plotGeneric(Geometry::Line line)
+{
+  std::string constantAxis = "x";
+  std::string variableAxis = "y";
+
+  auto run = line.run();
+  auto rise = line.rise();
+
+  bool shouldTiltAxis = line.isVerticallySloped();
+
+  if (shouldTiltAxis) {
+    constantAxis = "y";
+    variableAxis = "x";
+
+    run = line.rise();
+    rise = line.run();
+  }
+
+  double variableAxisIncrease = 1;
+
+  if (rise < 0) {
+    variableAxisIncrease = -1;
+    rise = 0 - rise;
+  }
+
+  double D = (2 * rise) - run;
+
+  double x = line.origin()[constantAxis];
+  auto x1 = line.destination()[constantAxis];
+  double y = line.origin()[variableAxis];
+
+  for (; x <= x1; x++) {
+    this->plotPoints.push_back({x, y});
+
+    if (D > 0) {
+      y += variableAxisIncrease;
+      D += 2 * (rise - run);
+    }
+
+    else 
+      D += 2 * rise;
   }
 }
