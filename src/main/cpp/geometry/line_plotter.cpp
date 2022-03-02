@@ -45,12 +45,6 @@ void Geometry::LinePlotter::verticalPlot(Line line)
 void Geometry::LinePlotter::plotLow(
   Maths::Vector origin, Maths::Vector destination)
 {
-  auto x0 = origin["x"];
-  auto y0 = origin["y"];
-
-  auto x1 = destination["x"];
-  auto y1 = destination["y"];
-
   Gradient gradient {origin, destination};
   auto run = gradient.run();
   auto rise = gradient.rise();
@@ -62,9 +56,11 @@ void Geometry::LinePlotter::plotLow(
   }
 
   double D = (2 * rise) - run;
-  double y = y0;
 
-  for (double x = x0; x <= x1; x++) {
+  auto x1 = destination["x"];
+  double y = origin["y"];
+
+  for (double x = origin["x"]; x <= x1; x++) {
     this->plotPoints.push_back({x, y});
 
     if (D > 0) {
