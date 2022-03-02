@@ -11,7 +11,7 @@ public:
   Line(Maths::Vector destination);
 
   void setOrigin(Maths::Vector coordinates);
-  void setDestination(Maths::Vector coordinates);  
+  void setDestination(Maths::Vector coordinates);
   void setEndpoints(Maths::Vector origin, Maths::Vector destination);
 
   Maths::Vector origin();
@@ -22,6 +22,7 @@ public:
   double rise();
   double run();
   bool isHorizontallySloped();
+  bool isVerticallySloped();
   bool isTraversingNorth();
   bool isTraversingEast();
   bool isTraversingWest();

@@ -2,7 +2,7 @@
 
 Geometry::Line::Line()
 {
-  this->setEndpoints({0.0,0.0}, {0.0,0.0});
+  this->setEndpoints({0.0, 0.0}, {1.0, 1.0});
 }
 
 Geometry::Line::Line(Maths::Vector origin, Maths::Vector destination)
@@ -12,7 +12,7 @@ Geometry::Line::Line(Maths::Vector origin, Maths::Vector destination)
 
 Geometry::Line::Line(Maths::Vector destination)
 {
-  this->setEndpoints({0.0,0.0}, destination);
+  this->setEndpoints({0.0, 0.0}, destination);
 }
 
 Geometry::Line Geometry::Line::reverse()
@@ -70,6 +70,11 @@ double Geometry::Line::run()
 bool Geometry::Line::isHorizontallySloped()
 {
   return abs(this->rise()) < abs(this->run());
+}
+
+bool Geometry::Line::isVerticallySloped()
+{
+  return abs(this->rise()) > abs(this->run());
 }
 
 bool Geometry::Line::isTraversingNorth()
