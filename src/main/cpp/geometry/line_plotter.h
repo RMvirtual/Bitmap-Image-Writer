@@ -13,7 +13,7 @@ public:
   std::vector<Maths::Vector> plot(Line line);
 
 private:
-  struct PlottingAxes {
+  struct Axes {
     std::string xAxis;
     std::string yAxis;
     double yAxisIncreaseAmount;
@@ -24,6 +24,8 @@ private:
   std::vector<Maths::Vector> plotPoints;
 
   void createPlotPoints(Geometry::Line line);
-  PlottingAxes plottingAxes(Geometry::Line line);
+  Axes axes(Geometry::Line line);
+  Axes normalAxis(Geometry::Line line);
+  Axes tiltedAxis(Geometry::Line line);
 
 };}
