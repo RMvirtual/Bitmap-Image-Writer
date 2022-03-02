@@ -12,13 +12,21 @@ public:
   Line(Maths::Vector origin, Maths::Vector destination);
   Line(Maths::Vector destination);
 
-  Gradient gradient();
+
   void setOrigin(Maths::Vector coordinates);
   void setDestination(Maths::Vector coordinates);  
   void setEndpoints(Maths::Vector origin, Maths::Vector destination);
 
   Maths::Vector origin();
   Maths::Vector destination();
+  Line reverse();
+  
+  double gradient();
+  double rise();
+  double run();
+  bool isHorizontallySloped();
+  bool isTraversingUpwards();
+  bool isTraversingLeftToRight();
 
 private:
   Maths::Vector _origin;

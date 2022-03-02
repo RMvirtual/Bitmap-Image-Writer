@@ -15,9 +15,9 @@ Geometry::Line::Line(Maths::Vector destination)
   this->setEndpoints({0,0}, destination);
 }
 
-Geometry::Gradient Geometry::Line::gradient()
+Geometry::Line Geometry::Line::reverse()
 {
-  return this->_gradient;
+  return {this->_destination, this->_origin};
 }
 
 void Geometry::Line::setOrigin(Maths::Vector coordinates)
@@ -48,6 +48,36 @@ Maths::Vector Geometry::Line::origin()
 Maths::Vector Geometry::Line::destination()
 {
   return this->_destination;
+}
+
+double Geometry::Line::gradient()
+{
+  return this->_gradient.gradient();
+}
+
+double Geometry::Line::rise()
+{
+  return this->_gradient.rise();
+}
+
+double Geometry::Line::run()
+{
+  return this->_gradient.run();
+}
+
+bool Geometry::Line::isHorizontallySloped()
+{
+  return this->_gradient.isHorizontallySloped();
+}
+
+bool Geometry::Line::isTraversingUpwards()
+{
+  return this->_gradient.isTraversingUpwards();
+}
+
+bool Geometry::Line::isTraversingLeftToRight()
+{
+  return this->_gradient.isTraversingLeftToRight();
 }
 
 void Geometry::Line::updateGradient()

@@ -17,7 +17,6 @@ private:
 
   void horizontalPlot(Line line);
   void verticalPlot(Line line);
-  void plotHigh(Maths::Vector origin, Maths::Vector destination);
-  void plotLow(Maths::Vector origin, Maths::Vector destination);
-
+  void plotHigh(Line line);
+  void plotLow(Line line);
 };}
