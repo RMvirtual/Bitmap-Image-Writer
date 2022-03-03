@@ -3,7 +3,7 @@
 Geometry::Triangle::Triangle()
 {
   this->vertices = {
-    {0,0}, {1,1}, {2,0},
+    {0.0, 0.0}, {1,1}, {2, 0.0},
   };
 }
 
@@ -34,5 +34,11 @@ std::vector<Maths::Vector>::const_iterator Geometry::Triangle::begin() const
 
 std::vector<Maths::Vector>::const_iterator Geometry::Triangle::end() const
 {
-return this->vertices.end();
+  return this->vertices.end();
+}
+
+void Geometry::Triangle::translate(Maths::Vector translation)
+{
+  for (auto& vertex: this->vertices)
+    vertex = vertex + translation;
 }
