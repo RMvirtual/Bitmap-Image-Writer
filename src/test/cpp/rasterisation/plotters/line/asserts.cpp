@@ -1,5 +1,5 @@
 #include "gtest/gtest.h"
-#include "src/test/cpp/geometry/line-plotter/fixture.h"
+#include "src/test/cpp/rasterisation/plotters/line/fixture.h"
 
 void LinePlotterTest::compare(std::vector<Maths::Vector> plotPoints)
 {

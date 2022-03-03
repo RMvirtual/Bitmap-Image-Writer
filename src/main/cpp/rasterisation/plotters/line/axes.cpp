@@ -1,5 +1,5 @@
 #include <unordered_map>
-#include "src/main/cpp/geometry/plotters/line/axes.h"
+#include "src/main/cpp/rasterisation/plotters/line/axes.h"
 
 Geometry::Axes::Axes()
 {

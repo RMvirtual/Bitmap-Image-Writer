@@ -1,7 +1,7 @@
 #pragma once
 
 #include "gtest/gtest.h"
-#include "src/main/cpp/geometry/plotters/line/plotter.h"
+#include "src/main/cpp/rasterisation/plotters/line/plotter.h"
 
 class LinePlotterTest : public testing::Test
 {

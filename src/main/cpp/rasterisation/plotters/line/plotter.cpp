@@ -1,5 +1,5 @@
 #include <cmath>
-#include "src/main/cpp/geometry/plotters/line/plotter.h"
+#include "src/main/cpp/rasterisation/plotters/line/plotter.h"
 
 Geometry::LinePlotter::LinePlotter()
 {

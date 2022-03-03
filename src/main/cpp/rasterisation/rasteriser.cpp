@@ -1,5 +1,5 @@
 #include "src/main/cpp/rasterisation/rasteriser.h"
-#include "src/main/cpp/geometry/plotters/line/plotter.h"
+#include "src/main/cpp/rasterisation/plotters/line/plotter.h"
 #include "src/main/cpp/bitmaps/formats/formats.h"
 
 Rasterisation::Rasteriser::Rasteriser()

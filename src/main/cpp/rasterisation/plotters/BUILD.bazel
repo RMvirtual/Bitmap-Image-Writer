@@ -1,12 +1,11 @@
 load("@rules_cc//cc:defs.bzl", "cc_library")
 
 cc_library(
-    name = "line",
+    name = "plotters",
     hdrs = glob(["*.h"]),
     srcs = glob(["*.cpp"]),
     visibility = ["//visibility:public"],
     deps = [
-        "//src/main/cpp/maths",
-        "//src/main/cpp/geometry/line",
+        "//src/main/cpp/rasterisation/plotters/line",
     ]
 )
