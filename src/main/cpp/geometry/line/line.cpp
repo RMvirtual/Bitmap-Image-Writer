@@ -108,14 +108,22 @@ double Geometry::Line::rise()
   return this->_destination["y"] - this->_origin["y"];
 }
 
+bool Geometry::Line::isSloped()
+{
+  auto horizontalChange = this->run() != 0.0;
+  auto verticalChange = this->rise() != 0.0;
+
+  return (horizontalChange && verticalChange);
+}
+
 bool Geometry::Line::isHorizontallySloped()
 {
-  return abs(this->rise()) < abs(this->run());
+  return this->isSloped() ? abs(this->run()) > abs(this->rise()) : false; 
 }
 
 bool Geometry::Line::isVerticallySloped()
 {
-  return abs(this->rise()) > abs(this->run());
+  return this->isSloped() ? abs(this->rise()) > abs(this->run()) : false;
 }
 
 bool Geometry::Line::isTraversingNorth()

@@ -25,6 +25,7 @@ public:
   double run();
   bool isHorizontallySloped();
   bool isVerticallySloped();
+  bool isSloped();
   bool isTraversingNorth();
   bool isTraversingEast();
   bool isTraversingWest();

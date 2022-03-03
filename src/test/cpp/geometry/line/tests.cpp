@@ -65,6 +65,18 @@ TEST_F(LineTest, ShouldCalculateRun)
   EXPECT_EQ(correctRun, this->line.run());
 }
 
+TEST_F(LineTest, ShouldDetectVerticalLineAsNotSloped)
+{
+  this->line = {{1,1}, {1,5}};
+  EXPECT_FALSE(this->line.isSloped());  
+}
+
+TEST_F(LineTest, ShouldDetectHorizontalLineAsNotSloped)
+{
+  this->line = {{1,1}, {5,1}};
+  EXPECT_FALSE(this->line.isSloped());
+}
+
 TEST_F(LineTest, ShouldDetectAsTraversingNorthEast)
 {
   this->setupNorthEastLine();

@@ -31,8 +31,16 @@ void Rasterisation::Rasteriser::draw(Geometry::Triangle triangle)
   Geometry::LinePlotter plotter;
   auto lines = triangle.toLines();
 
+  // 3rd line drawing incorrectly (right to left drawing issue flipping the axis?)
+  // x0: 400, y0: 200.
+  // x1: 200, y1: 200
+  
   for (auto line : lines) {
-    std::cout << "Line\nX0: " << line["x0"] << ", y0: " << line["y0"] <<"\nx1: " << line["x1"] << ", y1: " << line["y1"] << "\n\n";
+    std::cout <<
+      "Line\n" <<
+      "x0: " << line["x0"] << ", y0: " << line["y0"] << "\n" <<
+      "x1: " << line["x1"] << ", y1: " << line["y1"] << "\n\n";
+    
     auto plotPoints = plotter.plot(line);
     
     for (auto point : plotPoints)
