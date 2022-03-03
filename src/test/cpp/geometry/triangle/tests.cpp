@@ -25,6 +25,11 @@ TEST_F(TriangleTest, ShouldTranslate2DTriangle)
   }
 }
 
+TEST_F(TriangleTest, ShouldScaleTriangle)
+{
+  EXPECT_TRUE(false);
+}
+
 TEST_F(TriangleTest, ShouldGetLinesFromTriangle)
 {
   std::vector<Maths::Vector> v = {
