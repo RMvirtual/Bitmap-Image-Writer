@@ -14,7 +14,7 @@ Rasterisation::Rasteriser::Rasteriser(
 }
 
 void Rasterisation::Rasteriser::setWritableImage(
-  std::shared_ptr<Bitmaps::Image>& writableImage)
+  std::shared_ptr<Bitmaps::Image> writableImage)
 {
   this->image = writableImage;
 }
