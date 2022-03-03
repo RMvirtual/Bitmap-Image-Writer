@@ -27,8 +27,48 @@ TEST_F(TriangleTest, ShouldTranslate2DTriangle)
 
 TEST_F(TriangleTest, ShouldScaleTriangle)
 {
-  EXPECT_TRUE(false);
+  std::vector<Maths::Vector> v = {
+    {0.0, 0.0}, {1.0, 1.0}, {2.0, 0.0}
+  };
+
+  this->triangle = {v};
+  this->triangle.scale(4);
+
+  std::vector<Maths::Vector> correctVectors = {
+    {0.0, 0.0}, {4, 4}, {8, 0.0}
+  };
+
+  for (int i = 0; i < 3; i++) {
+    auto vector = this->triangle[i];
+    auto correctVector = correctVectors[i];
+
+    EXPECT_EQ(correctVector["x"], vector["x"]);
+    EXPECT_EQ(correctVector["y"], vector["y"]);
+  }
 }
+
+TEST_F(TriangleTest, ShouldScaleTriangleFromDifferentOrigin)
+{
+  std::vector<Maths::Vector> v = {
+    {0.0, 0.0}, {1.0, 1.0}, {2.0, 0.0}
+  };
+
+  this->triangle = {v};
+  this->triangle.scale(4, 2);
+
+  std::vector<Maths::Vector> correctVectors = {
+    {0.0, 0.0}, {4, 4}, {8, 0.0}
+  };
+
+  for (int i = 0; i < 3; i++) {
+    auto vector = this->triangle[i];
+    auto correctVector = correctVectors[i];
+
+    EXPECT_EQ(correctVector["x"], vector["x"]);
+    EXPECT_EQ(correctVector["y"], vector["y"]);
+  }
+}
+
 
 TEST_F(TriangleTest, ShouldGetLinesFromTriangle)
 {

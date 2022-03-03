@@ -12,6 +12,9 @@ public:
   Triangle(std::vector<Maths::Vector> vertices);
   
   void translate(Maths::Vector translation);
+  void scale(double scalar, int pointOfOrigin);
+  void scale(double scalar);
+  
   std::vector<Geometry::Line> toLines();
 
   Maths::Vector& operator [](int index); 

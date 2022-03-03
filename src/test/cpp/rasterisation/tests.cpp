@@ -7,20 +7,22 @@
 #include "src/main/cpp/bitmaps/writer/image/writer.h"
 
 TEST_F(RasterisationTest, ShouldDrawTriangle)
-{
-  Geometry::Triangle triangle;
+{  
   auto format = Bitmaps::format("RGB");
   format.setHeightInPixels(500);
   format.setWidthInPixels(500);
-
-  auto image = std::make_shared<Bitmaps::Image>(format);
   
   auto redColours = format.colours();
   redColours["red"] = 255;
   redColours["green"] = 0;
   redColours["blue"] = 0;
 
+  auto image = std::make_shared<Bitmaps::Image>(format);
   image->fill(redColours);
+
+  Geometry::Triangle triangle;
+  triangle.scale(100);
+
   this->rasteriser.setWritableImage(image);
   this->rasteriser.draw(triangle);
 

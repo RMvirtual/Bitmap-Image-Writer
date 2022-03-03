@@ -65,3 +65,18 @@ std::vector<Geometry::Line> Geometry::Triangle::toLines()
 
   return lines;
 }
+
+void Geometry::Triangle::scale(double scalar, int originVertexIndex)
+{
+  // Needs translating to origin 0,0 first for all triangles to work.
+
+  for (int i = 0; i < 3; i++) {
+    auto vertex = this->vertices[i];
+    this->vertices[i] = scalar * vertex;
+  }
+}
+
+void Geometry::Triangle::scale(double scalar)
+{
+  this->scale(scalar, 0);
+}
