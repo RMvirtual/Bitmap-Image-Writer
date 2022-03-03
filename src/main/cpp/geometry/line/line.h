@@ -25,6 +25,7 @@ public:
   double run();
 
   bool isSloped();
+  bool isSlopeless(); 
   bool isHorizontallySloped();
   bool isVerticallySloped();
   bool isHorizontalLine();

@@ -114,9 +114,14 @@ double Geometry::Line::rise()
   return this->_destination["y"] - this->_origin["y"];
 }
 
+bool Geometry::Line::isSlopeless()
+{
+  return (this->isHorizontalLine() || this->isVerticalLine());
+}
+
 bool Geometry::Line::isSloped()
 {
-  return !(this->isHorizontalLine() || this->isVerticalLine());
+  return (!this->isSlopeless());
 }
 
 bool Geometry::Line::isHorizontallySloped()

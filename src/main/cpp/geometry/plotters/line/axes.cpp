@@ -25,7 +25,7 @@ std::string Geometry::Axes::operator [](std::string vertex)
 
 void Geometry::Axes::determineAxes(Geometry::Line line)
 {  
-  bool shouldTiltAxis = line.isVerticallySloped();
+  bool shouldTiltAxis = line.isVerticallySloped() || line.isVerticalLine();
 
   if (shouldTiltAxis)
     this->setTiltedAxes(line);
