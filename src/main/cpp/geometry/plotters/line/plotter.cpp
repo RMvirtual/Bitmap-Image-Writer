@@ -9,20 +9,26 @@ Geometry::LinePlotter::LinePlotter()
 std::vector<Maths::Vector> Geometry::LinePlotter::plot(Geometry::Line line)
 {
   line.normaliseEndpoints();
-  this->initialise(line);
-  this->createPlotPoints(line);
+  this->initialiseSlopedPlot(line);
+  
+  if (line.isSloped())
+    this->plotSlopedLine(line);
+
+  else
+    this->plotSlopelessLine(line);
 
   return plotPoints;
 }
 
-void Geometry::LinePlotter::initialise(Geometry::Line line)
+void Geometry::LinePlotter::initialiseSlopedPlot(Geometry::Line line)
 {
   this->plotPoints.clear();
+
   this->axes = {line};
   this->initialiseYError();
 }
 
-void Geometry::LinePlotter::createPlotPoints(Geometry::Line line)
+void Geometry::LinePlotter::plotSlopelessLine(Geometry::Line line)
 {
   auto x0 = line[this->axes["x0"]];
   auto x1 = line[this->axes["x1"]];
@@ -32,9 +38,24 @@ void Geometry::LinePlotter::createPlotPoints(Geometry::Line line)
     this->addPoint(x, y);
 }
 
+void Geometry::LinePlotter::plotSlopedLine(Geometry::Line line)
+{
+  auto x0 = line[this->axes["x0"]];
+  auto x1 = line[this->axes["x1"]];
+  auto y = line[this->axes["y0"]];
+
+  for (auto x = x0; x <= x1; x++)
+    this->addPointWithYError(x, y);
+}
+
 void Geometry::LinePlotter::addPoint(double x, double&y)
 {
     this->plotPoints.push_back({x, y});
+}
+
+void Geometry::LinePlotter::addPointWithYError(double x, double&y)
+{
+    this->addPoint(x, y);
     this->updateY(y);
 }
 

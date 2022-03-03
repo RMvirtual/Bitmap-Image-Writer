@@ -28,5 +28,5 @@ private:
   double _run;
   double _rise;
 
-  void determineVerticalAxisChange();
+  void determineVerticalAxisDirection();
 };}

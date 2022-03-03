@@ -33,7 +33,7 @@ void Geometry::Axes::determineAxes(Geometry::Line line)
   else
     this->setNormalAxes(line);
 
-  this->determineVerticalAxisChange();
+  this->determineVerticalAxisDirection();
 }
 
 void Geometry::Axes::setNormalAxes(Geometry::Line line)
@@ -52,7 +52,7 @@ void Geometry::Axes::setTiltedAxes(Geometry::Line line)
   this->_rise = line.run();
 }
 
-void Geometry::Axes::determineVerticalAxisChange()
+void Geometry::Axes::determineVerticalAxisDirection()
 {
   this->_verticalChangeAmount = 1;
 

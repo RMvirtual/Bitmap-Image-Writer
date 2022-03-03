@@ -80,12 +80,18 @@ bool Geometry::Line::hasReversedEndpoints()
 
 bool Geometry::Line::hasHorizontallyReversedEndpoints()
 {
-  return (this->isHorizontallySloped() && this->isTraversingWest());
+  bool isHorizontal = (
+    this->isHorizontallySloped() || this->isHorizontalLine());
+
+  return (isHorizontal && this->isTraversingWest());
 }
 
 bool Geometry::Line::hasVerticallyReversedEndpoints()
 {
-  return (this->isVerticallySloped() && this->isTraversingSouth());
+  bool isVertical = (
+    this->isVerticallySloped() || this->isVerticalLine());
+
+  return (isVertical && this->isTraversingSouth());
 }
 
 double Geometry::Line::gradient()
@@ -110,10 +116,7 @@ double Geometry::Line::rise()
 
 bool Geometry::Line::isSloped()
 {
-  auto horizontalChange = this->run() != 0.0;
-  auto verticalChange = this->rise() != 0.0;
-
-  return (horizontalChange && verticalChange);
+  return !(this->isHorizontalLine() || this->isVerticalLine());
 }
 
 bool Geometry::Line::isHorizontallySloped()
@@ -124,6 +127,16 @@ bool Geometry::Line::isHorizontallySloped()
 bool Geometry::Line::isVerticallySloped()
 {
   return this->isSloped() ? abs(this->rise()) > abs(this->run()) : false;
+}
+
+bool Geometry::Line::isHorizontalLine()
+{
+  return this->rise() == 0.0;
+}
+
+bool Geometry::Line::isVerticalLine()
+{
+  return this->run() == 0.0;  
 }
 
 bool Geometry::Line::isTraversingNorth()

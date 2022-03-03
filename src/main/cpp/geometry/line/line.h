@@ -23,10 +23,12 @@ public:
   double gradient();
   double rise();
   double run();
-  
+
   bool isSloped();
   bool isHorizontallySloped();
   bool isVerticallySloped();
+  bool isHorizontalLine();
+  bool isVerticalLine();
   bool isTraversingNorth();
   bool isTraversingEast();
   bool isTraversingWest();
