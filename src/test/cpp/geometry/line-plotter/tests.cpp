@@ -35,10 +35,16 @@ TEST_F(LinePlotterTest, ShouldPlotSouthWestLine)
 
 TEST_F(LinePlotterTest, ShouldPlotHorizontalLineWithNoSlope)
 {
-  EXPECT_TRUE(false);
+  this->setupHorizontalLine();
+  auto plotPoints = this->plotter.plot(this->line);
+
+  this->compare(plotPoints);  
 }
 
 TEST_F(LinePlotterTest, ShouldPlotVerticalLineWithNoSlope)
 {
-  EXPECT_TRUE(false);
+  this->setupVerticalLine();
+  auto plotPoints = this->plotter.plot(this->line);
+
+  this->compare(plotPoints);  
 }

@@ -69,12 +69,17 @@ TEST_F(LineTest, ShouldDetectVerticalLineAsNotSloped)
 {
   this->line = {{1,1}, {1,5}};
   EXPECT_FALSE(this->line.isSloped());  
+  EXPECT_FALSE(this->line.isHorizontallySloped());
+  EXPECT_FALSE(this->line.isVerticallySloped());
 }
 
 TEST_F(LineTest, ShouldDetectHorizontalLineAsNotSloped)
 {
   this->line = {{1,1}, {5,1}};
   EXPECT_FALSE(this->line.isSloped());
+  EXPECT_FALSE(this->line.isHorizontallySloped());
+  EXPECT_FALSE(this->line.isVerticallySloped());
+
 }
 
 TEST_F(LineTest, ShouldDetectAsTraversingNorthEast)
