@@ -43,7 +43,9 @@ void Rasterisation::Rasteriser::draw(Geometry::Triangle triangle)
     
     auto plotPoints = plotter.plot(line);
     
-    for (auto point : plotPoints)
+    for (auto point : plotPoints) {
+      std:: cout << "Point x: " << point["x"] << ", y: " << point["y"] << std::endl;
       this->image->setPixel(point["x"], point["y"], blackColours);
+    }
   }
 }
