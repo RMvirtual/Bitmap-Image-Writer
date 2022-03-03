@@ -30,7 +30,6 @@ void Rasterisation::Rasteriser::draw(Geometry::Triangle triangle)
   blackColours["blue"] = 0;
 
   Geometry::LinePlotter plotter;
-  triangle.translate({200, 200});
   auto lines = triangle.toLines();
 
   for (auto line : lines) {

@@ -22,7 +22,8 @@ TEST_F(RasterisationTest, ShouldDrawTriangle)
 
   Geometry::Triangle triangle;
   triangle.scale(100);
-
+  triangle.translate({200,200});
+  
   this->rasteriser.setWritableImage(image);
   this->rasteriser.draw(triangle);
 
