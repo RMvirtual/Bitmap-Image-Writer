@@ -28,7 +28,7 @@ void Geometry::Axes::determineAxes(Geometry::Line line)
   bool shouldTiltAxis = line.isVerticallySloped() || line.isVerticalLine();
 
   if (shouldTiltAxis)
-    this->setTiltedAxes(line);
+    this->tiltAxes(line);
 
   else
     this->setNormalAxes(line);
@@ -44,7 +44,7 @@ void Geometry::Axes::setNormalAxes(Geometry::Line line)
   this->_rise = line.rise();
 }
 
-void Geometry::Axes::setTiltedAxes(Geometry::Line line)
+void Geometry::Axes::tiltAxes(Geometry::Line line)
 {
   this->_horizontalAxis = "y";
   this->_verticalAxis = "x";

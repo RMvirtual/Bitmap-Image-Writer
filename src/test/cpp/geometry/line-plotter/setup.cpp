@@ -6,10 +6,24 @@ void LinePlotterTest::setupHorizontalLine()
   this->setupCorrectHorizontalLinePoints();
 }
 
+void LinePlotterTest::setupCorrectHorizontalLinePoints()
+{
+  this->correctPlotPoints = {
+    {1,1}, {2,1}, {3,1}, {4,1}, {5,1}
+  };
+}
+
 void LinePlotterTest::setupVerticalLine()
 {
   this->line = {{1,1}, {1,5}};
   this->setupCorrectVerticalLinePoints();
+}
+
+void LinePlotterTest::setupCorrectVerticalLinePoints()
+{
+  this->correctPlotPoints = {
+    {1,1}, {1,2}, {1,3}, {1,4}, {1,5}
+  };
 }
 
 void LinePlotterTest::setupNorthEastLine()
@@ -34,20 +48,6 @@ void LinePlotterTest::setupSouthWestLine()
 {
   this->line = {{11,5}, {1,1}};  
   this->setupCorrectNorthEastSouthWestPoints();
-}
-
-void LinePlotterTest::setupCorrectHorizontalLinePoints()
-{
-  this->correctPlotPoints = {
-    {1,1}, {2,1}, {3,1}, {4,1}, {5,1}
-  };
-}
-
-void LinePlotterTest::setupCorrectVerticalLinePoints()
-{
-  this->correctPlotPoints = {
-    {1,1}, {1,2}, {1,3}, {1,4}, {1,5}
-  };
 }
 
 void LinePlotterTest::setupCorrectNorthEastSouthWestPoints()

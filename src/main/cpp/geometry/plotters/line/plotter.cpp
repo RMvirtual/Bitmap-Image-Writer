@@ -9,7 +9,7 @@ Geometry::LinePlotter::LinePlotter()
 std::vector<Maths::Vector> Geometry::LinePlotter::plot(Geometry::Line line)
 {
   line.normaliseEndpoints();
-  this->initialiseSlopedPlot(line);
+  this->initialise(line);
   
   if (line.isSloped())
     this->plotSlopedLine(line);
@@ -20,7 +20,7 @@ std::vector<Maths::Vector> Geometry::LinePlotter::plot(Geometry::Line line)
   return plotPoints;
 }
 
-void Geometry::LinePlotter::initialiseSlopedPlot(Geometry::Line line)
+void Geometry::LinePlotter::initialise(Geometry::Line line)
 {
   this->plotPoints.clear();
 
@@ -30,11 +30,23 @@ void Geometry::LinePlotter::initialiseSlopedPlot(Geometry::Line line)
 
 void Geometry::LinePlotter::plotSlopelessLine(Geometry::Line line)
 {
-  auto x0 = line[this->axes["x0"]];
-  auto x1 = line[this->axes["x1"]];
-  auto y = line[this->axes["y0"]];
+  auto x0 = line["x0"];
+  auto x1 = line["x1"];
+  auto x = x0;
 
-  for (auto x = x0; x <= x1; x++)
+  auto y0 = line["y0"];
+  auto y1 = line["y1"];
+  auto y = y0;
+
+  auto axisRange = x1;
+  auto axisToIncrement = &x;
+
+  if (line.isVerticalLine()) {
+    axisRange = y1;
+    axisToIncrement = &y;
+  }
+  
+  for (; *axisToIncrement <= axisRange; (*axisToIncrement)++)
     this->addPoint(x, y);
 }
 

@@ -37,8 +37,8 @@ public:
 
   void normaliseEndpoints();
   bool hasReversedEndpoints();
-  bool hasHorizontallyReversedEndpoints();
-  bool hasVerticallyReversedEndpoints();
+  bool hasWestwardEndpoints();
+  bool hasSouthwardEndpoints();
 
 private:
   Maths::Vector _origin;

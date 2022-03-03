@@ -16,15 +16,6 @@ Geometry::Line::Line(Maths::Vector destination)
   this->setEndpoints({0.0, 0.0}, destination);
 }
 
-void Geometry::Line::reverseEndpoints()
-{
-  auto originalOrigin = this->_origin;
-  auto originalDestination = this->_destination;
-  
-  this->_destination = originalOrigin;
-  this->_origin = originalDestination;
-}
-
 void Geometry::Line::setOrigin(Maths::Vector coordinates)
 {
   this->_origin = coordinates;
@@ -40,6 +31,26 @@ void Geometry::Line::setEndpoints(
 {
   this->_origin = origin;
   this->_destination = destination;
+}
+
+void Geometry::Line::normaliseEndpoints()
+{
+  if (this->hasReversedEndpoints())
+    this->reverseEndpoints();
+}
+
+bool Geometry::Line::hasReversedEndpoints()
+{
+  return (this->hasWestwardEndpoints() || this->hasSouthwardEndpoints());
+}
+
+void Geometry::Line::reverseEndpoints()
+{
+  auto originalOrigin = this->_origin;
+  auto originalDestination = this->_destination;
+  
+  this->_destination = originalOrigin;
+  this->_origin = originalDestination;
 }
 
 Maths::Vector Geometry::Line::origin()
@@ -64,21 +75,7 @@ double Geometry::Line::operator [](std::string vertex)
   return vertices[vertex];
 }
 
-void Geometry::Line::normaliseEndpoints()
-{
-  if (this->hasReversedEndpoints())
-    this->reverseEndpoints();
-}
-
-bool Geometry::Line::hasReversedEndpoints()
-{    
-  return (
-    this->hasHorizontallyReversedEndpoints()
-    || this->hasVerticallyReversedEndpoints()
-  );
-}
-
-bool Geometry::Line::hasHorizontallyReversedEndpoints()
+bool Geometry::Line::hasWestwardEndpoints()
 {
   bool isHorizontal = (
     this->isHorizontallySloped() || this->isHorizontalLine());
@@ -86,7 +83,7 @@ bool Geometry::Line::hasHorizontallyReversedEndpoints()
   return (isHorizontal && this->isTraversingWest());
 }
 
-bool Geometry::Line::hasVerticallyReversedEndpoints()
+bool Geometry::Line::hasSouthwardEndpoints()
 {
   bool isVertical = (
     this->isVerticallySloped() || this->isVerticalLine());
@@ -141,7 +138,7 @@ bool Geometry::Line::isHorizontalLine()
 
 bool Geometry::Line::isVerticalLine()
 {
-  return this->run() == 0.0;  
+  return this->run() == 0.0;
 }
 
 bool Geometry::Line::isTraversingNorth()

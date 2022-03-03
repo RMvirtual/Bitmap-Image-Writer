@@ -12,7 +12,7 @@ public:
 
   void determineAxes(Geometry::Line line);
   void setNormalAxes(Geometry::Line line);
-  void setTiltedAxes(Geometry::Line line);
+  void tiltAxes(Geometry::Line line);
 
   std::string horizontalAxis();
   std::string verticalAxis();

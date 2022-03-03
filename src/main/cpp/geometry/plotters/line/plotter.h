@@ -19,7 +19,7 @@ private:
   
   double yError;
 
-  void initialiseSlopedPlot(Geometry::Line line);
+  void initialise(Geometry::Line line);
   void plotSlopedLine(Geometry::Line line);
   void plotSlopelessLine(Geometry::Line line);
   void addPoint(double x, double&y);
