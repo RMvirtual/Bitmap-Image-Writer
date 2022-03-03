@@ -21,7 +21,6 @@ void Rasterisation::Rasteriser::setWritableImage(
 
 void Rasterisation::Rasteriser::draw(Geometry::Triangle triangle)
 {
-  double startPoint = 10;
   auto format = Bitmaps::format("RGB");
   auto blackColours = format.colours();
 
@@ -36,6 +35,6 @@ void Rasterisation::Rasteriser::draw(Geometry::Triangle triangle)
     auto plotPoints = plotter.plot(line);
     
     for (auto point : plotPoints)
-      this->image.get()->setPixel(point["x"], point["y"], blackColours);
+      this->image->setPixel(point["x"], point["y"], blackColours);
   }
 }
