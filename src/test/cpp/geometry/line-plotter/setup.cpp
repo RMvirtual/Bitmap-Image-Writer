@@ -1,25 +1,51 @@
 #include "src/test/cpp/geometry/line-plotter/fixture.h"
 
-void LinePlotterTest::setupHorizontalLine()
+void LinePlotterTest::setupEastwardHorizontalLine()
 {
   this->line = {{1,1}, {5,1}};
-  this->setupCorrectHorizontalLinePoints();
+  this->setupCorrectEastwardHorizontalLinePoints();
 }
 
-void LinePlotterTest::setupCorrectHorizontalLinePoints()
+void LinePlotterTest::setupCorrectEastwardHorizontalLinePoints()
 {
   this->correctPlotPoints = {
     {1,1}, {2,1}, {3,1}, {4,1}, {5,1}
   };
 }
 
-void LinePlotterTest::setupVerticalLine()
+void LinePlotterTest::setupWestwardHorizontalLine()
 {
-  this->line = {{1,1}, {1,5}};
-  this->setupCorrectVerticalLinePoints();
+  this->line = {{5,1}, {1,1}};
+  this->setupCorrectEastwardHorizontalLinePoints();
 }
 
-void LinePlotterTest::setupCorrectVerticalLinePoints()
+void LinePlotterTest::setupCorrectWestwardHorizontalLinePoints()
+{
+  this->correctPlotPoints = {
+    {1,1}, {2,1}, {3,1}, {4,1}, {5,1}
+  };
+}
+
+void LinePlotterTest::setupNorthwardVerticalLine()
+{
+  this->line = {{1,1}, {1,5}};
+  this->setupCorrectNorthwardVerticalLinePoints();
+}
+
+void LinePlotterTest::setupCorrectNorthwardVerticalLinePoints()
+{
+  this->correctPlotPoints = {
+    {1,1}, {1,2}, {1,3}, {1,4}, {1,5}
+  };
+}
+
+void LinePlotterTest::setupSouthwardVerticalLine()
+{
+  this->line = {{1,5}, {1,1}};
+  this->setupCorrectSouthwardVerticalLinePoints();
+}
+
+void LinePlotterTest::setupCorrectSouthwardVerticalLinePoints()
 {
   this->correctPlotPoints = {
     {1,1}, {1,2}, {1,3}, {1,4}, {1,5}

@@ -33,17 +33,33 @@ TEST_F(LinePlotterTest, ShouldPlotSouthWestLine)
   this->compare(plotPoints);
 }
 
-TEST_F(LinePlotterTest, ShouldPlotSlopelessHorizontalLine)
+TEST_F(LinePlotterTest, ShouldPlotSlopelessHorizontalLineEastwards)
 {
-  this->setupHorizontalLine();
+  this->setupEastwardHorizontalLine();
   auto plotPoints = this->plotter.plot(this->line);
 
   this->compare(plotPoints);  
 }
 
-TEST_F(LinePlotterTest, ShouldPlotSlopelessVerticalLine)
+TEST_F(LinePlotterTest, ShouldPlotSlopelessVerticalLineNorthwards)
 {
-  this->setupVerticalLine();
+  this->setupNorthwardVerticalLine();
+  auto plotPoints = this->plotter.plot(this->line);
+
+  this->compare(plotPoints);  
+}
+
+TEST_F(LinePlotterTest, ShouldPlotSlopelessHorizontalLineWestwards)
+{
+  this->setupWestwardHorizontalLine();
+  auto plotPoints = this->plotter.plot(this->line);
+
+  this->compare(plotPoints);  
+}
+
+TEST_F(LinePlotterTest, ShouldPlotSlopelessVerticalLineSouthwards)
+{
+  this->setupSouthwardVerticalLine();
   auto plotPoints = this->plotter.plot(this->line);
 
   this->compare(plotPoints);  
