@@ -23,8 +23,8 @@ void Rasterisation::Rasteriser::draw(Geometry::Triangle triangle)
   double startPoint = 10;
 
   Geometry::LinePlotter plotter;
-
-  // Need to convert vertices to lines.
+  triangle.translate({200, 200});
+  
   
 }
 

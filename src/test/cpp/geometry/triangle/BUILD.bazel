@@ -7,6 +7,5 @@ cc_test(
     deps = [
         "@googletest//:gtest_main",
         "//src/main/cpp/geometry",
-        "//src/main/cpp/maths"
     ],
 )

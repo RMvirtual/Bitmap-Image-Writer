@@ -2,6 +2,7 @@
 
 #include <vector>
 #include "src/main/cpp/maths/vector/vector.h"
+#include "src/main/cpp/geometry/line/line.h"
 
 namespace Geometry {
 class Triangle
@@ -11,6 +12,8 @@ public:
   Triangle(std::vector<Maths::Vector> vertices);
   
   void translate(Maths::Vector translation);
+  std::vector<Geometry::Line> toLines();
+
   Maths::Vector& operator [](int index); 
   std::vector<Maths::Vector>::iterator begin();
   std::vector<Maths::Vector>::iterator end();
