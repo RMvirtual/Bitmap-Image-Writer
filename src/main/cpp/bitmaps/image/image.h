@@ -1,7 +1,5 @@
 #pragma once
 
-#include <string>
-
 #include "src/main/cpp/bitmaps/packet/packet.h"
 #include "src/main/cpp/bitmaps/formats/format/format.h"
 #include "src/main/cpp/bitmaps/formats/colours/colours.h"
