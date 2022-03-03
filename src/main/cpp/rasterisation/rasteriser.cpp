@@ -32,6 +32,7 @@ void Rasterisation::Rasteriser::draw(Geometry::Triangle triangle)
   auto lines = triangle.toLines();
 
   for (auto line : lines) {
+    std::cout << "Line X0: " << line["x0"] << ", y0: " << line["y0"] <<", x1: " << line["x1"] << ", y1: " << line["y1"] << std::endl;
     auto plotPoints = plotter.plot(line);
     
     for (auto point : plotPoints)
