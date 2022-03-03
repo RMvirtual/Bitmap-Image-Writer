@@ -32,3 +32,13 @@ TEST_F(LinePlotterTest, ShouldPlotSouthWestLine)
   
   this->compare(plotPoints);
 }
+
+TEST_F(LinePlotterTest, ShouldPlotHorizontalLineWithNoSlope)
+{
+  EXPECT_TRUE(false);
+}
+
+TEST_F(LinePlotterTest, ShouldPlotVerticalLineWithNoSlope)
+{
+  EXPECT_TRUE(false);
+}
