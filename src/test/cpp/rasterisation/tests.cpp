@@ -4,6 +4,7 @@
 #include "src/test/cpp/rasterisation/fixture.h"
 #include "src/main/cpp/bitmaps/formats/formats.h"
 #include "src/main/cpp/bitmaps/image/image.h"
+#include "src/main/cpp/bitmaps/writer/image/writer.h"
 
 TEST_F(RasterisationTest, ShouldDrawTriangle)
 {
@@ -22,6 +23,9 @@ TEST_F(RasterisationTest, ShouldDrawTriangle)
   image->fill(redColours);
   this->rasteriser.setWritableImage(image);
   this->rasteriser.draw(triangle);
+
+  Bitmaps::ImageWriter writer;
+  writer.writeToFile(*image, "C:/Users/rmvir/Desktop/myfile.bmp");
 
   EXPECT_TRUE(false);
 }
