@@ -7,6 +7,7 @@ namespace Geometry {
 class Triangle
 {
 public:
+  Triangle();
   Triangle(std::vector<Maths::Vector> vertices);
   Maths::Vector& operator [](int index); 
 
@@ -14,7 +15,7 @@ public:
   std::vector<Maths::Vector>::iterator end();
   std::vector<Maths::Vector>::const_iterator begin() const;
   std::vector<Maths::Vector>::const_iterator end() const;
-
+  
 private:
   std::vector<Maths::Vector> vertices;
   

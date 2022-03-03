@@ -1,5 +1,12 @@
 #include "src/main/cpp/geometry/triangle/triangle.h"
 
+Geometry::Triangle::Triangle()
+{
+  this->vertices = {
+    {0,0}, {1,1}, {2,0},
+  };
+}
+
 Geometry::Triangle::Triangle(std::vector<Maths::Vector> vertices)
 {
   this->vertices = vertices;

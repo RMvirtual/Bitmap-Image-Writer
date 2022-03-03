@@ -26,5 +26,4 @@ private:
   void updateY(double& y);
   void updateYError();
   bool shouldIncrementY();
-
 };}

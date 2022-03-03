@@ -11,6 +11,8 @@ public:
   Axes(Geometry::Line line);
 
   void determineAxes(Geometry::Line line);
+  void setNormalAxes(Geometry::Line line);
+  void setTiltedAxes(Geometry::Line line);
 
   std::string horizontalAxis();
   std::string verticalAxis();
@@ -26,7 +28,5 @@ private:
   double _run;
   double _rise;
 
-  void setNormalAxes(Geometry::Line line);
-  void setTiltedAxes(Geometry::Line line);
   void determineVerticalAxisChange();
 };}
