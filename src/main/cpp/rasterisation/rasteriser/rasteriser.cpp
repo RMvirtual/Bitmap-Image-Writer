@@ -31,11 +31,6 @@ void Rasterisation::Rasteriser::draw(Geometry::Triangle triangle)
   Geometry::LinePlotter plotter;
   auto lines = triangle.toLines();
 
-  // 3rd line drawing incorrectly (right to left drawing issue flipping the axis?)
-  // x0: 400, y0: 200.
-  // x1: 200, y1: 200
-
-
   for (auto line : lines) {
     // Appears to be flipping the plot point axes for some reason.    
     auto plotPoints = plotter.plot(line);
