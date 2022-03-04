@@ -31,14 +31,11 @@ void Geometry::LinePlotter::plotSlopelessLine(Geometry::Line line)
   // Could do cartesian product of the ranges of x and y.
   auto x0 = line["x0"];
   auto x1 = line["x1"];
-
-  std::vector<double> xCoordinates = this->range(x0, x1);
-
   auto y0 = line["y0"];
   auto y1 = line["y1"];
 
-  std::vector<double> yCoordinates = this->range(y0, y1);
-
+  auto xCoordinates = this->range(x0, x1);
+  auto yCoordinates = this->range(y0, y1);
   auto plots = this->cartesianProduct(xCoordinates, yCoordinates);
   
   for (auto plot : plots)
