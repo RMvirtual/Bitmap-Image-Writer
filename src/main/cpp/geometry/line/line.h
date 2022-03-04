@@ -15,6 +15,7 @@ public:
   void setDestination(Maths::Vector coordinates);
   void setEndpoints(Maths::Vector origin, Maths::Vector destination);
   void reverseEndpoints();
+  void sortByXAscending();
 
   Maths::Vector origin();
   Maths::Vector destination();
@@ -34,11 +35,7 @@ public:
   bool isTraversingEast();
   bool isTraversingWest();
   bool isTraversingSouth();
-
-  void normaliseEndpoints();
-  bool hasReversedEndpoints();
-  bool hasWestwardEndpoints();
-  bool hasSouthwardEndpoints();
+  bool isDescendingByX();
 
 private:
   Maths::Vector _origin;

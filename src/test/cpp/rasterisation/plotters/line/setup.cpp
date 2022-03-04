@@ -144,9 +144,6 @@ void LinePlotterTest::setupWestHorizontalLine()
 
 void LinePlotterTest::setupCorrectWestHorizontalLinePoints()
 {
-  // Orders them in ascending order of x rather than reverse.
-  // Maybe ridding ourselves of the ordering would work?
-
   this->correctPlotPoints = {
     {200, 200},
     {201, 200}, {202, 200}, {203, 200}, {204, 200}, {205, 200},    

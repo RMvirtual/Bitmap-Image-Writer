@@ -44,10 +44,18 @@ void Geometry::LinePlotter::plotSlopedLine(Geometry::Line line)
 
 void Geometry::LinePlotter::initialise(Geometry::Line line)
 {
-  line.normaliseEndpoints();
+  line.sortByXAscending();
 
   this->slopedAxes = {line};
   this->initialiseYError();
+}
+
+void Geometry::LinePlotter::initialiseYError()
+{
+  auto rise = this->slopedAxes.rise();
+  auto run = this->slopedAxes.run();
+
+  this->yError = (2 * rise) - run;
 }
 
 void Geometry::LinePlotter::addPointWithYError(double x, double&y)
@@ -66,18 +74,9 @@ void Geometry::LinePlotter::updateY(double& y)
   this->updateYError();
 }
 
-
 bool Geometry::LinePlotter::shouldIncrementY()
 {
   return this->yError > 0;
-}
-
-void Geometry::LinePlotter::initialiseYError()
-{
-  auto rise = this->slopedAxes.rise();
-  auto run = this->slopedAxes.run();
-
-  this->yError = (2 * rise) - run;
 }
 
 void Geometry::LinePlotter::updateYError()

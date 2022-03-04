@@ -33,36 +33,15 @@ void Geometry::Line::setEndpoints(
   this->_destination = destination;
 }
 
-void Geometry::Line::normaliseEndpoints()
+void Geometry::Line::sortByXAscending()
 {
-  if (this->hasReversedEndpoints())
+  if (this->isDescendingByX())
     this->reverseEndpoints();
 }
 
-bool Geometry::Line::hasReversedEndpoints()
+bool Geometry::Line::isDescendingByX()
 {
-  // return (this->hasWestwardEndpoints() || this->hasSouthwardEndpoints());
-  
-  bool horizontalCheck = (
-    this->isHorizontalLine() && this->hasWestwardEndpoints());
-
-  bool verticalCheck = (
-    this->isVerticalLine() && this->hasSouthwardEndpoints());
-
-  bool horizontalSlopeCheck = (
-    this->isHorizontallySloped() && this->hasWestwardEndpoints()
-  );
-
-  bool verticalSlopeCheck = (
-    this->isVerticallySloped() && this->hasSouthwardEndpoints()
-  );
-
-  bool all = (
-    horizontalCheck || verticalCheck ||
-    horizontalSlopeCheck || verticalSlopeCheck
-  );
-
-  return all;
+  return this->isTraversingWest();
 }
 
 void Geometry::Line::reverseEndpoints()
@@ -94,22 +73,6 @@ double Geometry::Line::operator [](std::string vertex)
   };
 
   return vertices[vertex];
-}
-
-bool Geometry::Line::hasWestwardEndpoints()
-{
-  bool isHorizontal = (
-    this->isHorizontallySloped() || this->isHorizontalLine());
-
-  return (isHorizontal && this->isTraversingWest());
-}
-
-bool Geometry::Line::hasSouthwardEndpoints()
-{
-  bool isVertical = (
-    this->isVerticallySloped() || this->isVerticalLine());
-
-  return (isVertical && this->isTraversingSouth());
 }
 
 double Geometry::Line::gradient()
