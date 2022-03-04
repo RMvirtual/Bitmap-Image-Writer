@@ -1,5 +1,57 @@
 #include "src/test/cpp/rasterisation/plotters/line/fixture.h"
 
+void LinePlotterTest::setupNorthVerticalLine()
+{
+  this->line = {{1,1}, {1,5}};
+  this->setupCorrectNorthVerticalPlots();
+}
+
+void LinePlotterTest::setupCorrectNorthVerticalPlots()
+{
+  this->correctPlotPoints = {
+    {1,1}, {1,2}, {1,3}, {1,4}, {1,5}
+  };
+}
+
+void LinePlotterTest::setupEastHorizontalLine()
+{
+  this->line = {{1,1}, {5,1}};
+  this->setupCorrectEastHorizontalPlots();
+}
+
+void LinePlotterTest::setupCorrectEastHorizontalPlots()
+{
+  this->correctPlotPoints = {
+    {1,1}, {2,1}, {3,1}, {4,1}, {5,1}
+  };
+}
+
+void LinePlotterTest::setupWestHorizontalLine()
+{
+  this->line = {{5,1}, {1,1}};
+  this->setupCorrectEastHorizontalPlots();
+}
+
+void LinePlotterTest::setupCorrectWestHorizontalPlots()
+{
+  this->correctPlotPoints = {
+    {1,1}, {2,1}, {3,1}, {4,1}, {5,1}
+  };
+}
+
+void LinePlotterTest::setupSouthVerticalLine()
+{
+  this->line = {{1,5}, {1,1}};
+  this->setupCorrectSouthVerticalPlots();
+}
+
+void LinePlotterTest::setupCorrectSouthVerticalPlots()
+{
+  this->correctPlotPoints = {
+    {1,1}, {1,2}, {1,3}, {1,4}, {1,5}
+  };
+}
+
 void LinePlotterTest::setupNorthEastLine()
 {
   this->line = {{1,1}, {11,5}};
@@ -43,58 +95,6 @@ void LinePlotterTest::setupCorrectNorthWestSouthEastPlots()
     {5,3}, {6,3}, {7,3},
     {8,2}, {9,2},
     {10,1}, {11,1}
-  };
-}
-
-void LinePlotterTest::setupEastHorizontalLine()
-{
-  this->line = {{1,1}, {5,1}};
-  this->setupCorrectEastHorizontalPlots();
-}
-
-void LinePlotterTest::setupCorrectEastHorizontalPlots()
-{
-  this->correctPlotPoints = {
-    {1,1}, {2,1}, {3,1}, {4,1}, {5,1}
-  };
-}
-
-void LinePlotterTest::setupWestHorizontalLine()
-{
-  this->line = {{5,1}, {1,1}};
-  this->setupCorrectEastHorizontalPlots();
-}
-
-void LinePlotterTest::setupCorrectWestHorizontalPlots()
-{
-  this->correctPlotPoints = {
-    {1,1}, {2,1}, {3,1}, {4,1}, {5,1}
-  };
-}
-
-void LinePlotterTest::setupNorthVerticalLine()
-{
-  this->line = {{1,1}, {1,5}};
-  this->setupCorrectNorthVerticalPlots();
-}
-
-void LinePlotterTest::setupCorrectNorthVerticalPlots()
-{
-  this->correctPlotPoints = {
-    {1,1}, {1,2}, {1,3}, {1,4}, {1,5}
-  };
-}
-
-void LinePlotterTest::setupSouthVerticalLine()
-{
-  this->line = {{1,5}, {1,1}};
-  this->setupCorrectSouthVerticalPlots();
-}
-
-void LinePlotterTest::setupCorrectSouthVerticalPlots()
-{
-  this->correctPlotPoints = {
-    {1,1}, {1,2}, {1,3}, {1,4}, {1,5}
   };
 }
 

@@ -2,7 +2,6 @@
 
 #include <vector>
 #include "src/main/cpp/geometry/line/line.h"
-#include "src/main/cpp/rasterisation/plotters/line/axes.h"
 #include "src/main/cpp/maths/vector/vector.h"
 
 namespace Geometry {
@@ -15,15 +14,18 @@ public:
 
 private:
   std::vector<Maths::Vector> plotPoints;
-  Geometry::ErrorAxes errorAxes;
   
-  double error;
+  double errorTracker;
+  double errorIncrementDirection;
+  double errorRise;
+  double errorRun;
 
-  void initialise(Geometry::Line& line);
+  void initialiseErrorIncrementDirection();
+
   void plotSlopedLine(Geometry::Line& line);
   void plotSlopelessLine(Geometry::Line& line);
   void addPointWithYError(double x, double&y);
-  void initialiseErrorAxis();
+  void initialiseErrorTracker();
   void updateErrorAxis(double& y);
   void updateError();
   bool shouldIncrementErrorAxis();  

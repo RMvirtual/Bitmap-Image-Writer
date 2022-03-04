@@ -16,7 +16,7 @@ public:
   void setEndpoints(Maths::Vector origin, Maths::Vector destination);
   void switchEndpoints();
   void sortByXAscending();
-  void switchAxes();
+  void sortByYAscending();
 
   Maths::Vector origin();
   Maths::Vector destination();
@@ -37,6 +37,7 @@ public:
   bool isTraversingWest();
   bool isTraversingSouth();
   bool isDescendingByX();
+  bool isDescendingByY();
 
 private:
   Maths::Vector _origin;

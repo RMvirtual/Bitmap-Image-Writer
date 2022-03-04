@@ -35,63 +35,74 @@ void Geometry::LinePlotter::plotSlopelessLine(Geometry::Line& line)
 void Geometry::LinePlotter::plotSlopedLine(Geometry::Line& line)
 {
   line.sortByXAscending();
-  this->initialise(line);
 
-  auto alteredX0 = this->errorAxes["x0"];
-  auto alteredY0 = this->errorAxes["y0"];
-  auto alteredX1 = this->errorAxes["x1"];
-  auto alteredY1 = this->errorAxes["y1"];
+  auto constantAxisLowerBound = line["x0"];
+  auto constantAxisUpperBound = line["x1"];
+  auto errorAxisLowerBound = line["y0"];
+  auto errorAxisUpperBound = line["y1"];
 
-  auto constantAxis0 = line[alteredX0];
-  auto constantAxis1 = line[alteredX1];
-  auto errorAxis0 = line[alteredY0];
-  auto errorAxis1 = line[alteredY1];
-  
-  std::cout << "x0 : " << alteredX0 << std::endl;
-  std::cout << "x1 : " << alteredX1 << std::endl;
-  std::cout << "y0 : " << alteredY0 << std::endl;
-  std::cout << "y1 : " << alteredY1 << std::endl;
+  this->errorRun = line.run();
+  this->errorRise = line.rise();
 
-  std::cout << "constant 0: " << constantAxis0 << std::endl;
-  std::cout << "constant 1: " << constantAxis1 << std::endl;
-  std::cout << "error 0: " << errorAxis0 << std::endl;
-  std::cout << "error 1: " << errorAxis1 << std::endl;
+  this->initialiseErrorIncrementDirection();
+  this->initialiseErrorTracker();
 
-
-  // Need to determine a:
-    // constant axis
-    // axis that increments upon error
-  // Then need to map these to x and y in the right order depending.
-
-  auto constant = constantAxis0;
-  auto error = errorAxis0;
+  auto constant = constantAxisLowerBound;
+  auto error = errorAxisLowerBound;
   
   double* x = &constant;
   double* y = &error;
 
-  if (this->errorAxes.xIsErrorAxis()) {
+  if (line.isVerticallySloped()) {
+    line.sortByYAscending();
+
+    constantAxisLowerBound = line["y0"];
+    constantAxisUpperBound = line["y1"];
+    errorAxisLowerBound = line["x0"];
+    errorAxisUpperBound = line["x1"];
+
+    this->errorRun = line.rise();
+    this->errorRise = line.run();
+
+    this->initialiseErrorIncrementDirection();
+    this->initialiseErrorTracker();
+
+    constant = constantAxisLowerBound;
+    error = errorAxisLowerBound;
+  
     x = &error;
     y = &constant;
   }
 
-  for (; constant <= constantAxis1; constant++) {
+  /*
+  std::cout << "constant 0: " << constantAxisLowerBound << std::endl;
+  std::cout << "constant 1: " << constantAxisUpperBound << std::endl;
+  std::cout << "error 0: " << errorAxisLowerBound << std::endl;
+  std::cout << "error 1: " << errorAxisUpperBound << std::endl;
+  */
+
+  std::cout << "Initialised error tracker: " << this->errorTracker << std::endl;
+
+  for (; constant <= constantAxisUpperBound; constant++) {
     this->plotPoints.push_back({*x, *y});
     this->updateErrorAxis(error);
+    std::cout << "Error now: " << this->errorTracker << std::endl;
   }
 }
 
-void Geometry::LinePlotter::initialise(Geometry::Line& line)
+void Geometry::LinePlotter::initialiseErrorTracker()
 {
-  this->errorAxes = {line};
-  this->initialiseErrorAxis();
+  this->errorTracker = (2 * this->errorRise) - this->errorRun;
 }
 
-void Geometry::LinePlotter::initialiseErrorAxis()
+void Geometry::LinePlotter::initialiseErrorIncrementDirection()
 {
-  auto rise = this->errorAxes.rise();
-  auto run = this->errorAxes.run();
+  this->errorIncrementDirection = 1;
 
-  this->error = (2 * rise) - run;
+  if (this->errorRise < 0) {
+    this->errorIncrementDirection = -1;
+    this->errorRise = 0 - this->errorRise;
+  }
 }
 
 void Geometry::LinePlotter::addPointWithYError(double x, double&y)
@@ -102,25 +113,25 @@ void Geometry::LinePlotter::addPointWithYError(double x, double&y)
 
 void Geometry::LinePlotter::updateErrorAxis(double& errorAxis)
 {
-  auto errorAxisDirection = this->errorAxes.verticalIncrementDirection();
+  auto errorAxisDirection = this->errorIncrementDirection;
 
   if (this->shouldIncrementErrorAxis())
-    errorAxis += errorAxisDirection;
+    errorAxis += this->errorIncrementDirection;
 
   this->updateError();
 }
 
 bool Geometry::LinePlotter::shouldIncrementErrorAxis()
 {
-  return this->error > 0;
+  return this->errorTracker > 0;
 }
 
 void Geometry::LinePlotter::updateError()
 {
-  auto errorChange = this->errorAxes.rise();
+  auto errorChange = this->errorRise;
 
   if (this->shouldIncrementErrorAxis())
-    errorChange -= this->errorAxes.run();
+    errorChange -= this->errorRun;
 
-  this->error += 2 * errorChange;  
+  this->errorTracker += 2 * errorChange;  
 }
