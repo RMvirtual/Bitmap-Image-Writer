@@ -49,15 +49,10 @@ void Geometry::LinePlotter::plotSlopedLine(Geometry::Line line)
     this->addPointWithYError(x, y);
 }
 
-void Geometry::LinePlotter::addPoint(double x, double&y)
-{
-  this->plotPoints.push_back({x, y});
-}
-
 void Geometry::LinePlotter::addPointWithYError(double x, double&y)
 {
-    this->addPoint(x, y);
-    this->updateY(y);
+  this->plotPoints.push_back({x, y});
+  this->updateY(y);
 }
 
 void Geometry::LinePlotter::updateY(double& y)
