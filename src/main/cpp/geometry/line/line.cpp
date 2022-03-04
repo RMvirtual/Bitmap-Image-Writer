@@ -115,14 +115,14 @@ bool Geometry::Line::isVerticallySloped()
   return this->isSloped() ? abs(this->rise()) > abs(this->run()) : false;
 }
 
-bool Geometry::Line::isHorizontalLine()
-{
-  return this->rise() == 0.0;
-}
-
 bool Geometry::Line::isVerticalLine()
 {
-  return this->run() == 0.0;
+  return this->_origin["x"] == this->_destination["x"];
+}
+
+bool Geometry::Line::isHorizontalLine()
+{
+  return this->_origin["y"] == this->_destination["y"];
 }
 
 bool Geometry::Line::isTraversingEast()
