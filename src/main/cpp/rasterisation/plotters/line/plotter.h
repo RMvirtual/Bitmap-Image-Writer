@@ -28,4 +28,8 @@ private:
   void updateY(double& y);
   void updateYError();
   bool shouldIncrementY();
+
+  double lowerBound(double value1, double value2);
+  double upperBound(double value1, double value2);
+
 };}

@@ -32,13 +32,8 @@ void Geometry::LinePlotter::plotSlopelessLine(Geometry::Line line)
   auto x0 = line["x0"];
   auto x1 = line["x1"];
 
-  auto lowerBound = x0;
-  auto upperBound = x1;
-
-  if (upperBound < lowerBound) {
-    lowerBound = x1;
-    upperBound = x0;
-  }
+  auto lowerBound = this->lowerBound(x0, x1);
+  auto upperBound = this->upperBound(x0, x1);
 
   std::vector<double> xCoordinates;
 
@@ -48,13 +43,8 @@ void Geometry::LinePlotter::plotSlopelessLine(Geometry::Line line)
   auto y0 = line["y0"];
   auto y1 = line["y1"];
 
-  lowerBound = y0;
-  upperBound = y1;
-
-  if (upperBound < lowerBound) {
-    lowerBound = y1;
-    upperBound = y0;
-  }
+  lowerBound = this->lowerBound(y0, y1);
+  upperBound = this->upperBound(y0, y1);
 
   std::vector<double> yCoordinates;
 
@@ -64,6 +54,16 @@ void Geometry::LinePlotter::plotSlopelessLine(Geometry::Line line)
   for (auto x : xCoordinates)
     for (auto y : yCoordinates)
       this->addPoint(x, y);
+}
+
+double Geometry::LinePlotter::lowerBound(double value1, double value2)
+{
+  return value1 < value2 ? value1 : value2;
+}
+
+double Geometry::LinePlotter::upperBound(double value1, double value2)
+{
+  return value1 > value2 ? value1 : value2;
 }
 
 void Geometry::LinePlotter::plotSlopedLine(Geometry::Line line)
