@@ -96,3 +96,56 @@ void LinePlotterTest::setupCorrectNorthWestSouthEastPoints()
     {10,1}, {11,1}
   };
 }
+
+// Triangle functions start here.
+
+void LinePlotterTest::setupNorthEastDiagonalLine()
+{
+  this->line = {{200,200}, {205,210}};
+  this->setupCorrectNorthEastDiagonalLinePoints();
+}
+
+void LinePlotterTest::setupCorrectNorthEastDiagonalLinePoints()
+{
+  this->correctPlotPoints = {
+    {200, 200}, {200, 201},
+    {201, 202}, {201, 203},
+    {202, 204}, {202, 205},
+    {203, 206}, {203, 207},
+    {204, 208}, {204, 209},
+    {205, 210}
+  };
+}
+
+void LinePlotterTest::setupSouthEastDiagonalLine()
+{
+  this->line = {{205,210}, {210,200}};
+  this->setupCorrectSouthEastDiagonalLinePoints();
+}
+
+void LinePlotterTest::setupCorrectSouthEastDiagonalLinePoints()
+{
+  this->correctPlotPoints = {
+    {205, 210}, {205, 209},
+    {206, 208}, {206, 207},
+    {207, 206}, {207, 205},
+    {208, 204}, {208, 203},
+    {209, 202}, {209, 201},
+    {210, 200}
+  };
+}
+
+void LinePlotterTest::setupWestHorizontalLine()
+{
+  this->line = {{210,200}, {200,200}};
+  this->setupCorrectWestHorizontalLinePoints();
+}
+
+void LinePlotterTest::setupCorrectWestHorizontalLinePoints()
+{
+  this->correctPlotPoints = {
+    {210, 200}, {209, 200}, {208, 200}, {207, 200}, {206, 200},
+    {205, 200}, {204, 200}, {203, 200}, {202, 200}, {201, 200},
+    {200, 200}
+  };
+}

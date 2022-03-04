@@ -37,17 +37,10 @@ void Rasterisation::Rasteriser::draw(Geometry::Triangle triangle)
 
 
   for (auto line : lines) {
-    std::cout <<
-      "Line\n" <<
-      "x0: " << line["x0"] << ", y0: " << line["y0"] << "\n" <<
-      "x1: " << line["x1"] << ", y1: " << line["y1"] << "\n\n";
-
     // Appears to be flipping the plot point axes for some reason.    
     auto plotPoints = plotter.plot(line);
     
-    for (auto point : plotPoints) {
-      std:: cout << "Point x: " << point["x"] << ", y: " << point["y"] << std::endl;
+    for (auto point : plotPoints) 
       this->image->setPixel(point["x"], point["y"], blackColours);
-    }
   }
 }

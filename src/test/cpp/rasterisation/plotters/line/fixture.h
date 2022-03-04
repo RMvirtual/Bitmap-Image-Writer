@@ -26,11 +26,22 @@ protected:
   void setupSouthwardVerticalLine();
   void setupCorrectSouthwardVerticalLinePoints();
 
-  void setupNorthEastLine();
   void setupNorthWestLine();
   void setupSouthEastLine();
-  void setupSouthWestLine();
   void setupCorrectNorthWestSouthEastPoints();
+
+  void setupNorthEastLine();
+  void setupSouthWestLine();
   void setupCorrectNorthEastSouthWestPoints();
+
+  void setupNorthEastDiagonalLine();  
+  void setupCorrectNorthEastDiagonalLinePoints();
+
+  void setupSouthEastDiagonalLine();
+  void setupCorrectSouthEastDiagonalLinePoints();
+
+  void setupWestHorizontalLine();
+  void setupCorrectWestHorizontalLinePoints();
+
   void compare(std::vector<Maths::Vector> plotPoints);
 };
