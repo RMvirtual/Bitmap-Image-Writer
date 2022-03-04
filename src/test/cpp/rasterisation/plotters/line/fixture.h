@@ -14,34 +14,34 @@ protected:
   Geometry::LinePlotter plotter;
   Geometry::Line line;
 
-  void setupEastwardHorizontalLine();
-  void setupCorrectEastwardHorizontalLinePoints();
+  void setupEastHorizontalLine();
+  void setupCorrectEastHorizontalPlots();
 
-  void setupNorthwardVerticalLine();
-  void setupCorrectNorthwardVerticalLinePoints();
+  void setupNorthVerticalLine();
+  void setupCorrectNorthVerticalPlots();
 
-  void setupWestwardHorizontalLine();
-  void setupCorrectWestwardHorizontalLinePoints();
+  void setupWestHorizontalLine();
+  void setupCorrectWestHorizontalPlots();
 
-  void setupSouthwardVerticalLine();
-  void setupCorrectSouthwardVerticalLinePoints();
+  void setupSouthVerticalLine();
+  void setupCorrectSouthVerticalPlots();
 
   void setupNorthWestLine();
   void setupSouthEastLine();
-  void setupCorrectNorthWestSouthEastPoints();
+  void setupCorrectNorthWestSouthEastPlots();
 
   void setupNorthEastLine();
   void setupSouthWestLine();
-  void setupCorrectNorthEastSouthWestPoints();
+  void setupCorrectNorthEastSouthWestPlots();
 
-  void setupTranslatedNorthEastDiagonalLine();  
-  void setupCorrectNorthEastDiagonalLinePoints();
+  void setupTranslatedNorthEastLine();  
+  void setupCorrectTranslatedNorthEastPlots();
 
-  void setupTranslatedSouthEastDiagonalLine();
-  void setupCorrectSouthEastDiagonalLinePoints();
+  void setupTranslatedSouthEastLine();
+  void setupCorrectTranslatedSouthEastPlots();
 
-  void setupWestHorizontalLine();
-  void setupCorrectWestHorizontalLinePoints();
+  void setupTranslatedWestHorizontalLine();
+  void setupCorrectTranslatedWestHorizontalPlots();
 
   void compare(std::vector<Maths::Vector> plotPoints);
 };

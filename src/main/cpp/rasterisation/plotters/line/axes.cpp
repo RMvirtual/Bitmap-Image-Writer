@@ -1,6 +1,5 @@
 #include <unordered_map>
 #include "src/main/cpp/rasterisation/plotters/line/axes.h"
-#include <iostream>
 
 Geometry::ErrorAxes::ErrorAxes()
 {
@@ -51,10 +50,6 @@ void Geometry::ErrorAxes::tiltAxes(Geometry::Line line)
   this->_verticalAxis = "x";
   this->_run = line.rise();
   this->_rise = line.run();
-
-  std::cout << "Run is now: " << this->_run << std::endl;
-  std::cout << "Rise is now: " << this->_rise << std::endl;
-
 }
 
 void Geometry::ErrorAxes::determineVerticalAxisDirection()

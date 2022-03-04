@@ -3,7 +3,7 @@
 
 TEST_F(LinePlotterTest, ShouldPlotNorthVerticalLine)
 {
-  this->setupNorthwardVerticalLine();
+  this->setupNorthVerticalLine();
   auto plotPoints = this->plotter.plot(this->line);
 
   this->compare(plotPoints);  
@@ -11,7 +11,7 @@ TEST_F(LinePlotterTest, ShouldPlotNorthVerticalLine)
 
 TEST_F(LinePlotterTest, ShouldPlotSouthVerticalLine)
 {
-  this->setupSouthwardVerticalLine();
+  this->setupSouthVerticalLine();
   auto plotPoints = this->plotter.plot(this->line);
 
   this->compare(plotPoints);  
@@ -27,7 +27,7 @@ TEST_F(LinePlotterTest, ShouldPlotWestHorizontalLine)
 
 TEST_F(LinePlotterTest, ShouldPlotEastHorizontalLine)
 {
-  this->setupEastwardHorizontalLine();
+  this->setupEastHorizontalLine();
   auto plotPoints = this->plotter.plot(this->line);
 
   this->compare(plotPoints);  
@@ -67,7 +67,7 @@ TEST_F(LinePlotterTest, ShouldPlotShortSouthWestLine)
 
 TEST_F(LinePlotterTest, ShouldPlotTranslatedNorthEastDiagonalLine)
 {
-  this->setupTranslatedNorthEastDiagonalLine();
+  this->setupTranslatedNorthEastLine();
   auto plotPoints = this->plotter.plot(this->line);
 
   this->compare(plotPoints);  
@@ -75,7 +75,7 @@ TEST_F(LinePlotterTest, ShouldPlotTranslatedNorthEastDiagonalLine)
 
 TEST_F(LinePlotterTest, ShouldPlotTranslatedSouthEastDiagonalLine)
 {
-  this->setupTranslatedSouthEastDiagonalLine();
+  this->setupTranslatedSouthEastLine();
   auto plotPoints = this->plotter.plot(this->line);
 
   this->compare(plotPoints);  

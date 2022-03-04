@@ -3,16 +3,16 @@
 void LinePlotterTest::setupNorthEastLine()
 {
   this->line = {{1,1}, {11,5}};
-  this->setupCorrectNorthEastSouthWestPoints();
+  this->setupCorrectNorthEastSouthWestPlots();
 }
 
 void LinePlotterTest::setupSouthWestLine()
 {
   this->line = {{11,5}, {1,1}};  
-  this->setupCorrectNorthEastSouthWestPoints();
+  this->setupCorrectNorthEastSouthWestPlots();
 }
 
-void LinePlotterTest::setupCorrectNorthEastSouthWestPoints()
+void LinePlotterTest::setupCorrectNorthEastSouthWestPlots()
 {
   this->correctPlotPoints = {
     {1,1}, {2,1},
@@ -26,16 +26,16 @@ void LinePlotterTest::setupCorrectNorthEastSouthWestPoints()
 void LinePlotterTest::setupNorthWestLine()
 {
   this->line = {{11,1}, {1,5}};
-  this->setupCorrectNorthWestSouthEastPoints();
+  this->setupCorrectNorthWestSouthEastPlots();
 }
 
 void LinePlotterTest::setupSouthEastLine()
 {
   this->line = {{1,5}, {11,1}};
-  this->setupCorrectNorthWestSouthEastPoints();
+  this->setupCorrectNorthWestSouthEastPlots();
 }
 
-void LinePlotterTest::setupCorrectNorthWestSouthEastPoints()
+void LinePlotterTest::setupCorrectNorthWestSouthEastPlots()
 {
   this->correctPlotPoints = {
     {1,5}, {2,5},
@@ -46,67 +46,65 @@ void LinePlotterTest::setupCorrectNorthWestSouthEastPoints()
   };
 }
 
-void LinePlotterTest::setupEastwardHorizontalLine()
+void LinePlotterTest::setupEastHorizontalLine()
 {
   this->line = {{1,1}, {5,1}};
-  this->setupCorrectEastwardHorizontalLinePoints();
+  this->setupCorrectEastHorizontalPlots();
 }
 
-void LinePlotterTest::setupCorrectEastwardHorizontalLinePoints()
+void LinePlotterTest::setupCorrectEastHorizontalPlots()
 {
   this->correctPlotPoints = {
     {1,1}, {2,1}, {3,1}, {4,1}, {5,1}
   };
 }
 
-void LinePlotterTest::setupWestwardHorizontalLine()
+void LinePlotterTest::setupWestHorizontalLine()
 {
   this->line = {{5,1}, {1,1}};
-  this->setupCorrectEastwardHorizontalLinePoints();
+  this->setupCorrectEastHorizontalPlots();
 }
 
-void LinePlotterTest::setupCorrectWestwardHorizontalLinePoints()
+void LinePlotterTest::setupCorrectWestHorizontalPlots()
 {
   this->correctPlotPoints = {
     {1,1}, {2,1}, {3,1}, {4,1}, {5,1}
   };
 }
 
-void LinePlotterTest::setupNorthwardVerticalLine()
+void LinePlotterTest::setupNorthVerticalLine()
 {
   this->line = {{1,1}, {1,5}};
-  this->setupCorrectNorthwardVerticalLinePoints();
+  this->setupCorrectNorthVerticalPlots();
 }
 
-void LinePlotterTest::setupCorrectNorthwardVerticalLinePoints()
+void LinePlotterTest::setupCorrectNorthVerticalPlots()
 {
   this->correctPlotPoints = {
     {1,1}, {1,2}, {1,3}, {1,4}, {1,5}
   };
 }
 
-void LinePlotterTest::setupSouthwardVerticalLine()
+void LinePlotterTest::setupSouthVerticalLine()
 {
   this->line = {{1,5}, {1,1}};
-  this->setupCorrectSouthwardVerticalLinePoints();
+  this->setupCorrectSouthVerticalPlots();
 }
 
-void LinePlotterTest::setupCorrectSouthwardVerticalLinePoints()
+void LinePlotterTest::setupCorrectSouthVerticalPlots()
 {
   this->correctPlotPoints = {
     {1,1}, {1,2}, {1,3}, {1,4}, {1,5}
   };
 }
 
-// Triangle functions start here.
-
-void LinePlotterTest::setupTranslatedNorthEastDiagonalLine()
+void LinePlotterTest::setupTranslatedNorthEastLine()
 {
   this->line = {{200,200}, {205,210}};
-  this->setupCorrectNorthEastDiagonalLinePoints();
+  this->setupCorrectTranslatedNorthEastPlots();
 }
 
-void LinePlotterTest::setupCorrectNorthEastDiagonalLinePoints()
+void LinePlotterTest::setupCorrectTranslatedNorthEastPlots()
 {
   this->correctPlotPoints = {
     {200, 200}, {200, 201},
@@ -118,13 +116,13 @@ void LinePlotterTest::setupCorrectNorthEastDiagonalLinePoints()
   };
 }
 
-void LinePlotterTest::setupTranslatedSouthEastDiagonalLine()
+void LinePlotterTest::setupTranslatedSouthEastLine()
 {
   this->line = {{205,210}, {210,200}};
-  this->setupCorrectSouthEastDiagonalLinePoints();
+  this->setupCorrectTranslatedSouthEastPlots();
 }
 
-void LinePlotterTest::setupCorrectSouthEastDiagonalLinePoints()
+void LinePlotterTest::setupCorrectTranslatedSouthEastPlots()
 {
   this->correctPlotPoints = {
     {205, 210}, {205, 209},
@@ -136,13 +134,13 @@ void LinePlotterTest::setupCorrectSouthEastDiagonalLinePoints()
   };
 }
 
-void LinePlotterTest::setupWestHorizontalLine()
+void LinePlotterTest::setupTranslatedWestHorizontalLine()
 {
   this->line = {{210,200}, {200,200}};
-  this->setupCorrectWestHorizontalLinePoints();
+  this->setupCorrectTranslatedWestHorizontalPlots();
 }
 
-void LinePlotterTest::setupCorrectWestHorizontalLinePoints()
+void LinePlotterTest::setupCorrectTranslatedWestHorizontalPlots()
 {
   this->correctPlotPoints = {
     {200, 200},
