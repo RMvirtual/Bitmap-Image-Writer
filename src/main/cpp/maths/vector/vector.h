@@ -50,6 +50,9 @@ public:
   // Gets the vector element by index position.
   double at(int index) const;
 
+  double& operator [](int index);
+  double& operator [](std::string name);
+
   // Indexes the elements contained within the vector in order.
   double operator [](int index) const;
 

@@ -65,6 +65,18 @@ TEST_F(LineTest, ShouldCalculateRun)
   EXPECT_EQ(correctRun, this->line.run());
 }
 
+TEST_F(LineTest, ShouldSwitchAxes)
+{
+  this->line = {{1,5}, {2,10}};
+  this->line.switchAxes();
+
+  EXPECT_EQ(5, this->line["x0"]);
+  EXPECT_EQ(1, this->line["y0"]);
+  EXPECT_EQ(10, this->line["x1"]);
+  EXPECT_EQ(2, this->line["y1"]);
+}
+
+
 TEST_F(LineTest, ShouldDetectVerticalLine)
 {
   this->line = {{1,5}, {1,1}};

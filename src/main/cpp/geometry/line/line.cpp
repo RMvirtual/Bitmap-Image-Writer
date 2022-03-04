@@ -33,6 +33,20 @@ void Geometry::Line::setEndpoints(
   this->_destination = destination;
 }
 
+void Geometry::Line::switchAxes()
+{
+  auto swapAxes = [](Maths::Vector& axis) {
+    auto x = axis["x"];
+    auto y = axis["y"];
+
+    axis["x"] = y;
+    axis["y"] = x;
+  };
+
+  swapAxes(this->_origin);
+  swapAxes(this->_destination);
+}
+
 void Geometry::Line::sortByXAscending()
 {
   if (this->isDescendingByX())

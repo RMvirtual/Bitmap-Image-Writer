@@ -93,6 +93,20 @@ Maths::Vector Maths::Vector::multiply(const Maths::Vector& vector) const
   return this->vectorOperation<std::multiplies<double>>(vector);
 }
 
+double& Maths::Vector::operator [](int index)
+{
+  return this->values[index];
+}
+
+double& Maths::Vector::operator [](std::string name)
+{
+  std::unordered_map<std::string, int> variableNotations {
+    {"x", 0}, {"y", 1}, {"z", 2}, {"w", 3}};
+
+  return this->values[variableNotations[name]];
+}
+
+
 double Maths::Vector::operator [](int index) const
 {
   return this->at(index);

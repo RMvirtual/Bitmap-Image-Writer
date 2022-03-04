@@ -16,6 +16,7 @@ public:
   void setEndpoints(Maths::Vector origin, Maths::Vector destination);
   void reverseEndpoints();
   void sortByXAscending();
+  void switchAxes();
 
   Maths::Vector origin();
   Maths::Vector destination();
