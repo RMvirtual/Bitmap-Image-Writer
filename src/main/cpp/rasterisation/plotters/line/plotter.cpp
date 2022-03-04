@@ -2,8 +2,6 @@
 #include "src/main/cpp/maths/range/range.h"
 #include "src/main/cpp/rasterisation/plotters/line/plotter.h"
 
-#include <iostream>
-
 Geometry::LinePlotter::LinePlotter()
 {
   // pass.
@@ -73,18 +71,6 @@ void Geometry::LinePlotter::plotSlopedLine(Geometry::Line& line)
     x = &error;
     y = &constant;
   }
-
-  std::cout << "constant 0: " << constantAxisLowerBound << std::endl;
-  std::cout << "constant 1: " << constantAxisUpperBound << std::endl;
-  std::cout << "error 0: " << errorAxisLowerBound << std::endl;
-  std::cout << "error 1: " << errorAxisUpperBound << std::endl;
-  
-  std::cout << "Constant value at " << constant << std::endl;
-  std::cout << "Y value at " << *y << std::endl;
-
-  std::cout << "Error value at " << error << std::endl;
-  std::cout << "X value at " << *x << std::endl;
-
 
   for (; constant <= constantAxisUpperBound; constant++) {
     this->plotPoints.push_back({*x, *y});
