@@ -65,7 +65,7 @@ TEST_F(LinePlotterTest, ShouldPlotShortSouthWestLine)
   this->compare(plotPoints);
 }
 
-TEST_F(LinePlotterTest, ShouldPlotTranslatedNorthEastDiagonalLine)
+TEST_F(LinePlotterTest, ShouldPlotTranslatedNorthEastLine)
 {
   this->setupTranslatedNorthEastLine();
   auto plotPoints = this->plotter.plot(this->line);
@@ -73,9 +73,17 @@ TEST_F(LinePlotterTest, ShouldPlotTranslatedNorthEastDiagonalLine)
   this->compare(plotPoints);  
 }
 
-TEST_F(LinePlotterTest, ShouldPlotTranslatedSouthEastDiagonalLine)
+TEST_F(LinePlotterTest, ShouldPlotTranslatedSouthEastLine)
 {
   this->setupTranslatedSouthEastLine();
+  auto plotPoints = this->plotter.plot(this->line);
+
+  this->compare(plotPoints);  
+}
+
+TEST_F(LinePlotterTest, ShouldPlotTranslatedWestHorizontalLine)
+{
+  this->setupTranslatedWestHorizontalLine();
   auto plotPoints = this->plotter.plot(this->line);
 
   this->compare(plotPoints);  
