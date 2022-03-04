@@ -4,11 +4,11 @@
 #include "src/main/cpp/geometry/line/line.h"
 
 namespace Geometry {
-class Axes
+class SlopedAxes
 {
 public:
-  Axes();
-  Axes(Geometry::Line line);
+  SlopedAxes();
+  SlopedAxes(Geometry::Line line);
 
   void determineAxes(Geometry::Line line);
   void setNormalAxes(Geometry::Line line);

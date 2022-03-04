@@ -41,7 +41,28 @@ void Geometry::Line::normaliseEndpoints()
 
 bool Geometry::Line::hasReversedEndpoints()
 {
-  return (this->hasWestwardEndpoints() || this->hasSouthwardEndpoints());
+  // return (this->hasWestwardEndpoints() || this->hasSouthwardEndpoints());
+  
+  bool horizontalCheck = (
+    this->isHorizontalLine() && this->hasWestwardEndpoints());
+
+  bool verticalCheck = (
+    this->isVerticalLine() && this->hasSouthwardEndpoints());
+
+  bool horizontalSlopeCheck = (
+    this->isHorizontallySloped() && this->hasWestwardEndpoints()
+  );
+
+  bool verticalSlopeCheck = (
+    this->isVerticallySloped() && this->hasSouthwardEndpoints()
+  );
+
+  bool all = (
+    horizontalCheck || verticalCheck ||
+    horizontalSlopeCheck || verticalSlopeCheck
+  );
+
+  return all;
 }
 
 void Geometry::Line::reverseEndpoints()

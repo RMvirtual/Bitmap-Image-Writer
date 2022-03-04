@@ -148,8 +148,8 @@ void LinePlotterTest::setupCorrectWestHorizontalLinePoints()
   // Maybe ridding ourselves of the ordering would work?
 
   this->correctPlotPoints = {
-    {210, 200}, {209, 200}, {208, 200}, {207, 200}, {206, 200},
-    {205, 200}, {204, 200}, {203, 200}, {202, 200}, {201, 200},
-    {200, 200}
+    {200, 200},
+    {201, 200}, {202, 200}, {203, 200}, {204, 200}, {205, 200},    
+    {206, 200}, {207, 200}, {208, 200}, {209, 200}, {210, 200}    
   };
 }

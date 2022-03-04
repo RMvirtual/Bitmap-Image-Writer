@@ -15,7 +15,7 @@ public:
 
 private:
   std::vector<Maths::Vector> plotPoints;
-  Geometry::Axes axes;
+  Geometry::SlopedAxes slopedAxes;
   
   double yError;
 
