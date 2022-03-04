@@ -34,10 +34,10 @@ protected:
   void setupSouthWestLine();
   void setupCorrectNorthEastSouthWestPoints();
 
-  void setupNorthEastDiagonalLine();  
+  void setupTranslatedNorthEastDiagonalLine();  
   void setupCorrectNorthEastDiagonalLinePoints();
 
-  void setupSouthEastDiagonalLine();
+  void setupTranslatedSouthEastDiagonalLine();
   void setupCorrectSouthEastDiagonalLinePoints();
 
   void setupWestHorizontalLine();

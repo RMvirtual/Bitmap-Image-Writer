@@ -100,7 +100,7 @@ void LinePlotterTest::setupCorrectSouthwardVerticalLinePoints()
 
 // Triangle functions start here.
 
-void LinePlotterTest::setupNorthEastDiagonalLine()
+void LinePlotterTest::setupTranslatedNorthEastDiagonalLine()
 {
   this->line = {{200,200}, {205,210}};
   this->setupCorrectNorthEastDiagonalLinePoints();
@@ -118,7 +118,7 @@ void LinePlotterTest::setupCorrectNorthEastDiagonalLinePoints()
   };
 }
 
-void LinePlotterTest::setupSouthEastDiagonalLine()
+void LinePlotterTest::setupTranslatedSouthEastDiagonalLine()
 {
   this->line = {{205,210}, {210,200}};
   this->setupCorrectSouthEastDiagonalLinePoints();

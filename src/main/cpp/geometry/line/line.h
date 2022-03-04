@@ -14,7 +14,7 @@ public:
   void setOrigin(Maths::Vector coordinates);
   void setDestination(Maths::Vector coordinates);
   void setEndpoints(Maths::Vector origin, Maths::Vector destination);
-  void reverseEndpoints();
+  void switchEndpoints();
   void sortByXAscending();
   void switchAxes();
 

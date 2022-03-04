@@ -47,24 +47,24 @@ void Geometry::Line::switchAxes()
   swapAxes(this->_destination);
 }
 
-void Geometry::Line::sortByXAscending()
-{
-  if (this->isDescendingByX())
-    this->reverseEndpoints();
-}
-
-bool Geometry::Line::isDescendingByX()
-{
-  return this->isTraversingWest();
-}
-
-void Geometry::Line::reverseEndpoints()
+void Geometry::Line::switchEndpoints()
 {
   auto originalOrigin = this->_origin;
   auto originalDestination = this->_destination;
   
   this->_destination = originalOrigin;
   this->_origin = originalDestination;
+}
+
+void Geometry::Line::sortByXAscending()
+{
+  if (this->isDescendingByX())
+    this->switchEndpoints();
+}
+
+bool Geometry::Line::isDescendingByX()
+{
+  return this->isTraversingWest();
 }
 
 Maths::Vector Geometry::Line::origin()

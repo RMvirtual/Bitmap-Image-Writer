@@ -2,6 +2,8 @@
 #include "src/main/cpp/maths/range/range.h"
 #include "src/main/cpp/rasterisation/plotters/line/plotter.h"
 
+#include <iostream>
+
 Geometry::LinePlotter::LinePlotter()
 {
   // pass.
@@ -32,20 +34,32 @@ void Geometry::LinePlotter::plotSlopelessLine(Geometry::Line& line)
 
 void Geometry::LinePlotter::plotSlopedLine(Geometry::Line& line)
 {
+  line.sortByXAscending();
   this->initialise(line);
 
-  auto x0 = line[this->slopedAxes["x0"]];
-  auto x1 = line[this->slopedAxes["x1"]];
-  auto y = line[this->slopedAxes["y0"]];
+  auto alteredX0 = this->slopedAxes["x0"];
+  auto alteredY0 = this->slopedAxes["y0"];
+  auto alteredX1 = this->slopedAxes["x1"];
+  auto alteredY1 = this->slopedAxes["y1"];
 
-  for (auto x = x0; x <= x1; x++)
-    this->addPointWithYError(x, y);
+  auto x0 = line[alteredX0];
+  auto x1 = line[alteredX1];
+  auto y0 = line[alteredY0];
+  auto y1 = line[alteredY1];
+  
+  std::cout << "x0 : " << alteredX0 << std::endl;
+  std::cout << "x1 : " << alteredX1 << std::endl;
+  std::cout << "y0 : " << alteredY0 << std::endl;
+  std::cout << "y1 : " << alteredY1 << std::endl;
+
+  for (auto x = x0; x <= x1; x++) {
+    this->plotPoints.push_back({x, y0});
+    this->updateY(y0);
+  }
 }
 
 void Geometry::LinePlotter::initialise(Geometry::Line& line)
 {
-  line.sortByXAscending();
-
   this->slopedAxes = {line};
   this->initialiseYError();
 }
