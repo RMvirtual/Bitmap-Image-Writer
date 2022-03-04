@@ -125,22 +125,22 @@ bool Geometry::Line::isVerticalLine()
   return this->run() == 0.0;
 }
 
-bool Geometry::Line::isTraversingNorth()
-{
-  return this->rise() > 0;
-}
-
-bool Geometry::Line::isTraversingSouth()
-{
-  return this->rise() < 0;
-}
-
 bool Geometry::Line::isTraversingEast()
 {
-  return this->run() > 0;
+  return this->_origin["x"] < this->_destination["x"];
 }
 
 bool Geometry::Line::isTraversingWest()
 {
-  return this->run() < 0;
+  return this->_origin["x"] > this->_destination["x"];
+}
+
+bool Geometry::Line::isTraversingNorth()
+{
+  return this->_origin["y"] < this->_destination["y"];
+}
+
+bool Geometry::Line::isTraversingSouth()
+{
+  return this->_origin["y"] > this->_destination["y"];
 }
