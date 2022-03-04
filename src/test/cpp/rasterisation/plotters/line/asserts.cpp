@@ -13,6 +13,6 @@ void LinePlotterTest::compare(std::vector<Maths::Vector> plotPoints)
     auto correctPoint = this->correctPlotPoints[pointNo];
 
     EXPECT_EQ(correctPoint["x"], point["x"]);
-    EXPECT_EQ(correctPoint["y"], point["y"]) << "Failed X: " << pointNo;
+    ASSERT_EQ(correctPoint["y"], point["y"]) << "Failed X: " << pointNo;
   }
 }
