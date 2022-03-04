@@ -52,6 +52,12 @@ void Geometry::LinePlotter::plotSlopedLine(Geometry::Line& line)
   std::cout << "y0 : " << alteredY0 << std::endl;
   std::cout << "y1 : " << alteredY1 << std::endl;
 
+  std::cout << "constant 0: " << constantAxis0 << std::endl;
+  std::cout << "constant 1: " << constantAxis1 << std::endl;
+  std::cout << "error 0: " << errorAxis0 << std::endl;
+  std::cout << "error 1: " << errorAxis1 << std::endl;
+
+
   // Need to determine a:
     // constant axis
     // axis that increments upon error
