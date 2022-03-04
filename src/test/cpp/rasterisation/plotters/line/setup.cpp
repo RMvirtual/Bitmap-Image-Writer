@@ -116,7 +116,7 @@ void LinePlotterTest::setupCorrectTranslatedNorthEastPlots()
   };
 }
 
-void LinePlotterTest::setupTranslatedSouthEastLine()
+void LinePlotterTest::setupVerticallySlopedSouthEastLine()
 {
   this->line = {{205,210}, {210,200}};
   this->setupCorrectTranslatedSouthEastPlots();
@@ -125,12 +125,12 @@ void LinePlotterTest::setupTranslatedSouthEastLine()
 void LinePlotterTest::setupCorrectTranslatedSouthEastPlots()
 {
   this->correctPlotPoints = {
-    {205, 210}, {205, 209},
-    {206, 208}, {206, 207},
-    {207, 206}, {207, 205},
-    {208, 204}, {208, 203},
-    {209, 202}, {209, 201},
-    {210, 200}
+    {210, 200}, {210, 201},
+    {209, 202}, {209, 203},
+    {208, 204}, {208, 205},
+    {207, 206}, {207, 207},
+    {206, 208}, {206, 209},
+    {205, 210}
   };
 }
 

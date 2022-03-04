@@ -37,7 +37,7 @@ protected:
   void setupTranslatedNorthEastLine();  
   void setupCorrectTranslatedNorthEastPlots();
 
-  void setupTranslatedSouthEastLine();
+  void setupVerticallySlopedSouthEastLine();
   void setupCorrectTranslatedSouthEastPlots();
 
   void setupTranslatedWestHorizontalLine();

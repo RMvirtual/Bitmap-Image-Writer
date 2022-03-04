@@ -75,7 +75,7 @@ TEST_F(LinePlotterTest, ShouldPlotTranslatedNorthEastLine)
 
 TEST_F(LinePlotterTest, ShouldPlotTranslatedSouthEastLine)
 {
-  this->setupTranslatedSouthEastLine();
+  this->setupVerticallySlopedSouthEastLine();
   auto plotPoints = this->plotter.plot(this->line);
 
   this->compare(plotPoints);  
