@@ -1,6 +1,6 @@
 #include <cmath>
-#include "src/main/cpp/rasterisation/plotters/line/plotter.h"
 #include "src/main/cpp/maths/range/range.h"
+#include "src/main/cpp/rasterisation/plotters/line/plotter.h"
 
 Geometry::LinePlotter::LinePlotter()
 {
@@ -9,6 +9,8 @@ Geometry::LinePlotter::LinePlotter()
 
 std::vector<Maths::Vector> Geometry::LinePlotter::plot(Geometry::Line line)
 {  
+  this->plotPoints.clear();
+
   if (line.isSloped())
     this->plotSlopedLine(line);
 
@@ -16,15 +18,6 @@ std::vector<Maths::Vector> Geometry::LinePlotter::plot(Geometry::Line line)
     this->plotSlopelessLine(line);
 
   return plotPoints;
-}
-
-void Geometry::LinePlotter::initialise(Geometry::Line line)
-{
-  this->plotPoints.clear();
-  line.normaliseEndpoints();
-
-  this->slopedAxes = {line};
-  this->initialiseYError();
 }
 
 void Geometry::LinePlotter::plotSlopelessLine(Geometry::Line line)
@@ -49,6 +42,14 @@ void Geometry::LinePlotter::plotSlopedLine(Geometry::Line line)
     this->addPointWithYError(x, y);
 }
 
+void Geometry::LinePlotter::initialise(Geometry::Line line)
+{
+  line.normaliseEndpoints();
+
+  this->slopedAxes = {line};
+  this->initialiseYError();
+}
+
 void Geometry::LinePlotter::addPointWithYError(double x, double&y)
 {
   this->plotPoints.push_back({x, y});
@@ -64,6 +65,7 @@ void Geometry::LinePlotter::updateY(double& y)
 
   this->updateYError();
 }
+
 
 bool Geometry::LinePlotter::shouldIncrementY()
 {
