@@ -1,7 +1,7 @@
 #include <memory>
 
 #include "gtest/gtest.h"
-#include "src/test/cpp/rasterisation/fixture.h"
+#include "src/test/cpp/rasterisation/rasteriser/fixture.h"
 #include "src/main/cpp/bitmaps/formats/formats.h"
 #include "src/main/cpp/bitmaps/image/image.h"
 #include "src/main/cpp/bitmaps/writer/image/writer.h"

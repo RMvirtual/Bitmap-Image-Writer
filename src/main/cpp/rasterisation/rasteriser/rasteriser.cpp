@@ -1,4 +1,4 @@
-#include "src/main/cpp/rasterisation/rasteriser.h"
+#include "src/main/cpp/rasterisation/rasteriser/rasteriser.h"
 #include "src/main/cpp/rasterisation/plotters/line/plotter.h"
 #include "src/main/cpp/bitmaps/formats/formats.h"
 

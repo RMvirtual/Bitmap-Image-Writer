@@ -1,12 +1,13 @@
 load("@rules_cc//cc:defs.bzl", "cc_library")
 
 cc_library(
-    name = "rasterisation",
+    name = "rasteriser",
     hdrs = glob(["*.h"]),
     srcs = glob(["*.cpp"]),
     visibility = ["//visibility:public"],
     deps = [
         "//src/main/cpp/rasterisation/plotters",
-        "//src/main/cpp/rasterisation/rasteriser",
+        "//src/main/cpp/bitmaps",
+        "//src/main/cpp/geometry"
     ]
 )
