@@ -14,7 +14,7 @@ void LinePlotterTest::compare(std::vector<Maths::Vector> plotPoints)
       + ". Received x:" + std::to_string(point["x"])
       + " y:" + std::to_string(point["y"])
       + ". Expected x:" + std::to_string(correctPoint["x"])
-      + " y:" + std::to_string(correctPoint["y"])
+      + " y:" + std::to_string(correctPoint["y"]) + "\n"
     };
 
     return failure;
