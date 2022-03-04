@@ -32,28 +32,42 @@ void Geometry::LinePlotter::plotSlopelessLine(Geometry::Line line)
   auto x0 = line["x0"];
   auto x1 = line["x1"];
 
-  auto lowerBound = this->lowerBound(x0, x1);
-  auto upperBound = this->upperBound(x0, x1);
-
-  std::vector<double> xCoordinates;
-
-  for (double x = lowerBound; x <= upperBound; x++)
-    xCoordinates.push_back(x);
+  std::vector<double> xCoordinates = this->range(x0, x1);
 
   auto y0 = line["y0"];
   auto y1 = line["y1"];
 
-  lowerBound = this->lowerBound(y0, y1);
-  upperBound = this->upperBound(y0, y1);
+  std::vector<double> yCoordinates = this->range(y0, y1);
 
-  std::vector<double> yCoordinates;
+  auto plots = this->cartesianProduct(xCoordinates, yCoordinates);
+  
+  for (auto plot : plots)
+    this->plotPoints.push_back(plot);
+}
 
-  for (double y = lowerBound; y <= upperBound; y++)
-    yCoordinates.push_back(y);
+std::vector<Maths::Vector> Geometry::LinePlotter::cartesianProduct(
+  std::vector<double> set1, std::vector<double> set2)
+{
+  std::vector<Maths::Vector> cartesianProduct;
 
-  for (auto x : xCoordinates)
-    for (auto y : yCoordinates)
-      this->addPoint(x, y);
+  for (auto x : set1)
+    for (auto y : set2)
+      cartesianProduct.push_back({x,y});
+
+  return cartesianProduct;
+}
+
+std::vector<double> Geometry::LinePlotter::range(double value1, double value2)
+{
+  auto lowerBound = this->lowerBound(value1, value2);
+  auto upperBound = this->upperBound(value1, value2);
+
+  std::vector<double> range;
+
+  for (int i = lowerBound; i <= upperBound; i++)
+    range.push_back(i);
+
+  return range;
 }
 
 double Geometry::LinePlotter::lowerBound(double value1, double value2)
@@ -80,7 +94,7 @@ void Geometry::LinePlotter::plotSlopedLine(Geometry::Line line)
 
 void Geometry::LinePlotter::addPoint(double x, double&y)
 {
-    this->plotPoints.push_back({x, y});
+  this->plotPoints.push_back({x, y});
 }
 
 void Geometry::LinePlotter::addPointWithYError(double x, double&y)
