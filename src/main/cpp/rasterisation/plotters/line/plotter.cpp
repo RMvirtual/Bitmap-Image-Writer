@@ -37,68 +37,84 @@ void Geometry::LinePlotter::plotSlopedLine(Geometry::Line& line)
   line.sortByXAscending();
   this->initialise(line);
 
-  auto alteredX0 = this->slopedAxes["x0"];
-  auto alteredY0 = this->slopedAxes["y0"];
-  auto alteredX1 = this->slopedAxes["x1"];
-  auto alteredY1 = this->slopedAxes["y1"];
+  auto alteredX0 = this->errorAxes["x0"];
+  auto alteredY0 = this->errorAxes["y0"];
+  auto alteredX1 = this->errorAxes["x1"];
+  auto alteredY1 = this->errorAxes["y1"];
 
-  auto x0 = line[alteredX0];
-  auto x1 = line[alteredX1];
-  auto y0 = line[alteredY0];
-  auto y1 = line[alteredY1];
+  auto constantAxis0 = line[alteredX0];
+  auto constantAxis1 = line[alteredX1];
+  auto errorAxis0 = line[alteredY0];
+  auto errorAxis1 = line[alteredY1];
   
   std::cout << "x0 : " << alteredX0 << std::endl;
   std::cout << "x1 : " << alteredX1 << std::endl;
   std::cout << "y0 : " << alteredY0 << std::endl;
   std::cout << "y1 : " << alteredY1 << std::endl;
 
-  for (auto x = x0; x <= x1; x++) {
-    this->plotPoints.push_back({x, y0});
-    this->updateY(y0);
+  // Need to determine a:
+    // constant axis
+    // axis that increments upon error
+  // Then need to map these to x and y in the right order depending.
+
+  auto constant = constantAxis0;
+  auto error = errorAxis0;
+  
+  double* x = &constant;
+  double* y = &error;
+
+  if (this->errorAxes.xIsErrorAxis()) {
+    x = &error;
+    y = &constant;
+  }
+
+  for (; constant <= constantAxis1; constant++) {
+    this->plotPoints.push_back({*x, *y});
+    this->updateErrorAxis(error);
   }
 }
 
 void Geometry::LinePlotter::initialise(Geometry::Line& line)
 {
-  this->slopedAxes = {line};
-  this->initialiseYError();
+  this->errorAxes = {line};
+  this->initialiseErrorAxis();
 }
 
-void Geometry::LinePlotter::initialiseYError()
+void Geometry::LinePlotter::initialiseErrorAxis()
 {
-  auto rise = this->slopedAxes.rise();
-  auto run = this->slopedAxes.run();
+  auto rise = this->errorAxes.rise();
+  auto run = this->errorAxes.run();
 
-  this->yError = (2 * rise) - run;
+  this->error = (2 * rise) - run;
 }
 
 void Geometry::LinePlotter::addPointWithYError(double x, double&y)
 {
   this->plotPoints.push_back({x, y});
-  this->updateY(y);
+  this->updateErrorAxis(y);
 }
 
-void Geometry::LinePlotter::updateY(double& y)
+void Geometry::LinePlotter::updateErrorAxis(double& errorAxis)
 {
-  auto yDirection = this->slopedAxes.verticalIncrementDirection();
+  auto errorAxisDirection = this->errorAxes.verticalIncrementDirection();
 
-  if (this->shouldIncrementY())
-    y += yDirection;
+  if (this->shouldIncrementErrorAxis())
+    errorAxis += errorAxisDirection;
 
-  this->updateYError();
+  this->updateError();
 }
 
-bool Geometry::LinePlotter::shouldIncrementY()
+bool Geometry::LinePlotter::shouldIncrementErrorAxis()
 {
-  return this->yError > 0;
+  return this->error > 0;
 }
 
-void Geometry::LinePlotter::updateYError()
+void Geometry::LinePlotter::updateError()
 {
-  auto yErrorChange = this->slopedAxes.rise();
+  auto errorChange = this->errorAxes.rise();
 
-  if (this->shouldIncrementY())
-    yErrorChange -= this->slopedAxes.run();
+  if (this->shouldIncrementErrorAxis())
+    errorChange -= this->errorAxes.run();
 
-  this->yError += 2 * yErrorChange;  
+  this->error += 2 * errorChange;  
 }

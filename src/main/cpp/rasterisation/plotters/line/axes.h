@@ -4,15 +4,18 @@
 #include "src/main/cpp/geometry/line/line.h"
 
 namespace Geometry {
-class SlopedAxes
+class ErrorAxes
 {
 public:
-  SlopedAxes();
-  SlopedAxes(Geometry::Line line);
+  ErrorAxes();
+  ErrorAxes(Geometry::Line line);
 
   void determineAxes(Geometry::Line line);
   void setNormalAxes(Geometry::Line line);
   void tiltAxes(Geometry::Line line);
+
+  bool xIsErrorAxis();
+  bool yIsErrorAxis();
 
   std::string horizontalAxis();
   std::string verticalAxis();

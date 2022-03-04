@@ -2,17 +2,17 @@
 #include "src/main/cpp/rasterisation/plotters/line/axes.h"
 #include <iostream>
 
-Geometry::SlopedAxes::SlopedAxes()
+Geometry::ErrorAxes::ErrorAxes()
 {
   // pass.
 }
 
-Geometry::SlopedAxes::SlopedAxes(Geometry::Line line)
+Geometry::ErrorAxes::ErrorAxes(Geometry::Line line)
 {
   this->determineAxes(line);
 }
 
-std::string Geometry::SlopedAxes::operator [](std::string vertex)
+std::string Geometry::ErrorAxes::operator [](std::string vertex)
 {
   std::unordered_map<std::string, std::string> vertices {
     {"x0", this->_horizontalAxis + "0"},
@@ -24,7 +24,7 @@ std::string Geometry::SlopedAxes::operator [](std::string vertex)
   return vertices[vertex];
 }
 
-void Geometry::SlopedAxes::determineAxes(Geometry::Line line)
+void Geometry::ErrorAxes::determineAxes(Geometry::Line line)
 {  
   bool shouldTiltAxis = line.isVerticallySloped();
 
@@ -37,7 +37,7 @@ void Geometry::SlopedAxes::determineAxes(Geometry::Line line)
   this->determineVerticalAxisDirection();
 }
 
-void Geometry::SlopedAxes::setNormalAxes(Geometry::Line line)
+void Geometry::ErrorAxes::setNormalAxes(Geometry::Line line)
 {
   this->_horizontalAxis = "x";
   this->_verticalAxis = "y";
@@ -45,7 +45,7 @@ void Geometry::SlopedAxes::setNormalAxes(Geometry::Line line)
   this->_rise = line.rise();
 }
 
-void Geometry::SlopedAxes::tiltAxes(Geometry::Line line)
+void Geometry::ErrorAxes::tiltAxes(Geometry::Line line)
 {
   this->_horizontalAxis = "y";
   this->_verticalAxis = "x";
@@ -57,7 +57,7 @@ void Geometry::SlopedAxes::tiltAxes(Geometry::Line line)
 
 }
 
-void Geometry::SlopedAxes::determineVerticalAxisDirection()
+void Geometry::ErrorAxes::determineVerticalAxisDirection()
 {
   this->_verticalChangeAmount = 1;
 
@@ -67,26 +67,36 @@ void Geometry::SlopedAxes::determineVerticalAxisDirection()
   }
 }
 
-std::string Geometry::SlopedAxes::horizontalAxis()
+bool Geometry::ErrorAxes::xIsErrorAxis()
+{
+  return this->_verticalAxis == "x";
+}
+
+bool Geometry::ErrorAxes::yIsErrorAxis()
+{
+  return this->_verticalAxis == "y";
+}
+
+std::string Geometry::ErrorAxes::horizontalAxis()
 {
   return this->_horizontalAxis;
 }
-std::string Geometry::SlopedAxes::verticalAxis()
+std::string Geometry::ErrorAxes::verticalAxis()
 {
   return this->_verticalAxis;
 }
 
-double Geometry::SlopedAxes::verticalIncrementDirection()
+double Geometry::ErrorAxes::verticalIncrementDirection()
 {
   return this->_verticalChangeAmount;
 }
 
-double Geometry::SlopedAxes::run()
+double Geometry::ErrorAxes::run()
 {
   return this->_run;
 }
 
-double Geometry::SlopedAxes::rise()
+double Geometry::ErrorAxes::rise()
 {
   return this->_rise;
 }

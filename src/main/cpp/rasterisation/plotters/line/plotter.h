@@ -15,16 +15,16 @@ public:
 
 private:
   std::vector<Maths::Vector> plotPoints;
-  Geometry::SlopedAxes slopedAxes;
+  Geometry::ErrorAxes errorAxes;
   
-  double yError;
+  double error;
 
   void initialise(Geometry::Line& line);
   void plotSlopedLine(Geometry::Line& line);
   void plotSlopelessLine(Geometry::Line& line);
   void addPointWithYError(double x, double&y);
-  void initialiseYError();
-  void updateY(double& y);
-  void updateYError();
-  bool shouldIncrementY();  
+  void initialiseErrorAxis();
+  void updateErrorAxis(double& y);
+  void updateError();
+  bool shouldIncrementErrorAxis();  
 };}
