@@ -28,7 +28,11 @@ TEST_F(RasterisationTest, ShouldDrawTriangle)
   this->rasteriser.draw(triangle);
 
   Bitmaps::ImageWriter writer;
-  writer.writeToFile(*image, "C:/Users/rmvir/Desktop/myfile.bmp");
+  
+  writer.writeToFile(
+    *image,
+    "C:/Users/rmvir/Desktop/scc300-Win3D/resources/test/output/triangle.bmp"
+  );
 
   EXPECT_TRUE(false);
 }
