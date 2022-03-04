@@ -81,8 +81,10 @@ double Geometry::Line::gradient()
   auto yChange = this->rise();
 
   bool hasZeroDivision = (xChange == 0);
+  // Not too sure on what value to return when x's change is 0 as
+  // can't divide by zero.
 
-  return hasZeroDivision ? 1 : yChange / xChange;
+  return hasZeroDivision ? 0 : yChange / xChange;
 }
 
 double Geometry::Line::run()
@@ -95,14 +97,14 @@ double Geometry::Line::rise()
   return this->_destination["y"] - this->_origin["y"];
 }
 
+bool Geometry::Line::isSloped()
+{
+  return !this->isSlopeless();
+}
+
 bool Geometry::Line::isSlopeless()
 {
   return (this->isHorizontalLine() || this->isVerticalLine());
-}
-
-bool Geometry::Line::isSloped()
-{
-  return (!this->isSlopeless());
 }
 
 bool Geometry::Line::isHorizontallySloped()

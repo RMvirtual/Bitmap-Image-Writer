@@ -20,7 +20,7 @@ std::vector<Maths::Vector> Geometry::LinePlotter::plot(Geometry::Line line)
   return plotPoints;
 }
 
-void Geometry::LinePlotter::plotSlopelessLine(Geometry::Line line)
+void Geometry::LinePlotter::plotSlopelessLine(Geometry::Line& line)
 {
   auto xCoordinates = Maths::range(line["x0"], line["x1"]);
   auto yCoordinates = Maths::range(line["y0"], line["y1"]);
@@ -30,7 +30,7 @@ void Geometry::LinePlotter::plotSlopelessLine(Geometry::Line line)
     this->plotPoints.push_back(plot);
 }
 
-void Geometry::LinePlotter::plotSlopedLine(Geometry::Line line)
+void Geometry::LinePlotter::plotSlopedLine(Geometry::Line& line)
 {
   this->initialise(line);
 
@@ -42,7 +42,7 @@ void Geometry::LinePlotter::plotSlopedLine(Geometry::Line line)
     this->addPointWithYError(x, y);
 }
 
-void Geometry::LinePlotter::initialise(Geometry::Line line)
+void Geometry::LinePlotter::initialise(Geometry::Line& line)
 {
   line.sortByXAscending();
 

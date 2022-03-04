@@ -19,9 +19,9 @@ private:
   
   double yError;
 
-  void initialise(Geometry::Line line);
-  void plotSlopedLine(Geometry::Line line);
-  void plotSlopelessLine(Geometry::Line line);
+  void initialise(Geometry::Line& line);
+  void plotSlopedLine(Geometry::Line& line);
+  void plotSlopelessLine(Geometry::Line& line);
   void addPointWithYError(double x, double&y);
   void initialiseYError();
   void updateY(double& y);
