@@ -10,10 +10,10 @@ void LinePlotterTest::compare(std::vector<Maths::Vector> plotPoints)
 
   auto failureDetails = [](int pointNo, Maths::Vector correctPoint, Maths::Vector point) {
     std::string failure = {
-      "Failed point No:" + std::to_string(pointNo)
-      + ". Received x:" + std::to_string(point["x"])
-      + " y:" + std::to_string(point["y"])
-      + ". Expected x:" + std::to_string(correctPoint["x"])
+      "Failed point No:" + std::to_string(pointNo) + "\n"
+      + "Received x:" + std::to_string(point["x"])
+      + " y:" + std::to_string(point["y"]) + "\n"
+      + "Expected x:" + std::to_string(correctPoint["x"])
       + " y:" + std::to_string(correctPoint["y"]) + "\n"
     };
 
