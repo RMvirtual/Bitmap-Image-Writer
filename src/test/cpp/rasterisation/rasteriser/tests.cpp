@@ -23,21 +23,19 @@ TEST_F(RasterisationTest, ShouldDrawAllTheThings)
 
   image->fill(redColours);
 
-  /*
   Geometry::Triangle triangle;
   triangle.translate({200,200});
   triangle.scale(100);
-  */
 
   auto letterH = Rasterisation::letterH(100);
 
   this->rasteriser.setWritableImage(image);
-  this->rasteriser.draw(letterH);
+  this->rasteriser.draw(triangle);
 
   Bitmaps::ImageWriter writer;
   
   writer.writeToFile(
     *image,
-    "C:/Users/rmvir/Desktop/scc300-Win3D/resources/test/output/letter.bmp"
+    "C:/Users/rmvir/Desktop/scc300-Win3D/resources/test/output/triangle.bmp"
   );
 }

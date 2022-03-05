@@ -37,8 +37,12 @@ void Rasterisation::Rasteriser::draw(std::vector<Geometry::Line> lines)
   for (auto line : lines) {
     auto plotPoints = plotter.plot(line);
     
-    for (auto point : plotPoints)
-      this->image->setPixel(point["x"], point["y"], blackColours);
+    for (auto point : plotPoints) {
+      auto pixelColumn = point["x"];
+      auto pixelRow = point["y"];
+
+      this->image->setPixel(pixelRow, pixelColumn, blackColours);
+    }
   }
 }
 
