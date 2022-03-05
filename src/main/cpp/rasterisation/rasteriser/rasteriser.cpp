@@ -19,7 +19,7 @@ void Rasterisation::Rasteriser::setWritableImage(
   this->image = writableImage;
 }
 
-void Rasterisation::Rasteriser::draw(std::vector<Geometry::Line> lines)
+void Rasterisation::Rasteriser::draw(Geometry::Line line)
 {
   auto format = Bitmaps::format("RGB");
   auto blackColours = format.colours();
@@ -29,17 +29,20 @@ void Rasterisation::Rasteriser::draw(std::vector<Geometry::Line> lines)
   blackColours["blue"] = 0;
 
   Geometry::LinePlotter plotter;
+  auto plotPoints = plotter.plot(line);
+  
+  for (auto point : plotPoints) {
+    auto pixelColumn = point["x"];
+    auto pixelRow = point["y"];
 
-  for (auto line : lines) {
-    auto plotPoints = plotter.plot(line);
-    
-    for (auto point : plotPoints) {
-      auto pixelColumn = point["x"];
-      auto pixelRow = point["y"];
-
-      this->image->setPixel(pixelRow, pixelColumn, blackColours);
-    }
+    this->image->setPixel(pixelRow, pixelColumn, blackColours);
   }
+}
+
+void Rasterisation::Rasteriser::draw(std::vector<Geometry::Line> lines)
+{
+  for (auto line : lines)
+    this->draw(line);
 }
 
 void Rasterisation::Rasteriser::draw(Geometry::Triangle triangle)

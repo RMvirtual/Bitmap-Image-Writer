@@ -13,8 +13,10 @@ public:
   Rasteriser(std::shared_ptr<Bitmaps::Image> writableImage);
 
   void setWritableImage(std::shared_ptr<Bitmaps::Image> writableImage);
-  void draw(Geometry::Triangle triangle);
+
+  void draw(Geometry::Line line);
   void draw(std::vector<Geometry::Line> lines);
+  void draw(Geometry::Triangle triangle);
 private:
   std::shared_ptr<Bitmaps::Image> image;
 };}
