@@ -122,8 +122,6 @@ TEST_F(TriangleTest, ShouldScaleTriangle)
 
 TEST_F(TriangleTest, ShouldScaleTriangleFromNonZeroOrigin)
 {
-  Maths::Vector translation {3, 3};
-
   std::vector<Maths::Vector> v = {
     {5, 5}, {10, 15}, {15, 7}
   };
@@ -132,7 +130,7 @@ TEST_F(TriangleTest, ShouldScaleTriangleFromNonZeroOrigin)
   this->triangle.scale(2);
 
   std::vector<Maths::Vector> correctVectors = {
-    {5,5}, {5,20}, {20,9}
+    {5,5}, {15,25}, {25,9}
   };
 
   for (int i = 0; i < 3; i++) {
