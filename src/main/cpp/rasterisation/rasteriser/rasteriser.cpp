@@ -2,8 +2,6 @@
 #include "src/main/cpp/rasterisation/plotters/line/plotter.h"
 #include "src/main/cpp/bitmaps/formats/formats.h"
 
-#include <iostream>
-
 Rasterisation::Rasteriser::Rasteriser()
 {
   // pass.
@@ -23,8 +21,6 @@ void Rasterisation::Rasteriser::setWritableImage(
 
 void Rasterisation::Rasteriser::draw(std::vector<Geometry::Line> lines)
 {
-  std::cout << "Gets here.\n";
-
   auto format = Bitmaps::format("RGB");
   auto blackColours = format.colours();
 
