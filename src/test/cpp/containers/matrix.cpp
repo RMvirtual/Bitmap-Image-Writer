@@ -50,6 +50,23 @@ TEST(Matrix2D, ShouldGetElementWithAbsoluteIndex)
   EXPECT_EQ(matrix.at(3), value2);
 }
 
+TEST(Matrix2D, ShouldSetElementWithRowAndColumn)
+{
+  int width = 5;
+  int height = 3;
+
+  std::string value1 = "0, 1";
+  std::string value2 = "1, 1";
+  
+  Matrix2D<std::string> matrix {width, height, "0"};
+  matrix.set(value1, 2, 1);
+  matrix.set(value2, 1, 5);
+
+  EXPECT_EQ(matrix.at(2, 1), value1);
+  EXPECT_EQ(matrix.at(1, 5), value2);
+}
+
+
 TEST(Matrix2D, ShouldGetElementWithDoubleSubscriptOperator)
 {
   int width = 2;
@@ -65,7 +82,6 @@ TEST(Matrix2D, ShouldGetElementWithDoubleSubscriptOperator)
   EXPECT_EQ(matrix[0][1], value1);
   EXPECT_EQ(matrix[1][1], value2);
 }
-
 
 TEST(Matrix2D, ShouldFillMatrix)
 {
