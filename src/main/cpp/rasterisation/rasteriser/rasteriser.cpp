@@ -35,7 +35,12 @@ void Rasterisation::Rasteriser::draw(Geometry::Triangle triangle)
     // Appears to be flipping the plot point axes for some reason.    
     auto plotPoints = plotter.plot(line);
     
-    for (auto point : plotPoints) 
+    std::cout << "New line: x: " << line.origin()["x"] << " y: " << line.origin()["y"]
+      << " to x: " << line.destination()["x"] << " y: " << line.destination()["y"] << std::endl;
+
+    for (auto point : plotPoints) {
       this->image->setPixel(point["x"], point["y"], blackColours);
+      std::cout << "Setting pixel x:" << point["x"] << " y: " << point["y"] << std::endl; 
+    }
   }
 }

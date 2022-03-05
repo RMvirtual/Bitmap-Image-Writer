@@ -1,6 +1,6 @@
 #include "src/test/cpp/geometry/triangle/fixture.h"
 
-TEST_F(TriangleTest, ShouldTranslate2DTriangle)
+TEST_F(TriangleTest, ShouldTranslateTriangleFromZero)
 {
   Maths::Vector translation {3, 3};
 
@@ -14,6 +14,30 @@ TEST_F(TriangleTest, ShouldTranslate2DTriangle)
 
   std::vector<Maths::Vector> correctVectors = {
     {3,3}, {4,4}, {5,3}
+  };
+
+  for (int i = 0; i < 3; i++) {
+    auto vector = this->triangle[i];
+    auto correctVector = correctVectors[i];
+
+    EXPECT_EQ(correctVector["x"], vector["x"]);
+    EXPECT_EQ(correctVector["y"], vector["y"]);
+  }
+}
+
+TEST_F(TriangleTest, ShouldTranslateTriangleFromNonZero)
+{
+  Maths::Vector translation {3, 3};
+
+  std::vector<Maths::Vector> v = {
+    {5, 5}, {10, 15}, {15, 7}
+  };
+
+  this->triangle = {v};
+  this->triangle.translate(translation);
+
+  std::vector<Maths::Vector> correctVectors = {
+    {8,8}, {13,18}, {18,10}
   };
 
   for (int i = 0; i < 3; i++) {
@@ -47,17 +71,19 @@ TEST_F(TriangleTest, ShouldScaleTriangle)
   }
 }
 
-TEST_F(TriangleTest, ShouldScaleTriangleFromDifferentOrigin)
+TEST_F(TriangleTest, ShouldScaleTriangleFromNonZeroOrigin)
 {
+  Maths::Vector translation {3, 3};
+
   std::vector<Maths::Vector> v = {
-    {0.0, 0.0}, {1.0, 1.0}, {2.0, 0.0}
+    {5, 5}, {10, 15}, {15, 7}
   };
 
   this->triangle = {v};
-  this->triangle.scale(4, 2);
+  this->triangle.scale(2);
 
   std::vector<Maths::Vector> correctVectors = {
-    {0.0, 0.0}, {4, 4}, {8, 0.0}
+    {5,5}, {5,20}, {20,9}
   };
 
   for (int i = 0; i < 3; i++) {
@@ -68,7 +94,6 @@ TEST_F(TriangleTest, ShouldScaleTriangleFromDifferentOrigin)
     EXPECT_EQ(correctVector["y"], vector["y"]);
   }
 }
-
 
 TEST_F(TriangleTest, ShouldGetLinesFromTriangle)
 {
