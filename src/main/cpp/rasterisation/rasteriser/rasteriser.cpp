@@ -2,6 +2,8 @@
 #include "src/main/cpp/rasterisation/plotters/line/plotter.h"
 #include "src/main/cpp/bitmaps/formats/formats.h"
 
+#include <iostream>
+
 Rasterisation::Rasteriser::Rasteriser()
 {
   // pass.
@@ -19,8 +21,10 @@ void Rasterisation::Rasteriser::setWritableImage(
   this->image = writableImage;
 }
 
-void Rasterisation::Rasteriser::draw(Geometry::Triangle triangle)
+void Rasterisation::Rasteriser::draw(std::vector<Geometry::Line> lines)
 {
+  std::cout << "Gets here.\n";
+
   auto format = Bitmaps::format("RGB");
   auto blackColours = format.colours();
 
@@ -29,18 +33,16 @@ void Rasterisation::Rasteriser::draw(Geometry::Triangle triangle)
   blackColours["blue"] = 0;
 
   Geometry::LinePlotter plotter;
-  auto lines = triangle.toLines();
 
   for (auto line : lines) {
-    // Appears to be flipping the plot point axes for some reason.    
     auto plotPoints = plotter.plot(line);
     
-    std::cout << "New line: x: " << line.origin()["x"] << " y: " << line.origin()["y"]
-      << " to x: " << line.destination()["x"] << " y: " << line.destination()["y"] << std::endl;
-
-    for (auto point : plotPoints) {
+    for (auto point : plotPoints)
       this->image->setPixel(point["x"], point["y"], blackColours);
-      std::cout << "Setting pixel x:" << point["x"] << " y: " << point["y"] << std::endl; 
-    }
   }
+}
+
+void Rasterisation::Rasteriser::draw(Geometry::Triangle triangle)
+{
+  this->draw(triangle.toLines());
 }
