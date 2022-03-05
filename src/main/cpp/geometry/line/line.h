@@ -17,6 +17,9 @@ public:
   void switchEndpoints();
   void sortByXAscending();
   void sortByYAscending();
+  void translate(Maths::Vector translate);
+  void scale(double scalar);
+
 
   Maths::Vector origin();
   Maths::Vector destination();

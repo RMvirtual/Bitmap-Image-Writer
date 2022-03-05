@@ -1,6 +1,33 @@
 #include "gtest/gtest.h"
 #include "src/test/cpp/geometry/line/fixture.h"
 
+TEST_F(LineTest, ShouldTranslateLine)
+{
+  this->line = {{5,5}, {10, 15}};
+  Maths::Vector translation = {10,15};
+  this->line.translate(translation);
+
+  Geometry::Line correctLine {{15,20}, {20,30}};
+
+  EXPECT_EQ(correctLine["x0"], this->line["x0"]);
+  EXPECT_EQ(correctLine["y0"], this->line["y0"]);
+  EXPECT_EQ(correctLine["x1"], this->line["x1"]);
+  EXPECT_EQ(correctLine["y1"], this->line["y1"]);
+}
+
+TEST_F(LineTest, ShouldScaleLine)
+{
+  this->line = {{5,5}, {10, 15}};
+  this->line.scale(10);
+
+  Geometry::Line correctLine {{5,5}, {55,105}};
+
+  EXPECT_EQ(correctLine["x0"], this->line["x0"]);
+  EXPECT_EQ(correctLine["y0"], this->line["y0"]);
+  EXPECT_EQ(correctLine["x1"], this->line["x1"]);
+  EXPECT_EQ(correctLine["y1"], this->line["y1"]);
+}
+
 TEST_F(LineTest, ShouldCalculateGradientFromZeroXEqualToY)
 {
   this->line = {{5, 5}};
@@ -129,3 +156,4 @@ TEST_F(LineTest, ShouldDetectAsTraversingSouthWest)
   EXPECT_FALSE(this->line.isTraversingNorth());
   EXPECT_FALSE(this->line.isTraversingEast());  
 }
+

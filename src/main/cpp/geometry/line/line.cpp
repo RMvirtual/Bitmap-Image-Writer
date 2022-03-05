@@ -42,6 +42,20 @@ void Geometry::Line::switchEndpoints()
   this->_origin = originalDestination;
 }
 
+void Geometry::Line::translate(Maths::Vector translation)
+{
+  this->_origin = this->_origin + translation;
+  this->_destination = this->_destination + translation;
+}
+
+void Geometry::Line::scale(double scalar)
+{
+  auto lineLength = this->_destination - this->_origin;
+  auto scaledLength = lineLength * scalar;
+
+  this->_destination = this->_origin + scaledLength;
+}
+
 void Geometry::Line::sortByXAscending()
 {
   if (this->isDescendingByX())
