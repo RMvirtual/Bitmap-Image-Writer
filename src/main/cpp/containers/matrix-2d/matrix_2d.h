@@ -38,9 +38,11 @@ private:
 template <class T>
 Matrix2D<T>::Matrix2D(int width, int height, const T& defaultValue)
 {
-  for (int rowNo = 0; rowNo < height; rowNo++)
-    this->rows.push_back({width, defaultValue});
-
+  for (int rowNo = 0; rowNo < height; rowNo++) {
+    MatrixRow<T> row {width, defaultValue};
+    this->rows.push_back(row);
+  }
+  
   this->_width = width;
   this->_height = height;  
 }
@@ -68,27 +70,13 @@ void Matrix2D<T>::fill(const T& value)
 }
 
 template <class T>
-T Matrix2D<T>::at(int rowNo, int columnIndex) const
+T& Matrix2D<T>::at(int rowNo, int columnIndex)
 {
   return this->rows.at(rowNo).at(columnIndex);
 }
 
 template <class T>
-T Matrix2D<T>::at(int absoluteIndex) const
-{
-  auto index = this->matrixIndex(absoluteIndex);
-
-  return this->at(index);
-}
-
-template <class T>
-T Matrix2D<T>::at(const Index& index) const
-{
-  return this->at(index.row, index.column);
-}
-
-template <class T>
-T& Matrix2D<T>::at(int rowNo, int columnIndex)
+T Matrix2D<T>::at(int rowNo, int columnIndex) const
 {
   return this->rows.at(rowNo).at(columnIndex);
 }
@@ -102,7 +90,21 @@ T& Matrix2D<T>::at(int absoluteIndex)
 }
 
 template <class T>
+T Matrix2D<T>::at(int absoluteIndex) const
+{
+  auto index = this->matrixIndex(absoluteIndex);
+
+  return this->at(index);
+}
+
+template <class T>
 T& Matrix2D<T>::at(const Index& index)
+{
+  return this->at(index.row, index.column);
+}
+
+template <class T>
+T Matrix2D<T>::at(const Index& index) const
 {
   return this->at(index.row, index.column);
 }
@@ -138,5 +140,5 @@ Index Matrix2D<T>::matrixIndex(int absoluteIndex) const
 template <class T>
 int Matrix2D<T>::absoluteIndex(const Index& matrixIndex) const
 {
-  return ((matrixIndex.row * this->_width) + matrixIndex.column);
+  return (matrixIndex.row * this->_width) + matrixIndex.column;
 }

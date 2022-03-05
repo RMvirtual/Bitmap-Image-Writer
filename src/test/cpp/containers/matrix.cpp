@@ -60,10 +60,10 @@ TEST(Matrix2D, ShouldSetElementWithRowAndColumn)
   
   Matrix2D<std::string> matrix {width, height, "0"};
   matrix.set(value1, 2, 1);
-  matrix.set(value2, 1, 5);
+  matrix.set(value2, 1, 4);
 
   EXPECT_EQ(matrix.at(2, 1), value1);
-  EXPECT_EQ(matrix.at(1, 5), value2);
+  EXPECT_EQ(matrix.at(1, 4), value2);
 }
 
 
