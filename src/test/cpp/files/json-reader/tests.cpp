@@ -45,3 +45,29 @@ TEST_F(JSONReaderTest, ShouldGetArrayFromObjectKeyInObjectFile)
   for (int i = 0; i < noOfElements; i++)
     EXPECT_EQ(correctArray[i], array[i]);
 }
+
+TEST_F(JSONReaderTest, ShouldGetNestedArrayFromObjectKeyInObjectFile)
+{
+  this->asObjectFile();
+
+  auto array = this->reader.value<std::vector<std::vector<double>>>(
+    "nested_array");
+
+  std::vector<std::vector<double>> correctArray = {
+    {0,1}, {2,3}, {4,5}, {6,7}, {8,9}};
+
+  int noOfElements = array.size();
+  ASSERT_EQ(correctArray.size(), noOfElements);
+
+  for (int i = 0; i < noOfElements; i++) {
+    auto correctSubArray = correctArray[i];
+    auto subArray = array[i];
+
+    int noOfSubElements = subArray.size();
+
+    ASSERT_EQ(correctSubArray.size(), noOfSubElements);
+
+    for (int j = 0; j < noOfSubElements; j++)
+      EXPECT_EQ(correctArray[j], array[j]);
+  }
+}
