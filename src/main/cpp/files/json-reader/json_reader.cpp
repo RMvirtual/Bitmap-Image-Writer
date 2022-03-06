@@ -8,15 +8,7 @@ Files::JSONReader::JSONReader()
 
 Files::JSONReader Files::JSONReader::fromObjectFile(std::string filePath)
 {
-  std::ifstream fileStream {filePath};
-  auto json = nlohmann::json::parse(fileStream);
-
-  fileStream.close();
-
-  Files::JSONReader jsonReader {};
-  jsonReader.json = json;
-
-  return jsonReader;
+  return Files::JSONReader::fromArrayFile(filePath);
 }
 
 Files::JSONReader Files::JSONReader::fromArrayFile(std::string filePath)

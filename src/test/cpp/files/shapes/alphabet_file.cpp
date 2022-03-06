@@ -5,8 +5,6 @@
 
 TEST(AlphabetFile, ShouldGetLetterHFromFile)
 {
-  ASSERT_TRUE(false);
-
   Files::Alphabet alphabetFile {};
   auto letterH = alphabetFile.letter("h");
 

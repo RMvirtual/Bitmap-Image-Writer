@@ -8,9 +8,8 @@ Files::PixelFormats::PixelFormats()
 
   Files::FilePaths files {};
   auto filePath = files.filePath("pixel_formats");
-
-  this->reader = {};
-  this->reader.read(systemPath + filePath);
+  
+  this->reader = Files::JSONReader::fromArrayFile(systemPath + filePath);
 }
 
 int Files::PixelFormats::indexOf(std::string formatName)
