@@ -23,9 +23,7 @@ public:
   template <class T>
   T value(std::string fieldName)
   {
-    auto object = this->json[0];
-
-    return *object.find(fieldName);
+    return this->json[fieldName];
   }
 
   template <class T>
