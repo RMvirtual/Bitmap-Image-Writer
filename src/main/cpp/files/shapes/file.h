@@ -6,17 +6,13 @@
 #include "src/main/cpp/files/json-reader/json_reader.h"
 
 namespace Files {
-class PixelFormats
+class Alphabet
 {
 public:
-  PixelFormats();
+  Alphabet();
 
-  int indexOf(std::string formatName);
-  int indexOf(int bitsPerPixel);
-  std::string formatName(int index);
-  int bitsPerPixel(int index);
-  std::vector<std::string> colours(int index);
-
+  std::vector<std::vector<double>> letter(std::string letter);
+  
 private:
   Files::JSONReader reader;
 };}

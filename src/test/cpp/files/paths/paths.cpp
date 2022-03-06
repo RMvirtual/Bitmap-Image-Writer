@@ -3,10 +3,12 @@
 
 #include "src/main/cpp/files/paths/file.h"
 
-TEST(FileSystemFile, ShouldGetFilePath)
+TEST(PathsFile, ShouldGetFilePath)
 {
+  ASSERT_TRUE(false);
+  
   Files::FilePaths file {};
-  std::string correctValue {"resources/pixel_formats.json"};
+  std::string correctValue {"resources/alphabet/2d.json"};
 
-  EXPECT_EQ(correctValue, file.filePath("pixel_formats"));
+  EXPECT_EQ(correctValue, file.filePath("alphabet_2d"));
 }

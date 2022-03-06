@@ -1,9 +1,9 @@
 load("@rules_cc//cc:defs.bzl", "cc_test")
 
 cc_test(
-    name = "Files",
+    name = "json-reader",
     size = "small",
-    srcs = glob(["*.cpp"]),
+    srcs = glob(["*.h", "*.cpp"]),
     deps = [
         "@googletest//:gtest_main",
         "//src/main/cpp/files"

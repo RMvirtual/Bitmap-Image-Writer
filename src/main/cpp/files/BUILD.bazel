@@ -9,7 +9,8 @@ cc_library(
         "//src/main/cpp/files/json-reader",
         "//src/main/cpp/files/paths",
         "//src/main/cpp/files/pixel-formats",
-        "//src/main/cpp/files/stream",                        
+        "//src/main/cpp/files/stream",
+        "//src/main/cpp/files/shapes",
     ],
     copts = ["/std:c++17"]
 )

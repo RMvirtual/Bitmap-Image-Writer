@@ -13,26 +13,29 @@ class JSONReader
 public:
   JSONReader();
 
+  static JSONReader fromObjectFile(std::string filePath);
+  static JSONReader fromArrayFile(std::string filePath);
+
   void read(std::string filePath);
   std::vector<std::string> fieldNames();
   int numberOfObjects();
-    
+
   template <class T>
   T value(std::string fieldName)
   {
-    auto object = this->json.at(0);
+    auto object = this->json[0];
 
-    return object.at(fieldName);
+    return *object.find(fieldName);
   }
 
   template <class T>
   T value(int index, std::string fieldName)
   {
-    auto object = this->json.at(index);
+    auto object = this->json[index];
     
-    return object.at(fieldName);
+    return object[fieldName];
   }
- 
+
 protected:
   nlohmann::json json;
 

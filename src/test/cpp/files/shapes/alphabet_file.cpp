@@ -5,7 +5,9 @@
 
 TEST(AlphabetFile, ShouldGetLetterHFromFile)
 {
-  Files::AlphabetFile alphabetFile {};
+  ASSERT_TRUE(false);
+
+  Files::Alphabet alphabetFile {};
   auto letterH = alphabetFile.letter("h");
 
   std::vector<std::vector<double>> correctH {
