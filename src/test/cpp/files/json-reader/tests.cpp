@@ -3,7 +3,7 @@
 #include "gtest/gtest.h"
 #include "src/test/cpp/files/json-reader/fixture.h"
 
-TEST_F(JSONReaderTest, ShouldReadFromArrayFile)
+TEST_F(JSONReaderTest, ShouldReadFromArrayFileWithIndex)
 {
   this->asArrayFile();
 

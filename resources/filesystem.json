@@ -1,4 +1,4 @@
-[
-  {"pixel_formats" : "resources/pixel_formats.json"},
-  {"alphabet_2d" : "resources/alphabet/2d.json"}
-]
+{
+  "pixel_formats" : "resources/pixel_formats.json",
+  "alphabet_2d" : "resources/alphabet/2d.json"
+}

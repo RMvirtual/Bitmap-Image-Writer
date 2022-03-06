@@ -6,7 +6,7 @@
 Files::FilePaths::FilePaths()
 {
   // Harcoded path here. Relative path finder to be obtained later.
-  this->reader.read(
+  this->reader = Files::JSONReader::fromArrayFile(
     "C://Users/rmvir/Desktop/scc300-Win3D/resources/filesystem.json");
 }
 
