@@ -71,14 +71,11 @@ TEST(MathsVector, ShouldCalculateMagnitudeOfThreeElementVector)
   Maths::Vector vector1 {1, 1, 2};
   Maths::Vector vector2 {-4, -8, 6};
 
-  double vector1Magnitude = vector1.magnitude();
   double vector1CorrectMagnitude = 2.4494897427831779;
-
-  double vector2Magnitude = vector2.magnitude(); 
   double vector2CorrectMagnitude = 10.770329614269007;
 
-  EXPECT_DOUBLE_EQ(vector1Magnitude, vector1CorrectMagnitude);
-  EXPECT_DOUBLE_EQ(vector2Magnitude, vector2CorrectMagnitude);
+  EXPECT_DOUBLE_EQ(vector1.magnitude(), vector1CorrectMagnitude);
+  EXPECT_DOUBLE_EQ(vector2.magnitude(), vector2CorrectMagnitude);
 }
 
 TEST(MathsVector, ShouldIndexDirectlyWithOperator)
