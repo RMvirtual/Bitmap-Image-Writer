@@ -30,5 +30,16 @@ TEST_F(JSONReaderTest, ShouldReadFromObjectFile)
 
 TEST_F(JSONReaderTest, ShouldGetNumberOfObjects)
 {
+  std::string filePath = {
+    "C://Users/rmvir/Desktop/scc300-Win3D/resources/test/json-files/array_file.json"};
+
+  this->reader = Files::JSONReader::fromArrayFile(filePath);
+  int correctNumberOfObjects = 2;
+
+  EXPECT_EQ(correctNumberOfObjects, this->reader.numberOfObjects());
+}
+
+TEST_F(JSONReaderTest, ShouldGetArrayFromObjectKey)
+{
   EXPECT_TRUE(false);
 }
