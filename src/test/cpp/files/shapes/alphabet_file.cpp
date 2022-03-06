@@ -26,6 +26,6 @@ TEST(AlphabetFile, ShouldGetLetterHFromFile)
     ASSERT_EQ(correctVertex.size(), numberOfCoordinates);
     
     for (int j = 0; j < numberOfCoordinates; j++)
-      EXPECT_EQ(correctVertex[j], vertex[i]);
+      EXPECT_EQ(correctVertex[j], vertex[j]);
   }
 }
