@@ -11,4 +11,8 @@ public:
 
 protected:
   Files::JSONReader reader;
+  std::string filePath;
+
+  void asArrayFile();
+  void asObjectFile();
 };

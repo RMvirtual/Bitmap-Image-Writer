@@ -5,10 +5,8 @@
 
 TEST_F(JSONReaderTest, ShouldReadFromArrayFile)
 {
-  std::string filePath = {
-    "C://Users/rmvir/Desktop/scc300-Win3D/resources/test/json-files/array_file.json"};
+  this->asArrayFile();
 
-  this->reader = Files::JSONReader::fromArrayFile(filePath);
   auto value = this->reader.value<std::string>(1, "name");
   std::string correctValue = "arrayObject2";
 
@@ -17,10 +15,7 @@ TEST_F(JSONReaderTest, ShouldReadFromArrayFile)
 
 TEST_F(JSONReaderTest, ShouldReadFromObjectFile)
 {
-  std::string filePath = {
-    "C://Users/rmvir/Desktop/scc300-Win3D/resources/test/json-files/object_file.json"};
-
-  this->reader = Files::JSONReader::fromObjectFile(filePath);
+  this->asObjectFile();
 
   auto value = this->reader.value<std::string>("name");
   std::string correctValue = "object1";
@@ -30,16 +25,23 @@ TEST_F(JSONReaderTest, ShouldReadFromObjectFile)
 
 TEST_F(JSONReaderTest, ShouldGetNumberOfObjects)
 {
-  std::string filePath = {
-    "C://Users/rmvir/Desktop/scc300-Win3D/resources/test/json-files/array_file.json"};
+  this->asArrayFile();
 
-  this->reader = Files::JSONReader::fromArrayFile(filePath);
-  int correctNumberOfObjects = 2;
-
+  int correctNumberOfObjects = 4; // Based on manually observed amount in file.
   EXPECT_EQ(correctNumberOfObjects, this->reader.numberOfObjects());
 }
 
-TEST_F(JSONReaderTest, ShouldGetArrayFromObjectKey)
+TEST_F(JSONReaderTest, ShouldGetArrayFromObjectKeyInArrayFile)
 {
-  EXPECT_TRUE(false);
+  this->asArrayFile();
+
+  auto array = this->reader.value<std::vector<double>>("surface_level_array");
+  std::vector<double> correctArray = {0,1,2,3};
+
+  int noOfElements = array.size();
+
+  ASSERT_EQ(correctArray.size(), noOfElements);
+
+  for (int i = 0; i < noOfElements; i++)
+    EXPECT_EQ(correctArray[i], array[i]);
 }
