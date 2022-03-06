@@ -27,13 +27,13 @@ TEST_F(JSONReaderTest, ShouldGetNumberOfObjects)
 {
   this->asArrayFile();
 
-  int correctNumberOfObjects = 4; // Based on manually observed amount in file.
+  int correctNumberOfObjects = 2; // Based on manually observed amount in file.
   EXPECT_EQ(correctNumberOfObjects, this->reader.numberOfObjects());
 }
 
-TEST_F(JSONReaderTest, ShouldGetArrayFromObjectKeyInArrayFile)
+TEST_F(JSONReaderTest, ShouldGetArrayFromObjectKeyInObjectFile)
 {
-  this->asArrayFile();
+  this->asObjectFile();
 
   auto array = this->reader.value<std::vector<double>>("surface_level_array");
   std::vector<double> correctArray = {0,1,2,3};
