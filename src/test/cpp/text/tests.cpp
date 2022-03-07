@@ -43,9 +43,9 @@ TEST_F(TextTest, ShouldCreateTextImageFile)
 {
   auto image = this->redImage();
 
-  Text::Text2D text {"abch"};
+  Text::Text2D text {"abhc"};
   text.scale(20);
-  text.translate({26, 100});
+  text.translate({25, 100});
   this->rasteriser.setWritableImage(image);
   this->rasteriser.draw(text);
 
@@ -55,4 +55,6 @@ TEST_F(TextTest, ShouldCreateTextImageFile)
     *image,
     "C:/Users/rmvir/Desktop/scc300-Win3D/resources/test/output/text.bmp"
   );
+
+  EXPECT_FALSE(true); // Dummy fail to run test everytime.
 }

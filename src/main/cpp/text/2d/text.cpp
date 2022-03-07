@@ -27,8 +27,8 @@ void Text::Text2D::setText(std::string text)
   this->letters.clear();
   this->_text = text;
 
-  double xCursor = 0;
-  double yCursor = 0;
+  double xCursor = 0.0;
+  double yCursor = 0.0;
 
   bool isFirstLetter = true;
 
@@ -39,13 +39,13 @@ void Text::Text2D::setText(std::string text)
       isFirstLetter = false;
     
     else {
-      letter.translate({xCursor, yCursor});
+      letter.translate({xCursor, 0.0});
     }
 
     letter.scale(this->scaleFactor);
     
     xCursor = letter.xMaximum() + this->_padding.x * this->scaleFactor;
-    yCursor = letter.yMinimum() + this->_padding.y * this->scaleFactor;
+    std::cout << "Cursor at " << xCursor << std::endl;
 
     this->letters.push_back(letter);
   }

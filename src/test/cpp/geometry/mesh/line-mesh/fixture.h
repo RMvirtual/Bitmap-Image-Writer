@@ -14,6 +14,7 @@ public:
   void setupTranslatedLineMeshFromZeroOrigin();
   void setupScaledLineMeshFromZeroOrigin();
   void setupScaledLineMeshFromNonZeroOrigin();
+  void setupScaledLineMeshFromDescendingOrigin();
 
 protected:
   Geometry::LineMesh lineMesh;
