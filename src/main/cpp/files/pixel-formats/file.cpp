@@ -15,7 +15,8 @@ Files::PixelFormats::Format Files::PixelFormats::format(std::string name)
   Files::PixelFormats::Format format;
 
   format.name = name;
-  format.bitsPerPixel = reader.value<int>(0);
+  format.bitsPerPixel = reader.value<int>(name, "bitsPerPixel");
+  format.colours = reader.value<std::vector<std::string>>(name, "colours");
 
   return format;
 }
