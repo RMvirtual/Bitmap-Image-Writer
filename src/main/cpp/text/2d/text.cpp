@@ -42,7 +42,7 @@ void Text::Text2D::setText(std::string text)
     }
 
     letter.scale(this->scaleFactor);
-    
+    // spam.
     xCursor = letter.xMaximum();
     yCursor = letter.yMinimum();
 
