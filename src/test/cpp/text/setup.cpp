@@ -25,18 +25,18 @@ void TextTest::setupCorrectUnpaddedText()
 {
   this->correctLineMeshes = this->correctHahaLineMeshes();
 
-  this->correctLineMeshes[1].translate({2, 0.0});
-  this->correctLineMeshes[2].translate({4, 0.0});
-  this->correctLineMeshes[3].translate({6, 0.0});
+  this->correctLineMeshes[1].translate({1, 0.0});
+  this->correctLineMeshes[2].translate({3, 0.0});
+  this->correctLineMeshes[3].translate({4, 0.0});
 }
 
 void TextTest::setupCorrectPaddedText()
 {
   this->correctLineMeshes = this->correctHahaLineMeshes();
 
-  this->correctLineMeshes[1].translate({3, 0.0});
-  this->correctLineMeshes[2].translate({6, 0.0});
-  this->correctLineMeshes[3].translate({9, 0.0});
+  this->correctLineMeshes[1].translate({2, 0.0});
+  this->correctLineMeshes[2].translate({5, 0.0});
+  this->correctLineMeshes[3].translate({7, 0.0});
 }
 
 void TextTest::setupCorrectScaledUnpaddedText()
@@ -46,21 +46,25 @@ void TextTest::setupCorrectScaledUnpaddedText()
   for (auto& mesh : this->correctLineMeshes)
     mesh.scale(2);
 
-  this->correctLineMeshes[1].translate({4, 0.0});
-  this->correctLineMeshes[2].translate({8, 0.0});
-  this->correctLineMeshes[3].translate({12, 0.0});
+  this->correctLineMeshes[1].translate({2, 0.0});
+  this->correctLineMeshes[2].translate({6, 0.0});
+  this->correctLineMeshes[3].translate({8, 0.0});
 }
 
 void TextTest::setupCorrectScaledPaddedText()
 {
   this->correctLineMeshes = this->correctHahaLineMeshes();
 
+  // padding = 2.
+  // h = 2 / 4
+  // a = 4 / 6
+
   for (auto& mesh : this->correctLineMeshes)
     mesh.scale(2);
 
-  this->correctLineMeshes[1].translate({6, 0.0});
-  this->correctLineMeshes[2].translate({12, 0.0});
-  this->correctLineMeshes[3].translate({18, 0.0});
+  this->correctLineMeshes[1].translate({4, 0.0});
+  this->correctLineMeshes[2].translate({10, 0.0});
+  this->correctLineMeshes[3].translate({14, 0.0});
 }
 
 std::vector<Geometry::LineMesh> TextTest::correctHahaLineMeshes()
