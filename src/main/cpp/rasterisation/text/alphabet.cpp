@@ -1,10 +1,7 @@
 #include "src/main/cpp/rasterisation/text/alphabet.h"
-#include "src/main/cpp/files/shapes/file.h"
+#include "src/main/cpp/files/alphabet-2d/file.h"
 
 Geometry::LineMesh Rasterisation::letter(std::string letter)
 {
-  Files::Alphabet alphabet {};
-  auto points = alphabet.letter(letter);
-  
-  return {points};
+  return Files::Alphabet2D::letter(letter);
 }

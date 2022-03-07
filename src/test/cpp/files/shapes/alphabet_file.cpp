@@ -1,12 +1,11 @@
 #include <vector>
 
 #include "gtest/gtest.h"
-#include "src/main/cpp/files/shapes/file.h"
+#include "src/main/cpp/files/alphabet-2d/file.h"
 
 TEST(AlphabetFile, ShouldGetLetterHFromFile)
 {
-  Files::Alphabet alphabetFile {};
-  auto letterMesh = alphabetFile.letter("h");
+  auto letterMesh = Files::Alphabet2D::letter("h");
 
   Geometry::LineMesh correctLetterMesh = {{
     {{0.0, 0.0}, {0.0, 3}},

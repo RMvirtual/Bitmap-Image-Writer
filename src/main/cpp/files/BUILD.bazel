@@ -10,7 +10,7 @@ cc_library(
         "//src/main/cpp/files/paths",
         "//src/main/cpp/files/pixel-formats",
         "//src/main/cpp/files/stream",
-        "//src/main/cpp/files/shapes",
+        "//src/main/cpp/files/alphabet-2d",
     ],
     copts = ["/std:c++17"]
 )

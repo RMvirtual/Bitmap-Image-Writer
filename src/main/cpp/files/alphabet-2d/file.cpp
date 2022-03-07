@@ -1,21 +1,18 @@
 #include <vector>
 
-#include "src/main/cpp/files/shapes/file.h"
+#include "src/main/cpp/files/alphabet-2d/file.h"
 #include "src/main/cpp/files/paths/file.h"
 
-Files::Alphabet::Alphabet()
+Geometry::LineMesh Files::Alphabet2D::letter(std::string letter)
 {
   std::string systemPath {"C://Users/rmvir/Desktop/scc300-Win3D/"};
 
   Files::FilePaths files {};
   auto filePath = files.filePath("alphabet_2d");
 
-  this->reader = Files::JSONReader::fromObjectFile(systemPath + filePath);
-}
-
-Geometry::LineMesh Files::Alphabet::letter(std::string letter)
-{
-  auto lineValues = this->reader.value<std::vector<std::vector<double>>>(
+  auto reader = Files::JSONReader::fromObjectFile(systemPath + filePath);
+  
+  auto lineValues = reader.value<std::vector<std::vector<double>>>(
     letter);
 
   std::vector<Maths::Vector> vectors {};

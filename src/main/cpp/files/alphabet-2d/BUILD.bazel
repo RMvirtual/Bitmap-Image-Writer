@@ -1,7 +1,7 @@
 load("@rules_cc//cc:defs.bzl", "cc_library")
 
 cc_library(
-    name = "shapes",
+    name = "alphabet-2d",
     hdrs = glob(["*.h"]),
     srcs = glob(["*.cpp"]),
     visibility = ["//visibility:public"],

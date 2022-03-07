@@ -5,13 +5,7 @@
 #include "src/main/cpp/geometry/mesh/line_mesh.h"
 
 namespace Files {
-class Alphabet
+namespace Alphabet2D
 {
-public:
-  Alphabet();
-
   Geometry::LineMesh letter(std::string letter);
-
-private:
-  Files::JSONReader reader;
-};}
+};};
