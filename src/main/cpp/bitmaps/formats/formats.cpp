@@ -6,24 +6,12 @@
 
 Bitmaps::Format Bitmaps::format(std::string formatName)
 {
-  int index = Files::PixelFormats::indexOf(formatName);
+  auto formatData = Files::PixelFormats::format(formatName);
 
-  return Bitmaps::formatByIndex(index);
-}
-
-Bitmaps::Format Bitmaps::format(int bitsPerPixel)
-{
-  int index = Files::PixelFormats::indexOf(bitsPerPixel);
-
-  return Bitmaps::formatByIndex(index);
-}
-
-Bitmaps::Format Bitmaps::formatByIndex(int index)
-{
   Bitmaps::Format format {};
-  format.setName(Files::PixelFormats::formatName(index));
-  format.setColourNames(Files::PixelFormats::colours(index));
-  format.setBitsPerPixel(Files::PixelFormats::bitsPerPixel(index));
+  format.setName(formatData.name);
+  format.setColourNames(formatData.colours);
+  format.setBitsPerPixel(formatData.bitsPerPixel);
 
   return format;
 }

@@ -3,14 +3,14 @@
 
 void BitmapFormatsTest::setupRGBAFormat()
 {
-  this->format.setName("RGBA");
+  this->format.setName("RGBA32");
   this->format.setBitsPerPixel(32);
   this->format.setColourNames({"alpha", "blue", "green", "red"});
 }
 
 void BitmapFormatsTest::setupRGBFormat()
 {
-  this->format.setName("RGB");
+  this->format.setName("RGB24");
   this->format.setBitsPerPixel(24);
   this->format.setColourNames({"blue", "green", "red"});
 }

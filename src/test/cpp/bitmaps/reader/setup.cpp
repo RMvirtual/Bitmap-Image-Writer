@@ -3,7 +3,7 @@
 
 void BitmapReaderTest::setupCorrectImage()
 {
-  auto format = Bitmaps::format(24);
+  auto format = Bitmaps::format("RGB24");
   format.setWidthInPixels(2);
   format.setHeightInPixels(2); 
 

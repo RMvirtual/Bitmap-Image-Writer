@@ -77,7 +77,13 @@ Bitmaps::Headers Bitmaps::ImageReader::headers()
 Bitmaps::Format Bitmaps::ImageReader::pixelArrayFormat()
 {  
   int bitsPerPixel = this->packet.dibHeader.bitsPerPixel();
-  auto format = Bitmaps::format(bitsPerPixel);
+
+  std::string formatName = "RGBA32";
+
+  if (bitsPerPixel == 24)
+    formatName = "RGB24";
+
+  auto format = Bitmaps::format(formatName);
 
   format.setHeightInPixels(this->packet.dibHeader.heightInPixels());
   format.setWidthInPixels(this->packet.dibHeader.widthInPixels());

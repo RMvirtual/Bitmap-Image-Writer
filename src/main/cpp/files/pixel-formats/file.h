@@ -8,20 +8,12 @@
 namespace Files {
 namespace PixelFormats
 {
-  struct Format
+  struct FormatData
   {
     std::string name; 
     int bitsPerPixel;
     std::vector<std::string> colours;
   };
 
-  PixelFormats::Format format(std::string name);
-  
-  int indexOf(std::string formatName);
-  int indexOf(int bitsPerPixel);
-  std::string formatName(int index);
-  int bitsPerPixel(int index);
-  std::vector<std::string> colours(int index);
-
-  Files::JSONReader reader();
+  FormatData format(std::string name);
 };}

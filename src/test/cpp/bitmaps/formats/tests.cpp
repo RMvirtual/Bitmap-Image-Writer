@@ -8,25 +8,13 @@
 TEST_F(BitmapFormatsTest, ShouldGetRGBAFormat)
 {
   this->setupRGBAFormat();
-  this->compare(Bitmaps::format("RGBA"));
+  this->compare(Bitmaps::format("RGBA32"));
 }
 
 TEST_F(BitmapFormatsTest, ShouldGetRGBFormat)
 {
   this->setupRGBFormat();
-  this->compare(Bitmaps::format("RGB"));
-}
-
-TEST_F(BitmapFormatsTest, ShouldGet32BitPerPixelFormat)
-{
-  this->setupRGBAFormat();
-  this->compare(Bitmaps::format(32));
-}
-
-TEST_F(BitmapFormatsTest, ShouldGet24BitPerPixelFormat)
-{
-  this->setupRGBFormat();
-  this->compare(Bitmaps::format(24));
+  this->compare(Bitmaps::format("RGB24"));
 }
 
 TEST_F(BitmapFormatsTest, ShouldCalculatePixelArrayRowPaddingOverFour)

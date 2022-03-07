@@ -4,37 +4,19 @@
 #include "gtest/gtest.h"
 #include "src/main/cpp/files/pixel-formats/file.h"
 
-TEST(PixelFormatFileTest, ShouldGetFormatNameFromFirstEntry)
+TEST(PixelFormatFileTest, ShouldGetFormat)
 {
-  auto formatName = Files::PixelFormats::formatName(0);
-  std::string correctFormatName = "RGBA";
+  std::string correctName = "RGBA32";
+  auto format = Files::PixelFormats::format(correctName);
 
-  EXPECT_EQ(formatName, "RGBA");
-}
-
-TEST(PixelFormatFileTest, ShouldGetBitsPerPixelFromSecondEntry)
-{  
-  auto bitsPerPixel = Files::PixelFormats::bitsPerPixel(1);
-  int correctBitsPerPixel = 24;
-
-  EXPECT_EQ(bitsPerPixel, 24);
-}
-
-TEST(PixelFormatFileTest, ShouldGetColours)
-{
-  auto colours = Files::PixelFormats::colours(0);
-
+  int correctBitsPerPixel = 32;
+  EXPECT_EQ(correctName, format.name);
+  EXPECT_EQ(correctBitsPerPixel, format.bitsPerPixel);
+  
   std::vector<std::string> correctColours {"alpha", "blue", "green", "red"};
+  
   int noOfColours = correctColours.size();
 
   for (int valueNo = 0; valueNo < noOfColours; valueNo++)
-    EXPECT_EQ(correctColours[valueNo], colours[valueNo]);
-}
-
-TEST(PixelFormatFileTest, ShouldGetIndexOfFirstName)
-{
-  int index = Files::PixelFormats::indexOf("RGBA");
-  int correctIndex = 0;
-
-  EXPECT_EQ(correctIndex, index);
+    EXPECT_EQ(correctColours[valueNo], format.colours[valueNo]);
 }

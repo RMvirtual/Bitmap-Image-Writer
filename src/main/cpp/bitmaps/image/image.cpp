@@ -27,7 +27,13 @@ Bitmaps::Image::Image(Bitmaps::Packet packet)
   this->packet = packet;
 
   int bitsPerPixel = this->packet.dibHeader.bitsPerPixel();
-  this->format = Bitmaps::format(bitsPerPixel);
+
+  std::string formatName = "RGBA32";
+
+  if (bitsPerPixel == 24)
+    formatName = "RGB24";
+
+  this->format = Bitmaps::format(formatName);
   this->format.setHeightInPixels(this->packet.dibHeader.heightInPixels());
   this->format.setWidthInPixels(this->packet.dibHeader.widthInPixels());
 }
