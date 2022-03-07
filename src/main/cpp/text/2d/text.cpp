@@ -3,11 +3,12 @@
 
 Text::Text2D::Text2D()
 {
-  // pass.
+  this->scaleFactor = 1;
 }
 
 Text::Text2D::Text2D(std::string text)
 {
+  this->scaleFactor = 1;
   this->setText(text);
 }
 
@@ -32,8 +33,6 @@ void Text::Text2D::setText(std::string text)
   for (auto character : this->_text) {
     auto letter = Files::Alphabet2D::letter({character});
 
-    // Need to track previous letter's positionings to translate properly.
-
     if (isFirstLetter)
       isFirstLetter = false;
     
@@ -42,6 +41,8 @@ void Text::Text2D::setText(std::string text)
       letter.translate({this->_padding.x, this->_padding.y});
     }
 
+    letter.scale(this->scaleFactor);
+    
     xCursor = letter.xMaximum();
     yCursor = letter.yMinimum();
 
@@ -51,8 +52,12 @@ void Text::Text2D::setText(std::string text)
 
 void Text::Text2D::scale(double scaleFactor)
 {
+  this->scaleFactor = scaleFactor;
+
   for (auto& letter : this->letters)
-    letter.scale(scaleFactor);
+    letter.scale(this->scaleFactor);
+
+  this->setText(this->_text);
 }
 
 void Text::Text2D::translate(Maths::Vector translation)

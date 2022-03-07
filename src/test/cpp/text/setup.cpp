@@ -53,14 +53,14 @@ void TextTest::setupCorrectScaledUnpaddedText()
 
   letterH0.scale(2);
 
-  letterA0.translate({4, 0.0});
   letterA0.scale(2);
+  letterA0.translate({4, 0.0});
 
-  letterH1.translate({8, 0.0});
   letterH1.scale(2);
+  letterH1.translate({8, 0.0});
 
-  letterA1.translate({12, 0.0});
   letterA1.scale(2);
+  letterA1.translate({12, 0.0});
 
   this->correctLineMeshes = {
     letterH0, letterA0, letterH1, letterA1

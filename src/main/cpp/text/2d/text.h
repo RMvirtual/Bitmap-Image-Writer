@@ -32,4 +32,6 @@ private:
   std::string _text;
   std::vector<Geometry::LineMesh> letters;
   Text::Padding _padding;
+  double scaleFactor;
+  
 };}
