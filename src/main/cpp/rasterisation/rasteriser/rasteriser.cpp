@@ -19,6 +19,13 @@ void Rasterisation::Rasteriser::setWritableImage(
   this->image = writableImage;
 }
 
+void Rasterisation::Rasteriser::draw(Text::Text2D text)
+{
+  for (auto letter : text) {
+    this->draw(letter);
+  }
+}
+
 void Rasterisation::Rasteriser::draw(std::vector<Geometry::Line> lines)
 {
   for (auto line : lines)

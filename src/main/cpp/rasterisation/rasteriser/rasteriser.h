@@ -5,6 +5,7 @@
 #include "src/main/cpp/geometry/line/line.h"
 #include "src/main/cpp/geometry/triangle/triangle.h"
 #include "src/main/cpp/geometry/mesh/line_mesh.h"
+#include "src/main/cpp/text/2d/text.h"
 
 namespace Rasterisation {
 class Rasteriser
@@ -17,6 +18,8 @@ public:
 
   void draw(Geometry::Line line);
   void draw(Geometry::LineMesh lineMesh);
+  void draw(Text::Text2D text);
+
   void draw(std::vector<Geometry::Line> lines);
   void draw(Geometry::Triangle triangle);
 private:

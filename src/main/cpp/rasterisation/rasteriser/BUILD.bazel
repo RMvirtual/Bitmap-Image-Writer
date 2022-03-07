@@ -8,6 +8,7 @@ cc_library(
     deps = [
         "//src/main/cpp/rasterisation/plotters",
         "//src/main/cpp/bitmaps",
-        "//src/main/cpp/geometry"
+        "//src/main/cpp/geometry",
+        "//src/main/cpp/text",
     ]
 )

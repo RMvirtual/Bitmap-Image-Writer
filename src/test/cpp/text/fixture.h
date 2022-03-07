@@ -3,11 +3,11 @@
 #include "gtest/gtest.h"
 #include "src/main/cpp/rasterisation/rasteriser/rasteriser.h"
 
-class TextRasterisationTest : public testing::Test
+class TextTest : public testing::Test
 {
 public:
-  TextRasterisationTest();
-  ~TextRasterisationTest();
+  TextTest();
+  ~TextTest();
 
 protected:
   Rasterisation::Rasteriser rasteriser;

@@ -6,6 +6,7 @@ cc_test(
     srcs = glob(["*.h", "*.cpp"]),
     deps = [
         "@googletest//:gtest_main",
+        "//src/main/cpp/text",
         "//src/main/cpp/rasterisation",
     ]
 )

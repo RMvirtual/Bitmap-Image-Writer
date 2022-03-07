@@ -1,13 +1,13 @@
 #include <memory>
 
 #include "gtest/gtest.h"
-#include "src/test/cpp/rasterisation/text/fixture.h"
+#include "src/test/cpp/text/fixture.h"
 #include "src/main/cpp/bitmaps/formats/formats.h"
 #include "src/main/cpp/bitmaps/image/image.h"
 #include "src/main/cpp/bitmaps/writer/image/writer.h"
-#include "src/main/cpp/rasterisation/text/alphabet.h"
+#include "src/main/cpp/text/2d/text.h"
 
-TEST_F(TextRasterisationTest, ShouldDrawAlphabet)
+TEST_F(TextTest, ShouldCreateText)
 {
   auto format = Bitmaps::format("RGB24");
   format.setHeightInPixels(500);
@@ -21,12 +21,13 @@ TEST_F(TextRasterisationTest, ShouldDrawAlphabet)
   auto image = std::make_shared<Bitmaps::Image>(format);
   image->fill(redColours);
 
-  auto letterH = Rasterisation::letter("h");
-  letterH.scale(10);
-  letterH.translate({100,100});
+  Text::Text2D text {"haha"};
+  text.setPadding(10, 10);
+  text.scale(100);
+  text.translate({100,100});
 
   this->rasteriser.setWritableImage(image);
-  this->rasteriser.draw(letterH);
+  this->rasteriser.draw(text);
 
   Bitmaps::ImageWriter writer;
   
