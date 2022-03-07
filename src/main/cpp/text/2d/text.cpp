@@ -34,20 +34,16 @@ void Text::Text2D::setText(std::string text)
 
     // Need to track previous letter's positionings to translate properly.
 
-    if (isFirstLetter) {
-      xCursor = letter.xMaximum();
-      yCursor = letter.yMaximum();
-
+    if (isFirstLetter)
       isFirstLetter = false;
-    }
     
     else {
       letter.translate({xCursor, yCursor});
       letter.translate({this->_padding.x, this->_padding.y});
-
-      xCursor = letter.xMaximum();
-      yCursor = letter.yMaximum();
     }
+
+    xCursor = letter.xMaximum();
+    yCursor = letter.yMinimum();
 
     this->letters.push_back(letter);
   }
