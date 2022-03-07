@@ -19,6 +19,18 @@ void Rasterisation::Rasteriser::setWritableImage(
   this->image = writableImage;
 }
 
+void Rasterisation::Rasteriser::draw(std::vector<Geometry::Line> lines)
+{
+  for (auto line : lines)
+    this->draw(line);
+}
+
+void Rasterisation::Rasteriser::draw(Geometry::LineMesh lineMesh)
+{
+  for (auto line: lineMesh)
+    this->draw(line);
+}
+
 void Rasterisation::Rasteriser::draw(Geometry::Line line)
 {
   auto format = Bitmaps::format("RGB");
@@ -37,12 +49,6 @@ void Rasterisation::Rasteriser::draw(Geometry::Line line)
 
     this->image->setPixel(pixelRow, pixelColumn, blackColours);
   }
-}
-
-void Rasterisation::Rasteriser::draw(std::vector<Geometry::Line> lines)
-{
-  for (auto line : lines)
-    this->draw(line);
 }
 
 void Rasterisation::Rasteriser::draw(Geometry::Triangle triangle)

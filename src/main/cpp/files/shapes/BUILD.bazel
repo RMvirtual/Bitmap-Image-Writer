@@ -6,6 +6,7 @@ cc_library(
     srcs = glob(["*.cpp"]),
     visibility = ["//visibility:public"],
     deps = [
+        "//src/main/cpp/geometry",
         "//src/main/cpp/files/paths",
         "//src/main/cpp/files/json-reader",
     ]

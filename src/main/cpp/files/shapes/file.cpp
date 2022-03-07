@@ -1,7 +1,7 @@
+#include <vector>
+
 #include "src/main/cpp/files/shapes/file.h"
 #include "src/main/cpp/files/paths/file.h"
-
-#include <iostream>
 
 Files::Alphabet::Alphabet()
 {
@@ -13,7 +13,23 @@ Files::Alphabet::Alphabet()
   this->reader = Files::JSONReader::fromObjectFile(systemPath + filePath);
 }
 
-std::vector<std::vector<double>> Files::Alphabet::letter(std::string letter)
+Geometry::LineMesh Files::Alphabet::letter(std::string letter)
 {
-  return this->reader.value<std::vector<std::vector<double>>>(letter);
+  auto lineValues = this->reader.value<std::vector<std::vector<double>>>(
+    letter);
+
+  std::vector<Maths::Vector> vectors {};
+
+  for (auto point : lineValues)
+    vectors.push_back({point});
+
+  int noOfVectors = vectors.size();
+  Geometry::LineMesh lineMesh;
+
+  for (int vectorNo = 1; vectorNo < noOfVectors; vectorNo++) {
+    Geometry::Line line = {vectors[vectorNo-1], vectors[vectorNo]};
+    lineMesh.add(line);
+  }
+
+  return lineMesh;
 }

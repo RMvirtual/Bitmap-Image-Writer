@@ -6,7 +6,7 @@ cc_library(
     srcs = glob(["*.cpp"]),
     visibility = ["//visibility:public"],
     deps = [
-        "//src/main/cpp/rasterisation/alphabet",
+        "//src/main/cpp/rasterisation/text",
         "//src/main/cpp/rasterisation/plotters",
         "//src/main/cpp/rasterisation/rasteriser",
     ]

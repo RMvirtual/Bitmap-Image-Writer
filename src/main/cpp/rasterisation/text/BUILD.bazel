@@ -1,11 +1,12 @@
 load("@rules_cc//cc:defs.bzl", "cc_library")
 
 cc_library(
-    name = "alphabet",
+    name = "text",
     hdrs = glob(["*.h"]),
     srcs = glob(["*.cpp"]),
     visibility = ["//visibility:public"],
     deps = [
-        "//src/main/cpp/geometry"
+        "//src/main/cpp/geometry",
+        "//src/main/cpp/files"
     ]
 )

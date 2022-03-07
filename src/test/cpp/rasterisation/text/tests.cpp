@@ -1,12 +1,13 @@
 #include <memory>
 
 #include "gtest/gtest.h"
-#include "src/test/cpp/rasterisation/rasteriser/fixture.h"
+#include "src/test/cpp/rasterisation/text/fixture.h"
 #include "src/main/cpp/bitmaps/formats/formats.h"
 #include "src/main/cpp/bitmaps/image/image.h"
 #include "src/main/cpp/bitmaps/writer/image/writer.h"
+#include "src/main/cpp/rasterisation/text/alphabet.h"
 
-TEST_F(RasterisationTest, ShouldDrawTriangle)
+TEST_F(TextRasterisationTest, ShouldDrawAlphabet)
 {
   auto format = Bitmaps::format("RGB");
   format.setHeightInPixels(500);
@@ -18,20 +19,19 @@ TEST_F(RasterisationTest, ShouldDrawTriangle)
   redColours["blue"] = 0;
 
   auto image = std::make_shared<Bitmaps::Image>(format);
-
   image->fill(redColours);
 
-  Geometry::Triangle triangle;
-  triangle.translate({200,200});
-  triangle.scale(100);
+  auto letterH = Rasterisation::letter("h");
+  letterH.scale(10);
+  letterH.translate({100,100});
 
   this->rasteriser.setWritableImage(image);
-  this->rasteriser.draw(triangle);
+  this->rasteriser.draw(letterH);
 
   Bitmaps::ImageWriter writer;
   
   writer.writeToFile(
     *image,
-    "C:/Users/rmvir/Desktop/scc300-Win3D/resources/test/output/triangle.bmp"
+    "C:/Users/rmvir/Desktop/scc300-Win3D/resources/test/output/text.bmp"
   );
 }

@@ -4,6 +4,7 @@
 #include "src/main/cpp/bitmaps/image/image.h"
 #include "src/main/cpp/geometry/line/line.h"
 #include "src/main/cpp/geometry/triangle/triangle.h"
+#include "src/main/cpp/geometry/mesh/line_mesh.h"
 
 namespace Rasterisation {
 class Rasteriser
@@ -15,6 +16,7 @@ public:
   void setWritableImage(std::shared_ptr<Bitmaps::Image> writableImage);
 
   void draw(Geometry::Line line);
+  void draw(Geometry::LineMesh lineMesh);
   void draw(std::vector<Geometry::Line> lines);
   void draw(Geometry::Triangle triangle);
 private:

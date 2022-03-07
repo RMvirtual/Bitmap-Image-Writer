@@ -6,26 +6,26 @@
 TEST(AlphabetFile, ShouldGetLetterHFromFile)
 {
   Files::Alphabet alphabetFile {};
-  auto letterH = alphabetFile.letter("h");
+  auto letterMesh = alphabetFile.letter("h");
 
-  std::vector<std::vector<double>> correctH {
-    {0.0, 0.0}, {0.0, 3},
-    {0.0, 2}, {2, 2},
-    {2, 0.0}, {2, 3}
-  };
-
-  auto numberOfVertices = letterH.size();
-  ASSERT_EQ(correctH.size(), numberOfVertices);
+  Geometry::LineMesh correctLetterMesh = {{
+    {{0.0, 0.0}, {0.0, 3}},
+    {{0.0, 3}, {0.0, 2}},
+    {{0.0, 2}, {2, 2}},
+    {{2, 2}, {2, 0.0}},
+    {{2, 0.0}, {2, 3}},
+  }};
+ 
+  auto numberOfVertices = letterMesh.size();
+  ASSERT_EQ(correctLetterMesh.size(), numberOfVertices);
 
   for (int i = 0; i < numberOfVertices; i++) {
-    auto vertex = letterH[i];
-    auto correctVertex = correctH[i];
+    auto line = letterMesh[i];
+    auto correctLine = correctLetterMesh[i];
 
-    auto numberOfCoordinates = vertex.size();
-
-    ASSERT_EQ(correctVertex.size(), numberOfCoordinates);
-    
-    for (int j = 0; j < numberOfCoordinates; j++)
-      EXPECT_EQ(correctVertex[j], vertex[j]);
+    EXPECT_EQ(correctLine.origin()[0], line.origin()[0]);
+    EXPECT_EQ(correctLine.origin()[1], line.origin()[1]);
+    EXPECT_EQ(correctLine.destination()[0], line.destination()[0]);
+    EXPECT_EQ(correctLine.destination()[0], line.destination()[0]);
   }
 }

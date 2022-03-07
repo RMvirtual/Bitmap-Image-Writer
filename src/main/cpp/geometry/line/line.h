@@ -18,8 +18,8 @@ public:
   void sortByXAscending();
   void sortByYAscending();
   void translate(Maths::Vector translate);
-  void scale(double scalar);
-
+  void scale(double scaleFactor);
+  void scaleIncludingOrigin(double scaleFactor);
 
   Maths::Vector origin();
   Maths::Vector destination();

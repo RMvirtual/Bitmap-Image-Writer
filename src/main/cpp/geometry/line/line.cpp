@@ -48,13 +48,20 @@ void Geometry::Line::translate(Maths::Vector translation)
   this->_destination = this->_destination + translation;
 }
 
-void Geometry::Line::scale(double scalar)
+void Geometry::Line::scale(double scaleFactor)
 {
   auto lineLength = this->_destination - this->_origin;
-  auto scaledLength = lineLength * scalar;
+  auto scaledLength = lineLength * scaleFactor;
 
   this->_destination = this->_origin + scaledLength;
 }
+
+void Geometry::Line::scaleIncludingOrigin(double scaleFactor)
+{
+  this->_origin = this->_origin * scaleFactor;
+  this->_destination = this->_destination * scaleFactor;
+}
+
 
 void Geometry::Line::sortByXAscending()
 {
