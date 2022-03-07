@@ -71,3 +71,12 @@ TEST_F(JSONReaderTest, ShouldGetNestedArrayFromObjectKeyInObjectFile)
       EXPECT_EQ(correctArray[j], array[j]);
   }
 }
+
+TEST_F(JSONReaderTest, ShouldGetValueFromSpecificObjectInObjectFiles)
+{
+  this->asNestedObjectsFile();
+  auto value = this->reader.value<int>("object2", "value1");
+  int correctValue = 3;
+
+  EXPECT_EQ(correctValue, value);
+}

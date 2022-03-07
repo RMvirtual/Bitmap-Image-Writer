@@ -19,3 +19,13 @@ void JSONReaderTest::asObjectFile()
 
   this->reader = Files::JSONReader::fromObjectFile(this->filePath);
 }
+
+void JSONReaderTest::asNestedObjectsFile()
+{
+  this->filePath = {
+    "C://Users/rmvir/Desktop/scc300-Win3D/resources/" \
+    "test/json-files/nested_objects_file.json"
+  };
+
+  this->reader = Files::JSONReader::fromObjectFile(this->filePath);
+}

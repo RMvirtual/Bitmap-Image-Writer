@@ -9,6 +9,17 @@ Files::JSONReader Files::PixelFormats::reader()
   return Files::JSONReader::fromArrayFile(systemPath + filePath);
 }
 
+Files::PixelFormats::Format Files::PixelFormats::format(std::string name)
+{
+  auto reader = PixelFormats::reader();
+  Files::PixelFormats::Format format;
+
+  format.name = name;
+  format.bitsPerPixel = reader.value<int>(0);
+
+  return format;
+}
+
 int Files::PixelFormats::indexOf(std::string formatName)
 {
   auto reader = Files::PixelFormats::reader();

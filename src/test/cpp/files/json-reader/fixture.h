@@ -15,4 +15,6 @@ protected:
 
   void asArrayFile();
   void asObjectFile();
+  void asNestedObjectsFile();
+
 };

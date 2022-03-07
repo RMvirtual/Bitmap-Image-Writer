@@ -1,12 +1,10 @@
-[
-  {
-    "name" : "RGBA",
+{
+  "RGBA32" : {
     "bitsPerPixel": 32,
     "colours" : ["alpha", "blue", "green", "red"]
   },
-  {
-    "name" : "RGB",
+  "RGB24" : {
     "bitsPerPixel" : 24,
     "colours" : ["blue", "green", "red"]
   }
-]
+}

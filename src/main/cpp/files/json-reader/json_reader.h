@@ -26,6 +26,12 @@ public:
     return this->json[fieldName];
   }
 
+template <class T>
+  T value(std::string objectName, std::string fieldName)
+  {
+    return this->json[objectName][fieldName];
+  }
+
   template <class T>
   T value(int index, std::string fieldName)
   {
