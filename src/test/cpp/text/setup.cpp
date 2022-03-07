@@ -18,3 +18,34 @@ std::shared_ptr<Bitmaps::Image> TextTest::redImage()
 
   return image;
 }
+
+void TextTest::setupCorrectUnpaddedText()
+{
+  Geometry::LineMesh letterA = {{
+    {{0.0,0.0}, {1, 2}},
+    {{1,2}, {2, 0.0}},
+    {{2,0.0}, {0.5, 1}},
+    {{0.5,1}, {1.5, 1}},
+  }};
+
+  Geometry::LineMesh letterH = {{
+    {{0.0,0.0}, {0.0, 3}},
+    {{0.0,3}, {0.0, 2}},
+    {{0.0,2}, {2, 2}},
+    {{2,2}, {2, 0.0}},
+    {{2,0.0}, {2, 3}}
+  }};
+
+  Geometry::LineMesh letterH0 = letterH;
+  Geometry::LineMesh letterA0 = letterA;
+  Geometry::LineMesh letterH1 = letterH;
+  Geometry::LineMesh letterA1 = letterA;
+
+  letterA0.translate({2, 0.0});
+  letterH1.translate({3.5, 0.0});
+  letterA1.translate({5.5, 0.0});
+
+  this->correctLineMeshes = {
+    letterH0, letterA0, letterH1, letterA1
+  };  
+}

@@ -94,3 +94,8 @@ Geometry::LineMesh Text::Text2D::operator [](int index)
 {
   return this->letters[index];
 }
+
+int Text::Text2D::size()
+{
+  return this->letters.size();
+}

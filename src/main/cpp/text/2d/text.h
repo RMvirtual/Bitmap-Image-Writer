@@ -16,6 +16,7 @@ public:
   void setText(std::string text);
   void scale(double scaleFactor);
   void translate(Maths::Vector translation);
+  int size();
 
   Geometry::LineMesh operator [](int index);
 
