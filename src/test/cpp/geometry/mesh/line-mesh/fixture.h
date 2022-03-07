@@ -9,11 +9,11 @@ public:
   LineMeshTest();
   ~LineMeshTest();
 
+  void compare();
+  void compare(Geometry::Line correctLine, Geometry::Line line);
+  void setupLineMesh();
+
 protected:
   Geometry::LineMesh lineMesh;
-
-  void setupNorthEastLine();
-  void setupNorthWestLine();
-  void setupSouthEastLine();
-  void setupSouthWestLine();
+  Geometry::LineMesh correctLineMesh;
 };

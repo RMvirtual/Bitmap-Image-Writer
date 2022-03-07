@@ -2,7 +2,7 @@
 
 LineMeshTest::LineMeshTest()
 {
-
+  this->setupLineMesh();
 }
 
 LineMeshTest::~LineMeshTest()

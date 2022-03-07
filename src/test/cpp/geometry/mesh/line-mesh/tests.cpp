@@ -3,5 +3,6 @@
 
 TEST_F(LineMeshTest, ShouldTranslateLineMesh)
 {
-  EXPECT_TRUE(false);
+  this->lineMesh.translate({2,2});
+  this->compare();
 }
