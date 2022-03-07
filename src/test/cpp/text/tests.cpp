@@ -26,7 +26,7 @@ TEST_F(TextTest, ShouldCreateScaledTextWithPadding)
   this->setupCorrectScaledPaddedText();
   Text::Text2D text {"haha"};
   text.scale(2);
-  text.setPadding(1,1);
+  text.setPadding(1,0);
 
   this->compare(text);
 }

@@ -23,65 +23,35 @@ std::shared_ptr<Bitmaps::Image> TextTest::redImage()
 
 void TextTest::setupCorrectUnpaddedText()
 {
-  auto hahaLineMeshes = this->correctHahaLineMeshes();
+  this->correctLineMeshes = this->correctHahaLineMeshes();
 
-  hahaLineMeshes[1].translate({2, 0.0});
-  hahaLineMeshes[2].translate({4, 0.0});
-  hahaLineMeshes[3].translate({6, 0.0});
-
-  this->correctLineMeshes = hahaLineMeshes;
+  this->correctLineMeshes[1].translate({2, 0.0});
+  this->correctLineMeshes[2].translate({4, 0.0});
+  this->correctLineMeshes[3].translate({6, 0.0});
 }
 
 void TextTest::setupCorrectScaledUnpaddedText()
 {
-  Geometry::LineMesh letterH = Files::Alphabet2D::letter("h");
-  Geometry::LineMesh letterA = Files::Alphabet2D::letter("a");
+  this->correctLineMeshes = this->correctHahaLineMeshes();
 
-  Geometry::LineMesh letterH0 = letterH;
-  Geometry::LineMesh letterA0 = letterA;
-  Geometry::LineMesh letterH1 = letterH;
-  Geometry::LineMesh letterA1 = letterA;
+  for (auto& mesh : this->correctLineMeshes)
+    mesh.scale(2);
 
-  letterH0.scale(2);
-
-  letterA0.scale(2);
-  letterA0.translate({4, 0.0});
-
-  letterH1.scale(2);
-  letterH1.translate({8, 0.0});
-
-  letterA1.scale(2);
-  letterA1.translate({12, 0.0});
-
-  this->correctLineMeshes = {
-    letterH0, letterA0, letterH1, letterA1
-  };
+  this->correctLineMeshes[1].translate({4, 0.0});
+  this->correctLineMeshes[2].translate({8, 0.0});
+  this->correctLineMeshes[3].translate({12, 0.0});
 }
 
 void TextTest::setupCorrectScaledPaddedText()
 {
-  Geometry::LineMesh letterH = Files::Alphabet2D::letter("h");
-  Geometry::LineMesh letterA = Files::Alphabet2D::letter("a");
+  this->correctLineMeshes = this->correctHahaLineMeshes();
 
-  Geometry::LineMesh letterH0 = letterH;
-  Geometry::LineMesh letterA0 = letterA;
-  Geometry::LineMesh letterH1 = letterH;
-  Geometry::LineMesh letterA1 = letterA;
+  for (auto& mesh : this->correctLineMeshes)
+    mesh.scale(2);
 
-  letterH0.scale(2);
-
-  letterA0.scale(2);
-  letterA0.translate({4, 0.0});
-
-  letterH1.scale(2);
-  letterH1.translate({8, 0.0});
-
-  letterA1.scale(2);
-  letterA1.translate({12, 0.0});
-
-  this->correctLineMeshes = {
-    letterH0, letterA0, letterH1, letterA1
-  };
+  this->correctLineMeshes[1].translate({5, 0.0});
+  this->correctLineMeshes[2].translate({9, 0.0});
+  this->correctLineMeshes[3].translate({13, 0.0});
 }
 
 std::vector<Geometry::LineMesh> TextTest::correctHahaLineMeshes()
