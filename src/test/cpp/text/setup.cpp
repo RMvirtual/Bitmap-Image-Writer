@@ -49,15 +49,15 @@ void TextTest::setupCorrectScaledPaddedText()
   for (auto& mesh : this->correctLineMeshes)
     mesh.scale(2);
 
-  this->correctLineMeshes[1].translate({5, 0.0});
-  this->correctLineMeshes[2].translate({9, 0.0});
-  this->correctLineMeshes[3].translate({13, 0.0});
+  this->correctLineMeshes[1].translate({6, 0.0});
+  this->correctLineMeshes[2].translate({12, 0.0});
+  this->correctLineMeshes[3].translate({18, 0.0});
 }
 
 std::vector<Geometry::LineMesh> TextTest::correctHahaLineMeshes()
 {
-  Geometry::LineMesh letterH = Files::Alphabet2D::letter("h");
-  Geometry::LineMesh letterA = Files::Alphabet2D::letter("a");
+  auto letterH = Files::Alphabet2D::letter("h");
+  auto letterA = Files::Alphabet2D::letter("a");
 
   return {letterH, letterA, letterH, letterA};
 }
