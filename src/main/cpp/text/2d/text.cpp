@@ -22,11 +22,6 @@ void Text::Text2D::setPadding(double x, double y)
     this->setText(this->_text);
 }
 
-void Text::Text2D::recalculatePadding()
-{
-
-}
-
 void Text::Text2D::setText(std::string text)
 {
   this->letters.clear();

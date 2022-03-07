@@ -43,11 +43,9 @@ TEST_F(TextTest, ShouldCreateTextImageFile)
 {
   auto image = this->redImage();
 
-  Text::Text2D text {"haha"};
-  text.setPadding(1, 0.0);
-  text.scale(25);
-  text.translate({100,100});
-
+  Text::Text2D text {"abh"};
+  text.scale(20);
+  text.translate({26, 100});
   this->rasteriser.setWritableImage(image);
   this->rasteriser.draw(text);
 
