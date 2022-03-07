@@ -30,6 +30,15 @@ void TextTest::setupCorrectUnpaddedText()
   this->correctLineMeshes[3].translate({6, 0.0});
 }
 
+void TextTest::setupCorrectPaddedText()
+{
+  this->correctLineMeshes = this->correctHahaLineMeshes();
+
+  this->correctLineMeshes[1].translate({3, 0.0});
+  this->correctLineMeshes[2].translate({6, 0.0});
+  this->correctLineMeshes[3].translate({9, 0.0});
+}
+
 void TextTest::setupCorrectScaledUnpaddedText()
 {
   this->correctLineMeshes = this->correctHahaLineMeshes();

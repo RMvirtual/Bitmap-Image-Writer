@@ -17,6 +17,7 @@ protected:
 
   std::shared_ptr<Bitmaps::Image> redImage();
   void setupCorrectUnpaddedText();
+  void setupCorrectPaddedText();
   void setupCorrectScaledUnpaddedText();
   void setupCorrectScaledPaddedText();
 
