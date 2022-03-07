@@ -89,3 +89,8 @@ std::vector<Geometry::LineMesh>::const_iterator Text::Text2D::end() const
 {
   return this->letters.end();
 }
+
+Geometry::LineMesh Text::Text2D::operator [](int index)
+{
+  return this->letters[index];
+}

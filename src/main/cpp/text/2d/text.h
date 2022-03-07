@@ -17,6 +17,8 @@ public:
   void scale(double scaleFactor);
   void translate(Maths::Vector translation);
 
+  Geometry::LineMesh operator [](int index);
+
   std::vector<Geometry::LineMesh>::iterator begin();
   std::vector<Geometry::LineMesh>::iterator end();
   std::vector<Geometry::LineMesh>::const_iterator begin() const;

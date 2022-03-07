@@ -1,5 +1,7 @@
 #pragma once
 
+#include <memory>
+
 #include "gtest/gtest.h"
 #include "src/main/cpp/rasterisation/rasteriser/rasteriser.h"
 
@@ -11,4 +13,6 @@ public:
 
 protected:
   Rasterisation::Rasteriser rasteriser;
+
+  std::shared_ptr<Bitmaps::Image> redImage();
 };
