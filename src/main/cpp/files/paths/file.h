@@ -4,13 +4,7 @@
 #include "src/main/cpp/files/json-reader/json_reader.h"
 
 namespace Files {
-class FilePaths
+namespace FilePaths
 {
-public:
-  FilePaths();
-
-  std::string filePath(std::string fileNameAlias);
-
-private:
-  Files::JSONReader reader;  
+  std::string path(std::string fileNameAlias);
 };}

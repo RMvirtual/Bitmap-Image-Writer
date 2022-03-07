@@ -6,11 +6,9 @@
 Geometry::LineMesh Files::Alphabet2D::letter(std::string letter)
 {
   std::string systemPath {"C://Users/rmvir/Desktop/scc300-Win3D/"};
+  auto path = Files::FilePaths::path("alphabet_2d");
 
-  Files::FilePaths files {};
-  auto filePath = files.filePath("alphabet_2d");
-
-  auto reader = Files::JSONReader::fromObjectFile(systemPath + filePath);
+  auto reader = Files::JSONReader::fromObjectFile(systemPath + path);
   
   auto lineValues = reader.value<std::vector<std::vector<double>>>(
     letter);

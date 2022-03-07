@@ -5,8 +5,8 @@
 
 TEST(PathsFile, ShouldGetFilePath)
 {  
-  Files::FilePaths file {};
-  std::string correctValue {"resources/alphabet/2d.json"};
+  auto path = Files::FilePaths::path("alphabet_2d");
+  std::string correctPath {"resources/alphabet/2d.json"};
 
-  EXPECT_EQ(correctValue, file.filePath("alphabet_2d"));
+  EXPECT_EQ(correctPath, path);
 }

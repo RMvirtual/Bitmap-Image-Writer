@@ -1,23 +1,21 @@
 #include "src/main/cpp/files/pixel-formats/file.h"
 #include "src/main/cpp/files/paths/file.h"
 
-Files::PixelFormats::PixelFormats()
+Files::JSONReader Files::PixelFormats::reader()
 {
-  // Hardcoding system path here till a reader is developed.
   std::string systemPath {"C://Users/rmvir/Desktop/scc300-Win3D/"};
+  auto filePath = Files::FilePaths::path("pixel_formats");
 
-  Files::FilePaths files {};
-  auto filePath = files.filePath("pixel_formats");
-  
-  this->reader = Files::JSONReader::fromArrayFile(systemPath + filePath);
+  return Files::JSONReader::fromArrayFile(systemPath + filePath);
 }
 
 int Files::PixelFormats::indexOf(std::string formatName)
 {
-  int noOfFormats = this->reader.numberOfObjects();
+  auto reader = Files::PixelFormats::reader();
+  int noOfFormats = reader.numberOfObjects();
 
   for (int formatNo = 0; formatNo < noOfFormats; formatNo++) {
-    auto name = this->formatName(formatNo);
+    auto name = Files::PixelFormats::formatName(formatNo);
 
     if (name == formatName)
       return formatNo;
@@ -28,10 +26,11 @@ int Files::PixelFormats::indexOf(std::string formatName)
 
 int Files::PixelFormats::indexOf(int bitsPerPixel)
 {
-  int noOfFormats = this->reader.numberOfObjects();
+  auto reader = Files::PixelFormats::reader();
+  int noOfFormats = reader.numberOfObjects();
 
   for (int formatNo = 0; formatNo < noOfFormats; formatNo++) {
-    auto currentBitsPerPixel = this->bitsPerPixel(formatNo);
+    auto currentBitsPerPixel = Files::PixelFormats::bitsPerPixel(formatNo);
 
     if (currentBitsPerPixel == bitsPerPixel)
       return formatNo;
@@ -42,17 +41,20 @@ int Files::PixelFormats::indexOf(int bitsPerPixel)
 
 std::string Files::PixelFormats::formatName(int index)
 {
-  return this->reader.value<std::string>(index, "name");
+  auto reader = Files::PixelFormats::reader();  
+  return reader.value<std::string>(index, "name");
 }
 
 int Files::PixelFormats::bitsPerPixel(int index)
 {
-  std::string name {"bitsPerPixel"};
+  auto reader = Files::PixelFormats::reader();  
   
-  return this->reader.value<int>(index, name);
+  return reader.value<int>(index, "bitsPerPixel");
 }
 
 std::vector<std::string> Files::PixelFormats::colours(int index)
 {
-  return this->reader.value<std::vector<std::string>>(index, "colours");
+  auto reader = Files::PixelFormats::reader();
+
+  return reader.value<std::vector<std::string>>(index, "colours");
 }
