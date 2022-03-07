@@ -68,6 +68,8 @@ void Geometry::LineMesh::scale(double scaleFactor)
 
   for (auto& line : this->lines)
     line.scaleIncludingOrigin(scaleFactor);
+
+  this->translate(origin);
 }
 
 void Geometry::LineMesh::translate(Maths::Vector translation)

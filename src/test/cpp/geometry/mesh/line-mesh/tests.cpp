@@ -3,6 +3,24 @@
 
 TEST_F(LineMeshTest, ShouldTranslateLineMesh)
 {
+  this->setupTranslatedLineMeshFromZeroOrigin();
+
   this->lineMesh.translate({2,2});
+  this->compare();
+}
+
+TEST_F(LineMeshTest, ShouldScaleLineMesh)
+{
+  this->setupScaledLineMeshFromZeroOrigin();
+
+  this->lineMesh.scale(2);
+  this->compare();
+}
+
+TEST_F(LineMeshTest, ShouldScaleLineMeshFromNonZeroOrigin)
+{
+  this->setupScaledLineMeshFromNonZeroOrigin();
+
+  this->lineMesh.scale(2);
   this->compare();
 }

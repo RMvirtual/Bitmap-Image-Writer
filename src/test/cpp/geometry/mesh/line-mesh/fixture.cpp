@@ -2,10 +2,10 @@
 
 LineMeshTest::LineMeshTest()
 {
-  this->setupLineMesh();
+  // pass.
 }
 
 LineMeshTest::~LineMeshTest()
 {
-
+  // pass.
 }

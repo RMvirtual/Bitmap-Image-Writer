@@ -11,7 +11,9 @@ public:
 
   void compare();
   void compare(Geometry::Line correctLine, Geometry::Line line);
-  void setupLineMesh();
+  void setupTranslatedLineMeshFromZeroOrigin();
+  void setupScaledLineMeshFromZeroOrigin();
+  void setupScaledLineMeshFromNonZeroOrigin();
 
 protected:
   Geometry::LineMesh lineMesh;
