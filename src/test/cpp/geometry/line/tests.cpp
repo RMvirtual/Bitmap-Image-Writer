@@ -28,6 +28,42 @@ TEST_F(LineTest, ShouldScaleLine)
   EXPECT_EQ(correctLine["y1"], this->line["y1"]);
 }
 
+TEST_F(LineTest, ShouldGetXMinimumAfterScaling)
+{
+  this->line = {{5,5}, {10, 15}};
+  this->line.scale(10);
+  double correctMinimum = 5;
+
+  EXPECT_EQ(correctMinimum, this->line.xMinimum());
+}
+
+TEST_F(LineTest, ShouldGetXMaximumfterScaling)
+{
+  this->line = {{5,5}, {10, 15}};
+  this->line.scale(10);
+  double correctMaximum = 55;
+
+  EXPECT_EQ(correctMaximum, this->line.xMaximum());
+}
+
+TEST_F(LineTest, ShouldGetYMinimumAfterScaling)
+{
+  this->line = {{5,10}, {10, 15}};
+  this->line.scale(10);
+  double correctMinimum = 10;
+
+  EXPECT_EQ(correctMinimum, this->line.yMinimum());
+}
+
+TEST_F(LineTest, ShouldGetYMaximumfterScaling)
+{
+  this->line = {{5,5}, {10, 15}};
+  this->line.scale(10);
+  double correctMaximum = 105;
+
+  EXPECT_EQ(correctMaximum, this->line.yMaximum());
+}
+
 TEST_F(LineTest, ShouldCalculateGradientFromZeroXEqualToY)
 {
   this->line = {{5, 5}};

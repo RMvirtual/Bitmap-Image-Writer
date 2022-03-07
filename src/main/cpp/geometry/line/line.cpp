@@ -1,3 +1,4 @@
+#include <algorithm>
 #include <unordered_map>
 #include "src/main/cpp/geometry/line/line.h"
 
@@ -177,4 +178,24 @@ bool Geometry::Line::isTraversingNorth()
 bool Geometry::Line::isTraversingSouth()
 {
   return this->_origin["y"] > this->_destination["y"];
+}
+
+double Geometry::Line::xMinimum()
+{
+  return std::min(this->_origin["x"], this->_destination["x"]);
+}
+
+double Geometry::Line::xMaximum()
+{
+  return std::max(this->_origin["x"], this->_destination["x"]);
+}
+
+double Geometry::Line::yMinimum()
+{
+  return std::min(this->_origin["y"], this->_destination["y"]);
+}
+
+double Geometry::Line::yMaximum()
+{
+  return std::max(this->_origin["y"], this->_destination["y"]);
 }

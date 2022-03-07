@@ -24,16 +24,30 @@ void Text::Text2D::setText(std::string text)
   this->letters.clear();
   this->_text = text;
 
+  double xCursor = 0;
+  double yCursor = 0;
+
   bool isFirstLetter = true;
 
   for (auto character : this->_text) {
     auto letter = Files::Alphabet2D::letter({character});
 
-    if (isFirstLetter)
-      isFirstLetter = false;
+    // Need to track previous letter's positionings to translate properly.
 
-    else 
+    if (isFirstLetter) {
+      xCursor = letter.xMaximum();
+      yCursor = letter.yMaximum();
+
+      isFirstLetter = false;
+    }
+    
+    else {
+      letter.translate({xCursor, yCursor});
       letter.translate({this->_padding.x, this->_padding.y});
+
+      xCursor = letter.xMaximum();
+      yCursor = letter.yMaximum();
+    }
 
     this->letters.push_back(letter);
   }

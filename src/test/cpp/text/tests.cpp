@@ -23,7 +23,7 @@ TEST_F(TextTest, ShouldCreateText)
 
   Text::Text2D text {"haha"};
   text.setPadding(10, 10);
-  text.scale(100);
+  text.scale(25);
   text.translate({100,100});
 
   this->rasteriser.setWritableImage(image);

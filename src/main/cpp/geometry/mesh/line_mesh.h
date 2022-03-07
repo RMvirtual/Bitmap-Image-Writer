@@ -22,6 +22,10 @@ public:
   void translateToZeroOrigin();
   void scale(double scaleFactor);
   void translate(Maths::Vector translation);
+  double xMinimum();
+  double xMaximum();
+  double yMinimum();
+  double yMaximum();
 
 private:
   std::vector<Geometry::Line> lines;  

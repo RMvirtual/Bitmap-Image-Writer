@@ -1,3 +1,4 @@
+#include <algorithm>
 #include "src/main/cpp/geometry/mesh/line_mesh.h"
 
 Geometry::LineMesh::LineMesh()
@@ -73,4 +74,44 @@ void Geometry::LineMesh::translate(Maths::Vector translation)
 {
   for (auto& line : this->lines)
     line.translate(translation);
+}
+
+double Geometry::LineMesh::xMinimum()
+{
+  double minimum = this->lines[0].xMinimum();
+
+  for (auto line : this->lines)
+    minimum = std::min(minimum, line.xMinimum());
+
+  return minimum;
+}
+
+double Geometry::LineMesh::xMaximum()
+{
+  double maximum = this->lines[0].xMaximum();
+
+  for (auto line : this->lines)
+    maximum = std::max(maximum, line.xMaximum());
+
+  return maximum;
+}
+
+double Geometry::LineMesh::yMinimum()
+{
+  double minimum = this->lines[0].yMinimum();
+
+  for (auto line : this->lines)
+    minimum = std::min(minimum, line.yMinimum());
+
+  return minimum;
+}
+
+double Geometry::LineMesh::yMaximum()
+{
+  double maximum = this->lines[0].yMaximum();
+
+  for (auto line : this->lines)
+    maximum = std::min(maximum, line.yMaximum());
+
+  return maximum;
 }
