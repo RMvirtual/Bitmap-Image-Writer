@@ -33,7 +33,7 @@ void Rasterisation::Rasteriser::draw(Geometry::LineMesh lineMesh)
 
 void Rasterisation::Rasteriser::draw(Geometry::Line line)
 {
-  auto format = Bitmaps::format("RGB");
+  auto format = Bitmaps::format("RGB24");
   auto blackColours = format.colours();
 
   blackColours["red"] = 0;

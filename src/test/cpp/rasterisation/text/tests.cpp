@@ -9,7 +9,7 @@
 
 TEST_F(TextRasterisationTest, ShouldDrawAlphabet)
 {
-  auto format = Bitmaps::format("RGB");
+  auto format = Bitmaps::format("RGB24");
   format.setHeightInPixels(500);
   format.setWidthInPixels(500);
 
