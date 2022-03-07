@@ -24,7 +24,7 @@ void BitmapWriterTest::setup3x5Image()
 
 void BitmapWriterTest::setupBlueRGBImage(int widthInPixels, int heightInPixels)
 {
-  auto format = Bitmaps::format("RGB");
+  auto format = Bitmaps::format("RGB24");
   format.setWidthInPixels(widthInPixels);
   format.setHeightInPixels(heightInPixels);
   
