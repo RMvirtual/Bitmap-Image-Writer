@@ -23,26 +23,17 @@ std::shared_ptr<Bitmaps::Image> TextTest::redImage()
 
 void TextTest::setupCorrectUnpaddedText()
 {
-  Geometry::LineMesh letterH = Files::Alphabet2D::letter("h");
-  Geometry::LineMesh letterA = Files::Alphabet2D::letter("a");
+  auto hahaLineMeshes = this->correctHahaLineMeshes();
 
-  Geometry::LineMesh letterH0 = letterH;
-  Geometry::LineMesh letterA0 = letterA;
-  Geometry::LineMesh letterH1 = letterH;
-  Geometry::LineMesh letterA1 = letterA;
+  hahaLineMeshes[1].translate({2, 0.0});
+  hahaLineMeshes[2].translate({4, 0.0});
+  hahaLineMeshes[3].translate({6, 0.0});
 
-  letterA0.translate({2, 0.0});
-  letterH1.translate({4, 0.0});
-  letterA1.translate({6, 0.0});
-
-  this->correctLineMeshes = {
-    letterH0, letterA0, letterH1, letterA1
-  };  
+  this->correctLineMeshes = hahaLineMeshes;
 }
 
 void TextTest::setupCorrectScaledUnpaddedText()
 {
-  // 2 x's each. Therefore 4x's when scaled.
   Geometry::LineMesh letterH = Files::Alphabet2D::letter("h");
   Geometry::LineMesh letterA = Files::Alphabet2D::letter("a");
 
@@ -65,4 +56,38 @@ void TextTest::setupCorrectScaledUnpaddedText()
   this->correctLineMeshes = {
     letterH0, letterA0, letterH1, letterA1
   };
+}
+
+void TextTest::setupCorrectScaledPaddedText()
+{
+  Geometry::LineMesh letterH = Files::Alphabet2D::letter("h");
+  Geometry::LineMesh letterA = Files::Alphabet2D::letter("a");
+
+  Geometry::LineMesh letterH0 = letterH;
+  Geometry::LineMesh letterA0 = letterA;
+  Geometry::LineMesh letterH1 = letterH;
+  Geometry::LineMesh letterA1 = letterA;
+
+  letterH0.scale(2);
+
+  letterA0.scale(2);
+  letterA0.translate({4, 0.0});
+
+  letterH1.scale(2);
+  letterH1.translate({8, 0.0});
+
+  letterA1.scale(2);
+  letterA1.translate({12, 0.0});
+
+  this->correctLineMeshes = {
+    letterH0, letterA0, letterH1, letterA1
+  };
+}
+
+std::vector<Geometry::LineMesh> TextTest::correctHahaLineMeshes()
+{
+  Geometry::LineMesh letterH = Files::Alphabet2D::letter("h");
+  Geometry::LineMesh letterA = Files::Alphabet2D::letter("a");
+
+  return {letterH, letterA, letterH, letterA};
 }
