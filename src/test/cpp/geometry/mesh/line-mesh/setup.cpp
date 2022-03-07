@@ -8,7 +8,7 @@ void LineMeshTest::setupLineMesh()
   }};
 
   this->correctLineMesh = {{
-    {{0.0, 0.0}, {2, 2}},
-    {{2,2}, {5,5}}
+    {{2, 2}, {4, 4}},
+    {{4,4}, {7,7}}
   }};
 }
