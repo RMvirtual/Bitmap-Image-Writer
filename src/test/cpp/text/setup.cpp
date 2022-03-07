@@ -1,3 +1,5 @@
+#include "src/main/cpp/files/alphabet-2d/file.h"
+
 #include "src/main/cpp/bitmaps/formats/formats.h"
 #include "src/main/cpp/bitmaps/image/image.h"
 #include "src/test/cpp/text/fixture.h"
@@ -21,22 +23,8 @@ std::shared_ptr<Bitmaps::Image> TextTest::redImage()
 
 void TextTest::setupCorrectUnpaddedText()
 {
-  // X max = 2
-  Geometry::LineMesh letterH = {{
-    {{0.0,0.0}, {0.0, 3}},
-    {{0.0,3}, {0.0, 2}},
-    {{0.0,2}, {2, 2}},
-    {{2,2}, {2, 0.0}},
-    {{2,0.0}, {2, 3}}
-  }};
-
-  // x max = 2
-  Geometry::LineMesh letterA = {{
-    {{0.0,0.0}, {1, 2}},
-    {{1,2}, {2, 0.0}},
-    {{2,0.0}, {0.5, 1}},
-    {{0.5,1}, {1.5, 1}},
-  }};
+  Geometry::LineMesh letterH = Files::Alphabet2D::letter("h");
+  Geometry::LineMesh letterA = Files::Alphabet2D::letter("a");
 
   Geometry::LineMesh letterH0 = letterH;
   Geometry::LineMesh letterA0 = letterA;
@@ -50,4 +38,31 @@ void TextTest::setupCorrectUnpaddedText()
   this->correctLineMeshes = {
     letterH0, letterA0, letterH1, letterA1
   };  
+}
+
+void TextTest::setupCorrectScaledUnpaddedText()
+{
+  // 2 x's each. Therefore 4x's when scaled.
+  Geometry::LineMesh letterH = Files::Alphabet2D::letter("h");
+  Geometry::LineMesh letterA = Files::Alphabet2D::letter("a");
+
+  Geometry::LineMesh letterH0 = letterH;
+  Geometry::LineMesh letterA0 = letterA;
+  Geometry::LineMesh letterH1 = letterH;
+  Geometry::LineMesh letterA1 = letterA;
+
+  letterH0.scale(2);
+
+  letterA0.translate({4, 0.0});
+  letterA0.scale(2);
+
+  letterH1.translate({8, 0.0});
+  letterH1.scale(2);
+
+  letterA1.translate({12, 0.0});
+  letterA1.scale(2);
+
+  this->correctLineMeshes = {
+    letterH0, letterA0, letterH1, letterA1
+  };
 }

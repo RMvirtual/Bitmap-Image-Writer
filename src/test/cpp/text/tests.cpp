@@ -13,12 +13,20 @@ TEST_F(TextTest, ShouldCreateTextWithNoPadding)
   this->compare(text);
 }
 
+TEST_F(TextTest, ShouldCreateScaledTextWithNoPadding)
+{
+  this->setupCorrectScaledUnpaddedText();
+  Text::Text2D text {"haha"};
+  text.scale(2);
+  this->compare(text);
+}
+
 TEST_F(TextTest, ShouldCreateTextImageFile)
 {
   auto image = this->redImage();
 
   Text::Text2D text {"haha"};
-  text.setPadding(50, 0);
+  text.setPadding(0, 0);
   text.scale(25);
   text.translate({100,100});
 
