@@ -3,28 +3,23 @@
 
 Text::Letter::Letter(std::string letter)
 {
-  this->initialiseDefaults(letter);
+  this->loadLetterFromFile(letter);
 }
 
 Text::Letter::Letter(char letter)
 {
-  this->initialiseDefaults({letter});
+  this->loadLetterFromFile({letter});
 }
 
-void Text::Letter::initialiseDefaults(std::string letter)
+void Text::Letter::loadLetterFromFile(std::string letter)
 {
-  this->loadLetterFromFile({letter});
+  this->templateMesh = Files::Alphabet2D::letter(letter);
   this->scaleFactor = 1;
 
   this->translationFromOrigin = {
     this->templateMesh.xLowerBound(), this->templateMesh.yLowerBound()};
 
   this->transformMesh();
-}
-
-void Text::Letter::loadLetterFromFile(std::string letter)
-{
-  this->templateMesh = Files::Alphabet2D::letter(letter);
 }
 
 void Text::Letter::transformMesh()

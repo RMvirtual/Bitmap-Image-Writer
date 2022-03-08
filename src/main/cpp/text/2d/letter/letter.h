@@ -31,7 +31,6 @@ private:
   double scaleFactor;
   Maths::Vector translationFromOrigin;
 
-  void initialiseDefaults(std::string letter);
   void loadLetterFromFile(std::string letter);
   void transformMesh();
 };}
