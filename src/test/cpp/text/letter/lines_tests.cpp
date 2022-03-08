@@ -70,11 +70,11 @@ TEST_F(LetterTest, ShouldGetScaledAndTranslatedLines)
   letter.translate({2,4});
 
   std::vector<Geometry::Line> correctLines = {
-    {{7, 12}, {5, 12}},
-    {{5, 12}, {4, 11}},
-    {{4, 11}, {4, 9}},
-    {{4, 9}, {5, 8}},
-    {{5, 8}, {7, 8}}
+    {{5, 8}, {3, 8}},
+    {{3, 8}, {2, 7}},
+    {{2, 7}, {2, 5}},
+    {{2, 5}, {3, 4}},
+    {{3, 4}, {5, 4}}
   };
 
   int noOfLines = letter.noOfLines();
