@@ -8,6 +8,7 @@ cc_library(
     deps = [
         "//src/main/cpp/maths",
         "//src/main/cpp/files",
-        "//src/main/cpp/geometry"
+        "//src/main/cpp/geometry",
+        "//src/main/cpp/text/2d/letter"
     ]
 )

@@ -6,7 +6,6 @@ void TextTest::compare(Text::Text2D text)
   ASSERT_EQ(this->correctLetters.size(), noOfLetters);
 
   for (int i = 0; i < noOfLetters; i++) {
-    std::cout << "\nTesting letter " << i << "\n";
     auto lineMesh = text[i];
     auto correctLineMesh = this->correctLetters[i];
 
@@ -14,14 +13,14 @@ void TextTest::compare(Text::Text2D text)
   }
 }
 
-void TextTest::compare(Geometry::LineMesh correctMesh, Geometry::LineMesh mesh)
+void TextTest::compare(Text::Letter correctLetter, Text::Letter letter)
 {
-  int noOfLines = mesh.size();
-  ASSERT_EQ(correctMesh.size(), noOfLines);
+  int noOfLines = letter.noOfLines();
+  ASSERT_EQ(correctLetter.noOfLines(), noOfLines);
 
   for (int i = 0; i < noOfLines; i++) {
-    auto line = mesh[i];
-    auto correctLine = correctMesh[i];
+    auto line = letter[i];
+    auto correctLine = correctLetter[i];
 
     this->compare(correctLine, line);
   }

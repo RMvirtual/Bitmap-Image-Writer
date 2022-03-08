@@ -13,8 +13,9 @@ public:
 
 protected:
   Rasterisation::Rasteriser rasteriser;
-  std::vector<Geometry::LineMesh> correctLetters;
+  std::vector<Text::Letter> correctLetters;
 
+  std::vector<Text::Letter> correctHahaLetters();
   std::shared_ptr<Bitmaps::Image> redImage();
   void setupUnpaddedText();
   void setupPaddedText();
@@ -24,7 +25,6 @@ protected:
   void setupPaddedScaledPaddedText();
 
   void compare(Text::Text2D text);
-  void compare(Geometry::LineMesh correctMesh, Geometry::LineMesh mesh);
+  void compare(Text::Letter correctLetter, Text::Letter letter);
   void compare(Geometry::Line correctLine, Geometry::Line line);
-  std::vector<Geometry::LineMesh> correctHahaLineMeshes();
 };

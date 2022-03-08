@@ -4,6 +4,7 @@
 #include "src/main/cpp/text/2d/textbox/padding.h"
 #include "src/main/cpp/maths/vector/vector.h"
 #include "src/main/cpp/geometry/line/mesh.h"
+#include "src/main/cpp/text/2d/letter/letter.h"
 
 namespace Text {
 class Text2D
@@ -18,24 +19,24 @@ public:
   void translate(Maths::Vector translation);
   int size();
 
-  Geometry::LineMesh operator [](int index);
+  Text::Letter operator [](int index);
 
-  std::vector<Geometry::LineMesh>::iterator begin();
-  std::vector<Geometry::LineMesh>::iterator end();
-  std::vector<Geometry::LineMesh>::const_iterator begin() const;
-  std::vector<Geometry::LineMesh>::const_iterator end() const;
+  std::vector<Text::Letter>::iterator begin();
+  std::vector<Text::Letter>::iterator end();
+  std::vector<Text::Letter>::const_iterator begin() const;
+  std::vector<Text::Letter>::const_iterator end() const;
 
   std::string text();
-  Text::Padding padding();
-  void renderLetters();
-  void loadBaseLetters();
 
 private:
+  std::vector<Text::Letter> letters;
   std::string _text;
-  std::vector<Geometry::LineMesh> baseLetters;
-  std::vector<Geometry::LineMesh> renderedLetters;
+  Text::Padding _padding;
   Maths::Vector origin;
 
-  Text::Padding _padding;
-  double scaleFactor;  
+  void renderLetters();
+  void loadBaseLetters();
+  void addPadding();
+  void removePadding();
+  void recalculatePadding(double scaleFactor);
 };}

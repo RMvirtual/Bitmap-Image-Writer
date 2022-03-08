@@ -26,9 +26,9 @@ void Rasterisation::Rasteriser::draw(Text::Text2D text)
   }
 }
 
-void Rasterisation::Rasteriser::draw(std::vector<Geometry::Line> lines)
+void Rasterisation::Rasteriser::draw(Text::Letter letter)
 {
-  for (auto line : lines)
+  for (auto line : letter)
     this->draw(line);
 }
 
