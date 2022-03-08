@@ -1,14 +1,14 @@
-#include "src/test/cpp/text/fixture.h"
+#include "src/test/cpp/text/textbox/fixture.h"
 
 void TextTest::compare(Text::Text2D text)
 {
   int noOfLetters = text.size();
-  ASSERT_EQ(this->correctLineMeshes.size(), noOfLetters);
+  ASSERT_EQ(this->correctLetters.size(), noOfLetters);
 
   for (int i = 0; i < noOfLetters; i++) {
     std::cout << "\nTesting letter " << i << "\n";
     auto lineMesh = text[i];
-    auto correctLineMesh = this->correctLineMeshes[i];
+    auto correctLineMesh = this->correctLetters[i];
 
     this->compare(correctLineMesh, lineMesh);
   }

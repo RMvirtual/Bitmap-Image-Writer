@@ -1,4 +1,4 @@
-#include "src/test/cpp/geometry/mesh/line-mesh/fixture.h"
+#include "src/test/cpp/geometry/line/mesh/fixture.h"
 
 void LineMeshTest::setupTranslatedLineMeshFromZeroOrigin()
 {

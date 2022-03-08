@@ -1,9 +1,9 @@
 #pragma once
 
 #include <string>
-#include "src/main/cpp/text/2d/padding.h"
+#include "src/main/cpp/text/2d/textbox/padding.h"
 #include "src/main/cpp/maths/vector/vector.h"
-#include "src/main/cpp/geometry/mesh/line_mesh.h"
+#include "src/main/cpp/geometry/line/mesh.h"
 
 namespace Text {
 class Text2D

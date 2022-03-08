@@ -7,7 +7,6 @@ cc_library(
     visibility = ["//visibility:public"],
     deps = [
         "//src/main/cpp/geometry/triangle",
-        "//src/main/cpp/geometry/mesh",
         "//src/main/cpp/geometry/line",
     ]
 )

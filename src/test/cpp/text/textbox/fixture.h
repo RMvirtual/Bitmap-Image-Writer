@@ -13,7 +13,7 @@ public:
 
 protected:
   Rasterisation::Rasteriser rasteriser;
-  std::vector<Geometry::LineMesh> correctLineMeshes;
+  std::vector<Geometry::LineMesh> correctLetters;
 
   std::shared_ptr<Bitmaps::Image> redImage();
   void setupUnpaddedText();

@@ -1,7 +1,7 @@
 #pragma once
 
 #include "gtest/gtest.h"
-#include "src/main/cpp/geometry/mesh/line_mesh.h"
+#include "src/main/cpp/geometry/line/mesh.h"
 
 class LineMeshTest : public testing::Test
 {

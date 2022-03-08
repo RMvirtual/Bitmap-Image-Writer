@@ -1,5 +1,5 @@
 #include <algorithm>
-#include "src/main/cpp/geometry/mesh/line_mesh.h"
+#include "src/main/cpp/geometry/line/mesh.h"
 
 Geometry::LineMesh::LineMesh()
 {

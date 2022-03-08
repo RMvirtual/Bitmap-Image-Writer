@@ -1,8 +1,7 @@
 #pragma once
 
 #include <string>
-#include "src/main/cpp/files/json-reader/json_reader.h"
-#include "src/main/cpp/geometry/mesh/line_mesh.h"
+#include "src/main/cpp/geometry/line/mesh.h"
 
 namespace Files {
 namespace Alphabet2D

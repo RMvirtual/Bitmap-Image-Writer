@@ -2,9 +2,8 @@
 #include <vector>
 
 #include "gtest/gtest.h"
-#include "src/test/cpp/text/fixture.h"
+#include "src/test/cpp/text/textbox/fixture.h"
 #include "src/main/cpp/bitmaps/writer/image/writer.h"
-#include "src/main/cpp/text/2d/text.h"
 
 TEST_F(TextTest, ShouldCreateUnpaddedText)
 {
@@ -33,8 +32,8 @@ TEST_F(TextTest, ShouldCreatePaddedTranslatedText)
 {
   this->setupPaddedTranslatedText();
   Text::Text2D text {"haha"};
-  text.translate({5, 3});
   text.setPadding(1, 0.0);
+  text.translate({5, 3});
   this->compare(text);
 }
 
@@ -49,7 +48,7 @@ TEST_F(TextTest, ShouldCreateUnpaddedScaledText)
 TEST_F(TextTest, ShouldCreatePaddedScaledText)
 {
   this->setupPaddedScaledPaddedText();
-  Text::Text2D text {"haha"};
+  Text::Text2D text {"h"};
   text.setPadding(1, 0.0);
   text.scale(2);
 

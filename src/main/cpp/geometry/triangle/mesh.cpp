@@ -1,4 +1,4 @@
-#include "src/main/cpp/geometry/mesh/mesh.h"
+#include "src/main/cpp/geometry/triangle/mesh.h"
 #include "src/main/cpp/geometry/triangle/triangle.h"
 
 Geometry::Mesh::Mesh(std::vector<Geometry::Triangle> triangles)

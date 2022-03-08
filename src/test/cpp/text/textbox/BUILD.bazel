@@ -1,0 +1,13 @@
+load("@rules_cc//cc:defs.bzl", "cc_test")
+
+cc_test(
+    name = "textbox",
+    size = "small",
+    srcs = glob(["*.h", "*.cpp"]),
+    deps = [
+        "@googletest//:gtest_main",
+        "//src/main/cpp/text",
+        "//src/main/cpp/rasterisation",
+        "//src/main/cpp/files",
+    ]
+)

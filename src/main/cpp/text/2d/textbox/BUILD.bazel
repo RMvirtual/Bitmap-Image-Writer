@@ -1,9 +1,13 @@
 load("@rules_cc//cc:defs.bzl", "cc_library")
 
 cc_library(
-    name = "mesh",
+    name = "textbox",
     hdrs = glob(["*.h"]),
     srcs = glob(["*.cpp"]),
     visibility = ["//visibility:public"],
-    deps = ["//src/main/cpp/geometry/triangle"]
+    deps = [
+        "//src/main/cpp/maths",
+        "//src/main/cpp/files",
+        "//src/main/cpp/geometry"
+    ]
 )

@@ -4,8 +4,8 @@
 #include "src/main/cpp/bitmaps/image/image.h"
 #include "src/main/cpp/geometry/line/line.h"
 #include "src/main/cpp/geometry/triangle/triangle.h"
-#include "src/main/cpp/geometry/mesh/line_mesh.h"
-#include "src/main/cpp/text/2d/text.h"
+#include "src/main/cpp/geometry/line/mesh.h"
+#include "src/main/cpp/text/2d/textbox/text.h"
 
 namespace Rasterisation {
 class Rasteriser

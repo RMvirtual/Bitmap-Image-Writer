@@ -1,4 +1,4 @@
-#include "src/test/cpp/geometry/line/fixture.h"
+#include "src/test/cpp/geometry/line/line/fixture.h"
 
 void LineTest::setupNorthEastLine()
 {

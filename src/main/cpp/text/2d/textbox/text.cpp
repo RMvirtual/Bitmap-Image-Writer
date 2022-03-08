@@ -1,4 +1,4 @@
-#include "src/main/cpp/text/2d/text.h"
+#include "src/main/cpp/text/2d/textbox/text.h"
 #include "src/main/cpp/files/alphabet-2d/file.h"
 
 Text::Text2D::Text2D()
@@ -56,6 +56,8 @@ void Text::Text2D::renderLetters()
     std::cout << "xCursor is " << xCursor << std::endl;
     std::cout << "Received padding of " << scaledPadding << std::endl;
     xCursor = letter.xMaximum() + scaledPadding;
+
+    std::cout << "xCursor is now " << xCursor << std::endl;
 
     this->renderedLetters.push_back(letter);
   }
