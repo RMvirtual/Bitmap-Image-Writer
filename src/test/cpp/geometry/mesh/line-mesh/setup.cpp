@@ -61,3 +61,28 @@ void LineMeshTest::setupScaledLineMeshFromDescendingOrigin()
     {{1, 0.0}, {3, 0.0}}
   }};
 }
+
+void LineMeshTest::setupScaledTranslatedLineMeshFromDescendingOrigin()
+{
+//    [1.5, 2], [0.5, 2],
+//    [0.0, 1.5], [0.0, 0.5],
+//    [0.5, 0.0], [1.5, 0.0]
+
+  // scale of 2.
+
+  this->lineMesh = {{
+    {{1.5, 2}, {0.5, 2}},
+    {{0.5, 2}, {0.0, 1.5}},
+    {{0.0, 1.5}, {0.0, 0.5}},
+    {{0.0, 0.5}, {0.5, 0.0}},
+    {{0.5, 0.0}, {1.5, 0.0}}
+  }};
+
+  this->correctLineMesh = {{
+    {{3, 4}, {1, 4}},
+    {{1, 4}, {0.0, 3}},
+    {{0.0, 3}, {0.0, 1}},
+    {{0.0, 1}, {1, 0.0}},
+    {{1, 0.0}, {3, 0.0}}
+  }};
+}

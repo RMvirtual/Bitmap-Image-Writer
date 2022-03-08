@@ -24,7 +24,7 @@ TEST_F(TextTest, ShouldCreateTextWithPadding)
 TEST_F(TextTest, ShouldCreateScaledTextWithNoPadding)
 {
   this->setupCorrectScaledUnpaddedText();
-  Text::Text2D text {"haha"};
+  Text::Text2D text {"h"};
   text.scale(2);
   this->compare(text);
 }
@@ -33,8 +33,8 @@ TEST_F(TextTest, ShouldCreateScaledTextWithPadding)
 {
   this->setupCorrectScaledPaddedText();
   Text::Text2D text {"haha"};
+  text.setPadding(1, 0.0);
   text.scale(2);
-  text.setPadding(1,0);
 
   this->compare(text);
 }
@@ -55,6 +55,4 @@ TEST_F(TextTest, ShouldCreateTextImageFile)
     *image,
     "C:/Users/rmvir/Desktop/scc300-Win3D/resources/test/output/text.bmp"
   );
-
-  EXPECT_FALSE(true); // Dummy fail to run test everytime.
 }

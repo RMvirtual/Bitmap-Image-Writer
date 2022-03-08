@@ -41,14 +41,10 @@ void TextTest::setupCorrectPaddedText()
 
 void TextTest::setupCorrectScaledUnpaddedText()
 {
-  this->correctLineMeshes = this->correctHahaLineMeshes();
+  this->correctLineMeshes = {Files::Alphabet2D::letter("h")};
 
   for (auto& mesh : this->correctLineMeshes)
     mesh.scale(2);
-
-  this->correctLineMeshes[1].translate({2, 0.0});
-  this->correctLineMeshes[2].translate({6, 0.0});
-  this->correctLineMeshes[3].translate({8, 0.0});
 }
 
 void TextTest::setupCorrectScaledPaddedText()
@@ -59,12 +55,12 @@ void TextTest::setupCorrectScaledPaddedText()
   // h = 2 / 4
   // a = 4 / 6
 
-  for (auto& mesh : this->correctLineMeshes)
-    mesh.scale(2);
-
   this->correctLineMeshes[1].translate({4, 0.0});
   this->correctLineMeshes[2].translate({10, 0.0});
   this->correctLineMeshes[3].translate({14, 0.0});
+
+  for (auto& mesh : this->correctLineMeshes)
+    mesh.scale(2);
 }
 
 std::vector<Geometry::LineMesh> TextTest::correctHahaLineMeshes()

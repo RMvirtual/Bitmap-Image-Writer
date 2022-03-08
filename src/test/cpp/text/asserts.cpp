@@ -6,6 +6,7 @@ void TextTest::compare(Text::Text2D text)
   ASSERT_EQ(this->correctLineMeshes.size(), noOfLetters);
 
   for (int i = 0; i < noOfLetters; i++) {
+    std::cout << "\nTesting letter " << i << "\n";
     auto lineMesh = text[i];
     auto correctLineMesh = this->correctLineMeshes[i];
 

@@ -36,11 +36,17 @@ TEST_F(LineMeshTest, ShouldGetOriginOfMesh)
   EXPECT_EQ(correctOrigin["y"], origin["y"]);
 }
 
-
 TEST_F(LineMeshTest, ShouldScaleLineMeshFromNorthEast)
 {
   this->setupScaledLineMeshFromDescendingOrigin();
 
   this->lineMesh.scale(2);
   this->compare();
+}
+
+TEST_F(LineMeshTest, ShouldScaleAndTranslateLineMesh)
+{
+  this->setupScaledTranslatedLineMeshFromDescendingOrigin();
+  
+
 }

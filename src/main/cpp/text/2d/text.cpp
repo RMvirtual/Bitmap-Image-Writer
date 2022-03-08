@@ -30,22 +30,24 @@ void Text::Text2D::setText(std::string text)
   double xCursor = 0.0;
   double yCursor = 0.0;
 
-  bool isFirstLetter = true;
+  std::cout << "\nXPadding is " << this->_padding.x << std::endl;
+  std::cout << "Scale factor is " << this->scaleFactor << std::endl;
 
   for (auto character : this->_text) {
     auto letter = Files::Alphabet2D::letter({character});
 
-    if (isFirstLetter)
-      isFirstLetter = false;
-    
-    else {
-      letter.translate({xCursor, 0.0});
-    }
+    std::cout << "X cursor at " << xCursor << std::endl;
 
+    letter.translate({xCursor, 0.0});
     letter.scale(this->scaleFactor);
     
-    xCursor = letter.xMaximum() + this->_padding.x * this->scaleFactor;
-    std::cout << "Cursor at " << xCursor << std::endl;
+    xCursor = letter.xMaximum() + (this->_padding.x * this->scaleFactor);
+
+    std::cout << "Letter " << character << " now has:" << std::endl;
+    std::cout << letter[0]["x0"] << std::endl;
+    std::cout << letter[0]["x1"] << std::endl;
+    std::cout << letter[0]["y0"] << std::endl;
+    std::cout << letter[0]["y1"] << std::endl;
 
     this->letters.push_back(letter);
   }

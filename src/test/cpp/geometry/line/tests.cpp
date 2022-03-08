@@ -28,6 +28,20 @@ TEST_F(LineTest, ShouldScaleLine)
   EXPECT_EQ(correctLine["y1"], this->line["y1"]);
 }
 
+TEST_F(LineTest, ShouldScaleAndTranslateLine)
+{
+  this->line = {{5,5}, {10, 15}};
+  this->line.scale(10);
+  this->line.translate({10, 20});
+
+  Geometry::Line correctLine {{15,25}, {65,125}};
+
+  EXPECT_EQ(correctLine["x0"], this->line["x0"]);
+  EXPECT_EQ(correctLine["y0"], this->line["y0"]);
+  EXPECT_EQ(correctLine["x1"], this->line["x1"]);
+  EXPECT_EQ(correctLine["y1"], this->line["y1"]);
+}
+
 TEST_F(LineTest, ShouldGetXMinimumAfterScaling)
 {
   this->line = {{5,5}, {10, 15}};
