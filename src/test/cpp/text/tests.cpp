@@ -43,7 +43,7 @@ TEST_F(TextTest, ShouldCreateTextImageFile)
 {
   auto image = this->redImage();
 
-  Text::Text2D text {"abhc"};
+  Text::Text2D text {"abch"};
   text.scale(20);
   text.translate({25, 100});
   this->rasteriser.setWritableImage(image);

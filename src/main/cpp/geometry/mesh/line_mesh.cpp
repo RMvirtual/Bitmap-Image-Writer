@@ -80,10 +80,10 @@ void Geometry::LineMesh::scale(double scaleFactor)
 
 void Geometry::LineMesh::translate(Maths::Vector translation)
 {
-  this->calculateOrigin();
-
   for (auto& line : this->lines)
     line.translate(translation);
+
+  this->calculateOrigin();
 }
 
 double Geometry::LineMesh::xMinimum()
