@@ -78,6 +78,12 @@ void Geometry::LineMesh::scale(double scaleFactor)
   this->translate(origin);
 }
 
+void Geometry::LineMesh::scale(double scaleFactor, Maths::Vector origin)
+{
+  for (auto& line : this->lines)
+    line.scale(scaleFactor, origin);
+}
+
 void Geometry::LineMesh::translate(Maths::Vector translation)
 {
   for (auto& line : this->lines)

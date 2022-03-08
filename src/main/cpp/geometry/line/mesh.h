@@ -20,6 +20,7 @@ public:
   void add(Geometry::Line line);
   Maths::Vector origin();
   void translateToZeroOrigin();
+  void scale(double scaleFactor, Maths::Vector origin);
   void scale(double scaleFactor);
   void translate(Maths::Vector translation);
   double xLowerBound();
