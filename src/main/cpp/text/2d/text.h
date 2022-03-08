@@ -27,10 +27,15 @@ public:
 
   std::string text();
   Text::Padding padding();
+  void renderLetters();
+  void loadBaseLetters();
 
 private:
   std::string _text;
-  std::vector<Geometry::LineMesh> letters;
+  std::vector<Geometry::LineMesh> baseLetters;
+  std::vector<Geometry::LineMesh> renderedLetters;
+  Maths::Vector origin;
+
   Text::Padding _padding;
   double scaleFactor;  
 };}

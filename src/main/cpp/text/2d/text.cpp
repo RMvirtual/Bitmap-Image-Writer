@@ -9,6 +9,7 @@ Text::Text2D::Text2D()
 
 Text::Text2D::Text2D(std::string text)
 {
+  this->origin = {0.0, 0.0};
   this->scaleFactor = 1;
   this->setText(text);
 }
@@ -19,54 +20,55 @@ void Text::Text2D::setPadding(double x, double y)
   this->_padding.y = y;
 
   if (this->_text != "")
-    this->setText(this->_text);
+    this->renderLetters();
 }
 
 void Text::Text2D::setText(std::string text)
 {
-  this->letters.clear();
   this->_text = text;
 
-  double xCursor = 0.0;
-  double yCursor = 0.0;
+  this->loadBaseLetters();
+  this->renderLetters();
+}
 
-  std::cout << "\nXPadding is " << this->_padding.x << std::endl;
-  std::cout << "Scale factor is " << this->scaleFactor << std::endl;
+void Text::Text2D::loadBaseLetters()
+{
+  this->baseLetters.clear();
 
   for (auto character : this->_text) {
     auto letter = Files::Alphabet2D::letter({character});
+    this->baseLetters.push_back(letter);
+  }
+}
 
-    std::cout << "X cursor at " << xCursor << std::endl;
+void Text::Text2D::renderLetters()
+{
+  this->renderedLetters.clear();
 
-    letter.translate({xCursor, 0.0});
+  double xCursor = this->origin["x"];
+  double yCursor = this->origin["y"];
+
+  for (auto letter : this->baseLetters) {
+    letter.translate({xCursor, yCursor});
     letter.scale(this->scaleFactor);
     
-    xCursor = letter.xMaximum() + (this->_padding.x * this->scaleFactor);
+    auto scaledPadding = this->_padding.x * this->scaleFactor;
+    xCursor = letter.xMaximum() + scaledPadding;
 
-    std::cout << "Letter " << character << " now has:" << std::endl;
-    std::cout << letter[0]["x0"] << std::endl;
-    std::cout << letter[0]["x1"] << std::endl;
-    std::cout << letter[0]["y0"] << std::endl;
-    std::cout << letter[0]["y1"] << std::endl;
-
-    this->letters.push_back(letter);
+    this->renderedLetters.push_back(letter);
   }
 }
 
 void Text::Text2D::scale(double scaleFactor)
 {
-  this->scaleFactor = scaleFactor;
-
-  for (auto& letter : this->letters)
-    letter.scale(this->scaleFactor);
-
-  this->setText(this->_text);
+  this->scaleFactor *= scaleFactor;
+  this->renderLetters();
 }
 
 void Text::Text2D::translate(Maths::Vector translation)
 {
-  for (auto& letter : this->letters)
-    letter.translate(translation);
+  this->origin = this->origin + translation;
+  this->renderLetters();
 }
 
 std::string Text::Text2D::text()
@@ -76,30 +78,30 @@ std::string Text::Text2D::text()
 
 std::vector<Geometry::LineMesh>::iterator Text::Text2D::begin()
 {
-  return this->letters.begin();
+  return this->renderedLetters.begin();
 }
 
 std::vector<Geometry::LineMesh>::iterator Text::Text2D::end()
 {
-  return this->letters.end();
+  return this->renderedLetters.end();
 }
 
 std::vector<Geometry::LineMesh>::const_iterator Text::Text2D::begin() const
 {
-  return this->letters.begin();
+  return this->renderedLetters.begin();
 }
 
 std::vector<Geometry::LineMesh>::const_iterator Text::Text2D::end() const
 {
-  return this->letters.end();
+  return this->renderedLetters.end();
 }
 
 Geometry::LineMesh Text::Text2D::operator [](int index)
 {
-  return this->letters[index];
+  return this->renderedLetters[index];
 }
 
 int Text::Text2D::size()
 {
-  return this->letters.size();
+  return this->renderedLetters.size();
 }

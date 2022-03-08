@@ -21,7 +21,7 @@ std::shared_ptr<Bitmaps::Image> TextTest::redImage()
   return image;
 }
 
-void TextTest::setupCorrectUnpaddedText()
+void TextTest::setupUnpaddedText()
 {
   this->correctLineMeshes = this->correctHahaLineMeshes();
 
@@ -30,7 +30,7 @@ void TextTest::setupCorrectUnpaddedText()
   this->correctLineMeshes[3].translate({4, 0.0});
 }
 
-void TextTest::setupCorrectPaddedText()
+void TextTest::setupPaddedText()
 {
   this->correctLineMeshes = this->correctHahaLineMeshes();
 
@@ -39,7 +39,27 @@ void TextTest::setupCorrectPaddedText()
   this->correctLineMeshes[3].translate({7, 0.0});
 }
 
-void TextTest::setupCorrectScaledUnpaddedText()
+void TextTest::setupUnpaddedTranslatedText()
+{
+  this->correctLineMeshes = this->correctHahaLineMeshes();
+
+  this->correctLineMeshes[1].translate({5, 3});
+  this->correctLineMeshes[1].translate({6, 3});
+  this->correctLineMeshes[2].translate({8, 3});
+  this->correctLineMeshes[3].translate({9, 3});
+}
+
+void TextTest::setupPaddedTranslatedText()
+{
+  this->correctLineMeshes = this->correctHahaLineMeshes();
+
+  this->correctLineMeshes[1].translate({6, 3});
+  this->correctLineMeshes[1].translate({7, 3});
+  this->correctLineMeshes[2].translate({9, 3});
+  this->correctLineMeshes[3].translate({10, 3});
+}
+
+void TextTest::setupUnpaddedScaledText()
 {
   this->correctLineMeshes = {Files::Alphabet2D::letter("h")};
 
@@ -47,7 +67,7 @@ void TextTest::setupCorrectScaledUnpaddedText()
     mesh.scale(2);
 }
 
-void TextTest::setupCorrectScaledPaddedText()
+void TextTest::setupPaddedScaledPaddedText()
 {
   this->correctLineMeshes = this->correctHahaLineMeshes();
 

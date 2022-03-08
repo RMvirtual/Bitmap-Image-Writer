@@ -16,10 +16,12 @@ protected:
   std::vector<Geometry::LineMesh> correctLineMeshes;
 
   std::shared_ptr<Bitmaps::Image> redImage();
-  void setupCorrectUnpaddedText();
-  void setupCorrectPaddedText();
-  void setupCorrectScaledUnpaddedText();
-  void setupCorrectScaledPaddedText();
+  void setupUnpaddedText();
+  void setupPaddedText();
+  void setupUnpaddedTranslatedText();
+  void setupPaddedTranslatedText();
+  void setupUnpaddedScaledText();
+  void setupPaddedScaledPaddedText();
 
   void compare(Text::Text2D text);
   void compare(Geometry::LineMesh correctMesh, Geometry::LineMesh mesh);
