@@ -137,7 +137,7 @@ TEST_F(TextTest, ShouldCreateTextImageFile)
 
   Text::Text2D text2 {"nopqrstuvwxyz"};
   text2.setPadding(0.25, 0.0);
-  text2.scale(20);
+  text2.scale(20); // either scale or constructor.
   text2.translate({25, 100});
 
   this->rasteriser.setWritableImage(image);

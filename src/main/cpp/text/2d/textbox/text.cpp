@@ -81,7 +81,8 @@ void Text::Text2D::removePadding()
 void Text::Text2D::scale(double scaleFactor)
 {
   int noOfLetters = this->letters.size();
-  this->letters[0].scale(scaleFactor);
+  this->letters[0].scaleIncludingOrigin(scaleFactor); //  Should be scale, but changing to 
+  // scaleIncludingOrigin fixes the text 1st character messing up.
 
   for (int letterNo = 1; letterNo < noOfLetters; letterNo++) {
     auto& letter = this->letters[letterNo];
