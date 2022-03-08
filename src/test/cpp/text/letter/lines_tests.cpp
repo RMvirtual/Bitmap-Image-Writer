@@ -125,3 +125,24 @@ TEST_F(LetterTest, ShouldTranslateThenScaleLines)
   for (int i = 0; i < noOfLines; i++)
     this->compare(correctLines[i], letter[i]);
 }
+
+TEST_F(LetterTest, ShouldScaleWithProvidedOrigin)
+{
+  Text::Letter letter {"c"};
+  letter.translate({5,3});
+  letter.scale(2, {5, 3});
+
+  std::vector<Geometry::Line> correctLines = {
+    {{8, 7}, {6, 7}},
+    {{6, 7}, {5, 6}},
+    {{5, 6}, {5, 4}},
+    {{5, 4}, {6, 3}},
+    {{6, 3}, {8, 3}}
+  };
+
+  int noOfLines = letter.noOfLines();
+  ASSERT_EQ(correctLines.size(), noOfLines);
+
+  for (int i = 0; i < noOfLines; i++)
+    this->compare(correctLines[i], letter[i]);
+}

@@ -8,7 +8,6 @@ Text::Text2D::Text2D()
 
 Text::Text2D::Text2D(std::string text)
 {
-  this->_origin = {0.0, 0.0};
   this->setText(text);
 }
 
@@ -86,15 +85,11 @@ void Text::Text2D::scale(double scaleFactor)
   // text 1st character messing up.
   
   // Get the origin x and y for this entire container.
+  auto origin = this->origin();
 
-  this->letters[0].scaleIncludingOrigin(scaleFactor);
-
-  for (int letterNo = 1; letterNo < noOfLetters; letterNo++) {
-    auto& letter = this->letters[letterNo];
+  for (auto& letter : this->letters)
+    letter.scale(scaleFactor, origin);
     
-    letter.scaleIncludingOrigin(scaleFactor);
-  }
-
   this->scalePadding(scaleFactor);
 }
 

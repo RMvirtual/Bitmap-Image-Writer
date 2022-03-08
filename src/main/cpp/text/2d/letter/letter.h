@@ -11,8 +11,9 @@ public:
   Letter(std::string letter);
   Letter(char letter);
 
-  void scaleIncludingOrigin(double scaleFactor);
   void scale(double scaleFactor);
+  void scale(double scaleFactor, Maths::Vector origin);
+  void scaleIncludingOrigin(double scaleFactor);
 
   void translate(Maths::Vector translation);
 

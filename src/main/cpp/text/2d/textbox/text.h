@@ -33,7 +33,6 @@ private:
   std::vector<Text::Letter> letters;
   std::string _text;
   Text::Padding _padding;
-  Maths::Vector _origin;
 
   void loadLetters();
   void addPadding();

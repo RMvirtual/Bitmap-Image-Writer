@@ -23,6 +23,12 @@ void Text::Letter::scale(double scaleFactor)
     line.scale(scaleFactor);
 }
 
+void Text::Letter::scale(double scaleFactor, Maths::Vector origin)
+{
+  for (auto& line : this->transformedMesh)
+    line.scale(scaleFactor, origin);
+}
+
 void Text::Letter::scaleIncludingOrigin(double scaleFactor)
 {
   for (auto& line : this->transformedMesh)

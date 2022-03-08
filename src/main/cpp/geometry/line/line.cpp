@@ -49,6 +49,17 @@ void Geometry::Line::translate(Maths::Vector translation)
   this->_destination = this->_destination + translation;
 }
 
+void Geometry::Line::scale(double scaleFactor, Maths::Vector origin)
+{
+  auto originLineLength = this->_origin - origin;
+  auto originScaledLength =  originLineLength * scaleFactor;
+  this->_origin = origin + originScaledLength;
+
+  auto destLineLength = this->_destination - origin;
+  auto destScaledLength =  destLineLength * scaleFactor;
+  this->_destination = origin + destScaledLength;
+}
+
 void Geometry::Line::scale(double scaleFactor)
 {
   auto lineLength = this->_destination - this->_origin;
