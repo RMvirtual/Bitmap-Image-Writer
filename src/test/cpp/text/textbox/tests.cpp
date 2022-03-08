@@ -130,12 +130,19 @@ TEST_F(TextTest, ShouldCreateTextImageFile)
 {
   auto image = this->redImage();
 
-  Text::Text2D text {"abcdefghijklm"};
-  text.setPadding(0.25, 0.0);
-  text.scale(20);
-  text.translate({25, 100});
+  Text::Text2D text1 {"abcdefghijklm"};
+  text1.setPadding(0.25, 0.0);
+  text1.scale(20);
+  text1.translate({25, 200});
+
+  Text::Text2D text2 {"n"};
+  text2.setPadding(0.25, 0.0);
+  text2.scale(20);
+  text2.translate({25, 100});
+
   this->rasteriser.setWritableImage(image);
-  this->rasteriser.draw(text);
+  this->rasteriser.draw(text1);
+  this->rasteriser.draw(text2);
 
   Bitmaps::ImageWriter writer;
   
