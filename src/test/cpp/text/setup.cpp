@@ -43,7 +43,7 @@ void TextTest::setupUnpaddedTranslatedText()
 {
   this->correctLineMeshes = this->correctHahaLineMeshes();
 
-  this->correctLineMeshes[1].translate({5, 3});
+  this->correctLineMeshes[0].translate({5, 3});
   this->correctLineMeshes[1].translate({6, 3});
   this->correctLineMeshes[2].translate({8, 3});
   this->correctLineMeshes[3].translate({9, 3});
@@ -53,7 +53,7 @@ void TextTest::setupPaddedTranslatedText()
 {
   this->correctLineMeshes = this->correctHahaLineMeshes();
 
-  this->correctLineMeshes[1].translate({6, 3});
+  this->correctLineMeshes[0].translate({6, 3});
   this->correctLineMeshes[1].translate({7, 3});
   this->correctLineMeshes[2].translate({9, 3});
   this->correctLineMeshes[3].translate({10, 3});
