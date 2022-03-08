@@ -53,12 +53,7 @@ void Text::Text2D::renderLetters()
     letter.scale(this->scaleFactor);
     
     auto scaledPadding = this->_padding.x * this->scaleFactor;
-    std::cout << "xCursor is " << xCursor << std::endl;
-    std::cout << "Received padding of " << scaledPadding << std::endl;
     xCursor = letter.xUpperBound() + scaledPadding;
-
-    std::cout << "xCursor is now " << xCursor << std::endl;
-
     this->renderedLetters.push_back(letter);
   }
 }

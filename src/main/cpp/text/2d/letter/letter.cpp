@@ -27,7 +27,7 @@ void Text::Letter::transformMesh()
   this->transformedMesh = {};
 
   for (auto line : this->templateMesh) {
-    line.scale(this->scaleFactor);
+    line.scaleIncludingOrigin(this->scaleFactor);
     line.translate(this->translationFromOrigin);
 
     this->transformedMesh.add(line);
