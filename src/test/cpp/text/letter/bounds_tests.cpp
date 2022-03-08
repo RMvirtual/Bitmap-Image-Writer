@@ -124,3 +124,51 @@ TEST_F(LetterTest, ShouldGetYUpperBoundAfterScaling)
   
   EXPECT_EQ(correctBound, bound);
 }
+
+TEST_F(LetterTest, ShouldGetXLowerBoundAfterScalingAndTranslation)
+{
+  Text::Letter letter {"c"};
+  letter.scale(2);
+  letter.translate({2,4});
+  
+  double correctBound = 2;
+  auto bound = letter.xLowerBound();
+  
+  EXPECT_EQ(correctBound, bound);
+}
+
+TEST_F(LetterTest, ShouldGetXUpperBoundAfterScalingAndTranslation)
+{
+  Text::Letter letter {"c"};
+  letter.scale(2);
+  letter.translate({2,4});
+  
+  double correctBound = 5;
+  auto bound = letter.xLowerBound();
+  
+  EXPECT_EQ(correctBound, bound);
+}
+
+TEST_F(LetterTest, ShouldGetYLowerBoundAfterScalingAndTranslation)
+{
+  Text::Letter letter {"c"};
+  letter.scale(2);
+  letter.translate({2,4});
+  
+  double correctBound = 4;
+  auto bound = letter.yLowerBound();
+  
+  EXPECT_EQ(correctBound, bound);
+}
+
+TEST_F(LetterTest, ShouldGetYUpperBoundAfterScalingAndTranslation)
+{
+  Text::Letter letter {"c"};
+  letter.scale(2);
+  letter.translate({2,4});
+  
+  double correctBound = 8;
+  auto bound = letter.yLowerBound();
+  
+  EXPECT_EQ(correctBound, bound);
+}
