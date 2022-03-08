@@ -63,7 +63,6 @@ void Geometry::Line::scaleIncludingOrigin(double scaleFactor)
   this->_destination = this->_destination * scaleFactor;
 }
 
-
 void Geometry::Line::sortByXAscending()
 {
   if (this->isDescendingByX())

@@ -44,8 +44,8 @@ TEST_F(LineTest, ShouldScaleAndTranslateLine)
 
 TEST_F(LineTest, ShouldGetXLowerBound)
 {
-  this->line = {{0,0}, {10, 15}};
-  double correctBound = 0;
+  this->line = {{0.0, 0.0}, {10, 15}};
+  double correctBound = 0.0;
   auto bound = this->line.xLowerBound();
 
   EXPECT_EQ(correctBound, bound);
@@ -53,8 +53,8 @@ TEST_F(LineTest, ShouldGetXLowerBound)
 
 TEST_F(LineTest, ShouldGetXUpperBound)
 {
-  this->line = {{0,0}, {10, 15}};
-  double correctBound = 0;
+  this->line = {{0.0, 0.0}, {10, 15}};
+  double correctBound = 10;
   auto bound = this->line.xUpperBound();
   
   EXPECT_EQ(correctBound, bound);
@@ -62,8 +62,8 @@ TEST_F(LineTest, ShouldGetXUpperBound)
 
 TEST_F(LineTest, ShouldGetYLowerBound)
 {
-  this->line = {{0,0}, {10, 15}};
-  double correctBound = 10;
+  this->line = {{0.0, 0.0}, {10, 15}};
+  double correctBound = 0;
   auto bound = this->line.yLowerBound();
   
   EXPECT_EQ(correctBound, bound);
@@ -71,7 +71,7 @@ TEST_F(LineTest, ShouldGetYLowerBound)
 
 TEST_F(LineTest, ShouldGetYUpperBound)
 {
-  this->line = {{0,0}, {10, 15}};
+  this->line = {{0.0, 0.0}, {10, 15}};
   double correctBound = 15;
   auto bound = this->line.yUpperBound();
   
