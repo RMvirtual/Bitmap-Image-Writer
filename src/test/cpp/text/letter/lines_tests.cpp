@@ -67,7 +67,7 @@ TEST_F(LetterTest, ShouldTranslateLinesWith0Y)
 TEST_F(LetterTest, ShouldGetScaledLines)
 {
   Text::Letter letter {"c"};
-  letter.scale(2);
+  letter.scaleIncludingOrigin(2);
 
   std::vector<Geometry::Line> correctLines = {
     {{3, 4}, {1, 4}},
@@ -87,7 +87,7 @@ TEST_F(LetterTest, ShouldGetScaledLines)
 TEST_F(LetterTest, ShouldScaleThenTranslateLines)
 {
   Text::Letter letter {"c"};
-  letter.scale(2);
+  letter.scaleIncludingOrigin(2);
   letter.translate({2,4});
 
   std::vector<Geometry::Line> correctLines = {
@@ -109,7 +109,7 @@ TEST_F(LetterTest, ShouldTranslateThenScaleLines)
 {
   Text::Letter letter {"c"};
   letter.translate({2,4});
-  letter.scale(2);
+  letter.scaleIncludingOrigin(2);
 
   std::vector<Geometry::Line> correctLines = {
     {{7, 12}, {5, 12}},

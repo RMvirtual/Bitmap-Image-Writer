@@ -80,8 +80,14 @@ void Text::Text2D::removePadding()
 
 void Text::Text2D::scale(double scaleFactor)
 {
-  for (auto& letter : this->letters)
-    letter.scale(scaleFactor);
+  int noOfLetters = this->letters.size();
+  this->letters[0].scale(scaleFactor);
+
+  for (int letterNo = 1; letterNo < noOfLetters; letterNo++) {
+    auto& letter = this->letters[letterNo];
+    
+    letter.scaleIncludingOrigin(scaleFactor);
+  }
 
   this->scalePadding(scaleFactor);
 }

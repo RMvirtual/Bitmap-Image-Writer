@@ -84,7 +84,7 @@ TEST_F(LetterTest, ShouldGetYUpperBoundAfterTranslation)
 TEST_F(LetterTest, ShouldGetXLowerBoundAfterScaling)
 {
   Text::Letter letter {"c"};
-  letter.scale(2);
+  letter.scaleIncludingOrigin(2);
   
   double correctBound = 0.0;
   auto bound = letter.xLowerBound();
@@ -95,7 +95,7 @@ TEST_F(LetterTest, ShouldGetXLowerBoundAfterScaling)
 TEST_F(LetterTest, ShouldGetXUpperBoundAfterScaling)
 {
   Text::Letter letter {"c"};
-  letter.scale(2);
+  letter.scaleIncludingOrigin(2);
   
   double correctBound = 3;
   auto bound = letter.xUpperBound();
@@ -106,7 +106,7 @@ TEST_F(LetterTest, ShouldGetXUpperBoundAfterScaling)
 TEST_F(LetterTest, ShouldGetYLowerBoundAfterScaling)
 {
   Text::Letter letter {"c"};
-  letter.scale(2);
+  letter.scaleIncludingOrigin(2);
   
   double correctBound = 0.0;
   auto bound = letter.yLowerBound();
@@ -117,7 +117,7 @@ TEST_F(LetterTest, ShouldGetYLowerBoundAfterScaling)
 TEST_F(LetterTest, ShouldGetYUpperBoundAfterScaling)
 {
   Text::Letter letter {"c"};
-  letter.scale(2);
+  letter.scaleIncludingOrigin(2);
   
   double correctBound = 4;
   auto bound = letter.yUpperBound();
@@ -128,7 +128,7 @@ TEST_F(LetterTest, ShouldGetYUpperBoundAfterScaling)
 TEST_F(LetterTest, ShouldGetXLowerBoundAfterScalingAndTranslation)
 {
   Text::Letter letter {"c"};
-  letter.scale(2);
+  letter.scaleIncludingOrigin(2);
   letter.translate({2,4});
   
   double correctBound = 2;
@@ -140,7 +140,7 @@ TEST_F(LetterTest, ShouldGetXLowerBoundAfterScalingAndTranslation)
 TEST_F(LetterTest, ShouldGetXUpperBoundAfterScalingAndTranslation)
 {
   Text::Letter letter {"c"};
-  letter.scale(2);
+  letter.scaleIncludingOrigin(2);
   letter.translate({2,4});
   
   double correctBound = 5;
@@ -152,7 +152,7 @@ TEST_F(LetterTest, ShouldGetXUpperBoundAfterScalingAndTranslation)
 TEST_F(LetterTest, ShouldGetYLowerBoundAfterScalingAndTranslation)
 {
   Text::Letter letter {"c"};
-  letter.scale(2);
+  letter.scaleIncludingOrigin(2);
   letter.translate({2,4});
   
   double correctBound = 4;
@@ -164,7 +164,7 @@ TEST_F(LetterTest, ShouldGetYLowerBoundAfterScalingAndTranslation)
 TEST_F(LetterTest, ShouldGetYUpperBoundAfterScalingAndTranslation)
 {
   Text::Letter letter {"c"};
-  letter.scale(2);
+  letter.scaleIncludingOrigin(2);
   letter.translate({2,4});
   
   double correctBound = 8;

@@ -20,6 +20,12 @@ void Text::Letter::loadLetterFromFile(std::string letter)
 void Text::Letter::scale(double scaleFactor)
 {
   for (auto& line : this->transformedMesh)
+    line.scale(scaleFactor);
+}
+
+void Text::Letter::scaleIncludingOrigin(double scaleFactor)
+{
+  for (auto& line : this->transformedMesh)
     line.scaleIncludingOrigin(scaleFactor);
 }
 
