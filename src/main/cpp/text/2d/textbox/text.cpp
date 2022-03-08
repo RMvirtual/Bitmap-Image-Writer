@@ -70,9 +70,11 @@ void Text::Text2D::removePadding()
 {
   int noOfLetters = this->letters.size();
 
-  for (int letterNo = 1; letterNo < noOfLetters; letterNo++) {
+  for (int letterNo = 0; letterNo < noOfLetters; letterNo++) {
     auto& letter = this->letters[letterNo];
-    letter.translate({0.0 - this->_padding.x, 0.0 - this->_padding.y});
+    
+    letter.translate(
+      {0.0 - this->_padding.x * letterNo, 0.0 - this->_padding.y * letterNo});
   }
 }
 
