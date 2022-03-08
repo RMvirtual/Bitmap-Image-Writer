@@ -28,5 +28,9 @@ public:
   double yMaximum();
 
 private:
-  std::vector<Geometry::Line> lines;  
+  std::vector<Geometry::Line> lines;
+  double xOrigin;
+  double yOrigin;
+
+  void calculateOrigin();
 };}

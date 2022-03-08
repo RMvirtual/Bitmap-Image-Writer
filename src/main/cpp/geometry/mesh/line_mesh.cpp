@@ -9,6 +9,7 @@ Geometry::LineMesh::LineMesh()
 Geometry::LineMesh::LineMesh(std::vector<Geometry::Line> lines)
 {
   this->lines = lines;
+  this->calculateOrigin();  
 }
 
 Geometry::Line& Geometry::LineMesh::operator [](int index)
@@ -48,14 +49,21 @@ void Geometry::LineMesh::add(Geometry::Line line)
 
 Maths::Vector Geometry::LineMesh::origin()
 {
-  return this->lines[0].origin();  
+  return {this->xOrigin, this->yOrigin};
+}
+
+void Geometry::LineMesh::calculateOrigin()
+{
+  this->xOrigin = this->xMinimum();
+  this->yOrigin = this->yMinimum();
 }
 
 void Geometry::LineMesh::translateToZeroOrigin()
 {
-  Maths::Vector zeroOrigin = {0.0,0.0};
+  Maths::Vector zeroOrigin = {0.0, 0.0};
+  Maths::Vector origin = this->origin();
 
-  auto translationToOrigin = zeroOrigin - this->origin();
+  auto translationToOrigin = zeroOrigin - origin;
   this->translate(translationToOrigin);
 }
 
@@ -63,8 +71,6 @@ void Geometry::LineMesh::scale(double scaleFactor)
 {
   auto origin = this->origin();
   this->translateToZeroOrigin();
-
-  int noOfLines = this->lines.size();
 
   for (auto& line : this->lines)
     line.scaleIncludingOrigin(scaleFactor);
@@ -74,6 +80,8 @@ void Geometry::LineMesh::scale(double scaleFactor)
 
 void Geometry::LineMesh::translate(Maths::Vector translation)
 {
+  this->calculateOrigin();
+
   for (auto& line : this->lines)
     line.translate(translation);
 }
