@@ -86,14 +86,25 @@ TEST_F(TextTest, ShouldScalePaddedText)
   this->compare(this->correctLetters, text);
 }
 
-TEST_F(TextTest, ShouldScaleTranslatedText)
+TEST_F(TextTest, ShouldTranslateScaledText)
 {
-  this->text.setPadding(1, 0.0);
   this->text.scale(2);
+  this->text.translate({5, 3});
 
-  EXPECT_TRUE(false);
+  this->correctLetters[0].scale(2);
+  this->correctLetters[0].translate({5, 3});    
+
+  this->correctLetters[1].scale(2);
+  this->correctLetters[1].translate({7, 3});
+
+  this->correctLetters[2].scale(2);
+  this->correctLetters[2].translate({11, 3});
+
+  this->correctLetters[3].scale(2);
+  this->correctLetters[3].translate({13, 3});
+
+  this->compare(this->correctLetters, text);
 }
-
 
 TEST_F(TextTest, ShouldCreateTextImageFile)
 {
