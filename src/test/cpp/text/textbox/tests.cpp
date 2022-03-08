@@ -135,7 +135,7 @@ TEST_F(TextTest, ShouldCreateTextImageFile)
   text1.scale(20);
   text1.translate({25, 200});
 
-  Text::Text2D text2 {"nopqrst"};
+  Text::Text2D text2 {"nopqrstuvwxyz"};
   text2.setPadding(0.25, 0.0);
   text2.scale(20);
   text2.translate({25, 100});
