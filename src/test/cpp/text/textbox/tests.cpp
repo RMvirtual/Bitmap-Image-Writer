@@ -53,7 +53,7 @@ TEST_F(TextTest, ShouldPadTranslatedText)
 TEST_F(TextTest, ShouldScaleUnpaddedText)
 {
   this->text.scale(2);
-  this->correctLetters[0].scale(2);
+  this->correctLetters[0].scaleIncludingOrigin(2);
 
   this->correctLetters[1].scaleIncludingOrigin(2);
   this->correctLetters[1].translate({2, 0.0});
@@ -72,7 +72,7 @@ TEST_F(TextTest, ShouldScalePaddedText)
   this->text.setPadding(1, 0.0);
   this->text.scale(2);
 
-  this->correctLetters[0].scale(2);
+  this->correctLetters[0].scaleIncludingOrigin(2);
 
   this->correctLetters[1].scaleIncludingOrigin(2);
   this->correctLetters[1].translate({5, 0.0});
@@ -91,8 +91,8 @@ TEST_F(TextTest, ShouldTranslateScaledText)
   this->text.scale(2);
   this->text.translate({5, 3});
 
-  this->correctLetters[0].scale(2);
-  this->correctLetters[0].translate({5, 3});    
+  this->correctLetters[0].scaleIncludingOrigin(2);
+  this->correctLetters[0].translate({5, 3});  
 
   this->correctLetters[1].scaleIncludingOrigin(2);
   this->correctLetters[1].translate({7, 3});
@@ -112,7 +112,7 @@ TEST_F(TextTest, ShouldScaleTranslatedText)
   this->text.scale(2);
 
   this->correctLetters[0].translate({5, 3});    
-  this->correctLetters[0].scale(2);
+  this->correctLetters[0].scaleIncludingOrigin(2);
 
   this->correctLetters[1].translate({6, 3});
   this->correctLetters[1].scaleIncludingOrigin(2);
