@@ -22,13 +22,23 @@ void Text::Text2D::setPadding(double x, double y)
   this->addPadding();
 }
 
+void Text::Text2D::scalePadding(double scaleFactor)
+{
+  this->removePadding();
+
+  this->_padding.x *= scaleFactor;
+  this->_padding.y *= scaleFactor;
+
+  this->addPadding();
+}
+
 void Text::Text2D::setText(std::string text)
 {
   this->_text = text;
-  this->loadBaseLetters();
+  this->loadLetters();
 }
 
-void Text::Text2D::loadBaseLetters()
+void Text::Text2D::loadLetters()
 {
   this->letters.clear();
 
@@ -40,27 +50,19 @@ void Text::Text2D::loadBaseLetters()
     letter.translate({xCursor, yCursor});
 
     this->letters.push_back(letter);
-    xCursor = letter.xUpperBound() + this->_padding.x;
+    xCursor = letter.xUpperBound();
   }
-}
-
-void Text::Text2D::recalculatePadding(double scaleFactor)
-{
-  this->removePadding();
-
-  this->_padding.x *= scaleFactor;
-  this->_padding.y *= scaleFactor;
-
-  this->addPadding();
 }
 
 void Text::Text2D::addPadding()
 {
   int noOfLetters = this->letters.size();
 
-  for (int letterNo = 1; letterNo < noOfLetters; letterNo++) {
+  for (int letterNo = 0; letterNo < noOfLetters; letterNo++) {
     auto& letter = this->letters[letterNo];
-    letter.translate({this->_padding.x, this->_padding.y});
+    
+    letter.translate(
+      {this->_padding.x * letterNo, this->_padding.y * letterNo});
   }
 }
 
@@ -79,7 +81,7 @@ void Text::Text2D::scale(double scaleFactor)
   for (auto& letter : this->letters)
     letter.scale(scaleFactor);
 
-  this->recalculatePadding(scaleFactor);
+  this->scalePadding(scaleFactor);
 }
 
 void Text::Text2D::translate(Maths::Vector translation)

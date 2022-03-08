@@ -12,7 +12,6 @@ TEST_F(TextTest, ShouldCreateUnpaddedText)
   std::vector<Text::Letter> correctLetters {
     {"h"}, {"a"}, {"h"}, {"a"}};
 
-  // h width=1, a width=2.
   correctLetters[1].translate({1, 0.0});
   correctLetters[2].translate({3, 0.0});
   correctLetters[3].translate({4, 0.0});
@@ -23,12 +22,11 @@ TEST_F(TextTest, ShouldCreateUnpaddedText)
 TEST_F(TextTest, ShouldCreatePaddedText)
 {
   Text::Text2D text {"haha"};
-  text.setPadding(1, 0.0);
+  text.setPadding(1, 0);
 
   std::vector<Text::Letter> correctLetters {
     {"h"}, {"a"}, {"h"}, {"a"}};
 
-  // h width=1, a width=2.
   correctLetters[1].translate({2, 0.0});
   correctLetters[2].translate({5, 0.0});
   correctLetters[3].translate({7, 0.0});

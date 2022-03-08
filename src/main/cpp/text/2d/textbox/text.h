@@ -34,8 +34,8 @@ private:
   Text::Padding _padding;
   Maths::Vector origin;
 
-  void loadBaseLetters();
+  void loadLetters();
   void addPadding();
   void removePadding();
-  void recalculatePadding(double scaleFactor);
+  void scalePadding(double scaleFactor);
 };}
