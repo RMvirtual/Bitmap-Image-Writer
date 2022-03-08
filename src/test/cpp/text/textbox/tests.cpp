@@ -135,7 +135,6 @@ TEST_F(TextTest, ShouldGetTranslatedOrigin)
   this->compare(correctOrigin, origin);
 }
 
-
 TEST_F(TextTest, ShouldCreateTextImageFile)
 {
   auto image = this->redImage();

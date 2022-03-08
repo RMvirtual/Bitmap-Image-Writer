@@ -11,26 +11,6 @@ Text::Text2D::Text2D(std::string text)
   this->setText(text);
 }
 
-void Text::Text2D::setPadding(double x, double y)
-{
-  this->removePadding();
-  
-  this->_padding.x = x;
-  this->_padding.y = y;
-
-  this->addPadding();
-}
-
-void Text::Text2D::scalePadding(double scaleFactor)
-{
-  this->removePadding();
-
-  this->_padding.x *= scaleFactor;
-  this->_padding.y *= scaleFactor;
-
-  this->addPadding();
-}
-
 void Text::Text2D::setText(std::string text)
 {
   this->_text = text;
@@ -53,30 +33,6 @@ void Text::Text2D::loadLetters()
   }
 }
 
-void Text::Text2D::addPadding()
-{
-  int noOfLetters = this->letters.size();
-
-  for (int letterNo = 0; letterNo < noOfLetters; letterNo++) {
-    auto& letter = this->letters[letterNo];
-    
-    letter.translate(
-      {this->_padding.x * letterNo, this->_padding.y * letterNo});
-  }
-}
-
-void Text::Text2D::removePadding()
-{
-  int noOfLetters = this->letters.size();
-
-  for (int letterNo = 0; letterNo < noOfLetters; letterNo++) {
-    auto& letter = this->letters[letterNo];
-    
-    letter.translate(
-      {0.0 - this->_padding.x * letterNo, 0.0 - this->_padding.y * letterNo});
-  }
-}
-
 void Text::Text2D::scale(double scaleFactor)
 {
   int noOfLetters = this->letters.size();
@@ -84,7 +40,6 @@ void Text::Text2D::scale(double scaleFactor)
   // Should be scale, but changing to scaleIncludingOrigin fixes the
   // text 1st character messing up.
   
-  // Get the origin x and y for this entire container.
   auto origin = this->origin();
 
   for (auto& letter : this->letters)
@@ -110,6 +65,50 @@ Maths::Vector Text::Text2D::origin()
   }
 
   return {xOrigin, yOrigin};
+}
+
+void Text::Text2D::setPadding(double x, double y)
+{
+  this->removePadding();
+  
+  this->_padding.x = x;
+  this->_padding.y = y;
+
+  this->addPadding();
+}
+
+void Text::Text2D::scalePadding(double scaleFactor)
+{
+  this->removePadding();
+
+  this->_padding.x *= scaleFactor;
+  this->_padding.y *= scaleFactor;
+
+  this->addPadding();
+}
+
+void Text::Text2D::addPadding()
+{
+  int noOfLetters = this->letters.size();
+
+  for (int letterNo = 0; letterNo < noOfLetters; letterNo++) {
+    auto& letter = this->letters[letterNo];
+    
+    letter.translate(
+      {this->_padding.x * letterNo, this->_padding.y * letterNo});
+  }
+}
+
+void Text::Text2D::removePadding()
+{
+  int noOfLetters = this->letters.size();
+
+  for (int letterNo = 0; letterNo < noOfLetters; letterNo++) {
+    auto& letter = this->letters[letterNo];
+    
+    letter.translate(
+      {0.0 - this->_padding.x * letterNo, 0.0 - this->_padding.y * letterNo});
+  }
 }
 
 std::string Text::Text2D::text()
