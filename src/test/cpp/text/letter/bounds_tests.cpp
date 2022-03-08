@@ -80,3 +80,47 @@ TEST_F(LetterTest, ShouldGetYUpperBoundAfterTranslation)
   
   EXPECT_EQ(correctBound, bound);
 }
+
+TEST_F(LetterTest, ShouldGetXLowerBoundAfterScaling)
+{
+  Text::Letter letter {"c"};
+  letter.scale(2);
+  
+  double correctBound = 0.0;
+  auto bound = letter.xLowerBound();
+  
+  EXPECT_EQ(correctBound, bound);
+}
+
+TEST_F(LetterTest, ShouldGetXUpperBoundAfterScaling)
+{
+  Text::Letter letter {"c"};
+  letter.scale(2);
+  
+  double correctBound = 3;
+  auto bound = letter.xUpperBound();
+  
+  EXPECT_EQ(correctBound, bound);
+}
+
+TEST_F(LetterTest, ShouldGetYLowerBoundAfterScaling)
+{
+  Text::Letter letter {"c"};
+  letter.scale(2);
+  
+  double correctBound = 0.0;
+  auto bound = letter.yLowerBound();
+  
+  EXPECT_EQ(correctBound, bound);
+}
+
+TEST_F(LetterTest, ShouldGetYUpperBoundAfterScaling)
+{
+  Text::Letter letter {"c"};
+  letter.scale(2);
+  
+  double correctBound = 4;
+  auto bound = letter.yUpperBound();
+  
+  EXPECT_EQ(correctBound, bound);
+}
