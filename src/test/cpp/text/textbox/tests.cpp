@@ -9,14 +9,11 @@ TEST_F(TextTest, ShouldCreateUnpaddedText)
 {
   Text::Text2D text {"haha"};
 
-  std::vector<Text::Letter> correctLetters {
-    {"h"}, {"a"}, {"h"}, {"a"}};
+  this->correctLetters[1].translate({1, 0.0});
+  this->correctLetters[2].translate({3, 0.0});
+  this->correctLetters[3].translate({4, 0.0});
 
-  correctLetters[1].translate({1, 0.0});
-  correctLetters[2].translate({3, 0.0});
-  correctLetters[3].translate({4, 0.0});
-
-  this->compare(correctLetters, text);
+  this->compare(this->correctLetters, text);
 }
 
 TEST_F(TextTest, ShouldPadText)
@@ -24,14 +21,11 @@ TEST_F(TextTest, ShouldPadText)
   Text::Text2D text {"haha"};
   text.setPadding(1, 0);
 
-  std::vector<Text::Letter> correctLetters {
-    {"h"}, {"a"}, {"h"}, {"a"}};
+  this->correctLetters[1].translate({2, 0.0});
+  this->correctLetters[2].translate({5, 0.0});
+  this->correctLetters[3].translate({7, 0.0});
 
-  correctLetters[1].translate({2, 0.0});
-  correctLetters[2].translate({5, 0.0});
-  correctLetters[3].translate({7, 0.0});
-
-  this->compare(correctLetters, text);
+  this->compare(this->correctLetters, text);
 }
 
 TEST_F(TextTest, ShouldTranslateUnpaddedText)
@@ -39,23 +33,26 @@ TEST_F(TextTest, ShouldTranslateUnpaddedText)
   Text::Text2D text {"haha"};
   text.translate({5, 3});
 
-  std::vector<Text::Letter> correctLetters {
-    {"h"}, {"a"}, {"h"}, {"a"}};
+  this->correctLetters[0].translate({5, 3});
+  this->correctLetters[1].translate({6, 3});
+  this->correctLetters[2].translate({8, 3});
+  this->correctLetters[3].translate({9, 3});
 
-  correctLetters[0].translate({5, 3});
-  correctLetters[1].translate({6, 3});
-  correctLetters[2].translate({8, 3});
-  correctLetters[3].translate({9, 3});
-
-  this->compare(correctLetters, text);
+  this->compare(this->correctLetters, text);
 }
 
-TEST_F(TextTest, ShouldCreatePaddedTranslatedText)
+TEST_F(TextTest, ShouldPadTranslatedText)
 {
   Text::Text2D text {"haha"};
-  text.setPadding(1, 0.0);
   text.translate({5, 3});
-  EXPECT_TRUE(false);
+  text.setPadding(1, 0);
+
+  this->correctLetters[0].translate({5, 3});
+  this->correctLetters[1].translate({7, 3});
+  this->correctLetters[2].translate({10, 3});
+  this->correctLetters[3].translate({12, 3});
+
+  this->compare(this->correctLetters, text);
 }
 
 TEST_F(TextTest, ShouldCreateUnpaddedScaledText)

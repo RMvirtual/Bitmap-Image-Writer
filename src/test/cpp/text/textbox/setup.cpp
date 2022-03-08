@@ -3,6 +3,12 @@
 #include "src/main/cpp/bitmaps/image/image.h"
 #include "src/test/cpp/text/textbox/fixture.h"
 
+void TextTest::setupCorrectLetters()
+{
+  this->correctLetters = {
+    {"h"}, {"a"}, {"h"}, {"a"}};
+}
+
 std::shared_ptr<Bitmaps::Image> TextTest::redImage()
 {
   auto format = Bitmaps::format("RGB24");

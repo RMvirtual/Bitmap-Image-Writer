@@ -14,7 +14,9 @@ public:
 
 protected:
   Rasterisation::Rasteriser rasteriser;
+  std::vector<Text::Letter> correctLetters;
 
+  void setupCorrectLetters();
   std::shared_ptr<Bitmaps::Image> redImage();
   void compare(std::vector<Text::Letter> correctLetters, Text::Text2D text);
   void compare(Text::Letter correctLetter, Text::Letter letter);
