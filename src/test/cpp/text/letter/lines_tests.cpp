@@ -43,3 +43,23 @@ TEST_F(LetterTest, ShouldGetTranslatedLines)
     this->compare(correctLines[i], letter[i]);
 }
 
+TEST_F(LetterTest, ShouldGetScaledLines)
+{
+  Text::Letter letter {"c"};
+  letter.scale(2);
+
+  std::vector<Geometry::Line> correctLines = {
+    {{3, 4}, {1, 4}},
+    {{1, 4}, {0.0, 3}},
+    {{0.0, 3}, {0.0, 1}},
+    {{0.0, 1}, {1, 0.0}},
+    {{1, 0.0}, {3, 0.0}}
+  };
+
+  int noOfLines = letter.noOfLines();
+  ASSERT_EQ(correctLines.size(), noOfLines);
+
+  for (int i = 0; i < noOfLines; i++)
+    this->compare(correctLines[i], letter[i]);
+}
+
