@@ -9,23 +9,13 @@ TEST_F(TextTest, ShouldCreateUnpaddedText)
 {
   Text::Text2D text {"haha"};
 
-  Text::Letter letterH {"h"};
-  Text::Letter letterA {"a"};
+  std::vector<Text::Letter> correctLetters {
+    {"h"}, {"a"}, {"h"}, {"a"}};
 
   // h width=1, a width=2.
-
-  auto letter1 = letterH;
-  auto letter2 = letterA;
-  letter2.translate({1.0, 0.0});
-
-  auto letter3 = letterH;
-  letter3.translate({3.0, 0.0});
-
-  auto letter4 = letterA;
-  letter4.translate({4.0, 0.0});
-
-  std::vector<Text::Letter> correctLetters {
-    letter1, letter2, letter3, letter4};
+  correctLetters[1].translate({1, 0.0});
+  correctLetters[2].translate({3, 0.0});
+  correctLetters[3].translate({4, 0.0});
 
   this->compare(correctLetters, text);
 }

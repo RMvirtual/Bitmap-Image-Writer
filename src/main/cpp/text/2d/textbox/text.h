@@ -34,7 +34,6 @@ private:
   Text::Padding _padding;
   Maths::Vector origin;
 
-  void renderLetters();
   void loadBaseLetters();
   void addPadding();
   void removePadding();

@@ -7,7 +7,6 @@ void TextTest::compare(
   ASSERT_EQ(correctLetters.size(), noOfLetters);
 
   for (int i = 0; i < noOfLetters; i++) {
-    std::cout << "In letter " << i << "\n";
     auto correctLetter = correctLetters[i];
     auto letter = text[i];
 
