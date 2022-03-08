@@ -15,15 +15,16 @@ void Text::Letter::initialiseDefaults(std::string letter)
 {
   this->loadLetterFromFile({letter});
   this->scaleFactor = 1;
-  
+
   this->translationFromOrigin = {
     this->templateMesh.xLowerBound(), this->templateMesh.yLowerBound()};
+
+  this->transformMesh();
 }
 
 void Text::Letter::loadLetterFromFile(std::string letter)
 {
   this->templateMesh = Files::Alphabet2D::letter(letter);
-  this->transformMesh();
 }
 
 void Text::Letter::transformMesh()
