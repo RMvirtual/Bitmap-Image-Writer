@@ -108,20 +108,21 @@ TEST_F(TextTest, ShouldTranslateScaledText)
 
 TEST_F(TextTest, ShouldScaleTranslatedText)
 {
-  this->text.translate({5, 3});
+  Maths::Vector origin {5, 3};
+  this->text.translate(origin);
   this->text.scale(2);
 
   this->correctLetters[0].translate({5, 3});    
-  this->correctLetters[0].scaleIncludingOrigin(2);
+  this->correctLetters[0].scale(2, origin);
 
   this->correctLetters[1].translate({6, 3});
-  this->correctLetters[1].scaleIncludingOrigin(2);
+  this->correctLetters[1].scale(2, origin);
 
   this->correctLetters[2].translate({8, 3});
-  this->correctLetters[2].scaleIncludingOrigin(2);
+  this->correctLetters[2].scale(2, origin);
 
   this->correctLetters[3].translate({9, 3});
-  this->correctLetters[3].scaleIncludingOrigin(2);
+  this->correctLetters[3].scale(2, origin);
 
   this->compare(this->correctLetters, text);
 }
