@@ -7,52 +7,55 @@
 
 TEST_F(TextTest, ShouldCreateUnpaddedText)
 {
-  this->setupUnpaddedText();
   Text::Text2D text {"haha"};
-  this->compare(text);
+  std::vector<Text::Letter> correctLetters {
+    {"h"}, {"a"}, {"h"}, {"h"}};
+
+  // h width=1, a width=2.
+  correctLetters[1].translate({1, 0.0});
+  correctLetters[2].translate({3, 0.0});
+  correctLetters[3].translate({4, 0.0});
+
+  this->compare(correctLetters, text);
 }
 
 TEST_F(TextTest, ShouldCreatePaddedText)
 {
-  this->setupPaddedText();
   Text::Text2D text {"haha"};
   text.setPadding(1,0.0);
-  this->compare(text);
+  
+  EXPECT_TRUE(false);
 }
 
 TEST_F(TextTest, ShouldCreateUnpaddedTranslatedText)
 {
-  this->setupUnpaddedTranslatedText();
   Text::Text2D text {"haha"};
   text.translate({5, 3});
-  this->compare(text);
+  EXPECT_TRUE(false);
 }
 
 TEST_F(TextTest, ShouldCreatePaddedTranslatedText)
 {
-  this->setupPaddedTranslatedText();
   Text::Text2D text {"haha"};
   text.setPadding(1, 0.0);
   text.translate({5, 3});
-  this->compare(text);
+  EXPECT_TRUE(false);
 }
 
 TEST_F(TextTest, ShouldCreateUnpaddedScaledText)
 {
-  this->setupUnpaddedScaledText();
   Text::Text2D text {"h"};
   text.scale(2);
-  this->compare(text);
+  EXPECT_TRUE(false);
 }
 
 TEST_F(TextTest, ShouldCreatePaddedScaledText)
 {
-  this->setupPaddedScaledPaddedText();
   Text::Text2D text {"h"};
   text.setPadding(1, 0.0);
   text.scale(2);
 
-  this->compare(text);
+  EXPECT_TRUE(false);
 }
 
 TEST_F(TextTest, ShouldCreateTextImageFile)
