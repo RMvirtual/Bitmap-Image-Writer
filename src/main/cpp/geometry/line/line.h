@@ -42,10 +42,10 @@ public:
   bool isDescendingByX();
   bool isDescendingByY();
 
-  double xMinimum();
-  double xMaximum();
-  double yMinimum();
-  double yMaximum();
+  double xLowerBound();
+  double xUpperBound();
+  double yLowerBound();
+  double yUpperBound();
 
 private:
   Maths::Vector _origin;

@@ -54,8 +54,8 @@ Maths::Vector Geometry::LineMesh::origin()
 
 void Geometry::LineMesh::calculateOrigin()
 {
-  this->xOrigin = this->xMinimum();
-  this->yOrigin = this->yMinimum();
+  this->xOrigin = this->xLowerBound();
+  this->yOrigin = this->yLowerBound();
 }
 
 void Geometry::LineMesh::translateToZeroOrigin()
@@ -86,42 +86,42 @@ void Geometry::LineMesh::translate(Maths::Vector translation)
   this->calculateOrigin();
 }
 
-double Geometry::LineMesh::xMinimum()
+double Geometry::LineMesh::xLowerBound()
 {
-  double minimum = this->lines[0].xMinimum();
+  double minimum = this->lines[0].xLowerBound();
 
   for (auto line : this->lines)
-    minimum = std::min(minimum, line.xMinimum());
+    minimum = std::min(minimum, line.xLowerBound());
 
   return minimum;
 }
 
-double Geometry::LineMesh::xMaximum()
+double Geometry::LineMesh::xUpperBound()
 {
-  double maximum = this->lines[0].xMaximum();
+  double maximum = this->lines[0].xUpperBound();
 
   for (auto line : this->lines)
-    maximum = std::max(maximum, line.xMaximum());
+    maximum = std::max(maximum, line.xUpperBound());
 
   return maximum;
 }
 
-double Geometry::LineMesh::yMinimum()
+double Geometry::LineMesh::yLowerBound()
 {
-  double minimum = this->lines[0].yMinimum();
+  double minimum = this->lines[0].yLowerBound();
 
   for (auto line : this->lines)
-    minimum = std::min(minimum, line.yMinimum());
+    minimum = std::min(minimum, line.yLowerBound());
 
   return minimum;
 }
 
-double Geometry::LineMesh::yMaximum()
+double Geometry::LineMesh::yUpperBound()
 {
-  double maximum = this->lines[0].yMaximum();
+  double maximum = this->lines[0].yUpperBound();
 
   for (auto line : this->lines)
-    maximum = std::min(maximum, line.yMaximum());
+    maximum = std::min(maximum, line.yUpperBound());
 
   return maximum;
 }

@@ -5,7 +5,7 @@ TEST_F(LetterTest, ShouldGetXUpperBound)
 {
   Text::Letter letter {"c"};
   double correctBound = 1.5;
-  double bound = letter.xUpperBound();
+  auto bound = letter.xUpperBound();
   
   EXPECT_EQ(correctBound, bound);
 }

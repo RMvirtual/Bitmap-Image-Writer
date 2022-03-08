@@ -42,40 +42,76 @@ TEST_F(LineTest, ShouldScaleAndTranslateLine)
   EXPECT_EQ(correctLine["y1"], this->line["y1"]);
 }
 
-TEST_F(LineTest, ShouldGetXMinimumAfterScaling)
+TEST_F(LineTest, ShouldGetXLowerBound)
+{
+  this->line = {{0,0}, {10, 15}};
+  double correctBound = 0;
+  auto bound = this->line.xLowerBound();
+
+  EXPECT_EQ(correctBound, bound);
+}
+
+TEST_F(LineTest, ShouldGetXUpperBound)
+{
+  this->line = {{0,0}, {10, 15}};
+  double correctBound = 0;
+  auto bound = this->line.xUpperBound();
+  
+  EXPECT_EQ(correctBound, bound);
+}
+
+TEST_F(LineTest, ShouldGetYLowerBound)
+{
+  this->line = {{0,0}, {10, 15}};
+  double correctBound = 10;
+  auto bound = this->line.yLowerBound();
+  
+  EXPECT_EQ(correctBound, bound);
+}
+
+TEST_F(LineTest, ShouldGetYUpperBound)
+{
+  this->line = {{0,0}, {10, 15}};
+  double correctBound = 15;
+  auto bound = this->line.yUpperBound();
+  
+  EXPECT_EQ(correctBound, bound);
+}
+
+TEST_F(LineTest, ShouldGetXLowerBoundfterScaling)
 {
   this->line = {{5,5}, {10, 15}};
   this->line.scale(10);
   double correctMinimum = 5;
 
-  EXPECT_EQ(correctMinimum, this->line.xMinimum());
+  EXPECT_EQ(correctMinimum, this->line.xLowerBound());
 }
 
-TEST_F(LineTest, ShouldGetXMaximumfterScaling)
+TEST_F(LineTest, ShouldGetXUpperBoundfterScaling)
 {
   this->line = {{5,5}, {10, 15}};
   this->line.scale(10);
   double correctMaximum = 55;
 
-  EXPECT_EQ(correctMaximum, this->line.xMaximum());
+  EXPECT_EQ(correctMaximum, this->line.xUpperBound());
 }
 
-TEST_F(LineTest, ShouldGetYMinimumAfterScaling)
+TEST_F(LineTest, ShouldGetYLowerBoundAfterScaling)
 {
   this->line = {{5,10}, {10, 15}};
   this->line.scale(10);
   double correctMinimum = 10;
 
-  EXPECT_EQ(correctMinimum, this->line.yMinimum());
+  EXPECT_EQ(correctMinimum, this->line.yLowerBound());
 }
 
-TEST_F(LineTest, ShouldGetYMaximumfterScaling)
+TEST_F(LineTest, ShouldGetYUpperBoundAfterScaling)
 {
   this->line = {{5,5}, {10, 15}};
   this->line.scale(10);
   double correctMaximum = 105;
 
-  EXPECT_EQ(correctMaximum, this->line.yMaximum());
+  EXPECT_EQ(correctMaximum, this->line.yUpperBound());
 }
 
 TEST_F(LineTest, ShouldCalculateGradientFromZeroXEqualToY)

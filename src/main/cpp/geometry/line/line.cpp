@@ -180,22 +180,22 @@ bool Geometry::Line::isTraversingSouth()
   return this->_origin["y"] > this->_destination["y"];
 }
 
-double Geometry::Line::xMinimum()
+double Geometry::Line::xLowerBound()
 {
   return std::min(this->_origin["x"], this->_destination["x"]);
 }
 
-double Geometry::Line::xMaximum()
+double Geometry::Line::xUpperBound()
 {
   return std::max(this->_origin["x"], this->_destination["x"]);
 }
 
-double Geometry::Line::yMinimum()
+double Geometry::Line::yLowerBound()
 {
   return std::min(this->_origin["y"], this->_destination["y"]);
 }
 
-double Geometry::Line::yMaximum()
+double Geometry::Line::yUpperBound()
 {
   return std::max(this->_origin["y"], this->_destination["y"]);
 }

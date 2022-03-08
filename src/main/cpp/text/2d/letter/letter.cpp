@@ -17,7 +17,7 @@ void Text::Letter::initialiseDefaults(std::string letter)
   this->scaleFactor = 1;
   
   this->translationFromOrigin = {
-    this->templateMesh.xMinimum(), this->templateMesh.yMinimum()};
+    this->templateMesh.xLowerBound(), this->templateMesh.yLowerBound()};
 }
 
 void Text::Letter::loadLetterFromFile(std::string letter)
@@ -52,22 +52,22 @@ void Text::Letter::translate(Maths::Vector translation)
 
 double Text::Letter::xUpperBound()
 {
-  return this->transformedMesh.xMaximum();
+  return this->transformedMesh.xUpperBound();
 }
 
 double Text::Letter::xLowerBound()
 {
-  return this->transformedMesh.xMinimum();
+  return this->transformedMesh.xLowerBound();
 }
 
 double Text::Letter::yUpperBound()
 {
-  return this->transformedMesh.yMaximum();
+  return this->transformedMesh.yUpperBound();
 }
 
 double Text::Letter::yLowerBound()
 {
-  return this->transformedMesh.yMinimum();
+  return this->transformedMesh.yLowerBound();
 }
 
 Geometry::Line& Text::Letter::operator [](int index)
