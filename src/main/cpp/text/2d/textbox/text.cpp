@@ -41,7 +41,6 @@ void Text::Text2D::loadBaseLetters()
 
     this->letters.push_back(letter);
     xCursor = letter.xUpperBound() + this->_padding.x;
-    std::cout << "X cursor now at " << xCursor << std::endl;
   }
 }
 
