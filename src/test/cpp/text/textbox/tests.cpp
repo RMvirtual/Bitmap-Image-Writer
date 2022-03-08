@@ -130,7 +130,7 @@ TEST_F(TextTest, ShouldCreateTextImageFile)
 {
   auto image = this->redImage();
 
-  Text::Text2D text {"abcdh"};
+  Text::Text2D text {"abcdeh"};
   text.setPadding(0.25, 0.0);
   text.scale(20);
   text.translate({25, 100});
@@ -143,4 +143,6 @@ TEST_F(TextTest, ShouldCreateTextImageFile)
     *image,
     "C:/Users/rmvir/Desktop/scc300-Win3D/resources/test/output/text.bmp"
   );
+
+  EXPECT_TRUE(false);
 }
