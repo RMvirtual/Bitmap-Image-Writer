@@ -18,6 +18,7 @@ public:
   void scale(double scaleFactor);
   void translate(Maths::Vector translation);
   int size();
+  Maths::Vector origin();
 
   Text::Letter operator [](int index);
 
@@ -32,7 +33,7 @@ private:
   std::vector<Text::Letter> letters;
   std::string _text;
   Text::Padding _padding;
-  Maths::Vector origin;
+  Maths::Vector _origin;
 
   void loadLetters();
   void addPadding();

@@ -126,6 +126,16 @@ TEST_F(TextTest, ShouldScaleTranslatedText)
   this->compare(this->correctLetters, text);
 }
 
+TEST_F(TextTest, ShouldGetTranslatedOrigin)
+{
+  this->text.translate({5, 3});
+  auto origin = this->text.origin();
+  Maths::Vector correctOrigin {5, 3};
+
+  this->compare(correctOrigin, origin);
+}
+
+
 TEST_F(TextTest, ShouldCreateTextImageFile)
 {
   auto image = this->redImage();
@@ -137,7 +147,7 @@ TEST_F(TextTest, ShouldCreateTextImageFile)
 
   Text::Text2D text2 {"nopqrstuvwxyz"};
   text2.setPadding(0.25, 0.0);
-  text2.scale(20); // either scale or constructor.
+  text2.scale(20);
   text2.translate({25, 100});
 
   this->rasteriser.setWritableImage(image);

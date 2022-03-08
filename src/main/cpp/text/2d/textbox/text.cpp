@@ -8,7 +8,7 @@ Text::Text2D::Text2D()
 
 Text::Text2D::Text2D(std::string text)
 {
-  this->origin = {0.0, 0.0};
+  this->_origin = {0.0, 0.0};
   this->setText(text);
 }
 
@@ -81,8 +81,13 @@ void Text::Text2D::removePadding()
 void Text::Text2D::scale(double scaleFactor)
 {
   int noOfLetters = this->letters.size();
-  this->letters[0].scaleIncludingOrigin(scaleFactor); //  Should be scale, but changing to 
-  // scaleIncludingOrigin fixes the text 1st character messing up.
+
+  // Should be scale, but changing to scaleIncludingOrigin fixes the
+  // text 1st character messing up.
+  
+  // Get the origin x and y for this entire container.
+
+  this->letters[0].scaleIncludingOrigin(scaleFactor);
 
   for (int letterNo = 1; letterNo < noOfLetters; letterNo++) {
     auto& letter = this->letters[letterNo];
@@ -97,6 +102,19 @@ void Text::Text2D::translate(Maths::Vector translation)
 {
   for (auto& letter : this->letters)
     letter.translate(translation);
+}
+
+Maths::Vector Text::Text2D::origin()
+{
+  auto xOrigin = this->letters[0].xLowerBound();
+  auto yOrigin = this->letters[0].yLowerBound();
+
+  for (auto& letter : this->letters) {
+    xOrigin = std::min(xOrigin, letter.xLowerBound());
+    yOrigin = std::min(yOrigin, letter.yLowerBound());
+  }
+
+  return {xOrigin, yOrigin};
 }
 
 std::string Text::Text2D::text()
