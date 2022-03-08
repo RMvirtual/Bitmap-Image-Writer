@@ -9,7 +9,7 @@ def main():
     
     imagePath = (
         "C:\\Users\\rmvir\\Desktop\\scc300-Win3D\\resources\\test\\"
-        + "correct-resources\\redFill512x512.bmp"
+        + "output\\text.bmp"
     )
 
     gui.loadImage(imagePath)
