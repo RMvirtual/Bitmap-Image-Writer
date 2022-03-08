@@ -17,7 +17,7 @@ TEST_F(TextTest, ShouldCreatePaddedText)
 {
   this->setupPaddedText();
   Text::Text2D text {"haha"};
-  text.setPadding(1,0);
+  text.setPadding(1,0.0);
   this->compare(text);
 }
 
@@ -33,8 +33,8 @@ TEST_F(TextTest, ShouldCreatePaddedTranslatedText)
 {
   this->setupPaddedTranslatedText();
   Text::Text2D text {"haha"};
-  text.setPadding(1,0);
   text.translate({5, 3});
+  text.setPadding(1, 0.0);
   this->compare(text);
 }
 

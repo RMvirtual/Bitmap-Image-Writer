@@ -51,12 +51,14 @@ void TextTest::setupUnpaddedTranslatedText()
 
 void TextTest::setupPaddedTranslatedText()
 {
+  // translate 5,3
+  // add padding of 1, 0
   this->correctLineMeshes = this->correctHahaLineMeshes();
 
-  this->correctLineMeshes[0].translate({6, 3});
+  this->correctLineMeshes[0].translate({5, 3});
   this->correctLineMeshes[1].translate({7, 3});
-  this->correctLineMeshes[2].translate({9, 3});
-  this->correctLineMeshes[3].translate({10, 3});
+  this->correctLineMeshes[2].translate({10, 3});
+  this->correctLineMeshes[3].translate({12, 3});
 }
 
 void TextTest::setupUnpaddedScaledText()
