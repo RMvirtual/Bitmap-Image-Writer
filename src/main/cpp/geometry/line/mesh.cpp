@@ -121,7 +121,7 @@ double Geometry::LineMesh::yUpperBound()
   double maximum = this->lines[0].yUpperBound();
 
   for (auto line : this->lines)
-    maximum = std::min(maximum, line.yUpperBound());
+    maximum = std::max(maximum, line.yUpperBound());
 
   return maximum;
 }
