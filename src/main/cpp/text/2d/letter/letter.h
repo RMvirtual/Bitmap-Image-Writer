@@ -29,9 +29,6 @@ public:
 private:
   Geometry::LineMesh templateMesh;
   Geometry::LineMesh transformedMesh;
-  double scaleFactor;
-  Maths::Vector translationFromOrigin;
 
   void loadLetterFromFile(std::string letter);
-  void initialiseTransformedMesh();
 };}

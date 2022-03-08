@@ -14,16 +14,6 @@ Text::Letter::Letter(char letter)
 void Text::Letter::loadLetterFromFile(std::string letter)
 {
   this->templateMesh = Files::Alphabet2D::letter(letter);
-  this->scaleFactor = 1;
-
-  this->translationFromOrigin = {
-    this->templateMesh.xLowerBound(), this->templateMesh.yLowerBound()};
-
-  this->initialiseTransformedMesh();
-}
-
-void Text::Letter::initialiseTransformedMesh()
-{
   this->transformedMesh = this->templateMesh;
 }
 
