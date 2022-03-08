@@ -146,3 +146,24 @@ TEST_F(LetterTest, ShouldScaleWithProvidedOrigin)
   for (int i = 0; i < noOfLines; i++)
     this->compare(correctLines[i], letter[i]);
 }
+
+TEST_F(LetterTest, ShouldScaleWithProvidedOriginAtNonStartingPoint)
+{
+  Text::Letter letter {"c"};
+  letter.translate({5,3});
+  letter.scale(2, {4, 2});
+
+  std::vector<Geometry::Line> correctLines = {
+    {{9, 8}, {7, 8}},
+    {{7, 8}, {6, 7}},
+    {{6, 7}, {6, 5}},
+    {{6, 5}, {7, 4}},
+    {{7, 4}, {9, 4}}
+  };
+
+  int noOfLines = letter.noOfLines();
+  ASSERT_EQ(correctLines.size(), noOfLines);
+
+  for (int i = 0; i < noOfLines; i++)
+    this->compare(correctLines[i], letter[i]);
+}
