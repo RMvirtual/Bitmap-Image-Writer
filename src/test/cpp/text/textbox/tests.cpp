@@ -130,7 +130,7 @@ TEST_F(TextTest, ShouldCreateTextImageFile)
 {
   auto image = this->redImage();
 
-  Text::Text2D text {"abcdefghijkl"};
+  Text::Text2D text {"abcdefghijklm"};
   text.setPadding(0.25, 0.0);
   text.scale(20);
   text.translate({25, 100});
