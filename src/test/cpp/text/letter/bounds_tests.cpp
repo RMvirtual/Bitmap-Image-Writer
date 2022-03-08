@@ -140,11 +140,11 @@ TEST_F(LetterTest, ShouldGetXLowerBoundAfterScalingAndTranslation)
 TEST_F(LetterTest, ShouldGetXUpperBoundAfterScalingAndTranslation)
 {
   Text::Letter letter {"c"};
-  letter.scale(2);
   letter.translate({2,4});
+  letter.scale(2);
   
   double correctBound = 5;
-  auto bound = letter.xLowerBound();
+  auto bound = letter.xUpperBound();
   
   EXPECT_EQ(correctBound, bound);
 }
@@ -168,7 +168,7 @@ TEST_F(LetterTest, ShouldGetYUpperBoundAfterScalingAndTranslation)
   letter.translate({2,4});
   
   double correctBound = 8;
-  auto bound = letter.yLowerBound();
+  auto bound = letter.yUpperBound();
   
   EXPECT_EQ(correctBound, bound);
 }
