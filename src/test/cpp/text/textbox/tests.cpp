@@ -130,8 +130,8 @@ TEST_F(TextTest, ShouldCreateTextImageFile)
 {
   auto image = this->redImage();
 
-  Text::Text2D text {"abcdefh"};
-  text.setPadding(0.25, 0.0);
+  Text::Text2D text {"abcdefgh"};
+  text.setPadding(0.25, 0.0); // thing.
   text.scale(20);
   text.translate({25, 100});
   this->rasteriser.setWritableImage(image);
