@@ -5,10 +5,8 @@
 #include "src/test/cpp/text/textbox/fixture.h"
 #include "src/main/cpp/bitmaps/writer/image/writer.h"
 
-TEST_F(TextTest, ShouldCreateUnpaddedText)
+TEST_F(TextTest, ShouldSeparateUnpaddedTextLetters)
 {
-  Text::Text2D text {"haha"};
-
   this->correctLetters[1].translate({1, 0.0});
   this->correctLetters[2].translate({3, 0.0});
   this->correctLetters[3].translate({4, 0.0});
@@ -18,8 +16,7 @@ TEST_F(TextTest, ShouldCreateUnpaddedText)
 
 TEST_F(TextTest, ShouldPadText)
 {
-  Text::Text2D text {"haha"};
-  text.setPadding(1, 0);
+  this->text.setPadding(1, 0);
 
   this->correctLetters[1].translate({2, 0.0});
   this->correctLetters[2].translate({5, 0.0});
@@ -30,8 +27,7 @@ TEST_F(TextTest, ShouldPadText)
 
 TEST_F(TextTest, ShouldTranslateUnpaddedText)
 {
-  Text::Text2D text {"haha"};
-  text.translate({5, 3});
+  this->text.translate({5, 3});
 
   this->correctLetters[0].translate({5, 3});
   this->correctLetters[1].translate({6, 3});
@@ -43,9 +39,8 @@ TEST_F(TextTest, ShouldTranslateUnpaddedText)
 
 TEST_F(TextTest, ShouldPadTranslatedText)
 {
-  Text::Text2D text {"haha"};
-  text.translate({5, 3});
-  text.setPadding(1, 0);
+  this->text.translate({5, 3});
+  this->text.setPadding(1, 0);
 
   this->correctLetters[0].translate({5, 3});
   this->correctLetters[1].translate({7, 3});
@@ -55,21 +50,39 @@ TEST_F(TextTest, ShouldPadTranslatedText)
   this->compare(this->correctLetters, text);
 }
 
-TEST_F(TextTest, ShouldCreateUnpaddedScaledText)
+TEST_F(TextTest, ShouldScaleUnpaddedText)
 {
-  Text::Text2D text {"h"};
-  text.scale(2);
+  this->text.scale(2);
+  this->correctLetters[0].scale(2);
+
+  this->correctLetters[1].scale(2);
+  this->correctLetters[1].translate({2, 0.0});
+
+  this->correctLetters[2].scale(2);
+  this->correctLetters[2].translate({6, 0.0});
+
+  this->correctLetters[3].scale(2);
+  this->correctLetters[3].translate({8, 0.0});
+
+  this->compare(this->correctLetters, text);
+}
+
+TEST_F(TextTest, ShouldScalePaddedText)
+{
+  this->text.setPadding(1, 0.0);
+  this->text.scale(2);
+
   EXPECT_TRUE(false);
 }
 
-TEST_F(TextTest, ShouldCreatePaddedScaledText)
+TEST_F(TextTest, ShouldScaleTranslatedText)
 {
-  Text::Text2D text {"h"};
-  text.setPadding(1, 0.0);
-  text.scale(2);
+  this->text.setPadding(1, 0.0);
+  this->text.scale(2);
 
   EXPECT_TRUE(false);
 }
+
 
 TEST_F(TextTest, ShouldCreateTextImageFile)
 {

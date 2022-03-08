@@ -3,10 +3,10 @@
 #include "src/main/cpp/bitmaps/image/image.h"
 #include "src/test/cpp/text/textbox/fixture.h"
 
-void TextTest::setupCorrectLetters()
+void TextTest::setupHahaText()
 {
-  this->correctLetters = {
-    {"h"}, {"a"}, {"h"}, {"a"}};
+  this->text = {"haha"};
+  this->correctLetters = {{"h"}, {"a"}, {"h"}, {"a"}};
 }
 
 std::shared_ptr<Bitmaps::Image> TextTest::redImage()

@@ -3,7 +3,7 @@
 
 TextTest::TextTest()
 {
-  this->setupCorrectLetters();
+  this->setupHahaText();
 }
 
 TextTest::~TextTest()
