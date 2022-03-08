@@ -140,8 +140,8 @@ TEST_F(LetterTest, ShouldGetXLowerBoundAfterScalingAndTranslation)
 TEST_F(LetterTest, ShouldGetXUpperBoundAfterScalingAndTranslation)
 {
   Text::Letter letter {"c"};
-  letter.translate({2,4});
   letter.scale(2);
+  letter.translate({2,4});
   
   double correctBound = 5;
   auto bound = letter.xUpperBound();

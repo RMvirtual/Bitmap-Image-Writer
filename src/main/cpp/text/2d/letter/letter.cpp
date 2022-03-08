@@ -19,31 +19,24 @@ void Text::Letter::loadLetterFromFile(std::string letter)
   this->translationFromOrigin = {
     this->templateMesh.xLowerBound(), this->templateMesh.yLowerBound()};
 
-  this->transformMesh();
+  this->initialiseTransformedMesh();
 }
 
-void Text::Letter::transformMesh()
+void Text::Letter::initialiseTransformedMesh()
 {
-  this->transformedMesh = {};
-
-  for (auto line : this->templateMesh) {
-    line.scaleIncludingOrigin(this->scaleFactor);
-    line.translate(this->translationFromOrigin);
-
-    this->transformedMesh.add(line);
-  }
+  this->transformedMesh = this->templateMesh;
 }
 
 void Text::Letter::scale(double scaleFactor)
 {
-  this->scaleFactor *= scaleFactor;
-  this->transformMesh();
+  for (auto& line : this->transformedMesh)
+    line.scaleIncludingOrigin(scaleFactor);
 }
 
 void Text::Letter::translate(Maths::Vector translation)
 {
-  this->translationFromOrigin = this->translationFromOrigin + translation;
-  this->transformMesh();
+  for (auto& line : this->transformedMesh)
+    line.translate(translation);
 }
 
 double Text::Letter::xUpperBound()

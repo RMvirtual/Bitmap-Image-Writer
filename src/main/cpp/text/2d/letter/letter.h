@@ -33,5 +33,5 @@ private:
   Maths::Vector translationFromOrigin;
 
   void loadLetterFromFile(std::string letter);
-  void transformMesh();
+  void initialiseTransformedMesh();
 };}
