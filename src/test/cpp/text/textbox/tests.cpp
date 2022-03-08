@@ -72,15 +72,15 @@ TEST_F(TextTest, ShouldScalePaddedText)
   this->text.setPadding(1, 0.0);
   this->text.scale(2);
 
-  this->correctLetters[0].scale(2);             // 0-1 letter.
+  this->correctLetters[0].scale(2);
 
-  this->correctLetters[1].scaleIncludingOrigin(2);             // 3-4 space, 5-9 letter.
+  this->correctLetters[1].scaleIncludingOrigin(2);
   this->correctLetters[1].translate({5, 0.0});
 
-  this->correctLetters[2].scaleIncludingOrigin(2);             // 10-11 space, 12-14 letter.
+  this->correctLetters[2].scaleIncludingOrigin(2);
   this->correctLetters[2].translate({12, 0.0});
 
-  this->correctLetters[3].scaleIncludingOrigin(2);             // 15-16 space, 17-21 letter.
+  this->correctLetters[3].scaleIncludingOrigin(2);
   this->correctLetters[3].translate({17, 0.0});
 
   this->compare(this->correctLetters, text);
@@ -126,12 +126,12 @@ TEST_F(TextTest, ShouldScaleTranslatedText)
   this->compare(this->correctLetters, text);
 }
 
-
 TEST_F(TextTest, ShouldCreateTextImageFile)
 {
   auto image = this->redImage();
 
-  Text::Text2D text {"abch"};
+  Text::Text2D text {"abcdh"};
+  text.setPadding(0.25, 0.0);
   text.scale(20);
   text.translate({25, 100});
   this->rasteriser.setWritableImage(image);
