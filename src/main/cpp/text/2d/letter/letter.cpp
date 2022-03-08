@@ -90,3 +90,8 @@ std::vector<Geometry::Line>::const_iterator Text::Letter::end() const
 {
   return this->transformedMesh.end();
 }
+
+int Text::Letter::noOfLines()
+{
+  return this->templateMesh.size();
+}

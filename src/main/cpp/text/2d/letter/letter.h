@@ -18,7 +18,8 @@ public:
   double xLowerBound();
   double yUpperBound();
   double yLowerBound();
-  
+  int noOfLines();
+
   Geometry::Line& operator [](int index);
   std::vector<Geometry::Line>::iterator begin();
   std::vector<Geometry::Line>::iterator end();
