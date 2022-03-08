@@ -19,7 +19,7 @@ TEST_F(TextTest, ShouldCreateUnpaddedText)
   this->compare(correctLetters, text);
 }
 
-TEST_F(TextTest, ShouldCreatePaddedText)
+TEST_F(TextTest, ShouldPadText)
 {
   Text::Text2D text {"haha"};
   text.setPadding(1, 0);
@@ -34,11 +34,20 @@ TEST_F(TextTest, ShouldCreatePaddedText)
   this->compare(correctLetters, text);
 }
 
-TEST_F(TextTest, ShouldCreateUnpaddedTranslatedText)
+TEST_F(TextTest, ShouldTranslateUnpaddedText)
 {
   Text::Text2D text {"haha"};
   text.translate({5, 3});
-  EXPECT_TRUE(false);
+
+  std::vector<Text::Letter> correctLetters {
+    {"h"}, {"a"}, {"h"}, {"a"}};
+
+  correctLetters[0].translate({5, 3});
+  correctLetters[1].translate({6, 3});
+  correctLetters[2].translate({8, 3});
+  correctLetters[3].translate({9, 3});
+
+  this->compare(correctLetters, text);
 }
 
 TEST_F(TextTest, ShouldCreatePaddedTranslatedText)
