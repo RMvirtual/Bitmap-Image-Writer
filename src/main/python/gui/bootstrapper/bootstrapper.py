@@ -1,19 +1,25 @@
 import wx
 from src.main.python.gui.viewer.viewer import GUI
 
-def initialiseGUI():
-    app = wx.App()
-    launchGUI(app)
+class GUIBootstrapper():
+    """Class for initialising the user interface."""
 
-def launchGUI(app):
-    gui = GUI()
-    gui.Show()
-    
-    imagePath = (
-        "C:\\Users\\rmvir\\Desktop\\scc300-Win3D\\resources\\test\\"
-        + "output\\text.bmp"
-    )
+    def __init__(self) -> None:
+        self.initialiseGUI()
 
-    gui.loadImage(imagePath)
-    gui.setText(imagePath)
-    app.MainLoop()
+    def initialiseGUI(self):
+        self.__app = wx.App()
+        self.launchGUI()
+
+    def launchGUI(self):
+        gui = GUI()
+        gui.Show()
+        
+        imagePath = (
+            "C:\\Users\\rmvir\\Desktop\\scc300-Win3D\\resources\\test\\"
+            + "output\\text.bmp"
+        )
+
+        gui.loadImage(imagePath)
+        gui.setText(imagePath)
+        self.__app.MainLoop()
