@@ -3,5 +3,6 @@
 
 TEST(GUIInterfaceTest, ShouldCompilePythonInterface)
 {
+  GUI::GUIInterface interface;
   EXPECT_TRUE(true);
 }
