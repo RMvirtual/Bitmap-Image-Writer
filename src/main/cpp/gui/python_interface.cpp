@@ -18,9 +18,9 @@ void GUI::GUIInterface::start()
   // PyObject *pArgs, *pValue;
 
   this->launchBootstrapper();
-  this->launchGUI();
+  // this->launchGUI();
 
-  // PyObject* tp_call(PyObject *callable, PyObject *args, PyObject *kwargs);
+  PyObject_CallMethod(this->bootstrapper, "launchGUI", NULL); 
 }
 
 

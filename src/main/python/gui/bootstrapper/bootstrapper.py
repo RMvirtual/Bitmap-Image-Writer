@@ -9,7 +9,7 @@ class GUIBootstrapper():
 
     def initialiseGUI(self):
         self.__app = wx.App()
-        self.launchGUI()
+        # self.launchGUI()
 
     def launchGUI(self):
         gui = GUI()
