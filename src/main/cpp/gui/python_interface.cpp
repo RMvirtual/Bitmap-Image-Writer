@@ -15,13 +15,18 @@ GUI::GUIInterface::GUIInterface()
 
 void GUI::GUIInterface::start()
 {
-  PyObject *pName, *pModule, *pDict, *viewerClass, *guiObject;
-  PyObject *pArgs, *pValue;
+  // PyObject *pArgs, *pValue;
 
   this->launchBootstrapper();
-  
-  /*  
-  // Gui.
+
+  // PyObject* tp_call(PyObject *callable, PyObject *args, PyObject *kwargs);
+}
+
+
+void GUI::GUIInterface::launchGUI()
+{
+  PyObject *pName, *pModule, *pDict, *viewerClass, *guiObject;
+
   pName = PyUnicode_FromString("src.main.python.gui.viewer.viewer");
   pModule = PyImport_Import(pName);
   std::cout << "Gets name.\n";
@@ -48,9 +53,7 @@ void GUI::GUIInterface::start()
         }
       }
     }
-    */
-
-  // PyObject* tp_call(PyObject *callable, PyObject *args, PyObject *kwargs);
+  }
 }
 
 void GUI::GUIInterface::launchBootstrapper()

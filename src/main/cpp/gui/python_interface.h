@@ -6,8 +6,8 @@ public:
 
   void start();
   void launchBootstrapper();
+  void launchGUI();
 
-  
   void doSomething();
   void close();
 private:
