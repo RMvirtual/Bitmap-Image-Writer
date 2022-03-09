@@ -1,3 +1,5 @@
+#include "python.h"
+
 namespace GUI {
 class GUIInterface
 {
@@ -11,4 +13,6 @@ public:
   void doSomething();
   void close();
 private:
+  PyObject* bootstrapper;
+  PyObject* gui;
 };}

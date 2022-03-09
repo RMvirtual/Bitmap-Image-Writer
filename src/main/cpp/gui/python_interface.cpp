@@ -18,6 +18,7 @@ void GUI::GUIInterface::start()
   // PyObject *pArgs, *pValue;
 
   this->launchBootstrapper();
+  this->launchGUI();
 
   // PyObject* tp_call(PyObject *callable, PyObject *args, PyObject *kwargs);
 }
@@ -54,6 +55,8 @@ void GUI::GUIInterface::launchGUI()
       }
     }
   }
+
+  this->gui = guiObject;
 }
 
 void GUI::GUIInterface::launchBootstrapper()
@@ -88,6 +91,8 @@ void GUI::GUIInterface::launchBootstrapper()
         }
       }
     }
+
+    this->bootstrapper = guiObject;
   }
 }
 
