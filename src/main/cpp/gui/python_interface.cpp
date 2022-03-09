@@ -3,7 +3,7 @@
 
 #include <iostream>
 
-GUI::GUIInterface::GUIInterface()
+GUI::PythonInterface::PythonInterface()
 {
   Py_Initialize();
 
@@ -11,19 +11,47 @@ GUI::GUIInterface::GUIInterface()
     "import sys\n"
     "sys.path.append(\"C:/Users/rmvir/Desktop/scc300-Win3D\")\n"
   );
+
+  this->start();
 }
 
-void GUI::GUIInterface::start()
+GUI::PythonInterface::~PythonInterface()
 {
-  // PyObject *pArgs, *pValue;
+  this->close();
+}
 
-  this->launchBootstrapper();
-  PyObject_CallMethod(this->bootstrapper, "launchGUI", NULL); 
+void GUI::PythonInterface::start()
+{
+  this->initialiseBootstrapper();
+  this->initialiseGUI(); 
+}
+
+void GUI::PythonInterface::loadImage(std::string imagePath)
+{
+  PyObject* method = PyUnicode_FromString("refreshImage");
+  PyObject* parameters = PyUnicode_FromString(imagePath.c_str());
+  PyObject_CallMethodOneArg(this->gui, method, parameters);
+
+  Py_DECREF(method);
+  Py_DECREF(parameters);
+}
+
+void GUI::PythonInterface::show()
+{
+  PyObject_CallMethod(this->gui, "Show", NULL); 
+}
+
+void GUI::PythonInterface::refresh()
+{
+  PyObject_CallMethod(this->gui, "refreshImage", NULL); 
+}
+
+void GUI::PythonInterface::launchMainLoop()
+{
   PyObject_CallMethod(this->bootstrapper, "launchMainLoop", NULL); 
 }
 
-
-void GUI::GUIInterface::launchGUI()
+void GUI::PythonInterface::initialiseGUI()
 {
   PyObject *pName, *pModule, *pDict, *viewerClass, *guiObject;
 
@@ -58,7 +86,7 @@ void GUI::GUIInterface::launchGUI()
   this->gui = guiObject;
 }
 
-void GUI::GUIInterface::launchBootstrapper()
+void GUI::PythonInterface::initialiseBootstrapper()
 {
   PyObject *pName, *pModule, *pDict, *viewerClass, *guiObject;
 
@@ -95,14 +123,7 @@ void GUI::GUIInterface::launchBootstrapper()
   }
 }
 
-void GUI::GUIInterface::doSomething()
-{
-  PyRun_SimpleString(
-    "print('Hello, world!')\n"
-  );
-}
-
-void GUI::GUIInterface::close()
+void GUI::PythonInterface::close()
 {
   Py_Finalize();
 }

@@ -1,17 +1,22 @@
+#include <string>
 #include "python.h"
 
 namespace GUI {
-class GUIInterface
+class PythonInterface
 {
 public:
-  GUIInterface();
+  PythonInterface();
+  ~PythonInterface();
 
   void start();
-  void launchBootstrapper();
-  void launchGUI();
-
-  void doSomething();
+  void initialiseBootstrapper();
+  void initialiseGUI();
+  void launchMainLoop();
   void close();
+  void loadImage(std::string imagePath);
+  void refresh();
+  void show();
+
 private:
   PyObject* bootstrapper;
   PyObject* gui;

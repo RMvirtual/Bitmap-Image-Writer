@@ -3,7 +3,7 @@
 
 TEST(GUIInterfaceTest, ShouldStartGUI)
 {
-  GUI::GUIInterface interface;
+  GUI::PythonInterface interface;
   interface.start();
   interface.doSomething();
   interface.close();

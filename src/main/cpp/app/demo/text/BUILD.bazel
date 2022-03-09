@@ -1,0 +1,12 @@
+load("@rules_cc//cc:defs.bzl", "cc_binary")
+
+cc_library(
+    name = "text",
+    hdrs = glob(["*.h"]),
+    srcs = glob(["*.cpp"]),
+    visibility = ["//visibility:public"],
+    deps = [
+        "//src/main/cpp/app/demo/interface",
+        "//src/main/cpp/gui"
+    ]
+)

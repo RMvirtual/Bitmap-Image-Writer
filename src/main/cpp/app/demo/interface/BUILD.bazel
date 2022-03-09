@@ -1,8 +1,9 @@
 load("@rules_cc//cc:defs.bzl", "cc_binary")
 
-cc_binary(
-    name = "app",
-    srcs = glob(["demos.cpp"]),
+cc_library(
+    name = "interface",
+    srcs = glob(["*.cpp"]),
+    hdrs = glob(["*.h"]),
     visibility = ["//visibility:public"],
     deps = ["//src/main/cpp/gui"]
 )
