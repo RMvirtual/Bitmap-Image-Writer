@@ -59,3 +59,9 @@
 .bazelversion
 # User-specific .bazelrc
 user.bazelrc
+
+# Python
+# Byte-compiled / optimized / DLL files
+**/__pycache__/
+*.py[cod]
+*$py.class
