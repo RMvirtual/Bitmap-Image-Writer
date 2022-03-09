@@ -5,4 +5,5 @@ int main()
   GUI::GUIInterface interface;
   interface.start();
   interface.doSomething();
+  interface.close();
 }

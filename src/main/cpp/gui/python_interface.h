@@ -5,8 +5,7 @@ public:
   GUIInterface();
 
   void start();
-  bool isRunning();
   void doSomething();
-  
+  void close();
 private:
 };}
