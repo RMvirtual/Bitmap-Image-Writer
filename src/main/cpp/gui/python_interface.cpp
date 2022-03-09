@@ -17,7 +17,7 @@ void GUI::GUIInterface::start()
   PyObject *pName, *pModule, *pDict, *viewerClass, *guiObject;
   PyObject *pArgs, *pValue;
   
-  pName = PyUnicode_FromString("src.main.python.gui.viewer");
+  pName = PyUnicode_FromString("src.main.python.gui.viewer.viewer");
   pModule = PyImport_Import(pName);
   std::cout << "Gets name.\n";
   Py_DECREF(pName);

@@ -1,6 +1,6 @@
 import wx
 
-from src.main.python.gui.image_conversion \
+from src.main.python.gui.viewer.image_conversion \
     import toImage, toScaledImagePreserveAspectRatio
 
 class Image(wx.StaticBitmap):

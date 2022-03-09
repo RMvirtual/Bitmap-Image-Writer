@@ -1,6 +1,6 @@
 import wx
 
-from src.main.python.gui.image import Image
+from src.main.python.gui.viewer.image import Image
 
 class ImagePanel(wx.Panel):
     """The image panel of the gui viewer."""

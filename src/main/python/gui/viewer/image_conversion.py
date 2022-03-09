@@ -1,6 +1,6 @@
 import wx
 
-from src.main.python.gui.aspect_ratios import scaleDimensionsToImageAspectRatio
+from src.main.python.gui.viewer.aspect_ratios import scaleDimensionsToImageAspectRatio
 
 def toBitmap(imagePath:str) -> wx.Bitmap:
     """Converts an image file to a wx Bitmap object."""

@@ -2,10 +2,10 @@ load("@rules_python//python:defs.bzl", "py_binary")
 load("@python_imports//:requirements.bzl", "requirement")
 
 py_binary(
-  name = "gui",
+  name = "bootstrapper",
   srcs = glob(["*.py"]),
   deps = [
     requirement("wxPython"),
-    "//src/main/python/gui",
+    "//src/main/python/gui/viewer",
   ]
 )

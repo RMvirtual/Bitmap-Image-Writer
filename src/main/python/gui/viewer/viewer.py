@@ -1,5 +1,5 @@
 import wx
-from src.main.python.gui.image_panel import ImagePanel
+from src.main.python.gui.viewer.image_panel import ImagePanel
 
 class GUI(wx.Frame):
     """Main GUI for the app."""
