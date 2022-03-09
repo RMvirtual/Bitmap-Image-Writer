@@ -29,6 +29,9 @@ class GUI(wx.Frame):
         self.SetSizer(self.__sizer)
         self.SetMinSize(wx.Size(300,300))
         
+    def show(self) -> None:
+        self.Show()
+    
     def loadImage(self, imagePath: str) -> None:
         """Loads an image onto the viewer."""
 

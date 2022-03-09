@@ -3,7 +3,6 @@
 GUI::ImageViewer::ImageViewer()
 {
   this->interface.show();
-  this->interface.launchMainLoop();
 }
 
 void GUI::ImageViewer::loadImage(std::string imagePath)
@@ -19,4 +18,9 @@ void GUI::ImageViewer::refresh()
 void GUI::ImageViewer::show()
 {
   this->interface.show();
+}
+
+void GUI::ImageViewer::mainLoop()
+{
+  this->interface.launchMainLoop();
 }

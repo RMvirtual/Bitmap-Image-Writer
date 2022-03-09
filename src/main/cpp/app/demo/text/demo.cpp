@@ -1,3 +1,4 @@
+#include <thread>
 #include "src/main/cpp/app/demo/text/demo.h"
 
 Demo::TextDemo::TextDemo()
@@ -7,5 +8,9 @@ Demo::TextDemo::TextDemo()
 
 void Demo::TextDemo::start()
 {
-  // pass.
+  viewer.loadImage(
+    "C:/Users/rmvir/Desktop/scc300-Win3D/resources/test/output/text.bmp");
+
+  viewer.show();
+  viewer.mainLoop();
 }

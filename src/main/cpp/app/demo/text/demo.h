@@ -1,7 +1,7 @@
 #pragma once
 
 #include "src/main/cpp/app/demo/interface/demo.h"
-#include "src/main/cpp/gui/python_interface.h"
+#include "src/main/cpp/gui/image_viewer.h"
 
 namespace Demo {
 class TextDemo : public Demo
@@ -12,6 +12,5 @@ public:
   void start();
 
 private:
-  GUI::PythonInterface interface;
-
+  GUI::ImageViewer viewer;
 };}

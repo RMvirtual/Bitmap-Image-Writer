@@ -4,5 +4,7 @@ cc_binary(
     name = "app",
     srcs = glob(["demos.cpp"]),
     visibility = ["//visibility:public"],
-    deps = ["//src/main/cpp/gui"]
+    deps = [
+        "//src/main/cpp/app/demo"
+    ]
 )

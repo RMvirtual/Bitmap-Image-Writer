@@ -1,6 +1,7 @@
-#include "src/main/cpp/gui/image_viewer.h"
+#include "src/main/cpp/app/demo/text/demo.h"
 
 int main()
 {
-  GUI::ImageViewer viewer;
+  Demo::TextDemo demo;
+  demo.start();
 }

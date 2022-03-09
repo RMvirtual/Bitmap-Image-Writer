@@ -8,7 +8,7 @@ public:
   PythonInterface();
   ~PythonInterface();
 
-  void start();
+  void initialise();
   void initialiseBootstrapper();
   void initialiseGUI();
   void launchMainLoop();
@@ -20,4 +20,6 @@ public:
 private:
   PyObject* bootstrapper;
   PyObject* gui;
+
+  void setSrcPath();
 };}
