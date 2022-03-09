@@ -3,5 +3,10 @@
 
 GUI::GUIInterface::GUIInterface()
 {
-  // pass.
+  Py_Initialize();  
+}
+
+void GUI::GUIInterface::start()
+{
+  // pass.  
 }
