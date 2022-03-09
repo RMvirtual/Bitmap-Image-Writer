@@ -6,6 +6,7 @@
 GUI::GUIInterface::GUIInterface()
 {
   Py_Initialize();
+
   PyRun_SimpleString(
     "import sys\n"
     "sys.path.append(\"C:/Users/rmvir/Desktop/scc300-Win3D\")\n"
@@ -17,7 +18,8 @@ void GUI::GUIInterface::start()
   PyObject *pName, *pModule, *pDict, *viewerClass, *guiObject;
   PyObject *pArgs, *pValue;
 
-
+  this->launchBootstrapper();
+  
   /*  
   // Gui.
   pName = PyUnicode_FromString("src.main.python.gui.viewer.viewer");
@@ -48,6 +50,13 @@ void GUI::GUIInterface::start()
     }
     */
 
+  // PyObject* tp_call(PyObject *callable, PyObject *args, PyObject *kwargs);
+}
+
+void GUI::GUIInterface::launchBootstrapper()
+{
+  PyObject *pName, *pModule, *pDict, *viewerClass, *guiObject;
+
   // Bootstrapper.
   pName = PyUnicode_FromString(
     "src.main.python.gui.bootstrapper.bootstrapper");
@@ -77,8 +86,6 @@ void GUI::GUIInterface::start()
       }
     }
   }
-
-  // PyObject* tp_call(PyObject *callable, PyObject *args, PyObject *kwargs);
 }
 
 void GUI::GUIInterface::doSomething()
