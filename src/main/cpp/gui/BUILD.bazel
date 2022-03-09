@@ -5,5 +5,7 @@ cc_library(
     hdrs = glob(["*.h"]),
     srcs = glob(["*.cpp"]),
     visibility = ["//visibility:public"],
-    deps = ["@python_windows//:python-lib"]
+    deps = [
+        "@python_windows//:python-lib",
+    ]
 )

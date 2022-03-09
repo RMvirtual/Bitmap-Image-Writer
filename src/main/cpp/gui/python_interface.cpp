@@ -6,6 +6,10 @@
 GUI::GUIInterface::GUIInterface()
 {
   Py_Initialize();
+  PyRun_SimpleString(
+    "import sys\n"
+    "sys.path.append(\"C:/Users/rmvir/Desktop/scc300-Win3D\")\n"
+  );
 }
 
 void GUI::GUIInterface::start()
@@ -13,10 +17,10 @@ void GUI::GUIInterface::start()
   PyObject *pName, *pModule, *pDict, *pFunc;
   PyObject *pArgs, *pValue;
   
-  pName = PyUnicode_FromString(
-    (char*) "C:/Users/rmvir/Desktop/scc300-Win3D/src/main/python/gui/viewer.py");
-
+  pName = PyUnicode_FromString("src.main.python.gui.viewer");
   pModule = PyImport_Import(pName);
+
+  std::cout << *Py_GetPath() << std::endl;
 
   Py_DECREF(pName);
 
@@ -30,8 +34,9 @@ void GUI::GUIInterface::start()
 void GUI::GUIInterface::doSomething()
 {
   PyRun_SimpleString(
-    "from time import time,ctime\n"
-    "print('Today is',ctime(time()))\n"
+    "import os\n"
+    "cwd = os.getcwd()\n"
+    "print(cwd)\n"
   );
 }
 
