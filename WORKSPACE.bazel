@@ -20,3 +20,9 @@ pip_install(
    name = "python_imports",
    requirements = "//lib/python:pip_imports.txt",
 )
+
+new_local_repository(
+    name = "python_windows",
+    path = "C:/Program Files/Python39",
+    build_file = "//lib/python:local_installation.BUILD.bazel"
+)

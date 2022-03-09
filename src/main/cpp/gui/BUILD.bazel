@@ -5,7 +5,5 @@ cc_library(
     hdrs = glob(["*.h"]),
     srcs = glob(["*.cpp"]),
     visibility = ["//visibility:public"],
-    deps = [
-    ],
-    includes = ["C:/Program Files/Python39/include"]
+    deps = ["@python_windows//:python-lib"]
 )
