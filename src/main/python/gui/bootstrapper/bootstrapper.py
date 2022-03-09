@@ -1,7 +1,7 @@
 import wx
 from src.main.python.gui.viewer.viewer import GUI
 
-def main(args):
+def main():
     app = wx.App()
 
     gui = GUI()
@@ -15,3 +15,5 @@ def main(args):
     gui.loadImage(imagePath)
     gui.setText(imagePath)
     app.MainLoop()
+
+main()
