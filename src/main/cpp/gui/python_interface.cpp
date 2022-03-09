@@ -14,11 +14,12 @@ GUI::GUIInterface::GUIInterface()
 
 void GUI::GUIInterface::start()
 {
-  PyObject *pName, *pModule, *pDict, *viewerClass;
+  PyObject *pName, *pModule, *pDict, *viewerClass, *guiObject;
   PyObject *pArgs, *pValue;
   
   pName = PyUnicode_FromString("src.main.python.gui.viewer");
   pModule = PyImport_Import(pName);
+  std::cout << "Gets name.\n";
   Py_DECREF(pName);
 
   if (pModule != NULL) {
@@ -33,6 +34,13 @@ void GUI::GUIInterface::start()
 
       if (viewerClass != NULL) {
         std::cout << "Gets Python class.\n";
+        Py_DECREF(pDict);
+
+        if (PyCallable_Check(viewerClass)) {
+          std::cout << "Class is callable.\n";
+          guiObject = PyObject_CallObject(viewerClass, nullptr);
+          Py_DECREF(viewerClass);
+        }
       }
     }
   }
