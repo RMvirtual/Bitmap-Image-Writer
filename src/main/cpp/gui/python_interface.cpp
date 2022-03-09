@@ -10,3 +10,8 @@ void GUI::GUIInterface::start()
 {
   // pass.  
 }
+
+bool GUI::GUIInterface::isRunning()
+{
+  return true;
+}
