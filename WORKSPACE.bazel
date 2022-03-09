@@ -17,6 +17,6 @@ http_archive(
 load("@rules_python//python:pip.bzl", "pip_install")
 
 pip_install(
-   name = "my_deps",
-   requirements = "//build-config:python_imports.txt",
+   name = "python_imports",
+   requirements = "//lib/python:pip_imports.txt",
 )
