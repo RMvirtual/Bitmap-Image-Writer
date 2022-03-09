@@ -1,1 +1,1 @@
-bazel run //src/main/python/app:gui
+bazel run //src/main/cpp/app

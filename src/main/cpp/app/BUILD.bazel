@@ -1,0 +1,8 @@
+load("@rules_cc//cc:defs.bzl", "cc_binary")
+
+cc_binary(
+    name = "app",
+    srcs = glob(["gui.cpp"]),
+    visibility = ["//visibility:public"],
+    deps = ["//src/main/cpp/gui"]
+)

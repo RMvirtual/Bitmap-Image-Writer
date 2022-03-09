@@ -5,5 +5,6 @@ TEST(GUIInterfaceTest, ShouldStartGUI)
 {
   GUI::GUIInterface interface;
   interface.start();
+  interface.doSomething();
   EXPECT_TRUE(true);
 }

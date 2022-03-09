@@ -6,5 +6,7 @@ public:
 
   void start();
   bool isRunning();
+  void doSomething();
+  
 private:
 };}
