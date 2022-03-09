@@ -14,7 +14,7 @@ void GUI::GUIInterface::start()
   PyObject *pArgs, *pValue;
   
   pName = PyUnicode_FromString(
-    (char*) "C:/Users/rmvir/Desktop/scc300-Win3D/src/main/python/gui/viewer/py");
+    (char*) "C:/Users/rmvir/Desktop/scc300-Win3D/src/main/python/gui/viewer.py");
 
   pModule = PyImport_Import(pName);
 
