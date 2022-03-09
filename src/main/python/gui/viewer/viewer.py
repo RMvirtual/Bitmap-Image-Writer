@@ -13,28 +13,32 @@ class GUI(wx.Frame):
 
     def __initialiseWidgets(self) -> None:
         self.SetTitle("Win3D")
-        self.imagePanel = ImagePanel(self)
+        self.__imagePanel = ImagePanel(self)
 
     def __initialiseSizer(self) -> None:
         """Initialises the dynamic sizer for the overall GUI."""
 
-        self.sizer = wx.BoxSizer(wx.VERTICAL)
+        self.__sizer = wx.BoxSizer(wx.VERTICAL)
         
-        self.sizer.Add(
-            window=self.imagePanel,
+        self.__sizer.Add(
+            window=self.__imagePanel,
             flags=wx.SizerFlags().Expand()
         )
         
-        self.sizer.SetSizeHints(self)
-        self.SetSizer(self.sizer)
+        self.__sizer.SetSizeHints(self)
+        self.SetSizer(self.__sizer)
         self.SetMinSize(wx.Size(300,300))
         
     def loadImage(self, imagePath: str) -> None:
         """Loads an image onto the viewer."""
 
-        self.imagePanel.loadImageFromFile(imagePath)
+        self.__imagePath = imagePath
+        self.__imagePanel.loadImageFromFile(self.__imagePath)
+
+    def refreshImage(self) -> None:
+        self.__imagePanel.loadImageFromFile(self.__imagePath)
 
     def setText(self, text: str) -> None:
         """Sets the text underneat the image."""
 
-        self.imagePanel.setText(text)
+        self.__imagePanel.setText(text)
