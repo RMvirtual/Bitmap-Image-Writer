@@ -14,18 +14,27 @@ GUI::GUIInterface::GUIInterface()
 
 void GUI::GUIInterface::start()
 {
-  PyObject *pName, *pModule, *pDict, *pFunc;
+  PyObject *pName, *pModule, *pDict, *viewerClass;
   PyObject *pArgs, *pValue;
   
   pName = PyUnicode_FromString("src.main.python.gui.viewer");
   pModule = PyImport_Import(pName);
-
-  std::cout << *Py_GetPath() << std::endl;
-
   Py_DECREF(pName);
 
   if (pModule != NULL) {
-    std::cout << "Seems to import module." << std::endl;
+    std::cout << "Gets module.\n";
+    pDict = PyModule_GetDict(pModule);
+
+    if (pDict != NULL) {
+      std::cout << "Gets dict.\n";
+      Py_DECREF(pModule);
+
+      viewerClass = PyDict_GetItemString(pDict, "GUI");
+
+      if (viewerClass != NULL) {
+        std::cout << "Gets Python class.\n";
+      }
+    }
   }
 
   // PyObject* tp_call(PyObject *callable, PyObject *args, PyObject *kwargs);
@@ -34,9 +43,7 @@ void GUI::GUIInterface::start()
 void GUI::GUIInterface::doSomething()
 {
   PyRun_SimpleString(
-    "import os\n"
-    "cwd = os.getcwd()\n"
-    "print(cwd)\n"
+    "print('Hello, world!')\n"
   );
 }
 
