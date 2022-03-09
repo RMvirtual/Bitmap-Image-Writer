@@ -8,9 +8,12 @@ Demo::TextDemo::TextDemo()
 
 void Demo::TextDemo::start()
 {
-  viewer.loadImage(
+  this->viewer.loadImage(
     "C:/Users/rmvir/Desktop/scc300-Win3D/resources/test/output/text.bmp");
+  
+  std::thread thread {&GUI::ImageViewer::mainLoop, &this->viewer};
+  
+  this->viewer.show();
 
-  viewer.show();
-  viewer.mainLoop();
+  
 }
