@@ -2,8 +2,8 @@
 
 GUI::ImageViewer::ImageViewer()
 {
-  this->interface.launchMainLoop();
   this->interface.show();
+  this->interface.launchMainLoop();
 }
 
 void GUI::ImageViewer::loadImage(std::string imagePath)
