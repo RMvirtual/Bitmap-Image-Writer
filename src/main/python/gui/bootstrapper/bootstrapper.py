@@ -15,5 +15,3 @@ def main():
     gui.loadImage(imagePath)
     gui.setText(imagePath)
     app.MainLoop()
-
-main()
