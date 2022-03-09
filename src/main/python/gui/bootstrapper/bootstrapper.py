@@ -9,7 +9,6 @@ class GUIBootstrapper():
 
     def initialiseGUI(self):
         self.__app = wx.App()
-        # self.launchGUI()
 
     def launchGUI(self):
         gui = GUI()
@@ -22,4 +21,6 @@ class GUIBootstrapper():
 
         gui.loadImage(imagePath)
         gui.setText(imagePath)
+    
+    def launchMainLoop(self):
         self.__app.MainLoop()

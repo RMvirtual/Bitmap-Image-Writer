@@ -18,9 +18,8 @@ void GUI::GUIInterface::start()
   // PyObject *pArgs, *pValue;
 
   this->launchBootstrapper();
-  // this->launchGUI();
-
   PyObject_CallMethod(this->bootstrapper, "launchGUI", NULL); 
+  PyObject_CallMethod(this->bootstrapper, "launchMainLoop", NULL); 
 }
 
 
