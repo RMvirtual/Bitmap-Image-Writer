@@ -8,9 +8,11 @@ class TextDemo : public Demo
 {
 public:
   TextDemo();
-  
+  ~TextDemo();
+
   void start();
+  void updateImage();
 
 private:
-  GUI::ImageViewer viewer;
+  GUI::ImageViewer* viewer;
 };}

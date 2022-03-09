@@ -1,6 +1,8 @@
 #include "src/main/cpp/gui/python_interface.h"
 #include "python.h"
 
+#include <iostream>
+
 GUI::PythonInterface::PythonInterface()
 {
   this->initialise();
@@ -93,10 +95,10 @@ void GUI::PythonInterface::loadImage(std::string imagePath)
 {
   PyObject* method = PyUnicode_FromString("loadImage");
   PyObject* parameters = PyUnicode_FromString(imagePath.c_str());
+
   PyObject_CallMethodOneArg(this->gui, method, parameters);
 
-  Py_DECREF(method);
-  Py_DECREF(parameters);
+  std::cout << "Gets in load image.\n";
 }
 
 void GUI::PythonInterface::show()
