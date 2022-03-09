@@ -63,7 +63,7 @@ void GUI::GUIInterface::start()
       std::cout << "Gets dict.\n";
       Py_DECREF(pModule);
 
-      viewerClass = PyDict_GetItemString(pDict, "main");
+      viewerClass = PyDict_GetItemString(pDict, "initialiseGUI");
 
       if (viewerClass != NULL) {
         std::cout << "Gets Python class.\n";
