@@ -41,6 +41,7 @@ class GUIFrame(wx.Frame):
         self.__imagePanel.loadImageFromFile(self.__imagePath)
 
     def refreshImage(self) -> None:
+
         self.__toggle = not self.__toggle
 
         self.__imagePath = (
@@ -48,14 +49,19 @@ class GUIFrame(wx.Frame):
             + "images-to-load/text.bmp"
         )
 
+        """
         if self.__toggle:
             self.__imagePath = (
                 "C:/Users/rmvir/Desktop/scc300-Win3D/resources/renderer/"
                 + "images-to-load/triangle.bmp"
             )
+        """
+        try :
+            self.__imagePanel.loadImageFromFile(self.__imagePath)
 
-        self.__imagePanel.loadImageFromFile(self.__imagePath)
-
+        except:
+            print("Error refreshing image.")
+            
     def setText(self, text: str) -> None:
         """Sets the text underneat the image."""
 

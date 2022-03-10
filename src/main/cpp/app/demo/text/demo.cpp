@@ -16,6 +16,7 @@ Demo::TextDemo::~TextDemo()
 
 void Demo::TextDemo::start()
 {
+  std::thread renderingThread {&TextDemo::updateImage, this};
   this->viewer->start();
 }
 
@@ -26,9 +27,6 @@ void Demo::TextDemo::updateImage()
     std::this_thread::sleep_for(std::chrono::seconds(4));
 
     std::cout << "Slept.\n";
-
-    this->viewer->loadImage(
-      "C:/Users/rmvir/Desktop/scc300-Win3D/resources/test/output/text.bmp");
 
     std::this_thread::sleep_for(std::chrono::seconds(5));
     std::cout << "Slept for 5.\n";
