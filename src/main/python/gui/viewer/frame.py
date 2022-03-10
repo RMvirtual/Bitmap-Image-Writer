@@ -49,13 +49,6 @@ class GUIFrame(wx.Frame):
             + "images-to-load/text.bmp"
         )
 
-        """
-        if self.__toggle:
-            self.__imagePath = (
-                "C:/Users/rmvir/Desktop/scc300-Win3D/resources/renderer/"
-                + "images-to-load/triangle.bmp"
-            )
-        """
         try :
             self.__imagePanel.loadImageFromFile(self.__imagePath)
 

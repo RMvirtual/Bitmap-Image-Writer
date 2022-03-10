@@ -28,6 +28,10 @@ public:
   std::vector<Text::Letter>::const_iterator end() const;
 
   std::string text();
+  double xLowerBound();
+  double xUpperBound();
+  double yLowerBound();
+  double yUpperBound();
 
 private:
   std::vector<Text::Letter> letters;

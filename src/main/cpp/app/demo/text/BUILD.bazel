@@ -7,6 +7,10 @@ cc_library(
     visibility = ["//visibility:public"],
     deps = [
         "//src/main/cpp/app/demo/interface",
-        "//src/main/cpp/gui"
+        "//src/main/cpp/bitmaps",
+        "//src/main/cpp/files",
+        "//src/main/cpp/text",
+        "//src/main/cpp/gui",
+        "//src/main/cpp/rasterisation"
     ]
 )

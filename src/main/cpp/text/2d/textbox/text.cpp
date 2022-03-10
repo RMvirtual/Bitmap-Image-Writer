@@ -116,6 +116,46 @@ std::string Text::Text2D::text()
   return this->_text;
 }
 
+double Text::Text2D::xLowerBound()
+{
+  double bound = this->letters[0].xLowerBound();
+
+  for (auto letter : this->letters)
+    bound = std::min(bound, letter.xLowerBound());
+  
+  return bound;
+}
+
+double Text::Text2D::xUpperBound()
+{
+  double bound = this->letters[0].xUpperBound();
+
+  for (auto letter : this->letters)
+    bound = std::max(bound, letter.xUpperBound());
+  
+  return bound;
+}
+
+double Text::Text2D::yLowerBound()
+{
+  double bound = this->letters[0].yLowerBound();
+
+  for (auto letter : this->letters)
+    bound = std::min(bound, letter.yLowerBound());
+  
+  return bound;
+}
+
+double Text::Text2D::yUpperBound()
+{
+  double bound = this->letters[0].yUpperBound();
+
+  for (auto letter : this->letters)
+    bound = std::max(bound, letter.yUpperBound());
+  
+  return bound;
+}
+
 std::vector<Text::Letter>::iterator Text::Text2D::begin()
 {
   return this->letters.begin();
