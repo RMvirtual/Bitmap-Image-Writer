@@ -44,7 +44,7 @@ void Demo::TextDemo::updateImage()
 
   Maths::Vector negativeTranslation {-1, 0.0};
   Maths::Vector positiveTranslation {1, 0.0};
-  Maths::Vector translation = positiveTranslation;
+  Maths::Vector* translation = &positiveTranslation;
 
   int renderNo = 0;
 
@@ -58,14 +58,14 @@ void Demo::TextDemo::updateImage()
     );
 
     if (boundaryReached) {
-      if (translation["x"] == 1)
-        translation = negativeTranslation;
+      if ((*translation)["x"] == 1)
+        translation = &negativeTranslation;
 
       else
-        translation = positiveTranslation;
+        translation = &positiveTranslation;
     }
 
-    textBox.translate(translation);
+    textBox.translate(*translation);
     rasteriser.draw(textBox);
     
     try {

@@ -6,7 +6,7 @@ Text::Text2D::Text2D()
   this->_text = "";
 }
 
-Text::Text2D::Text2D(std::string text)
+Text::Text2D::Text2D(const std::string& text)
 {
   this->setText(text);
 }
@@ -24,7 +24,7 @@ void Text::Text2D::loadLetters()
   double xCursor = 0.0;
   double yCursor = 0.0;
   
-  for (auto character : this->_text) {
+  for (auto& character : this->_text) {
     Text::Letter letter {character};
     letter.translate({xCursor, yCursor});
 
@@ -35,12 +35,8 @@ void Text::Text2D::loadLetters()
 
 void Text::Text2D::scale(double scaleFactor)
 {
-  int noOfLetters = this->letters.size();
-
-  // Should be scale, but changing to scaleIncludingOrigin fixes the
-  // text 1st character messing up.
-  
-  auto origin = this->origin();
+  int noOfLetters = this->letters.size();  
+  auto& origin = this->origin();
 
   for (auto& letter : this->letters)
     letter.scale(scaleFactor, origin);
@@ -48,7 +44,7 @@ void Text::Text2D::scale(double scaleFactor)
   this->scalePadding(scaleFactor);
 }
 
-void Text::Text2D::translate(Maths::Vector translation)
+void Text::Text2D::translate(const Maths::Vector& translation)
 {
   for (auto& letter : this->letters)
     letter.translate(translation);
@@ -120,7 +116,7 @@ double Text::Text2D::xLowerBound()
 {
   double bound = this->letters[0].xLowerBound();
 
-  for (auto letter : this->letters)
+  for (auto& letter : this->letters)
     bound = std::min(bound, letter.xLowerBound());
   
   return bound;
@@ -130,7 +126,7 @@ double Text::Text2D::xUpperBound()
 {
   double bound = this->letters[0].xUpperBound();
 
-  for (auto letter : this->letters)
+  for (auto& letter : this->letters)
     bound = std::max(bound, letter.xUpperBound());
   
   return bound;
@@ -140,7 +136,7 @@ double Text::Text2D::yLowerBound()
 {
   double bound = this->letters[0].yLowerBound();
 
-  for (auto letter : this->letters)
+  for (auto& letter : this->letters)
     bound = std::min(bound, letter.yLowerBound());
   
   return bound;
@@ -150,7 +146,7 @@ double Text::Text2D::yUpperBound()
 {
   double bound = this->letters[0].yUpperBound();
 
-  for (auto letter : this->letters)
+  for (auto& letter : this->letters)
     bound = std::max(bound, letter.yUpperBound());
   
   return bound;

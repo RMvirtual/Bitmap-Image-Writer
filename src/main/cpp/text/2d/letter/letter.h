@@ -8,14 +8,13 @@ namespace Text {
 class Letter
 {
 public:
-  Letter(std::string letter);
+  Letter(const std::string& letter);
   Letter(char letter);
-
+  
   void scale(double scaleFactor);
-  void scale(double scaleFactor, Maths::Vector origin);
+  void scale(double scaleFactor, const Maths::Vector& origin);
   void scaleIncludingOrigin(double scaleFactor);
-
-  void translate(Maths::Vector translation);
+  void translate(const Maths::Vector& translation);
 
   double xUpperBound();
   double xLowerBound();
@@ -33,5 +32,5 @@ private:
   Geometry::LineMesh templateMesh;
   Geometry::LineMesh transformedMesh;
 
-  void loadLetterFromFile(std::string letter);
+  void loadLetterFromFile(const std::string& letter);
 };}

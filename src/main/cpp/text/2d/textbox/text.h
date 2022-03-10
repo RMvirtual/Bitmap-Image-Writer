@@ -11,12 +11,12 @@ class Text2D
 {
 public:
   Text2D();
-  Text2D(std::string text);
+  Text2D(const std::string& text);
 
   void setPadding(double x, double y);
   void setText(std::string text);
   void scale(double scaleFactor);
-  void translate(Maths::Vector translation);
+  void translate(const Maths::Vector& translation);
   int size();
   Maths::Vector origin();
 
