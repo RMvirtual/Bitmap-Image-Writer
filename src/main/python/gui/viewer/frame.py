@@ -8,6 +8,8 @@ class GUIFrame(wx.Frame):
         """Creates a new GUI."""
 
         super(GUIFrame, self).__init__(None)
+        self.__toggle = False
+
         self.__initialiseWidgets()
         self.__initialiseSizer()
 
@@ -39,6 +41,19 @@ class GUIFrame(wx.Frame):
         self.__imagePanel.loadImageFromFile(self.__imagePath)
 
     def refreshImage(self) -> None:
+        self.__toggle = not self.__toggle
+
+        self.__imagePath = (
+            "C:/Users/rmvir/Desktop/scc300-Win3D/resources/renderer/"
+            + "images-to-load/text.bmp"
+        )
+
+        if self.__toggle:
+            self.__imagePath = (
+                "C:/Users/rmvir/Desktop/scc300-Win3D/resources/renderer/"
+                + "images-to-load/triangle.bmp"
+            )
+
         self.__imagePanel.loadImageFromFile(self.__imagePath)
 
     def setText(self, text: str) -> None:

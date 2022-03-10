@@ -17,14 +17,13 @@ Demo::TextDemo::~TextDemo()
 void Demo::TextDemo::start()
 {
   this->viewer->start();
-  // std::thread thread {&TextDemo::updateImage, this};
 }
 
 void Demo::TextDemo::updateImage()
 {
   while (true) {
     std::cout << "About to sleep.\n";
-    std::this_thread::sleep_for(std::chrono::seconds(2));
+    std::this_thread::sleep_for(std::chrono::seconds(4));
 
     std::cout << "Slept.\n";
 

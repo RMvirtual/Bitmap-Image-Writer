@@ -3,15 +3,21 @@ from src.main.python.gui.viewer.frame import GUIFrame
 
 class ImageViewer():
     def __init__(self):
-        self.__app = wx.App()
+        pass
 
     def start(self):
+        self.__app = wx.App()
         self.__gui = GUIFrame()
         self.__gui.show()
+        self.timer = None
+
+        self.refreshImage()
         self.__app.MainLoop()
 
-    def loadImage(self, imagePath:str):
-        wx.CallAfter(self.__gui, self.__gui.loadImage, imagePath)
+    def refreshImage(self):
+        wx.CallLater(16.7, self.refreshImage)
+
+        self.__gui.refreshImage()
 
     def show(self):
-        wx.CallAfter(self.__gui, self.__gui.show, None)
+        self.__gui.show()
