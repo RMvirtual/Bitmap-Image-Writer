@@ -157,7 +157,7 @@ TEST_F(TextTest, ShouldCreateTextImageFile)
   Bitmaps::ImageWriter writer;
   
   writer.writeToFile(
-    *image,
+    image,
     "C:/Users/rmvir/Desktop/scc300-Win3D/resources/test/output/text.bmp"
   );
 
