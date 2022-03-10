@@ -3,15 +3,12 @@
 Geometry::Triangle::Triangle()
 {
   this->vertices = {
-    {0.0, 0.0},
-    {1, 2},
-    {2, 0.0}
-  };
+    {0.0, 0.0}, {1, 2}, {2, 0.0}};
 }
 
 Geometry::Triangle::Triangle(const std::vector<Maths::Vector>& vertices)
 {
-  this->vertices = {vertices};
+  this->vertices = vertices;
 }
 
 Maths::Vector& Geometry::Triangle::operator [](int index)

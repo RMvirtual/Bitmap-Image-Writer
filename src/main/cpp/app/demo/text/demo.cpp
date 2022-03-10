@@ -43,13 +43,14 @@ void Demo::TextDemo::updateImage()
   Bitmaps::ImageWriter writer;
 
   Maths::Vector negativeTranslation {-1, 0.0};
-  Maths::Vector positiveTranslation {1, 0.0};
+  Maths::Vector positiveTranslation {1.5, 0.0};
   Maths::Vector* translation = &positiveTranslation;
 
   int renderNo = 0;
 
   while (true) {
     std::cout << "Render Pass: " << renderNo << "\n";
+    
     image->fill(redColours);
  
     bool boundaryReached = (

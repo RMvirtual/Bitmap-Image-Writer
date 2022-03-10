@@ -118,17 +118,16 @@ TEST_F(TriangleTest, ShouldScaleTriangle)
   }
 }
 
+// fails.
 TEST_F(TriangleTest, ShouldScaleTriangleFromNonZeroOrigin)
 {
-  std::vector<Maths::Vector> v = {
-    {5, 5}, {10, 15}, {15, 7}
-  };
+  this->triangle = {{
+    {5, 5}, {10, 15}, {15, 7}}};
 
-  this->triangle = {v};
   this->triangle.scale(2);
 
   std::vector<Maths::Vector> correctVectors = {
-    {5,5}, {15,25}, {25,9}
+    {5, 5}, {15, 25}, {25, 9}
   };
 
   for (int i = 0; i < 3; i++) {
