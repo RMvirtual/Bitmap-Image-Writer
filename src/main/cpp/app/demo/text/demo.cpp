@@ -36,53 +36,51 @@ void Demo::TextDemo::updateImage()
   redColours["green"] = 0;
   redColours["blue"] = 0;
 
-  std::cout << "In update image.\n";
-
   auto textBox = this->textBox();
-  std::cout << "2.\n";
-
   auto image = this->redImage();
 
   auto rasteriser = this->rasteriser();
   Bitmaps::ImageWriter writer;
   rasteriser.setWritableImage(image);
 
-  Maths::Vector negativeTranslation {2.0, 0.0};
-  Maths::Vector positiveTranslation {1.0, 0.0};
+  Maths::Vector negativeTranslation {-10, 0.0};
+  Maths::Vector positiveTranslation {10, 0.0};
   Maths::Vector translation = positiveTranslation;
 
+  int renderNo = 0;
+
   while (true) {
+    std::cout << "Render Pass: " << renderNo << "\n";
     image->fill(redColours);
 
     bool boundaryReached = (
-      textBox.xLowerBound() == 0 ||
-      textBox.xUpperBound() == 500
+      textBox.xLowerBound() <= 0 ||
+      textBox.xUpperBound() >= 500
     );
 
     if (boundaryReached) {
-      if (translation["x"] == 1)
+      if (translation["x"] == 10)
         translation = negativeTranslation;
 
       else
         translation = positiveTranslation;
     }
 
-    std::this_thread::sleep_for(std::chrono::milliseconds(17));
     textBox.translate(translation);
     rasteriser.draw(textBox);
-
-    Bitmaps::ImageWriter writer;
     
     try {
-    writer.writeToFile(
-      *image,
-      "C:/Users/rmvir/Desktop/scc300-Win3D/resources/renderer/images-to-load/text.bmp"
-    );
+      writer.writeToFile(
+        *image,
+        "C:/Users/rmvir/Desktop/scc300-Win3D/resources/renderer/images-to-load/text.bmp"
+      );
     }
 
     catch (std::exception e) {
       std::cout << "Exception" << std::endl;
     }
+    
+    renderNo++;
   }
 }
 
