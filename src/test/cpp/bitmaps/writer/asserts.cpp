@@ -1,20 +1,19 @@
-#include <gtest/gtest.h>
 #include "src/test/cpp/bitmaps/writer/fixture.h"
 #include "src/main/cpp/bitmaps/reader/image/reader.h"
 
 void BitmapWriterTest::compareWrittenFile()
 {
   Bitmaps::ImageReader reader {};
-  auto writtenImage = reader.read(this->filePath);
+  auto writtenImage = *reader.read(this->filePath);
 
-  this->compare(writtenImage.fileHeader());
-  this->compare(writtenImage.dibHeader());
-  this->compare(writtenImage.pixelArray());
+  this->compare(*(writtenImage.fileHeader()));
+  this->compare(*(writtenImage.dibHeader()));
+  this->compare(*(writtenImage.pixelArray()));
 }
 
 void BitmapWriterTest::compare(const Bitmaps::FileHeader& header)
 {
-  auto correctHeader = this->image.fileHeader();
+  auto correctHeader = *(this->image->fileHeader());
 
   EXPECT_EQ(correctHeader.signatureBytes(), header.signatureBytes());
   EXPECT_EQ(correctHeader.fileSizeInBytes(), header.fileSizeInBytes());
@@ -26,7 +25,7 @@ void BitmapWriterTest::compare(const Bitmaps::FileHeader& header)
 
 void BitmapWriterTest::compare(const Bitmaps::DibHeader& header)
 {
-  auto correctHeader = this->image.dibHeader();
+  auto correctHeader = *(this->image->dibHeader());
 
   EXPECT_EQ(correctHeader.headerSizeInBytes(), header.headerSizeInBytes());
   EXPECT_EQ(correctHeader.widthInPixels(), header.widthInPixels());
@@ -46,18 +45,18 @@ void BitmapWriterTest::compare(const Bitmaps::DibHeader& header)
 
 void BitmapWriterTest::compare(const Bitmaps::PixelArray& pixelArray)
 {
-  auto correctPixelArray = this->image.pixelArray();
+  auto correctPixelArray = this->image->pixelArray();
 
-  int correctNoOfPixels = correctPixelArray.sizeInPixels();
+  int correctNoOfPixels = correctPixelArray->sizeInPixels();
   int noOfPixels = pixelArray.sizeInPixels();
 
   ASSERT_EQ(correctNoOfPixels, noOfPixels);
 
   for (int pixelNo = 0; pixelNo < noOfPixels; pixelNo++) {
-    auto correctColours = correctPixelArray.at(pixelNo);
+    auto correctColours = correctPixelArray->at(pixelNo);
     auto colours = pixelArray.at(pixelNo);
 
-    this->compare(correctColours, colours);
+    this->compare(*correctColours, colours);
   }
 }
 

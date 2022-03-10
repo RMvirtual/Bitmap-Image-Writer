@@ -16,17 +16,18 @@ Bitmaps::Image::Image(Bitmaps::Format format)
   Bitmaps::DibHeader dibHeader {format};
   Bitmaps::PixelArray pixelArray {format};
 
-  this->packet.fileHeader = fileHeader;
-  this->packet.dibHeader = dibHeader;
-  this->packet.pixelArray = pixelArray;
+  this->packet.fileHeader = std::make_shared<Bitmaps::FileHeader>(
+    format.arraySizeInBytes());
+  
+  this->packet.dibHeader = std::make_shared<Bitmaps::DibHeader>(format);
+  this->packet.pixelArray = std::make_shared<Bitmaps::PixelArray>(format);
   this->format = format;
 }
 
 Bitmaps::Image::Image(Bitmaps::Packet packet)
 {
   this->packet = packet;
-
-  int bitsPerPixel = this->packet.dibHeader.bitsPerPixel();
+  int bitsPerPixel = this->packet.dibHeader->bitsPerPixel();
 
   std::string formatName = "RGBA32";
 
@@ -34,8 +35,8 @@ Bitmaps::Image::Image(Bitmaps::Packet packet)
     formatName = "RGB24";
 
   this->format = Bitmaps::format(formatName);
-  this->format.setHeightInPixels(this->packet.dibHeader.heightInPixels());
-  this->format.setWidthInPixels(this->packet.dibHeader.widthInPixels());
+  this->format.setHeightInPixels(this->packet.dibHeader->heightInPixels());
+  this->format.setWidthInPixels(this->packet.dibHeader->widthInPixels());
 }
 
 Bitmaps::Image::~Image()
@@ -45,22 +46,22 @@ Bitmaps::Image::~Image()
 
 void Bitmaps::Image::setPixel(int row, int column, Bitmaps::Colours colours)
 {
-  this->packet.pixelArray.set(colours, row, column);
+  this->packet.pixelArray->set(colours, row, column);
 }
 
 void Bitmaps::Image::fill(Bitmaps::Colours colours)
 {
-  this->packet.pixelArray.fill(colours);
+  this->packet.pixelArray->fill(colours);
 }
 
 int Bitmaps::Image::widthInPixels() const
 {
-  return this->packet.dibHeader.widthInPixels();
+  return this->packet.dibHeader->widthInPixels();
 }
 
 int Bitmaps::Image::heightInPixels() const
 {
-  return this->packet.dibHeader.heightInPixels();
+  return this->packet.dibHeader->heightInPixels();
 }
 
 Bitmaps::Colours Bitmaps::Image::defaultColours() const
@@ -68,17 +69,17 @@ Bitmaps::Colours Bitmaps::Image::defaultColours() const
   return this->format.colours();
 }
 
-Bitmaps::FileHeader Bitmaps::Image::fileHeader() const
+std::shared_ptr<Bitmaps::FileHeader> Bitmaps::Image::fileHeader()
 {
   return this->packet.fileHeader;
 }
 
-Bitmaps::DibHeader Bitmaps::Image::dibHeader() const
+std::shared_ptr<Bitmaps::DibHeader> Bitmaps::Image::dibHeader()
 {
   return this->packet.dibHeader;
 }
 
-Bitmaps::PixelArray Bitmaps::Image::pixelArray() const
+std::shared_ptr<Bitmaps::PixelArray> Bitmaps::Image::pixelArray()
 {
-  return this->packet.pixelArray;
+  return {this->packet.pixelArray};
 }

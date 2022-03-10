@@ -1,9 +1,9 @@
-#ifndef BITMAP_WRITER_TEST_H
-#define BITMAP_WRITER_TEST_H
+#pragma once
 
-#include <gtest/gtest.h>
+#include <memory>
 #include <string>
 
+#include "gtest/gtest.h"
 #include "src/main/cpp/bitmaps/writer/image/writer.h"
 #include "src/main/cpp/containers/byte-array/byte_array.h"
 
@@ -15,7 +15,7 @@ public:
 
 protected:
   std::string filePath;
-  Bitmaps::Image image;
+  std::shared_ptr<Bitmaps::Image> image;
   Bitmaps::ImageWriter writer;
 
   void setup1x4Image();
@@ -33,5 +33,3 @@ protected:
 private:
   void setOutputFilePath(std::string fileName);
 };
-
-#endif

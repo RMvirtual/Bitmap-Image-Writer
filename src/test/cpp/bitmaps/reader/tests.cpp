@@ -1,5 +1,3 @@
-#include <gtest/gtest.h>
-
 #include "src/test/cpp/bitmaps/reader/fixture.h"
 #include "src/main/cpp/bitmaps/reader/headers/file_header_reader.h"
 #include "src/main/cpp/bitmaps/reader/headers/dib_header_reader.h"
@@ -34,10 +32,12 @@ TEST_F(BitmapReaderTest, ShouldReadDibHeaderFromFile)
 
 TEST_F(BitmapReaderTest, ShouldReadPixelArrayFromFile)
 {
-  Bitmaps::PixelArrayReader reader {this->image.pixelArray().format()};
+  Bitmaps::PixelArrayReader reader {this->image->pixelArray()->format()};
 
-  auto bytes = this->fileContents.slice(54, this->fileContents.size());
-  auto pixelArray = reader.convertBytes(bytes);
+  auto pixelBytes = this->fileContents.slice(54, this->fileContents.size());
+  auto bytesPointer = std::make_shared<ByteArray>(pixelBytes);
+  
+  auto pixelArray = reader.convertBytes(bytesPointer);
 
   this->compare(pixelArray);
 }

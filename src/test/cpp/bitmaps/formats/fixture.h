@@ -1,7 +1,8 @@
 #pragma once
 
-#include <gtest/gtest.h>
+#include <memory>
 
+#include "gtest/gtest.h"
 #include "src/main/cpp/bitmaps/formats/format/format.h"
 #include "src/main/cpp/bitmaps/packet/headers/headers.h"
 #include "src/main/cpp/bitmaps/packet/headers/file-header/header.h"
@@ -29,6 +30,6 @@ protected:
   void compareColours(Bitmaps::Format& format);
   
   Bitmaps::Headers rgbHeaders();
-  Bitmaps::FileHeader rgbFileHeader();
-  Bitmaps::DibHeader rgbDibHeader();
+  std::shared_ptr<Bitmaps::FileHeader> rgbFileHeader();
+  std::shared_ptr<Bitmaps::DibHeader> rgbDibHeader();
 };

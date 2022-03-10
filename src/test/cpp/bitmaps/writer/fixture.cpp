@@ -2,10 +2,10 @@
 
 BitmapWriterTest::BitmapWriterTest()
 {
-  
+  // pass.  
 }
 
 BitmapWriterTest::~BitmapWriterTest()
 {
-
+  // pass.
 }

@@ -2,12 +2,13 @@
 
 Bitmaps::PixelArrayWriter::PixelArrayWriter()
 {
-
+  this->pixelArray = nullptr;
 }
 
-ByteArray Bitmaps::PixelArrayWriter::write(const Bitmaps::PixelArray& array)
+ByteArray Bitmaps::PixelArrayWriter::write(
+  std::shared_ptr<Bitmaps::PixelArray> pixelArray)
 {
-  this->initialise(array);
+  this->initialise(pixelArray);
   int noOfRows = this->format.heightInPixels();
 
   for (int rowNo = 0; rowNo < noOfRows; rowNo++)
@@ -16,10 +17,11 @@ ByteArray Bitmaps::PixelArrayWriter::write(const Bitmaps::PixelArray& array)
   return this->bytes;
 }
 
-void Bitmaps::PixelArrayWriter::initialise(const Bitmaps::PixelArray& array)
+void Bitmaps::PixelArrayWriter::initialise(
+  std::shared_ptr<Bitmaps::PixelArray> pixelArray)
 {
-  this->pixelArray = array;
-  this->format = this->pixelArray.format();
+  this->pixelArray = pixelArray;
+  this->format = this->pixelArray->format();
   this->bytes = {};
 }
 
@@ -37,12 +39,12 @@ void Bitmaps::PixelArrayWriter::writeRowOfPixels(int rowNo)
 void Bitmaps::PixelArrayWriter::writePixels(int startIndex, int endIndex)
 {
   for (int pixelNo = startIndex; pixelNo < endIndex; pixelNo++)
-    this->write(this->pixelArray.at(pixelNo));
+    this->write(*this->pixelArray->at(pixelNo));
 }
 
 void Bitmaps::PixelArrayWriter::write(const Bitmaps::Colours& colours)
 {
-  for (auto colourAndValue : colours)
+  for (auto& colourAndValue : colours)
     this->bytes.add(colourAndValue.second);
 }
 

@@ -1,5 +1,6 @@
 #include <gtest/gtest.h>
 #include "src/test/cpp/bitmaps/formats/fixture.h"
+#include <src/main/cpp/bitmaps/packet/headers/headers.h>
 
 void BitmapFormatsTest::setupRGBAFormat()
 {
@@ -41,26 +42,26 @@ Bitmaps::Headers BitmapFormatsTest::rgbHeaders()
   return headers;
 }
 
-Bitmaps::FileHeader BitmapFormatsTest::rgbFileHeader()
+std::shared_ptr<Bitmaps::FileHeader> BitmapFormatsTest::rgbFileHeader()
 {
-  Bitmaps::FileHeader header;
+  auto header = std::make_shared<Bitmaps::FileHeader>();
 
-  header.setSignatureBytes("BM");
-  header.setFileSizeInBytes(786486);
-  header.setReservedBytes(0);
-  header.setPixelArrayOffsetInBytes(54);
+  header->setSignatureBytes("BM");
+  header->setFileSizeInBytes(786486);
+  header->setReservedBytes(0);
+  header->setPixelArrayOffsetInBytes(54);
 
   return header;
 }
 
-Bitmaps::DibHeader BitmapFormatsTest::rgbDibHeader()
+std::shared_ptr<Bitmaps::DibHeader> BitmapFormatsTest::rgbDibHeader()
 {
-  Bitmaps::DibHeader header;
+  auto header = std::make_shared<Bitmaps::DibHeader>();
 
-  header.setWidthInPixels(2);
-  header.setHeightInPixels(2);
-  header.setNumberOfColourPlanes(1);
-  header.setBitsPerPixel(24);
+  header->setWidthInPixels(2);
+  header->setHeightInPixels(2);
+  header->setNumberOfColourPlanes(1);
+  header->setBitsPerPixel(24);
 
   return header;
 }

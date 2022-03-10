@@ -52,6 +52,7 @@ void Demo::TextDemo::updateImage()
   while (true) {
     std::cout << "Render Pass: " << renderNo << "\n";
     image->fill(redColours);
+    std::cout << "Image cleared. " << renderNo << "\n";
 
     bool boundaryReached = (
       textBox.xLowerBound() <= 0 ||
@@ -67,7 +68,10 @@ void Demo::TextDemo::updateImage()
     }
 
     textBox.translate(translation);
+    std::cout << "Text box moved. " << renderNo << "\n";
+
     rasteriser.draw(textBox);
+    std::cout << "Text box rasterised. " << renderNo << "\n";
     
     try {
       writer.writeToFile(
@@ -80,6 +84,8 @@ void Demo::TextDemo::updateImage()
       std::cout << "Exception" << std::endl;
     }
     
+    std::cout << "File written. " << renderNo << "\n";
+
     renderNo++;
   }
 }

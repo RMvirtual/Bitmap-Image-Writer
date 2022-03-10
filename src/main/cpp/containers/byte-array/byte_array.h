@@ -25,6 +25,9 @@ class ByteArray
     std::vector<uint8_t>::iterator end();
     std::vector<uint8_t>::const_iterator begin() const;
     std::vector<uint8_t>::const_iterator end() const;
+    uint8_t& at(int index);
+    uint8_t at(int index) const;
+
     uint8_t& operator [](int index);
     uint8_t operator [](int index) const;
     ByteArray slice(int startIndex, int endIndex) const;

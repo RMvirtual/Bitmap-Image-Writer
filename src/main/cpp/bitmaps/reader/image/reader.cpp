@@ -14,11 +14,12 @@ Bitmaps::ImageReader::ImageReader()
   // pass.
 }
 
-Bitmaps::Image Bitmaps::ImageReader::read(const std::string& filePath)
+std::shared_ptr<Bitmaps::Image> Bitmaps::ImageReader::read(
+  const std::string& filePath)
 {
   this->processIntoPacket(filePath);
- 
-  return this->packet;
+
+  return std::make_shared<Bitmaps::Image>(this->packet);
 }
 
 void Bitmaps::ImageReader::processIntoPacket(const std::string& filePath)
@@ -55,7 +56,9 @@ void Bitmaps::ImageReader::processIntoPixelArray(const ByteArray& bytes)
   auto pixelArrayBytes = bytes.slice(54, bytes.size());
   auto reader = this->pixelArrayReader();
   
-  this->packet.pixelArray = reader.convertBytes(pixelArrayBytes);
+  auto bytesPointer = std::make_shared<ByteArray>(pixelArrayBytes);
+
+  this->packet.pixelArray = reader.convertBytes(bytesPointer);
 }
 
 Bitmaps::PixelArrayReader Bitmaps::ImageReader::pixelArrayReader()
@@ -76,7 +79,7 @@ Bitmaps::Headers Bitmaps::ImageReader::headers()
 
 Bitmaps::Format Bitmaps::ImageReader::pixelArrayFormat()
 {  
-  int bitsPerPixel = this->packet.dibHeader.bitsPerPixel();
+  int bitsPerPixel = this->packet.dibHeader->bitsPerPixel();
 
   std::string formatName = "RGBA32";
 
@@ -85,8 +88,8 @@ Bitmaps::Format Bitmaps::ImageReader::pixelArrayFormat()
 
   auto format = Bitmaps::format(formatName);
 
-  format.setHeightInPixels(this->packet.dibHeader.heightInPixels());
-  format.setWidthInPixels(this->packet.dibHeader.widthInPixels());
+  format.setHeightInPixels(this->packet.dibHeader->heightInPixels());
+  format.setWidthInPixels(this->packet.dibHeader->widthInPixels());
 
   return format;
 }

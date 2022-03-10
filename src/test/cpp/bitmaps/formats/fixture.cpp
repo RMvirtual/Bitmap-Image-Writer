@@ -1,5 +1,3 @@
-#include <gtest/gtest.h>
-
 #include "src/test/cpp/bitmaps/formats/fixture.h"
 
 BitmapFormatsTest::BitmapFormatsTest()

@@ -4,10 +4,10 @@
 
 Bitmaps::FileHeaderReader::FileHeaderReader()
 {
-  // pass.
+  this->fileHeader = std::make_shared<Bitmaps::FileHeader>();
 }
 
-Bitmaps::FileHeader Bitmaps::FileHeaderReader::convertBytes(
+std::shared_ptr<Bitmaps::FileHeader> Bitmaps::FileHeaderReader::convertBytes(
   const ByteArray& bytes)
 {
   this->parseSignatureBytes(bytes);
@@ -21,26 +21,26 @@ Bitmaps::FileHeader Bitmaps::FileHeaderReader::convertBytes(
 void Bitmaps::FileHeaderReader::parseSignatureBytes(
   const ByteArray& bytes)
 {
-  this->fileHeader.setSignatureBytes(bytes[0], bytes[1]);
+  this->fileHeader->setSignatureBytes(bytes[0], bytes[1]);
 }
 
 void Bitmaps::FileHeaderReader::parseSizeOfBitmapFile(
   const ByteArray& bytes)
 {
   uint32_t sizeOfBitmapFile = ByteConversion::to32BitInt(bytes, 2);
-  this->fileHeader.setFileSizeInBytes(sizeOfBitmapFile);
+  this->fileHeader->setFileSizeInBytes(sizeOfBitmapFile);
 }
 
 void Bitmaps::FileHeaderReader::parseReservedBytes(
   const ByteArray& bytes)
 {
   uint32_t reservedBytes = ByteConversion::to32BitInt(bytes, 6);
-  this->fileHeader.setReservedBytes(reservedBytes);
+  this->fileHeader->setReservedBytes(reservedBytes);
 }
 
 void Bitmaps::FileHeaderReader::parsePixelDataOffset(
   const ByteArray& bytes)
 {
   uint32_t pixelDataOffset = ByteConversion::to32BitInt(bytes, 10);
-  this->fileHeader.setPixelArrayOffsetInBytes(pixelDataOffset);
+  this->fileHeader->setPixelArrayOffsetInBytes(pixelDataOffset);
 }

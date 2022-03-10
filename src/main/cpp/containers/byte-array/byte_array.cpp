@@ -98,6 +98,16 @@ std::vector<uint8_t>::const_iterator ByteArray::end() const
   return this->bytes.end();
 }
 
+uint8_t& ByteArray::at(int index)
+{
+  return this->bytes[index];
+}
+
+uint8_t ByteArray::at(int index) const
+{
+  return this->bytes[index];
+}
+
 uint8_t& ByteArray::operator [] (int index)
 {
   return this->bytes[index];

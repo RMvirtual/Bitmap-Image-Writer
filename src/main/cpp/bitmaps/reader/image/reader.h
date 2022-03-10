@@ -1,5 +1,6 @@
 #pragma once
 
+#include <memory>
 #include <string>
 
 #include "src/main/cpp/bitmaps/formats/format/format.h"
@@ -14,7 +15,7 @@ class ImageReader
 {
 public:
   ImageReader();
-  Bitmaps::Image read(const std::string& filePath);
+  std::shared_ptr<Bitmaps::Image> read(const std::string& filePath);
 
 private:
   Bitmaps::Packet packet;

@@ -1,5 +1,6 @@
 #pragma once
 
+#include <memory>
 #include "src/main/cpp/bitmaps/packet/packet.h"
 #include "src/main/cpp/bitmaps/formats/format/format.h"
 #include "src/main/cpp/bitmaps/formats/colours/colours.h"
@@ -9,21 +10,21 @@ class Image
 {
 public:
   Image();
-  Image(Format format);
-  Image(Packet packet);
+  Image(Bitmaps::Format format);
+  Image(Bitmaps::Packet packet);
   ~Image();
 
-  void fill(Colours colours);
-  void setPixel(int row, int column, Colours colours);
+  void fill(Bitmaps::Colours colours);
+  void setPixel(int row, int column, Bitmaps::Colours colours);
   int widthInPixels() const;
   int heightInPixels() const;
 
   Colours defaultColours() const;
-  FileHeader fileHeader() const;
-  DibHeader dibHeader() const;
-  PixelArray pixelArray() const;
+  std::shared_ptr<Bitmaps::FileHeader> fileHeader();
+  std::shared_ptr<Bitmaps::DibHeader> dibHeader();
+  std::shared_ptr<Bitmaps::PixelArray> pixelArray();
 
 private:
-  Packet packet;
-  Format format;
+  Bitmaps::Packet packet;
+  Bitmaps::Format format;
 };}

@@ -1,5 +1,6 @@
 #pragma once
 
+#include <memory>
 #include "src/main/cpp/bitmaps/packet/headers/dib-header/header.h"
 #include "src/main/cpp/containers/byte-array/byte_array.h"
 
@@ -8,10 +9,10 @@ class DibHeaderReader
 {
 public:
   DibHeaderReader();
-  Bitmaps::DibHeader convertBytes(const ByteArray& bytes);
+  std::shared_ptr<Bitmaps::DibHeader> convertBytes(const ByteArray& bytes);
 
 private:
-  Bitmaps::DibHeader header;
+  std::shared_ptr<Bitmaps::DibHeader> header;
   
   void parseWidthInPixels(const ByteArray& bytes);
   void parseHeightInPixels(const ByteArray& bytes);

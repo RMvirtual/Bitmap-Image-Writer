@@ -1,5 +1,3 @@
-#include <gtest/gtest.h>
-
 #include "src/main/cpp/bitmaps/formats/formats.h"
 #include "src/main/cpp/bitmaps/writer/image/writer.h"
 #include "src/test/cpp/bitmaps/writer/fixture.h"
@@ -28,14 +26,14 @@ void BitmapWriterTest::setupBlueRGBImage(int widthInPixels, int heightInPixels)
   format.setWidthInPixels(widthInPixels);
   format.setHeightInPixels(heightInPixels);
   
-  this->image = {format};
+  this->image = std::make_shared<Bitmaps::Image>(format);
 
   auto colours = format.colours();
   colours["red"] = 100;
   colours["green"] = 255;
   colours["blue"] = 255;
 
-  this->image.fill(colours);
+  this->image->fill(colours);
 }
 
 void BitmapWriterTest::setOutputFilePath(std::string fileName)

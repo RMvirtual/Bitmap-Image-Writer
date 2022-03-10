@@ -1,7 +1,6 @@
 #include <string>
 #include <vector>
 
-#include "gtest/gtest.h"
 #include "src/main/cpp/bitmaps/formats/formats.h"
 #include "src/test/cpp/bitmaps/formats/fixture.h"
 

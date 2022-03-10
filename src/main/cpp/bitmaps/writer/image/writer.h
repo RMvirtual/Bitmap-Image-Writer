@@ -9,8 +9,11 @@ class ImageWriter
 {
 public:
   ImageWriter();
-  ByteArray write(const Bitmaps::Image& image);
-  void writeToFile(const Bitmaps::Image& image, std::string filePath);
+  
+  ByteArray write(std::shared_ptr<Bitmaps::Image> image);
+  
+  void writeToFile(
+    std::shared_ptr<Bitmaps::Image> image, std::string filePath);
 
 private:
   ByteArray byteArray;

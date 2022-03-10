@@ -1,4 +1,3 @@
-#include <gtest/gtest.h>
 #include "src/test/cpp/bitmaps/writer/fixture.h"
 
 TEST_F(BitmapWriterTest, ShouldWriteImageWithRowStrideLessThanFourToFile)

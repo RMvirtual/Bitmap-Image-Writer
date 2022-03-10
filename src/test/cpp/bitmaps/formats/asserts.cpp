@@ -1,4 +1,3 @@
-#include <gtest/gtest.h>
 #include "src/test/cpp/bitmaps/formats/fixture.h"
 
 void BitmapFormatsTest::compare(Bitmaps::Format& format)

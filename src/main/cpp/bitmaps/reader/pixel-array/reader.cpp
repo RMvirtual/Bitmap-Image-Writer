@@ -6,24 +6,19 @@
 Bitmaps::PixelArrayReader::PixelArrayReader(const Bitmaps::Format& format)
 {
   this->format = format;
+  this->pixelArray = std::make_shared<Bitmaps::PixelArray>(format);
 }
 
-Bitmaps::PixelArray Bitmaps::PixelArrayReader::convertBytes(
-  const ByteArray& bytes)
+std::shared_ptr<Bitmaps::PixelArray> Bitmaps::PixelArrayReader::convertBytes(
+  std::shared_ptr<ByteArray> bytes)
 {
-  this->initialise(bytes);
+  this->bytes = bytes;
   int noOfPixelRows = this->format.heightInPixels();
 
   for (int rowNo = 0; rowNo < noOfPixelRows; rowNo++)
     this->readRowOfPixels(rowNo);
 
   return this->pixelArray;
-}
-
-void Bitmaps::PixelArrayReader::initialise(const ByteArray& bytes)
-{
-  this->pixelArray = {this->format};
-  this->bytes = bytes;
 }
 
 void Bitmaps::PixelArrayReader::readRowOfPixels(int rowNo)
@@ -38,7 +33,7 @@ void Bitmaps::PixelArrayReader::readRowOfPixels(int rowNo)
 }
 
 void Bitmaps::PixelArrayReader::readPixels(
-  int startIndex, int endIndex, int pixelRowNo)
+  int startIndex, int endIndex, int rowNo)
 {
   int bytesPerPixel = this->format.bytesPerPixel();
   int pixelsPerRow = this->format.widthInPixels();
@@ -47,7 +42,7 @@ void Bitmaps::PixelArrayReader::readPixels(
     int byteNo = startIndex + (pixelNo * bytesPerPixel);
     auto colours = this->readColours(byteNo);
 
-    pixelArray.set(colours, pixelRowNo, pixelNo);
+    this->pixelArray->set(colours, rowNo, pixelNo);
   }
 }
 
@@ -60,7 +55,7 @@ Bitmaps::Colours Bitmaps::PixelArrayReader::readColours(int byteIndex)
   
   for (int byteNo = byteIndex; byteNo < endOfPixel; byteNo++) {
     int colourIndex = byteNo - byteIndex;
-    colours[colourIndex] = this->bytes[byteNo];
+    colours[colourIndex] = this->bytes->at(byteNo);
   }
 
   return colours;
