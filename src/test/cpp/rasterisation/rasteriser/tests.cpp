@@ -1,6 +1,5 @@
 #include <memory>
 
-#include "gtest/gtest.h"
 #include "src/test/cpp/rasterisation/rasteriser/fixture.h"
 #include "src/main/cpp/bitmaps/formats/formats.h"
 #include "src/main/cpp/bitmaps/image/image.h"
@@ -31,7 +30,7 @@ TEST_F(RasterisationTest, ShouldDrawTriangle)
   Bitmaps::ImageWriter writer;
   
   writer.writeToFile(
-    *image,
+    image, 
     "C:/Users/rmvir/Desktop/scc300-Win3D/resources/test/output/triangle.bmp"
   );
 }
