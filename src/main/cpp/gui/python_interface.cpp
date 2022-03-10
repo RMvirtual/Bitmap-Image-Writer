@@ -16,12 +16,16 @@ GUI::PythonInterface::~PythonInterface()
 void GUI::PythonInterface::initialise()
 {
   Py_Initialize();
-  this->setSrcPath();
-  this->initialiseBootstrapper();
-  this->initialiseGUI(); 
+  this->loadPythonLibraries();
+  this->setupGUI(); 
 }
 
-void GUI::PythonInterface::setSrcPath()
+void GUI::PythonInterface::start()
+{
+  PyObject_CallMethod(this->gui, "start", NULL);
+}
+
+void GUI::PythonInterface::loadPythonLibraries()
 {
   PyRun_SimpleString(
     "import sys\n"
@@ -29,7 +33,7 @@ void GUI::PythonInterface::setSrcPath()
   );
 }
 
-void GUI::PythonInterface::initialiseGUI()
+void GUI::PythonInterface::setupGUI()
 {
   PyObject *pName, *pModule, *pDict, *viewerClass, *guiObject;
 
@@ -43,7 +47,7 @@ void GUI::PythonInterface::initialiseGUI()
     if (pDict != NULL) {
       Py_DECREF(pModule);
 
-      viewerClass = PyDict_GetItemString(pDict, "GUI");
+      viewerClass = PyDict_GetItemString(pDict, "ImageViewer");
 
       if (viewerClass != NULL) {
         Py_DECREF(pDict);
@@ -57,38 +61,6 @@ void GUI::PythonInterface::initialiseGUI()
   }
 
   this->gui = guiObject;
-}
-
-void GUI::PythonInterface::initialiseBootstrapper()
-{
-  PyObject *pName, *pModule, *pDict, *viewerClass, *guiObject;
-
-  // Bootstrapper.
-  pName = PyUnicode_FromString(
-    "src.main.python.gui.bootstrapper.bootstrapper");
-  pModule = PyImport_Import(pName);
-  Py_DECREF(pName);
-
-  if (pModule != NULL) {
-    pDict = PyModule_GetDict(pModule);
-
-    if (pDict != NULL) {
-      Py_DECREF(pModule);
-
-      viewerClass = PyDict_GetItemString(pDict, "GUIBootstrapper");
-
-      if (viewerClass != NULL) {
-        Py_DECREF(pDict);
-
-        if (PyCallable_Check(viewerClass)) {
-          guiObject = PyObject_CallObject(viewerClass, nullptr);
-          Py_DECREF(viewerClass);
-        }
-      }
-    }
-
-    this->bootstrapper = guiObject;
-  }
 }
 
 void GUI::PythonInterface::loadImage(std::string imagePath)
@@ -109,11 +81,6 @@ void GUI::PythonInterface::show()
 void GUI::PythonInterface::refresh()
 {
   PyObject_CallMethod(this->gui, "refreshImage", NULL); 
-}
-
-void GUI::PythonInterface::launchMainLoop()
-{
-  PyObject_CallMethod(this->bootstrapper, "launchMainLoop", NULL); 
 }
 
 void GUI::PythonInterface::close()

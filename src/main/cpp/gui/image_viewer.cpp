@@ -2,7 +2,7 @@
 
 GUI::ImageViewer::ImageViewer()
 {
-  // this->interface.show();
+  
 }
 
 void GUI::ImageViewer::loadImage(std::string imagePath)
@@ -20,7 +20,7 @@ void GUI::ImageViewer::show()
   this->interface.show();
 }
 
-void GUI::ImageViewer::mainLoop()
+void GUI::ImageViewer::start()
 {
-  this->interface.launchMainLoop();
+  this->interface.start();
 }

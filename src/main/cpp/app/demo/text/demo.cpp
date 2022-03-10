@@ -15,14 +15,9 @@ Demo::TextDemo::~TextDemo()
 }
 
 void Demo::TextDemo::start()
-{  
-  this->viewer->loadImage(
-    "C:/Users/rmvir/Desktop/scc300-Win3D/resources/test/output/text.bmp");
-
-  this->viewer->show();
-  // this->updateImage();
-  std::thread thread {&TextDemo::updateImage, this};
-  this->viewer->mainLoop();
+{
+  this->viewer->start();
+  // std::thread thread {&TextDemo::updateImage, this};
 }
 
 void Demo::TextDemo::updateImage()

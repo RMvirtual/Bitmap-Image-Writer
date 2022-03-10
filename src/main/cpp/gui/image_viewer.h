@@ -12,8 +12,8 @@ public:
   void loadImage(std::string imagePath);
   void refresh();
   void show();
-  void mainLoop();
-
+  void start();
+  
 private:
   GUI::PythonInterface interface;
 };}

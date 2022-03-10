@@ -9,17 +9,15 @@ public:
   ~PythonInterface();
 
   void initialise();
-  void initialiseBootstrapper();
-  void initialiseGUI();
-  void launchMainLoop();
+  void start();
   void close();
+  void setupGUI();
   void loadImage(std::string imagePath);
   void refresh();
   void show();
 
 private:
-  PyObject* bootstrapper;
   PyObject* gui;
 
-  void setSrcPath();
+  void loadPythonLibraries();
 };}

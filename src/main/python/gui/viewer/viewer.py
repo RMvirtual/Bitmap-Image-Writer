@@ -1,47 +1,17 @@
 import wx
-from src.main.python.gui.viewer.image_panel import ImagePanel
+from src.main.python.gui.viewer.frame import GUIFrame
 
-class GUI(wx.Frame):
-    """Main GUI for the app."""
-
+class ImageViewer():
     def __init__(self):
-        """Creates a new GUI."""
+        self.__app = wx.App()
 
-        super(GUI, self).__init__(None)
-        self.__initialiseWidgets()
-        self.__initialiseSizer()
+    def start(self):
+        self.__gui = GUIFrame()
+        self.__gui.show()
+        self.__app.MainLoop()
 
-    def __initialiseWidgets(self) -> None:
-        self.SetTitle("Win3D")
-        self.__imagePanel = ImagePanel(self)
+    def loadImage(self, imagePath:str):
+        wx.CallAfter(self.__gui, self.__gui.loadImage, imagePath)
 
-    def __initialiseSizer(self) -> None:
-        """Initialises the dynamic sizer for the overall GUI."""
-
-        self.__sizer = wx.BoxSizer(wx.VERTICAL)
-        
-        self.__sizer.Add(
-            window=self.__imagePanel,
-            flags=wx.SizerFlags().Expand()
-        )
-        
-        self.__sizer.SetSizeHints(self)
-        self.SetSizer(self.__sizer)
-        self.SetMinSize(wx.Size(300,300))
-        
-    def show(self) -> None:
-        self.Show()
-    
-    def loadImage(self, imagePath: str) -> None:
-        """Loads an image onto the viewer."""
-
-        self.__imagePath = imagePath
-        self.__imagePanel.loadImageFromFile(self.__imagePath)
-
-    def refreshImage(self) -> None:
-        self.__imagePanel.loadImageFromFile(self.__imagePath)
-
-    def setText(self, text: str) -> None:
-        """Sets the text underneat the image."""
-
-        self.__imagePanel.setText(text)
+    def show(self):
+        wx.CallAfter(self.__gui, self.__gui.show, None)
