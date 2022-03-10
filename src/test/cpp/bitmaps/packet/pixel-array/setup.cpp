@@ -1,10 +1,10 @@
 #include "src/test/cpp/bitmaps/packet/pixel-array/fixture.h"
 
-void PixelArrayTest::setupRedPixelArray()
+void PixelArrayTest::setupRedPixelArray(int width, int height)
 {
   Bitmaps::Format format;
-  format.setWidthInPixels(2);
-  format.setHeightInPixels(2);
+  format.setWidthInPixels(width);
+  format.setHeightInPixels(height);
   format.setName("RGB");
   format.setBitsPerPixel(24);
   format.setColourNames({"red", "blue", "green"});

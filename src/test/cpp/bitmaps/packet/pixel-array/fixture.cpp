@@ -7,7 +7,7 @@
 
 PixelArrayTest::PixelArrayTest()
 {
-  this->setupRedPixelArray();
+  this->setupRedPixelArray(2, 2);
 }
 
 PixelArrayTest::~PixelArrayTest()

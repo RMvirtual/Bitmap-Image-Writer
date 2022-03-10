@@ -34,6 +34,8 @@ TEST_F(PixelArrayTest, ShouldFillPixelArray)
 
 TEST_F(PixelArrayTest, ShouldFillPixelsInReasonableTime)
 {
+  this->setupRedPixelArray(500, 500);
+
   auto start = std::chrono::high_resolution_clock::now();
 
   this->pixelArray.fill(this->greenColours());
@@ -43,5 +45,10 @@ TEST_F(PixelArrayTest, ShouldFillPixelsInReasonableTime)
   auto duration = std::chrono::duration_cast<std::chrono::milliseconds>(
     stop - start);
 
-  std::cout << "Pixel fill took " << duration.count() << " milliseconds.\n";
+  auto durationMs = duration.count();
+  std::cout << "Pixel fill took " << durationMs << " milliseconds.\n";
+
+  long fps60 = 20;
+
+  EXPECT_LE(durationMs, fps60);
 }
