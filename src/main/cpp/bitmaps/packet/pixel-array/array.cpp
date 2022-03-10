@@ -2,6 +2,11 @@
 #include "src/main/cpp/bitmaps/formats/colours/colours.h"
 #include "src/main/cpp/bitmaps/formats/format/format.h"
 
+Bitmaps::PixelArray::PixelArray()
+{
+  // pass.
+}
+
 Bitmaps::PixelArray::PixelArray(const Bitmaps::Format& format)
 {
   this->setFormat(format);

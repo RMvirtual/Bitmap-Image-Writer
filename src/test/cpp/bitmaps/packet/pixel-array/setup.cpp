@@ -1,6 +1,6 @@
-#include "src/test/cpp/bitmaps/packet/fixture.h"
+#include "src/test/cpp/bitmaps/packet/pixel-array/fixture.h"
 
-void BitmapPacketTest::setupRedPixelArray()
+void PixelArrayTest::setupRedPixelArray()
 {
   Bitmaps::Format format;
   format.setWidthInPixels(2);
@@ -9,13 +9,12 @@ void BitmapPacketTest::setupRedPixelArray()
   format.setBitsPerPixel(24);
   format.setColourNames({"red", "blue", "green"});
 
-  this->pixelArray = std::make_shared<Bitmaps::PixelArray>(format);
-
-  this->pixelArray->setFormat(format);
-  this->pixelArray->fill(this->redColours());
+  this->pixelArray = Bitmaps::PixelArray(format);
+  this->pixelArray.setFormat(format);
+  this->pixelArray.fill(this->redColours());
 }
 
-Bitmaps::Colours BitmapPacketTest::redColours()
+Bitmaps::Colours PixelArrayTest::redColours()
 {
   Bitmaps::Colours colours;
   colours["red"] = 255;
@@ -25,7 +24,7 @@ Bitmaps::Colours BitmapPacketTest::redColours()
   return colours;
 }
 
-Bitmaps::Colours BitmapPacketTest::greenColours()
+Bitmaps::Colours PixelArrayTest::greenColours()
 {
   Bitmaps::Colours colours;
   colours["red"] = 0;

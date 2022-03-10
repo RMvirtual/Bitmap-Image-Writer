@@ -3,14 +3,14 @@
 #include "src/main/cpp/bitmaps/formats/format/format.h"
 #include "src/main/cpp/bitmaps/packet/pixel-array/array.h"
 #include "src/main/cpp/bitmaps/formats/colours/colours.h"
-#include "src/test/cpp/bitmaps/packet/fixture.h"
+#include "src/test/cpp/bitmaps/packet/pixel-array/fixture.h"
 
-BitmapPacketTest::BitmapPacketTest()
+PixelArrayTest::PixelArrayTest()
 {
   this->setupRedPixelArray();
 }
 
-BitmapPacketTest::~BitmapPacketTest()
+PixelArrayTest::~PixelArrayTest()
 {
   // pass.
 }

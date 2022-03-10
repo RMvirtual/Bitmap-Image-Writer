@@ -4,14 +4,14 @@
 #include "gtest/gtest.h"
 #include "src/main/cpp/bitmaps/packet/packet.h"
 
-class BitmapPacketTest : public testing::Test
+class PixelArrayTest : public testing::Test
 {
 public:
-  BitmapPacketTest();
-  ~BitmapPacketTest();
+  PixelArrayTest();
+  ~PixelArrayTest();
 
 protected:
-  std::shared_ptr<Bitmaps::PixelArray> pixelArray;
+  Bitmaps::PixelArray pixelArray;
   
   void isGreen(Bitmaps::Colours& colour);
   void setupRedPixelArray();

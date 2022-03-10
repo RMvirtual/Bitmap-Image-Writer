@@ -9,6 +9,7 @@ namespace Bitmaps {
 class PixelArray
 {
 public:
+  PixelArray();
   PixelArray(const Format& format);
 
   void set(const Colours& colours, int row, int column);
