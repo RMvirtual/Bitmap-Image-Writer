@@ -64,8 +64,23 @@ void Matrix2D<T>::set(const T& value, int index)
 template <class T>
 void Matrix2D<T>::fill(const T& value)
 {
-  MatrixRow<T> row (this->_width, value);
-  std::fill(this->rows.begin(), this->rows.end(), row);
+  auto noOfRows = this->height();
+  std::vector<std::thread> threads;
+
+  auto rowFiller = [](MatrixRow<T>* row, T value) {
+    row->fill(value);
+  };
+
+  for (int rowNo = 0; rowNo < noOfRows; rowNo++) {
+    MatrixRow<T>& matrixRow = this->rows[rowNo];
+    threads.emplace_back(rowFiller, &matrixRow, value);
+  }
+
+  for (auto& thread : threads) {
+    thread.join();
+  }
+
+  // std::fill(this->rows.begin(), this->rows.end(), row); // appears to bottleneck here.
 }
 
 template <class T>

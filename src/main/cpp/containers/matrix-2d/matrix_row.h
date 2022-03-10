@@ -10,6 +10,7 @@ public:
 
   void set(const T& value, int columnIndex);
   void fill(const T& value);
+
   T at(int columnIndex) const;
   T& at(int columnIndex);
   T operator [](int index) const;
@@ -35,6 +36,8 @@ void MatrixRow<T>::set(const T& value, int index)
 template <class T>
 void MatrixRow<T>::fill(const T& value)
 {
+  
+
   std::fill(this->columns.begin(), this->columns.end(), value);
 }
 

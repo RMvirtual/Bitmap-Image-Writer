@@ -32,7 +32,7 @@ void Bitmaps::PixelArray::set(const Bitmaps::Colours& colours, int index)
 
 void Bitmaps::PixelArray::fill(const Bitmaps::Colours& colours)
 {
-  this->pixels->fill(colours);
+  this->pixels->fill(colours); // This call works.
 }
 
 std::shared_ptr<Bitmaps::Colours> Bitmaps::PixelArray::at(int row, int column)
