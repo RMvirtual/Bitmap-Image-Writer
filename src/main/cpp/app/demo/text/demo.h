@@ -21,5 +21,4 @@ private:
 
   std::shared_ptr<Bitmaps::Image> redImage();
   Text::Text2D textBox();
-  Rasterisation::Rasteriser rasteriser();
 };}

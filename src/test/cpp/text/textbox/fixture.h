@@ -15,7 +15,6 @@ public:
   ~TextTest();
 
 protected:
-  Rasterisation::Rasteriser rasteriser;
   Text::Text2D text;
   std::vector<Text::Letter> correctLetters;
 

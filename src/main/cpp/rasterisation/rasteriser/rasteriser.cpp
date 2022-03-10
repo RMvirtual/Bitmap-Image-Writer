@@ -2,18 +2,7 @@
 #include "src/main/cpp/rasterisation/plotters/line/plotter.h"
 #include "src/main/cpp/bitmaps/formats/formats.h"
 
-Rasterisation::Rasteriser::Rasteriser()
-{
-  // pass.
-}
-
 Rasterisation::Rasteriser::Rasteriser(
-  std::shared_ptr<Bitmaps::Image> writableImage)
-{
-  this->image = writableImage;
-}
-
-void Rasterisation::Rasteriser::setWritableImage(
   std::shared_ptr<Bitmaps::Image> writableImage)
 {
   this->image = writableImage;

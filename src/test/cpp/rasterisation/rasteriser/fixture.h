@@ -7,8 +7,5 @@ class RasterisationTest : public testing::Test
 {
 public:
   RasterisationTest();
-  ~RasterisationTest();
-
-protected:
-  Rasterisation::Rasteriser rasteriser;
+  ~RasterisationTest();  
 };

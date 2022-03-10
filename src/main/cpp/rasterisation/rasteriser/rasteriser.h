@@ -12,17 +12,14 @@ namespace Rasterisation {
 class Rasteriser
 {
 public:
-  Rasteriser();
   Rasteriser(std::shared_ptr<Bitmaps::Image> writableImage);
-
-  void setWritableImage(std::shared_ptr<Bitmaps::Image> writableImage);
 
   void draw(Geometry::Line line);
   void draw(Geometry::LineMesh lineMesh);
   void draw(Text::Text2D text);
-
   void draw(Text::Letter letter);
   void draw(Geometry::Triangle triangle);
+  
 private:
   std::shared_ptr<Bitmaps::Image> image;
 };}

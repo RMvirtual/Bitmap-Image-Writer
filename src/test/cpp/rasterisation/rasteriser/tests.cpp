@@ -24,8 +24,8 @@ TEST_F(RasterisationTest, ShouldDrawTriangle)
   triangle.translate({200,200});
   triangle.scale(100);
 
-  this->rasteriser.setWritableImage(image);
-  this->rasteriser.draw(triangle);
+  Rasterisation::Rasteriser rasteriser {image};
+  rasteriser.draw(triangle);
 
   Bitmaps::ImageWriter writer;
   

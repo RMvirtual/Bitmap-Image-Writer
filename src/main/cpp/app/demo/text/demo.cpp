@@ -39,12 +39,11 @@ void Demo::TextDemo::updateImage()
   auto textBox = this->textBox();
   auto image = this->redImage();
 
-  auto rasteriser = this->rasteriser();
+  Rasterisation::Rasteriser rasteriser {image};
   Bitmaps::ImageWriter writer;
-  rasteriser.setWritableImage(image);
 
-  Maths::Vector negativeTranslation {-10, 0.0};
-  Maths::Vector positiveTranslation {10, 0.0};
+  Maths::Vector negativeTranslation {-1, 0.0};
+  Maths::Vector positiveTranslation {1, 0.0};
   Maths::Vector translation = positiveTranslation;
 
   int renderNo = 0;
@@ -52,15 +51,14 @@ void Demo::TextDemo::updateImage()
   while (true) {
     std::cout << "Render Pass: " << renderNo << "\n";
     image->fill(redColours);
-    std::cout << "Image cleared. " << renderNo << "\n";
-
+ 
     bool boundaryReached = (
       textBox.xLowerBound() <= 0 ||
       textBox.xUpperBound() >= 500
     );
 
     if (boundaryReached) {
-      if (translation["x"] == 10)
+      if (translation["x"] == 1)
         translation = negativeTranslation;
 
       else
@@ -68,10 +66,7 @@ void Demo::TextDemo::updateImage()
     }
 
     textBox.translate(translation);
-    std::cout << "Text box moved. " << renderNo << "\n";
-
     rasteriser.draw(textBox);
-    std::cout << "Text box rasterised. " << renderNo << "\n";
     
     try {
       writer.writeToFile(
@@ -84,8 +79,6 @@ void Demo::TextDemo::updateImage()
       std::cout << "Exception" << std::endl;
     }
     
-    std::cout << "File written. " << renderNo << "\n";
-
     renderNo++;
   }
 }
@@ -115,9 +108,4 @@ Text::Text2D Demo::TextDemo::textBox()
   text.translate({1, 200});
 
   return text;
-}
-
-Rasterisation::Rasteriser Demo::TextDemo::rasteriser()
-{
-  return {};
 }

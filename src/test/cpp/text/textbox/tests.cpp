@@ -150,9 +150,9 @@ TEST_F(TextTest, ShouldCreateTextImageFile)
   text2.scale(20);
   text2.translate({10, 100});
 
-  this->rasteriser.setWritableImage(image);
-  this->rasteriser.draw(text1);
-  this->rasteriser.draw(text2);
+  Rasterisation::Rasteriser rasteriser {image};
+  rasteriser.draw(text1);
+  rasteriser.draw(text2);
 
   Bitmaps::ImageWriter writer;
   
