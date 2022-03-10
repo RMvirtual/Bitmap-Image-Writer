@@ -75,7 +75,7 @@ void Demo::TextDemo::updateImage()
     
     try {
       writer.writeToFile(
-        *image,
+        image,
         "C:/Users/rmvir/Desktop/scc300-Win3D/resources/renderer/images-to-load/text.bmp"
       );
     }
