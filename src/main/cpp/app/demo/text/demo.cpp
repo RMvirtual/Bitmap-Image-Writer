@@ -49,10 +49,11 @@ void Demo::TextDemo::updateImage()
   int renderNo = 0;
 
   while (true) {
-    std::cout << "Render Pass: " << renderNo << "\n";
+    auto start = std::chrono::high_resolution_clock::now();
     
     image->fill(redColours);
- 
+    
+    /*
     bool boundaryReached = (
       textBox.xLowerBound() <= 0 ||
       textBox.xUpperBound() >= 500
@@ -81,6 +82,13 @@ void Demo::TextDemo::updateImage()
     }
     
     renderNo++;
+    */
+    auto stop = std::chrono::high_resolution_clock::now();
+    auto duration = std::chrono::duration_cast<std::chrono::microseconds>(
+      stop - start);
+
+    std::cout << "It takes " << duration.count() 
+      << " microseconds to process instead of 16000 ms.\n";
   }
 }
 
