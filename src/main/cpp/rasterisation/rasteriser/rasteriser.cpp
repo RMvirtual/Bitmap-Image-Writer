@@ -6,6 +6,13 @@ Rasterisation::Rasteriser::Rasteriser(
   std::shared_ptr<Bitmaps::Image> writableImage)
 {
   this->image = writableImage;
+
+  auto format = Bitmaps::format("RGB24");
+  this->lineColour = std::make_shared<Bitmaps::Colours>(format.colours());
+
+  this->lineColour->set("red", 0);
+  this->lineColour->set("green", 0);
+  this->lineColour->set("blue", 0);
 }
 
 void Rasterisation::Rasteriser::draw(const Text::Text2D& text)
@@ -29,13 +36,6 @@ void Rasterisation::Rasteriser::draw(const Geometry::LineMesh& lineMesh)
 
 void Rasterisation::Rasteriser::draw(const Geometry::Line& line)
 {
-  auto format = Bitmaps::format("RGB24");
-  auto blackColours = format.colours();
-
-  blackColours["red"] = 0;
-  blackColours["green"] = 0;
-  blackColours["blue"] = 0;
-
   Geometry::LinePlotter plotter;
   auto plotPoints = plotter.plot(line);
   
@@ -43,7 +43,7 @@ void Rasterisation::Rasteriser::draw(const Geometry::Line& line)
     auto& pixelColumn = point["x"];
     auto& pixelRow = point["y"];
 
-    this->image->setPixel(pixelRow, pixelColumn, blackColours);
+    this->image->setPixel(pixelRow, pixelColumn, *this->lineColour);
   }
 }
 

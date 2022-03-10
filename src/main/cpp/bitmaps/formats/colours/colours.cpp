@@ -17,6 +17,11 @@ Bitmaps::Colours::Colours(std::vector<std::string> colourNames)
     this->_colours[name] = 0;
 }
 
+void Bitmaps::Colours::set(std::string name, uint8_t value)
+{
+  this->_colours[name] = value;
+}
+
 std::vector<std::string> Bitmaps::Colours::names()
 {
   std::vector<std::string> names {};

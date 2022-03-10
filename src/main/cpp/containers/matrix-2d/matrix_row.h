@@ -27,9 +27,9 @@ MatrixRow<T>::MatrixRow(int noOfColumns, const T& defaultValue)
 }
 
 template <class T>
-void MatrixRow<T>::set(const T& value, int columnIndex)
+void MatrixRow<T>::set(const T& value, int index)
 {
-  this->columns.at(columnIndex) = value;
+  this->columns[index] = value;
 }
 
 template <class T>
@@ -41,13 +41,13 @@ void MatrixRow<T>::fill(const T& value)
 template <class T>
 T MatrixRow<T>::at(int columnIndex) const
 {
-  return this->columns.at(columnIndex);
+  return this->columns[columnIndex];
 }
 
 template <class T>
 T& MatrixRow<T>::at(int columnIndex)
 {
-  return this->columns.at(columnIndex);
+  return this->columns[columnIndex];
 }
 
 template <class T>

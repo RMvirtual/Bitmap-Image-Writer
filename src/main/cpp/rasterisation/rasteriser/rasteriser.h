@@ -22,4 +22,5 @@ public:
   
 private:
   std::shared_ptr<Bitmaps::Image> image;
+  std::shared_ptr<Bitmaps::Colours> lineColour;
 };}

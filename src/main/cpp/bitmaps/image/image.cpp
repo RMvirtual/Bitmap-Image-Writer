@@ -12,10 +12,6 @@ Bitmaps::Image::Image()
 
 Bitmaps::Image::Image(const Bitmaps::Format& format)
 {
-  Bitmaps::FileHeader fileHeader {format.arraySizeInBytes()};
-  Bitmaps::DibHeader dibHeader {format};
-  Bitmaps::PixelArray pixelArray {format};
-
   this->packet.fileHeader = std::make_shared<Bitmaps::FileHeader>(
     format.arraySizeInBytes());
   
@@ -82,5 +78,5 @@ std::shared_ptr<Bitmaps::DibHeader> Bitmaps::Image::dibHeader()
 
 std::shared_ptr<Bitmaps::PixelArray> Bitmaps::Image::pixelArray()
 {
-  return {this->packet.pixelArray};
+  return this->packet.pixelArray;
 }

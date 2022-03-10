@@ -84,11 +84,11 @@ void Demo::TextDemo::updateImage()
     renderNo++;
     */
     auto stop = std::chrono::high_resolution_clock::now();
-    auto duration = std::chrono::duration_cast<std::chrono::microseconds>(
+    auto duration = std::chrono::duration_cast<std::chrono::milliseconds>(
       stop - start);
 
     std::cout << "It takes " << duration.count() 
-      << " microseconds to process instead of 16000 ms.\n";
+      << " milliseconds to process instead of 17 ms.\n";
   }
 }
 

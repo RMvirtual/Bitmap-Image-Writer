@@ -14,6 +14,7 @@ public:
   Colours(std::initializer_list<std::string> colourNames);
   Colours(std::vector<std::string> colourNames);
 
+  void set(std::string name, uint8_t value);
   std::vector<std::string> names();
   int size() const;
   uint8_t& operator [](std::string value);

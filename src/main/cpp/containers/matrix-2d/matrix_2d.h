@@ -1,5 +1,6 @@
 #pragma once
 
+#include <thread>
 #include <cmath>
 #include <vector>
 
@@ -22,7 +23,8 @@ public:
   T at(int rowNo, int columnNo) const;
   T& at(int index);
   T at(int index) const;
-  MatrixRow<T> operator [](int rowNo);
+  MatrixRow<T>& operator [](int rowNo);
+  MatrixRow<T> operator [](int rowNo) const;
   int width() const;
   int height() const;
 
@@ -38,11 +40,8 @@ private:
 template <class T>
 Matrix2D<T>::Matrix2D(int width, int height, const T& defaultValue)
 {
-  for (int rowNo = 0; rowNo < height; rowNo++) {
-    MatrixRow<T> row {width, defaultValue};
-    this->rows.push_back(row);
-  }
-  
+  this->rows = std::vector<MatrixRow<T>>(height, {width, defaultValue});
+ 
   this->_width = width;
   this->_height = height;  
 }
@@ -50,7 +49,7 @@ Matrix2D<T>::Matrix2D(int width, int height, const T& defaultValue)
 template <class T>
 void Matrix2D<T>::set(const T& value, int rowNo, int columnNo)
 {
-  this->rows.at(rowNo).set(value, columnNo);
+  this->rows[rowNo][columnNo] = value;
 }
 
 template <class T>
@@ -59,26 +58,26 @@ void Matrix2D<T>::set(const T& value, int index)
   int rowNo = floor(index / this->_width);
   int columnNo = index % this->_width;
 
-  this->set(value, rowNo, columnNo);
+  this->rows[rowNo][columnNo] = value;
 }
 
 template <class T>
 void Matrix2D<T>::fill(const T& value)
 {
-  for (MatrixRow<T>& row : this->rows)
-    row.fill(value);
+  MatrixRow<T> row (this->_width, value);
+  std::fill(this->rows.begin(), this->rows.end(), row);
 }
 
 template <class T>
-T& Matrix2D<T>::at(int rowNo, int columnIndex)
+T& Matrix2D<T>::at(int row, int column)
 {
-  return this->rows.at(rowNo).at(columnIndex);
+  return this->rows[row][column];
 }
 
 template <class T>
-T Matrix2D<T>::at(int rowNo, int columnIndex) const
+T Matrix2D<T>::at(int row, int column) const
 {
-  return this->rows.at(rowNo).at(columnIndex);
+  return this->rows[row][column];
 }
 
 template <class T>
@@ -100,17 +99,23 @@ T Matrix2D<T>::at(int absoluteIndex) const
 template <class T>
 T& Matrix2D<T>::at(const Index& index)
 {
-  return this->at(index.row, index.column);
+  return this->rows[index.row][index.column];
 }
 
 template <class T>
 T Matrix2D<T>::at(const Index& index) const
 {
-  return this->at(index.row, index.column);
+  return this->rows[index.row][index.column];
 }
 
 template <class T>
-MatrixRow<T> Matrix2D<T>::operator [](int rowNo)
+MatrixRow<T>& Matrix2D<T>::operator [](int rowNo)
+{
+  return this->rows[rowNo]; 
+}
+
+template <class T>
+MatrixRow<T> Matrix2D<T>::operator [](int rowNo) const
 {
   return this->rows[rowNo]; 
 }
