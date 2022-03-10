@@ -8,7 +8,7 @@ class LineMesh
 {
 public:
   LineMesh();
-  LineMesh(std::vector<Geometry::Line> lines);
+  LineMesh(const std::vector<Geometry::Line>& lines);
   Geometry::Line& operator [](int index); 
 
   std::vector<Geometry::Line>::iterator begin();
@@ -17,12 +17,12 @@ public:
   std::vector<Geometry::Line>::const_iterator end() const;
 
   int size();
-  void add(Geometry::Line line);
+  void add(const Geometry::Line& line);
   Maths::Vector origin();
   void translateToZeroOrigin();
-  void scale(double scaleFactor, Maths::Vector origin);
+  void scale(double scaleFactor, const Maths::Vector& origin);
   void scale(double scaleFactor);
-  void translate(Maths::Vector translation);
+  void translate(const Maths::Vector& translation);
   double xLowerBound();
   double xUpperBound();
   double yLowerBound();

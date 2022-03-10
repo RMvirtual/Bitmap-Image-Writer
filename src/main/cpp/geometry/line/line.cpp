@@ -1,5 +1,6 @@
 #include <algorithm>
 #include <unordered_map>
+
 #include "src/main/cpp/geometry/line/line.h"
 
 Geometry::Line::Line()

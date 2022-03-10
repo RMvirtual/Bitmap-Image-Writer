@@ -6,7 +6,7 @@ Geometry::LineMesh::LineMesh()
   // pass.
 }
 
-Geometry::LineMesh::LineMesh(std::vector<Geometry::Line> lines)
+Geometry::LineMesh::LineMesh(const std::vector<Geometry::Line>& lines)
 {
   this->lines = lines;
   this->calculateOrigin();  
@@ -42,7 +42,7 @@ int Geometry::LineMesh::size()
   return this->lines.size();
 }
 
-void Geometry::LineMesh::add(Geometry::Line line)
+void Geometry::LineMesh::add(const Geometry::Line& line)
 {
   this->lines.push_back(line);
 }
@@ -78,13 +78,13 @@ void Geometry::LineMesh::scale(double scaleFactor)
   this->translate(origin);
 }
 
-void Geometry::LineMesh::scale(double scaleFactor, Maths::Vector origin)
+void Geometry::LineMesh::scale(double scaleFactor, const Maths::Vector& origin)
 {
   for (auto& line : this->lines)
     line.scale(scaleFactor, origin);
 }
 
-void Geometry::LineMesh::translate(Maths::Vector translation)
+void Geometry::LineMesh::translate(const Maths::Vector& translation)
 {
   for (auto& line : this->lines)
     line.translate(translation);
