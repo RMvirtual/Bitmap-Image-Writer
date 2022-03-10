@@ -14,7 +14,7 @@ std::vector<std::string> Bitmaps::PixelFormat::colourNames() const
 {
   std::vector<std::string> colourNames;
 
-  for (auto colour : this->_colours)
+  for (auto& colour : this->_colours)
     colourNames.push_back(colour.first);
 
   return colourNames;

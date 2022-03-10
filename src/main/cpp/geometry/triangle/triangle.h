@@ -9,14 +9,12 @@ class Triangle
 {
 public:
   Triangle();
-  Triangle(std::vector<Maths::Vector> vertices);
+  Triangle(const std::vector<Maths::Vector>& vertices);
   
-  void translate(Maths::Vector translation);
+  void translate(const Maths::Vector& translation);
   void scale(double scalar, int pointOfOrigin);
   void scale(double scalar);
-  
-  std::vector<Geometry::Line> toLines();
-
+  std::vector<Geometry::Line> toLines() const;
   Maths::Vector& operator [](int index); 
   std::vector<Maths::Vector>::iterator begin();
   std::vector<Maths::Vector>::iterator end();
@@ -25,5 +23,4 @@ public:
   
 private:
   std::vector<Maths::Vector> vertices;
-  
 };}

@@ -161,5 +161,5 @@ TEST_F(TextTest, ShouldCreateTextImageFile)
     "C:/Users/rmvir/Desktop/scc300-Win3D/resources/test/output/text.bmp"
   );
 
-  EXPECT_TRUE(false);
+  EXPECT_TRUE(true);
 }

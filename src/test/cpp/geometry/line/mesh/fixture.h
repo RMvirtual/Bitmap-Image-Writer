@@ -10,7 +10,7 @@ public:
   ~LineMeshTest();
 
   void compare();
-  void compare(Geometry::Line correctLine, Geometry::Line line);
+  void compare(const Geometry::Line& correctLine, const Geometry::Line& line);
   void setupTranslatedLineMeshFromZeroOrigin();
   void setupScaledLineMeshFromZeroOrigin();
   void setupScaledLineMeshFromNonZeroOrigin();

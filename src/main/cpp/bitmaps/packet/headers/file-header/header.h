@@ -11,9 +11,9 @@ class FileHeader
 public:
   FileHeader();
   FileHeader(int pixelArraySizeInBytes);
-  static FileHeader fromValues(FileHeaderValues values);
+  static FileHeader fromValues(const Bitmaps::FileHeaderValues& values);
 
-  void setSignatureBytes(std::string bytesSignature);
+  void setSignatureBytes(const std::string& bytesSignature);
   void setSignatureBytes(char firstSignatureByte, char secondSignatureByte);
   void setFileSizeInBytes(uint32_t sizeOfBitmapFile);
   void setReservedBytes(uint32_t reservedBytes);

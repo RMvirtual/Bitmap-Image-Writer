@@ -14,11 +14,11 @@ class Rasteriser
 public:
   Rasteriser(std::shared_ptr<Bitmaps::Image> writableImage);
 
-  void draw(Geometry::Line line);
-  void draw(Geometry::LineMesh lineMesh);
-  void draw(Text::Text2D text);
-  void draw(Text::Letter letter);
-  void draw(Geometry::Triangle triangle);
+  void draw(const Geometry::Line& line);
+  void draw(const Geometry::LineMesh& lineMesh);
+  void draw(const Text::Text2D& text);
+  void draw(const Text::Letter& letter);
+  void draw(const Geometry::Triangle& triangle);
   
 private:
   std::shared_ptr<Bitmaps::Image> image;

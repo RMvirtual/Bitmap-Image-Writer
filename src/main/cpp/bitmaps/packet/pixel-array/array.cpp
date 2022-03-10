@@ -39,9 +39,9 @@ std::shared_ptr<Bitmaps::Colours> Bitmaps::PixelArray::at(int row, int column)
 
 std::shared_ptr<Bitmaps::Colours> Bitmaps::PixelArray::at(int index)
 {
-  auto& ref = this->pixels->at(index);
+  auto& colours = this->pixels->at(index);
 
-  return std::make_shared<Bitmaps::Colours>(ref);
+  return std::make_shared<Bitmaps::Colours>(colours);
 }
 
 Bitmaps::Colours Bitmaps::PixelArray::at(int row, int column) const

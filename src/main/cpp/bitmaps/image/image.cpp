@@ -10,7 +10,7 @@ Bitmaps::Image::Image()
 
 }
 
-Bitmaps::Image::Image(Bitmaps::Format format)
+Bitmaps::Image::Image(const Bitmaps::Format& format)
 {
   Bitmaps::FileHeader fileHeader {format.arraySizeInBytes()};
   Bitmaps::DibHeader dibHeader {format};
@@ -24,7 +24,7 @@ Bitmaps::Image::Image(Bitmaps::Format format)
   this->format = format;
 }
 
-Bitmaps::Image::Image(Bitmaps::Packet packet)
+Bitmaps::Image::Image(const Bitmaps::Packet& packet)
 {
   this->packet = packet;
   int bitsPerPixel = this->packet.dibHeader->bitsPerPixel();
@@ -44,12 +44,13 @@ Bitmaps::Image::~Image()
 
 }
 
-void Bitmaps::Image::setPixel(int row, int column, Bitmaps::Colours colours)
+void Bitmaps::Image::setPixel(
+  int row, int column, const Bitmaps::Colours& colours)
 {
   this->packet.pixelArray->set(colours, row, column);
 }
 
-void Bitmaps::Image::fill(Bitmaps::Colours colours)
+void Bitmaps::Image::fill(const Bitmaps::Colours& colours)
 {
   this->packet.pixelArray->fill(colours);
 }

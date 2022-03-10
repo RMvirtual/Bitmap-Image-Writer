@@ -9,7 +9,6 @@ TEST_F(TriangleTest, ShouldTranslateTrianglePositiveFromZeroOrigin)
   };
 
   this->triangle = {v};
-
   this->triangle.translate(translation);
 
   std::vector<Maths::Vector> correctVectors = {
@@ -17,11 +16,11 @@ TEST_F(TriangleTest, ShouldTranslateTrianglePositiveFromZeroOrigin)
   };
 
   for (int i = 0; i < 3; i++) {
-    auto vector = this->triangle[i];
-    auto correctVector = correctVectors[i];
+    auto& vector = this->triangle[i];
+    auto& correctVector = correctVectors[i];
 
-    EXPECT_EQ(correctVector["x"], vector["x"]);
-    EXPECT_EQ(correctVector["y"], vector["y"]);
+    EXPECT_DOUBLE_EQ(correctVector["x"], vector["x"]);
+    EXPECT_DOUBLE_EQ(correctVector["y"], vector["y"]);
   }
 }
 
@@ -34,7 +33,6 @@ TEST_F(TriangleTest, ShouldTranslateTriangleNegativeFromZeroOrigin)
   };
 
   this->triangle = {v};
-
   this->triangle.translate(translation);
 
   std::vector<Maths::Vector> correctVectors = {
@@ -42,11 +40,11 @@ TEST_F(TriangleTest, ShouldTranslateTriangleNegativeFromZeroOrigin)
   };
 
   for (int i = 0; i < 3; i++) {
-    auto vector = this->triangle[i];
-    auto correctVector = correctVectors[i];
+    auto& vector = this->triangle[i];
+    auto& correctVector = correctVectors[i];
 
-    EXPECT_EQ(correctVector["x"], vector["x"]);
-    EXPECT_EQ(correctVector["y"], vector["y"]);
+    EXPECT_DOUBLE_EQ(correctVector["x"], vector["x"]);
+    EXPECT_DOUBLE_EQ(correctVector["y"], vector["y"]);
   }
 }
 
@@ -66,11 +64,11 @@ TEST_F(TriangleTest, ShouldTranslateTriangleFromNonZero)
   };
 
   for (int i = 0; i < 3; i++) {
-    auto vector = this->triangle[i];
-    auto correctVector = correctVectors[i];
+    auto& vector = this->triangle[i];
+    auto& correctVector = correctVectors[i];
 
-    EXPECT_EQ(correctVector["x"], vector["x"]);
-    EXPECT_EQ(correctVector["y"], vector["y"]);
+    EXPECT_DOUBLE_EQ(correctVector["x"], vector["x"]);
+    EXPECT_DOUBLE_EQ(correctVector["y"], vector["y"]);
   }
 }
 
@@ -90,11 +88,11 @@ TEST_F(TriangleTest, ShouldTranslateTriangleNegativeFromNonZero)
   };
 
   for (int i = 0; i < 3; i++) {
-    auto vector = this->triangle[i];
-    auto correctVector = correctVectors[i];
+    auto& vector = this->triangle[i];
+    auto& correctVector = correctVectors[i];
 
-    EXPECT_EQ(correctVector["x"], vector["x"]);
-    EXPECT_EQ(correctVector["y"], vector["y"]);
+    EXPECT_DOUBLE_EQ(correctVector["x"], vector["x"]);
+    EXPECT_DOUBLE_EQ(correctVector["y"], vector["y"]);
   }
 }
 
@@ -112,11 +110,11 @@ TEST_F(TriangleTest, ShouldScaleTriangle)
   };
 
   for (int i = 0; i < 3; i++) {
-    auto vector = this->triangle[i];
-    auto correctVector = correctVectors[i];
+    auto& vector = this->triangle[i];
+    auto& correctVector = correctVectors[i];
 
-    EXPECT_EQ(correctVector["x"], vector["x"]);
-    EXPECT_EQ(correctVector["y"], vector["y"]);
+    EXPECT_DOUBLE_EQ(correctVector["x"], vector["x"]);
+    EXPECT_DOUBLE_EQ(correctVector["y"], vector["y"]);
   }
 }
 
@@ -134,11 +132,11 @@ TEST_F(TriangleTest, ShouldScaleTriangleFromNonZeroOrigin)
   };
 
   for (int i = 0; i < 3; i++) {
-    auto vector = this->triangle[i];
-    auto correctVector = correctVectors[i];
+    auto& vector = this->triangle[i];
+    auto& correctVector = correctVectors[i];
 
-    EXPECT_EQ(correctVector["x"], vector["x"]);
-    EXPECT_EQ(correctVector["y"], vector["y"]);
+    EXPECT_DOUBLE_EQ(correctVector["x"], vector["x"]);
+    EXPECT_DOUBLE_EQ(correctVector["y"], vector["y"]);
   }
 }
 
@@ -158,12 +156,12 @@ TEST_F(TriangleTest, ShouldGetLinesFromTriangle)
   };
 
   for (int i = 0; i < 3; i++) {
-    auto line = lines[i];
-    auto correctLine = correctLines[i];
+    auto& line = lines[i];
+    auto& correctLine = correctLines[i];
 
-    EXPECT_EQ(correctLine["x0"], line["x0"]);
-    EXPECT_EQ(correctLine["y0"], line["y0"]);
-    EXPECT_EQ(correctLine["x1"], line["x1"]);
-    EXPECT_EQ(correctLine["y1"], line["y1"]);
+    EXPECT_DOUBLE_EQ(correctLine["x0"], line["x0"]);
+    EXPECT_DOUBLE_EQ(correctLine["y0"], line["y0"]);
+    EXPECT_DOUBLE_EQ(correctLine["x1"], line["x1"]);
+    EXPECT_DOUBLE_EQ(correctLine["y1"], line["y1"]);
   }
 }

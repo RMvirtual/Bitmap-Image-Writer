@@ -14,7 +14,7 @@ Bitmaps::DibHeader::DibHeader(int widthInPixels, int heightInPixels)
   this->setHeightInPixels(heightInPixels);  
 }
 
-Bitmaps::DibHeader::DibHeader(Bitmaps::Format format)
+Bitmaps::DibHeader::DibHeader(const Bitmaps::Format& format)
 {
   this->initialiseDefaultValues();
   this->setWidthInPixels(format.widthInPixels());

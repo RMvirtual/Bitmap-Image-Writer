@@ -16,7 +16,7 @@ Bitmaps::FileHeader::FileHeader(int pixelArraySizeInBytes)
 }
 
 Bitmaps::FileHeader Bitmaps::FileHeader::fromValues(
-  Bitmaps::FileHeaderValues values)
+  const Bitmaps::FileHeaderValues& values)
 {
   Bitmaps::FileHeader header {};
 
@@ -36,7 +36,7 @@ void Bitmaps::FileHeader::initialiseDefaultValues()
   this->_pixelArrayOffsetInBytes = 54;
 }
 
-void Bitmaps::FileHeader::setSignatureBytes(std::string bytesSignature)
+void Bitmaps::FileHeader::setSignatureBytes(const std::string& bytesSignature)
 {
   this->_signatureBytes[0] = bytesSignature[0];
   this->_signatureBytes[1] = bytesSignature[1];

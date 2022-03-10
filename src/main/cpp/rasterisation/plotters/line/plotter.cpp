@@ -7,7 +7,8 @@ Geometry::LinePlotter::LinePlotter()
   // pass.
 }
 
-std::vector<Maths::Vector> Geometry::LinePlotter::plot(Geometry::Line line)
+std::vector<Maths::Vector> Geometry::LinePlotter::plot(
+  const Geometry::Line& line)
 {  
   this->plotPoints.clear();
 
@@ -20,27 +21,28 @@ std::vector<Maths::Vector> Geometry::LinePlotter::plot(Geometry::Line line)
   return plotPoints;
 }
 
-void Geometry::LinePlotter::plotSlopelessLine(Geometry::Line& line)
+void Geometry::LinePlotter::plotSlopelessLine(const Geometry::Line& line)
 {
   auto xCoordinates = Maths::range(line["x0"], line["x1"]);
   auto yCoordinates = Maths::range(line["y0"], line["y1"]);
   auto plots = Maths::cartesianProduct(xCoordinates, yCoordinates);
   
-  for (auto plot : plots)
+  for (auto& plot : plots)
     this->plotPoints.push_back(plot);
 }
 
-void Geometry::LinePlotter::plotSlopedLine(Geometry::Line& line)
+void Geometry::LinePlotter::plotSlopedLine(const Geometry::Line& line)
 {
-  line.sortByXAscending();
+  auto sortedLine = line;
+  sortedLine.sortByXAscending();
 
-  auto constantAxisLowerBound = line["x0"];
-  auto constantAxisUpperBound = line["x1"];
-  auto errorAxisLowerBound = line["y0"];
-  auto errorAxisUpperBound = line["y1"];
+  auto constantAxisLowerBound = sortedLine["x0"];
+  auto constantAxisUpperBound = sortedLine["x1"];
+  auto errorAxisLowerBound = sortedLine["y0"];
+  auto errorAxisUpperBound = sortedLine["y1"];
 
-  this->errorRun = line.run();
-  this->errorRise = line.rise();
+  this->errorRun = sortedLine.run();
+  this->errorRise = sortedLine.rise();
 
   this->initialiseErrorIncrementDirection();
   this->initialiseErrorTracker();
@@ -51,16 +53,16 @@ void Geometry::LinePlotter::plotSlopedLine(Geometry::Line& line)
   double* x = &constant;
   double* y = &error;
 
-  if (line.isVerticallySloped()) {
-    line.sortByYAscending();
+  if (sortedLine.isVerticallySloped()) {
+    sortedLine.sortByYAscending();
 
-    constantAxisLowerBound = line["y0"];
-    constantAxisUpperBound = line["y1"];
-    errorAxisLowerBound = line["x0"];
-    errorAxisUpperBound = line["x1"];
+    constantAxisLowerBound = sortedLine["y0"];
+    constantAxisUpperBound = sortedLine["y1"];
+    errorAxisLowerBound = sortedLine["x0"];
+    errorAxisUpperBound = sortedLine["x1"];
 
-    this->errorRun = line.rise();
-    this->errorRise = line.run();
+    this->errorRun = sortedLine.rise();
+    this->errorRise = sortedLine.run();
 
     this->initialiseErrorIncrementDirection();
     this->initialiseErrorTracker();
@@ -93,7 +95,7 @@ void Geometry::LinePlotter::initialiseErrorIncrementDirection()
   }
 }
 
-void Geometry::LinePlotter::addPointWithYError(double x, double&y)
+void Geometry::LinePlotter::addPointWithYError(double x, double& y)
 {
   this->plotPoints.push_back({x, y});
   this->updateErrorAxis(y);

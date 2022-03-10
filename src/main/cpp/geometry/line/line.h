@@ -1,6 +1,8 @@
 #pragma once
 
 #include <string>
+#include <unordered_map>
+
 #include "src/main/cpp/maths/vector/vector.h"
 
 namespace Geometry {
@@ -8,47 +10,54 @@ class Line
 {
 public:
   Line();
-  Line(Maths::Vector origin, Maths::Vector destination);
-  Line(Maths::Vector destination);
+  Line(const Maths::Vector& origin, const Maths::Vector& destination);
+  Line(const Maths::Vector& destination);
 
-  void setOrigin(Maths::Vector coordinates);
-  void setDestination(Maths::Vector coordinates);
-  void setEndpoints(Maths::Vector origin, Maths::Vector destination);
+  void setOrigin(const Maths::Vector& coordinates);
+  void setDestination(const Maths::Vector& coordinates);
+  void setEndpoints(
+    const Maths::Vector& origin, const Maths::Vector& destination);
+  
   void switchEndpoints();
   void sortByXAscending();
   void sortByYAscending();
-  void translate(Maths::Vector translate);
-  void scale(double scaleFactor, Maths::Vector origin);
+  void translate(const Maths::Vector& translate);
+  void scale(double scaleFactor, const Maths::Vector& origin);
   void scale(double scaleFactor);
   void scaleIncludingOrigin(double scaleFactor);
+  void calculateVertices();
 
-  Maths::Vector origin();
-  Maths::Vector destination();
-  double operator [](std::string vertex);
+  Maths::Vector origin() const;
+  Maths::Vector destination() const;
 
-  double gradient();
-  double rise();
-  double run();
+  double& operator [](const std::string& vertex);
+  double operator [](const std::string& vertex) const;
 
-  bool isSloped();
-  bool isSlopeless(); 
-  bool isHorizontallySloped();
-  bool isVerticallySloped();
-  bool isHorizontalLine();
-  bool isVerticalLine();
-  bool isTraversingNorth();
-  bool isTraversingEast();
-  bool isTraversingWest();
-  bool isTraversingSouth();
-  bool isDescendingByX();
-  bool isDescendingByY();
+  double gradient() const;
+  double rise() const;
+  double run() const;
 
-  double xLowerBound();
-  double xUpperBound();
-  double yLowerBound();
-  double yUpperBound();
+  bool isSloped() const;
+  bool isSlopeless() const;
+  bool isHorizontallySloped() const;
+  bool isVerticallySloped() const;
+  bool isHorizontalLine() const;
+  bool isVerticalLine() const;
+  bool isTraversingNorth() const;
+  bool isTraversingEast() const;
+  bool isTraversingWest() const;
+  bool isTraversingSouth() const;
+  bool isDescendingByX() const;
+  bool isDescendingByY() const;
+
+  double xLowerBound() const;
+  double xUpperBound() const;
+  double yLowerBound() const;
+  double yUpperBound() const;
 
 private:
   Maths::Vector _origin;
   Maths::Vector _destination;
+
+  std::unordered_map<std::string, double> vertices;
 };}

@@ -8,26 +8,26 @@ Rasterisation::Rasteriser::Rasteriser(
   this->image = writableImage;
 }
 
-void Rasterisation::Rasteriser::draw(Text::Text2D text)
+void Rasterisation::Rasteriser::draw(const Text::Text2D& text)
 {
-  for (auto letter : text) {
+  for (auto& letter : text) {
     this->draw(letter);
   }
 }
 
-void Rasterisation::Rasteriser::draw(Text::Letter letter)
+void Rasterisation::Rasteriser::draw(const Text::Letter& letter)
 {
-  for (auto line : letter)
+  for (auto& line : letter)
     this->draw(line);
 }
 
-void Rasterisation::Rasteriser::draw(Geometry::LineMesh lineMesh)
+void Rasterisation::Rasteriser::draw(const Geometry::LineMesh& lineMesh)
 {
-  for (auto line: lineMesh)
+  for (auto& line: lineMesh)
     this->draw(line);
 }
 
-void Rasterisation::Rasteriser::draw(Geometry::Line line)
+void Rasterisation::Rasteriser::draw(const Geometry::Line& line)
 {
   auto format = Bitmaps::format("RGB24");
   auto blackColours = format.colours();
@@ -39,15 +39,15 @@ void Rasterisation::Rasteriser::draw(Geometry::Line line)
   Geometry::LinePlotter plotter;
   auto plotPoints = plotter.plot(line);
   
-  for (auto point : plotPoints) {
-    auto pixelColumn = point["x"];
-    auto pixelRow = point["y"];
+  for (auto& point : plotPoints) {
+    auto& pixelColumn = point["x"];
+    auto& pixelRow = point["y"];
 
     this->image->setPixel(pixelRow, pixelColumn, blackColours);
   }
 }
 
-void Rasterisation::Rasteriser::draw(Geometry::Triangle triangle)
+void Rasterisation::Rasteriser::draw(const Geometry::Triangle& triangle)
 {
   this->draw(triangle.toLines());
 }

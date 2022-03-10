@@ -27,7 +27,6 @@ ByteArray Bitmaps::ImageWriter::write(std::shared_ptr<Bitmaps::Image> image)
     
   Bitmaps::PixelArrayWriter pixelArrayWriter;
   this->byteArray.add(pixelArrayWriter.write(image->pixelArray()));
-  std::cout << "Gets pixel array writer.\n";
 
   return this->byteArray;
 }

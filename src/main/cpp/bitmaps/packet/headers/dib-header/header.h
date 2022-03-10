@@ -10,9 +10,9 @@ class DibHeader
 public:
   DibHeader();
   DibHeader(int widthInPixels, int heightInPixels);
-  DibHeader(Format format);
+  DibHeader(const Bitmaps::Format& format);
 
-  static DibHeader fromValues(const DibHeaderValues& values);
+  static Bitmaps::DibHeader fromValues(const Bitmaps::DibHeaderValues& values);
   
   void setWidthInPixels(int32_t widthInPixels);
   void setHeightInPixels(int32_t heightInPixels);

@@ -7,7 +7,7 @@ TEST_F(LetterTest, ShouldGetXLowerBound)
   double correctBound = 0.0;
   auto bound = letter.xLowerBound();
   
-  EXPECT_EQ(correctBound, bound);
+  EXPECT_DOUBLE_EQ(correctBound, bound);
 }
 
 TEST_F(LetterTest, ShouldGetXUpperBound)
@@ -16,7 +16,7 @@ TEST_F(LetterTest, ShouldGetXUpperBound)
   double correctBound = 1.5;
   auto bound = letter.xUpperBound();
   
-  EXPECT_EQ(correctBound, bound);
+  EXPECT_DOUBLE_EQ(correctBound, bound);
 }
 
 TEST_F(LetterTest, ShouldGetYLowerBound)
@@ -25,7 +25,7 @@ TEST_F(LetterTest, ShouldGetYLowerBound)
   double correctBound = 0.0;
   auto bound = letter.yLowerBound();
   
-  EXPECT_EQ(correctBound, bound);
+EXPECT_DOUBLE_EQ(correctBound, bound);
 }
 
 TEST_F(LetterTest, ShouldGetYUpperBound)
@@ -34,7 +34,7 @@ TEST_F(LetterTest, ShouldGetYUpperBound)
   double correctBound = 2;
   auto bound = letter.yUpperBound();
   
-  EXPECT_EQ(correctBound, bound);
+  EXPECT_DOUBLE_EQ(correctBound, bound);
 }
 
 TEST_F(LetterTest, ShouldGetXLowerBoundAfterTranslation)
@@ -45,7 +45,7 @@ TEST_F(LetterTest, ShouldGetXLowerBoundAfterTranslation)
   double correctBound = 2;
   auto bound = letter.xLowerBound();
   
-  EXPECT_EQ(correctBound, bound);
+  EXPECT_DOUBLE_EQ(correctBound, bound);
 }
 
 TEST_F(LetterTest, ShouldGetXUpperBoundAfterTranslation)
@@ -56,7 +56,7 @@ TEST_F(LetterTest, ShouldGetXUpperBoundAfterTranslation)
   double correctBound = 3.5;
   auto bound = letter.xUpperBound();
   
-  EXPECT_EQ(correctBound, bound);
+  EXPECT_DOUBLE_EQ(correctBound, bound);
 }
 
 TEST_F(LetterTest, ShouldGetYLowerBoundAfterTranslation)
@@ -67,7 +67,7 @@ TEST_F(LetterTest, ShouldGetYLowerBoundAfterTranslation)
   double correctBound = 4;
   auto bound = letter.yLowerBound();
   
-  EXPECT_EQ(correctBound, bound);
+  EXPECT_DOUBLE_EQ(correctBound, bound);
 }
 
 TEST_F(LetterTest, ShouldGetYUpperBoundAfterTranslation)
@@ -78,7 +78,7 @@ TEST_F(LetterTest, ShouldGetYUpperBoundAfterTranslation)
   double correctBound = 6;
   auto bound = letter.yUpperBound();
   
-  EXPECT_EQ(correctBound, bound);
+  EXPECT_DOUBLE_EQ(correctBound, bound);
 }
 
 TEST_F(LetterTest, ShouldGetXLowerBoundAfterScaling)
@@ -89,7 +89,7 @@ TEST_F(LetterTest, ShouldGetXLowerBoundAfterScaling)
   double correctBound = 0.0;
   auto bound = letter.xLowerBound();
   
-  EXPECT_EQ(correctBound, bound);
+  EXPECT_DOUBLE_EQ(correctBound, bound);
 }
 
 TEST_F(LetterTest, ShouldGetXUpperBoundAfterScaling)
@@ -100,7 +100,7 @@ TEST_F(LetterTest, ShouldGetXUpperBoundAfterScaling)
   double correctBound = 3;
   auto bound = letter.xUpperBound();
   
-  EXPECT_EQ(correctBound, bound);
+  EXPECT_DOUBLE_EQ(correctBound, bound);
 }
 
 TEST_F(LetterTest, ShouldGetYLowerBoundAfterScaling)
@@ -111,7 +111,7 @@ TEST_F(LetterTest, ShouldGetYLowerBoundAfterScaling)
   double correctBound = 0.0;
   auto bound = letter.yLowerBound();
   
-  EXPECT_EQ(correctBound, bound);
+  EXPECT_DOUBLE_EQ(correctBound, bound);
 }
 
 TEST_F(LetterTest, ShouldGetYUpperBoundAfterScaling)
@@ -122,7 +122,7 @@ TEST_F(LetterTest, ShouldGetYUpperBoundAfterScaling)
   double correctBound = 4;
   auto bound = letter.yUpperBound();
   
-  EXPECT_EQ(correctBound, bound);
+  EXPECT_DOUBLE_EQ(correctBound, bound);
 }
 
 TEST_F(LetterTest, ShouldGetXLowerBoundAfterScalingAndTranslation)
@@ -134,7 +134,7 @@ TEST_F(LetterTest, ShouldGetXLowerBoundAfterScalingAndTranslation)
   double correctBound = 2;
   auto bound = letter.xLowerBound();
   
-  EXPECT_EQ(correctBound, bound);
+  EXPECT_DOUBLE_EQ(correctBound, bound);
 }
 
 TEST_F(LetterTest, ShouldGetXUpperBoundAfterScalingAndTranslation)
@@ -146,7 +146,7 @@ TEST_F(LetterTest, ShouldGetXUpperBoundAfterScalingAndTranslation)
   double correctBound = 5;
   auto bound = letter.xUpperBound();
   
-  EXPECT_EQ(correctBound, bound);
+  EXPECT_DOUBLE_EQ(correctBound, bound);
 }
 
 TEST_F(LetterTest, ShouldGetYLowerBoundAfterScalingAndTranslation)
@@ -158,7 +158,7 @@ TEST_F(LetterTest, ShouldGetYLowerBoundAfterScalingAndTranslation)
   double correctBound = 4;
   auto bound = letter.yLowerBound();
   
-  EXPECT_EQ(correctBound, bound);
+  EXPECT_DOUBLE_EQ(correctBound, bound);
 }
 
 TEST_F(LetterTest, ShouldGetYUpperBoundAfterScalingAndTranslation)
@@ -170,5 +170,5 @@ TEST_F(LetterTest, ShouldGetYUpperBoundAfterScalingAndTranslation)
   double correctBound = 8;
   auto bound = letter.yUpperBound();
   
-  EXPECT_EQ(correctBound, bound);
+  EXPECT_DOUBLE_EQ(correctBound, bound);
 }

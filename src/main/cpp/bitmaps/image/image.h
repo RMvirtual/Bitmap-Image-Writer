@@ -10,16 +10,16 @@ class Image
 {
 public:
   Image();
-  Image(Bitmaps::Format format);
-  Image(Bitmaps::Packet packet);
+  Image(const Bitmaps::Format& format);
+  Image(const Bitmaps::Packet& packet);
   ~Image();
 
-  void fill(Bitmaps::Colours colours);
-  void setPixel(int row, int column, Bitmaps::Colours colours);
+  void fill(const Bitmaps::Colours& colours);
+  void setPixel(int row, int column, const Bitmaps::Colours& colours);
   int widthInPixels() const;
   int heightInPixels() const;
 
-  Colours defaultColours() const;
+  Bitmaps::Colours defaultColours() const;
   std::shared_ptr<Bitmaps::FileHeader> fileHeader();
   std::shared_ptr<Bitmaps::DibHeader> dibHeader();
   std::shared_ptr<Bitmaps::PixelArray> pixelArray();
