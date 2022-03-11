@@ -53,7 +53,6 @@ void Demo::TextDemo::updateImage()
     
     image->fill(redColours);
     
-    /*
     bool boundaryReached = (
       textBox.xLowerBound() <= 0 ||
       textBox.xUpperBound() >= 500
@@ -82,7 +81,7 @@ void Demo::TextDemo::updateImage()
     }
     
     renderNo++;
-    */
+    
     auto stop = std::chrono::high_resolution_clock::now();
     auto duration = std::chrono::duration_cast<std::chrono::milliseconds>(
       stop - start);

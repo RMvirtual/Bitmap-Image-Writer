@@ -67,7 +67,7 @@ void Matrix2D<T>::fill(const T& value)
   auto noOfRows = this->height();
   std::vector<std::thread> threads;
 
-  auto rowFiller = [](MatrixRow<T>* row, T value) {
+  auto rowFiller = [](MatrixRow<T>* row, T& value) {
     row->fill(value);
   };
 
