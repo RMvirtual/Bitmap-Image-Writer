@@ -32,7 +32,7 @@ TEST_F(PixelArrayTest, ShouldFillPixelArray)
 #include <chrono>
 #include <thread>
 
-TEST_F(PixelArrayTest, ShouldFillPixelsInReasonableTime)
+TEST_F(PixelArrayTest, DISABLED_ShouldFillPixelsInReasonableTime)
 {
   this->setupRedPixelArray(500, 500);
 

@@ -5,8 +5,8 @@ cc_library(
     hdrs = glob(["*.h"]),
     srcs = glob(["*.cpp"]),
     visibility = ["//visibility:public"],
-    deps = [
+    deps = [        
         "//src/main/cpp/rasterisation/plotters/line",
-        "//src/main/cpp/maths"
+        "//src/main/cpp/rasterisation/plotters/triangle",
     ]
 )

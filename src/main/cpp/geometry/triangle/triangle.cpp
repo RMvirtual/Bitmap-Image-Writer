@@ -11,6 +11,11 @@ Geometry::Triangle::Triangle(const std::vector<Maths::Vector>& vertices)
   this->vertices = vertices;
 }
 
+Maths::Vector Geometry::Triangle::operator [](int index) const
+{
+  return this->vertices[index];
+}
+
 Maths::Vector& Geometry::Triangle::operator [](int index)
 {
   return this->vertices[index];
@@ -40,26 +45,6 @@ void Geometry::Triangle::translate(const Maths::Vector& translation)
 {
   for (auto& vertex: this->vertices)
     vertex = vertex + translation;
-}
-
-std::vector<Geometry::Line> Geometry::Triangle::toLines() const
-{
-  std::vector<Geometry::Line> lines {};
-  int noOfVertices = this->vertices.size();
-
-  for (int i = 0; i < noOfVertices - 1; i++) {
-    auto& vertex1 = this->vertices[i];
-    auto& vertex2 = this->vertices[i+1];
-
-    lines.push_back({{vertex1}, {vertex2}});
-  }
-
-  auto& originVertex = this->vertices[0];
-  auto& lastVertex = this->vertices[noOfVertices-1];
-
-  lines.push_back({{lastVertex}, {originVertex}});
-
-  return lines;
 }
 
 void Geometry::Triangle::scale(double scalar, int originVertexIndex)

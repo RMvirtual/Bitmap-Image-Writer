@@ -14,7 +14,7 @@ public:
   void translate(const Maths::Vector& translation);
   void scale(double scalar, int pointOfOrigin);
   void scale(double scalar);
-  std::vector<Geometry::Line> toLines() const;
+  Maths::Vector operator [](int index) const; 
   Maths::Vector& operator [](int index); 
   std::vector<Maths::Vector>::iterator begin();
   std::vector<Maths::Vector>::iterator end();

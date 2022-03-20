@@ -11,7 +11,7 @@ public:
 
 protected:
   std::vector<Maths::Vector> correctPlotPoints;
-  Geometry::LinePlotter plotter;
+  Rasterisation::LinePlotter plotter;
   Geometry::Line line;
 
   void setupEastHorizontalLine();

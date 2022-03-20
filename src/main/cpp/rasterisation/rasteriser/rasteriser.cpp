@@ -1,6 +1,7 @@
 #include "src/main/cpp/rasterisation/rasteriser/rasteriser.h"
 #include "src/main/cpp/rasterisation/plotters/line/plotter.h"
 #include "src/main/cpp/bitmaps/formats/formats.h"
+#include "src/main/cpp/rasterisation/plotters/triangle/plotter.h"
 
 Rasterisation::Rasteriser::Rasteriser(
   std::shared_ptr<Bitmaps::Image> writableImage)
@@ -36,7 +37,7 @@ void Rasterisation::Rasteriser::draw(const Geometry::LineMesh& lineMesh)
 
 void Rasterisation::Rasteriser::draw(const Geometry::Line& line)
 {
-  Geometry::LinePlotter plotter;
+  Rasterisation::LinePlotter plotter;
   auto plotPoints = plotter.plot(line);
   
   for (auto& point : plotPoints) {
@@ -49,5 +50,7 @@ void Rasterisation::Rasteriser::draw(const Geometry::Line& line)
 
 void Rasterisation::Rasteriser::draw(const Geometry::Triangle& triangle)
 {
-  this->draw(triangle.toLines());
+  Rasterisation::TrianglePlotter plotter;
+  auto lineMesh = plotter.plotToLineMesh(triangle);
+  this->draw(lineMesh);
 }

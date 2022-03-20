@@ -2,12 +2,12 @@
 #include "src/main/cpp/maths/range/range.h"
 #include "src/main/cpp/rasterisation/plotters/line/plotter.h"
 
-Geometry::LinePlotter::LinePlotter()
+Rasterisation::LinePlotter::LinePlotter()
 {
   // pass.
 }
 
-std::vector<Maths::Vector> Geometry::LinePlotter::plot(
+std::vector<Maths::Vector> Rasterisation::LinePlotter::plot(
   const Geometry::Line& line)
 {  
   this->plotPoints.clear();
@@ -21,7 +21,7 @@ std::vector<Maths::Vector> Geometry::LinePlotter::plot(
   return plotPoints;
 }
 
-void Geometry::LinePlotter::plotSlopelessLine(const Geometry::Line& line)
+void Rasterisation::LinePlotter::plotSlopelessLine(const Geometry::Line& line)
 {
   auto xCoordinates = Maths::range(line["x0"], line["x1"]);
   auto yCoordinates = Maths::range(line["y0"], line["y1"]);
@@ -31,7 +31,7 @@ void Geometry::LinePlotter::plotSlopelessLine(const Geometry::Line& line)
     this->plotPoints.push_back(plot);
 }
 
-void Geometry::LinePlotter::plotSlopedLine(const Geometry::Line& line)
+void Rasterisation::LinePlotter::plotSlopedLine(const Geometry::Line& line)
 {
   auto sortedLine = line;
   sortedLine.sortByXAscending();
@@ -80,12 +80,12 @@ void Geometry::LinePlotter::plotSlopedLine(const Geometry::Line& line)
   }
 }
 
-void Geometry::LinePlotter::initialiseErrorTracker()
+void Rasterisation::LinePlotter::initialiseErrorTracker()
 {
   this->errorTracker = (2 * this->errorRise) - this->errorRun;
 }
 
-void Geometry::LinePlotter::initialiseErrorIncrementDirection()
+void Rasterisation::LinePlotter::initialiseErrorIncrementDirection()
 {
   this->errorIncrementDirection = 1;
 
@@ -95,13 +95,13 @@ void Geometry::LinePlotter::initialiseErrorIncrementDirection()
   }
 }
 
-void Geometry::LinePlotter::addPointWithYError(double x, double& y)
+void Rasterisation::LinePlotter::addPointWithYError(double x, double& y)
 {
   this->plotPoints.push_back({x, y});
   this->updateErrorAxis(y);
 }
 
-void Geometry::LinePlotter::updateErrorAxis(double& errorAxis)
+void Rasterisation::LinePlotter::updateErrorAxis(double& errorAxis)
 {
   auto errorAxisDirection = this->errorIncrementDirection;
 
@@ -111,12 +111,12 @@ void Geometry::LinePlotter::updateErrorAxis(double& errorAxis)
   this->updateError();
 }
 
-bool Geometry::LinePlotter::shouldIncrementErrorAxis()
+bool Rasterisation::LinePlotter::shouldIncrementErrorAxis()
 {
   return this->errorTracker > 0;
 }
 
-void Geometry::LinePlotter::updateError()
+void Rasterisation::LinePlotter::updateError()
 {
   auto errorChange = this->errorRise;
 
