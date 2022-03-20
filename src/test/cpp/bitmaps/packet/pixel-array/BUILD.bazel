@@ -7,5 +7,5 @@ cc_test(
     deps = [
         "@googletest//:gtest_main",
         "//src/main/cpp/bitmaps/packet",
-    ]
+    ],
 )

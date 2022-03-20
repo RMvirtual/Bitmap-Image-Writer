@@ -55,18 +55,26 @@ void MatrixRow<T>::fill(const T& value)
   }
   */
 
-
+  /*
   auto columnReplacer1 = [this](T* value) {
     for (auto& column : this->columns) {
       column = *value;
     }
-    //std::fill(this->columns.begin(), this->columns.end(), value);
   };
+
   auto valueCopy = value;
   T* valuePointer = &valueCopy;
   
   std::thread thread1(columnReplacer1, valuePointer);
   thread1.join();
+  */
+
+ auto size = this->columns.size();
+
+  for (int i = 0; i < size; i++)
+  {
+    this->columns[i] = value;
+  }
 }
 
 template <class T>

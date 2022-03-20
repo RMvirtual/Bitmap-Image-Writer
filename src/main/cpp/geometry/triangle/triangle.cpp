@@ -64,7 +64,7 @@ std::vector<Geometry::Line> Geometry::Triangle::toLines() const
 
 void Geometry::Triangle::scale(double scalar, int originVertexIndex)
 {
-  auto& origin = this->vertices[originVertexIndex];
+  auto origin = this->vertices[originVertexIndex];
   Maths::Vector zeroOrigin = {0.0, 0.0};
 
   this->translate(zeroOrigin - origin);
