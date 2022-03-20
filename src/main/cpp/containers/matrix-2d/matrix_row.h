@@ -37,7 +37,36 @@ void MatrixRow<T>::set(const T& value, int index)
 template <class T>
 void MatrixRow<T>::fill(const T& value)
 {
-  std::fill(this->columns.begin(), this->columns.end(), value);
+  /*
+  auto noOfColumns = this->size();
+  std::vector<std::thread> threads;
+
+  auto columnReplacer = [](T* column, T& value) {
+    *column = value;
+  };
+
+  for (int columnNo = 0; columnNo < noOfColumns; columnNo++) {
+    T* column = &(this->columns[columnNo]);
+    threads.emplace_back(columnReplacer, column, value);
+  }
+
+  for (auto& thread : threads) {
+    thread.join();
+  }
+  */
+
+
+  auto columnReplacer1 = [this](T* value) {
+    for (auto& column : this->columns) {
+      column = *value;
+    }
+    //std::fill(this->columns.begin(), this->columns.end(), value);
+  };
+  auto valueCopy = value;
+  T* valuePointer = &valueCopy;
+  
+  std::thread thread1(columnReplacer1, valuePointer);
+  thread1.join();
 }
 
 template <class T>

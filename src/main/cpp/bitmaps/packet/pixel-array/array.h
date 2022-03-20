@@ -16,7 +16,6 @@ public:
   void set(const Colours& colours, int index);
   void fill(const Colours& colours);
 
-
   std::shared_ptr<Bitmaps::Colours> at(int row, int column);
   std::shared_ptr<Bitmaps::Colours> at(int index);
   Bitmaps::Colours at(int row, int column) const;
