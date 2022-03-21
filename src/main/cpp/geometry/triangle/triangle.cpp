@@ -3,6 +3,8 @@
 #include "src/main/cpp/geometry/triangle/triangle.h"
 #include "src/main/cpp/geometry/triangle/splitter.h"
 
+#include <iostream>
+
 Geometry::Triangle::Triangle()
 {
   this->vertices = {
@@ -12,6 +14,26 @@ Geometry::Triangle::Triangle()
 Geometry::Triangle::Triangle(const std::vector<Maths::Vector>& vertices)
 {
   this->vertices = vertices;
+}
+
+double Geometry::Triangle::operator [](std::string vertex) const
+{
+  std::string vertexIndexString = {vertex[1]};
+  int vertexIndex = std::stoi(vertexIndexString);
+  std::string coordinate {vertex[0]};
+
+  std::cout << vertexIndex << std::endl;
+  return this->vertices[vertexIndex][coordinate];
+}
+
+double& Geometry::Triangle::operator [](std::string vertex)
+{
+  std::string vertexIndexString = {vertex[1]};
+  int vertexIndex = std::stoi(vertexIndexString);
+  std::string coordinate {vertex[0]};
+
+  std::cout << vertexIndex << std::endl;
+  return this->vertices[vertexIndex][coordinate];
 }
 
 Maths::Vector Geometry::Triangle::operator [](int index) const
@@ -77,7 +99,7 @@ std::pair<Geometry::Triangle, Geometry::Triangle> Geometry::Triangle::split()
   return splitter.split(*this);
 }
 
-double Geometry::Triangle::xLowerBound()
+double Geometry::Triangle::xLowerBound() const
 {
   double bound = this->vertices[0]["x"];
 
@@ -87,7 +109,7 @@ double Geometry::Triangle::xLowerBound()
   return bound;
 }
 
-double Geometry::Triangle::xUpperBound()
+double Geometry::Triangle::xUpperBound() const
 {
   double bound = this->vertices[0]["x"];
 
@@ -99,8 +121,9 @@ double Geometry::Triangle::xUpperBound()
 
 std::vector<Maths::Vector> Geometry::Triangle::sortedByX()
 {
-  auto isLessThan = [](Maths::Vector& vector1, Maths::Vector& vector2) {
-    return (vector1["x"] < vector2["x"]);
+  auto isLessThan = [](
+    Maths::Vector vector1, Maths::Vector vector2) {
+      return (vector1["x"] < vector2["x"]);
   };
 
   auto sortedVertices = this->vertices;

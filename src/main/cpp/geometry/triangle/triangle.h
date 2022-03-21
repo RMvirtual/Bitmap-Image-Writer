@@ -1,5 +1,6 @@
 #pragma once
 
+#include <string>
 #include <utility>
 #include <vector>
 #include "src/main/cpp/maths/vector/vector.h"
@@ -16,6 +17,8 @@ public:
   void scale(double scalar, int pointOfOrigin);
   void scale(double scalar);
   std::pair<Geometry::Triangle, Geometry::Triangle> split();
+  double operator [](std::string vertex) const; 
+  double& operator [](std::string vertex);
   Maths::Vector operator [](int index) const; 
   Maths::Vector& operator [](int index); 
   std::vector<Maths::Vector>::iterator begin();
@@ -27,8 +30,8 @@ public:
 private:
   std::vector<Maths::Vector> vertices;
 
-  double xLowerBound();
-  double xUpperBound();
+  double xLowerBound() const;
+  double xUpperBound() const;
   std::vector<Maths::Vector> sortedByX();
 
 };}

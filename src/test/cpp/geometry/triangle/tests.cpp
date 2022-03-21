@@ -138,6 +138,21 @@ TEST_F(TriangleTest, ShouldScaleTriangleFromNonZeroOrigin)
   }
 }
 
+TEST_F(TriangleTest, ShouldIndexTriangleWithVerticeSubscriptOperator)
+{
+  this->triangle = {{
+    {0.0, 0.0}, {3, 6}, {6, 0.0}}};
+
+  auto y1 = triangle["y1"];
+  auto x2 = triangle["x2"];
+
+  double correctY1 = 6;
+  double correctX2 = 6;
+
+  EXPECT_DOUBLE_EQ(correctY1, y1);
+  EXPECT_DOUBLE_EQ(correctX2, x2);
+}
+
 TEST_F(TriangleTest, ShouldGetMiddleXOfTriangle)
 {
   this->triangle = {{
