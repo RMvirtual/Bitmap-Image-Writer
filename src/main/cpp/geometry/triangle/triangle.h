@@ -27,12 +27,12 @@ public:
   std::vector<Maths::Vector>::const_iterator end() const;
   Maths::Vector middleVertex();
   Maths::Vector interceptOfMiddleVertex();
-
+  std::vector<Maths::Vector> sortedByX();
+  
 private:
   std::vector<Maths::Vector> vertices;
 
   double xLowerBound() const;
   double xUpperBound() const;
-  std::vector<Maths::Vector> sortedByX();
 
 };}

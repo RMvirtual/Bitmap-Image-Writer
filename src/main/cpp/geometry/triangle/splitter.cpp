@@ -8,14 +8,16 @@ Geometry::TriangleSplitter::TriangleSplitter()
 std::pair<Geometry::Triangle, Geometry::Triangle>
 Geometry::TriangleSplitter::split(Geometry::Triangle& triangle)
 {
-  auto middleVertex = triangle.middleVertex();
+  Geometry::Triangle sortedTriangle = {triangle.sortedByX()};
+  auto middleVertex = sortedTriangle.middleVertex();
+  auto middleInterceptPoint = sortedTriangle.interceptOfMiddleVertex();
 
   Geometry::Triangle dummyTriangle1 = {{
-    {0.0, 0.0}, {3, 6}, {6, 0.0} 
+    triangle[0], middleVertex, middleInterceptPoint
   }};
 
   Geometry::Triangle dummyTriangle2 = {{
-    {0.0, 0.0}, {3, 6}, {6, 0.0} 
+    middleInterceptPoint, middleVertex, triangle[2] 
   }};
 
   return {dummyTriangle1, dummyTriangle2};
