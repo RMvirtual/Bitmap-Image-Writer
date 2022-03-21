@@ -1,3 +1,5 @@
+#include <algorithm>
+
 #include "src/main/cpp/geometry/triangle/triangle.h"
 #include "src/main/cpp/geometry/triangle/splitter.h"
 
@@ -95,19 +97,19 @@ double Geometry::Triangle::xUpperBound()
   return bound;
 }
 
+std::vector<Maths::Vector> Geometry::Triangle::sortedByX()
+{
+  auto isLessThan = [](Maths::Vector& vector1, Maths::Vector& vector2) {
+    return (vector1["x"] < vector2["x"]);
+  };
+
+  auto sortedVertices = this->vertices;
+  std::sort(this->vertices.begin(), this->vertices.end(), isLessThan);
+
+  return sortedVertices;
+}
+
 Maths::Vector Geometry::Triangle::middleX()
 {
-  auto lowerBound = this->xLowerBound();
-  auto upperBound = this->xUpperBound();
-
-  Maths::Vector middleX;
-
-  for (auto& vertex : this->vertices) {
-    auto x = vertex["x"];
-
-    if (lowerBound <= x <= upperBound)
-      middleX = vertex;
-  }
-
-  return middleX;
+  return this->sortedByX()[1];
 }

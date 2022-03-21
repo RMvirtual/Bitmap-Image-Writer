@@ -29,5 +29,6 @@ private:
 
   double xLowerBound();
   double xUpperBound();
+  std::vector<Maths::Vector> sortedByX();
 
 };}
