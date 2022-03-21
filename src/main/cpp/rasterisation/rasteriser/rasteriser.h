@@ -19,6 +19,7 @@ public:
   void draw(const Text::Text2D& text);
   void draw(const Text::Letter& letter);
   void draw(const Geometry::Triangle& triangle);
+  void fill(const Geometry::Triangle& triangle);
   
 private:
   std::shared_ptr<Bitmaps::Image> image;

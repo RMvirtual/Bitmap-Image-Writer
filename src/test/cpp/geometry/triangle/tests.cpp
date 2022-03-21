@@ -138,3 +138,34 @@ TEST_F(TriangleTest, ShouldScaleTriangleFromNonZeroOrigin)
     EXPECT_DOUBLE_EQ(correctVector["y"], vector["y"]);
   }
 }
+
+TEST_F(TriangleTest, ShouldSplitTriangle)
+{
+  this->triangle = {{
+    {0.0, 0.0}, {3, 6}, {6, 0.0}}};
+
+  auto triangles = this->triangle.split();
+
+  Geometry::Triangle correctTriangle1 {{{0.0, 0.0}, {3, 6}, {3, 0.0}}};
+  Geometry::Triangle correctTriangle2 {{{3, 0.0}, {3, 6}, {6, 0.0}}};
+
+  auto triangle1 = triangles.first;
+
+  for (int i = 0; i < 3; i++) {
+    auto& vector = triangle1[i];
+    auto& correctVector = correctTriangle1[i];
+
+    EXPECT_DOUBLE_EQ(correctVector["x"], vector["x"]);
+    EXPECT_DOUBLE_EQ(correctVector["y"], vector["y"]);
+  }
+
+  auto triangle2 = triangles.second;
+
+  for (int i = 0; i < 3; i++) {
+    auto& vector = triangle2[i];
+    auto& correctVector = correctTriangle2[i];
+
+    EXPECT_DOUBLE_EQ(correctVector["x"], vector["x"]);
+    EXPECT_DOUBLE_EQ(correctVector["y"], vector["y"]);
+  }
+}

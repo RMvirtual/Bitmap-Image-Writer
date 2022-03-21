@@ -32,9 +32,12 @@ TEST_F(PixelArrayTest, ShouldFillPixelArray)
 #include <chrono>
 #include <thread>
 
+/**
+ * @brief Turned off temporarily to focus on more pressing issues.
+ */
 TEST_F(PixelArrayTest, ShouldFillPixelsInReasonableTime)
 {
-  GTEST_SKIP();
+  GTEST_SKIP(); 
   this->setupRedPixelArray(500, 500);
 
   auto start = std::chrono::high_resolution_clock::now();

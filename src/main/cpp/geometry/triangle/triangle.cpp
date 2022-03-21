@@ -1,4 +1,5 @@
 #include "src/main/cpp/geometry/triangle/triangle.h"
+#include "src/main/cpp/geometry/triangle/splitter.h"
 
 Geometry::Triangle::Triangle()
 {
@@ -65,4 +66,11 @@ void Geometry::Triangle::scale(double scalar, int originVertexIndex)
 void Geometry::Triangle::scale(double scalar)
 {
   this->scale(scalar, 0);
+}
+
+std::pair<Geometry::Triangle, Geometry::Triangle> Geometry::Triangle::split()
+{
+  Geometry::TriangleSplitter splitter;
+
+  return splitter.split(*this);
 }

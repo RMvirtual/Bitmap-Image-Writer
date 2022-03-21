@@ -9,7 +9,4 @@ class TrianglePlotter
 public:
   TrianglePlotter();
   Geometry::LineMesh plotToLineMesh(const Geometry::Triangle& triangle);
-
-private:
-
 };}
