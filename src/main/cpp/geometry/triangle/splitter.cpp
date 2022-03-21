@@ -6,8 +6,10 @@ Geometry::TriangleSplitter::TriangleSplitter()
 }
 
 std::pair<Geometry::Triangle, Geometry::Triangle>
-Geometry::TriangleSplitter::split(const Geometry::Triangle&)
+Geometry::TriangleSplitter::split(Geometry::Triangle& triangle)
 {
+  auto middleVertex = triangle.middleVertex();
+
   Geometry::Triangle dummyTriangle1 = {{
     {0.0, 0.0}, {3, 6}, {6, 0.0} 
   }};

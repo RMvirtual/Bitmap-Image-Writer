@@ -10,5 +10,5 @@ public:
   TriangleSplitter();
   
   std::pair<Geometry::Triangle, Geometry::Triangle> split(
-    const Geometry::Triangle& triangle);
+    Geometry::Triangle& triangle);
 };}

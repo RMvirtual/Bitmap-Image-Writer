@@ -153,13 +153,25 @@ TEST_F(TriangleTest, ShouldIndexTriangleWithVerticeSubscriptOperator)
   EXPECT_DOUBLE_EQ(correctX2, x2);
 }
 
-TEST_F(TriangleTest, ShouldGetMiddleXOfTriangle)
+TEST_F(TriangleTest, ShouldGetMiddleVertexOfTriangle)
 {
   this->triangle = {{
     {0.0, 0.0}, {3, 6}, {6, 0.0}}};
 
-  auto point = triangle.middleX();
+  auto point = triangle.middleVertex();
   Maths::Vector correctPoint = {3, 6};
+
+  EXPECT_DOUBLE_EQ(correctPoint["x"], point["x"]);
+  EXPECT_DOUBLE_EQ(correctPoint["y"], point["y"]);
+}
+
+TEST_F(TriangleTest, ShouldGetMiddleInterceptPointOfTriangle)
+{
+  this->triangle = {{
+    {0.0, 0.0}, {3, 6}, {6, 0.0}}};
+
+  auto point = triangle.interceptOfMiddleVertex();
+  Maths::Vector correctPoint = {3, 0};
 
   EXPECT_DOUBLE_EQ(correctPoint["x"], point["x"]);
   EXPECT_DOUBLE_EQ(correctPoint["y"], point["y"]);

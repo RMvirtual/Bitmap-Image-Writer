@@ -7,8 +7,7 @@
 
 Geometry::Triangle::Triangle()
 {
-  this->vertices = {
-    {0.0, 0.0}, {1, 2}, {2, 0.0}};
+  this->vertices = {{0.0, 0.0}, {1, 2}, {2, 0.0}};
 }
 
 Geometry::Triangle::Triangle(const std::vector<Maths::Vector>& vertices)
@@ -18,22 +17,20 @@ Geometry::Triangle::Triangle(const std::vector<Maths::Vector>& vertices)
 
 double Geometry::Triangle::operator [](std::string vertex) const
 {
-  std::string vertexIndexString = {vertex[1]};
-  int vertexIndex = std::stoi(vertexIndexString);
+  std::string indexString = {vertex[1]};
+  int index = std::stoi(indexString);
   std::string coordinate {vertex[0]};
 
-  std::cout << vertexIndex << std::endl;
-  return this->vertices[vertexIndex][coordinate];
+  return this->vertices[index][coordinate];
 }
 
 double& Geometry::Triangle::operator [](std::string vertex)
 {
-  std::string vertexIndexString = {vertex[1]};
-  int vertexIndex = std::stoi(vertexIndexString);
+  std::string indexString = {vertex[1]};
+  int index = std::stoi(indexString);
   std::string coordinate {vertex[0]};
 
-  std::cout << vertexIndex << std::endl;
-  return this->vertices[vertexIndex][coordinate];
+  return this->vertices[index][coordinate];
 }
 
 Maths::Vector Geometry::Triangle::operator [](int index) const
@@ -132,7 +129,24 @@ std::vector<Maths::Vector> Geometry::Triangle::sortedByX()
   return sortedVertices;
 }
 
-Maths::Vector Geometry::Triangle::middleX()
+Maths::Vector Geometry::Triangle::interceptOfMiddleVertex()
+{
+  Geometry::Triangle sortedVertices = {this->sortedByX()};
+  
+  auto slopeOfInterceptedLine = (
+    (sortedVertices["y2"] - sortedVertices["y0"]) / (sortedVertices["x2"] - sortedVertices["x0"])
+  );
+
+  Maths::Vector interceptPoint = {
+    sortedVertices["x1"],
+    sortedVertices["y0"]
+    + slopeOfInterceptedLine * (sortedVertices["x1"] - sortedVertices["x0"])
+  };
+
+  return interceptPoint;
+}
+
+Maths::Vector Geometry::Triangle::middleVertex()
 {
   return this->sortedByX()[1];
 }

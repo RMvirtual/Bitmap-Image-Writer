@@ -25,7 +25,8 @@ public:
   std::vector<Maths::Vector>::iterator end();
   std::vector<Maths::Vector>::const_iterator begin() const;
   std::vector<Maths::Vector>::const_iterator end() const;
-  Maths::Vector middleX();
+  Maths::Vector middleVertex();
+  Maths::Vector interceptOfMiddleVertex();
 
 private:
   std::vector<Maths::Vector> vertices;
