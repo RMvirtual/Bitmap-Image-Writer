@@ -118,7 +118,6 @@ TEST_F(TriangleTest, ShouldScaleTriangle)
   }
 }
 
-// fails.
 TEST_F(TriangleTest, ShouldScaleTriangleFromNonZeroOrigin)
 {
   this->triangle = {{
@@ -137,6 +136,18 @@ TEST_F(TriangleTest, ShouldScaleTriangleFromNonZeroOrigin)
     EXPECT_DOUBLE_EQ(correctVector["x"], vector["x"]);
     EXPECT_DOUBLE_EQ(correctVector["y"], vector["y"]);
   }
+}
+
+TEST_F(TriangleTest, ShouldGetMiddleXOfTriangle)
+{
+  this->triangle = {{
+    {0.0, 0.0}, {3, 6}, {6, 0.0}}};
+
+  auto point = triangle.middleX();
+  Maths::Vector correctPoint = {3, 6};
+
+  EXPECT_DOUBLE_EQ(correctPoint["x"], point["x"]);
+  EXPECT_DOUBLE_EQ(correctPoint["y"], point["y"]);
 }
 
 TEST_F(TriangleTest, ShouldSplitTriangle)

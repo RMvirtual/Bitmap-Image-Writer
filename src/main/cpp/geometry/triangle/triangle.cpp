@@ -74,3 +74,40 @@ std::pair<Geometry::Triangle, Geometry::Triangle> Geometry::Triangle::split()
 
   return splitter.split(*this);
 }
+
+double Geometry::Triangle::xLowerBound()
+{
+  double bound = this->vertices[0]["x"];
+
+  for (auto& vertex : this->vertices)
+    bound = std::min(bound, vertex["x"]);
+
+  return bound;
+}
+
+double Geometry::Triangle::xUpperBound()
+{
+  double bound = this->vertices[0]["x"];
+
+  for (auto& vertex : this->vertices)
+    bound = std::max(bound, vertex["x"]);
+
+  return bound;
+}
+
+Maths::Vector Geometry::Triangle::middleX()
+{
+  auto lowerBound = this->xLowerBound();
+  auto upperBound = this->xUpperBound();
+
+  Maths::Vector middleX;
+
+  for (auto& vertex : this->vertices) {
+    auto x = vertex["x"];
+
+    if (lowerBound <= x <= upperBound)
+      middleX = vertex;
+  }
+
+  return middleX;
+}
