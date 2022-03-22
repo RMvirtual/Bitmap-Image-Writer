@@ -63,7 +63,7 @@ private:
 
   void calculateSlope();
 
-  Maths::Vector scaleVectorFromOrigin(
+  Maths::Vector scaleVectorFromOriginPoint(
     const Maths::Vector& vector, double scaleFactor, 
     const Maths::Vector& origin) const;
 };}
