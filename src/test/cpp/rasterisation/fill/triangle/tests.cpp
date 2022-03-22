@@ -7,6 +7,12 @@ TEST_F(TriangleFillerTest, ShouldGetTriangleFillCoordinates)
   }};
 
   auto fillPoints = this->filler.fillPoints(triangle);
+  
+  std::vector<Maths::Vector> correctFillPoints = {
+    {0.0, 0.0},
+    {1, 0.0}, {1, 1},
+    {2, 0.0}, {2, 1}, {2, 2},
+  };
 
   EXPECT_TRUE(true);
 }

@@ -106,7 +106,6 @@ double& Maths::Vector::operator [](std::string name)
   return this->values[variableNotations[name]];
 }
 
-
 double Maths::Vector::operator [](int index) const
 {
   return this->at(index);

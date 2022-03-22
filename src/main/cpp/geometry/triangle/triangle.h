@@ -28,6 +28,7 @@ public:
   Maths::Vector middleVertex();
   Maths::Vector interceptOfMiddleVertex();
   std::vector<Maths::Vector> sortedByX();
+  bool shouldSplit();
   
 private:
   std::vector<Maths::Vector> vertices;

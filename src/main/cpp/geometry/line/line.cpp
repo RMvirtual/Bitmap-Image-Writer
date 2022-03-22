@@ -1,5 +1,6 @@
 #include <algorithm>
 #include "src/main/cpp/geometry/line/line.h"
+#include "src/main/cpp/geometry/slope/slope.h"
 
 Geometry::Line::Line()
 {
@@ -94,16 +95,6 @@ void Geometry::Line::sortByYAscending()
     this->switchEndpoints();
 }
 
-bool Geometry::Line::isDescendingByX() const
-{
-  return this->isTraversingWest();
-}
-
-bool Geometry::Line::isDescendingByY() const
-{
-  return this->isTraversingSouth();
-}
-
 Maths::Vector Geometry::Line::origin() const
 {
   return this->_origin;
@@ -122,6 +113,13 @@ void Geometry::Line::calculateVertices()
     {"x1", this->_destination["x"]},
     {"y1", this->_destination["y"]}
   };
+
+  this->recalculateSlope();
+}
+
+void Geometry::Line::recalculateSlope()
+{
+  this->slope = {this->_origin, this->_destination};
 }
 
 double Geometry::Line::operator [](const std::string& vertex) const
@@ -136,92 +134,95 @@ double& Geometry::Line::operator [](const std::string& vertex)
 
 double Geometry::Line::gradient() const
 {
-  auto xChange = this->run();
-  auto yChange = this->rise();
-
-  bool hasZeroDivision = (xChange == 0);
-  // Not too sure on what value to return when x's change is 0 as
-  // can't divide by zero.
-
-  return hasZeroDivision ? 0 : yChange / xChange;
+  return this->slope.gradient();
 }
 
 double Geometry::Line::run() const
 {
-  return this->_destination["x"] - this->_origin["x"];
+  return this->slope.run();
 }
 
 double Geometry::Line::rise() const
 {
-  return this->_destination["y"] - this->_origin["y"];
+  return this->slope.rise();
+}
+
+bool Geometry::Line::isDescendingByX() const
+{
+  return this->slope.isDescendingByX();
+}
+
+bool Geometry::Line::isDescendingByY() const
+{
+  return this->slope.isDescendingByY();
 }
 
 bool Geometry::Line::isSloped() const
 {
-  return !this->isSlopeless();
+  return this->slope.isSloped();
 }
 
 bool Geometry::Line::isSlopeless() const
 {
-  return (this->isHorizontalLine() || this->isVerticalLine());
+  return this->slope.isSlopeless();
 }
 
 bool Geometry::Line::isHorizontallySloped() const
 {
-  return this->isSloped() ? abs(this->run()) > abs(this->rise()) : false; 
+  return this->slope.isHorizontallySloped();
 }
 
 bool Geometry::Line::isVerticallySloped() const
 {
-  return this->isSloped() ? abs(this->rise()) > abs(this->run()) : false;
+  return this->slope.isVerticallySloped();
 }
 
 bool Geometry::Line::isVerticalLine() const
 {
-  return this->_origin["x"] == this->_destination["x"];
+  return this->slope.isVerticalLine();
 }
 
 bool Geometry::Line::isHorizontalLine() const
 {
-  return this->_origin["y"] == this->_destination["y"];
+  return this->slope.isHorizontalLine();
 }
 
 bool Geometry::Line::isTraversingEast() const
 {
-  return this->_origin["x"] < this->_destination["x"];
+  return this->slope.isTraversingEast();
 }
 
 bool Geometry::Line::isTraversingWest() const
 {
-  return this->_origin["x"] > this->_destination["x"];
+  return this->slope.isTraversingWest();
 }
 
 bool Geometry::Line::isTraversingNorth() const
 {
-  return this->_origin["y"] < this->_destination["y"];
+  return this->slope.isTraversingNorth();
 }
 
 bool Geometry::Line::isTraversingSouth() const
 {
-  return this->_origin["y"] > this->_destination["y"];
+  return this->slope.isTraversingSouth();
 }
 
 double Geometry::Line::xLowerBound() const
 {
-  return std::min(this->_origin["x"], this->_destination["x"]);
+  return this->slope.xLowerBound();
 }
 
 double Geometry::Line::xUpperBound() const
 {
-  return std::max(this->_origin["x"], this->_destination["x"]);
+  return this->slope.xUpperBound();
 }
 
 double Geometry::Line::yLowerBound() const
 {
-  return std::min(this->_origin["y"], this->_destination["y"]);
+  return this->slope.yLowerBound();
 }
 
 double Geometry::Line::yUpperBound() const
 {
-  return std::max(this->_origin["y"], this->_destination["y"]);
+  return this->slope.yUpperBound();
 }

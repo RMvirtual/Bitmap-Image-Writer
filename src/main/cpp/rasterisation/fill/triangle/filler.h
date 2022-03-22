@@ -10,5 +10,8 @@ class TriangleFiller
 {
 public:
   TriangleFiller();
-  std::vector<Maths::Vector> fillPoints(const Geometry::Triangle& triangle);
+  std::vector<Maths::Vector> fillPoints(Geometry::Triangle& triangle);
+
+private:
+  std::vector<Maths::Vector> _fillPoints;
 };}

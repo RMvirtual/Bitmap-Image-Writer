@@ -9,10 +9,20 @@ Rasterisation::TriangleFiller::TriangleFiller()
 }
 
 std::vector<Maths::Vector> Rasterisation::TriangleFiller::fillPoints(
-  const Geometry::Triangle& triangle)
+  Geometry::Triangle& triangle)
 {
-  Rasterisation::TrianglePlotter trianglePlotter;
-  auto outline = trianglePlotter.plotToLineMesh(triangle);
+  this->_fillPoints.clear();
+
+  if (triangle.shouldSplit()) {
+    auto triangles = triangle.split();
+    this->fillPoints(triangles.first);
+    this->fillPoints(triangles.second);
+  }
+
+  else {
+    auto xDistance = triangle["x2"] - triangle["x1"];
+    
+  }
 
   return {{0.0, 0.0}};
 }

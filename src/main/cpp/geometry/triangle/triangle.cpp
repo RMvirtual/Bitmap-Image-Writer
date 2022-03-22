@@ -24,10 +24,16 @@ double Geometry::Triangle::operator [](std::string vertex) const
   return this->vertices[index][coordinate];
 }
 
+/**
+ * @brief Index from x1-x3, y1-y3.
+ * 
+ * @param vertex 
+ * @return double& 
+ */
 double& Geometry::Triangle::operator [](std::string vertex)
 {
   std::string indexString = {vertex[1]};
-  int index = std::stoi(indexString);
+  int index = std::stoi(indexString) - 1;
   std::string coordinate {vertex[0]};
 
   return this->vertices[index][coordinate];
@@ -134,16 +140,26 @@ Maths::Vector Geometry::Triangle::interceptOfMiddleVertex()
   Geometry::Triangle sortedVertices = {this->sortedByX()};
   
   auto slopeOfInterceptedLine = (
-    (sortedVertices["y2"] - sortedVertices["y0"]) / (sortedVertices["x2"] - sortedVertices["x0"])
+    (sortedVertices["y3"] - sortedVertices["y1"]) / (sortedVertices["x3"] - sortedVertices["x1"])
   );
 
   Maths::Vector interceptPoint = {
-    sortedVertices["x1"],
-    sortedVertices["y0"]
-    + slopeOfInterceptedLine * (sortedVertices["x1"] - sortedVertices["x0"])
+    sortedVertices["x2"],
+    sortedVertices["y1"]
+    + slopeOfInterceptedLine * (sortedVertices["x2"] - sortedVertices["x1"])
   };
 
   return interceptPoint;
+}
+
+bool Geometry::Triangle::shouldSplit()
+{
+  Geometry::Triangle sortedTriangle = {this->sortedByX()};
+
+  return (
+    sortedTriangle["x1"] == sortedTriangle["x2"]
+    || sortedTriangle["x2"] == sortedTriangle["x3"]
+  );
 }
 
 Maths::Vector Geometry::Triangle::middleVertex()

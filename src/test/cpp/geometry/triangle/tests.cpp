@@ -143,14 +143,14 @@ TEST_F(TriangleTest, ShouldIndexTriangleWithVerticeSubscriptOperator)
   this->triangle = {{
     {0.0, 0.0}, {3, 6}, {6, 0.0}}};
 
-  auto y1 = triangle["y1"];
-  auto x2 = triangle["x2"];
+  auto y2 = triangle["y2"];
+  auto x3 = triangle["x3"];
 
   double correctY1 = 6;
   double correctX2 = 6;
 
-  EXPECT_DOUBLE_EQ(correctY1, y1);
-  EXPECT_DOUBLE_EQ(correctX2, x2);
+  EXPECT_DOUBLE_EQ(correctY1, y2);
+  EXPECT_DOUBLE_EQ(correctX2, x3);
 }
 
 TEST_F(TriangleTest, ShouldGetMiddleVertexOfTriangle)

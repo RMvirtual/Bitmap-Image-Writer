@@ -192,7 +192,7 @@ TEST_F(LineTest, ShouldSortByXAscending)
 TEST_F(LineTest, ShouldDetectVerticalLine)
 {
   this->line = {{1,5}, {1,1}};
-  EXPECT_FALSE(this->line.isSloped());  
+  EXPECT_FALSE(this->line.isSloped());
   EXPECT_TRUE(this->line.isVerticalLine());
 
   this->line = {{1,1}, {1,5}};
