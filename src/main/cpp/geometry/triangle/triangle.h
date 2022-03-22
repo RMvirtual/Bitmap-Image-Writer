@@ -13,7 +13,7 @@ class Triangle
 public:
   Triangle();
   Triangle(const std::vector<Maths::Vector>& vertices);
-  Triangle(Maths::Vector vertices...);
+  Triangle(std::initializer_list<Maths::Vector> vertices);
   
   void translate(const Maths::Vector& translation);
   void scale(double scalar, int pointOfOrigin);

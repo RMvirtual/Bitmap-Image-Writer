@@ -15,7 +15,7 @@ Geometry::Triangle::Triangle(const std::vector<Maths::Vector>& vertices)
   this->vertices = vertices;
 }
 
-Geometry::Triangle::Triangle(Maths::Vector vertices...)
+Geometry::Triangle::Triangle(std::initializer_list<Maths::Vector> vertices)
 {
   this->vertices = {vertices};
 }

@@ -2,8 +2,8 @@
 
 TEST_F(TriangleTest, ShouldTranslateTrianglePositiveFromZeroOrigin)
 {
-  this->triangle = {{
-    {0.0, 0.0}, {1.0, 1.0}, {2.0, 0.0}}};
+  this->triangle = {
+    {0.0, 0.0}, {1.0, 1.0}, {2.0, 0.0}};
 
   this->triangle.translate({3,3});
 
