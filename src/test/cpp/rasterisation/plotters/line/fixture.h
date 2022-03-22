@@ -14,34 +14,34 @@ protected:
   Rasterisation::LinePlotter plotter;
   Geometry::Line line;
 
-  void setupEastHorizontalLine();
-  void setupCorrectEastHorizontalPlots();
+  void setupEastHorizontallyStraightLine();
+  void setupCorrectEastHorizontallyStraightPlots();
 
-  void setupNorthVerticalLine();
-  void setupCorrectNorthVerticalPlots();
+  void setupNorthVerticallyStraightLine();
+  void setupCorrectNorthVerticallyStraightPlots();
 
-  void setupWestHorizontalLine();
-  void setupCorrectWestHorizontalPlots();
+  void setupWestHorizontallyStraightLine();
+  void setupCorrectWestHorizontallyStraightPlots();
 
-  void setupSouthVerticalLine();
-  void setupCorrectSouthVerticalPlots();
+  void setupSouthVerticallyStraightLine();
+  void setupCorrectSouthVerticallyStraightPlots();
 
-  void setupNorthWestLine();
-  void setupSouthEastLine();
-  void setupCorrectNorthWestSouthEastPlots();
+  void setupNorthWestSlopedLine();
+  void setupSouthEastSlopedLine();
+  void setupCorrectNorthWestSouthEastSlopedPlots();
 
-  void setupNorthEastLine();
-  void setupSouthWestLine();
-  void setupCorrectNorthEastSouthWestPlots();
+  void setupNorthEastSlopedLine();
+  void setupSouthWestSlopedLine();
+  void setupCorrectNorthEastSouthWestSlopedPlots();
 
-  void setupTranslatedNorthEastLine();  
-  void setupCorrectTranslatedNorthEastPlots();
+  void setupTranslatedNorthEastSlopedLine();  
+  void setupCorrectTranslatedNorthEastSlopedPlots();
 
-  void setupVerticallySlopedSouthEastLine();
-  void setupCorrectTranslatedSouthEastPlots();
+  void setupTranslatedSouthEastSlopedLine();
+  void setupCorrectTranslatedSouthEastSlopedPlots();
 
-  void setupTranslatedWestHorizontalLine();
-  void setupCorrectTranslatedWestHorizontalPlots();
+  void setupTranslatedWestHorizontallyStraightLine();
+  void setupCorrectTranslatedWestHorizontallyStraightPlots();
 
   void compare(std::vector<Maths::Vector> plotPoints);
 };

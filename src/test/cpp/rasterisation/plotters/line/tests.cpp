@@ -1,89 +1,89 @@
 #include "gtest/gtest.h"
 #include "src/test/cpp/rasterisation/plotters/line/fixture.h"
 
-TEST_F(LinePlotterTest, ShouldPlotNorthVerticalLine)
+TEST_F(LinePlotterTest, ShouldPlotNorthVerticallyStraightLine)
 {
-  this->setupNorthVerticalLine();
+  this->setupNorthVerticallyStraightLine();
   auto plotPoints = this->plotter.plot(this->line);
 
   this->compare(plotPoints);  
 }
 
-TEST_F(LinePlotterTest, ShouldPlotSouthVerticalLine)
+TEST_F(LinePlotterTest, ShouldPlotSouthVerticallyStraightLine)
 {
-  this->setupSouthVerticalLine();
+  this->setupSouthVerticallyStraightLine();
   auto plotPoints = this->plotter.plot(this->line);
 
   this->compare(plotPoints);  
 }
 
-TEST_F(LinePlotterTest, ShouldPlotWestHorizontalLine)
+TEST_F(LinePlotterTest, ShouldPlotWestHorizontallyStraightLine)
 {
-  this->setupWestHorizontalLine();
+  this->setupWestHorizontallyStraightLine();
   auto plotPoints = this->plotter.plot(this->line);
 
   this->compare(plotPoints);  
 }
 
-TEST_F(LinePlotterTest, ShouldPlotEastHorizontalLine)
+TEST_F(LinePlotterTest, ShouldPlotEastHorizontallyStraightLine)
 {
-  this->setupEastHorizontalLine();
+  this->setupEastHorizontallyStraightLine();
   auto plotPoints = this->plotter.plot(this->line);
 
   this->compare(plotPoints);  
 }
 
-TEST_F(LinePlotterTest, ShouldPlotShortNorthEastLine)
+TEST_F(LinePlotterTest, ShouldPlotNorthEastSlopedLine)
 {
-  this->setupNorthEastLine();
+  this->setupNorthEastSlopedLine();
   auto plotPoints = this->plotter.plot(this->line);
   
   this->compare(plotPoints);
 }
 
-TEST_F(LinePlotterTest, ShouldPlotShortNorthWestLine)
+TEST_F(LinePlotterTest, ShouldPlotNorthWestSlopedLine)
 {
-  this->setupNorthWestLine();
+  this->setupNorthWestSlopedLine();
   auto plotPoints = this->plotter.plot(this->line);
   
   this->compare(plotPoints);
 }
 
-TEST_F(LinePlotterTest, ShouldPlotShortSouthEastLine)
+TEST_F(LinePlotterTest, ShouldPlotSouthEastSlopedLine)
 {
-  this->setupSouthEastLine();
+  this->setupSouthEastSlopedLine();
   auto plotPoints = this->plotter.plot(this->line);
   
   this->compare(plotPoints);
 }
 
-TEST_F(LinePlotterTest, ShouldPlotShortSouthWestLine)
+TEST_F(LinePlotterTest, ShouldPlotSouthWestSlopedLine)
 {
-  this->setupSouthWestLine();
+  this->setupSouthWestSlopedLine();
   auto plotPoints = this->plotter.plot(this->line);
   
   this->compare(plotPoints);
 }
 
-TEST_F(LinePlotterTest, ShouldPlotTranslatedNorthEastLine)
+TEST_F(LinePlotterTest, ShouldPlotTranslatedNorthEastSlopedLine)
 {
-  this->setupTranslatedNorthEastLine();
+  this->setupTranslatedNorthEastSlopedLine();
   auto plotPoints = this->plotter.plot(this->line);
 
   this->compare(plotPoints);  
 }
 
-TEST_F(LinePlotterTest, ShouldPlotTranslatedSouthEastLine)
+TEST_F(LinePlotterTest, ShouldPlotTranslatedSouthEastSlopedLine)
 {
-  this->setupVerticallySlopedSouthEastLine();
+  this->setupTranslatedSouthEastSlopedLine();
   auto plotPoints = this->plotter.plot(this->line);
 
   this->compare(plotPoints);
 }
 
-TEST_F(LinePlotterTest, ShouldPlotTranslatedWestHorizontalLine)
+TEST_F(LinePlotterTest, ShouldPlotTranslatedWestHorizontallyStraightLine)
 {
-  this->setupTranslatedWestHorizontalLine();
+  this->setupTranslatedWestHorizontallyStraightLine();
   auto plotPoints = this->plotter.plot(this->line);
 
   this->compare(plotPoints);  
