@@ -3,6 +3,7 @@
 #include <string>
 #include <unordered_map>
 
+#include "src/main/cpp/geometry/cartesian-index/cartesian_index.h"
 #include "src/main/cpp/geometry/slope/slope.h"
 #include "src/main/cpp/maths/vector/vector.h"
 
@@ -30,6 +31,9 @@ public:
 
   Maths::Vector origin() const;
   Maths::Vector destination() const;
+
+  double& operator [](const Geometry::CartesianIndex& index);
+  double operator [](const Geometry::CartesianIndex& index) const;
 
   double& operator [](const std::string& vertex);
   double operator [](const std::string& vertex) const;

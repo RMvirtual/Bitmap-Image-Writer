@@ -21,7 +21,6 @@ std::vector<Maths::Vector> Rasterisation::TriangleFiller::fillPoints(
 
   else {
     auto xDistance = triangle["x2"] - triangle["x1"];
-    
   }
 
   return {{0.0, 0.0}};

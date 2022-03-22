@@ -140,7 +140,8 @@ Maths::Vector Geometry::Triangle::interceptOfMiddleVertex()
   Geometry::Triangle sortedVertices = {this->sortedByX()};
   
   auto slopeOfInterceptedLine = (
-    (sortedVertices["y3"] - sortedVertices["y1"]) / (sortedVertices["x3"] - sortedVertices["x1"])
+    (sortedVertices["y3"]-sortedVertices["y1"]) / (
+      sortedVertices["x3"]-sortedVertices["x1"])
   );
 
   Maths::Vector interceptPoint = {

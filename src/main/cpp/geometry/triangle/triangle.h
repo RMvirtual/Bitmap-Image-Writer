@@ -5,6 +5,7 @@
 #include <vector>
 #include "src/main/cpp/maths/vector/vector.h"
 #include "src/main/cpp/geometry/line/line.h"
+#include "src/main/cpp/geometry/cartesian-index/cartesian_index.h"
 
 namespace Geometry {
 class Triangle
@@ -29,11 +30,11 @@ public:
   Maths::Vector interceptOfMiddleVertex();
   std::vector<Maths::Vector> sortedByX();
   bool shouldSplit();
-  
+  Geometry::Slope slope(Geometry::CartesianIndex point);
+
 private:
   std::vector<Maths::Vector> vertices;
 
   double xLowerBound() const;
   double xUpperBound() const;
-
 };}

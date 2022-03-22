@@ -12,13 +12,13 @@ Geometry::TriangleSplitter::split(Geometry::Triangle& triangle)
   auto middleVertex = sortedTriangle.middleVertex();
   auto middleInterceptPoint = sortedTriangle.interceptOfMiddleVertex();
 
-  Geometry::Triangle dummyTriangle1 = {{
+  Geometry::Triangle triangle1 = {{
     triangle[0], middleVertex, middleInterceptPoint
   }};
 
-  Geometry::Triangle dummyTriangle2 = {{
+  Geometry::Triangle triangle2 = {{
     middleInterceptPoint, middleVertex, triangle[2] 
   }};
 
-  return {dummyTriangle1, dummyTriangle2};
+  return {triangle1, triangle2};
 }
