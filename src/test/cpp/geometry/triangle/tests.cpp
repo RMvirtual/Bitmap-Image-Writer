@@ -213,7 +213,7 @@ TEST_F(TriangleTest, ShouldDetermineTriangleNeedsSplitting)
   this->triangle = {{
     {0.0, 0.0}, {3, 6}, {6, 0.0}}};
 
-  EXPECT_FALSE(this->triangle.shouldSplit());
+  EXPECT_TRUE(this->triangle.shouldSplit());
 }
 
 TEST_F(TriangleTest, ShouldDetermineTriangleDoesNotNeedSplitting)
