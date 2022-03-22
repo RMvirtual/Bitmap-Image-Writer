@@ -72,34 +72,44 @@ bool Geometry::Slope::isHorizontallyStraight() const
   return this->_origin["y"] == this->_destination["y"];  
 }
 
-bool Geometry::Slope::isDescendingByX() const
-{
-  return this->isTraversingWest();
-}
-
-bool Geometry::Slope::isDescendingByY() const
-{
-  return this->isTraversingSouth();
-}
-
-bool Geometry::Slope::isTraversingEast() const
+bool Geometry::Slope::isAscendingByX() const
 {
   return this->_origin["x"] < this->_destination["x"];
 }
 
-bool Geometry::Slope::isTraversingWest() const
-{
-  return this->_origin["x"] > this->_destination["x"];
-}
-
-bool Geometry::Slope::isTraversingNorth() const
+bool Geometry::Slope::isAscendingByY() const
 {
   return this->_origin["y"] < this->_destination["y"];
 }
 
+bool Geometry::Slope::isDescendingByX() const
+{
+  return this->_destination["x"] < this->_origin["x"];
+}
+
+bool Geometry::Slope::isDescendingByY() const
+{
+  return this->_destination["y"] < this->_origin["y"];
+}
+
+bool Geometry::Slope::isTraversingEast() const
+{
+  return this->isAscendingByX();
+}
+
+bool Geometry::Slope::isTraversingWest() const
+{
+  return this->isDescendingByX();
+}
+
+bool Geometry::Slope::isTraversingNorth() const
+{
+  return this->isAscendingByY();
+}
+
 bool Geometry::Slope::isTraversingSouth() const
 {
-  return this->_origin["y"] > this->_destination["y"];
+  return this->isDescendingByY();
 }
 
 double Geometry::Slope::xLowerBound() const

@@ -24,6 +24,8 @@ public:
   bool isTraversingEast() const;
   bool isTraversingWest() const;
   bool isTraversingSouth() const;
+  bool isAscendingByX() const;
+  bool isAscendingByY() const;
   bool isDescendingByX() const;
   bool isDescendingByY() const;
 
