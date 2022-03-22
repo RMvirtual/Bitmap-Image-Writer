@@ -12,8 +12,8 @@ public:
 protected:
   Geometry::Slope slope;
 
-  void setupNorthEastLine();
-  void setupNorthWestLine();
-  void setupSouthEastLine();
-  void setupSouthWestLine();
+  void setupNorthEastSlope();
+  void setupNorthWestSlope();
+  void setupSouthEastSlope();
+  void setupSouthWestSlope();
 };

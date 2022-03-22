@@ -158,8 +158,8 @@ bool Geometry::Triangle::shouldSplit()
   Geometry::Triangle sortedTriangle = {this->sortedByX()};
 
   return (
-    sortedTriangle["x1"] == sortedTriangle["x2"]
-    || sortedTriangle["x2"] == sortedTriangle["x3"]
+    sortedTriangle["x1"] != sortedTriangle["x2"]
+    && sortedTriangle["x2"] != sortedTriangle["x3"]
   );
 }
 

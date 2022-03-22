@@ -1,21 +1,21 @@
 #include "src/test/cpp/geometry/slope/fixture.h"
 
-void SlopeTest::setupNorthEastLine()
+void SlopeTest::setupNorthEastSlope()
 {
   this->slope = {{1,1}, {11,5}};
 }
 
-void SlopeTest::setupNorthWestLine()
+void SlopeTest::setupNorthWestSlope()
 {
   this->slope = {{11,1}, {1,5}};
 }
 
-void SlopeTest::setupSouthEastLine()
+void SlopeTest::setupSouthEastSlope()
 {
   this->slope = {{1,5}, {11,1}};
 }
 
-void SlopeTest::setupSouthWestLine()
+void SlopeTest::setupSouthWestSlope()
 {
   this->slope = {{11,5}, {1,1}};  
 }

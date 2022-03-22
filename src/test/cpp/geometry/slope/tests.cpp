@@ -120,7 +120,7 @@ TEST_F(SlopeTest, ShouldDetectHorizontallyStraightSlope)
 
 TEST_F(SlopeTest, ShouldDetectAsTraversingNorthEast)
 {
-  this->setupNorthEastLine();
+  this->setupNorthEastSlope();
   EXPECT_TRUE(this->slope.isTraversingNorth());
   EXPECT_TRUE(this->slope.isTraversingEast());
   EXPECT_FALSE(this->slope.isTraversingSouth());
@@ -129,7 +129,7 @@ TEST_F(SlopeTest, ShouldDetectAsTraversingNorthEast)
 
 TEST_F(SlopeTest, ShouldDetectAsTraversingNorthWest)
 {
-  this->setupNorthWestLine();
+  this->setupNorthWestSlope();
   EXPECT_TRUE(this->slope.isTraversingNorth());
   EXPECT_TRUE(this->slope.isTraversingWest());
   EXPECT_FALSE(this->slope.isTraversingSouth());
@@ -138,7 +138,7 @@ TEST_F(SlopeTest, ShouldDetectAsTraversingNorthWest)
 
 TEST_F(SlopeTest, ShouldDetectAsTraversingSouthEast)
 {
-  this->setupSouthEastLine();
+  this->setupSouthEastSlope();
   EXPECT_TRUE(this->slope.isTraversingSouth());
   EXPECT_TRUE(this->slope.isTraversingEast());
   EXPECT_FALSE(this->slope.isTraversingNorth());
@@ -147,7 +147,7 @@ TEST_F(SlopeTest, ShouldDetectAsTraversingSouthEast)
 
 TEST_F(SlopeTest, ShouldDetectAsTraversingSouthWest)
 {
-  this->setupSouthWestLine();
+  this->setupSouthWestSlope();
   EXPECT_TRUE(this->slope.isTraversingSouth());
   EXPECT_TRUE(this->slope.isTraversingWest());
   EXPECT_FALSE(this->slope.isTraversingNorth());

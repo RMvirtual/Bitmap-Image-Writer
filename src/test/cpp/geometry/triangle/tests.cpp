@@ -207,3 +207,11 @@ TEST_F(TriangleTest, ShouldSplitTriangle)
     EXPECT_DOUBLE_EQ(correctVector["y"], vector["y"]);
   }
 }
+
+TEST_F(TriangleTest, ShouldDetermineTriangleDoesNotNeedSplitting)
+{
+  this->triangle = {{
+    {0.0, 0.0}, {3, 0.0}, {3, 3}}};
+
+  EXPECT_FALSE(this->triangle.shouldSplit());
+}
