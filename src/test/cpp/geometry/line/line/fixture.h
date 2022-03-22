@@ -10,10 +10,5 @@ public:
   ~LineTest();
 
 protected:
-  Geometry::Line line;
-
-  void setupNorthEastLine();
-  void setupNorthWestLine();
-  void setupSouthEastLine();
-  void setupSouthWestLine();
+  void compare(Geometry::Line& correctLine, Geometry::Line& line);
 };
