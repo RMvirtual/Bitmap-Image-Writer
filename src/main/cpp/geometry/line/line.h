@@ -60,7 +60,6 @@ private:
   Maths::Vector _origin;
   Maths::Vector _destination;
   Geometry::Slope slope;
-  std::unordered_map<std::string, double> vertices;
 
   void recalculateSlope();
 };}

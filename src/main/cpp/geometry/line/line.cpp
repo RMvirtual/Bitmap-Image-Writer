@@ -21,13 +21,13 @@ Geometry::Line::Line(const Maths::Vector& destination)
 void Geometry::Line::setOrigin(const Maths::Vector& coordinates)
 {
   this->_origin = coordinates;
-  this->calculateVertices();
+  this->recalculateSlope();
 }
 
 void Geometry::Line::setDestination(const Maths::Vector& coordinates)
 {
   this->_destination = coordinates;
-  this->calculateVertices();
+  this->recalculateSlope();
 }
 
 void Geometry::Line::setEndpoints(
@@ -35,24 +35,19 @@ void Geometry::Line::setEndpoints(
 {
   this->_origin = origin;
   this->_destination = destination;
-  this->calculateVertices();
+  this->recalculateSlope();
 }
 
-void Geometry::Line::switchEndpoints()
+void Geometry::Line::recalculateSlope()
 {
-  auto originalOrigin = this->_origin;
-  auto originalDestination = this->_destination;
-  
-  this->_destination = originalOrigin;
-  this->_origin = originalDestination;
-  this->calculateVertices();
+  this->slope = {this->_origin, this->_destination};
 }
 
 void Geometry::Line::translate(const Maths::Vector& translation)
 {
   this->_origin = this->_origin + translation;
   this->_destination = this->_destination + translation;
-  this->calculateVertices();
+  this->recalculateSlope();
 }
 
 void Geometry::Line::scale(double scaleFactor, const Maths::Vector& origin)
@@ -64,7 +59,7 @@ void Geometry::Line::scale(double scaleFactor, const Maths::Vector& origin)
   auto destLineLength = this->_destination - origin;
   auto destScaledLength =  destLineLength * scaleFactor;
   this->_destination = origin + destScaledLength;
-  this->calculateVertices();
+  this->recalculateSlope();
 }
 
 void Geometry::Line::scale(double scaleFactor)
@@ -73,14 +68,14 @@ void Geometry::Line::scale(double scaleFactor)
   auto scaledLength = lineLength * scaleFactor;
 
   this->_destination = this->_origin + scaledLength;
-  this->calculateVertices();
+  this->recalculateSlope();
 }
 
 void Geometry::Line::scaleIncludingOrigin(double scaleFactor)
 {
   this->_origin = this->_origin * scaleFactor;
   this->_destination = this->_destination * scaleFactor;
-  this->calculateVertices();
+  this->recalculateSlope();
 }
 
 void Geometry::Line::sortByXAscending()
@@ -95,6 +90,11 @@ void Geometry::Line::sortByYAscending()
     this->switchEndpoints();
 }
 
+void Geometry::Line::switchEndpoints()
+{
+  this->setEndpoints(this->destination(), this->origin());
+}
+
 Maths::Vector Geometry::Line::origin() const
 {
   return this->_origin;
@@ -105,31 +105,42 @@ Maths::Vector Geometry::Line::destination() const
   return this->_destination;
 }
 
-void Geometry::Line::calculateVertices()
-{
-  this->vertices = {
-    {"x0", this->_origin["x"]},
-    {"y0", this->_origin["y"]},
-    {"x1", this->_destination["x"]},
-    {"y1", this->_destination["y"]}
-  };
-
-  this->recalculateSlope();
-}
-
-void Geometry::Line::recalculateSlope()
-{
-  this->slope = {this->_origin, this->_destination};
-}
-
+/**
+ * @brief Indexed from x0-x1, y0-y1.
+ * @param vertex 
+ * @return double& 
+ */
 double Geometry::Line::operator [](const std::string& vertex) const
 {
-  return this->vertices.at(vertex);
+  std::string indexString = {vertex[1]};
+  int index = std::stoi(indexString);
+  std::string coordinate {vertex[0]};
+
+  auto endPoint = this->_origin;
+
+  if (index == 1)
+    endPoint = this->_destination;
+
+  return endPoint[coordinate];
 }
 
+/**
+ * @brief Indexed from x0-x1, y0-y1.
+ * @param vertex 
+ * @return double&
+ */
 double& Geometry::Line::operator [](const std::string& vertex)
 {
-  return this->vertices[vertex];
+  std::string indexString = {vertex[1]};
+  int index = std::stoi(indexString);
+  std::string coordinate {vertex[0]};
+
+  auto& endPoint = this->_origin;
+
+  if (index == 1)
+    endPoint = this->_destination;
+
+  return endPoint[coordinate];
 }
 
 double Geometry::Line::gradient() const
