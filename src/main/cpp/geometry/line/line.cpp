@@ -78,13 +78,11 @@ void Geometry::Line::translate(const Maths::Vector& translation)
 
 void Geometry::Line::scale(double scaleFactor, const Maths::Vector& origin)
 {
-  auto originLineLength = this->_origin - origin;
-  auto originScaledLength =  originLineLength * scaleFactor;
-  auto newOrigin = origin + originScaledLength;
+  auto newOrigin = this->scaleVectorFromOrigin(
+    this->_origin, scaleFactor, origin);
 
-  auto destLineLength = this->_destination - origin;
-  auto destScaledLength =  destLineLength * scaleFactor;
-  auto newDestination = origin + destScaledLength;
+  auto newDestination = this->scaleVectorFromOrigin(
+    this->_destination, scaleFactor, origin);
   
   this->setEndpoints(newOrigin, newDestination);
 }
@@ -96,6 +94,16 @@ void Geometry::Line::scale(double scaleFactor)
   auto newDestination = this->_origin + scaledLength;
   
   this->setDestination(newDestination);
+}
+
+Maths::Vector Geometry::Line::scaleVectorFromOrigin(
+  const Maths::Vector& vector, double scaleFactor,
+  const Maths::Vector& origin) const
+{
+  auto length = vector - origin;
+  auto scaledLength =  length * scaleFactor;
+  
+  return origin + scaledLength;
 }
 
 void Geometry::Line::scaleIncludingOrigin(double scaleFactor)
