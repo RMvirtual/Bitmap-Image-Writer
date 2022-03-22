@@ -12,4 +12,7 @@ public:
 protected:
   Geometry::Triangle triangle;
 
+  void compare(
+    Geometry::Triangle& correctTriangle, Geometry::Triangle triangle);
+
 };
