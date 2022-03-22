@@ -15,6 +15,11 @@ Geometry::Triangle::Triangle(const std::vector<Maths::Vector>& vertices)
   this->vertices = vertices;
 }
 
+Geometry::Triangle::Triangle(Maths::Vector vertices...)
+{
+  this->vertices = {vertices};
+}
+
 double Geometry::Triangle::operator [](std::string vertex) const
 {
   std::string indexString = {vertex[1]};
