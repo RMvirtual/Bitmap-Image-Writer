@@ -48,7 +48,7 @@ void Geometry::Line::switchEndpoints()
 
 void Geometry::Line::sortByXAscending()
 {
-  if (this->isDescendingByX())
+  if (this->isDescendingByX())   
     this->switchEndpoints();
 }
 
@@ -132,7 +132,7 @@ double& Geometry::Line::operator [](const std::string& vertex)
   int index = std::stoi(indexString);
   std::string coordinate {vertex[0]};
 
-  auto& endPoint = this->_origin;
+  auto endPoint = this->_origin;
 
   if (index == 1)
     endPoint = this->_destination;

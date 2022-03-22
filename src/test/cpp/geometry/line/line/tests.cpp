@@ -15,7 +15,7 @@ TEST_F(LineTest, ShouldTranslateLine)
   EXPECT_DOUBLE_EQ(correctLine["y1"], this->line["y1"]);
 }
 
-TEST_F(LineTest, ShouldScaleLine)
+TEST_F(LineTest, ShouldScale)
 {
   this->line = {{5,5}, {10, 15}};
   this->line.scale(10);
@@ -178,15 +178,43 @@ TEST_F(LineTest, ShouldCalculateRun)
   EXPECT_DOUBLE_EQ(correctRun, this->line.run());
 }
 
+TEST_F(LineTest, ShouldSwitchEndpoints)
+{
+  this->line = {{5,5}, {10, 15}};
+  this->line.switchEndpoints();
+
+  Geometry::Line correctLine {{10, 15}, {5, 5}};
+
+  EXPECT_DOUBLE_EQ(correctLine["x0"], this->line["x0"]);
+  EXPECT_DOUBLE_EQ(correctLine["y0"], this->line["y0"]);
+  EXPECT_DOUBLE_EQ(correctLine["x1"], this->line["x1"]);
+  EXPECT_DOUBLE_EQ(correctLine["y1"], this->line["y1"]);
+}
+
 TEST_F(LineTest, ShouldSortByXAscending)
 {
   this->line = {{5,1}, {2,10}};
   this->line.sortByXAscending();
 
-  EXPECT_DOUBLE_EQ(2, this->line["x0"]);
-  EXPECT_DOUBLE_EQ(10, this->line["y0"]);
-  EXPECT_DOUBLE_EQ(5, this->line["x1"]);
-  EXPECT_DOUBLE_EQ(1, this->line["y1"]);
+  Geometry::Line correctLine = {{2,10}, {5,1}};
+
+  EXPECT_DOUBLE_EQ(correctLine["x0"], this->line["x0"]);
+  EXPECT_DOUBLE_EQ(correctLine["y0"], this->line["y0"]);
+  EXPECT_DOUBLE_EQ(correctLine["x1"], this->line["x1"]);
+  EXPECT_DOUBLE_EQ(correctLine["y1"], this->line["y1"]);
+}
+
+TEST_F(LineTest, ShouldSortByYAscending)
+{
+  this->line = {{2,10}, {5,1}};
+  this->line.sortByYAscending();
+
+  Geometry::Line correctLine = {{5,1}, {2,10}};
+
+  EXPECT_DOUBLE_EQ(correctLine["x0"], this->line["x0"]);
+  EXPECT_DOUBLE_EQ(correctLine["y0"], this->line["y0"]);
+  EXPECT_DOUBLE_EQ(correctLine["x1"], this->line["x1"]);
+  EXPECT_DOUBLE_EQ(correctLine["y1"], this->line["y1"]);
 }
 
 TEST_F(LineTest, ShouldDetectVerticallyStraightLine)
@@ -242,4 +270,3 @@ TEST_F(LineTest, ShouldDetectAsTraversingSouthWest)
   EXPECT_FALSE(this->line.isTraversingNorth());
   EXPECT_FALSE(this->line.isTraversingEast());  
 }
-

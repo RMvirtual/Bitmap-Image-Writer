@@ -54,12 +54,22 @@ bool Geometry::Slope::isSlopeless() const
 
 bool Geometry::Slope::isHorizontallySloped() const
 {
-  return this->isSloped() ? abs(this->run()) > abs(this->rise()) : false;
+  bool isHorizontallySloped = false;
+
+  if (this->isSloped())
+    isHorizontallySloped = abs(this->run()) > abs(this->rise());
+
+  return isHorizontallySloped;
 }
 
 bool Geometry::Slope::isVerticallySloped() const
 {
-  return this->isSloped() ? abs(this->rise()) > abs(this->run()) : false;
+  bool isVerticallySloped = false;
+
+  if (this->isSloped())
+    isVerticallySloped = abs(this->rise()) > abs(this->run());
+
+  return isVerticallySloped;
 }
 
 bool Geometry::Slope::isVerticallyStraight() const
@@ -84,12 +94,12 @@ bool Geometry::Slope::isAscendingByY() const
 
 bool Geometry::Slope::isDescendingByX() const
 {
-  return this->_destination["x"] < this->_origin["x"];
+  return this->_origin["x"] > this->_destination["x"];
 }
 
 bool Geometry::Slope::isDescendingByY() const
 {
-  return this->_destination["y"] < this->_origin["y"];
+  return this->_origin["y"] > this->_destination["y"];
 }
 
 bool Geometry::Slope::isTraversingEast() const

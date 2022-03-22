@@ -58,6 +58,7 @@ void Rasterisation::LinePlotter::plotSlopedLine(const Geometry::Line& line)
 
     constantAxisLowerBound = sortedLine["y0"];
     constantAxisUpperBound = sortedLine["y1"];
+
     errorAxisLowerBound = sortedLine["x0"];
     errorAxisUpperBound = sortedLine["x1"];
 
