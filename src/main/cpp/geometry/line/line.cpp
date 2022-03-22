@@ -20,14 +20,12 @@ Geometry::Line::Line(const Maths::Vector& destination)
 
 void Geometry::Line::setOrigin(const Maths::Vector& coordinates)
 {
-  this->_origin = coordinates;
-  this->recalculateSlope();
+  this->setEndpoints(coordinates, this->_destination);
 }
 
 void Geometry::Line::setDestination(const Maths::Vector& coordinates)
 {
-  this->_destination = coordinates;
-  this->recalculateSlope();
+  this->setEndpoints(this->_origin, coordinates);
 }
 
 void Geometry::Line::setEndpoints(
@@ -35,47 +33,17 @@ void Geometry::Line::setEndpoints(
 {
   this->_origin = origin;
   this->_destination = destination;
-  this->recalculateSlope();
+  this->calculateSlope();
 }
 
-void Geometry::Line::recalculateSlope()
+void Geometry::Line::calculateSlope()
 {
   this->slope = {this->_origin, this->_destination};
 }
 
-void Geometry::Line::translate(const Maths::Vector& translation)
+void Geometry::Line::switchEndpoints()
 {
-  this->_origin = this->_origin + translation;
-  this->_destination = this->_destination + translation;
-  this->recalculateSlope();
-}
-
-void Geometry::Line::scale(double scaleFactor, const Maths::Vector& origin)
-{
-  auto originLineLength = this->_origin - origin;
-  auto originScaledLength =  originLineLength * scaleFactor;
-  this->_origin = origin + originScaledLength;
-
-  auto destLineLength = this->_destination - origin;
-  auto destScaledLength =  destLineLength * scaleFactor;
-  this->_destination = origin + destScaledLength;
-  this->recalculateSlope();
-}
-
-void Geometry::Line::scale(double scaleFactor)
-{
-  auto lineLength = this->_destination - this->_origin;
-  auto scaledLength = lineLength * scaleFactor;
-
-  this->_destination = this->_origin + scaledLength;
-  this->recalculateSlope();
-}
-
-void Geometry::Line::scaleIncludingOrigin(double scaleFactor)
-{
-  this->_origin = this->_origin * scaleFactor;
-  this->_destination = this->_destination * scaleFactor;
-  this->recalculateSlope();
+  this->setEndpoints(this->destination(), this->origin());
 }
 
 void Geometry::Line::sortByXAscending()
@@ -90,11 +58,6 @@ void Geometry::Line::sortByYAscending()
     this->switchEndpoints();
 }
 
-void Geometry::Line::switchEndpoints()
-{
-  this->setEndpoints(this->destination(), this->origin());
-}
-
 Maths::Vector Geometry::Line::origin() const
 {
   return this->_origin;
@@ -105,10 +68,46 @@ Maths::Vector Geometry::Line::destination() const
   return this->_destination;
 }
 
+void Geometry::Line::translate(const Maths::Vector& translation)
+{
+  auto translatedOrigin = this->_origin + translation;
+  auto translatedDestination = this->_destination + translation;
+
+  this->setEndpoints(translatedOrigin, translatedDestination);
+}
+
+void Geometry::Line::scale(double scaleFactor, const Maths::Vector& origin)
+{
+  auto originLineLength = this->_origin - origin;
+  auto originScaledLength =  originLineLength * scaleFactor;
+  auto newOrigin = origin + originScaledLength;
+
+  auto destLineLength = this->_destination - origin;
+  auto destScaledLength =  destLineLength * scaleFactor;
+  auto newDestination = origin + destScaledLength;
+  
+  this->setEndpoints(newOrigin, newDestination);
+}
+
+void Geometry::Line::scale(double scaleFactor)
+{
+  auto lineLength = this->_destination - this->_origin;
+  auto scaledLength = lineLength * scaleFactor;
+  auto newDestination = this->_origin + scaledLength;
+  
+  this->setDestination(newDestination);
+}
+
+void Geometry::Line::scaleIncludingOrigin(double scaleFactor)
+{
+  auto newOrigin = this->_origin * scaleFactor;
+  auto newDestination = this->_destination * scaleFactor;
+  
+  this->setEndpoints(newOrigin, newDestination);
+}
+
 /**
  * @brief Indexed from x0-x1, y0-y1.
- * @param vertex 
- * @return double& 
  */
 double Geometry::Line::operator [](const std::string& vertex) const
 {
@@ -126,8 +125,6 @@ double Geometry::Line::operator [](const std::string& vertex) const
 
 /**
  * @brief Indexed from x0-x1, y0-y1.
- * @param vertex 
- * @return double&
  */
 double& Geometry::Line::operator [](const std::string& vertex)
 {
@@ -188,14 +185,14 @@ bool Geometry::Line::isVerticallySloped() const
   return this->slope.isVerticallySloped();
 }
 
-bool Geometry::Line::isVerticalLine() const
+bool Geometry::Line::isVerticallyStraight() const
 {
-  return this->slope.isVerticalLine();
+  return this->slope.isVerticallyStraight();
 }
 
-bool Geometry::Line::isHorizontalLine() const
+bool Geometry::Line::isHorizontallyStraight() const
 {
-  return this->slope.isHorizontalLine();
+  return this->slope.isHorizontallyStraight();
 }
 
 bool Geometry::Line::isTraversingEast() const

@@ -189,22 +189,22 @@ TEST_F(LineTest, ShouldSortByXAscending)
   EXPECT_DOUBLE_EQ(1, this->line["y1"]);
 }
 
-TEST_F(LineTest, ShouldDetectVerticalLine)
+TEST_F(LineTest, ShouldDetectVerticallyStraightLine)
 {
   this->line = {{1,5}, {1,1}};
   EXPECT_FALSE(this->line.isSloped());
-  EXPECT_TRUE(this->line.isVerticalLine());
+  EXPECT_TRUE(this->line.isVerticallyStraight());
 
   this->line = {{1,1}, {1,5}};
   EXPECT_FALSE(this->line.isSloped());  
-  EXPECT_TRUE(this->line.isVerticalLine());
+  EXPECT_TRUE(this->line.isVerticallyStraight());
 }
 
-TEST_F(LineTest, ShouldDetectHorizontalLine)
+TEST_F(LineTest, ShouldDetectHorizontallyStraightLine)
 {
   this->line = {{1,1}, {5,1}};
   EXPECT_FALSE(this->line.isSloped());
-  EXPECT_TRUE(this->line.isHorizontalLine());
+  EXPECT_TRUE(this->line.isHorizontallyStraight());
 }
 
 TEST_F(LineTest, ShouldDetectAsTraversingNorthEast)

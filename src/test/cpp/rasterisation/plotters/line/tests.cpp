@@ -41,7 +41,6 @@ TEST_F(LinePlotterTest, ShouldPlotShortNorthEastLine)
   this->compare(plotPoints);
 }
 
-// Fails.
 TEST_F(LinePlotterTest, ShouldPlotShortNorthWestLine)
 {
   this->setupNorthWestLine();
@@ -58,7 +57,6 @@ TEST_F(LinePlotterTest, ShouldPlotShortSouthEastLine)
   this->compare(plotPoints);
 }
 
-// Fails.
 TEST_F(LinePlotterTest, ShouldPlotShortSouthWestLine)
 {
   this->setupSouthWestLine();
@@ -75,7 +73,6 @@ TEST_F(LinePlotterTest, ShouldPlotTranslatedNorthEastLine)
   this->compare(plotPoints);  
 }
 
-// Fails.
 TEST_F(LinePlotterTest, ShouldPlotTranslatedSouthEastLine)
 {
   this->setupVerticallySlopedSouthEastLine();

@@ -49,12 +49,12 @@ bool Geometry::Slope::isSloped() const
 
 bool Geometry::Slope::isSlopeless() const
 {
-  return (this->isHorizontalLine() || this->isVerticalLine());
+  return (this->isHorizontallyStraight() || this->isVerticallyStraight());
 }
 
 bool Geometry::Slope::isHorizontallySloped() const
 {
-  return this->isSloped() ? abs(this->run()) > abs(this->rise()) : false; 
+  return this->isSloped() ? abs(this->run()) > abs(this->rise()) : false;
 }
 
 bool Geometry::Slope::isVerticallySloped() const
@@ -62,12 +62,12 @@ bool Geometry::Slope::isVerticallySloped() const
   return this->isSloped() ? abs(this->rise()) > abs(this->run()) : false;
 }
 
-bool Geometry::Slope::isVerticalLine() const
+bool Geometry::Slope::isVerticallyStraight() const
 {
   return this->_origin["x"] == this->_destination["x"];
 }
 
-bool Geometry::Slope::isHorizontalLine() const
+bool Geometry::Slope::isHorizontallyStraight() const
 {
   return this->_origin["y"] == this->_destination["y"];  
 }

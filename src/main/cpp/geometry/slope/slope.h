@@ -18,8 +18,8 @@ public:
   bool isSlopeless() const;
   bool isHorizontallySloped() const;
   bool isVerticallySloped() const;
-  bool isHorizontalLine() const;
-  bool isVerticalLine() const;
+  bool isHorizontallyStraight() const;
+  bool isVerticallyStraight() const;
   bool isTraversingNorth() const;
   bool isTraversingEast() const;
   bool isTraversingWest() const;

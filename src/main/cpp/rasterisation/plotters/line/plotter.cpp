@@ -123,5 +123,5 @@ void Rasterisation::LinePlotter::updateError()
   if (this->shouldIncrementErrorAxis())
     errorChange -= this->errorRun;
 
-  this->errorTracker += 2 * errorChange;  
+  this->errorTracker += 2 * errorChange;
 }
