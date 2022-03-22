@@ -15,4 +15,6 @@ protected:
   void compare(
     Geometry::Triangle& correctTriangle, Geometry::Triangle triangle);
 
+  void compare(
+    Maths::Vector& correctVector, Maths::Vector& vector);
 };

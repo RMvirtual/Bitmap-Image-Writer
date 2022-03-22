@@ -111,8 +111,7 @@ TEST_F(TriangleTest, ShouldGetMiddleVertexOfTriangle)
   auto point = triangle.middleVertex();
   Maths::Vector correctPoint = {3, 6};
 
-  EXPECT_DOUBLE_EQ(correctPoint["x"], point["x"]);
-  EXPECT_DOUBLE_EQ(correctPoint["y"], point["y"]);
+  this->compare(correctPoint, point);
 }
 
 TEST_F(TriangleTest, ShouldGetMiddleInterceptPointOfTriangle)
@@ -123,8 +122,7 @@ TEST_F(TriangleTest, ShouldGetMiddleInterceptPointOfTriangle)
   auto point = triangle.interceptOfMiddleVertex();
   Maths::Vector correctPoint = {3, 0};
 
-  EXPECT_DOUBLE_EQ(correctPoint["x"], point["x"]);
-  EXPECT_DOUBLE_EQ(correctPoint["y"], point["y"]);
+  this->compare(correctPoint, point);
 }
 
 TEST_F(TriangleTest, ShouldSplitTriangle)

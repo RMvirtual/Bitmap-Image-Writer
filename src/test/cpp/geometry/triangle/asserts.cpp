@@ -7,7 +7,13 @@ void TriangleTest::compare(
     auto& vector = triangle[i];
     auto& correctVector = correctTriangle[i];
 
-    EXPECT_DOUBLE_EQ(correctVector["x"], vector["x"]);
-    EXPECT_DOUBLE_EQ(correctVector["y"], vector["y"]);
+    this->compare(correctVector, vector);
   }
+}
+
+void TriangleTest::compare(
+  Maths::Vector& correctVector, Maths::Vector& vector)
+{
+  EXPECT_DOUBLE_EQ(correctVector["x"], vector["x"]);
+  EXPECT_DOUBLE_EQ(correctVector["y"], vector["y"]);
 }
