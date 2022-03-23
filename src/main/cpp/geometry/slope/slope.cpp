@@ -141,3 +141,11 @@ double Geometry::Slope::yUpperBound() const
 {
   return std::max(this->_origin["y"], this->_destination["y"]);
 }
+
+std::string Geometry::Slope::toString() const
+{
+  std::string representation = {
+    "Gradient" + std::to_string(this->gradient()) + ", "};
+
+  return representation;
+}

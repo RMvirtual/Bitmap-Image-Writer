@@ -127,7 +127,17 @@ double Geometry::Triangle::xUpperBound() const
   return bound;
 }
 
-std::vector<Maths::Vector> Geometry::Triangle::sortedByX()
+void Geometry::Triangle::sortByX()
+{
+  auto isLessThan = [](
+    Maths::Vector vector1, Maths::Vector vector2) {
+      return (vector1["x"] < vector2["x"]);
+  };
+
+  std::sort(this->vertices.begin(), this->vertices.end(), isLessThan);
+}
+
+Geometry::Triangle Geometry::Triangle::sortedByX()
 {
   auto isLessThan = [](
     Maths::Vector vector1, Maths::Vector vector2) {
@@ -135,24 +145,24 @@ std::vector<Maths::Vector> Geometry::Triangle::sortedByX()
   };
 
   auto sortedVertices = this->vertices;
-  std::sort(this->vertices.begin(), this->vertices.end(), isLessThan);
+  std::sort(sortedVertices.begin(), sortedVertices.end(), isLessThan);
 
   return sortedVertices;
 }
 
 Maths::Vector Geometry::Triangle::interceptOfMiddleVertex()
 {
-  Geometry::Triangle sortedVertices = {this->sortedByX()};
+  auto sortedTriangle = this->sortedByX();
   
   auto slopeOfInterceptedLine = (
-    (sortedVertices["y3"]-sortedVertices["y1"]) / (
-      sortedVertices["x3"]-sortedVertices["x1"])
+    (sortedTriangle["y3"]-sortedTriangle["y1"]) / (
+      sortedTriangle["x3"]-sortedTriangle["x1"])
   );
 
   Maths::Vector interceptPoint = {
-    sortedVertices["x2"],
-    sortedVertices["y1"]
-    + slopeOfInterceptedLine * (sortedVertices["x2"] - sortedVertices["x1"])
+    sortedTriangle["x2"],
+    sortedTriangle["y1"]
+    + slopeOfInterceptedLine * (sortedTriangle["x2"] - sortedTriangle["x1"])
   };
 
   return interceptPoint;
@@ -160,7 +170,7 @@ Maths::Vector Geometry::Triangle::interceptOfMiddleVertex()
 
 bool Geometry::Triangle::shouldSplit()
 {
-  Geometry::Triangle sortedTriangle = {this->sortedByX()};
+  auto sortedTriangle = this->sortedByX();
 
   return (
     sortedTriangle["x1"] != sortedTriangle["x2"]
@@ -171,4 +181,70 @@ bool Geometry::Triangle::shouldSplit()
 Maths::Vector Geometry::Triangle::middleVertex()
 {
   return this->sortedByX()[1];
+}
+
+Maths::Vector Geometry::Triangle::smallestXVertex()
+{
+  return this->sortedByX()[0];
+}
+
+Maths::Vector Geometry::Triangle::greatestXVertex()
+{
+  return this->sortedByX()[2];
+}
+
+std::vector<Geometry::Edge> Geometry::Triangle::edges()
+{
+  auto sortedTriangle = this->sortedByX();
+
+  auto point1 = sortedTriangle[0];
+  auto point2 = sortedTriangle[1];
+  auto point3 = sortedTriangle[2];
+  
+  Geometry::Edge edge1To2 {point1, point2};
+  Geometry::Edge edge1To3 {point1, point3};
+  Geometry::Edge edge2To3 {point2, point3};
+
+  std::cout << point3;
+
+  return {edge1To2, edge1To3, edge2To3};
+}
+
+Geometry::Edge Geometry::Triangle::edge(std::string point1, std::string point2)
+{
+  auto sortedTriangle = this->sortedByX();
+
+  std::string point1IndexString = {point1[1]};
+  int point1index = std::stoi(point1IndexString);
+  auto point1Vector = sortedTriangle[point1index];
+
+  std::string point2IndexString = {point2[1]};
+  int point2index = std::stoi(point2IndexString);
+  auto point2Vector = sortedTriangle[point2index];
+
+  return {point1Vector, point2Vector};
+}
+
+bool Geometry::Triangle::hasFlatHorizontalEastEdge()
+{
+  return this->verticesMatchX("x2", "x3");
+}
+
+bool Geometry::Triangle::hasFlatHorizontalWestEdge()
+{
+  return this->verticesMatchX("x1", "x2");
+}
+
+bool Geometry::Triangle::hasFlatHorizontalEdge()
+{
+  return (
+    this->hasFlatHorizontalEastEdge() || this->hasFlatHorizontalWestEdge());
+}
+
+bool Geometry::Triangle::verticesMatchX(
+  std::string vertex1, std::string vertex2)
+{
+  auto sortedTriangle = this->sortedByX();
+
+  return sortedTriangle[vertex1] == sortedTriangle[vertex2]; 
 }

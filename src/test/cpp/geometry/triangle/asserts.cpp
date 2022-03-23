@@ -11,6 +11,12 @@ void TriangleTest::compare(
   }
 }
 
+void TriangleTest::compare(Geometry::Edge& correctEdge, Geometry::Edge& edge)
+{
+  this->compare(correctEdge[0], edge[0]);
+  this->compare(correctEdge[1], edge[1]);
+}
+
 void TriangleTest::compare(
   Maths::Vector& correctVector, Maths::Vector& vector)
 {

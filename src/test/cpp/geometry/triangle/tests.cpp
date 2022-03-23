@@ -112,3 +112,37 @@ TEST_F(TriangleTest, ShouldDetermineTriangleDoesNotNeedSplitting)
   this->triangle = {{0.0, 0.0}, {3, 0.0}, {3, 3}};
   EXPECT_FALSE(this->triangle.shouldSplit());
 }
+
+TEST_F(TriangleTest, ShouldGetEdges)
+{
+  this->triangle = {{0.0, 0.0}, {3, 0.0}, {3, 3}};
+  
+  auto edges = this->triangle.edges();
+  Geometry::Edge edge1To2 = {{0.0, 0.0}, {3, 0.0}};
+  Geometry::Edge edge1To3 = {{0.0, 0.0}, {3, 3}};
+  Geometry::Edge edge2To3 = {{3, 0.0}, {3, 3}};
+
+  this->compare(edge1To2, edges[0]);
+  this->compare(edge1To3, edges[1]);
+  this->compare(edge2To3, edges[2]);
+}
+
+TEST_F(TriangleTest, ShouldDetectFlatHorizontalEdge)
+{
+  this->triangle = {{0.0, 0.0}, {0.0, 3}, {3, 3}};
+  EXPECT_TRUE(this->triangle.hasFlatHorizontalEdge());
+}
+
+TEST_F(TriangleTest, ShouldDetectFlatEastHorizontalEdge)
+{
+  this->triangle = {{0.0, 0.0}, {3, 0.0}, {3, 3}};
+  EXPECT_TRUE(this->triangle.hasFlatHorizontalEastEdge());
+  EXPECT_FALSE(this->triangle.hasFlatHorizontalWestEdge());
+}
+
+TEST_F(TriangleTest, ShouldDetectFlatWestHorizontalEdge)
+{
+  this->triangle = {{0.0, 0.0}, {0.0, 3}, {3, 3}};
+  EXPECT_TRUE(this->triangle.hasFlatHorizontalWestEdge());
+  EXPECT_FALSE(this->triangle.hasFlatHorizontalEastEdge());
+}

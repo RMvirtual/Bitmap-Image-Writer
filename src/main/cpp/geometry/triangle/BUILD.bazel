@@ -6,7 +6,6 @@ cc_library(
     srcs = glob(["*.cpp"]),
     visibility = ["//visibility:public"],
     deps = [
-        "//src/main/cpp/geometry/cartesian-index",
         "//src/main/cpp/geometry/line",
         "//src/main/cpp/maths",
     ]

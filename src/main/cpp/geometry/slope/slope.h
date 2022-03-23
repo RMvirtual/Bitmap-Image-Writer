@@ -1,5 +1,6 @@
 #pragma once
 
+#include <string>
 #include "src/main/cpp/maths/vector/vector.h"
 
 namespace Geometry {
@@ -13,6 +14,11 @@ public:
   double gradient() const;
   double rise() const;
   double run() const;
+  double xLowerBound() const;
+  double xUpperBound() const;
+  double yLowerBound() const;
+  double yUpperBound() const;
+  std::string toString() const;
 
   bool isSloped() const;
   bool isSlopeless() const;
@@ -28,11 +34,6 @@ public:
   bool isAscendingByY() const;
   bool isDescendingByX() const;
   bool isDescendingByY() const;
-
-  double xLowerBound() const;
-  double xUpperBound() const;
-  double yLowerBound() const;
-  double yUpperBound() const;
 
 private:
   Maths::Vector _origin;

@@ -5,7 +5,7 @@
 #include <vector>
 #include "src/main/cpp/maths/vector/vector.h"
 #include "src/main/cpp/geometry/line/line.h"
-#include "src/main/cpp/geometry/cartesian-index/cartesian_index.h"
+#include "src/main/cpp/geometry/triangle/edge.h"
 
 namespace Geometry {
 class Triangle
@@ -27,15 +27,26 @@ public:
   std::vector<Maths::Vector>::iterator end();
   std::vector<Maths::Vector>::const_iterator begin() const;
   std::vector<Maths::Vector>::const_iterator end() const;
+
+  Geometry::Edge edge(std::string point1, std::string point2);
+  std::vector<Geometry::Edge> edges();
+
+  Maths::Vector smallestXVertex();
   Maths::Vector middleVertex();
+  Maths::Vector greatestXVertex();
   Maths::Vector interceptOfMiddleVertex();
-  std::vector<Maths::Vector> sortedByX();
+  void sortByX();
+  Geometry::Triangle sortedByX();
+  
   bool shouldSplit();
-  Geometry::Slope slope(Geometry::CartesianIndex point);
+  bool hasFlatHorizontalEdge();
+  bool hasFlatHorizontalEastEdge();
+  bool hasFlatHorizontalWestEdge();
 
 private:
   std::vector<Maths::Vector> vertices;
 
   double xLowerBound() const;
   double xUpperBound() const;
+  bool verticesMatchX(std::string vertex1, std::string vertex2);
 };}

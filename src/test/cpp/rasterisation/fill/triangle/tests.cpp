@@ -14,5 +14,9 @@ TEST_F(TriangleFillerTest, ShouldGetTriangleFillCoordinates)
     {2, 0.0}, {2, 1}, {2, 2},
   };
 
+  for (auto point : fillPoints) {
+    std::cout << point << std::endl;
+  }
+
   EXPECT_TRUE(true);
 }
