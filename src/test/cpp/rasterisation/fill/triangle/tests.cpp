@@ -1,6 +1,6 @@
 #include "src/test/cpp/rasterisation/fill/triangle/fixture.h"
 
-TEST_F(TriangleFillerTest, ShouldGetTriangleFillCoordinates)
+TEST_F(TriangleFillerTest, DISABLED_ShouldGetTriangleFillCoordinates)
 {
   Geometry::Triangle triangle {{
     {0.0, 0.0}, {3, 6}, {6, 0.0}

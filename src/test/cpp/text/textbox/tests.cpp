@@ -140,15 +140,15 @@ TEST_F(TextTest, ShouldCreateTextImageFile)
 {
   auto image = this->redImage();
 
-  Text::Text2D text1 {"abcdefghijklm"};
+  Text::Text2D text1 {"hello"};
   text1.setPadding(0.25, 0.0);
   text1.scale(20);
-  text1.translate({10, 200});
+  text1.translate({150, 100});
 
-  Text::Text2D text2 {"nopqrstuvwxyz"};
+  Text::Text2D text2 {"world"};
   text2.setPadding(0.25, 0.0);
   text2.scale(20);
-  text2.translate({10, 100});
+  text2.translate({text1.xUpperBound() + 25, 100});
 
   Rasterisation::Rasteriser rasteriser {image};
   rasteriser.draw(text1);
@@ -158,7 +158,7 @@ TEST_F(TextTest, ShouldCreateTextImageFile)
   
   writer.writeToFile(
     image,
-    "C:/Users/rmvir/Desktop/scc300-Win3D/resources/test/output/text.bmp"
+    "C:/Users/rmvir/Desktop/scc300-Win3D/resources/test/output/hello_world2.bmp"
   );
 
   EXPECT_TRUE(true);

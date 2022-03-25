@@ -43,10 +43,13 @@ public:
   bool hasFlatHorizontalEastEdge();
   bool hasFlatHorizontalWestEdge();
 
+  double xLowerBound() const;
+  double xUpperBound() const;
+  double yLowerBound() const;
+  double yUpperBound() const;
+
 private:
   std::vector<Maths::Vector> vertices;
 
-  double xLowerBound() const;
-  double xUpperBound() const;
   bool verticesMatchX(std::string vertex1, std::string vertex2);
 };}

@@ -107,26 +107,6 @@ std::pair<Geometry::Triangle, Geometry::Triangle> Geometry::Triangle::split()
   return splitter.split(*this);
 }
 
-double Geometry::Triangle::xLowerBound() const
-{
-  double bound = this->vertices[0]["x"];
-
-  for (auto& vertex : this->vertices)
-    bound = std::min(bound, vertex["x"]);
-
-  return bound;
-}
-
-double Geometry::Triangle::xUpperBound() const
-{
-  double bound = this->vertices[0]["x"];
-
-  for (auto& vertex : this->vertices)
-    bound = std::max(bound, vertex["x"]);
-
-  return bound;
-}
-
 void Geometry::Triangle::sortByX()
 {
   auto isLessThan = [](
@@ -247,4 +227,44 @@ bool Geometry::Triangle::verticesMatchX(
   auto sortedTriangle = this->sortedByX();
 
   return sortedTriangle[vertex1] == sortedTriangle[vertex2]; 
+}
+
+double Geometry::Triangle::xLowerBound() const
+{
+  double bound = this->vertices[0]["x"];
+
+  for (auto& vertex : this->vertices)
+    bound = std::min(bound, vertex["x"]);
+
+  return bound;
+}
+
+double Geometry::Triangle::xUpperBound() const
+{
+  double bound = this->vertices[0]["x"];
+
+  for (auto& vertex : this->vertices)
+    bound = std::max(bound, vertex["x"]);
+
+  return bound;
+}
+
+double Geometry::Triangle::yLowerBound() const
+{
+  double bound = this->vertices[0]["y"];
+
+  for (auto& vertex : this->vertices)
+    bound = std::min(bound, vertex["y"]);
+
+  return bound;
+}
+
+double Geometry::Triangle::yUpperBound() const
+{
+  double bound = this->vertices[0]["y"];
+
+  for (auto& vertex : this->vertices)
+    bound = std::max(bound, vertex["y"]);
+
+  return bound;
 }

@@ -20,47 +20,44 @@ std::vector<Maths::Vector> Rasterisation::TriangleFiller::fillPoints(
 void Rasterisation::TriangleFiller::recursivelyFill(
   Geometry::Triangle& triangle)
 {
-  if (triangle.shouldSplit()) {
+  if (!triangle.hasFlatHorizontalEdge()) {
     auto triangles = triangle.split();
     this->recursivelyFill(triangles.first);
     this->recursivelyFill(triangles.second);
   }
 
   else {
-    // Determine top and bottom y edges.
-    auto edges = triangle.edges();
+    Geometry::Edge* edge1;
+    Geometry::Edge* edge2;
 
-    auto topEdge = edges[0];
-    auto bottomEdge = edges[0];
+    if (triangle.hasFlatHorizontalEastEdge()) {    
+      *edge1 = triangle.edge("x1", "x2");
+      *edge2 = triangle.edge("x1", "x3");
 
-    for (auto edge : edges) {
-      if (edge.yLowerBound() < bottomEdge.yLowerBound())
-        bottomEdge = edge;
+      auto edge1Slope = edge1->slope();
+      auto edge2Slope = edge2->slope();
 
-      if (edge.yUpperBound() > topEdge.yUpperBound())
-        topEdge = edge;
+      auto edge1Gradient = edge1Slope.gradient();
+      auto edge2Gradient = edge2Slope.gradient();
+
+      auto xLowerBound = triangle.xLowerBound();
+      auto xUpperBound = triangle.xUpperBound();
+
+      double yLowerBound = edge1Slope.yLowerBound();
+      double yUpperBound = edge2Slope.yUpperBound();
+
+      if (edge1Slope.yUpperBound() > edge2Slope.yUpperBound()) {
+        yLowerBound = edge2Slope.yLowerBound();
+        yUpperBound = edge1Slope.yUpperBound();
+      }
     }
 
-    auto topSlope = topEdge.slope();
-    auto bottomSlope = bottomEdge.slope();
+    else if (triangle.hasFlatHorizontalWestEdge()) {
+      *edge1 = triangle.edge("x1", "x3");
+      *edge2 = triangle.edge("x2", "x3");
 
-    std::cout << "Top slope: " << topSlope.toString() << std::endl;
-    std::cout << "Bottom slope: " << bottomSlope.toString() << std::endl;
-
-
-    auto constantEdge = edges[0];
-    auto constantSlope = constantEdge.slope();
-
-    auto xStart = constantEdge.xLowerBound();
-    auto xEnd = constantEdge.xUpperBound();
-
-    for (auto x = xStart; x < xEnd; x++) {
-      auto yLowerBound = constantEdge[0]["y"] + bottomSlope.gradient() * x;
-      auto yUpperBound = constantEdge[0]["y"] + topSlope.gradient() * x;
-  
-      for (auto y = yLowerBound; y < yUpperBound; y++) {
-        this->_fillPoints.push_back({x, y});
-      }
+      auto edge1Slope = edge1->slope();
+      auto edge2Slope = edge2->slope();
     }
   }
 }

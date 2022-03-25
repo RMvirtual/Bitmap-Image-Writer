@@ -22,7 +22,7 @@ void Demo::TextDemo::start()
 {
   this->updateImage();
   // std::thread renderingThread {&TextDemo::updateImage, this};
-  // this->viewer->start();
+  this->viewer->start();
 }
 
 void Demo::TextDemo::updateImage()
@@ -48,47 +48,45 @@ void Demo::TextDemo::updateImage()
 
   int renderNo = 0;
 
-  while (true) {
-    auto start = std::chrono::high_resolution_clock::now();
+  auto start = std::chrono::high_resolution_clock::now();
     
-    image->fill(redColours);
-    
-    bool boundaryReached = (
-      textBox.xLowerBound() <= 0 ||
-      textBox.xUpperBound() >= 500
-    );
+  image->fill(redColours);
+  
+  bool boundaryReached = (
+    textBox.xLowerBound() <= 0 ||
+    textBox.xUpperBound() >= 500
+  );
 
-    if (boundaryReached) {
-      if ((*translation)["x"] == 1)
-        translation = &negativeTranslation;
+  if (boundaryReached) {
+    if ((*translation)["x"] == 1)
+      translation = &negativeTranslation;
 
-      else
-        translation = &positiveTranslation;
-    }
-
-    textBox.translate(*translation);
-    rasteriser.draw(textBox);
-    
-    try {
-      writer.writeToFile(
-        image,
-        "C:/Users/rmvir/Desktop/scc300-Win3D/resources/renderer/images-to-load/text.bmp"
-      );
-    }
-
-    catch (std::exception e) {
-      std::cout << "Exception" << std::endl;
-    }
-    
-    renderNo++;
-    
-    auto stop = std::chrono::high_resolution_clock::now();
-    auto duration = std::chrono::duration_cast<std::chrono::milliseconds>(
-      stop - start);
-
-    std::cout << "It takes " << duration.count() 
-      << " milliseconds to process instead of 17 ms.\n";
+    else
+      translation = &positiveTranslation;
   }
+
+  textBox.translate(*translation);
+  rasteriser.draw(textBox);
+  
+  try {
+    writer.writeToFile(
+      image,
+      "C:/Users/rmvir/Desktop/scc300-Win3D/resources/renderer/images-to-load/text.bmp"
+    );
+  }
+
+  catch (std::exception e) {
+    std::cout << "Exception" << std::endl;
+  }
+  
+  renderNo++;
+  
+  auto stop = std::chrono::high_resolution_clock::now();
+  auto duration = std::chrono::duration_cast<std::chrono::milliseconds>(
+    stop - start);
+
+  std::cout << "It takes " << duration.count() 
+    << " milliseconds to process instead of 17 ms.\n";
 }
 
 std::shared_ptr<Bitmaps::Image> Demo::TextDemo::redImage()
@@ -113,7 +111,7 @@ Text::Text2D Demo::TextDemo::textBox()
   Text::Text2D text {"helloworld"};
   text.setPadding(0.25, 0.0);
   text.scale(20);
-  text.translate({1, 200});
+  text.translate({80, 200});
 
   return text;
 }
