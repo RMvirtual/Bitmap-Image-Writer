@@ -1,2 +1,2 @@
-# SCC300-Win3D
-SCC300 Third Year Project for Win3D.
+# Bitmap Image Writer
+Bitmap Image Writer with 2D graphics support and Maths library.
