@@ -1,2 +1,2 @@
 # Bitmap Image Writer
-Bitmap Image Writer with 2D graphics support and Maths library.
+Bitmap Image Writer with 2D geometry support and linear algebra library.
